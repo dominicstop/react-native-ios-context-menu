@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-
-		F4FF95D7245B92E800C19C63 /*  IosContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  IosContextMenu.swift */; };
-
-		5E555C0D2413F4C50049A1A2 /* IosContextMenu.mm in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* IosContextMenu.mm */; };
+		88C8637D2540FBCC006F32D6 /* IosContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8637A2540FBCB006F32D6 /* IosContextMenu.m */; };
+		88C8637E2540FBCC006F32D6 /* IosContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C8637B2540FBCB006F32D6 /* IosContextMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,12 +25,9 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libIosContextMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIosContextMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
-
-
-		B3E7B5891CC2AC0600A0062D /* IosContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IosContextMenu.m; sourceTree = "<group>"; };
-		F4FF95D5245B92E700C19C63 /* IosContextMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IosContextMenu-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4FF95D6245B92E800C19C63 /* IosContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosContextMenu.swift; sourceTree = "<group>"; };
-
+		88C8637A2540FBCB006F32D6 /* IosContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IosContextMenu.m; sourceTree = "<group>"; };
+		88C8637B2540FBCB006F32D6 /* IosContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IosContextMenu.swift; sourceTree = "<group>"; };
+		88C8637C2540FBCB006F32D6 /* IosContextMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IosContextMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +52,19 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-
-
-				F4FF95D6245B92E800C19C63 /* IosContextMenu.swift */,
-				B3E7B5891CC2AC0600A0062D /* IosContextMenu.m */,
-				F4FF95D5245B92E700C19C63 /* IosContextMenu-Bridging-Header.h */,
-
+				88C863792540FB97006F32D6 /* src_library */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		88C863792540FB97006F32D6 /* src_library */ = {
+			isa = PBXGroup;
+			children = (
+				88C8637C2540FBCB006F32D6 /* IosContextMenu-Bridging-Header.h */,
+				88C8637A2540FBCB006F32D6 /* IosContextMenu.m */,
+				88C8637B2540FBCB006F32D6 /* IosContextMenu.swift */,
+			);
+			path = src_library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,11 +124,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-
-				F4FF95D7245B92E800C19C63 /* IosContextMenu.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* IosContextMenu.m in Sources */,
-
+				88C8637E2540FBCC006F32D6 /* IosContextMenu.swift in Sources */,
+				88C8637D2540FBCC006F32D6 /* IosContextMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,11 +238,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IosContextMenu;
 				SKIP_INSTALL = YES;
-
-				SWIFT_OBJC_BRIDGING_HEADER = "IosContextMenu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "src_library/IosContextMenu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Debug;
 		};
@@ -263,10 +257,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IosContextMenu;
 				SKIP_INSTALL = YES;
-
-				SWIFT_OBJC_BRIDGING_HEADER = "IosContextMenu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "src_library/IosContextMenu-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Release;
 		};
