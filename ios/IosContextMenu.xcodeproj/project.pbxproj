@@ -6,11 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		88C8637D2540FBCC006F32D6 /* IosContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8637A2540FBCB006F32D6 /* IosContextMenu.m */; };
-		88C8637E2540FBCC006F32D6 /* IosContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C8637B2540FBCB006F32D6 /* IosContextMenu.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -25,9 +20,17 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libIosContextMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIosContextMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		88C8637A2540FBCB006F32D6 /* IosContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IosContextMenu.m; sourceTree = "<group>"; };
-		88C8637B2540FBCB006F32D6 /* IosContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IosContextMenu.swift; sourceTree = "<group>"; };
 		88C8637C2540FBCB006F32D6 /* IosContextMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IosContextMenu-Bridging-Header.h"; sourceTree = "<group>"; };
+		88C8639F25414966006F32D6 /* RCTSwiftLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTSwiftLog.m; sourceTree = "<group>"; };
+		88C863A025414966006F32D6 /* RCTLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTLog.swift; sourceTree = "<group>"; };
+		88C863A125414966006F32D6 /* RCTSwiftLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTSwiftLog.h; sourceTree = "<group>"; };
+		88C863A325414966006F32D6 /* RCTMenuActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTMenuActionItem.swift; sourceTree = "<group>"; };
+		88C863A425414966006F32D6 /* RCTContextMenuManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTContextMenuManager.m; sourceTree = "<group>"; };
+		88C863A525414966006F32D6 /* RCTContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTContextMenuView.swift; sourceTree = "<group>"; };
+		88C863A625414966006F32D6 /* RCTContextMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTContextMenuManager.swift; sourceTree = "<group>"; };
+		88C863A825414966006F32D6 /* UIMenuOptions+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenuOptions+Helpers.swift"; sourceTree = "<group>"; };
+		88C863A925414966006F32D6 /* Encodable+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Helpers.swift"; sourceTree = "<group>"; };
+		88C863AA25414966006F32D6 /* UIMenuElement+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenuElement+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +63,51 @@
 		88C863792540FB97006F32D6 /* src_library */ = {
 			isa = PBXGroup;
 			children = (
+				88C863A725414966006F32D6 /* Extensions */,
+				88C8639D25414966006F32D6 /* React Native */,
 				88C8637C2540FBCB006F32D6 /* IosContextMenu-Bridging-Header.h */,
-				88C8637A2540FBCB006F32D6 /* IosContextMenu.m */,
-				88C8637B2540FBCB006F32D6 /* IosContextMenu.swift */,
 			);
 			path = src_library;
+			sourceTree = "<group>";
+		};
+		88C8639D25414966006F32D6 /* React Native */ = {
+			isa = PBXGroup;
+			children = (
+				88C8639E25414966006F32D6 /* RCTSwiftLog */,
+				88C863A225414966006F32D6 /* RCTContextMenu */,
+			);
+			path = "React Native";
+			sourceTree = "<group>";
+		};
+		88C8639E25414966006F32D6 /* RCTSwiftLog */ = {
+			isa = PBXGroup;
+			children = (
+				88C8639F25414966006F32D6 /* RCTSwiftLog.m */,
+				88C863A025414966006F32D6 /* RCTLog.swift */,
+				88C863A125414966006F32D6 /* RCTSwiftLog.h */,
+			);
+			path = RCTSwiftLog;
+			sourceTree = "<group>";
+		};
+		88C863A225414966006F32D6 /* RCTContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				88C863A325414966006F32D6 /* RCTMenuActionItem.swift */,
+				88C863A425414966006F32D6 /* RCTContextMenuManager.m */,
+				88C863A525414966006F32D6 /* RCTContextMenuView.swift */,
+				88C863A625414966006F32D6 /* RCTContextMenuManager.swift */,
+			);
+			path = RCTContextMenu;
+			sourceTree = "<group>";
+		};
+		88C863A725414966006F32D6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88C863A825414966006F32D6 /* UIMenuOptions+Helpers.swift */,
+				88C863A925414966006F32D6 /* Encodable+Helpers.swift */,
+				88C863AA25414966006F32D6 /* UIMenuElement+Helpers.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,8 +167,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88C8637E2540FBCC006F32D6 /* IosContextMenu.swift in Sources */,
-				88C8637D2540FBCC006F32D6 /* IosContextMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
