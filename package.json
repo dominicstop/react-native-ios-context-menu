@@ -4,7 +4,6 @@
   "description": "placeholder",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
-  "types": "lib/typescript/src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
@@ -30,8 +29,7 @@
   },
   "keywords": [
     "react-native",
-    "ios",
-    "android"
+    "ios"
   ],
   "repository": "https://github.com/dominicstop/react-native-ios-context-menu",
   "author": "Dominic Go <dominicstop@gmail.com> (https://github.com/dominicstop)",
@@ -89,8 +87,7 @@
     "output": "lib",
     "targets": [
       "commonjs",
-      "module",
-      "typescript"
+      "module"
     ]
   }
 }
