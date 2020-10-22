@@ -26,7 +26,13 @@ extension Encodable {
     let encoder = JSON.encoder;
     
     encoder.outputFormatting = .prettyPrinted;
-    encoder.dateEncodingStrategy = .iso8601;
+    
+    if #available(iOS 10.0, *) {
+      encoder.dateEncodingStrategy = .iso8601;
+      
+    } else {
+      encoder.dateEncodingStrategy = .millisecondsSince1970;
+    };
     
     return try encoder.encode(self);
   };

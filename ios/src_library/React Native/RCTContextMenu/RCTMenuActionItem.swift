@@ -6,8 +6,8 @@
 //
 
 import Foundation;
+import UIKit;
 
-public typealias UIActionHandlerWithKey = (String, UIAction) -> Void;
 
 public enum ImageType: String, CaseIterable, Encodable {
   case NONE   = "NONE";
@@ -23,7 +23,9 @@ public enum ImageType: String, CaseIterable, Encodable {
 // MARK: RCTMenuActionItem
 // -----------------
 
+@available(iOS 13, *)
 struct RCTMenuActionItem: Hashable, Encodable {
+  typealias UIActionHandlerWithKey = (String, UIAction) -> Void;
   
   var key           : String;
   var title         : String;
@@ -40,6 +42,7 @@ struct RCTMenuActionItem: Hashable, Encodable {
 // MARK: RCTMenuActionItem - Init
 // ------------------------
 
+@available(iOS 13, *)
 extension RCTMenuActionItem {
   init?(dictionary: NSDictionary){
     guard
@@ -83,6 +86,7 @@ extension RCTMenuActionItem {
 // MARK: RCTMenuActionItem - Computed Properties
 // ---------------------------------------
 
+@available(iOS 13, *)
 extension RCTMenuActionItem {
   
   // Note: using computed property bc UIMenuElement.Attributes,
@@ -127,6 +131,7 @@ extension RCTMenuActionItem {
 // MARK: RCTMenuActionItem - Functions
 // -----------------------------
 
+@available(iOS 13, *)
 extension RCTMenuActionItem {
   
   func makeSubmenu(_ handler: @escaping UIActionHandlerWithKey) -> UIMenuElement {

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+@available(iOS 13, *)
 class RCTContextMenuView: UIView {
   
   @objc var onPressMenuItem: RCTDirectEventBlock?;
@@ -68,8 +68,6 @@ class RCTContextMenuView: UIView {
   };
   
   private func makeContextMenu() -> UIMenu {
-    
-    
     // Create and return a UIMenu with the actions from menuItems
     return UIMenu(
       title   : self.menuTitle as String,
@@ -83,6 +81,7 @@ class RCTContextMenuView: UIView {
   };
 };
 
+@available(iOS 13, *)
 extension RCTContextMenuView: UIContextMenuInteractionDelegate {
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
     return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in

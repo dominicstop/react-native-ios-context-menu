@@ -15,7 +15,11 @@ class RCTContextMenuManager: RCTViewManager {
   };
   
   override func view() -> UIView! {
-    let view = RCTContextMenuView(bridge: self.bridge);    
-    return view;
+    if #available(iOS 13, *) {
+      return RCTContextMenuView(bridge: self.bridge);
+      
+    } else {
+      return RCTView();
+    };
   };
 };

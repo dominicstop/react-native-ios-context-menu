@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+@available(iOS 13, *)
 extension UIMenuElement.Attributes {
   static func fromString(_ string: String) -> UIMenuElement.Attributes? {
     switch string {
@@ -19,6 +21,7 @@ extension UIMenuElement.Attributes {
   };
 };
 
+@available(iOS 13, *)
 extension UIMenuElement.State {
   static func fromString(_ string: String) -> UIMenuElement.State? {
     switch string {
