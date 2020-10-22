@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+
 import IosContextMenu from 'react-native-ios-context-menu';
 
 export default function App() {
-  const [result, setResult] = React.useState();
-
-  React.useEffect(() => {
-    IosContextMenu.multiply(3, 7).then(setResult);
-  }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
     </View>
   );
 }
