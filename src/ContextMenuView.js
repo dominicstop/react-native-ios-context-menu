@@ -7,13 +7,8 @@ const componentName   = "RCTContextMenu";
 const NativeCommands  = UIManager[componentName]?.Commands;
 const NativeComponent = requireNativeComponent(componentName);
 
-const PROP_KEYS = {
-  // values -------------
-  menuTitle: 'menuTitle',
-  // arrays -----------------
-  menuItems  : 'menuItems'  , // required: array of MenuItemKeys
-  menuOptions: 'menuOptions', // optional: array of MenuOptions
-  // events -----------------------
+const NATIVE_PROP_KEYS = {
+  menuConfig     : 'menuConfig'     ,
   onPressMenuItem: 'onPressMenuItem',
 };
 
@@ -33,7 +28,7 @@ export class ContextMenuView extends React.PureComponent {
   render(){
     const nativeProps = {
       ...this.props,
-      [PROP_KEYS.onPressMenuItem]: this._handleOnPressMenuItem,
+      [NATIVE_PROP_KEYS.onPressMenuItem]: this._handleOnPressMenuItem,
     };
 
     return(
