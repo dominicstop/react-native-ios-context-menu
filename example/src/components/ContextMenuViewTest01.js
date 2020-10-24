@@ -105,15 +105,45 @@ const menuItemsDummy2 = [{
   }
 ];
 
+const menuItemsDummy3 = [{
+  [MenuItemKeys.key       ]: 'key-01',
+  [MenuItemKeys.title     ]: 'Action #1',
+  [MenuItemKeys.imageType ]: ImageTypes.SYSTEM,
+  [MenuItemKeys.imageValue]: 'folder.fill',
+  [MenuItemKeys.menuAttributes]: MenuElementAtrributes.displayInline,
+  [MenuItemKeys.submenuItems]: [{
+    [MenuItemKeys.key  ]: 'key-03',
+    [MenuItemKeys.title]: 'Submenu Action #1',
+  }, {
+    [MenuItemKeys.key  ]: 'key-04',
+    [MenuItemKeys.title]: 'Submenu Action #2',
+  }]
+}, {
+  [MenuItemKeys.key       ]: 'key-05',
+  [MenuItemKeys.title     ]: 'Action #2',
+  [MenuItemKeys.imageType ]: ImageTypes.SYSTEM,
+  [MenuItemKeys.imageValue]: 'folder.fill',
+  [MenuItemKeys.menuAttributes]: MenuElementAtrributes.displayInline,
+}];
+
+
+
+const MenuConfig01 = {
+  menuTitle: 'Menu Test 1',
+  // can be another menu or an action
+  menuItems: [{
+    actionKey: 'key-00',
+    actionTitle: 'Action #1'
+  }],
+};
+
 export class ContextMenuViewTest01 extends React.PureComponent {
   render(){
     return(
       <View style={styles.rootContainer}>
         <ContextMenuView 
           style={styles.contextMenuView}
-          menuItems={menuItemsDummy1}
-          menuTitle={'Menu Test - displayInline'}
-          menuOptions={[MenuOptions.displayInline]}
+          menuConfig={MenuConfig01}
           onPressMenuItem={({key}) => alert(key)}
         >
           <Image
@@ -125,36 +155,44 @@ export class ContextMenuViewTest01 extends React.PureComponent {
             {'React Native View'}
           </Text>
         </ContextMenuView>
-        <ContextMenuView 
-          style={styles.contextMenuView}
-          menuItems={menuItemsDummy2}
-          menuTitle={'Hello World'}
-        >
-          <Text style={styles.text}>
-            {'Hello World'}
-          </Text>
-          <Text style={styles.text}>
-            {'Hello World'}
-          </Text>
-          <Text style={styles.text}>
-            {'Hello World'}
-          </Text>
-        </ContextMenuView>
-        <ContextMenuView 
-          style={styles.contextMenuViewImage}
-          menuItems={menuItemsDummy2}
-          menuTitle={'Image Preview'}
-        >
-          <Image
-            style={styles.image}
-            resizeMode={'cover'}
-            source={require('../assets/macos11_wallpaper.jpg')}
-          />
-        </ContextMenuView>
       </View>
     );
   };
 };
+
+/**
+ *  
+let old = (
+  <React.Fragment>
+    <ContextMenuView 
+      style={styles.contextMenuView}
+      menuItems={menuItemsDummy2}
+      menuTitle={'Hello World'}
+    >
+      <Text style={styles.text}>
+        {'Hello World'}
+      </Text>
+      <Text style={styles.text}>
+        {'Hello World'}
+      </Text>
+      <Text style={styles.text}>
+        {'Hello World'}
+      </Text>
+    </ContextMenuView>
+    <ContextMenuView 
+      style={styles.contextMenuViewImage}
+      menuItems={menuItemsDummy2}
+      menuTitle={'Image Preview'}
+    >
+      <Image
+        style={styles.image}
+        resizeMode={'cover'}
+        source={require('../assets/macos11_wallpaper.jpg')}
+      />
+    </ContextMenuView>
+  </React.Fragment>
+);
+*/
 
 const styles = StyleSheet.create({
   rootContainer: {

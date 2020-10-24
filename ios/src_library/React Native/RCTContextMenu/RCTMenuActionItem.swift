@@ -1,64 +1,51 @@
 //
 //  RCTMenuActionItem.swift
-//  nativeUIModulesTest
+//  IosContextMenuExample
 //
-//  Created by Dominic Go on 7/14/20.
+//  Created by Dominic Go on 10/23/20.
+//  Copyright © 2020 Facebook. All rights reserved.
 //
 
-import Foundation;
-import UIKit;
+import Foundation
 
 
-public enum ImageType: String, CaseIterable, Encodable {
-  case NONE   = "NONE";
-  case URL    = "URL";
-  case SYSTEM = "SYSTEM";
+struct RCTMenuActionItem: Hashable, Encodable, RCTMenuElement {
   
-  static func withLabel(_ label: String) -> ImageType? {
-    return self.allCases.first{ $0.rawValue == label };
-  };
-};
-
-// -----------------
-// MARK: RCTMenuActionItem
-// -----------------
-
-@available(iOS 13, *)
-struct RCTMenuActionItem: Hashable, Encodable {
-  typealias UIActionHandlerWithKey = (String, UIAction) -> Void;
+  var actionKey  : String;
+  var actionTitle: String;
   
-  var key           : String;
-  var title         : String;
-  var imageType     : ImageType;
+  var imageType: ImageType = .NONE;
+  
   var imageValue    : String?;
   var menuState     : String?;
   var menuAttributes: [String]?;
   
-  var submenuItems: [RCTMenuActionItem]?;
-  
 };
 
-// ------------------------
+// ------------------------------
 // MARK: RCTMenuActionItem - Init
-// ------------------------
+// ------------------------------
 
 @available(iOS 13, *)
 extension RCTMenuActionItem {
   init?(dictionary: NSDictionary){
     guard
-      let key   = dictionary["key"  ] as? String,
-      let title = dictionary["title"] as? String
+      let actionKey   = dictionary["actionKey"  ] as? NSString,
+      let actionTitle = dictionary["actionTitle"] as? NSString
 
     else {
       #if DEBUG
-      print("RCTMenuActionItem, init failed... dumping dictionary:");
-      dump(dictionary);
+      print(
+          "RCTMenuActionItem, init failed"
+        + " - actionKey  : \(dictionary["actionKey"  ] as? NSString ?? "N/A")"
+        + " - actionTitle: \(dictionary["actionTitle"] as? NSString ?? "N/A")"
+      );
       #endif
       return nil;
     };
     
-    self.key   = key;
-    self.title = title;
+    self.actionKey   = actionKey   as String;
+    self.actionTitle = actionTitle as String;
 
     self.imageType = {
       let text = dictionary["imageType"] as? String ?? "";
@@ -69,11 +56,15 @@ extension RCTMenuActionItem {
     self.imageValue     = dictionary["imageValue"    ] as? String;
     self.menuAttributes = dictionary["menuAttributes"] as? [String];
     
-    if let submenuItems = dictionary["submenuItems"] as? NSArray {
-      self.submenuItems = submenuItems.compactMap {
-        RCTMenuActionItem(dictionary: $0 as? NSDictionary)
-      };
-    };
+    #if DEBUG
+    print("RCTMenuActionItem, init"
+      + " - actionKey"      + ": \(self.actionKey  )"
+      + " - actionTitle"    + ": \(self.actionTitle)"
+      + " - menuState"      + ": \(self.menuState?     .description ?? "N/A")"
+      + " - imageValue"     + ": \(self.imageValue?    .description ?? "N/A")"
+      + " - menuAttributes" + ": \(self.menuAttributes?.description ?? "N/A")"
+    );
+    #endif
   };
   
   init?(dictionary: NSDictionary?){
@@ -89,11 +80,7 @@ extension RCTMenuActionItem {
 @available(iOS 13, *)
 extension RCTMenuActionItem {
   
-  // Note: using computed property bc UIMenuElement.Attributes,
-  // UIElement.State does not conform to Hashable/Encodable so
-  // we cant use them as properties
-  
-  var uiMenuElementAttributes: UIMenuElement.Attributes {
+  var UIMenuElementAttributes: UIMenuElement.Attributes {
     UIMenuElement.Attributes.init(
       self.menuAttributes?.compactMap {
         UIMenuElement.Attributes.fromString($0);
@@ -101,7 +88,7 @@ extension RCTMenuActionItem {
     );
   };
   
-  var uiMenuElementState: UIMenuElement.State {
+  var UIMenuElementState: UIMenuElement.State {
     guard
       let menuState        = self.menuState,
       let menuElementState = UIMenuElement.State.fromString(menuState)
@@ -111,7 +98,7 @@ extension RCTMenuActionItem {
   };
   
   var identifier: UIAction.Identifier {
-    UIAction.Identifier(self.key);
+    UIAction.Identifier(self.actionKey);
   };
   
   var image: UIImage? {
@@ -124,42 +111,29 @@ extension RCTMenuActionItem {
         return UIImage(systemName: imageValue);
     };
   };
-  
 };
 
-// -----------------------------
+// -----------------------------------
 // MARK: RCTMenuActionItem - Functions
-// -----------------------------
+// -----------------------------------
 
 @available(iOS 13, *)
 extension RCTMenuActionItem {
   
-  func makeSubmenu(_ handler: @escaping UIActionHandlerWithKey) -> UIMenuElement {
-    return UIMenu(
-      title: self.title,
-      image: self.image,
-      children:
-        self.submenuItems?.compactMap { $0.makeUIAction(handler) }
-        ?? []
+  typealias UIActionHandlerWithKey = (String, UIAction) -> Void;
+  
+  func makeUIAction(_ handler: @escaping UIActionHandlerWithKey) -> UIAction {
+    #if DEBUG
+    print("RCTMenuActionItem, makeUIAction...");
+    #endif
+    
+    return UIAction(
+      title     : self.actionTitle,
+      image     : self.image,
+      identifier: self.identifier,
+      attributes: self.UIMenuElementAttributes,
+      state     : self.UIMenuElementState,
+      handler   : { handler(self.actionKey, $0) }
     );
-  };
-  
-  func makeUIAction(_ handler: @escaping UIActionHandlerWithKey) -> UIMenuElement {
-    return self.submenuItems != nil
-      ? self.makeSubmenu(handler)
-      : UIAction(
-          title     : self.title,
-          image     : self.image,
-          identifier: self.identifier,
-          attributes: self.uiMenuElementAttributes,
-          state     : self.uiMenuElementState,
-          handler   : { handler(self.key, $0) }
-        );
-  };
-  
-  func makeUIMenuElement(handler: @escaping UIActionHandlerWithKey) -> UIMenuElement {
-    return self.submenuItems != nil
-      ? self.makeSubmenu (handler)
-      : self.makeUIAction(handler)
   };
 };

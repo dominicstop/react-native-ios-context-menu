@@ -17,9 +17,6 @@
 
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem, RCTDirectEventBlock);
 
-RCT_EXPORT_VIEW_PROPERTY(menuTitle, NSString);
-
-RCT_EXPORT_VIEW_PROPERTY(menuItems  , NSArray);
-RCT_EXPORT_VIEW_PROPERTY(menuOptions, NSArray);
+RCT_EXPORT_VIEW_PROPERTY(menuConfig, NSDictionary);
 
 @end
