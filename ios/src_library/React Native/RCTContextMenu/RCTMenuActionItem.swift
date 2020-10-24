@@ -9,7 +9,8 @@
 import Foundation
 
 
-struct RCTMenuActionItem: Hashable, Encodable, RCTMenuElement {
+@available(iOS 13, *)
+class RCTMenuActionItem: RCTMenuElement {
   
   var actionKey  : String;
   var actionTitle: String;
@@ -20,14 +21,10 @@ struct RCTMenuActionItem: Hashable, Encodable, RCTMenuElement {
   var menuState     : String?;
   var menuAttributes: [String]?;
   
-};
-
 // ------------------------------
 // MARK: RCTMenuActionItem - Init
 // ------------------------------
 
-@available(iOS 13, *)
-extension RCTMenuActionItem {
   init?(dictionary: NSDictionary){
     guard
       let actionKey   = dictionary["actionKey"  ] as? NSString,
@@ -67,7 +64,7 @@ extension RCTMenuActionItem {
     #endif
   };
   
-  init?(dictionary: NSDictionary?){
+  convenience init?(dictionary: NSDictionary?){
     guard let dictionary = dictionary else { return nil };
     self.init(dictionary: dictionary);
   };

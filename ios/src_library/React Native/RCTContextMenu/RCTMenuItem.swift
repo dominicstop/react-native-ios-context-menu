@@ -9,9 +9,8 @@
 import UIKit;
 
 
-struct RCTMenuElementItem: RCTMenuElement {};
-
-struct RCTMenuItem<T>: Hashable, Encodable where T: RCTMenuElement {
+@available(iOS 13.0, *)
+class RCTMenuItem: RCTMenuElement {
   
   var menuTitle: String;
   
@@ -19,18 +18,13 @@ struct RCTMenuItem<T>: Hashable, Encodable where T: RCTMenuElement {
   var imageType  : ImageType = .NONE;
   var imageValue : String?;
   
-  var menuItems: Array<T>?;
+  var menuItems: [RCTMenuElement]?;
   
-};
-
 // ------------------------
 // MARK: RCTMenuItem - Init
 // ------------------------
 
-@available(iOS 13, *)
-extension RCTMenuItem {
   init?(dictionary: NSDictionary){
-    
     guard let menuTitle = dictionary["menuTitle"] as? NSString else {
       #if DEBUG
       print("RCTMenuItem, init failed - menuTitle: nil");
@@ -64,13 +58,13 @@ extension RCTMenuItem {
           #if DEBUG
           print("RCTMenuItem, init - compactMap: Creating RCTMenuItem...");
           #endif
-          return menuItem as? T;
+          return menuItem;
           
         } else if let menuAction = RCTMenuActionItem(dictionary: $0 as? NSDictionary) {
           #if DEBUG
           print("RCTMenuItem, init - compactMap: Creating RCTMenuActionItem...");
           #endif
-          return menuAction as? T;
+          return menuAction;
           
         } else {
           #if DEBUG
@@ -88,7 +82,7 @@ extension RCTMenuItem {
     #endif
   };
   
-  init?(dictionary: NSDictionary?){
+  convenience init?(dictionary: NSDictionary?){
     guard let dictionary = dictionary else { return nil };
     self.init(dictionary: dictionary);
   };
@@ -164,5 +158,7 @@ extension RCTMenuItem {
     );
   };
 };
+
+
 
 

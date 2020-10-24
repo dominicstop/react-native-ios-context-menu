@@ -8,12 +8,13 @@
 import Foundation
 import UIKit
 
+
 @available(iOS 13, *)
 class RCTContextMenuView: UIView {
   
   @objc var onPressMenuItem: RCTDirectEventBlock?;
     
-  private var _menuConfig: RCTMenuItem<RCTMenuElementItem>?;
+  private var _menuConfig: RCTMenuItem?;
   @objc var menuConfig: NSDictionary? {
     didSet {
       guard
@@ -60,7 +61,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
       return menuConfig.createMenu({ (key, action) in
         self.onPressMenuItem?(["key": key]);
-      })
+      });
     });
   };
 };
