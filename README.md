@@ -1,6 +1,10 @@
 # react-native-ios-context-menu
 
-placeholder
+<br>
+
+### 🚧⚠️ Documentation WIP 🚧⚠️
+
+<br>
 
 ## Installation
 
@@ -8,19 +12,18 @@ placeholder
 npm install react-native-ios-context-menu
 ```
 
+<br>
+
 ## Usage
 
 ```js
-import IosContextMenu from "react-native-ios-context-menu";
-
-// ...
-
-const result = await IosContextMenu.multiply(3, 7);
+import { } from "react-native-ios-context-menu";
 ```
 
-## Contributing
+<br>
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+## Contributing
+<br>
 
 ## License
 
