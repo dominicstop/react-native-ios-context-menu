@@ -8,7 +8,7 @@ export class ContextMenuViewSimpleExample05 extends React.PureComponent {
   render(){
     return(
       <ExampleContextMenuItem
-        index={5}
+        {...this.props}
         title={'Simple Example #5'}
         subtitle={'inline submenu'}
         desc={`Same as Example #3 but the submenu has "displayInline" in it's menuOptions`}

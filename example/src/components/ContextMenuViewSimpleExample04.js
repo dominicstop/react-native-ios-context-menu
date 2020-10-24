@@ -8,7 +8,7 @@ export class ContextMenuViewSimpleExample04 extends React.PureComponent {
   render(){
     return(
       <ExampleContextMenuItem
-        index={4}
+        {...this.props}
         title={'Simple Example #4'}
         subtitle={'menuAttributes'}
         desc={'Context menu with a "disabled" action, a "destructive" action, a "hidden" action (which is not visible), and a disabled + destructive action'}

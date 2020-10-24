@@ -8,7 +8,7 @@ export class ContextMenuViewSimpleExample08 extends React.PureComponent {
   render(){
     return(
       <ExampleContextMenuItem
-        index={8}
+        {...this.props}
         title={'Simple Example #8'}
         subtitle={'menuState'}
         desc={`Context menu with 3 actions that has "on", "off", and "mixed" menuState`}
