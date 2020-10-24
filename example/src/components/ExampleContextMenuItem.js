@@ -9,13 +9,14 @@ import { ContextMenuView } from 'react-native-ios-context-menu';
 
 export class ExampleContextMenuItem extends React.Component {
   static proptypes = {
-    title: Proptypes.string,
-    desc : Proptypes.string,
-    index: Proptypes.number,
+    title   : Proptypes.string,
+    subtitle: Proptypes.string,
+    desc    : Proptypes.string,
+    index   : Proptypes.number,
   };
 
   render(){
-    const { title, desc, index, style, ...props } = this.props;
+    const { title, subtitle, desc, index, style, ...props } = this.props;
 
     return(
       <ContextMenuView 
@@ -28,11 +29,16 @@ export class ExampleContextMenuItem extends React.Component {
           </Text>
           <Text style={styles.textTitle}>
             {title ?? 'N/A'}
+            {subtitle && (
+              <Text style={styles.textSubtitle}>
+                {` (${subtitle})`}
+              </Text>
+            )}
           </Text>
         </View>
         <View style={styles.subtitleContainer}>
-          <Text style={styles.textSubtitle}>
-            <Text style={styles.textSubtitleLabel}>
+          <Text style={styles.textDescription}>
+            <Text style={styles.textDescriptionLabel}>
               {'Description: '}
             </Text>
             {desc ?? "N/A"}
@@ -69,15 +75,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'rgba(255,255,255,0.75)',
   },
+  textSubtitle: {
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.75)',
+    fontWeight: '300',
+  },
   subtitleContainer: {
     paddingHorizontal: 15,
     paddingVertical: 10,
   },
-  textSubtitle: {
+  textDescription: {
     fontWeight: '300',
     color: 'rgba(0,0,0,0.75)'
   },
-  textSubtitleLabel: {
+  textDescriptionLabel: {
     color: Colors.BLUE[1100],
     fontWeight: 'bold',
   },
