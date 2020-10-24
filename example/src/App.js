@@ -10,23 +10,33 @@ import { ContextMenuViewSimpleExample06 } from './components/ContextMenuViewSimp
 import { ContextMenuViewSimpleExample07 } from './components/ContextMenuViewSimpleExample07';
 import { ContextMenuViewSimpleExample08 } from './components/ContextMenuViewSimpleExample08';
 
+
+const items = [
+  ContextMenuViewSimpleExample01,
+  ContextMenuViewSimpleExample02,
+  ContextMenuViewSimpleExample03,
+  ContextMenuViewSimpleExample04,
+  ContextMenuViewSimpleExample05,
+  ContextMenuViewSimpleExample06,
+  ContextMenuViewSimpleExample07,
+  ContextMenuViewSimpleExample08,
+];
+
 export default function App() {
 
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
-        <ContextMenuViewSimpleExample01/>
-        <ContextMenuViewSimpleExample02/>
-        <ContextMenuViewSimpleExample03/>
-        <ContextMenuViewSimpleExample04/>
-        <ContextMenuViewSimpleExample05/>
-        <ContextMenuViewSimpleExample06/>
-        <ContextMenuViewSimpleExample07/>
-        <ContextMenuViewSimpleExample08/>
+        {items.map((element, index) => 
+          React.createElement(element, { 
+            key  : `item-${index}`,
+            index: (index + 1), 
+          })
+        )}
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   rootContainer: {
