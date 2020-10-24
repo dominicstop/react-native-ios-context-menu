@@ -10,6 +10,7 @@ export class ContextMenuViewTest02 extends React.PureComponent {
       <ExampleContextMenuItem
         index={2}
         title={'Simple Example #2'}
+        subtitle={'actions w/ icons'}
         desc={'Context menu with 3 actions (text w/ system icon)'}
         onPressMenuItem={({key}) => alert(key)}
         menuConfig={{
