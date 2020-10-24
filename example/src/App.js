@@ -7,6 +7,7 @@ import { ContextMenuViewTest03 } from './components/ContextMenuViewTest03';
 import { ContextMenuViewTest04 } from './components/ContextMenuViewTest04';
 import { ContextMenuViewTest05 } from './components/ContextMenuViewTest05';
 import { ContextMenuViewTest06 } from './components/ContextMenuViewTest06';
+import { ContextMenuViewTest07 } from './components/ContextMenuViewTest07';
 
 export default function App() {
 
@@ -19,6 +20,7 @@ export default function App() {
         <ContextMenuViewTest04/>
         <ContextMenuViewTest05/>
         <ContextMenuViewTest06/>
+        <ContextMenuViewTest07/>
       </ScrollView>
     </SafeAreaView>
   );
