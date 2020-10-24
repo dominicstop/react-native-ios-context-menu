@@ -4,6 +4,7 @@ import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { ContextMenuViewTest01 } from './components/ContextMenuViewTest01';
 import { ContextMenuViewTest02 } from './components/ContextMenuViewTest02';
 import { ContextMenuViewTest03 } from './components/ContextMenuViewTest03';
+import { ContextMenuViewTest04 } from './components/ContextMenuViewTest04';
 
 export default function App() {
 
@@ -13,6 +14,7 @@ export default function App() {
         <ContextMenuViewTest01/>
         <ContextMenuViewTest02/>
         <ContextMenuViewTest03/>
+        <ContextMenuViewTest04/>
       </ScrollView>
     </SafeAreaView>
   );
