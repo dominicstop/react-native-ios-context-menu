@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 
 import { ContextMenuViewTest01 } from './components/ContextMenuViewTest01';
 
 export default function App() {
 
   return (
-    <View style={styles.container}>
-      <ContextMenuViewTest01/>
-    </View>
+    <SafeAreaView style={styles.rootContainer}>
+      <ScrollView>
+        <ContextMenuViewTest01/>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  rootContainer: {
     flex: 1,
-    //alignItems: 'center',
-    //justifyContent: 'center',
   },
 });
