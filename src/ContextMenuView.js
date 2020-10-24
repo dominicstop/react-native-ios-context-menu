@@ -1,5 +1,5 @@
 import React from 'react';
-import { requireNativeComponent, UIManager } from 'react-native';
+import { StyleSheet, requireNativeComponent, UIManager } from 'react-native';
 import Proptypes from 'prop-types';
 
 
@@ -15,9 +15,7 @@ const NATIVE_PROP_KEYS = {
 
 export class ContextMenuView extends React.PureComponent {
   static proptypes = {
-    menuTitle: Proptypes.string,
-    menuItems: Proptypes.array.isRequired,
-    menuOptions: Proptypes.array,
+    menuConfig: Proptypes.object,
     onPressMenuItem: Proptypes.func,
   };
 
@@ -26,8 +24,10 @@ export class ContextMenuView extends React.PureComponent {
   };
 
   render(){
+    const { style, ...props } = this.props;
     const nativeProps = {
-      ...this.props,
+      ...props,
+      style: [styles.menuView, style],
       [NATIVE_PROP_KEYS.onPressMenuItem]: this._handleOnPressMenuItem,
     };
 
@@ -38,3 +38,9 @@ export class ContextMenuView extends React.PureComponent {
     );
   };
 };
+
+const styles = StyleSheet.create({
+  menuView: {
+    backgroundColor: 'transparent',
+  },
+});
