@@ -14,7 +14,7 @@ export class ContextMenuViewTest05 extends React.PureComponent {
         desc={`Same as Example #3 but the submenu has "displayInline" in it's menuOptions`}
         onPressMenuItem={({key}) => alert(key)}
         menuConfig={{
-          menuTitle: 'ContextMenuViewTest06',
+          menuTitle: 'ContextMenuViewTest05',
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
