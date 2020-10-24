@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { ExampleContextMenuItem } from './ExampleContextMenuItem';
 
 
-export class ContextMenuViewTest04 extends React.PureComponent {
+export class ContextMenuViewSimpleExample04 extends React.PureComponent {
   render(){
     return(
       <ExampleContextMenuItem
@@ -14,7 +14,7 @@ export class ContextMenuViewTest04 extends React.PureComponent {
         desc={'Context menu with a "disabled" action, a "destructive" action, a "hidden" action (which is not visible), and a disabled + destructive action'}
         onPressMenuItem={({key}) => alert(key)}
         menuConfig={{
-          menuTitle: 'ContextMenuViewTest04',
+          menuTitle: 'ContextMenuViewSimpleExample04',
           menuItems: [{
             actionKey     : 'key-01',
             actionTitle   : 'Disabled Action',

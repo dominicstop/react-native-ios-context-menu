@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { ExampleContextMenuItem } from './ExampleContextMenuItem';
 
 
-export class ContextMenuViewTest03 extends React.PureComponent {
+export class ContextMenuViewSimpleExample03 extends React.PureComponent {
   render(){
     return(
       <ExampleContextMenuItem
@@ -14,7 +14,7 @@ export class ContextMenuViewTest03 extends React.PureComponent {
         desc={"Context menu with 1 action and 1 submenu (with 3 submenu actions)"}
         onPressMenuItem={({key}) => alert(key)}
         menuConfig={{
-          menuTitle: 'ContextMenuViewTest03',
+          menuTitle: 'ContextMenuViewSimpleExample03',
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
