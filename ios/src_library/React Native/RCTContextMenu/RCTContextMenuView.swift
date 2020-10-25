@@ -104,10 +104,11 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
       + " - contextMenuInteraction: will show"
     );
     #endif
+
+    self.isContextMenuVisible = true;
     
     self.onMenuWillShow?([:]);
     animator?.addCompletion {
-      self.isContextMenuVisible = true;
       self.onMenuDidShow?([:]);
     };
   };
@@ -128,15 +129,15 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     };
     
     animator?.addCompletion {
-      self.onMenuDidHide?([:]);
-      
       if !self.didPressMenuItem {
         self.onMenuDidCancel?([:]);
       };
+      
+      self.onMenuDidHide?([:]);
+      self.didPressMenuItem = false;
     };
     
     self.isContextMenuVisible = false;
-    self.didPressMenuItem = false;
   };
   
   // context menu preview tapped
