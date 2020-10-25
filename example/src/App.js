@@ -14,6 +14,7 @@ import { ContextMenuViewSimpleExample08 } from './components/ContextMenuViewSimp
 
 import { ContextMenuViewTest01 } from './components/ContextMenuViewTest01';
 import { ContextMenuViewTest02 } from './components/ContextMenuViewTest02';
+import { ContextMenuViewTest03 } from './components/ContextMenuViewTest03';
 
 
 const items = [
@@ -27,6 +28,7 @@ const items = [
   ContextMenuViewSimpleExample08,
   ContextMenuViewTest01,
   ContextMenuViewTest02,
+  ContextMenuViewTest03,
 ];
 
 export default function App() {
