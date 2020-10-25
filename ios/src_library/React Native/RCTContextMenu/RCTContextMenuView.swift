@@ -12,6 +12,8 @@ import UIKit
 @available(iOS 13, *)
 class RCTContextMenuView: UIView {
   
+  var isContextMenuVisible = false;
+  
   // ---------------------------------------------
   // MARK: RCTContextMenuView - RN Event Callbacks
   // ---------------------------------------------
@@ -57,6 +59,10 @@ class RCTContextMenuView: UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented");
   };
+  
+  override func reactSetFrame(_ frame: CGRect) {
+    super.reactSetFrame(frame);
+  };
 };
 
 // -----------------------------------------------------------
@@ -91,6 +97,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     );
     #endif
     
+    self.isContextMenuVisible = true;
     self.onMenuShow?([:]);
   };
   
@@ -101,7 +108,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
       + " - contextMenuInteraction: will hide"
     );
     #endif
-    
+    self.isContextMenuVisible = false;
     self.onMenuHide?([:]);
   };
   
@@ -112,7 +119,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
       + " - contextMenuInteraction: preview tapped"
     );
     #endif
-    
+    self.isContextMenuVisible = false;
     self.onPressMenuPreview?([:]);
   };
 };
