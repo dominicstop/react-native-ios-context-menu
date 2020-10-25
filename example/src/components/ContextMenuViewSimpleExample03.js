@@ -12,7 +12,8 @@ export class ContextMenuViewSimpleExample03 extends React.PureComponent {
         title={'Simple Example #3'}
         subtitle={'submenu'}
         desc={"Context menu with 1 action and 1 submenu (with 3 submenu actions)"}
-        onPressMenuItem={({key}) => alert(key)}
+        onPressMenuItem={({key}) => alert(`onPressMenuItem: ${key}`)}
+        onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{
           menuTitle: 'ContextMenuViewSimpleExample03',
           menuItems: [{
