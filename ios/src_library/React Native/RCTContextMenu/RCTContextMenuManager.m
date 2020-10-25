@@ -15,9 +15,14 @@
 // MARK: Props - RN Comp Props: Events
 // -----------------------------------
 
-RCT_EXPORT_VIEW_PROPERTY(onMenuShow        , RCTBubblingEventBlock);
-RCT_EXPORT_VIEW_PROPERTY(onMenuHide        , RCTBubblingEventBlock);
-RCT_EXPORT_VIEW_PROPERTY(onMenuCancel      , RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onMenuWillShow  , RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onMenuWillHide  , RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onMenuWillCancel, RCTBubblingEventBlock);
+
+RCT_EXPORT_VIEW_PROPERTY(onMenuDidShow  , RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onMenuDidHide  , RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onMenuDidCancel, RCTBubblingEventBlock);
+
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem   , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuPreview, RCTBubblingEventBlock);
 

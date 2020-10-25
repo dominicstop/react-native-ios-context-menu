@@ -19,9 +19,14 @@ class RCTContextMenuView: UIView {
   // MARK: RCTContextMenuView - RN Event Callbacks
   // ---------------------------------------------
   
-  @objc var onMenuShow        : RCTBubblingEventBlock?;
-  @objc var onMenuHide        : RCTBubblingEventBlock?;
-  @objc var onMenuCancel      : RCTBubblingEventBlock?;
+  @objc var onMenuWillShow  : RCTBubblingEventBlock?;
+  @objc var onMenuWillHide  : RCTBubblingEventBlock?;
+  @objc var onMenuWillCancel: RCTBubblingEventBlock?;
+  
+  @objc var onMenuDidShow  : RCTBubblingEventBlock?;
+  @objc var onMenuDidHide  : RCTBubblingEventBlock?;
+  @objc var onMenuDidCancel: RCTBubblingEventBlock?;
+  
   @objc var onPressMenuItem   : RCTBubblingEventBlock?;
   @objc var onPressMenuPreview: RCTBubblingEventBlock?;
   
@@ -101,7 +106,11 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     #endif
     
     self.isContextMenuVisible = true;
-    self.onMenuShow?([:]);
+    
+    self.onMenuWillShow?([:]);
+    animator?.addCompletion {
+      self.onMenuDidShow?([:]);
+    };
   };
   
   // context menu display ends
@@ -112,9 +121,17 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     );
     #endif
     
-    self.onMenuHide?([:]);
+    self.onMenuWillHide?([:]);
     if !self.didPressMenuItem {
-      self.onMenuCancel?([:]);
+      self.onMenuWillCancel?([:]);
+    };
+    
+    animator?.addCompletion {
+      self.onMenuDidHide?([:]);
+      
+      if !self.didPressMenuItem {
+        self.onMenuDidCancel?([:]);
+      };
     };
     
     self.isContextMenuVisible = false;

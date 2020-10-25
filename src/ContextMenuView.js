@@ -10,10 +10,14 @@ const NativeComponent = requireNativeComponent(componentName);
 const NATIVE_PROP_KEYS = {
   // props: values --------
   menuConfig: 'menuConfig',
-  // props: events ------------------------
-  onMenuShow        : 'onMenuShow'        ,
-  onMenuHide        : 'onMenuHide'        ,
-  onMenuCancel      : 'onMenuCancel'      ,
+  // props: events --------------------
+  onMenuWillShow  : 'onMenuWillShow'  ,
+  onMenuWillHide  : 'onMenuWillHide'  ,
+  onMenuWillCancel: 'onMenuWillCancel',
+  onMenuDidShow   : 'onMenuDidShow'   ,
+  onMenuDidHide   : 'onMenuDidHide'   ,
+  onMenuDidCancel : 'onMenuDidCancel' ,
+  // props: onPress events ----------------
   onPressMenuItem   : 'onPressMenuItem'   ,
   onPressMenuPreview: 'onPressMenuPreview',
 };
@@ -22,10 +26,14 @@ const NATIVE_PROP_KEYS = {
 export class ContextMenuView extends React.PureComponent {
   static proptypes = {
     menuConfig: Proptypes.object,
-    // events -------------------------
-    onMenuShow        : Proptypes.func,
-    onMenuHide        : Proptypes.func,
-    onMenuCancel      : Proptypes.func,
+    // events -----------------------
+    onMenuWillShow  : Proptypes.func,
+    onMenuWillHide  : Proptypes.func,
+    onMenuWillCancel: Proptypes.func,
+    onMenuDidShow   : Proptypes.func,
+    onMenuDidHide   : Proptypes.func,
+    onMenuDidCancel : Proptypes.func,
+    // onPress events -----------------
     onPressMenuItem   : Proptypes.func,
     onPressMenuPreview: Proptypes.func,
   };
@@ -39,24 +47,38 @@ export class ContextMenuView extends React.PureComponent {
   };
 
   //#region - Event Handlers
-  _handleOnMenuShow = (event) => {
-    const { onMenuShow } = this.props;
-    onMenuShow?.(event);
+  _handleOnMenuWillShow = (event) => {
+    const { onMenuWillShow } = this.props;
+    onMenuWillShow?.(event);
 
     this.setState({menuVisible: true});
-
   };
 
-  _handleOnMenuHide = (event) => {
-    const { onMenuHide } = this.props;
-    onMenuHide?.(event);
+  _handleOnMenuWillHide = (event) => {
+    const { onMenuWillHide } = this.props;
+    onMenuWillHide?.(event);
 
     this.setState({menuVisible: false});
   };
 
-  _handleOnMenuCancel = (event) => {
-    const { onMenuCancel } = this.props;
-    onMenuCancel?.(event);
+  _handleOnMenuWillCancel = (event) => {
+    const { onMenuWillCancel } = this.props;
+    onMenuWillCancel?.(event);
+  };
+
+  _handleOnMenuDidShow = (event) => {
+    const { onMenuDidShow } = this.props;
+    onMenuDidShow?.(event);
+  };
+
+  _handleOnMenuDidHide = (event) => {
+    const { onMenuDidHide } = this.props;
+    onMenuDidHide?.(event);
+  };
+
+  _handleOnMenuDidCancel = (event) => {
+    const { onMenuDidCancel } = this.props;
+    onMenuDidCancel?.(event);
   };
 
   _handleOnPressMenuItem = (event) => {
@@ -75,10 +97,14 @@ export class ContextMenuView extends React.PureComponent {
 
     const nativeProps = {
       ...props,
-      // Native Props ------------------------------------------------------
-      [NATIVE_PROP_KEYS.onMenuShow        ]: this._handleOnMenuShow        ,
-      [NATIVE_PROP_KEYS.onMenuHide        ]: this._handleOnMenuHide        ,
-      [NATIVE_PROP_KEYS.onMenuCancel      ]: this._handleOnMenuCancel      ,
+      // Native Props: Events ------------------------------------------
+      [NATIVE_PROP_KEYS.onMenuWillShow  ]: this._handleOnMenuWillShow  ,
+      [NATIVE_PROP_KEYS.onMenuWillHide  ]: this._handleOnMenuWillHide  ,
+      [NATIVE_PROP_KEYS.onMenuWillCancel]: this._handleOnMenuWillCancel,
+      [NATIVE_PROP_KEYS.onMenuDidShow   ]: this._handleOnMenuDidShow   ,
+      [NATIVE_PROP_KEYS.onMenuDidHide   ]: this._handleOnMenuDidHide   ,
+      [NATIVE_PROP_KEYS.onMenuDidCancel ]: this._handleOnMenuDidCancel ,
+      // Native Props: OnPress Events --------------------------------------
       [NATIVE_PROP_KEYS.onPressMenuItem   ]: this._handleOnPressMenuItem   ,
       [NATIVE_PROP_KEYS.onPressMenuPreview]: this._handleOnPressMenuPreview,
     };
