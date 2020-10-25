@@ -6,6 +6,49 @@ import * as Colors from '../constants/Colors';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
+function ContextMenuContent(props){
+  const titleContainerStyle = {
+    backgroundColor: (props.menuVisible
+      ? Colors.PURPLE.A700
+      : Colors.BLUE  .A700
+    )
+  };
+
+  const subtitleContainerStyle = {
+    backgroundColor: (props.menuVisible
+      ? Colors.PURPLE[100]
+      : Colors.BLUE  [100]
+    )
+  };
+
+  return (
+    <React.Fragment>
+      <View style={[styles.titleContainer, titleContainerStyle]}>
+        <Text style={styles.textTitleIndex}>
+          {`${props.index ?? 0}. `}
+        </Text>
+        <Text style={styles.textTitle}>
+          {props.title ?? 'N/A'}
+          {props.subtitle && (
+            <Text style={styles.textSubtitle}>
+              {` (${props.subtitle})`}
+            </Text>
+          )}
+        </Text>
+      </View>
+      <View style={[styles.subtitleContainer, subtitleContainerStyle]}>
+        <Text style={styles.textDescription}>
+          <Text style={styles.textDescriptionLabel}>
+            {'Description: '}
+          </Text>
+          {props.desc ?? "N/A"}
+        </Text>
+        {props.children}
+      </View>
+    </React.Fragment>
+  );
+};
+
 
 export class ExampleContextMenuItem extends React.Component {
   static proptypes = {
@@ -23,28 +66,9 @@ export class ExampleContextMenuItem extends React.Component {
         style={[styles.rootContainer, style]}
         {...props}
       >
-        <View style={styles.titleContainer}>
-          <Text style={styles.textTitleIndex}>
-            {`${index ?? 0}. `}
-          </Text>
-          <Text style={styles.textTitle}>
-            {title ?? 'N/A'}
-            {subtitle && (
-              <Text style={styles.textSubtitle}>
-                {` (${subtitle})`}
-              </Text>
-            )}
-          </Text>
-        </View>
-        <View style={styles.subtitleContainer}>
-          <Text style={styles.textDescription}>
-            <Text style={styles.textDescriptionLabel}>
-              {'Description: '}
-            </Text>
-            {desc ?? "N/A"}
-          </Text>
-          {props.children}
-        </View>
+       <ContextMenuContent
+         {...{title, subtitle, desc, index}}
+       />
       </ContextMenuView>
     );
   };
@@ -55,14 +79,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 20,
     overflow: 'hidden',
-    backgroundColor: Colors.BLUE[100],
   },
   titleContainer: {
     flexDirection: 'row',
     paddingHorizontal: 15,
     paddingVertical: 8,
     alignItems: 'center',
-    backgroundColor: Colors.BLUE.A700,
   },
   textTitle: {
     fontSize: 17,
