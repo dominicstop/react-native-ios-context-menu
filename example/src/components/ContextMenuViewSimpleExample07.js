@@ -11,7 +11,7 @@ export class ContextMenuViewSimpleExample07 extends React.PureComponent {
         {...this.props}
         title={'Simple Example #7'}
         subtitle={'displayInline + destructive submenu'}
-        desc={`Same as Example #3 (and Example #5 + Example #6) but the submenu has "destructive" and "displayInline" in it's menuOptions. This looks the same as "displayInline" submenu (i.e Example #5)`}
+        desc={`Same as Example #3 but the submenu has "destructive" and "displayInline" in it's menuOptions. This looks the same as "displayInline" submenu (i.e Example #5)`}
         onPressMenuItem={({key}) => alert(key)}
         menuConfig={{
           menuTitle: 'ContextMenuViewSimpleExample07',

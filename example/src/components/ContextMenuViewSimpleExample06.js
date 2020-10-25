@@ -11,7 +11,7 @@ export class ContextMenuViewSimpleExample06 extends React.PureComponent {
         {...this.props}
         title={'Simple Example #6'}
         subtitle={'destructive submenu'}
-        desc={`Same as Example #3 (and Example #5) but the submenu has "destructive" in it's menuOptions`}
+        desc={`Same as Example #3 but the submenu has "destructive" in it's menuOptions`}
         onPressMenuItem={({key}) => alert(key)}
         menuConfig={{
           menuTitle: 'ContextMenuViewSimpleExample06',
