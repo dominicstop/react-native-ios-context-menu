@@ -105,10 +105,9 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     );
     #endif
     
-    self.isContextMenuVisible = true;
-    
     self.onMenuWillShow?([:]);
     animator?.addCompletion {
+      self.isContextMenuVisible = true;
       self.onMenuDidShow?([:]);
     };
   };
@@ -120,6 +119,8 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
       + " - contextMenuInteraction: will hide"
     );
     #endif
+    
+    guard self.isContextMenuVisible else { return };
     
     self.onMenuWillHide?([:]);
     if !self.didPressMenuItem {
