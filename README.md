@@ -17,31 +17,50 @@
 **Left**: [Test 5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest05.js), and **Right**: [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest06.js)
 ![Context Menu View Test 5 and 6 Gifs](./assets/ContextMenuViewTest-05-06.gif)
 
+---
 <br>
 
 ### 🚧⚠️ Documentation WIP 🚧⚠️
 
 <br>
 
-## Installation
+## 1. Installation
 
 ```sh
+# install via NPM
 npm install react-native-ios-context-menu
+
+# or install via yarn
+yarn add react-native-ios-context-menu
+
+# then run pod install (uses autolinking)
+cd ios && pod install
 ```
 
 <br>
 
-## Usage
+## 2. Usage
 
 ```js
-import { } from "react-native-ios-context-menu";
+import { ContextMenuView } from "react-native-ios-context-menu";
 ```
 
 <br>
 
-## Contributing
+## 3. Documentation
+
+<br>
+
+## 4. Examples
+
 <br>
 
 ## License
 
 MIT
+
+<br>
+
+## Links
+* I'm [@DominicGo](https://twitter.com/GoDominic) on twitter if you have any questions ✨
+* Other libraries: [￼`react-native-ios-modal`￼](https://github.com/dominicstop/react-native-ios-modal)
