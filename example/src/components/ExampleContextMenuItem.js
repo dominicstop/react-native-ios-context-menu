@@ -59,16 +59,16 @@ export class ExampleContextMenuItem extends React.Component {
   };
 
   render(){
-    const { title, subtitle, desc, index, style, ...props } = this.props;
+    const { title, subtitle, desc, index, style, children, ...props } = this.props;
 
     return(
       <ContextMenuView 
         style={[styles.rootContainer, style]}
         {...props}
       >
-       <ContextMenuContent
-         {...{title, subtitle, desc, index}}
-       />
+        <ContextMenuContent {...{title, subtitle, desc, index}}>
+          {children}
+        </ContextMenuContent>
       </ContextMenuView>
     );
   };
