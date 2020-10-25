@@ -17,6 +17,7 @@
 
 RCT_EXPORT_VIEW_PROPERTY(onMenuShow        , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onMenuHide        , RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onMenuCancel      , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem   , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuPreview, RCTBubblingEventBlock);
 

@@ -13,6 +13,7 @@ const NATIVE_PROP_KEYS = {
   // props: events ------------------------
   onMenuShow        : 'onMenuShow'        ,
   onMenuHide        : 'onMenuHide'        ,
+  onMenuCancel      : 'onMenuCancel'      ,
   onPressMenuItem   : 'onPressMenuItem'   ,
   onPressMenuPreview: 'onPressMenuPreview',
 };
@@ -24,6 +25,7 @@ export class ContextMenuView extends React.PureComponent {
     // events -------------------------
     onMenuShow        : Proptypes.func,
     onMenuHide        : Proptypes.func,
+    onMenuCancel      : Proptypes.func,
     onPressMenuItem   : Proptypes.func,
     onPressMenuPreview: Proptypes.func,
   };
@@ -52,6 +54,11 @@ export class ContextMenuView extends React.PureComponent {
     this.setState({menuVisible: false});
   };
 
+  _handleOnMenuCancel = (event) => {
+    const { onMenuCancel } = this.props;
+    onMenuCancel?.(event);
+  };
+
   _handleOnPressMenuItem = (event) => {
     this.props.onPressMenuItem?.(event);
   };
@@ -71,6 +78,7 @@ export class ContextMenuView extends React.PureComponent {
       // Native Props ------------------------------------------------------
       [NATIVE_PROP_KEYS.onMenuShow        ]: this._handleOnMenuShow        ,
       [NATIVE_PROP_KEYS.onMenuHide        ]: this._handleOnMenuHide        ,
+      [NATIVE_PROP_KEYS.onMenuCancel      ]: this._handleOnMenuCancel      ,
       [NATIVE_PROP_KEYS.onPressMenuItem   ]: this._handleOnPressMenuItem   ,
       [NATIVE_PROP_KEYS.onPressMenuPreview]: this._handleOnPressMenuPreview,
     };

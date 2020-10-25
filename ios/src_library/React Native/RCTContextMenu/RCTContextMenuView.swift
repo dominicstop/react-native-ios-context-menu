@@ -21,6 +21,7 @@ class RCTContextMenuView: UIView {
   
   @objc var onMenuShow        : RCTBubblingEventBlock?;
   @objc var onMenuHide        : RCTBubblingEventBlock?;
+  @objc var onMenuCancel      : RCTBubblingEventBlock?;
   @objc var onPressMenuItem   : RCTBubblingEventBlock?;
   @objc var onPressMenuPreview: RCTBubblingEventBlock?;
   
@@ -85,6 +86,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     
     return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
       return menuConfig.createMenu({ (dict, action) in
+        self.didPressMenuItem = true;
         self.onPressMenuItem?(dict);
       });
     });
@@ -109,8 +111,14 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
       + " - contextMenuInteraction: will hide"
     );
     #endif
-    self.isContextMenuVisible = false;
+    
     self.onMenuHide?([:]);
+    if !self.didPressMenuItem {
+      self.onMenuCancel?([:]);
+    };
+    
+    self.isContextMenuVisible = false;
+    self.didPressMenuItem = false;
   };
   
   // context menu preview tapped
