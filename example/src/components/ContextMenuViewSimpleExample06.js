@@ -12,7 +12,7 @@ export class ContextMenuViewSimpleExample06 extends React.PureComponent {
         title={'Simple Example #6'}
         subtitle={'destructive submenu'}
         desc={`Same as Example #3 but the submenu has "destructive" in it's menuOptions`}
-        onPressMenuItem={({key}) => alert(`onPressMenuItem: ${key}`)}
+        onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{
           menuTitle: 'ContextMenuViewSimpleExample06',

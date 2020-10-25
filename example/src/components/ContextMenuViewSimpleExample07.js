@@ -12,7 +12,7 @@ export class ContextMenuViewSimpleExample07 extends React.PureComponent {
         title={'Simple Example #7'}
         subtitle={'displayInline + destructive submenu'}
         desc={`Same as Example #3 but the submenu has "destructive" and "displayInline" in it's menuOptions. This looks the same as "displayInline" submenu (i.e Example #5)`}
-        onPressMenuItem={({key}) => alert(`onPressMenuItem: ${key}`)}
+        onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{
           menuTitle: 'ContextMenuViewSimpleExample07',
