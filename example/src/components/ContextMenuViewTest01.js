@@ -16,7 +16,7 @@ export class ContextMenuViewTest01 extends React.PureComponent {
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{
-          menuTitle: 'ContextMenuViewSimpleExample01',
+          menuTitle: 'ContextMenuViewTest01',
           menuItems: [{
             actionKey  : 'key-01'   ,
             actionTitle: 'Action #1',
