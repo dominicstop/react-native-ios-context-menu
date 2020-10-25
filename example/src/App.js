@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, View, Text } from 'react-native';
+
+import * as Colors from './constants/Colors';
 
 import { ContextMenuViewSimpleExample01 } from './components/ContextMenuViewSimpleExample01';
 import { ContextMenuViewSimpleExample02 } from './components/ContextMenuViewSimpleExample02';
@@ -27,6 +29,11 @@ export default function App() {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
+        <View style={styles.headerContainer}>
+          <Text>
+            {'When the context menu is visible, the card wil turn purple.'}
+          </Text>
+        </View>
         {items.map((element, index) => 
           React.createElement(element, { 
             key  : `item-${index}`,
@@ -44,5 +51,12 @@ const styles = StyleSheet.create({
   },
   scrollviewContainer: {
     paddingBottom: 30,
+  },
+  headerContainer: {
+    borderRadius: 10,
+    padding: 15,
+    marginTop: 10,
+    marginHorizontal: 20,
+    backgroundColor: Colors.BLUE[100]
   },
 });
