@@ -13,6 +13,7 @@ import UIKit
 class RCTContextMenuView: UIView {
   
   var isContextMenuVisible = false;
+  var didPressMenuItem     = false;
   
   // ---------------------------------------------
   // MARK: RCTContextMenuView - RN Event Callbacks
@@ -83,8 +84,8 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     };
     
     return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
-      return menuConfig.createMenu({ (key, action) in
-        self.onPressMenuItem?(["key": key]);
+      return menuConfig.createMenu({ (dict, action) in
+        self.onPressMenuItem?(dict);
       });
     });
   };

@@ -52,8 +52,8 @@ export class ContextMenuView extends React.PureComponent {
     this.setState({menuVisible: false});
   };
 
-  _handleOnPressMenuItem = ({nativeEvent}) => {
-    this.props.onPressMenuItem?.({key: nativeEvent.key});
+  _handleOnPressMenuItem = (event) => {
+    this.props.onPressMenuItem?.(event);
   };
 
   _handleOnPressMenuPreview = (event) => {

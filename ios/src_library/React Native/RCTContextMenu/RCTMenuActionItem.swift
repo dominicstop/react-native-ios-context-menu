@@ -117,12 +117,20 @@ extension RCTMenuActionItem {
 @available(iOS 13, *)
 extension RCTMenuActionItem {
   
-  typealias UIActionHandlerWithKey = (String, UIAction) -> Void;
+  typealias UIActionHandlerWithDict = ([AnyHashable: Any], UIAction) -> Void;
   
-  func makeUIAction(_ handler: @escaping UIActionHandlerWithKey) -> UIAction {
+  func makeUIAction(_ handler: @escaping UIActionHandlerWithDict) -> UIAction {
     #if DEBUG
     print("RCTMenuActionItem, makeUIAction...");
     #endif
+    
+    let dictionary: [AnyHashable: Any] = [
+      "actionKey"     : self.actionKey  ,
+      "actionTitle"   : self.actionTitle,
+      "imageType"     : self.imageType  ,
+      "imageValue"    : self.imageValue     ?? [],
+      "menuAttributes": self.menuAttributes ?? [],
+    ];
     
     return UIAction(
       title     : self.actionTitle,
@@ -130,7 +138,7 @@ extension RCTMenuActionItem {
       identifier: self.identifier,
       attributes: self.UIMenuElementAttributes,
       state     : self.UIMenuElementState,
-      handler   : { handler(self.actionKey, $0) }
+      handler   : { handler(dictionary, $0) }
     );
   };
 };

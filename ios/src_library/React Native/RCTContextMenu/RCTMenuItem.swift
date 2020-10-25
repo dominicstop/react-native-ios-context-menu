@@ -121,7 +121,7 @@ extension RCTMenuItem {
 
 @available(iOS 13.0, *)
 extension RCTMenuItem {
-  func createMenu(_ handler: @escaping RCTMenuActionItem.UIActionHandlerWithKey) -> UIMenu {
+  func createMenu(_ handler: @escaping RCTMenuActionItem.UIActionHandlerWithDict) -> UIMenu {
     let menuItems: [UIMenuElement]? = self.menuItems?.compactMap {
       if let menu = $0 as? RCTMenuItem {
         #if DEBUG
