@@ -67,7 +67,7 @@ export class ContextMenuViewTest05 extends React.PureComponent {
         onPressMenuItem   ={() => handleEvent(this, 'onPressMenuItem'   )}
         onPressMenuPreview={() => handleEvent(this, 'onPressMenuPreview')}
         menuConfig={{
-          menuTitle: 'ContextMenuViewSimpleExample02',
+          menuTitle: 'ContextMenuViewTest05',
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
