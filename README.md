@@ -1,4 +1,7 @@
 # react-native-ios-context-menu
+A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) in iOS 13 and later.
+* Support for creating menu actions and submenu's
+* Support for customizing the [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and [￼`UIAction`￼](https://developer.apple.com/documentation/uikit/uiaction 
 
 <br>
 
@@ -63,6 +66,14 @@ import { ContextMenuView } from "react-native-ios-context-menu";
   <Text> Hello World </Text>
 </ContextMenuView>
 ```
+
+<br>
+
+**Note**: This component is only available on iOS 13+. As such, this component does nothing on iOS 12 and lower, and on Android. Use the [￼`Platform`￼](https://reactnative.dev/docs/platform-specific-code#platform-module) module to handle logic if `ContextMenuView` is not available i.e. by adding your own `onLongPress` handler and presenting a [ActionSheet](https://reactnative.dev/docs/actionsheetios#docsNav) menu, etc.
+
+<br>
+
+The `ContextMenuView` component is just a normal react-native `view`, so it should support all the existing `view` props.
 
 <br>
 
