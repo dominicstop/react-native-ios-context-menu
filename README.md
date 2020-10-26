@@ -67,6 +67,8 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 ### 4.1 [Simple Example #1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample01.js)
 A plain context menu configured with 3 actions (no icons, just text).
 
+<br>
+
 ```jsx
 <ContextMenuView
   // `menuConfig` prop accepts a `MenuConfig` object
@@ -95,8 +97,14 @@ A plain context menu configured with 3 actions (no icons, just text).
 
 <br>
 
+![Simple Example 1](./assets/example-screenshots/SimpleExample01.png)
+
+<br>
+
 ### 4.2 [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample02.js)
 A menu configured with 3 actions with "system" [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icons.
+
+<br>
 
 ```jsx
 <ContextMenuView
@@ -127,8 +135,14 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 
 <br>
 
+![Simple Example 2](./assets/example-screenshots/SimpleExample02.png)
+
+<br>
+
 ### 4.3 [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample03.js)
 A menu configured with 3 actions with "system" SF Symbols icons.
+
+<br>
 
 ```jsx
 
@@ -182,8 +196,14 @@ A menu configured with 3 actions with "system" SF Symbols icons.
 
 <br>
 
+![Simple Example 3](./assets/example-screenshots/SimpleExample03.png)
+
+<br>
+
 ### 4.4 [Simple Example #4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample04.js)
 A example context menu with a "disabled" action, a "destructive" action, a "hidden" action (which is not visible), and a disabled + destructive action.
+
+<br>
 
 ```jsx
 <ContextMenuView
@@ -220,8 +240,14 @@ A example context menu with a "disabled" action, a "destructive" action, a "hidd
 
 <br>
 
+![Simple Example 4](./assets/example-screenshots/SimpleExample04.png)
+
+<br>
+
 ### 4.5 [Simple Example #5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample05.js)
 Same as Example #3 but the submenu has "displayInline" in it's menuOptions
+
+<br>
 
 ```jsx
 <ContextMenuView
@@ -258,8 +284,14 @@ Same as Example #3 but the submenu has "displayInline" in it's menuOptions
 
 <br>
 
+![Simple Example 5](./assets/example-screenshots/SimpleExample05.png)
+
+<br>
+
 ### 4.6 [Simple Example #6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample06.js)
 Same as Example #3 but the submenu has "destructive" in it's menuOptions
+
+<br>
 
 ```jsx
 <ContextMenuView
@@ -296,8 +328,14 @@ Same as Example #3 but the submenu has "destructive" in it's menuOptions
 
 <br>
 
+![Simple Example 6](./assets/example-screenshots/SimpleExample06.png)
+
+<br>
+
 ### 4.7 [Simple Example #7](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample07.js)
 Same as Example #3 but the submenu has "destructive" and "displayInline" in it's menuOptions. This looks the same as "displayInline" submenu (i.e Example #5)
+
+<br>
 
 ```jsx
 <ContextMenuView
@@ -334,8 +372,14 @@ Same as Example #3 but the submenu has "destructive" and "displayInline" in it's
 
 <br>
 
+![Simple Example 7](./assets/example-screenshots/SimpleExample07.png)
+
+<br>
+
 ### 4.8 [Simple Example #8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample08.js)
 Context menu with 3 actions that has "on", "off", and "mixed" menuState
+
+<br>
 
 ```jsx
 <ContextMenuView
@@ -363,6 +407,10 @@ Context menu with 3 actions that has "on", "off", and "mixed" menuState
   }}
 />
 ```
+
+<br>
+
+![Simple Example 8](./assets/example-screenshots/SimpleExample08.png)
 
 <br>
 
