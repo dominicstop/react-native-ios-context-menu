@@ -99,8 +99,6 @@ A plain context menu configured with 3 actions (no icons, just text).
 
 ![Simple Example 1](./assets/example-screenshots/SimpleExample01.png)
 
-<br>
-
 ### 4.2 [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample02.js)
 A menu configured with 3 actions with "system" [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icons.
 
@@ -136,8 +134,6 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 <br>
 
 ![Simple Example 2](./assets/example-screenshots/SimpleExample02.png)
-
-<br>
 
 ### 4.3 [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample03.js)
 A menu configured with 3 actions with "system" SF Symbols icons.
@@ -198,10 +194,9 @@ A menu configured with 3 actions with "system" SF Symbols icons.
 
 ![Simple Example 3](./assets/example-screenshots/SimpleExample03.png)
 
-<br>
-
 ### 4.4 [Simple Example #4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample04.js)
-A example context menu with a "disabled" action, a "destructive" action, a "hidden" action (which is not visible), and a disabled + destructive action.
+A example context menu with a "*disabled*" action, a "*destructive*" action, a "*hidden*" action (which is not visible in the context menu), and a "*disabled + destructive*" action.
+* A  `MenuAction` object can have an optional `menuAttributes` property. The `menuAttributes` property accepts an array of strings (i.e a `MenuElementAtrributes` item).
 
 <br>
 
@@ -210,29 +205,42 @@ A example context menu with a "disabled" action, a "destructive" action, a "hidd
   menuConfig={{
     menuTitle: 'ContextMenuViewSimpleExample04',
     menuItems: [{
+      // a menu action config item - `MenuAction` object
+      // but we set an optional property called `menuAttributes`
+      // we set the `menuAttributes` to `disabled` which will prevent
+      // this menu action item to selected/pressed
       actionKey     : 'key-01',
       actionTitle   : 'Disabled Action',
       imageType     : 'SYSTEM',
       imageValue    : 'folder',
-      menuAttributes: ['disabled']
+      menuAttributes: ['disabled'] // disable this menu action
     }, {
+      // another `MenuAction` object item
+      // but this time we make the action "destructive"
+      // will tint the menu action item's text/icon bright red
       actionKey     : 'key-02'   ,
       actionTitle   : 'Destructive Action',
       imageType     : 'SYSTEM',
       imageValue    : 'trash',
-      menuAttributes: ['destructive']
+      menuAttributes: ['destructive'] // make menu action "destructive"
     }, {
+      // and another `MenuAction` object item
+      // but this time we make the action "hidden"
+      // will make the menu action item not appear in the menu
       actionKey     : 'key-03'   ,
       actionTitle   : 'Hidden Action',
       imageType     : 'SYSTEM',
       imageValue    : 'trash',
-      menuAttributes: ['hidden']
+      menuAttributes: ['hidden'] // make menu action "hidden"
     }, {
+      // and yet another `MenuAction` object item
+      // but this time we make the action both "hidden" and "disabled"
+      // looks the same as `menuAttributes: ['disabled']`
       actionKey     : 'key-04'   ,
       actionTitle   : 'Disabled/Destructive',
       imageType     : 'SYSTEM',
       imageValue    : 'trash.fill',
-      menuAttributes: ['disabled', 'destructive']
+      menuAttributes: ['disabled', 'destructive'] // <- set `menuAttributes`
     }],
   }}
 />
@@ -242,36 +250,42 @@ A example context menu with a "disabled" action, a "destructive" action, a "hidd
 
 ![Simple Example 4](./assets/example-screenshots/SimpleExample04.png)
 
-<br>
-
 ### 4.5 [Simple Example #5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample05.js)
-Same as Example #3 but the submenu has "displayInline" in it's menuOptions
+A context menu that has a "*displayInline*" submenu. This is the same as *Simple Example \#3* but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`
 
 <br>
 
 ```jsx
 <ContextMenuView
+  // `menuConfig` prop accepts a `MenuConfig` object
   menuConfig={{
     menuTitle: 'ContextMenuViewSimpleExample05',
     menuItems: [{
+      // a menu action config item - `MenuAction` object
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
       imageType  : 'SYSTEM',
       imageValue : 'folder',
     }, {
+      // a menu config item, i.e. a submenu - `MenuConfig` object
+      // but this time we make it an inline submenu.
+      // A `MenuConfig` object has an optional `menuOptions` property.
       menuTitle: 'Submenu...',
-      menuOptions: ['displayInline'],
+      menuOptions: ['displayInline'], // <- set the `menuOptions` property
       menuItems: [{
+        // a `MenuAction` object
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
         imageType  : 'SYSTEM',
         imageValue : 'star',
       }, {
+        // another `MenuAction` object
         actionKey  : 'key-01-02',
         actionTitle: 'Submenu Action #2',
         imageType  : 'SYSTEM',
         imageValue : 'star.lefthalf.fill',
       }, {
+        // yet another `MenuAction` object
         actionKey  : 'key-01-03',
         actionTitle: 'Submenu Action #3',
         imageType  : 'SYSTEM',
@@ -286,10 +300,8 @@ Same as Example #3 but the submenu has "displayInline" in it's menuOptions
 
 ![Simple Example 5](./assets/example-screenshots/SimpleExample05.png)
 
-<br>
-
 ### 4.6 [Simple Example #6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample06.js)
-Same as Example #3 but the submenu has "destructive" in it's menuOptions
+A context menu that has a "*destructive*" submenu. This is the same as *Simple Example \#3* but we set the `MenuConfig`'s optional `menuOptions` property to `['destructive']`
 
 <br>
 
@@ -304,7 +316,7 @@ Same as Example #3 but the submenu has "destructive" in it's menuOptions
       imageValue : 'folder',
     }, {
       menuTitle: 'Submenu...',
-      menuOptions: ['destructive'],
+      menuOptions: ['destructive'], // <- set the `menuOptions` property
       menuItems: [{
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
@@ -330,10 +342,9 @@ Same as Example #3 but the submenu has "destructive" in it's menuOptions
 
 ![Simple Example 6](./assets/example-screenshots/SimpleExample06.png)
 
-<br>
-
 ### 4.7 [Simple Example #7](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample07.js)
-Same as Example #3 but the submenu has "destructive" and "displayInline" in it's menuOptions. This looks the same as "displayInline" submenu (i.e Example #5)
+A context menu that has a "*displayInline*" and "*destructive*" submenu. This is the same as *Simple Example \#3* but we set the `MenuConfig`'s optional `menuOptions` property to `['displayInline', 'destructive']`
+* **Note**: Visually, this looks the same as an "*displayInline*" submenu (i.e *Example #5*)
 
 <br>
 
@@ -348,7 +359,8 @@ Same as Example #3 but the submenu has "destructive" and "displayInline" in it's
       imageValue : 'folder',
     }, {
       menuTitle: 'Submenu...',
-      menuOptions: ['displayInline', 'destructive'],
+	   // set the optional `menuOptions` property
+      menuOptions: ['displayInline', 'destructive'], 
       menuItems: [{
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
@@ -374,10 +386,10 @@ Same as Example #3 but the submenu has "destructive" and "displayInline" in it's
 
 ![Simple Example 7](./assets/example-screenshots/SimpleExample07.png)
 
-<br>
-
 ### 4.8 [Simple Example #8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample08.js)
-Context menu with 3 actions that has "on", "off", and "mixed" menuState
+A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
+* A  `MenuAction` object can have an optional property called `menuState`.
+* `menuState` accepts a string which is a `MenuElementState` item, namely: "*on*", "*off*" and "*mixed*"
 
 <br>
 
@@ -386,23 +398,30 @@ Context menu with 3 actions that has "on", "off", and "mixed" menuState
   menuConfig={{
     menuTitle: 'ContextMenuViewSimpleExample08',
     menuItems: [{
+      // a menu action config item - `MenuAction` object
+      // we set the optional `menuState` property to: "on"
       actionKey  : 'key-01',
       actionTitle: 'menuState: on',
       imageType  : 'SYSTEM',
       imageValue : 'folder',
-      menuState  : 'on',
+      menuState  : 'on', // <- set `menuState` property
     }, {
+      // another `MenuAction` object
+      // but this time we set the optional `menuState` property to: "off"
       actionKey  : 'key-02'   ,
       actionTitle: 'menuState: off',
       imageType  : 'SYSTEM',
       imageValue : 'dial',
-      menuState  : 'off',
+      menuState  : 'off', // <- set `menuState` property
     }, {
+      // and another `MenuAction` object
+      // but this time we set the optional `menuState` property to: "mixed"
+      // note: visually, appears the same as `menuState: "on"`
       actionKey  : 'key-03'   ,
       actionTitle: 'menuState: mixed',
       imageType  : 'SYSTEM'   ,
       imageValue : 'archivebox',
-      menuState  : 'mixed',
+      menuState  : 'mixed', // <- set `menuState` property
     }],
   }}
 />
@@ -411,8 +430,6 @@ Context menu with 3 actions that has "on", "off", and "mixed" menuState
 <br>
 
 ![Simple Example 8](./assets/example-screenshots/SimpleExample08.png)
-
-<br>
 
 ## License
 
