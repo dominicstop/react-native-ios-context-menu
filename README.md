@@ -78,7 +78,7 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 | `onMenuDidHide`      | Function                                   | Event that gets called **after** the context menu is completely hidden. |
 | `onMenuWillCancel`   | Function                                   | Event that gets called when the menu is cancelled and **before** the context menu is  hidden. |
 | `onMenuDidCancel`    | Function                                   | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden. |
-| `onPressMenuItem`    | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the onPressMenuItem Object section for more details.  |
+| `onPressMenuItem`    | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the  [onPressMenuItem Object](https://github.com/dominicstop/react-native-ios-context-menu#333-onpressmenuitem-nativeevent-object) section for more details.  |
 | `onPressMenuPreview` | Function                                   | Event that gets called when the menu's preview is pressed.   |
 
 <br>
@@ -150,6 +150,7 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 
 ### 3.3 Object Types
 #### 3.3.1 `MenuAction` Object
+An object that is used to create a [￼￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) instance. Used to display/create a context menu action or a submenu action.
 
 <br>
 
@@ -179,6 +180,14 @@ An object that is used to create a [￼`UIMenu`￼](https://developer.apple.com/
 <br>
 
 #### 3.3.3 `onPressMenuItem` `nativeEvent` Object
+
+<br>
+
+## 4 Examples
+Check out the [examples](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example) directory. The example app contains a bunch of examples that showcases/demos a bunch of different `ContextMenuView` configuration and example usage for the props/events).
+1. Clone the repository: `git clone https://github.com/dominicstop/react-native-ios-context-menu.git`
+2. `cd react-native-ios-context-menu && yarn bootstrap`
+3. Go to the `react-native-ios-context-menu/example` directory and run `yarn ios` to build/launch the example app in the iOS simulator.
 
 <br>
 
@@ -369,7 +378,7 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
 ![Simple Example 4](./assets/example-screenshots/SimpleExample04.png)
 
 ### 4.5 [Simple Example #5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample05.js)
-A context menu that has a "*displayInline*" submenu. This is the same as [Simple Example #3](#43-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`
+A context menu that has a "*displayInline*" submenu. This is the same as [Simple Example #3](#43-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`. Visually, this creates a "section" in the parent menu (i.e it add top and bottom separators).
 
 <br>
 
