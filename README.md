@@ -566,7 +566,7 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 
 <br>
 
-### 4.8 [Simple Example #8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample08.js)
+### 4.9 [Simple Example #9](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample08.js)
 A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `onPressMenuPreview` event props.
 
 <br>
@@ -622,4 +622,5 @@ MIT
 
 ## Links
 * I'm [@DominicGo](https://twitter.com/GoDominic) on twitter if you have any questions ✨
-* Other libraries: [￼`react-native-ios-modal`￼](https://github.com/dominicstop/react-native-ios-modal)
+* Other libraries: [￼react-native-ios-modal￼](https://github.com/dominicstop/react-native-ios-modal)
+* This library was generated/made using [@react-native-community/bob](https://github.com/callstack/react-native-builder-bob)
