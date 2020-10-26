@@ -566,6 +566,54 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 
 <br>
 
+### 4.8 [Simple Example #8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample08.js)
+A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `onPressMenuPreview` event props.
+
+<br>
+
+```jsx
+<ContextMenuView
+  onPressMenuItem={({nativeEvent}) => {
+    switch (nativeEvent.actionKey) {
+      case 'save':
+        alert('saving...');
+        break;
+
+      case 'like':
+        alert('liking...');
+        break;
+
+      case 'play':
+        alert('playing...');
+        break;
+    };
+  }}
+  onPressMenuPreview={() => alert('onPressMenuPreview')}
+  menuConfig={{
+    menuTitle: 'ContextMenuViewSimpleExample09',
+    menuItems: [{
+      actionKey  : 'save',
+      actionTitle: 'Save',
+      imageType  : 'SYSTEM',
+      imageValue : 'square.and.arrow.down',
+    }, {
+      actionKey  : 'like'         ,
+      actionTitle: 'Like'         ,
+      imageType  : 'SYSTEM'       ,
+      imageValue : 'hand.thumbsup',
+    }, {
+      actionKey  : 'play'  ,
+      actionTitle: 'Play'  ,
+      imageType  : 'SYSTEM',
+      imageValue : 'play'  ,
+    }],
+  }}
+/>
+```
+![Simple Example 8](./assets/example-screenshots/SimpleExample09.png)
+
+<br>
+
 ## License
 
 MIT
