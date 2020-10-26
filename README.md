@@ -43,7 +43,7 @@ This library is written in swift. If you are having trouble building your app af
 2. On the project navigator panel, right click on your project group (or another folder/group) and select "*New File...*" option
 3. In the popup/sheet, select swift click **next** button
 4. In the "*Save As*" popup/sheet, rename the file if you want to and then click create
-5. If Xcode asks you to create a "*Objective-C Bridging Header*" choose yes
+5. If Xcode asks you to create a "*Objective-C Bridging Header*" choose *yes*
 
 <br>
 
@@ -143,7 +143,7 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 
 | Value   | Description                                                  |
 |---------|--------------------------------------------------------------|
-| `on`    | Indicates that the menu element is in the “on” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark. |
+| `on`    | Indicates that the menu element is in the “on” state. Visually, on iOS 13 it will replace the menu action's icon with a checkmark, meanwhile on iOS 14 it will show a checkmark on the left of the menu label. |
 | `off`   | Indicates that the menu element is in the “off” state.       |
 | `mixed` | Indicates that the menu element is in the “mixed” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark (same as the `on` state). |
 <br>
@@ -184,7 +184,7 @@ An object that is used to create a [￼`UIMenu`￼](https://developer.apple.com/
 <br>
 
 ## 4 Examples
-Check out the [examples](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example) directory. The example app contains a bunch of examples that showcases/demos a bunch of different `ContextMenuView` configuration and example usage for the props/events).
+Check out the [examples](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example) directory. The example app contains a bunch of demos that showcases the different `ContextMenuView` configuration, props and events you can use.
 1. Clone the repository: `git clone https://github.com/dominicstop/react-native-ios-context-menu.git`
 2. `cd react-native-ios-context-menu && yarn bootstrap`
 3. Go to the `react-native-ios-context-menu/example` directory and run `yarn ios` to build/launch the example app in the iOS simulator.
@@ -201,7 +201,7 @@ A plain context menu configured with 3 actions (no icons, just text).
   // `menuConfig` prop accepts a `MenuConfig` object
   menuConfig={{
     menuTitle: 'ContextMenuViewSimpleExample01', // title of our menu
-	 // a `MenuConfig` object has `menuItems` property
+    // a `MenuConfig` object has `menuItems` property
     // which is an array of `MenuConfig` or `MenuAction` object
     // these are the items we want to show in our menu
     menuItems: [{
@@ -559,6 +559,9 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 />
 ```
 
+<br>
+
+**Left Image**: iOS 13, and **Right Image**: iOS 14
 ![Simple Example 8](./assets/example-screenshots/SimpleExample08.png)
 
 <br>
