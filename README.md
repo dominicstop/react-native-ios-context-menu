@@ -50,15 +50,30 @@ This library is written in swift. If you are having trouble building your app af
 <br>
 
 ## 2. Usage
-Please check out the examples section or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components) for more on how to use it.
+Please check out the [examples section](#4-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components) for more on how to use it.
 
-```js
+```jsx
 import { ContextMenuView } from "react-native-ios-context-menu";
+
+<ContextMenuView menuConfig={{
+  menuTitle: 'Context Menu Example',
+  menuItems: [{
+    actionKey  : 'action-key',
+    actionTitle: 'Action #1' ,
+  }]
+}}>
+  <Text> Hello World </Text>
+</ContextMenuView>
 ```
 
 <br>
 
 ## 3. Documentation
+### 3.1 `ContextMenuView` Component Props
+
+<br>
+
+### 3.2 Enum Values
 
 <br>
 
@@ -124,8 +139,8 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
       // and another `MenuAction` object item
       actionKey  : 'key-03'   ,
       actionTitle: 'Action #3',
-      imageType  : 'SYSTEM'   ,
-      imageValue : 'archivebox.fill',
+      imageType  : 'SYSTEM'   , // <- set `imageType` to "SYSTEM"
+      imageValue : 'archivebox.fill', // <- provide a SF Symbols icon string
     }],
   }}
 />
@@ -136,7 +151,9 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 ![Simple Example 2](./assets/example-screenshots/SimpleExample02.png)
 
 ### 4.3 [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample03.js)
-A menu configured with 3 actions with "system" SF Symbols icons.
+A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
+* A  `MenuConfig` object has a property called `menuItems` which accepts an array of objects. Those objects can either be a  `MenuAction` item or another `MenuConfig` item.
+* If you pass a `MenuConfig` object to `menuItems`, it will make a submenu. 
 
 <br>
 
