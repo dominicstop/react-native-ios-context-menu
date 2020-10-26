@@ -71,6 +71,18 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 ## 3. Documentation
 ### 3.1 `ContextMenuView` Component Props
 
+| Prop                 | Type                                       | Description                                                  |
+|----------------------|--------------------------------------------|--------------------------------------------------------------|
+| `menuConfig`         | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest06.js) for examples. Check the [￼`MenuConfig`￼](#332-menuconfig-object) section for the object's structure/properties. |
+| `onMenuWillShow`     | Function                                   | Event that gets called **before** the context menu is  shown. |
+| `onMenuDidShow`      | Function                                   | Event that gets called **after** the context menu is completely shown. |
+| `onMenuWillHide`     | Function                                   | Event that gets called **before** the context menu is  hidden. |
+| `onMenuDidHide`      | Function                                   | Event that gets called **after** the context menu is completely hidden. |
+| `onMenuWillCancel`   | Function                                   | Event that gets called when the menu is cancelled and **before** the context menu is  hidden. |
+| `onMenuDidCancel`    | Function                                   | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden. |
+| `onPressMenuItem`    | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the onPressMenuItem Object section for more details.  |
+| `onPressMenuPreview` | Function                                   | Event that gets called when the menu's preview is pressed.   |
+
 <br>
 
 ### 3.2 Enum Values
@@ -90,7 +102,7 @@ Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.ima
 <br>
 
 #### 3.2.2 `MenuOptions`
-Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the `UIMenu.Options` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
+Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the swift/objc-c  `UIMenu.Options` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
 * Import the enum like this: `import { MenuOptions } from "react-native-ios-context-menu";`
 * And use it  like this: `menuOptions: MenuOptions.destructive` 
 * Or you can directly pass a string like this: `menuOptions: 'destructive'`
@@ -98,15 +110,15 @@ Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuCo
 
 <br>
 
-| Value         | Description |
-|---------------|-------------|
-| destructive   |             |
-| displayInline |             |
+| Value           | Description                                                  |
+|-----------------|--------------------------------------------------------------|
+| `destructive`   | An option indicating the menu's appearance represents a destructive action. This will tint the submenu title and it's icon to red (the submenu's elements will be unaffected). |
+| `displayInline` | An option indicating the menu displays inline with its parent menu instead of displaying as a submenu. If you set a submenu to `menuOptions: 'displayInline'`, it will create a "section" in the parent menu. |
 
 <br>
 
 #### 3.2.3 `MenuElementAtrributes`
-Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
+Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the swift/obj-c `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
 * Import the enum like this: `import { MenuElementAtrributes } from "react-native-ios-context-menu";`
 * And use it  like this: `menuAttributes: MenuElementAtrributes.destructive` 
 * Or you can directly pass a string like this: `menuAttributes: 'destructive'`
@@ -123,7 +135,7 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 <br>
 
 #### 3.2.4 `UIMenuElementState`
-Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuState` property). These string values corresponds to the `UIMenuElementState ` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more info.
+Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuState` property). These string values corresponds to the swift/obj-c  `UIMenuElementState ` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more info.
 * Import the enum like this: `import { UIMenuElementState } from "react-native-ios-context-menu";`
 * And use it  like this: `menuState: UIMenuElementState.on` 
 * Or you can directly pass a string like this: `menuState: 'on'`
@@ -165,6 +177,10 @@ An object that is used to create a [￼`UIMenu`￼](https://developer.apple.com/
 | `imageType`   | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu's icon. Check out  the [￼￼`ImageTypes `￼￼](#321-imagetypes) section. |
 | `imageValue`  | **Optional**: `String`                                       | String value used to for the menu's icon.                    |
 | `menuItems`   | **Optional**: `[Object]` (An array of either `MenuAction` object or `MenuConfig`) | The items to display in a menu. if you pass a `MenuAction` it will create a menu action element, and if you pass a `MenuConfig` object, it will create a submenu. |
+
+<br>
+
+#### 3.3.3 `onPressMenuItem` `nativeEvent` Object
 
 <br>
 
@@ -453,7 +469,7 @@ A context menu that has a "*destructive*" submenu. This is the same as [Simple E
 
 ### 4.7 [Simple Example #7](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewSimpleExample07.js)
 A context menu that has a "*displayInline*" and "*destructive*" submenu. This is the same as [Simple Example #3](#43-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `['displayInline', 'destructive']`
-* **Note**: Visually, this looks the same as an "*displayInline*" submenu (i.e *Example #5*)
+* **Note**: Visually, this looks the same as an "*displayInline*" submenu (i.e [Example #5](#45-simple-example-5))
 
 <br>
 
