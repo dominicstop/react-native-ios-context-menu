@@ -18,8 +18,6 @@
 ![Context Menu View Test 5 and 6 Gifs](./assets/ContextMenuViewTest-05-06.gif)
 
 ---
-<br>
-
 ### 🚧⚠️ Documentation WIP 🚧⚠️
 
 <br>
@@ -104,8 +102,8 @@ Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.ima
 #### 3.2.2 `MenuOptions`
 Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the swift/objc-c  `UIMenu.Options` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
 * Import the enum like this: `import { MenuOptions } from "react-native-ios-context-menu";`
-* And use it  like this: `menuOptions: MenuOptions.destructive` 
-* Or you can directly pass a string like this: `menuOptions: 'destructive'`
+* And use it  like this: `menuOptions: [MenuOptions.destructive`] 
+* Or you can directly pass a string like this: `menuOptions: ['destructive']`
 * Check out [Simple Example #5](#46-simple-example-5) and [Simple Example #6](#47-simple-example-6) section for example usage.
 
 <br>
@@ -120,17 +118,17 @@ Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuCo
 #### 3.2.3 `MenuElementAtrributes`
 Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the swift/obj-c `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
 * Import the enum like this: `import { MenuElementAtrributes } from "react-native-ios-context-menu";`
-* And use it  like this: `menuAttributes: MenuElementAtrributes.destructive` 
-* Or you can directly pass a string like this: `menuAttributes: 'destructive'`
+* And use it  like this: `menuAttributes: [MenuElementAtrributes.destructive]` 
+* Or you can directly pass a string like this: `menuAttributes: ['destructive']`
 * Check out [Simple Example #4](#44-simple-example-4) section for example usage.
 
 <br>
 
-| Value       | Description |
-|-------------|-------------|
-| hidden      |             |
-| disabled    |             |
-| destructive |             |
+| Value         | Description                                                  |
+|---------------|--------------------------------------------------------------|
+| `hidden`      | An attribute indicating the hidden style. This will hide the menu action i.e the menu action will no longer be visible in the menu. |
+| `disabled`    | An attribute indicating the disabled style. This will tint the menu action's title and icon to grey, and will also prevent the user from selecting/pressing the menu action. |
+| `destructive` | An attribute indicating the destructive style. This will tint the menu action's title and icon to red.  |
 
 <br>
 
@@ -143,11 +141,11 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 
 <br>
 
-| Value | Description |
-|-------|-------------|
-| on    |             |
-| off   |             |
-| mixed |             |
+| Value   | Description                                                  |
+|---------|--------------------------------------------------------------|
+| `on`    | Indicates that the menu element is in the “on” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark. |
+| `off`   | Indicates that the menu element is in the “off” state.       |
+| `mixed` | Indicates that the menu element is in the “mixed” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark (same as the `on` state). |
 <br>
 
 ### 3.3 Object Types
@@ -155,14 +153,14 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 
 <br>
 
-| Key/Property   | Description |
-|----------------|-------------|
-| actionKey      |             |
-| actionTitle    |             |
-| imageType      |             |
-| imageValue     |             |
-| menuState      |             |
-| menuAttributes |             |
+| Key/Property     | Type                                                         | Description                                                  |
+|------------------|--------------------------------------------------------------|--------------------------------------------------------------|
+| `actionKey`      | **Required**: `String`                                       | A string that is used to identify a menu action. You will receive this value in the `onPressMenuItem({nativeEvent})` event. |
+| `actionTitle`    | **Required**: `String`                                       | The text to display in the menu action.                      |
+| `imageType`      | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu action's icon. Check out  the [￼￼`ImageTypes`￼￼](#321-imagetypes) section. |
+| `imageValue`     | **Optional**: `String`                                       | String value used to for the menu actions's icon.            |
+| `menuState`      | **Optional**: `String` (`UIMenuElementState` value)          | Check the [`UIMenuElementState`](https://github.com/dominicstop/react-native-ios-context-menu#324-uimenuelementstate) for the list of values to use. |
+| `menuAttributes` | **Optional**: `[String]` (Array of `MenuElementAtrributes` values) | Options to change the look/behaviour of the menu action. Check out  the [￼`MenuOptions`￼](#322-menuoptions) section for the list of values to use. |
 <br>
 
 #### 3.3.2 `MenuConfig` Object
@@ -173,8 +171,8 @@ An object that is used to create a [￼`UIMenu`￼](https://developer.apple.com/
 | Key/Property  | Type                                                         | Description                                                  |
 |---------------|--------------------------------------------------------------|--------------------------------------------------------------|
 | `menuTitle`   | **Required**: `String`                                       | The title of the menu.                                       |
-| `menuOptions` | **Optional**: `[String]` (Array of `MenuOptions` values)     | Options to change the look/behaviour of the Menu. Check out  the [￼`MenuOptions`￼](#322-menuoptions) section. |
-| `imageType`   | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu's icon. Check out  the [￼￼`ImageTypes `￼￼](#321-imagetypes) section. |
+| `menuOptions` | **Optional**: `[String]` (Array of `MenuOptions` values)     | Options to change the look/behaviour of the menu. Check out  the [￼`MenuOptions`￼](#322-menuoptions) section for the list of values to use. |
+| `imageType`   | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu's icon. Check out  the [￼￼`ImageTypes` ￼￼](#321-imagetypes) section. |
 | `imageValue`  | **Optional**: `String`                                       | String value used to for the menu's icon.                    |
 | `menuItems`   | **Optional**: `[Object]` (An array of either `MenuAction` object or `MenuConfig`) | The items to display in a menu. if you pass a `MenuAction` it will create a menu action element, and if you pass a `MenuConfig` object, it will create a submenu. |
 
