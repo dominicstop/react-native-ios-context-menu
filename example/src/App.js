@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, View, Text, Switch } from 'react-native';
 
 import * as Colors from './constants/Colors';
 
@@ -39,7 +39,11 @@ const items = [
   ContextMenuViewTest06,
 ];
 
+console.disableYellowBox = true;
+
 export default function App() {
+  const [useActionSheetFallback, setUseActionSheetFallback] = React.useState(false);
+  const toggleUseActionSheetFallback = () => setUseActionSheetFallback(previousState => !previousState);
 
   return (
     <SafeAreaView style={styles.rootContainer}>
@@ -48,11 +52,22 @@ export default function App() {
           <Text>
             {'When the context menu is visible, the card wil turn purple.'}
           </Text>
+          <View style={styles.headerRowContainer}>
+            <Text style={styles.headerRowText}>
+              {'useActionSheetFallback: '}
+            </Text>
+            <Switch
+              onValueChange={toggleUseActionSheetFallback}
+              value={useActionSheetFallback}
+            />
+          </View>
         </View>
         {items.map((element, index) => 
           React.createElement(element, { 
             key  : `item-${index}`,
-            index: (index + 1), 
+            index: (index + 1),
+            // pass down props
+            useActionSheetFallback,
           })
         )}
       </ScrollView>
@@ -73,5 +88,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 20,
     backgroundColor: Colors.BLUE[100]
+  },
+  headerRowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 7,
+  },
+  headerRowText: {
+    flex: 1,
+    fontWeight: 'bold'
   },
 });
