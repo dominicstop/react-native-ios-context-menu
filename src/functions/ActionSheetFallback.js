@@ -1,4 +1,4 @@
-import { MenuActionKeys, MenuConfigKeys, MenuOptions } from '../Enums';
+import { MenuActionKeys, MenuConfigKeys, MenuOptions, MenuElementAtrributes } from '../Enums';
 import * as Helpers from './helpers';
 
 
@@ -163,8 +163,47 @@ export class ActionSheetFallback {
     return menuConfig;
   };
 
-  static getdestructiveButtonIndex(){
-    
+  static getdestructiveButtonIndex(menuItems){
+    if(menuItems == null) return null;
+    for (let index = 0; index < menuItems.length; index++) {
+      const menuItem = menuItems[index];
+
+      const isDestructiveAction = menuItem
+        ?.[MenuActionKeys.menuAttributes]
+        ?.includes(MenuElementAtrributes.destructive) ?? false;
+
+      console.log({isDestructiveAction});
+
+      const isDestructiveMenu = menuItem
+        ?.[MenuConfigKeys.menuOptions]
+        ?.includes(MenuOptions.destructive) ?? false;
+
+      console.log({isDestructiveMenu});
+
+
+      if(isDestructiveAction || isDestructiveMenu){
+        return index;
+      };
+    };
+
+    return null;
+  };
+
+  /** remove disabled/hidden menu actions */
+  static filterMenuItems(menuItems = []){
+    if(menuItems == null) return null;
+
+    return menuItems.filter(menuItem => {
+      const isDisabledAction = menuItem
+        ?.[MenuActionKeys.menuAttributes]
+        ?.includes(MenuElementAtrributes.disabled) ?? false;
+
+      const isHiddenAction = menuItem
+        ?.[MenuActionKeys.menuAttributes]
+        ?.includes(MenuElementAtrributes.hidden) ?? false;
+      
+      return (!isDisabledAction && !isHiddenAction);
+    });
   };
 
   // todo make deep copy
@@ -175,11 +214,15 @@ export class ActionSheetFallback {
     let cancelButtonIndex      = 0;
     let destructiveButtonIndex = null;
 
-    ActionSheetFallback.flattenMenuConfig(menuConfig);
+    const menuConfigCopy = JSON.parse(
+      JSON.stringify(menuConfig)
+    );
+
+    ActionSheetFallback.flattenMenuConfig(menuConfigCopy);
 
     while(true){
       const menuItem = 
-        ActionSheetFallback.getItemFromMenuConfig(menuConfig, indexPath);
+        ActionSheetFallback.getItemFromMenuConfig(menuConfigCopy, indexPath);
 
       // selected item is an action, exit...
       if(ActionSheetFallback.isObjectMenuAction(menuItem)){
@@ -189,16 +232,24 @@ export class ActionSheetFallback {
 
       console.log(`show - menuItem: ${JSON.stringify(menuItem)}`);
 
-      const menuItems = menuItem?.[MenuConfigKeys.menuItems] ?? [];
+      // selected item is menu, get submenu and remove hidden/disable actions
+      const menuItems = ActionSheetFallback.filterMenuItems(menuItem?.[MenuConfigKeys.menuItems] ?? []);
+      // add menu items to action sheet
       actionSheetOptions = menuItems.map(item => (
         item?.[MenuActionKeys.actionTitle] ??
         item?.[MenuConfigKeys.menuTitle  ] ?? null
       ));
+
+      // set destructive index and offset by 1 bc of cancel button
+      destructiveButtonIndex = ActionSheetFallback.getdestructiveButtonIndex(menuItems);
+      if(destructiveButtonIndex != null) destructiveButtonIndex++;
       
       console.log(`show - menuItems: ${JSON.stringify(menuItems)}`);
+      console.log(`destructiveButtonIndex: ${destructiveButtonIndex}`);
       console.log(`show - actionSheetOptions: ${JSON.stringify(actionSheetOptions)}`);
 
 
+      // wait for selected item
       const selectedIndex = await Helpers.asyncActionSheet({
         // action sheet config
         ...((cancelButtonIndex      != null) && {cancelButtonIndex     }),
