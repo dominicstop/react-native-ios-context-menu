@@ -75,7 +75,8 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 
 <br>
 
-**Note**: This component is only available on iOS 13+. As such, this component does nothing on iOS 12 and lower, and on Android. Use the [￼`Platform`￼](https://reactnative.dev/docs/platform-specific-code#platform-module) module to handle logic if `ContextMenuView` is not available i.e. by adding your own `onLongPress` handler and presenting a [ActionSheet](https://reactnative.dev/docs/actionsheetios#docsNav) menu, etc.
+**Note**: This component is only available on iOS 13+. As such, this component does nothing on iOS 12 and lower, and on Android. Use the [￼`Platform`￼](https://reactnative.dev/docs/platform-specific-code#platform-module) module to handle logic if `ContextMenuView` is not available i.e. by adding your own `onLongPress` handler. 
+* By default, on iOS 12 and below, a long press on a `ContextMenuView` will show a `ActionSheetIOS` menu based on the `menuConfig`
 
 <br>
 
@@ -86,17 +87,18 @@ The `ContextMenuView` component is just a normal react-native `view`, so it shou
 ## 3. Documentation
 ### 3.1 `ContextMenuView` Component Props
 
-| Prop                 | Type                                       | Description                                                  |
-|----------------------|--------------------------------------------|--------------------------------------------------------------|
-| `menuConfig`         | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest06.js) for examples. Check the [￼`MenuConfig`￼](#332-menuconfig-object) section for the object's structure/properties. |
-| `onMenuWillShow`     | Function                                   | Event that gets called **before** the context menu is  shown. |
-| `onMenuDidShow`      | Function                                   | Event that gets called **after** the context menu is completely shown. |
-| `onMenuWillHide`     | Function                                   | Event that gets called **before** the context menu is  hidden. |
-| `onMenuDidHide`      | Function                                   | Event that gets called **after** the context menu is completely hidden. |
-| `onMenuWillCancel`   | Function                                   | Event that gets called when the menu is cancelled and **before** the context menu is  hidden. |
-| `onMenuDidCancel`    | Function                                   | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden. |
-| `onPressMenuItem`    | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the  [onPressMenuItem Object](https://github.com/dominicstop/react-native-ios-context-menu#333-onpressmenuitem-nativeevent-object) section for more details.  |
-| `onPressMenuPreview` | Function                                   | Event that gets called when the menu's preview is pressed.   |
+| Prop                     | Type                                       | Description                                                  |
+|--------------------------|--------------------------------------------|--------------------------------------------------------------|
+| `menuConfig`             | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest06.js) for examples. Check the [￼`MenuConfig`￼](#332-menuconfig-object) section for the object's structure/properties. |
+| `useActionSheetFallback` | **Optional**: `Bool`                       | If set to true, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop. Default value is `true` on iOS 13+ and false on iOS 12 and below (and on android). |
+| `onMenuWillShow`         | Function                                   | Event that gets called **before** the context menu is  shown. |
+| `onMenuDidShow`          | Function                                   | Event that gets called **after** the context menu is completely shown. |
+| `onMenuWillHide`         | Function                                   | Event that gets called **before** the context menu is  hidden. |
+| `onMenuDidHide`          | Function                                   | Event that gets called **after** the context menu is completely hidden. |
+| `onMenuWillCancel`       | Function                                   | Event that gets called when the menu is cancelled and **before** the context menu is  hidden. |
+| `onMenuDidCancel`        | Function                                   | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden. |
+| `onPressMenuItem`        | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the  [onPressMenuItem Object](https://github.com/dominicstop/react-native-ios-context-menu#333-onpressmenuitem-nativeevent-object) section for more details. |
+| `onPressMenuPreview`     | Function                                   | Event that gets called when the menu's preview is pressed.   |
 
 <br>
 
