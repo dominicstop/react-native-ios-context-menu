@@ -61,8 +61,16 @@ export class ContextMenuView extends React.PureComponent {
 
   //#region - Event Handlers
   _handleOnLongPress = async () => {
-    const { menuConfig } = this.props;
-    await ActionSheetFallback.show(menuConfig);
+    const { menuConfig, ...props } = this.props;
+    const item = await ActionSheetFallback.show(menuConfig);
+  
+    if(item == null){
+      // cancelled pressed
+      props.onMenuDidCancel?.();
+
+    } else {
+      props.onPressMenuItem?.({nativeEvent: {...item}});
+    };
   };
 
   _handleOnMenuWillShow = (event) => {

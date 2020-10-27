@@ -188,7 +188,6 @@ export class ActionSheetFallback {
 
       // selected item is an action, exit...
       if(ActionSheetFallback.isObjectMenuAction(menuItem)){
-        alert(JSON.stringify(menuItem));
         return menuItem;
       };
 
@@ -213,7 +212,7 @@ export class ActionSheetFallback {
       });
 
       // guard: cancel button pressed, exit...
-      if(selectedIndex === cancelButtonIndex) return;
+      if(selectedIndex === cancelButtonIndex) return null;
 
       // push selected index to indexPath and loop
       indexPath.push(selectedIndex - 1);
