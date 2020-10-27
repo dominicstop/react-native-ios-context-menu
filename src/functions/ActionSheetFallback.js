@@ -1,6 +1,7 @@
 import { MenuActionKeys, MenuConfigKeys, MenuOptions, MenuElementAtrributes } from '../Enums';
 import * as Helpers from './helpers';
 
+// TODO: Refactor/cleanup...
 
 export class ActionSheetFallback {
   /** is the object a `MenuAction` item */
