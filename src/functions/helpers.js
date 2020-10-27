@@ -4,9 +4,9 @@ import { ActionSheetIOS } from 'react-native';
 //wrapper func for setstate that returns a promise
 export function setStateAsync(that, newState) {
   return new Promise((resolve) => {
-      that.setState(newState, () => {
-          resolve();
-      });
+    that.setState(newState, () => {
+        resolve();
+    });
   });
 };
 
