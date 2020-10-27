@@ -1,6 +1,6 @@
 {
   "name": "react-native-ios-context-menu",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "placeholder",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
