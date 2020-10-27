@@ -22,7 +22,7 @@ export class ContextMenuViewTest02 extends React.PureComponent {
             menuOptions: ['displayInline'],
             menuItems: [{
               actionKey  : 'key-01'   ,
-              actionTitle: 'Action #1',
+              actionTitle: 'Inline Action #1',
               imageType  : 'SYSTEM',
               imageValue : 'hare',
             }, {
@@ -39,12 +39,12 @@ export class ContextMenuViewTest02 extends React.PureComponent {
                 menuOptions: ['displayInline'],
                 menuItems: [{
                   actionKey  : 'key-02-02',
-                  actionTitle: 'Submenu Action #2',
+                  actionTitle: 'Inline Submenu Action #2',
                   imageType  : 'SYSTEM',
                   imageValue : 'house',
                 }, {
                   actionKey  : 'key-02-03',
-                  actionTitle: 'Submenu Action #3',
+                  actionTitle: 'Inline Submenu Action #3',
                   imageType  : 'SYSTEM',
                   imageValue : 'tag',
                 }],
@@ -60,13 +60,13 @@ export class ContextMenuViewTest02 extends React.PureComponent {
             menuOptions: ['displayInline'],
             menuItems: [{
               actionKey     : 'key-03'   ,
-              actionTitle   : 'Action #2',
+              actionTitle   : 'Inline Submenu Action #2',
               menuAttributes: ['disabled'],
               imageType     : 'SYSTEM',
               imageValue    : 'suit.heart',
             }, {
               actionKey  : 'key-04'   ,
-              actionTitle: 'Action #3',
+              actionTitle: 'Inline Submenu Action #3',
               imageType  : 'SYSTEM',
               imageValue : 'suit.club',
             }],
