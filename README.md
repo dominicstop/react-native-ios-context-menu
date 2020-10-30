@@ -1,7 +1,8 @@
 # react-native-ios-context-menu
 A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) in iOS 13 and later.
-* Support for creating menu actions and submenu's
-* Support for customizing the [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and [￼`UIAction`￼](https://developer.apple.com/documentation/uikit/uiaction 
+* Support for creating menu actions and submenu's (nested menu's)
+* Support for customizing all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties
+* `ActionSheetIOS` menu fallback for unsupported iOS versions
 
 <br>
 
@@ -33,7 +34,7 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
 
 ---
 ### 🚧⚠️ Documentation WIP 🚧⚠️
-
+(iOS 14 specific features also in WIP)
 <br>
 
 ## 1. Installation
@@ -80,12 +81,13 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 
 <br>
 
-**Note**: This component is only available on iOS 13+. As such, this component does nothing on iOS 12 and lower, and on Android. Use the [￼`Platform`￼](https://reactnative.dev/docs/platform-specific-code#platform-module) module to handle logic if `ContextMenuView` is not available i.e. by adding your own `onLongPress` handler. 
+**Note**: This component is only available on iOS 13+. Use the [￼`Platform`￼](https://reactnative.dev/docs/platform-specific-code#platform-module) module to handle logic if `ContextMenuView` is not available i.e. by adding your own `onLongPress` handler. 
 * By default, on iOS 12 and below, a long press on a `ContextMenuView` will show a `ActionSheetIOS` menu based on the `menuConfig`
+* This component is just a regular view on android.
 
 <br>
 
-The `ContextMenuView` component is just a normal react-native `view`, so it should support all the existing `view` props.
+The `ContextMenuView` component is just a normal react-native `View`, so it should support all the existing `View` props.
 
 <br>
 
