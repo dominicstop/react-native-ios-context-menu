@@ -53,12 +53,12 @@ cd ios && pod install
 <br>
 
 ### 1.1 Installation Notes
-This library is written in swift. If you are having trouble building your app after installing this library, try adding an empty swift file.
-1.  Open up your `ios/project.xcworkspace` project
-2. On the project navigator panel, right click on your project group (or another folder/group) and select "*New File...*" option
-3. In the popup/sheet, select swift click **next** button
-4. In the "*Save As*" popup/sheet, rename the file if you want to and then click create
-5. If Xcode asks you to create a "*Objective-C Bridging Header*" choose *yes*
+This library is written in Swift. If you are having trouble building your app after installing this library, try adding an empty swift file:
+1. Open up your `ios/project.xcworkspace` project
+2. On the project navigator panel (located on the right side of Xcode), right click on your project group (or another folder/group i.e the blue or yellow icons) and select the "*New File...*" option
+3. In the popup sheet, select "Swift" as the template and then click the "*Next*" button
+4. A "*Save As*" popup sheet should appear and then click "*Create*" (you can rename the file first if you want to)
+5. If Xcode asks you to create a "*Objective-C Bridging Header*" choose *"Create Objective-C Bridging Header"*
 
 <br>
 
@@ -68,13 +68,18 @@ Please check out the [examples section](#4-examples) or the [examples directory]
 ```jsx
 import { ContextMenuView } from "react-native-ios-context-menu";
 
-<ContextMenuView menuConfig={{
-  menuTitle: 'Context Menu Example',
-  menuItems: [{
-    actionKey  : 'action-key',
-    actionTitle: 'Action #1' ,
-  }]
-}}>
+<ContextMenuView
+  onPressMenuItem={({nativeEvent}) => {
+    alert(`${nativeEvent.actionKey} was pressed`);
+  }}
+  menuConfig={{
+    menuTitle: 'Context Menu Example',
+    menuItems: [{
+      actionKey  : 'action-key',
+      actionTitle: 'Action #1' ,
+    }]
+  }}
+>
   <Text> Hello World </Text>
 </ContextMenuView>
 ```
@@ -82,7 +87,7 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 <br>
 
 **Note**: This component is only available on iOS 13+. Use the [￼`Platform`￼](https://reactnative.dev/docs/platform-specific-code#platform-module) module to handle logic if `ContextMenuView` is not available i.e. by adding your own `onLongPress` handler. 
-* By default, on iOS 12 and below, a long press on a `ContextMenuView` will show a `ActionSheetIOS` menu based on the `menuConfig`
+* By default, on iOS 12 and below, a long press on a `ContextMenuView` will show a `ActionSheetIOS` menu based on the `menuConfig` prop. If you want to disable this behavior, set `useActionSheetFallback` prop to false.
 * This component is just a regular view on android.
 
 <br>
@@ -97,14 +102,14 @@ The `ContextMenuView` component is just a normal react-native `View`, so it shou
 | Prop                     | Type                                       | Description                                                  |
 |--------------------------|--------------------------------------------|--------------------------------------------------------------|
 | `menuConfig`             | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuViewTest06.js) for examples. Check the [￼`MenuConfig`￼](#332-menuconfig-object) section for the object's structure/properties. |
-| `useActionSheetFallback` | **Optional**: `Bool`                       | If set to true, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop. Default value is `true` on iOS 13+ and false on iOS 12 and below (and on android). |
-| `onMenuWillShow`         | Function                                   | Event that gets called **before** the context menu is  shown. |
-| `onMenuDidShow`          | Function                                   | Event that gets called **after** the context menu is completely shown. |
-| `onMenuWillHide`         | Function                                   | Event that gets called **before** the context menu is  hidden. |
-| `onMenuDidHide`          | Function                                   | Event that gets called **after** the context menu is completely hidden. |
-| `onMenuWillCancel`       | Function                                   | Event that gets called when the menu is cancelled and **before** the context menu is  hidden. |
-| `onMenuDidCancel`        | Function                                   | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden. |
-| `onPressMenuItem`        | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the  [onPressMenuItem Object](https://github.com/dominicstop/react-native-ios-context-menu#333-onpressmenuitem-nativeevent-object) section for more details. |
+| `useActionSheetFallback` | **Optional**: `Bool`                       | If set to true, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop. Default value is `false` on iOS 13+ and true on android, and on iOS 12 and below. |
+| `onMenuWillShow`         | Function                                   | Event that gets called **before** the context menu is  shown, i.e. this event is immediently invoked when the menu is about to become visible. |
+| `onMenuDidShow`          | Function                                   | Event that gets called **after** the context menu is completely shown, i.e. this event is invoked after the menu entrance animation is finished. |
+| `onMenuWillHide`         | Function                                   | Event that gets called **before** the context menu is  hidden, i.e. this event is immediently invoked when the menu is about to become hidden. |
+| `onMenuDidHide`          | Function                                   | Event that gets called **after** the context menu is completely hidden, i.e. this event is invoked after the menu exit animation is finished. |
+| `onMenuWillCancel`       | Function                                   | Event that gets called when the menu is cancelled and **before** the context menu is  hidden, i.e. this event is immediently invoked when the menu is cancelled and about to become hidden. |
+| `onMenuDidCancel`        | Function                                   | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden, i.e. this event is invoked when the menu is cancelled and the menu exit animation is finished. |
+| `onPressMenuItem`        | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the  [onPressMenuItem Object](https://github.com/dominicstop/react-native-ios-context-menu#333-onpressmenuitem-nativeevent-object) section for more details or ::Simple Example #9:: |
 | `onPressMenuPreview`     | Function                                   | Event that gets called when the menu's preview is pressed.   |
 
 <br>
@@ -152,9 +157,9 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 
 | Value         | Description                                                  |
 |---------------|--------------------------------------------------------------|
-| `hidden`      | An attribute indicating the hidden style. This will hide the menu action i.e the menu action will no longer be visible in the menu. |
+| `hidden`      | An attribute indicating the hidden style. This will hide the menu action i.e the menu action will no longer be visible in the menu. You can use this to temporarily hide a menu action (via state). |
 | `disabled`    | An attribute indicating the disabled style. This will tint the menu action's title and icon to grey, and will also prevent the user from selecting/pressing the menu action. |
-| `destructive` | An attribute indicating the destructive style. This will tint the menu action's title and icon to red.  |
+| `destructive` | An attribute indicating the destructive style. This will tint the menu action's title and icon to red. |
 
 <br>
 
