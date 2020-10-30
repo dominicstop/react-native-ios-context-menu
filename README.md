@@ -34,7 +34,7 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
 
 ---
 ### 🚧⚠️ Documentation WIP 🚧⚠️
-(iOS 14 specific features also in WIP)
+(iOS 14 specific features also in WIP — Check [TODO](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/docs/TODO.md) for progress)
 <br>
 
 ## 1. Installation
