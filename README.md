@@ -10,25 +10,25 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
   <summary>Show/Hide Gifs</summary>
 
 **Left**: ::Example 1::, ::Example 2::, and **Right**: ::Example 3::, ::Example 4::
-![Simple Example 1 to 4 Gifs](./assets/SimpleExample-1-2-3-4.gif)
+![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
 
 **Left**: ::Example 5::, ::Example 6::, and **Right**: ::Example 7::, ::Example 8::
-![Simple Example 5 to 8 Gifs](./assets/SimpleExample-5-6-7-8.gif)
+![Simple Example 5 to 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif)
 
 **Left**: ::Test 1::, and **Right**: ::Test 2::
-![Context Menu View Test 1 and 2 Gifs](./assets/ContextMenuViewTest-01-02.gif)
+![Context Menu View Test 1 and 2 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-01-02.gif)
 
 **Left**: ::Test 3::, and **Right**: ::Test 4::
-![Context Menu View Test 3 and 4 Gifs](./assets/ContextMenuViewTest-03-04.gif)
+![Context Menu View Test 3 and 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-03-04.gif)
 
 **Left**: ::Test 5::, and **Right**: ::Test 6::
-![Context Menu View Test 5 and 6 Gifs](./assets/ContextMenuViewTest-05-06.gif)
+![Context Menu View Test 5 and 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-05-06.gif)
 
 `ActionSheetIOS` fallback for simple example 1 to 9
-![Action Sheet Fallback for Simple Example 1 to 9 Gifs](./assets/ActionSheetFallback-SimpleExample-1-to-9.gif)
+![Action Sheet Fallback for Simple Example 1 to 9 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-SimpleExample-1-to-9.gif)
 
 `ActionSheetIOS` fallback for context menu view test 1 to 6
-![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/ActionSheetFallback-Test-1-to-6.gif)
+![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-Test-1-to-6.gif)
 
 </details>
 
