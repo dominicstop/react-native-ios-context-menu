@@ -12,6 +12,7 @@ export class ContextMenuViewSimpleExample08 extends React.PureComponent {
         title={'Simple Example #8'}
         subtitle={'menuState'}
         desc={`Context menu with 3 actions that has "on", "off", and "mixed" menuState`}
+        // `ContextMenuView` Props
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{

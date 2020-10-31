@@ -12,6 +12,7 @@ export class ContextMenuButtonSimpleExample02 extends React.PureComponent {
         title={'Simple Example #2'}
         subtitle={'actions text-only'}
         desc={'Context menu button but we set the `isMenuPrimaryAction` prop to true. Press button to show menu.'}
+        // `ContextMenuButton` Props
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         isMenuPrimaryAction={true}
         menuConfig={{

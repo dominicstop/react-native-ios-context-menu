@@ -29,6 +29,7 @@ export class ContextMenuViewSimpleExample10 extends React.PureComponent {
         title={'Simple Example #10'}
         subtitle={'inline menu'}
         desc={'On iOS 14...'}
+        // `ContextMenuView` Props
         onPressMenuItem={this._handleOnPressMenuItem}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{

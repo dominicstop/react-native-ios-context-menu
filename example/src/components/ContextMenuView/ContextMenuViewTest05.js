@@ -58,6 +58,7 @@ export class ContextMenuViewTest05 extends React.PureComponent {
         title={'Test #5'}
         subtitle={'context menu events'}
         desc={`Test for logging the menu events`}
+        // `ContextMenuView` Props
         onMenuWillShow    ={() => handleEvent(this, 'onMenuWillShow'    )}
         onMenuWillHide    ={() => handleEvent(this, 'onMenuWillHide'    )}
         onMenuWillCancel  ={() => handleEvent(this, 'onMenuWillCancel'  )}

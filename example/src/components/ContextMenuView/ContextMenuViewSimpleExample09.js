@@ -29,6 +29,7 @@ export class ContextMenuViewSimpleExample09 extends React.PureComponent {
         title={'Simple Example #9'}
         subtitle={'menu actions'}
         desc={'An example context menu for using the `onPressMenuItem` event.'}
+        // `ContextMenuView` Props
         onPressMenuItem={this._handleOnPressMenuItem}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{

@@ -45,6 +45,7 @@ export class ContextMenuViewTest06 extends React.PureComponent {
         title={'Test #6'}
         subtitle={'add menu action'}
         desc={`Test for programmatically adding a menu action`}
+        // `ContextMenuView` Props
         onPressMenuItem={this._hanldeOnPressMenuItem}
         menuConfig={{
           menuTitle: 'ContextMenuViewTest06',

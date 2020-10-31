@@ -60,6 +60,7 @@ export class ContextMenuViewTest04 extends React.PureComponent {
         title={'Test #4'}
         subtitle={'toggle icons'}
         desc={`Test for toggling the menu icons from state`}
+        // `ContextMenuView` Props
         onPressMenuItem={this._handleOnPressMenuItem}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{

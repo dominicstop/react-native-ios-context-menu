@@ -12,6 +12,7 @@ export class ContextMenuViewSimpleExample04 extends React.PureComponent {
         title={'Simple Example #4'}
         subtitle={'menuAttributes'}
         desc={'Context menu with a "disabled" action, a "destructive" action, a "hidden" action (which is not visible), and a disabled + destructive action'}
+        // `ContextMenuView` Props
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{

@@ -12,6 +12,7 @@ export class ContextMenuViewSimpleExample05 extends React.PureComponent {
         title={'Simple Example #5'}
         subtitle={'inline submenu'}
         desc={`Same as Example #3 but the submenu has "displayInline" in it's menuOptions`}
+        // `ContextMenuView` Props
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{

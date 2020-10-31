@@ -13,6 +13,7 @@ export class ContextMenuViewTest02 extends React.PureComponent {
         title={'Test #2'}
         subtitle={'inline menus'}
         desc={`Test for multiple inline menu's + nested submenu's`}
+        // `ContextMenuView` Props
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{
