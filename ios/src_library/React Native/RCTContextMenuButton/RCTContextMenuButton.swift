@@ -90,8 +90,8 @@ class RCTContextMenuButton: UIButton {
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
     
-    let interaction = UIContextMenuInteraction(delegate: self);
-    self.addInteraction(interaction);
+    //let interaction = UIContextMenuInteraction(delegate: self);
+    //self.addInteraction(interaction);
     
     self.addAction( UIAction(title: ""){ action in
       // TODO: wip
