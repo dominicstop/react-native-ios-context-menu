@@ -21,8 +21,11 @@ import { ContextMenuViewTest04 } from './components/ContextMenuViewTest04';
 import { ContextMenuViewTest05 } from './components/ContextMenuViewTest05';
 import { ContextMenuViewTest06 } from './components/ContextMenuViewTest06';
 
+import { ContextMenuButtonSimpleExample01 } from './components/ContextMenuButton/ContextMenuButtonSimpleExample01';
 
-const items = [
+
+
+const contextMenuViewItems = [
   ContextMenuViewSimpleExample01,
   ContextMenuViewSimpleExample02,
   ContextMenuViewSimpleExample03,
@@ -41,6 +44,10 @@ const items = [
   ContextMenuViewTest06,
 ];
 
+const contextMenuButtonItems = [
+  ContextMenuButtonSimpleExample01
+];
+
 console.disableYellowBox = true;
 
 export default function App() {
@@ -50,6 +57,12 @@ export default function App() {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
+        <Text style={styles.textSectionTitle}>
+          {'ContextMenuView'}
+        </Text>
+        <Text style={styles.textSectionSubtitle}>
+          {'Examples and tests for `ContextMenuView`'}
+        </Text>
         <View style={styles.headerContainer}>
           <Text>
             {'When the context menu is visible, the card wil turn purple.'}
@@ -64,9 +77,24 @@ export default function App() {
             />
           </View>
         </View>
-        {items.map((element, index) => 
+        {contextMenuViewItems.map((element, index) => 
           React.createElement(element, { 
-            key  : `item-${index}`,
+            key  : `context-menu-view-item-${index}`,
+            index: (index + 1),
+            // pass down props
+            useActionSheetFallback,
+          })
+        )}
+        <View style={{marginTop: 20}}/>
+        <Text style={styles.textSectionTitle}>
+          {'ContextMenuButton'}
+        </Text>
+        <Text style={styles.textSectionSubtitle}>
+          {'Examples and tests for `ContextMenuButton`'}
+        </Text>
+        {contextMenuButtonItems.map((element, index) => 
+          React.createElement(element, { 
+            key  : `context-menu-button-item-${index}`,
             index: (index + 1),
             // pass down props
             useActionSheetFallback,
@@ -83,6 +111,18 @@ const styles = StyleSheet.create({
   },
   scrollviewContainer: {
     paddingBottom: 30,
+  },
+  textSectionTitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginHorizontal: 10,
+  },
+  textSectionSubtitle: {
+    marginHorizontal: 10,
+    fontSize: 16,
+    fontWeight: '300',
+    color: Colors.GREY[600],
+    marginBottom: 5,
   },
   headerContainer: {
     borderRadius: 10,
