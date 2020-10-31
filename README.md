@@ -127,7 +127,6 @@ Lorum ipsum sit amit
 <br>
 
 ### 3.3 Enum Values
-
 #### 3.3.1 `ImageTypes` Enum
 Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.imageType`.
 * Import the enum like this: `import { ImageTypes } from "react-native-ios-context-menu";`
@@ -192,11 +191,8 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 | `mixed` | Indicates that the menu element is in the “mixed” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark (same as the `on` state). |
 <br>
 
-
-
 ### 3.4 Object Types
 #### 3.4.1 `MenuAction` Object
-
 An object that is used to display/create a context menu action or a submenu action. This object represents a [￼￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) instance. This object is used inside a `MenuConfig` object's `menuItems` property.
 
 <br>
@@ -211,11 +207,7 @@ An object that is used to display/create a context menu action or a submenu acti
 | `menuAttributes` | **Optional**: `[String]` (Array of `MenuElementAtrributes` values) | Options to change the look/behaviour of the menu action. Check out  the ::￼`MenuOptions`:: section for the list of values to use. |
 <br>
 
-
-
 #### 3.4.2 `MenuConfig` Object
-
-
 An object that is used to display/create a context menu or a submenu. This object represents  a [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) instance.
 
 <br>
@@ -230,14 +222,9 @@ An object that is used to display/create a context menu or a submenu. This objec
 
 <br>
 
-
-
 #### 3.4.3 `onPressMenuItem` `nativeEvent` Object
 
-
 <br>
-
-
 
 ## 4 Examples
 Check out the [examples](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example) directory. The example app contains a bunch of demos that showcases the different `ContextMenuView` configurations, props and events you can use.
@@ -249,7 +236,6 @@ Check out the [examples](https://github.com/dominicstop/react-native-ios-context
 
 ### 4.1 `ContextMenuView` Examples
 #### 4.1.1 ::Simple Example #1::
-
 A plain context menu configured with 3 actions (no icons, just text).
 
 <br>
@@ -284,10 +270,7 @@ A plain context menu configured with 3 actions (no icons, just text).
 
 <br>
 
-
-
 #### 4.1.2 ::Simple Example #2::
-
 A menu configured with 3 actions with "system" [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icons.
 
 <br>
@@ -323,18 +306,14 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 
 <br>
 
-
-
 #### 4.1.3 ::Simple Example #3::
-
 A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
 * A  `MenuConfig` object has a property called `menuItems` which accepts an array of objects. Those objects can either be a  `MenuAction` item or another `MenuConfig` item.
 * If you pass a `MenuConfig` object to `menuItems`, it will make a submenu. 
 
 <br>
 
-```jsx
-
+```js
 <ContextMenuView
   // `menuConfig` prop accepts a `MenuConfig` object
   menuConfig={{
@@ -387,10 +366,7 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
 
 <br>
 
-
-
 #### 4.1.4 ::Simple Example #4::
-
 A example context menu with a "*disabled*" action, a "*destructive*" action, a "*hidden*" action (which is not visible in the context menu), and a "*disabled + destructive*" action.
 * A  `MenuAction` object can have an optional `menuAttributes` property. The `menuAttributes` property accepts an array of strings (i.e a `MenuElementAtrributes` item).
 
@@ -444,10 +420,7 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
 
 ![Simple Example 4](./assets/example-screenshots/ContextMenuView-SimpleExample04.png)
 
-
-
 #### 4.1.5 ::Simple Example #5::
-
 A context menu that has a "*displayInline*" submenu. This is the same as ::Simple Example #3:: but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`. Visually, this creates a "section" in the parent menu (i.e it add top and bottom separators).
 
 <br>
@@ -497,10 +470,7 @@ A context menu that has a "*displayInline*" submenu. This is the same as ::Simpl
 
 <br>
 
-
-
 #### 4.1.6 ::Simple Example #6::
-
 A context menu that has a "*destructive*" submenu. This is the same as ::Simple Example #3:: but we set the `MenuConfig`'s optional `menuOptions` property to `['destructive']`
 
 <br>
@@ -547,10 +517,7 @@ A context menu that has a "*destructive*" submenu. This is the same as ::Simple 
 
 <br>
 
-
-
 #### 4.1.7 ::Simple Example #7::
-
 A context menu that has a "*displayInline*" and "*destructive*" submenu. This is the same as ::Simple Example #3:: but we set the `MenuConfig`'s optional `menuOptions` property to `['displayInline', 'destructive']`
 * **Note**: Visually, this looks the same as an "*displayInline*" submenu (i.e. ::Example #5::)
 
@@ -593,8 +560,6 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
 ![Simple Example 7](./assets/example-screenshots/ContextMenuView-SimpleExample07.png)
 
 <br>
-
-
 
 #### 4.1.8 ::Simple Example #8::
 
@@ -645,8 +610,6 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 
 <br>
 
-
-
 #### 4.1.9 ::Simple Example #9::
 A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `onPressMenuPreview` event props.
 
@@ -691,6 +654,7 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
   }}
 />
 ```
+
 ![Simple Example 8](./assets/example-screenshots/ContextMenuView-SimpleExample09.png)
 
 <br>
