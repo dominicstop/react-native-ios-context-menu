@@ -7,6 +7,23 @@ import * as Colors from '../constants/Colors';
 import { ContextMenuButton } from 'react-native-ios-context-menu';
 
 
+function ContextMenuButtonContents(props){
+  const rootContainerStyle = {
+    backgroundColor: (props.menuVisible
+      ? Colors.AMBER .A700
+      : Colors.ORANGE.A700
+    )
+  };
+
+  return (
+    <View style={[styles.contextMenuButtonContentsContainer, rootContainerStyle]}>
+      <Text style={styles.textContextMenuButton}>
+        {props.buttonTitle}
+      </Text>
+    </View>
+  );
+};
+
 export class ExampleContextMenuButtonItem extends React.Component {
   static proptypes = {
     title      : Proptypes.string,
@@ -48,17 +65,17 @@ export class ExampleContextMenuButtonItem extends React.Component {
             style={styles.contextMenuButtonA}
             {...props}
           >
-            <Text style={styles.textContextMenuButtonA}>
-              {buttonTitle ?? '⭐️ Context Menu Button'}
-            </Text>
+            <ContextMenuButtonContents
+              buttonTitle={buttonTitle ?? '⭐️ Context Menu Button'}
+            />
           </ContextMenuButton>
           <ContextMenuButton
             style={styles.contextMenuButtonB}
             {...props}
           >
-            <Text style={styles.textContextMenuButtonB}>
-              {'⭐️'}
-            </Text>
+            <ContextMenuButtonContents
+              buttonTitle={'⭐️'}
+            />
           </ContextMenuButton>
         </View>
       </View>
@@ -114,24 +131,18 @@ const styles = StyleSheet.create({
   },
   contextMenuButtonA: {
     flex: 1,
-    padding: 10,
-    backgroundColor: Colors.ORANGE.A700,
-    borderRadius: 10,
-  },
-  textContextMenuButtonA: {
-    color: 'white',
-    fontWeight: '500'
   },
   contextMenuButtonB: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
     marginLeft: 10,
-    backgroundColor: Colors.ORANGE.A700,
-    borderRadius: 10,
-
   },
-  textContextMenuButtonB: {
-
+  contextMenuButtonContentsContainer: {
+    padding: 10,
+    borderRadius: 10,
+  },
+  textContextMenuButton: {
+    color: 'white',
+    fontWeight: '500'
   },
 });
