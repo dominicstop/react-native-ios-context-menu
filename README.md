@@ -35,7 +35,7 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
 ---
 ### 🚧⚠️ Documentation WIP 🚧⚠️
 (iOS 14 specific features also in WIP — Check [TODO](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/docs/TODO.md) for progress)
-* Highlighted text are placeholder links.
+* Highlighted text are placeholder links for WIP sections.
 <br>
 
 ## 1. Installation
@@ -64,6 +64,7 @@ This library is written in Swift. If you are having trouble building your app af
 <br>
 
 ## 2. Usage
+### 2.1 `ContextMenuView` Usage
 Please check out the ::examples section:: or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components) for more on how to use it. See  ::Example 1:: section for the basic `menuConfig` configuration, and ::Example 9:: for basic menu-related events usage.
 
 ```jsx
@@ -89,11 +90,14 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 
 **Note**: This component is only available on iOS 13+. Use the [￼`Platform`￼](https://reactnative.dev/docs/platform-specific-code#platform-module) module to handle logic if `ContextMenuView` is not available i.e. by adding your own `onLongPress` handler. 
 * By default, on iOS 12 and below, a long press on a `ContextMenuView` will show a `ActionSheetIOS` menu based on the `menuConfig` prop. If you want to disable this behavior, set `useActionSheetFallback` prop to false.
-* This component is just a regular view on android.
+* This component is just a regular view on Android, so a long press will do nothing on Android.
 
 <br>
 
-The `ContextMenuView` component is just a normal react-native `View`, so it should support all the existing `View` props.
+### 2.2 `ContextMenuView` Usage
+
+```jsx
+```
 
 <br>
 
@@ -660,6 +664,7 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
 <br>
 
 ### 4.2 `ContextMenuButton` Examples
+Most of the examples in the `ContextMenuView` section also applies here. The props in `ContextMenuView` (like the `menuConfig` and `useActionSheetFallback` props) as well as most of the events behave the same. So most of the examples in this section are exclusively for `ContextMenuButton`.
 
 <br>
 
