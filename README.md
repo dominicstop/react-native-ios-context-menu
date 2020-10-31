@@ -65,7 +65,7 @@ This library is written in Swift. If you are having trouble building your app af
 
 ## 2. Usage
 ### 2.1 `ContextMenuView` Usage
-Please check out the ::examples section:: or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components) for more on how to use it. See  ::Example 1:: section for the basic `menuConfig` configuration, and ::Example 9:: for basic menu-related events usage.
+Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components) for more on how to use it. See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
 
 ```jsx
 import { ContextMenuView } from "react-native-ios-context-menu";
@@ -94,7 +94,7 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 
 <br>
 
-### 2.2 `ContextMenuView` Usage
+### 2.2 `ContextMenuButton` Usage
 
 ```jsx
 ```
@@ -102,11 +102,12 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 <br>
 
 ## 3. Documentation
-### 3.1 `ContextMenuView` Component Props
+### 3.1 Components
+#### 3.1.1 `ContextMenuView` Component Props
 
 | Prop                     | Type                                       | Description                                                  |
 |--------------------------|--------------------------------------------|--------------------------------------------------------------|
-| `menuConfig`             | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See ::Test 3::, ::Test 4:: and ::Test 6:: for examples. Check the ::`MenuConfig`:: section for the object's structure/properties. |
+| `menuConfig`             | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See `ContextMenuView` [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js) for examples. Check the [`MenuConfig`](#332-menuconfig-object) section for the object's structure/properties. |
 | `useActionSheetFallback` | **Optional**: `Bool`                       | If set to true, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop. Default value is `false` on iOS 13+ and true on android, and on iOS 12 and below. |
 | `onMenuWillShow`         | Function                                   | Event that gets called **before** the context menu is  shown, i.e. this event is immediently invoked when the menu is about to become visible. |
 | `onMenuDidShow`          | Function                                   | Event that gets called **after** the context menu is completely shown, i.e. this event is invoked after the menu entrance animation is finished. |
@@ -114,12 +115,12 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 | `onMenuDidHide`          | Function                                   | Event that gets called **after** the context menu is completely hidden, i.e. this event is invoked after the menu exit animation is finished. |
 | `onMenuWillCancel`       | Function                                   | Event that gets called when the menu is cancelled and **before** the context menu is  hidden, i.e. this event is immediently invoked when the menu is cancelled and about to become hidden. |
 | `onMenuDidCancel`        | Function                                   | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden, i.e. this event is invoked when the menu is cancelled and the menu exit animation is finished. |
-| `onPressMenuItem`        | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the  ::onPressMenuItem Object:: section for more details or ::Simple Example #9:: |
+| `onPressMenuItem`        | Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the [onPressMenuItem Object](#333-onpressmenuitem-nativeevent-object) section for more details or [Simple Example #9](#419-contextmenuview-simple-example-9) section. |
 | `onPressMenuPreview`     | Function                                   | Event that gets called when the menu's preview is pressed.   |
 
 <br>
 
-### 3.2 `ContextMenuButton` Component Props
+#### 3.1.2 `ContextMenuButton` Component Props
 Lorum ipsum sit amit
 
 <br>
@@ -130,13 +131,13 @@ Lorum ipsum sit amit
 
 <br>
 
-### 3.3 Enum Values
-#### 3.3.1 `ImageTypes` Enum
+### 3.2 Enum Values
+#### 3.2.1 `ImageTypes` Enum
 Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.imageType`.
 * Import the enum like this: `import { ImageTypes } from "react-native-ios-context-menu";`
 * And use it  like this: `imageType: ImageTypes.SYSTEM` 
 * Or you can directly pass a string like this: `imageType: 'SYSTEM'`
-* Check out the ::Simple Example #2:: section for example usage.
+* Check out the [￼`ContextMenuView`￼ Simple Example #2](#412-contextmenuview-simple-example-2) section for example usage.
 
 <br>
 
@@ -146,12 +147,12 @@ Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.ima
 | SYSTEM | Specifies that we want to use a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon |
 <br>
 
-#### 3.3.2 `MenuOptions` Enum
+#### 3.2.2 `MenuOptions` Enum
 Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the swift/objc-c  `UIMenu.Options` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
 * Import the enum like this: `import { MenuOptions } from "react-native-ios-context-menu";`
 * And use it  like this: `menuOptions: [MenuOptions.destructive`] 
 * Or you can directly pass a string like this: `menuOptions: ['destructive']`
-* Check out ::Simple Example #5:: and ::Simple Example #6:: section for example usage.
+* Check out `ContextMenuView` [Simple Example #5](#415-contextmenuview-simple-example-5) and [Simple Example #6](#416-contextmenuview-simple-example-6) section for example usage.
 
 <br>
 
@@ -162,12 +163,12 @@ Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuCo
 
 <br>
 
-#### 3.3.3 `MenuElementAtrributes` Enum
+#### 3.2.3 `MenuElementAtrributes` Enum
 Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the swift/obj-c `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
 * Import the enum like this: `import { MenuElementAtrributes } from "react-native-ios-context-menu";`
 * And use it  like this: `menuAttributes: [MenuElementAtrributes.destructive]` 
 * Or you can directly pass a string like this: `menuAttributes: ['destructive']`
-* Check out ::Simple Example #4:: section for example usage.
+* Check out [Simple Example #4](#414-contextmenuview-simple-example-4) section for example usage.
 
 <br>
 
@@ -179,12 +180,12 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 
 <br>
 
-#### 3.3.4 `UIMenuElementState` Enum
+#### 3.2.4 `UIMenuElementState` Enum
 Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuState` property). These string values corresponds to the swift/obj-c  `UIMenuElementState ` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more info.
 * Import the enum like this: `import { UIMenuElementState } from "react-native-ios-context-menu";`
 * And use it  like this: `menuState: UIMenuElementState.on` 
 * Or you can directly pass a string like this: `menuState: 'on'`
-* Check out ::Simple Example #8:: section for example usage.
+* Check out [￼`ContextMenuView`￼ Simple Example #8](#418-contextmenuview-simple-example-8) section for example usage.
 
 <br>
 
@@ -195,8 +196,8 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 | `mixed` | Indicates that the menu element is in the “mixed” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark (same as the `on` state). |
 <br>
 
-### 3.4 Object Types
-#### 3.4.1 `MenuAction` Object
+### 3.3 Object Types
+#### 3.3.1 `MenuAction` Object
 An object that is used to display/create a context menu action or a submenu action. This object represents a [￼￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) instance. This object is used inside a `MenuConfig` object's `menuItems` property.
 
 <br>
@@ -211,7 +212,7 @@ An object that is used to display/create a context menu action or a submenu acti
 | `menuAttributes` | **Optional**: `[String]` (Array of `MenuElementAtrributes` values) | Options to change the look/behaviour of the menu action. Check out  the ::￼`MenuOptions`:: section for the list of values to use. |
 <br>
 
-#### 3.4.2 `MenuConfig` Object
+#### 3.3.2 `MenuConfig` Object
 An object that is used to display/create a context menu or a submenu. This object represents  a [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) instance.
 
 <br>
@@ -226,7 +227,7 @@ An object that is used to display/create a context menu or a submenu. This objec
 
 <br>
 
-#### 3.4.3 `onPressMenuItem` `nativeEvent` Object
+#### 3.3.3 `onPressMenuItem` `nativeEvent` Object
 
 <br>
 
@@ -258,7 +259,7 @@ A plain context menu configured with 3 actions (no icons, just text).
       actionKey  : 'key-01'   , // an id for your action
       actionTitle: 'Action #1', // text to display in your menu action
     }, {
-	   // another `MenuAction` object item
+      // another `MenuAction` object item
       actionKey  : 'key-02'   ,
       actionTitle: 'Action #2',
     }, {
@@ -290,7 +291,7 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
       imageType  : 'SYSTEM'   , // indicates that we want to use SF Symbols
       imageValue : 'folder'   , // the icon string of SF Symbols icon
     }, {
-	   // another `MenuAction` object item
+      // another `MenuAction` object item
       actionKey  : 'key-02'   ,
       actionTitle: 'Action #2',
       imageType  : 'SYSTEM'   , // don't forget to add this property/key
@@ -322,7 +323,7 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
   // `menuConfig` prop accepts a `MenuConfig` object
   menuConfig={{
     menuTitle: 'ContextMenuViewSimpleExample03', // title of our menu
-	 // a `MenuConfig` object has `menuItems` property
+    // a `MenuConfig` object has `menuItems` property
     // which is an array of `MenuConfig` or `MenuAction` object
     // these are the items we want to show in our menu
     menuItems: [{
