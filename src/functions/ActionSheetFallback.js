@@ -3,7 +3,7 @@ import * as Helpers from './helpers';
 
 // TODO: Refactor/cleanup...
 
-export class ActionSheetFallback {
+class ActionSheetFallbackHelpers {
   /** is the object a `MenuAction` item */
   static isObjectMenuAction(object){
     return (
@@ -13,6 +13,7 @@ export class ActionSheetFallback {
       (object?.[MenuActionKeys.menuAttributes] != null)
     );
   };
+  
   /** is the object a `MenuObject` item */
   static isObjectMenuConfig(object){
     return (
@@ -30,10 +31,10 @@ export class ActionSheetFallback {
     let currentObject = menuConfig;
 
     for (const index of indexPath) {
-      if(ActionSheetFallback.isObjectMenuAction(currentObject)){
+      if(ActionSheetFallbackHelpers.isObjectMenuAction(currentObject)){
         return currentObject;
 
-      } else if (currentObject == null || !ActionSheetFallback.isObjectMenuConfig(currentObject)){
+      } else if (currentObject == null || !ActionSheetFallbackHelpers.isObjectMenuConfig(currentObject)){
         return null;
       };
 
@@ -72,10 +73,10 @@ export class ActionSheetFallback {
     
     // traverse menu config until last item reached
     while(true){
-      let currentItem = ActionSheetFallback
+      let currentItem = ActionSheetFallbackHelpers
         .getItemFromMenuConfig(menuConfig, indexPath);
 
-      if (ActionSheetFallback.isObjectMenuConfig(currentItem)){
+      if (ActionSheetFallbackHelpers.isObjectMenuConfig(currentItem)){
         // current item is menu config, check if inline submenu
         const isInlineSubmenu = currentItem?.[MenuConfigKeys.menuOptions]
           ?.includes(MenuOptions.displayInline) ?? false;
@@ -95,7 +96,7 @@ export class ActionSheetFallback {
 
         } else {
           // update currentParent
-          currentParent = ActionSheetFallback.getItemFromMenuConfig(menuConfig, indexPath);
+          currentParent = ActionSheetFallbackHelpers.getItemFromMenuConfig(menuConfig, indexPath);
           // and traverse down...
           indexPath.push(0);
         };
@@ -110,13 +111,13 @@ export class ActionSheetFallback {
 
         currentParent = ((indexPathCount <= 0)
           ? menuConfig
-          : ActionSheetFallback.getItemFromMenuConfig(menuConfig, nextIndexPath)
+          : ActionSheetFallbackHelpers.getItemFromMenuConfig(menuConfig, nextIndexPath)
         );
 
         // last menu config item reached, stop...
         if(didReachEnd() || indexPath.length < 1) break;
 
-      } else if(ActionSheetFallback.isObjectMenuAction(currentItem)){
+      } else if(ActionSheetFallbackHelpers.isObjectMenuAction(currentItem)){
         // current item is menu action, skip...
         incrementCurrentIndexPath();
         
@@ -167,8 +168,10 @@ export class ActionSheetFallback {
       return (!isDisabledAction && !isHiddenAction);
     });
   };
+};
 
-  /** based on a `MenuConfig` objecy, show an `ActionSheetIOS` menu  */
+export class ActionSheetFallback {
+  /** based on a `MenuConfig` object, show an `ActionSheetIOS` menu  */
   static async show(menuConfig = {}){
     let indexPath = [];
 
@@ -181,19 +184,19 @@ export class ActionSheetFallback {
     );
 
     // handle 'inlineMenu' submenu's
-    ActionSheetFallback.flattenMenuConfig(menuConfigCopy);
+    ActionSheetFallbackHelpers.flattenMenuConfig(menuConfigCopy);
 
     while(true){
       const menuItem = 
-        ActionSheetFallback.getItemFromMenuConfig(menuConfigCopy, indexPath);
+        ActionSheetFallbackHelpers.getItemFromMenuConfig(menuConfigCopy, indexPath);
 
       // selected item is an action, exit...
-      if(ActionSheetFallback.isObjectMenuAction(menuItem)){
+      if(ActionSheetFallbackHelpers.isObjectMenuAction(menuItem)){
         return menuItem;
       };
 
       // selected item is menu, get submenu and remove hidden/disable actions
-      const menuItems = ActionSheetFallback.filterMenuItems(menuItem?.[MenuConfigKeys.menuItems] ?? []);
+      const menuItems = ActionSheetFallbackHelpers.filterMenuItems(menuItem?.[MenuConfigKeys.menuItems] ?? []);
       // add menu items to action sheet
       actionSheetOptions = menuItems.map(item => (
         item?.[MenuActionKeys.actionTitle] ??
@@ -201,7 +204,7 @@ export class ActionSheetFallback {
       ));
 
       // set destructive index and offset by 1 bc of cancel button
-      destructiveButtonIndex = ActionSheetFallback.getdestructiveButtonIndex(menuItems);
+      destructiveButtonIndex = ActionSheetFallbackHelpers.getdestructiveButtonIndex(menuItems);
       if(destructiveButtonIndex != null) destructiveButtonIndex++;
       
       // wait for selected item
