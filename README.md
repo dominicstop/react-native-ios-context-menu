@@ -9,25 +9,25 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
 <details open>
   <summary>Show/Hide Gifs</summary>
 
-**Left**: ::Example 1::, ::Example 2::, and **Right**: ::Example 3::, ::Example 4::
+`ContextMenuView` **Left**: [Example 1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample01.js), [Example 2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample02.js), and **Right**: [Example 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample03.js), [Example 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample04.js)
 ![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
 
-**Left**: ::Example 5::, ::Example 6::, and **Right**: ::Example 7::, ::Example 8::
+`ContextMenuView` **Left**: [Example 5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample05.js), [Example 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample06.js), and **Right**: [Example 7](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample07.js), [Example 8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample08.js)
 ![Simple Example 5 to 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif)
 
-**Left**: ::Test 1::, and **Right**: ::Test 2::
+`ContextMenuView` **Left**: [Test 1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest01.js), and **Right**: [Test 2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest02.js)
 ![Context Menu View Test 1 and 2 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-01-02.gif)
 
-**Left**: ::Test 3::, and **Right**: ::Test 4::
+`ContextMenuView` **Left**: [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), and **Right**: [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js)
 ![Context Menu View Test 3 and 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-03-04.gif)
 
-**Left**: ::Test 5::, and **Right**: ::Test 6::
+`ContextMenuView` **Left**: [Test 5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest05.js), and **Right**: [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js)
 ![Context Menu View Test 5 and 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-05-06.gif)
 
-`ActionSheetIOS` fallback for simple example 1 to 9
+`ContextMenuView` `ActionSheetIOS` fallback for simple example 1 to 9
 ![Action Sheet Fallback for Simple Example 1 to 9 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-SimpleExample-1-to-9.gif)
 
-`ActionSheetIOS` fallback for context menu view test 1 to 6
+`ContextMenuView` `ActionSheetIOS` fallback for context menu view test 1 to 6
 ![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-Test-1-to-6.gif)
 
 </details>
@@ -239,7 +239,7 @@ Check out the [examples](https://github.com/dominicstop/react-native-ios-context
 <br>
 
 ### 4.1 `ContextMenuView` Examples
-#### 4.1.1 ::Simple Example #1::
+#### 4.1.1 `ContextMenuView` [Simple Example #1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample01.js)
 A plain context menu configured with 3 actions (no icons, just text).
 
 <br>
@@ -274,7 +274,7 @@ A plain context menu configured with 3 actions (no icons, just text).
 
 <br>
 
-#### 4.1.2 ::Simple Example #2::
+#### 4.1.2 `ContextMenuView` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample02.js)
 A menu configured with 3 actions with "system" [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icons.
 
 <br>
@@ -310,7 +310,7 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 
 <br>
 
-#### 4.1.3 ::Simple Example #3::
+#### 4.1.3 `ContextMenuView` [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample03.js)
 A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
 * A  `MenuConfig` object has a property called `menuItems` which accepts an array of objects. Those objects can either be a  `MenuAction` item or another `MenuConfig` item.
 * If you pass a `MenuConfig` object to `menuItems`, it will make a submenu. 
@@ -370,7 +370,7 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
 
 <br>
 
-#### 4.1.4 ::Simple Example #4::
+#### 4.1.4 `ContextMenuView` [Simple Example #4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample04.js)
 A example context menu with a "*disabled*" action, a "*destructive*" action, a "*hidden*" action (which is not visible in the context menu), and a "*disabled + destructive*" action.
 * A  `MenuAction` object can have an optional `menuAttributes` property. The `menuAttributes` property accepts an array of strings (i.e a `MenuElementAtrributes` item).
 
@@ -424,7 +424,7 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
 
 ![Simple Example 4](./assets/example-screenshots/ContextMenuView-SimpleExample04.png)
 
-#### 4.1.5 ::Simple Example #5::
+#### 4.1.5 `ContextMenuView` [Simple Example #5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample05.js)
 A context menu that has a "*displayInline*" submenu. This is the same as ::Simple Example #3:: but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`. Visually, this creates a "section" in the parent menu (i.e it add top and bottom separators).
 
 <br>
@@ -474,7 +474,7 @@ A context menu that has a "*displayInline*" submenu. This is the same as ::Simpl
 
 <br>
 
-#### 4.1.6 ::Simple Example #6::
+#### 4.1.6 `ContextMenuView` [Simple Example #6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample06.js)
 A context menu that has a "*destructive*" submenu. This is the same as ::Simple Example #3:: but we set the `MenuConfig`'s optional `menuOptions` property to `['destructive']`
 
 <br>
@@ -521,7 +521,7 @@ A context menu that has a "*destructive*" submenu. This is the same as ::Simple 
 
 <br>
 
-#### 4.1.7 ::Simple Example #7::
+#### 4.1.7 `ContextMenuView` [Simple Example #7](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample07.js)
 A context menu that has a "*displayInline*" and "*destructive*" submenu. This is the same as ::Simple Example #3:: but we set the `MenuConfig`'s optional `menuOptions` property to `['displayInline', 'destructive']`
 * **Note**: Visually, this looks the same as an "*displayInline*" submenu (i.e. ::Example #5::)
 
@@ -565,8 +565,7 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
 
 <br>
 
-#### 4.1.8 ::Simple Example #8::
-
+#### 4.1.8 `ContextMenuView` [Simple Example #8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample08.js)
 A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 * A  `MenuAction` object can have an optional property called `menuState`.
 * `menuState` accepts a string which is a `MenuElementState` item, namely: "*on*", "*off*" and "*mixed*"
@@ -614,7 +613,7 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 
 <br>
 
-#### 4.1.9 ::Simple Example #9::
+#### 4.1.9 `ContextMenuView` [Simple Example #9](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample09.js)
 A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `onPressMenuPreview` event props.
 
 <br>
