@@ -18,6 +18,9 @@ const NativeComponent = requireNativeComponent(componentName);
 const NATIVE_PROP_KEYS = {
   // props: values --------
   menuConfig: 'menuConfig',
+  // props: flags ---------------------------
+  enableContextMenu  : 'enableContextMenu'  ,
+  isMenuPrimaryAction: 'isMenuPrimaryAction',
   // props: events --------------------
   onMenuWillShow  : 'onMenuWillShow'  ,
   onMenuWillHide  : 'onMenuWillHide'  ,
@@ -33,6 +36,9 @@ const NATIVE_PROP_KEYS = {
 export class ContextMenuButton extends React.PureComponent {
   static proptypes = {
     menuConfig: Proptypes.object,
+    // flags ------------------------------
+    enableContextMenu     : Proptypes.bool,
+    isMenuPrimaryAction   : Proptypes.bool,
     useActionSheetFallback: Proptypes.bool,
     // events -----------------------
     onMenuWillShow  : Proptypes.func,
@@ -41,12 +47,12 @@ export class ContextMenuButton extends React.PureComponent {
     onMenuDidShow   : Proptypes.func,
     onMenuDidHide   : Proptypes.func,
     onMenuDidCancel : Proptypes.func,
-    // onPress events -----------------
-    onPressMenuItem   : Proptypes.func,
-    onPressMenuPreview: Proptypes.func,
+    // onPress events --------------
+    onPressMenuItem: Proptypes.func,
   };
 
   static defaultProps = {
+    enableContextMenu: true,
     useActionSheetFallback: !isContextMenuSupported,
   };
 

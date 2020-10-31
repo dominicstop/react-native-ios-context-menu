@@ -67,7 +67,6 @@ class RCTContextMenuButton: UIButton {
     }
   };
   
-  // TODO: wip
   @objc var isMenuPrimaryAction: Bool = false {
     didSet {
       guard self.isMenuPrimaryAction != oldValue else { return };
@@ -75,7 +74,6 @@ class RCTContextMenuButton: UIButton {
     }
   };
   
-  // TODO: wip
   @objc var enableContextMenu: Bool = true {
     didSet {
       guard self.enableContextMenu != oldValue else { return };
@@ -90,16 +88,10 @@ class RCTContextMenuButton: UIButton {
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
     
-    //let interaction = UIContextMenuInteraction(delegate: self);
-    //self.addInteraction(interaction);
-    
     self.addAction( UIAction(title: ""){ action in
+      print("menuActionTriggered");
       // TODO: wip
     }, for: .menuActionTriggered);
-    
-    self.addAction( UIAction(title: ""){ action in
-      // TODO: wip
-    }, for: .primaryActionTriggered);
   };
   
   required init?(coder: NSCoder) {
