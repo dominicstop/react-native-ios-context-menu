@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { ExampleContextMenuItem } from './ExampleContextMenuItem';
+import { ExampleContextMenuItem } from '../ExampleContextMenuItem';
 
 
 

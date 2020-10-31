@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, FlatList, View, Text } from 'react-native';
 
-import { ExampleContextMenuItem } from './ExampleContextMenuItem';
+import { ExampleContextMenuItem } from '../ExampleContextMenuItem';
 
-import * as Helpers from '../functions/helpers';
+import * as Helpers from '../../functions/helpers';
 
 
 function handleEvent(that, event){

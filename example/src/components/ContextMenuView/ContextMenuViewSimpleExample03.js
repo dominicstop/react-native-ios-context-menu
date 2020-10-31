@@ -1,21 +1,21 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { ExampleContextMenuItem } from './ExampleContextMenuItem';
+import { ExampleContextMenuItem } from '../ExampleContextMenuItem';
 
 
-export class ContextMenuViewSimpleExample07 extends React.PureComponent {
+export class ContextMenuViewSimpleExample03 extends React.PureComponent {
   render(){
     return(
       <ExampleContextMenuItem
         {...this.props}
-        title={'Simple Example #7'}
-        subtitle={'displayInline + destructive submenu'}
-        desc={`Same as Example #3 but the submenu has "destructive" and "displayInline" in it's menuOptions. This looks the same as "displayInline" submenu (i.e Example #5)`}
+        title={'Simple Example #3'}
+        subtitle={'submenu'}
+        desc={"Context menu with 1 action and 1 submenu (with 3 submenu actions)"}
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         onPressMenuPreview={() => alert('onPressMenuPreview')}
         menuConfig={{
-          menuTitle: 'ContextMenuViewSimpleExample07',
+          menuTitle: 'ContextMenuViewSimpleExample03',
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
@@ -23,7 +23,6 @@ export class ContextMenuViewSimpleExample07 extends React.PureComponent {
             imageValue : 'folder',
           }, {
             menuTitle: 'Submenu...',
-            menuOptions: ['displayInline', 'destructive'],
             menuItems: [{
               actionKey  : 'key-01-01',
               actionTitle: 'Submenu Action #1',
