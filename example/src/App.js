@@ -22,7 +22,7 @@ import { ContextMenuViewTest05 } from './components/ContextMenuViewTest05';
 import { ContextMenuViewTest06 } from './components/ContextMenuViewTest06';
 
 import { ContextMenuButtonSimpleExample01 } from './components/ContextMenuButton/ContextMenuButtonSimpleExample01';
-
+import { ContextMenuButtonSimpleExample02 } from './components/ContextMenuButton/ContextMenuButtonSimpleExample02';
 
 
 const contextMenuViewItems = [
@@ -45,14 +45,20 @@ const contextMenuViewItems = [
 ];
 
 const contextMenuButtonItems = [
-  ContextMenuButtonSimpleExample01
+  ContextMenuButtonSimpleExample01,
+  ContextMenuButtonSimpleExample02,
 ];
 
 console.disableYellowBox = true;
 
 export default function App() {
-  const [useActionSheetFallback, setUseActionSheetFallback] = React.useState(false);
-  const toggleUseActionSheetFallback = () => setUseActionSheetFallback(previousState => !previousState);
+  const [contextMenuViewUseActionSheetFallback, setContextMenuViewUseActionSheetFallback] = React.useState(false);
+  const toggleContextMenuViewUseActionSheetFallback = () => 
+    setContextMenuViewUseActionSheetFallback(previousState => !previousState);
+
+  const [contextMenuButtonUseActionSheetFallback, setContextMenuButtonUseActionSheetFallback] = React.useState(false);
+  const toggleContextMenuButtonUseActionSheetFallback = () => 
+    setContextMenuButtonUseActionSheetFallback(previousState => !previousState);
 
   return (
     <SafeAreaView style={styles.rootContainer}>
@@ -72,8 +78,8 @@ export default function App() {
               {'useActionSheetFallback: '}
             </Text>
             <Switch
-              onValueChange={toggleUseActionSheetFallback}
-              value={useActionSheetFallback}
+              onValueChange={toggleContextMenuViewUseActionSheetFallback}
+              value={contextMenuViewUseActionSheetFallback}
             />
           </View>
         </View>
@@ -82,7 +88,7 @@ export default function App() {
             key  : `context-menu-view-item-${index}`,
             index: (index + 1),
             // pass down props
-            useActionSheetFallback,
+            contextMenuViewUseActionSheetFallback,
           })
         )}
         <View style={{marginTop: 20}}/>
@@ -94,15 +100,24 @@ export default function App() {
         </Text>
         <View style={[styles.headerContainer, {backgroundColor: Colors.AMBER[50]}]}>
           <Text>
-            {'When the context menu is visible, the button will turn yellow. \n\nNote: The `useActionSheetFallback` switch in the `ContextMenuView` section will also carry over here.'}
+            {'When the context menu is visible, the button will turn yellow.'}
           </Text>
+          <View style={styles.headerRowContainer}>
+            <Text style={styles.headerRowText}>
+              {'useActionSheetFallback: '}
+            </Text>
+            <Switch
+              onValueChange={toggleContextMenuButtonUseActionSheetFallback}
+              value={contextMenuButtonUseActionSheetFallback}
+            />
+          </View>
         </View>
         {contextMenuButtonItems.map((element, index) => 
           React.createElement(element, { 
             key  : `context-menu-button-item-${index}`,
             index: (index + 1),
             // pass down props
-            useActionSheetFallback,
+            contextMenuViewUseActionSheetFallback,
           })
         )}
       </ScrollView>
