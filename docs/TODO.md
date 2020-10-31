@@ -14,6 +14,7 @@
 <br>
 
 ## `ContextMenuView`
+- [ ] ⭐️ Export `ActionSheetFallback` function and add it to the docs.
 - [ ] 🛠 Rename `RCTContextMenuManager` to `RCTContextMenuViewManager` and update corresponding js native component
 - [ ] ⭐️ Impl. iOS 14 specific feature: `UpdateVisibleMenu`
 - [ ] ⭐️ Impl. iOS 14 specific feature: `dismissMenu`
@@ -23,7 +24,7 @@
 <br>
 
 ## `ContextMenuButton`
-- [ ] Finish initial impl. with 1 working simple example
+- [x] Finish initial impl. with 1 working simple example
 - [ ] Add documentation for `ContextMenuButton`
 - [ ] Add `SystemImage` component for creating a `UIImage` that uses SF Icons (Research first if the built-in image component already supports this).
 
@@ -38,11 +39,11 @@
 		- [x] Rename `ContextMenuView` gifs i.e. prefix them with "ContextMenuView" e.g. `SimpleExample-1-2-3-4.gif` becomes `ContextMenuView-SimpleExample-1-2-3-4.gif`, etc.
 		- [x] In the `/assets/example-screenshots` folder, prefix images with "ContextMenuView", e.g. `SimpleExample01.png` becomes `ContextMenuView-SimpleExample01.png`, etc.
 
-- [ ] In the "Documentation" section, add `ContextMenuButton` props.
+- [x] In the "Documentation" section, add `ContextMenuButton` props.
 - [ ] In the `MenuAction` Object section, add example object with comments.
 - [ ] In the `MenuConfig` Object section, add example object with comments.
 - [ ] Finish `onPressMenuItem` `nativeEvent` Object section.
 - [ ] Create collapsable "Table of Contents"
 - [ ] Make examples content collapsable
-- [ ] Add section for `useActionSheetFallback` prop
+- [x] Add section for `useActionSheetFallback` prop
 - [ ] Add `README.md` in example directory
