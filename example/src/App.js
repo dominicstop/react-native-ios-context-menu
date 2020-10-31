@@ -92,6 +92,11 @@ export default function App() {
         <Text style={styles.textSectionSubtitle}>
           {'Examples and tests for `ContextMenuButton`'}
         </Text>
+        <View style={[styles.headerContainer, {backgroundColor: Colors.AMBER[50]}]}>
+          <Text>
+            {'When the context menu is visible, the button will turn yellow. \n\nNote: The `useActionSheetFallback` switch in the `ContextMenuView` section will also carry over here.'}
+          </Text>
+        </View>
         {contextMenuButtonItems.map((element, index) => 
           React.createElement(element, { 
             key  : `context-menu-button-item-${index}`,
