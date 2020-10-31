@@ -90,10 +90,10 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     };
     
     return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
-      return menuConfig.createMenu({ (dict, action) in
+      return menuConfig.createMenu { (dict, action) in
         self.didPressMenuItem = true;
         self.onPressMenuItem?(dict);
-      });
+      };
     });
   };
   
