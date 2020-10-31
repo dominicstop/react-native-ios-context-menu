@@ -31,9 +31,9 @@
 
 ## Documentation
 - [x] First remove all the links that point to the examples directory or links to different section. Highlight them in yellow then replace the highlighted text in the documentation with the new/updated section/examples links.
-	- [ ] Move `ContextMenuView` examples + tests in `examples/src` to `examples/src/ContextMenuView` then update documentation links
+	- [x] Move `ContextMenuView` examples + tests in `examples/src` to `examples/src/ContextMenuView` then update documentation links
 	- [ ] In the "Examples" section add section for `ContextMenuView` and `ContextMenuButton`, then update the documentation "jump to" heading links
-	- [ ] Update and rename Images/Gifs
+	- [x] Update and rename Images/Gifs
 		- [x] Move gifs for `ContextMenuView` in `/assets` to `assets/ContextMenuView/`
 		- [x] Rename `ContextMenuView` gifs i.e. prefix them with "ContextMenuView" e.g. `SimpleExample-1-2-3-4.gif` becomes `ContextMenuView-SimpleExample-1-2-3-4.gif`, etc.
 		- [x] In the `/assets/example-screenshots` folder, prefix images with "ContextMenuView", e.g. `SimpleExample01.png` becomes `ContextMenuView-SimpleExample01.png`, etc.
