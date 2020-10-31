@@ -254,7 +254,7 @@ A plain context menu configured with 3 actions (no icons, just text).
 />
 ```
 
-![Simple Example 1](./assets/example-screenshots/SimpleExample01.png)
+![Simple Example 1](./assets/example-screenshots/ContextMenuView-SimpleExample01.png)
 
 <br>
 
@@ -290,7 +290,7 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 />
 ```
 
-![Simple Example 2](./assets/example-screenshots/SimpleExample02.png)
+![Simple Example 2](./assets/example-screenshots/ContextMenuView-SimpleExample02.png)
 
 <br>
 
@@ -351,7 +351,7 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
 />
 ```
 
-![Simple Example 3](./assets/example-screenshots/SimpleExample03.png)
+![Simple Example 3](./assets/example-screenshots/ContextMenuView-SimpleExample03.png)
 
 <br>
 
@@ -407,7 +407,7 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
 />
 ```
 
-![Simple Example 4](./assets/example-screenshots/SimpleExample04.png)
+![Simple Example 4](./assets/example-screenshots/ContextMenuView-SimpleExample04.png)
 
 ### 4.5 ::Simple Example #5::
 A context menu that has a "*displayInline*" submenu. This is the same as ::Simple Example #3:: but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`. Visually, this creates a "section" in the parent menu (i.e it add top and bottom separators).
@@ -455,7 +455,7 @@ A context menu that has a "*displayInline*" submenu. This is the same as ::Simpl
 />
 ```
 
-![Simple Example 5](./assets/example-screenshots/SimpleExample05.png)
+![Simple Example 5](./assets/example-screenshots/ContextMenuView-SimpleExample05.png)
 
 <br>
 
@@ -502,7 +502,7 @@ A context menu that has a "*destructive*" submenu. This is the same as ::Simple 
 />
 ```
 
-![Simple Example 6](./assets/example-screenshots/SimpleExample06.png)
+![Simple Example 6](./assets/example-screenshots/ContextMenuView-SimpleExample06.png)
 
 <br>
 
@@ -546,7 +546,7 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
 />
 ```
 
-![Simple Example 7](./assets/example-screenshots/SimpleExample07.png)
+![Simple Example 7](./assets/example-screenshots/ContextMenuView-SimpleExample07.png)
 
 <br>
 
@@ -594,7 +594,7 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 <br>
 
 **Left Image**: iOS 13, and **Right Image**: iOS 14
-![Simple Example 8](./assets/example-screenshots/SimpleExample08.png)
+![Simple Example 8](./assets/example-screenshots/ContextMenuView-SimpleExample08.png)
 
 <br>
 
@@ -642,7 +642,7 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
   }}
 />
 ```
-![Simple Example 8](./assets/example-screenshots/SimpleExample09.png)
+![Simple Example 8](./assets/example-screenshots/ContextMenuView-SimpleExample09.png)
 
 <br>
 
