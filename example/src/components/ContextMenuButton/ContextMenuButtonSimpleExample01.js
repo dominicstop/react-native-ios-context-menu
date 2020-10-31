@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 import { ExampleContextMenuButtonItem } from '../ExampleContextMenuButtonItem';
 
 
-
 export class ContextMenuButtonSimpleExample01 extends React.PureComponent {
   render(){
     return(
@@ -12,7 +11,7 @@ export class ContextMenuButtonSimpleExample01 extends React.PureComponent {
         {...this.props}
         title={'Simple Example #1'}
         subtitle={'actions text-only'}
-        desc={'Context menu button with 3 actions (no icon, just text)'}
+        desc={'Context menu button with 3 actions (no icon, just text). Long press on the button to show the context menu.'}
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         menuConfig={{
           menuTitle: 'ContextMenuButtonSimpleExample01',
