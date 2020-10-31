@@ -88,7 +88,7 @@ export default function App() {
             key  : `context-menu-view-item-${index}`,
             index: (index + 1),
             // pass down props
-            contextMenuViewUseActionSheetFallback,
+            useActionSheetFallback: contextMenuViewUseActionSheetFallback,
           })
         )}
         <View style={{marginTop: 20}}/>
@@ -117,7 +117,7 @@ export default function App() {
             key  : `context-menu-button-item-${index}`,
             index: (index + 1),
             // pass down props
-            contextMenuViewUseActionSheetFallback,
+            useActionSheetFallback: contextMenuViewUseActionSheetFallback,
           })
         )}
       </ScrollView>
