@@ -31,10 +31,15 @@ export class ExampleContextMenuButtonItem extends React.Component {
     desc       : Proptypes.string,
     index      : Proptypes.number,
     buttonTitle: Proptypes.string,
+    showButton : Proptypes.bool  ,
+  };
+
+  static defaultProps = {
+    showButton: true,
   };
 
   render(){
-    const { title, subtitle, desc, index,  buttonTitle, children, ...props } = this.props;
+    const { title, subtitle, desc, index,  buttonTitle, showButton, children, ...props } = this.props;
 
     return(
       <View style={styles.rootContainer}>
@@ -60,24 +65,26 @@ export class ExampleContextMenuButtonItem extends React.Component {
           </Text>
           {children}
         </View>
-        <View style={styles.buttonContainer}>
-          <ContextMenuButton
-            style={styles.contextMenuButtonA}
-            {...props}
-          >
-            <ContextMenuButtonContents
-              buttonTitle={buttonTitle ?? '⭐️ Context Menu Button'}
-            />
-          </ContextMenuButton>
-          <ContextMenuButton
-            style={styles.contextMenuButtonB}
-            {...props}
-          >
-            <ContextMenuButtonContents
-              buttonTitle={'⭐️'}
-            />
-          </ContextMenuButton>
-        </View>
+        {showButton && (
+          <View style={styles.buttonContainer}>
+            <ContextMenuButton
+              style={styles.contextMenuButtonA}
+              {...props}
+            >
+              <ContextMenuButtonContents
+                buttonTitle={buttonTitle ?? '⭐️ Context Menu Button'}
+              />
+            </ContextMenuButton>
+            <ContextMenuButton
+              style={styles.contextMenuButtonB}
+              {...props}
+            >
+              <ContextMenuButtonContents
+                buttonTitle={'⭐️'}
+              />
+            </ContextMenuButton>
+          </View>
+        )}
       </View>
     );
   };
