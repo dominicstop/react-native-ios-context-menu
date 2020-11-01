@@ -72,7 +72,9 @@ This library is written in Swift. If you are having trouble building your app af
 
 ## 2. Usage
 ### 2.1 `ContextMenuView` Usage
-Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it. See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
+Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it.
+* See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
+* See [Example 11](#4111-contextmenuview-simple-example-11), and [Example 12](#4112-contextmenuview-simple-example-12) for details on how to show a custom context menu preview.
 
 ```jsx
 import { ContextMenuView } from "react-native-ios-context-menu";
