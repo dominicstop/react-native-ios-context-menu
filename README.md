@@ -1,8 +1,8 @@
 # react-native-ios-context-menu
-A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) in iOS 13 and later.
+A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenu's (nested menu's)
 * Support for the iOS 14 functionality (like the `UIButton` menu, and updating the menu while its visible).
-* Support for customizing (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties
+* Support for setting (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties,
 * `ActionSheetIOS` menu fallback for unsupported iOS versions.
 * Support for custom context menu previews.
 
@@ -106,7 +106,7 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 ### 2.2 `ContextMenuButton` Usage
 Please check out the [examples section](#42-contextmenubutton-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuButton) for more on how to use it. See  [Example 1](#421-contextmenubutton-simple-example-1) section for the basic `menuConfig` configuration. 
 * The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
-* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](#421-contextmenubutton-simple-example-2) for more details.
+* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](#422-contextmenubutton-simple-example-2) for more details.
 * Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.
 
 ```jsx
@@ -801,10 +801,10 @@ function ContextMenuViewSimpleExample10(props) {
 
 #### 4.1.11 `ContextMenuView` [Simple Example #11](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample11.js)
 A context menu configured to have a custom preview.
-* To show a custom preview, first set the `previewType` prop to `CUSTOM`. Then pass a "render" function to the `renderPreview` prop. The `renderPreview` prop must return a react component.
+* To show a custom preview, first set the `previewType` prop to `CUSTOM`. Then pass a "render" function in the `renderPreview` prop. The `renderPreview` prop must return a react component.
 * The `previewSize` prop is an optional property that sets the preview size. If you don't set the `previewSize` prop, the preview will stretch to fill the screen. 
-* The `previewSize` prop accepts an object  i.e. `{ width: Number, height: Number }`. If the `width`  property is omitted or null, then it it's default value will be the screen width. Conversely, If the `height`  property is omitted or null, then it it's default value will be the screen height.
-* Note, the preview will be automatically resized to fit the screen, but it will try to match the values you pass to `previewSize`.
+* The `previewSize` prop accepts an object: `{ width: Number, height: Number }`. If the `width`  property is omitted or null, then it it's default value will be the screen width. Conversely, If the `height`  property is omitted or null, then it it's default value will be the screen height.
+* Note, `UIContextMenu` will automatically resize/scale the preview to fit the screen, but it will try to match the values you pass to `previewSize`.
 
 <br>
 
@@ -836,7 +836,7 @@ A context menu configured to have a custom preview.
 <br>
 
 #### 4.1.12 `ContextMenuView` [Simple Example #12](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample12.js)
-Another custom preview example. This example shows a counter in the context menu preview that increments every half a second. The context menu is also configured with a menu action to add 100 to the counter, and an action to reset the counter.
+Another context menu with custom preview example. This example shows a counter in the context menu preview that increments every half a second. The context menu is also configured with a menu action to add 100 to the counter, and an action to reset the counter.
 
 <br>
 
