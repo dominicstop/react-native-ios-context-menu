@@ -68,7 +68,7 @@ This library is written in Swift. If you are having trouble building your app af
 
 ## 2. Usage
 ### 2.1 `ContextMenuView` Usage
-Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components) for more on how to use it. See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
+Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it. See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
 
 ```jsx
 import { ContextMenuView } from "react-native-ios-context-menu";
@@ -98,8 +98,28 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 <br>
 
 ### 2.2 `ContextMenuButton` Usage
+Please check out the [examples section](#42-contextmenubutton-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuButton) for more on how to use it. See  [Example 1](#421-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration. 
+* The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
+* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](https://github.com/dominicstop/react-native-ios-context-menu#421-contextmenuview-simple-example-2) for more details.
+* Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.
 
 ```jsx
+import { ContextMenuButton } from "react-native-ios-context-menu";
+
+<ContextMenuButton
+  onPressMenuItem={({nativeEvent}) => {
+    alert(`${nativeEvent.actionKey} was pressed`);
+  }}
+  menuConfig={{
+    menuTitle: 'Context Menu Example',
+    menuItems: [{
+      actionKey  : 'action-key',
+      actionTitle: 'Action #1' ,
+    }]
+  }}
+>
+  <Text> Hello World </Text>
+</ContextMenuView>
 ```
 
 <br>
@@ -124,13 +144,21 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 <br>
 
 #### 3.1.2 `ContextMenuButton` Component Props
-Lorum ipsum sit amit
 
-<br>
-
-| Prop | Type | Description |
-|------|------|-------------|
-|      |      |             |
+| Prop                     | Type                                       | Description                                                  |
+|--------------------------|--------------------------------------------|--------------------------------------------------------------|
+| `menuConfig`             | **Required**:  `MenuConfig` Object         | Same as `ContextMenuView`                                    |
+| `enableContextMenu`      | **Optional**: `Bool`                       | Default: `true` — Whether or not the context menu is enabled. |
+| `isMenuPrimaryAction`    | **Optional**: `Bool`                       | Default: `false` — When set to true, the context menu will be shown when its tapped instead of a long press. |
+| `wrapNativeComponent`    | **Optional**: `Bool`                       | Default: `true` — When true, the `ContextMenuButton` component is wrapped inside a `TouchableOpacity` component and it handles all of the `onPress` and `onLongPress` events. If you want to use a different "button" component, set this prop to false first and wrap the `ContextMenuButton` in your own custom button component. |
+| `useActionSheetFallback` | **Optional**: `Bool`                       | Same as `ContextMenuView`                                    |
+| `onMenuWillShow`         | Function                                   | Same as `ContextMenuView`                                    |
+| `onMenuDidShow`          | Function                                   | Same as `ContextMenuView`                                    |
+| `onMenuWillHide`         | Function                                   | Same as `ContextMenuView`                                    |
+| `onMenuDidHide`          | Function                                   | Same as `ContextMenuView`                                    |
+| `onMenuWillCancel`       | Function                                   | Same as `ContextMenuView`                                    |
+| `onMenuDidCancel`        | Function                                   | Same as `ContextMenuView`                                    |
+| `onPressMenuItem`        | Function: `onPressMenuItem({nativeEvent})` | Same as `ContextMenuView`                                    |
 <br>
 
 #### 3.1.2 `ActionSheetFallback` Module
@@ -139,9 +167,9 @@ A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This mo
 * To present a ￼￼`ActionSheetIOS` menu, call `const selectedAction = await ActionSheetFallback.show(menuConfig)`
 
 
-| Name/Type                                   | Returns                    | Description                                                  |
-|---------------------------------------------|----------------------------|--------------------------------------------------------------|
-| `async show(menuConfig: MenuConfig Object)` | `MenuAction Object | null` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
+| Function                                    | Returns                       | Description                                                  |
+|---------------------------------------------|-------------------------------|--------------------------------------------------------------|
+| `async show(menuConfig: MenuConfig Object)` | `MenuAction Object` or `null` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
 
 <br>
 
@@ -771,7 +799,7 @@ A plain context menu button configured with 3 actions (no icons, just text). A l
 
 <br>
 
-#### 4.2.1 `ContextMenuView` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
+#### 4.2.2 `ContextMenuView` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
 A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead of a long press, tapping on the `ContextMenuButton` component will now immediately show the context menu. 
 
 <br>
