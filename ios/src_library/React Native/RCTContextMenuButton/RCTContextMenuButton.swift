@@ -28,6 +28,7 @@ class RCTContextMenuButton: UIButton {
   @objc var onMenuDidCancel: RCTBubblingEventBlock?;
   
   @objc var onPressMenuItem: RCTBubblingEventBlock?;
+
   
   // -------------------------------------
   // MARK: RCTContextMenuButton - RN Props
@@ -56,8 +57,7 @@ class RCTContextMenuButton: UIButton {
         
         // context menu is open, update the menu items
         interaction.updateVisibleMenu {(menu: UIMenu) in
-          menu.replacingChildren(menu.children);
-          return menu;
+          return rootMenu;
         };
         
       } else {
@@ -87,6 +87,13 @@ class RCTContextMenuButton: UIButton {
   
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
+    
+    self.isEnabled = true;
+    self.isUserInteractionEnabled = true;
+    
+    let gesture = UIGestureRecognizer();
+    gesture.cancelsTouchesInView = true;
+    gesture.delegate = self;
     
     self.addAction( UIAction(title: ""){ action in
       print("menuActionTriggered");
@@ -166,3 +173,9 @@ extension RCTContextMenuButton {
   };
 };
 
+@available(iOS 14, *)
+extension RCTContextMenuButton: UIGestureRecognizerDelegate {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    return true;
+  };
+};

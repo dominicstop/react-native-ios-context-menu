@@ -15,6 +15,8 @@ class RCTContextMenuView: UIView {
   var isContextMenuVisible = false;
   var didPressMenuItem     = false;
   
+  var contextMenuInteraction: UIContextMenuInteraction?;
+  
   // ---------------------------------------------
   // MARK: RCTContextMenuView - RN Event Callbacks
   // ---------------------------------------------
@@ -38,8 +40,8 @@ class RCTContextMenuView: UIView {
   @objc var menuConfig: NSDictionary? {
     didSet {
       guard
-        let menuConfig = self.menuConfig,
-        menuConfig.count > 0 else { return };
+        let menuConfig     = self.menuConfig, menuConfig.count > 0,
+        let rootMenuConfig = RCTMenuItem(dictionary: menuConfig) else { return };
       
       #if DEBUG
       print("menuConfig didSet"
@@ -48,7 +50,27 @@ class RCTContextMenuView: UIView {
       );
       #endif
       
-      self._menuConfig = RCTMenuItem(dictionary: menuConfig);
+      self._menuConfig = rootMenuConfig;
+      
+      if #available(iOS 14.0, *)  ,
+         self.isContextMenuVisible,
+         let interaction: UIContextMenuInteraction = self.contextMenuInteraction {
+        
+        #if DEBUG
+        print("menuConfig didSet"
+          + " - Updating  visible menu"
+          + " - menuItems: \(menuConfig["menuItems"] ?? "N/A")"
+        );
+        #endif
+        
+        // context menu is open, update the menu items
+        interaction.updateVisibleMenu {(menu: UIMenu) in
+          return rootMenuConfig.createMenu {(dict, action) in
+            self.didPressMenuItem = true;
+            self.onPressMenuItem?(dict);
+          };
+        };
+      };
     }
   };
   
@@ -59,8 +81,12 @@ class RCTContextMenuView: UIView {
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
     
-    let interaction = UIContextMenuInteraction(delegate: self);
-    self.addInteraction(interaction);
+    self.contextMenuInteraction = {
+      let interaction = UIContextMenuInteraction(delegate: self);
+      self.addInteraction(interaction);
+      
+      return interaction;
+    }();
   };
   
   required init?(coder: NSCoder) {
