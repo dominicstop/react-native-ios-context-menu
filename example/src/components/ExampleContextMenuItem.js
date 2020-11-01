@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textTitle: {
+    flex: 1,
     fontSize: 17,
     fontWeight: '700',
     color: 'white',

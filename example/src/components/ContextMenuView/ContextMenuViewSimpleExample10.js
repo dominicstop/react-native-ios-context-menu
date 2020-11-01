@@ -27,8 +27,8 @@ export function ContextMenuViewSimpleExample10(props) {
       subtitle={'Update Menu'}
       desc={`On iOS 14+ you can update the menu while it's visible. So you can control the menu via state. This is a simple demo with a counter incrementing every second.`}
       // `ContextMenuView` Props
-      onMenuDidShow={handleStart}
-      onMenuDidHide={handleReset}
+      onMenuDidShow={() => handleStart()}
+      onMenuDidHide={() => handleReset()}
       menuConfig={{
         menuTitle: 'ContextMenuViewSimpleExample10',
         menuItems: [{

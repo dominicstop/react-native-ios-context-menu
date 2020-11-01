@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.AMBER.A700
   },
   textTitle: {
+    flex: 1,
     fontSize: 17,
     fontWeight: '700',
     color: 'white',
