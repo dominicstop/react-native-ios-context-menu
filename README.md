@@ -1,7 +1,7 @@
 # react-native-ios-context-menu
 A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) in iOS 13 and later.
 * Support for creating menu actions and submenu's (nested menu's)
-* Support for the iOS 14 functionality like the `UIButton` menu and updating the menu while its visible.
+* Support for the iOS 14 functionality (like the `UIButton` menu, and updating the menu while its visible).
 * Support for customizing (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties
 * `ActionSheetIOS` menu fallback for unsupported iOS versions
 
@@ -270,6 +270,20 @@ An object that is used to display/create a context menu or a submenu. This objec
 <br>
 
 #### 3.3.3 `onPressMenuItem` `nativeEvent` Object
+The `nativeEvent` object that you receive inside the `onPressMenuItem` event basically just contain the `MenuAction` object that was selected in the context menu. Use the `actionKey` property to identify which action was selected.
+
+<br>
+
+```js
+{
+  "actionKey": "key-01",
+  "imageType": 'SYSTEM',
+  "actionTitle": "Action #1",
+  "imageValue": "folder",
+  "menuAttributes": [],
+  "target": 1175
+}
+```
 
 <br>
 
