@@ -165,7 +165,7 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 <br>
 
 #### 3.1.2 `ActionSheetFallback` Module
-A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This module attempts to approximates a `UIMenu` behavior using `ActionSheetIOS`, so it's very limited (so it does not support menu/action icons, etc.) but it does support things like submenu's, destructive actions/menu's, inline submenu's, and hidden actions.
+A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This module attempts to approximate `UIMenu` behavior using `ActionSheetIOS`, so it's very limited (i.e. it does not support menu/action icons, etc.) but it does support things like submenu's, destructive actions/menu's, inline submenu's, and hidden actions.
 * Import the module like this: `import { ActionSheetFallback } from "react-native-ios-context-menu";`
 * To present a ￼￼`ActionSheetIOS` menu, call `const selectedAction = await ActionSheetFallback.show(menuConfig)`
 
