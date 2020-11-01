@@ -1,7 +1,8 @@
 # react-native-ios-context-menu
 A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) in iOS 13 and later.
 * Support for creating menu actions and submenu's (nested menu's)
-* Support for customizing all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties
+* Support for the iOS 14 functionality like the `UIButton` menu and updating the menu while its visible.
+* Support for customizing (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties
 * `ActionSheetIOS` menu fallback for unsupported iOS versions
 
 <br>
@@ -157,7 +158,7 @@ Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.ima
 | Value  | Description                                                  |
 |--------|--------------------------------------------------------------|
 | NONE   | The default value for the `imageType` property. Specifies to not use an icon. Since this is the default value, you don't have to explicitly specify: `imageType: 'NONE'` in the `MenuConfig` or `MenuAction` object if you don't want to use an icon. |
-| SYSTEM | Specifies that we want to use a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon |
+| SYSTEM | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon). Internally, it passes the `imageValue` string from the `MenuConfig` or `MenuAction` object like this: `UIImage(systemName: imageValue)` |
 <br>
 
 #### 3.2.2 `MenuOptions` Enum
@@ -678,7 +679,7 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
 
 <br>
 
-#### 4.1.10 `ContextMenuView` [Simple Example #10](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample09.js)
+#### 4.1.10 `ContextMenuView` [Simple Example #10](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample10.js)
 On iOS 14 and above, you can update the menu while it's visible. You can update the menu while its open by updating the `menuConfig` prop via state. This is a simple demo with a counter state incrementing every second when the menu is open.
 
 <br>
@@ -735,7 +736,75 @@ function ContextMenuViewSimpleExample10(props) {
 <br>
 
 ### 4.2 `ContextMenuButton` Examples
-Most of the examples in the `ContextMenuView` section also applies here. The props in `ContextMenuView` (like the `menuConfig` and `useActionSheetFallback` props) as well as most of the events behave the same. So most of the examples in this section are exclusively for `ContextMenuButton`.
+Most of the examples in the `ContextMenuView` section also applies here. The props in `ContextMenuView` (like the `menuConfig` and `useActionSheetFallback` props) as well as most of the events behave the same. So the examples in this section are only for `ContextMenuButton`.
+
+<br>
+
+#### 4.2.1 `ContextMenuView` [Simple Example #1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample01.js)
+A plain context menu button configured with 3 actions (no icons, just text). A long press on the `ContextMenuButton` component will show the context menu.
+
+<br>
+
+```jsx
+<ContextMenuButton
+  onPress={() => alert('TouchableOpacity - OnPress')}
+  onPressMenuItem={({nativeEvent}) => {
+    alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)
+  }}
+  menuConfig={{
+    menuTitle: 'ContextMenuButtonSimpleExample01',
+    menuItems: [{
+      actionKey  : 'key-01',
+      actionTitle: 'Action #1',
+    }, {
+      actionKey  : 'key-02'   ,
+      actionTitle: 'Action #2',
+    }, {
+      actionKey  : 'key-03'   ,
+      actionTitle: 'Action #3',
+    }],
+  }}
+/>
+```
+
+![Simple Example 1](./assets/example-screenshots/ContextMenuButton-SimpleExample01.png)
+
+<br>
+
+#### 4.2.1 `ContextMenuView` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
+A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead of a long press, tapping on the `ContextMenuButton` component will now immediately show the context menu. 
+
+<br>
+
+```jsx
+<ContextMenuButton
+  onPressMenuItem={({nativeEvent}) => {
+    alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`);
+  }}
+  isMenuPrimaryAction={true} // <- set the prop to true
+  menuConfig={{
+    menuTitle: 'ContextMenuButtonSimpleExample02',
+    menuItems: [{
+      actionKey  : 'key-01',
+      actionTitle: 'Action #1',
+      imageType  : 'SYSTEM',
+      imageValue : 'folder',
+    }, {
+      actionKey  : 'key-02'   ,
+      actionTitle: 'Action #2',
+      imageType  : 'SYSTEM',
+      imageValue : 'dial.fill',
+    }, {
+      actionKey  : 'key-03'   ,
+      actionTitle: 'Action #3',
+      imageType  : 'SYSTEM'   ,
+      imageValue : 'archivebox.fill',
+    }],
+  }}
+/>
+```
+
+![Simple Example 2](./assets/example-screenshots/ContextMenuButton-SimpleExample02.png)
 
 <br>
 
