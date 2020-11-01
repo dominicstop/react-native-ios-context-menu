@@ -1,5 +1,5 @@
-/** Used for `ContextMenuView` `previewSize` prop */
-export const PreviewTypes = {
+/** Used for `ContextMenuView` `PreviewType` prop */
+export const PreviewType = {
   'DEFAULT': 'DEFAULT',
   'CUSTOM' : 'CUSTOM' ,
 };

@@ -12,8 +12,8 @@ export function ContextMenuViewSimpleExample11(props) {
       title={'Simple Example #11'}
       subtitle={'Custom Preview'}
       desc={`Show a custom preview for the context menu`}
-      previewType={'CUSTOM'}
       // `ContextMenuView` Props
+      previewType={'CUSTOM'}
       previewSize={{ height: 200 }}
       renderPreview={() => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

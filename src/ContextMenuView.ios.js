@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity } from 'react-native';
 import Proptypes from 'prop-types';
 
-import { PreviewTypes } from './Enums';
+import { PreviewType } from './Enums';
 
 import { ActionSheetFallback } from './functions/ActionSheetFallback';
 
@@ -58,7 +58,7 @@ export class ContextMenuView extends React.PureComponent {
 
   static defaultProps = {
     lazyPreview: true,
-    previewType: PreviewTypes.DEFAULT,
+    previewType: PreviewType.DEFAULT,
     useActionSheetFallback: !isContextMenuSupported,
   };
 
