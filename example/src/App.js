@@ -117,7 +117,7 @@ export default function App() {
             key  : `context-menu-button-item-${index}`,
             index: (index + 1),
             // pass down props
-            useActionSheetFallback: contextMenuViewUseActionSheetFallback,
+            useActionSheetFallback: contextMenuButtonUseActionSheetFallback,
           })
         )}
       </ScrollView>

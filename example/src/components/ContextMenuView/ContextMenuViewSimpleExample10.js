@@ -44,6 +44,11 @@ export function ContextMenuViewSimpleExample10(props) {
             ? 'heart'
             : 'heart.fill'
           ),
+        }, (timer % 3 == 0) && {
+          actionKey  : 'key-02',
+          actionTitle: `Dynamic Action`,
+          imageType  : 'SYSTEM',
+          imageValue : 'scissors.badge.ellipsis',
         }],
       }}
     />

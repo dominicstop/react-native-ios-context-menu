@@ -13,6 +13,7 @@ export class ContextMenuButtonSimpleExample01 extends React.PureComponent {
         subtitle={'actions text-only'}
         desc={'Context menu button with 3 actions (no icon, just text). Long press on the button to show the context menu.'}
         // `ContextMenuButton` Props
+        onPress={() => alert('TouchableOpacity - OnPress')}
         onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
         menuConfig={{
           menuTitle: 'ContextMenuButtonSimpleExample01',
