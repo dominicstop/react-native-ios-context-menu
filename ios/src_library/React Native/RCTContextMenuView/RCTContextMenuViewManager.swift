@@ -7,8 +7,8 @@
 
 import Foundation
 
-@objc(RCTContextMenuManager)
-class RCTContextMenuManager: RCTViewManager {
+@objc(RCTContextMenuViewManager)
+class RCTContextMenuViewManager: RCTViewManager {
   
   override static func requiresMainQueueSetup() -> Bool {
     return true;

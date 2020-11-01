@@ -7,17 +7,20 @@ import { ActionSheetFallback } from './functions/ActionSheetFallback';
 
 const isContextMenuSupported = (
   (Platform.OS === 'ios') &&
-  (parseInt(Platform.Version, 10) > 12)
+  (parseInt(Platform.Version, 10) > 13)
 );
 
 
-const componentName   = "RCTContextMenuView";
+const componentName   = "RCTContextMenuButton";
 const NativeCommands  = UIManager[componentName]?.Commands;
 const NativeComponent = requireNativeComponent(componentName);
 
 const NATIVE_PROP_KEYS = {
   // props: values --------
   menuConfig: 'menuConfig',
+  // props: flags ---------------------------
+  enableContextMenu  : 'enableContextMenu'  ,
+  isMenuPrimaryAction: 'isMenuPrimaryAction',
   // props: events --------------------
   onMenuWillShow  : 'onMenuWillShow'  ,
   onMenuWillHide  : 'onMenuWillHide'  ,
@@ -25,16 +28,19 @@ const NATIVE_PROP_KEYS = {
   onMenuDidShow   : 'onMenuDidShow'   ,
   onMenuDidHide   : 'onMenuDidHide'   ,
   onMenuDidCancel : 'onMenuDidCancel' ,
-  // props: onPress events ----------------
-  onPressMenuItem   : 'onPressMenuItem'   ,
-  onPressMenuPreview: 'onPressMenuPreview',
+  // props: onPress events ----------
+  onPressMenuItem: 'onPressMenuItem',
 };
 
 
-export class ContextMenuView extends React.PureComponent {
+export class ContextMenuButton extends React.PureComponent {
   static proptypes = {
     menuConfig: Proptypes.object,
+    // flags ------------------------------
+    enableContextMenu     : Proptypes.bool,
+    isMenuPrimaryAction   : Proptypes.bool,
     useActionSheetFallback: Proptypes.bool,
+    wrapNativeComponent   : Proptypes.bool,
     // events -----------------------
     onMenuWillShow  : Proptypes.func,
     onMenuWillHide  : Proptypes.func,
@@ -42,12 +48,13 @@ export class ContextMenuView extends React.PureComponent {
     onMenuDidShow   : Proptypes.func,
     onMenuDidHide   : Proptypes.func,
     onMenuDidCancel : Proptypes.func,
-    // onPress events -----------------
-    onPressMenuItem   : Proptypes.func,
-    onPressMenuPreview: Proptypes.func,
+    // onPress events --------------
+    onPressMenuItem: Proptypes.func,
   };
 
   static defaultProps = {
+    enableContextMenu     : true,
+    wrapNativeComponent   : true,
     useActionSheetFallback: !isContextMenuSupported,
   };
 
@@ -57,6 +64,12 @@ export class ContextMenuView extends React.PureComponent {
     this.state = {
       menuVisible: false,
     };
+  };
+
+  getProps(){
+    const { menuConfig, enableContextMenu, isMenuPrimaryAction, onMenuWillShow, onMenuWillHide, onMenuWillCancel, onMenuDidShow, onMenuDidHide, onMenuDidCancel, onPressMenuItem, ...otherProps } = this.props;
+    const nativeProps = { menuConfig, enableContextMenu, isMenuPrimaryAction, onMenuWillShow, onMenuWillHide, onMenuWillCancel, onMenuDidShow, onMenuDidHide, onMenuDidCancel, onPressMenuItem };
+    return { nativeProps, ...otherProps };
   };
 
   //#region - Event Handlers
@@ -110,21 +123,17 @@ export class ContextMenuView extends React.PureComponent {
   _handleOnPressMenuItem = (event) => {
     this.props.onPressMenuItem?.(event);
   };
-
-  _handleOnPressMenuPreview = (event) => {
-    const { onPressMenuPreview } = this.props;
-    onPressMenuPreview?.(event);
-
-    this.setState({menuVisible: false});
-  };
   //#endregion
 
   _renderContextMenuView(){
-    const { style, children, ...props } = this.props;
+    const { nativeProps, style, children, ...props } = this.getProps();
     const { menuVisible } = this.state;
 
-    const nativeProps = {
-      ...props,
+    const nativeCompProps = {
+      // Native Props: Flags -------------------------------------------------
+      [NATIVE_PROP_KEYS.menuConfig         ]: nativeProps.menuConfig         ,
+      [NATIVE_PROP_KEYS.enableContextMenu  ]: nativeProps.enableContextMenu  ,
+      [NATIVE_PROP_KEYS.isMenuPrimaryAction]: nativeProps.isMenuPrimaryAction,
       // Native Props: Events ------------------------------------------
       [NATIVE_PROP_KEYS.onMenuWillShow  ]: this._handleOnMenuWillShow  ,
       [NATIVE_PROP_KEYS.onMenuWillHide  ]: this._handleOnMenuWillHide  ,
@@ -132,25 +141,39 @@ export class ContextMenuView extends React.PureComponent {
       [NATIVE_PROP_KEYS.onMenuDidShow   ]: this._handleOnMenuDidShow   ,
       [NATIVE_PROP_KEYS.onMenuDidHide   ]: this._handleOnMenuDidHide   ,
       [NATIVE_PROP_KEYS.onMenuDidCancel ]: this._handleOnMenuDidCancel ,
-      // Native Props: OnPress Events --------------------------------------
-      [NATIVE_PROP_KEYS.onPressMenuItem   ]: this._handleOnPressMenuItem   ,
-      [NATIVE_PROP_KEYS.onPressMenuPreview]: this._handleOnPressMenuPreview,
+      // Native Props: OnPress Events --------------------------------
+      [NATIVE_PROP_KEYS.onPressMenuItem]: this._handleOnPressMenuItem,
     };
 
-    return(
-      <NativeComponent
-        style={[styles.menuView, style]}
-        {...nativeProps}
+    const childItems = React.Children.map(children, child => 
+      React.cloneElement(child, {menuVisible})
+    );
+
+    return props.wrapNativeComponent? (
+      <TouchableOpacity
+        activeOpacity={0.8}
+        {...{style, ...props}}
       >
-        {React.Children.map(children, child => 
-          React.cloneElement(child, {menuVisible})
-        )}
+        <NativeComponent
+          style={styles.wrappedMenuButton}
+          {...nativeCompProps}
+        >
+          {childItems}
+        </NativeComponent>
+      </TouchableOpacity>
+    ):(
+      <NativeComponent
+        style={[styles.menuButton, style]}
+        {...props}
+        {...nativeCompProps}
+      >
+        {childItems}
       </NativeComponent>
     );
   };
 
   render(){
-    const { useActionSheetFallback, ...props } = this.props;
+    const { useActionSheetFallback } = this.props;
     const useContextMenuView = 
       (isContextMenuSupported && !useActionSheetFallback);
 
@@ -174,7 +197,10 @@ export class ContextMenuView extends React.PureComponent {
 };
 
 const styles = StyleSheet.create({
-  menuView: {
+  menuButton: {
     backgroundColor: 'transparent',
+  },
+  wrappedMenuButton: {
+    flex: 1,
   },
 });

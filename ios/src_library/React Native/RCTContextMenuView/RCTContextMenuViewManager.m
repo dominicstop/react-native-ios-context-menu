@@ -9,7 +9,7 @@
 #import <React/RCTViewManager.h>
  
 
-@interface RCT_EXTERN_MODULE(RCTContextMenuManager, RCTViewManager)
+@interface RCT_EXTERN_MODULE(RCTContextMenuViewManager, RCTViewManager)
 
 // -----------------------------------
 // MARK: Props - RN Comp Props: Events
