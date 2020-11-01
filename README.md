@@ -104,9 +104,9 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 <br>
 
 ### 2.2 `ContextMenuButton` Usage
-Please check out the [examples section](#42-contextmenubutton-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuButton) for more on how to use it. See  [Example 1](#421-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration. 
+Please check out the [examples section](#42-contextmenubutton-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuButton) for more on how to use it. See  [Example 1](#421-contextmenubutton-simple-example-1) section for the basic `menuConfig` configuration. 
 * The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
-* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](https://github.com/dominicstop/react-native-ios-context-menu#421-contextmenuview-simple-example-2) for more details.
+* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](#421-contextmenubutton-simple-example-2) for more details.
 * Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.
 
 ```jsx
@@ -913,7 +913,7 @@ Most of the examples in the `ContextMenuView` section also applies here. The pro
 
 <br>
 
-#### 4.2.1 `ContextMenuView` [Simple Example #1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample01.js)
+#### 4.2.1 `ContextMenuButton` [Simple Example #1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample01.js)
 A plain context menu button configured with 3 actions (no icons, just text). A long press on the `ContextMenuButton` component will show the context menu.
 
 <br>
@@ -944,7 +944,7 @@ A plain context menu button configured with 3 actions (no icons, just text). A l
 
 <br>
 
-#### 4.2.2 `ContextMenuView` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
+#### 4.2.2 `ContextMenuButton` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
 A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead of a long press, tapping on the `ContextMenuButton` component will now immediately show the context menu. 
 
 <br>
