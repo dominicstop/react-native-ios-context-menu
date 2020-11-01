@@ -34,6 +34,9 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
 `ContextMenuView` `ActionSheetIOS` fallback for context menu view test 1 to 6
 ![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-Test-1-to-6.gif)
 
+`ContextMenuButton` **Left**: [Example 1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample01.js), and **Right**: [Example 2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
+![Simple Example 1 and 2 Gifs](./assets/context-menu-button-gifs/ContextMenuButton-SimpleExample-1-2.gif)
+
 </details>
 
 ---
