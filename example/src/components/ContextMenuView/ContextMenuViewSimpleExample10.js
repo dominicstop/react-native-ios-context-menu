@@ -1,60 +1,53 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { ExampleContextMenuItem } from '../ExampleContextMenuItem';
 
 
-export class ContextMenuViewSimpleExample10 extends React.PureComponent {
+export function ContextMenuViewSimpleExample10(props) {
 
-  _handleOnPressMenuItem = ({nativeEvent}) => {
-    switch (nativeEvent.actionKey) {
-      case 'save':
-        alert('saving...');
-        break;
+  const [timer, setTimer] = useState(0);
+  const increment = useRef(null);
 
-      case 'like':
-        alert('liking...');
-        break;
-
-      case 'play':
-        alert('playing...');
-        break;
-    };
+  const handleStart = () => {
+    increment.current = setInterval(() => {
+      setTimer((timer) => timer + 1);
+    }, 1000);
   };
 
-  render(){
-    return(
-      <ExampleContextMenuItem
-        {...this.props}
-        title={'Simple Example #10'}
-        subtitle={'inline menu'}
-        desc={'On iOS 14...'}
-        // `ContextMenuView` Props
-        onPressMenuItem={this._handleOnPressMenuItem}
-        onPressMenuPreview={() => alert('onPressMenuPreview')}
-        menuConfig={{
-          menuTitle: 'ContextMenuViewSimpleExample10',
-          menuOptions: ['displayInline'],
-          menuItems: [{
-            actionKey  : 'save',
-            actionTitle: 'Save',
-            imageType  : 'SYSTEM',
-            imageValue : 'square.and.arrow.down',
-          }, {
-            actionKey  : 'like'         ,
-            actionTitle: 'Like'         ,
-            imageType  : 'SYSTEM'       ,
-            imageValue : 'hand.thumbsup',
-          }, {
-            actionKey  : 'play'  ,
-            actionTitle: 'Play'  ,
-            imageType  : 'SYSTEM',
-            imageValue : 'play'  ,
-          }],
-        }}
-      />
-    );
+  const handleReset = () => {
+    clearInterval(increment.current);
+    setTimer(0);
   };
+
+  return(
+    <ExampleContextMenuItem
+      {...props}
+      title={'Simple Example #10'}
+      subtitle={'Update Menu'}
+      desc={`On iOS 14+ you can update the menu while it's visible. So you can control the menu via state. This is a simple demo with a counter incrementing every second.`}
+      // `ContextMenuView` Props
+      onMenuDidShow={handleStart}
+      onMenuDidHide={handleReset}
+      menuConfig={{
+        menuTitle: 'ContextMenuViewSimpleExample10',
+        menuItems: [{
+          actionKey  : 'key-00',
+          actionTitle: `Static Action`,
+          imageType  : 'SYSTEM',
+          imageValue : 'square.and.arrow.down',
+        }, {
+          actionKey  : 'key-01',
+          actionTitle: `timer: ${timer}`,
+          imageType  : 'SYSTEM',
+          imageValue : ((timer % 2 == 0)
+            ? 'heart'
+            : 'heart.fill'
+          ),
+        }],
+      }}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
