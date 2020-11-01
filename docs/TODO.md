@@ -2,20 +2,21 @@
 
 ## General
 - [ ] `ContextMenu` — Add support for `UIDefferedElement`
+- [ ] `ContextMenu` — Add `discoverabilityTitle` to `UIAction`
 - [ ] Test `ContextMenuView` and `ContextMenuButton` on different react native versions
 	- [ ] Test on **0.60**
 	- [ ] Test on **0.61**
 	- [ ] Test on **0.62**
 	- [ ] Test on **0.63**
-- [ ] `react-native-context-menu` uses autolinking for installation. Checki if this library will work on older react-native versions prior to 0.60 i.e test `ContextMenuView` and `ContextMenuButton` on react native versions older than 0.60
+- [ ] `react-native-context-menu` uses autolinking for installation. Check if this library will work on older react-native versions prior to 0.60 i.e test `ContextMenuView` and `ContextMenuButton` on react native versions older than 0.60
 	- [ ] Test on **0.59**
 	- [ ] Test on **0.58**
 
 <br>
 
 ## `ContextMenuView`
-- [ ] ⭐️ Export `ActionSheetFallback` function and add it to the docs.
-- [ ] 🛠 Rename `RCTContextMenuManager` to `RCTContextMenuViewManager` and update corresponding js native component
+- [x] ⭐️ Export `ActionSheetFallback` function and add it to the docs.
+- [x] 🛠 Rename `RCTContextMenuManager` to `RCTContextMenuViewManager` and update corresponding js native component
 - [x] ⭐️ Impl. iOS 14 specific feature: `UpdateVisibleMenu`
 - [ ] ⭐️ Impl. iOS 14 specific feature: `dismissMenu`
 - [ ] ⭐️ Custom Preview - Add support for custom previews, i.e by passing a child component to `RCTContextMenuView`, and wrapping that child inside a view controller and passing it as the preview target in `UIMenu` config. The first child of the `RCTContextMenuView` will be reserved for the custom menu preview. If no child is passed, i.e no custom preview is configured, then the preview target is not set for the `UIMenu`. The preview view should only be mounted when the menu is visible, and thus, it should support setting the preferred size of the preview target. Test if the preview target can be changed when it's already visible.
