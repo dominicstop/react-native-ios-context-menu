@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity } from 'react-native';
 import Proptypes from 'prop-types';
 
+import { PreviewTypes } from './Enums';
+
 import { ActionSheetFallback } from './functions/ActionSheetFallback';
 
 
@@ -16,8 +18,10 @@ const NativeCommands  = UIManager[componentName]?.Commands;
 const NativeComponent = requireNativeComponent(componentName);
 
 const NATIVE_PROP_KEYS = {
-  // props: values --------
-  menuConfig: 'menuConfig',
+  // props: values ----------
+  menuConfig : 'menuConfig' ,
+  previewType: 'previewType',
+  previewSize: 'previewSize',
   // props: events --------------------
   onMenuWillShow  : 'onMenuWillShow'  ,
   onMenuWillHide  : 'onMenuWillHide'  ,
@@ -33,7 +37,12 @@ const NATIVE_PROP_KEYS = {
 
 export class ContextMenuView extends React.PureComponent {
   static proptypes = {
-    menuConfig: Proptypes.object,
+    menuConfig : Proptypes.object,
+    previewType: Proptypes.string,
+    previewSize: Proptypes.object,
+    renderPreview: Proptypes.func,
+    // flags -----------------------
+    lazyPreview           : Proptypes.bool,
     useActionSheetFallback: Proptypes.bool,
     // events -----------------------
     onMenuWillShow  : Proptypes.func,
@@ -48,6 +57,8 @@ export class ContextMenuView extends React.PureComponent {
   };
 
   static defaultProps = {
+    lazyPreview: true,
+    previewType: PreviewTypes.DEFAULT,
     useActionSheetFallback: !isContextMenuSupported,
   };
 
@@ -57,6 +68,20 @@ export class ContextMenuView extends React.PureComponent {
     this.state = {
       menuVisible: false,
     };
+  };
+
+  getProps(){
+    const otherProps  = { ...this.props };
+    const nativeProps = {};
+
+    const nativeKeys = Object.keys(NATIVE_PROP_KEYS);
+
+    for (const key of nativeKeys) {
+      nativeProps[key] = otherProps[key];
+      delete otherProps[key];
+    };
+
+    return { nativeProps, ...otherProps };
   };
 
   //#region - Event Handlers
@@ -120,11 +145,11 @@ export class ContextMenuView extends React.PureComponent {
   //#endregion
 
   _renderContextMenuView(){
-    const { style, children, ...props } = this.props;
+    const { style, children, nativeProps, ...props } = this.getProps();
     const { menuVisible } = this.state;
 
-    const nativeProps = {
-      ...props,
+    const nativeCompProps = {
+      ...nativeProps,
       // Native Props: Events ------------------------------------------
       [NATIVE_PROP_KEYS.onMenuWillShow  ]: this._handleOnMenuWillShow  ,
       [NATIVE_PROP_KEYS.onMenuWillHide  ]: this._handleOnMenuWillHide  ,
@@ -140,8 +165,13 @@ export class ContextMenuView extends React.PureComponent {
     return(
       <NativeComponent
         style={[styles.menuView, style]}
-        {...nativeProps}
+        {...nativeCompProps}
       >
+        <View style={styles.previewContainer}>
+          {(menuVisible || !props.lazyPreview) && (
+            props.renderPreview?.()
+          )}
+        </View>
         {React.Children.map(children, child => 
           React.cloneElement(child, {menuVisible})
         )}
@@ -150,7 +180,7 @@ export class ContextMenuView extends React.PureComponent {
   };
 
   render(){
-    const { useActionSheetFallback, ...props } = this.props;
+    const { useActionSheetFallback, children, ...props } = this.getProps();
     const useContextMenuView = 
       (isContextMenuSupported && !useActionSheetFallback);
 
@@ -160,13 +190,13 @@ export class ContextMenuView extends React.PureComponent {
         <TouchableOpacity 
           onLongPress={this._handleOnLongPress}
           activeOpacity={0.8}
-          {...this.props}
+          {...props}
         >
-          {this.props.children}
+          {children}
         </TouchableOpacity>
       ):(
-        <View {...this.props}>
-          {this.props.children}
+        <View {...props}>
+          {children}
         </View>
       )
     );
@@ -176,5 +206,8 @@ export class ContextMenuView extends React.PureComponent {
 const styles = StyleSheet.create({
   menuView: {
     backgroundColor: 'transparent',
+  },
+  previewContainer: {
+    position: 'absolute',
   },
 });

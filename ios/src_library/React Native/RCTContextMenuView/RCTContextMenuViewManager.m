@@ -30,6 +30,9 @@ RCT_EXPORT_VIEW_PROPERTY(onPressMenuPreview, RCTBubblingEventBlock);
 // MARK: Props - RN Comp Props: Values
 // -----------------------------------
 
-RCT_EXPORT_VIEW_PROPERTY(menuConfig, NSDictionary);
+RCT_EXPORT_VIEW_PROPERTY(menuConfig , NSDictionary);
+RCT_EXPORT_VIEW_PROPERTY(previewSize, NSDictionary);
+
+RCT_EXPORT_VIEW_PROPERTY(previewType, NSString);
 
 @end

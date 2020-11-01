@@ -1,3 +1,9 @@
+/** Used for `ContextMenuView` `previewSize` prop */
+export const PreviewTypes = {
+  'DEFAULT': 'DEFAULT',
+  'CUSTOM' : 'CUSTOM' ,
+};
+
 /** Used for `MenuConfigKeys.imageType` or `MenuActionKeys.imageType` */
 export const ImageTypes = {
   'NONE'  : 'NONE'  ,

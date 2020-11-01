@@ -67,8 +67,16 @@ export class ContextMenuButton extends React.PureComponent {
   };
 
   getProps(){
-    const { menuConfig, enableContextMenu, isMenuPrimaryAction, onMenuWillShow, onMenuWillHide, onMenuWillCancel, onMenuDidShow, onMenuDidHide, onMenuDidCancel, onPressMenuItem, ...otherProps } = this.props;
-    const nativeProps = { menuConfig, enableContextMenu, isMenuPrimaryAction, onMenuWillShow, onMenuWillHide, onMenuWillCancel, onMenuDidShow, onMenuDidHide, onMenuDidCancel, onPressMenuItem };
+    const otherProps  = { ...this.props };
+    const nativeProps = {};
+
+    const nativeKeys = Object.keys(NATIVE_PROP_KEYS);
+
+    for (const key of nativeKeys) {
+      nativeProps[key] = otherProps[key];
+      delete otherProps[key];
+    };
+
     return { nativeProps, ...otherProps };
   };
 
@@ -130,10 +138,7 @@ export class ContextMenuButton extends React.PureComponent {
     const { menuVisible } = this.state;
 
     const nativeCompProps = {
-      // Native Props: Flags -------------------------------------------------
-      [NATIVE_PROP_KEYS.menuConfig         ]: nativeProps.menuConfig         ,
-      [NATIVE_PROP_KEYS.enableContextMenu  ]: nativeProps.enableContextMenu  ,
-      [NATIVE_PROP_KEYS.isMenuPrimaryAction]: nativeProps.isMenuPrimaryAction,
+      ...nativeProps,
       // Native Props: Events ------------------------------------------
       [NATIVE_PROP_KEYS.onMenuWillShow  ]: this._handleOnMenuWillShow  ,
       [NATIVE_PROP_KEYS.onMenuWillHide  ]: this._handleOnMenuWillHide  ,
