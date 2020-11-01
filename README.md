@@ -109,7 +109,7 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 
 | Prop                     | Type                                       | Description                                                  |
 |--------------------------|--------------------------------------------|--------------------------------------------------------------|
-| `menuConfig`             | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See `ContextMenuView` [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js) for examples. Check the [`MenuConfig`](#332-menuconfig-object) section for the object's structure/properties. |
+| `menuConfig`             | **Required**:  `MenuConfig` Object         | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See `ContextMenuView` [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js) for examples. Check the [`MenuConfig`](#332-menuconfig-object) section for the object's structure/properties. On iOS 14+ the menu config can be updated while it's visible.  |
 | `useActionSheetFallback` | **Optional**: `Bool`                       | If set to true, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop. Default value is `false` on iOS 13+ and true on android, and on iOS 12 and below. |
 | `onMenuWillShow`         | Function                                   | Event that gets called **before** the context menu is  shown, i.e. this event is immediently invoked when the menu is about to become visible. |
 | `onMenuDidShow`          | Function                                   | Event that gets called **after** the context menu is completely shown, i.e. this event is invoked after the menu entrance animation is finished. |
@@ -133,6 +133,14 @@ Lorum ipsum sit amit
 <br>
 
 #### 3.1.2 `ActionSheetFallback` Module
+A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This module attempts to approximates a `UIMenu` behavior using `ActionSheetIOS`, so it's very limited (so it does not support menu/action icons, etc.) but it does support things like submenu's, destructive actions/menu's, inline submenu's, and hidden actions.
+* Import the module like this: `import { ActionSheetFallback } from "react-native-ios-context-menu";`
+* To present a ￼￼`ActionSheetIOS` menu, call `const selectedAction = await ActionSheetFallback.show(menuConfig)`
+
+
+| Name/Type                                   | Returns                    | Description                                                  |
+|---------------------------------------------|----------------------------|--------------------------------------------------------------|
+| `async show(menuConfig: MenuConfig Object)` | `MenuAction Object | null` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
 
 <br>
 
@@ -666,7 +674,63 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
 />
 ```
 
-![Simple Example 8](./assets/example-screenshots/ContextMenuView-SimpleExample09.png)
+![Simple Example 9](./assets/example-screenshots/ContextMenuView-SimpleExample09.png)
+
+<br>
+
+#### 4.1.10 `ContextMenuView` [Simple Example #10](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample09.js)
+On iOS 14 and above, you can update the menu while it's visible. You can update the menu while its open by updating the `menuConfig` prop via state. This is a simple demo with a counter state incrementing every second when the menu is open.
+
+<br>
+
+```jsx
+function ContextMenuViewSimpleExample10(props) {
+  const [timer, setTimer] = useState(0);
+  const increment = useRef(null);
+
+  const handleStart = () => {
+    increment.current = setInterval(() => {
+      setTimer((timer) => timer + 1);
+    }, 1000);
+  };
+
+  const handleReset = () => {
+    clearInterval(increment.current);
+    setTimer(0);
+  };
+
+  return(
+    <ContextMenuView
+      onMenuDidShow={handleStart}
+      onMenuDidHide={handleReset}
+      menuConfig={{
+        menuTitle: 'ContextMenuViewSimpleExample10',
+        menuItems: [{
+          actionKey  : 'key-00',
+          actionTitle: `Static Action`,
+          imageType  : 'SYSTEM',
+          imageValue : 'square.and.arrow.down',
+        }, {
+          actionKey  : 'key-01',
+          actionTitle: `timer: ${timer}`, // <- the action title should update
+          imageType  : 'SYSTEM',
+          imageValue : ((timer % 2 == 0) // <- will show/hide
+            ? 'heart'
+            : 'heart.fill'
+          ),
+        }, (timer % 3 == 0) && {
+          actionKey  : 'key-02',
+          actionTitle: `Dynamic Action`,
+          imageType  : 'SYSTEM',
+          imageValue : 'scissors.badge.ellipsis',
+        }],
+      }}
+    />
+  );
+};
+```
+
+![Simple Example 10](./assets/example-screenshots/ContextMenuView-SimpleExample10.png)
 
 <br>
 
