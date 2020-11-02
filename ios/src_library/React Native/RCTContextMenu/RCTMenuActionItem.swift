@@ -16,6 +16,7 @@ class RCTMenuActionItem: RCTMenuElement {
   var actionTitle: String;
   
   var imageType: ImageType = .NONE;
+  var discoverabilityTitle: String?;
   
   var imageValue    : String?;
   var menuState     : String?;
@@ -49,6 +50,8 @@ class RCTMenuActionItem: RCTMenuElement {
       return ImageType.withLabel(text) ?? .NONE;
     }();
     
+    self.discoverabilityTitle = dictionary["discoverabilityTitle"] as? String;
+    
     self.menuState      = dictionary["menuState"     ] as? String;
     self.imageValue     = dictionary["imageValue"    ] as? String;
     self.menuAttributes = dictionary["menuAttributes"] as? [String];
@@ -70,9 +73,9 @@ class RCTMenuActionItem: RCTMenuElement {
   };
 };
 
-// ---------------------------------------
+// ---------------------------------------------
 // MARK: RCTMenuActionItem - Computed Properties
-// ---------------------------------------
+// ---------------------------------------------
 
 @available(iOS 13, *)
 extension RCTMenuActionItem {
@@ -108,6 +111,28 @@ extension RCTMenuActionItem {
         return UIImage(systemName: imageValue);
     };
   };
+  
+  var dictionary: [AnyHashable: Any] {
+    var dictionary: [AnyHashable: Any] = [
+      "actionKey"  : self.actionKey  ,
+      "actionTitle": self.actionTitle,
+      "imageType"  : self.imageType  ,
+    ];
+    
+    if let discoverabilityTitle = self.discoverabilityTitle {
+      dictionary["discoverabilityTitle"] = discoverabilityTitle;
+    };
+    
+    if let imageValue = self.imageValue {
+      dictionary["imageValue"] = imageValue;
+    };
+    
+    if let menuAttributes = self.menuAttributes {
+      dictionary["menuAttributes"] = menuAttributes;
+    };
+    
+    return dictionary;
+  };
 };
 
 // -----------------------------------
@@ -124,21 +149,14 @@ extension RCTMenuActionItem {
     print("RCTMenuActionItem, makeUIAction...");
     #endif
     
-    let dictionary: [AnyHashable: Any] = [
-      "actionKey"     : self.actionKey  ,
-      "actionTitle"   : self.actionTitle,
-      "imageType"     : self.imageType  ,
-      "imageValue"    : self.imageValue     ?? [],
-      "menuAttributes": self.menuAttributes ?? [],
-    ];
-    
     return UIAction(
       title     : self.actionTitle,
       image     : self.image,
       identifier: self.identifier,
+      discoverabilityTitle: self.discoverabilityTitle,
       attributes: self.UIMenuElementAttributes,
       state     : self.UIMenuElementState,
-      handler   : { handler(dictionary, $0) }
+      handler   : { handler(self.dictionary, $0) }
     );
   };
 };

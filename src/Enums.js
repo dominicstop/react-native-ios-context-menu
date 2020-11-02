@@ -32,12 +32,13 @@ export const MenuElementState = {
 };
 
 export const MenuActionKeys = {
-  actionKey     : 'actionKey'     , // required - string: unique identifier
-  actionTitle   : 'actionTitle'   , // required - string value
-  imageType     : 'imageType'     , // optional - ImageTypes item
-  imageValue    : 'imageValue'    , // optional - string value
-  menuState     : 'menuState'     , // optional - MenuElementState item
-  menuAttributes: 'menuAttributes', // optional - MenuElementAtrributes item
+  actionKey           : 'actionKey'           , // required - string: unique identifier
+  actionTitle         : 'actionTitle'         , // required - string value
+  imageType           : 'imageType'           , // optional - ImageTypes item
+  imageValue          : 'imageValue'          , // optional - string value
+  menuState           : 'menuState'           , // optional - MenuElementState item
+  menuAttributes      : 'menuAttributes'      , // optional - MenuElementAtrributes item
+  discoverabilityTitle: 'discoverabilityTitle', // optional - string value
 };
 
 export const MenuConfigKeys = {
