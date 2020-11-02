@@ -1,8 +1,8 @@
 # react-native-ios-context-menu
 A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenu's (nested menu's)
-* Support for the iOS 14 functionality (like the `UIButton` menu, and updating the menu while its visible).
-* Support for setting (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties,
+* Support for iOS 14 functionality (like the `UIButton` menu, and updating the menu while its visible).
+* Support for setting (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, etc.)
 * `ActionSheetIOS` menu fallback for unsupported iOS versions.
 * Support for custom context menu previews.
 
