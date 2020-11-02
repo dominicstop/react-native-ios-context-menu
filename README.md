@@ -75,6 +75,7 @@ This library is written in Swift. If you are having trouble building your app af
 Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it.
 * See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
 * See [Example 11](#4111-contextmenuview-simple-example-11), and [Example 12](#4112-contextmenuview-simple-example-12) for details on how to show a custom context menu preview.
+* See [`MenuConfig`](#332-menuconfig-object) and [￼`MenuAction`￼](h#331-menuaction-object) section for the list of properties you can use on the `menuConfig` prop.
 
 ```jsx
 import { ContextMenuView } from "react-native-ios-context-menu";
@@ -266,14 +267,15 @@ An object that is used to display/create a context menu action or a submenu acti
 
 <br>
 
-| Key/Property     | Type                                                         | Description                                                  |
-|------------------|--------------------------------------------------------------|--------------------------------------------------------------|
-| `actionKey`      | **Required**: `String`                                       | A string that is used to identify a menu action. You will receive this value in the `onPressMenuItem({nativeEvent})` event. |
-| `actionTitle`    | **Required**: `String`                                       | The text to display in the menu action.                      |
-| `imageType`      | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu action's icon. Check out  the [￼￼`ImageTypes`￼￼](#321-imagetypes-enum) section. |
-| `imageValue`     | **Optional**: `String`                                       | String value used to for the menu actions's icon.            |
-| `menuState`      | **Optional**: `String` (`UIMenuElementState` value)          | Check the [￼`UIMenuElementState`￼](#324-uimenuelementstate-enum) section for the list of values to use. |
-| `menuAttributes` | **Optional**: `[String]` (Array of `MenuElementAtrributes` values) | Options to change the look/behaviour of the menu action. Check out  the ￼[￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
+| Key/Property           | Type                                                         | Description                                                  |
+|------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
+| `actionKey`            | **Required**: `String`                                       | A string that is used to identify a menu action. You will receive this value in the `onPressMenuItem({nativeEvent})` event. |
+| `actionTitle`          | **Required**: `String`                                       | The text to display in the menu action.                      |
+| `imageType`            | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu action's icon. Check out  the [￼￼`ImageTypes`￼￼](#321-imagetypes-enum) section. |
+| `imageValue`           | **Optional**: `String`                                       | String value used to for the menu actions's icon.            |
+| `menuState`            | **Optional**: `String` (`UIMenuElementState` value)          | Check the [￼`UIMenuElementState`￼](#324-uimenuelementstate-enum) section for the list of values to use. |
+| `menuAttributes`       | **Optional**: `[String]` (Array of `MenuElementAtrributes` values) | Options to change the look/behaviour of the menu action. Check out  the ￼[￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
+| `discoverabilityTitle` | **Optional**: `String`                                       | A string that is used to set a `UIAction`'s [`discoverabilityTitle`](https://developer.apple.com/documentation/uikit/uiaction) property. Visually, this property shows a subtitle for the menu action. See [Example 13](#4113-contextmenuview-simple-example-13) |
 <br>
 
 #### 3.3.2 `MenuConfig` Object
@@ -292,7 +294,7 @@ An object that is used to display/create a context menu or a submenu. This objec
 <br>
 
 #### 3.3.3 `onPressMenuItem` `nativeEvent` Object
-The `nativeEvent` object that you receive inside the `onPressMenuItem` event basically just contain the `MenuAction` object that was selected in the context menu. Use the `actionKey` property to identify which action was selected.
+The `nativeEvent` object that you receive inside the `onPressMenuItem` event. The `nativeEvent` object basically just contain the `MenuAction` object that was selected in the context menu. Use the `actionKey` property to identify which action was selected.
 
 <br>
 
@@ -310,7 +312,8 @@ The `nativeEvent` object that you receive inside the `onPressMenuItem` event bas
 <br>
 
 ## 4 Examples
-Check out the [examples](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example) directory. The example app contains a bunch of demos that showcases the different `ContextMenuView` configurations, props and events you can use.
+Check out the [examples](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example) directory. The example app contains a bunch of demos that showcases the different `ContextMenuView` configurations, props and events you can use. The [assets](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/assets) directory contains gifs and screenshots for every example/test demoed in the example app.
+
 1. Clone the repository: `git clone https://github.com/dominicstop/react-native-ios-context-menu.git`
 2. `cd react-native-ios-context-menu && yarn bootstrap`
 3. Go to the `react-native-ios-context-menu/example` directory and run `yarn ios` to build/launch the example app in the iOS simulator.
@@ -831,7 +834,7 @@ A context menu configured to have a custom preview.
 />
 ```
 
-![Simple Example 10](./assets/example-screenshots/ContextMenuView-SimpleExample11.png)
+![Simple Example 11](./assets/example-screenshots/ContextMenuView-SimpleExample11.png)
 
 <br>
 
@@ -904,7 +907,37 @@ function ContextMenuViewSimpleExample12(props) {
 };
 ```
 
-![Simple Example 10](./assets/example-screenshots/ContextMenuView-SimpleExample12.png)
+![Simple Example 12](./assets/example-screenshots/ContextMenuView-SimpleExample12.png)
+
+<br>
+
+#### 4.1.13 `ContextMenuView` [Simple Example #13](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample13.js)
+A context menu configured with 3 menu actions with each having a `discoverabilityTitle` value. Visually, this will show 3 menu actions with subtitles below them.
+
+<br>
+
+```jsx
+<ContextMenuView
+  menuConfig={{
+    menuTitle: 'ContextMenuViewSimpleExample13',
+    menuItems: [{
+      actionKey           : 'key-01',
+      actionTitle         : 'Action #1',
+      discoverabilityTitle: 'Action subtitle', // <- set the property
+    }, {
+      actionKey           : 'key-02'   ,
+      actionTitle         : 'Action #2',
+      discoverabilityTitle: 'Lorum ipsum sit amit dolor aspicing',
+    }, {
+      actionKey           : 'key-03'   ,
+      actionTitle         : 'Action #3',
+      discoverabilityTitle: 'Very long `discoverabilityTitle` lorum ipsum sit amit',
+    }],
+  }}
+/>
+```
+
+![Simple Example 13](./assets/example-screenshots/ContextMenuView-SimpleExample13.png)
 
 <br>
 
