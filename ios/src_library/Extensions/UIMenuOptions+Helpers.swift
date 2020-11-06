@@ -5,6 +5,9 @@
 //  Created by Dominic Go on 7/14/20.
 //
 
+import UIKit;
+
+
 @available(iOS 13, *)
 extension UIMenu.Options {
   static func fromString(_ string: String) -> UIMenu.Options? {

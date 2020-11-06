@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public enum ImageType: String, CaseIterable, Encodable {
   case NONE   = "NONE";
   case URL    = "URL";

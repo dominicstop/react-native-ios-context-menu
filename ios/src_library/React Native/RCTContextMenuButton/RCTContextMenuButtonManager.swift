@@ -6,7 +6,8 @@
 //  Copyright © 2020 Facebook. All rights reserved.
 //
 
-import Foundation
+import UIKit;
+
 
 @objc(RCTContextMenuButtonManager)
 class RCTContextMenuButtonManager: RCTViewManager {

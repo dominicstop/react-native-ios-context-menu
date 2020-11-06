@@ -108,14 +108,14 @@ class RCTContextMenuButton: UIButton {
   override func reactSetFrame(_ frame: CGRect) {
     super.reactSetFrame(frame);
   };
-};
-
+  
 // ---------------------------------------------------------
 // MARK: RCTContextMenuButton - Public Functions for Manager
 // ---------------------------------------------------------
-
-func dismissMenu(){
-  // TODO: wip
+  
+  func dismissMenu(){
+    // TODO: wip
+  };
 };
 
 // -------------------------------------------------------------
