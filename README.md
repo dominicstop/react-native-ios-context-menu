@@ -70,6 +70,28 @@ This library is written in Swift. If you are having trouble building your app af
 
 <br>
 
+When installing this library on Xcode 12 (and on RN version `0.63.3`), you'll get the following error in Xcode:
+```
+Undefined symbol: (extension in UIKit):__C.UIMenu.init(title: Swift.String, image: __C.UIImage?, identifier: __C.UIMenuIdentifier?, options: __C.UIMenuOptions, children: [__C.UIMenuElement]) -> __C.UIMenu
+
+Undefined symbol: (extension in UIKit):__C.UIAction.init(title: Swift.String, image: __C.UIImage?, identifier: __C.UIActionIdentifier?, discoverabilityTitle: Swift.String?, attributes: __C.UIMenuElementAttributes, state: __C.UIMenuElementState, handler: (__C.UIAction) -> ()) -> __C.UIAction
+```
+
+<br>
+
+Here are some related issues in the RN repo: [Issue 30202](https://github.com/facebook/react-native/pull/30202) and [Issue 29178](https://github.com/facebook/react-native/pull/29178). This bug could be fixed in a future version of react native, but a workaround I've found is to do the following:
+1. Open your `ios/project.xcworkspace` project.
+2. In the project navigator panel (located on the right side of Xcode), select your project group (i.e. the item with the blueprint icon).
+3. The Xcode project editor should appear. In the left panel, under the "Project" section, select your project (if it isn't already selected).
+4. In the project section's top tab bar, select the "Build Settings" tab (and make sure the "Basic" and "Combined" tabs are selected).
+5.  Under the "Search Path" section, there should be a "Library Search Paths" setting (alternatively, you can search for "Library Search Paths" in the search bar).
+6. Change `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)"` to `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.3/$(PLATFORM_NAME)"` i.e. change `swift-5.0` to `swift-5.3` (to show the popup dialog, double click the value/item).
+	* Alternatively, according to this [issue comment](https://github.com/facebook/react-native/issues/29246#issuecomment-667518920), you can clear all the items listed in the "Library Search Paths" setting. **TLDR**: Xcode automatically manages this setting, and the RN template hardcodes it to use Swift 5.0.
+
+7. If you haven't already, make sure to create an empty swift file. Then clean the build folder (the option is in the menu bar under: "Product" -> "Clean Build Folder").
+
+<br>
+
 ## 2. Usage
 ### 2.1 `ContextMenuView` Usage
 Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it.
