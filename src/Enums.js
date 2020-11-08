@@ -1,8 +1,3 @@
-/** Used for `ContextMenuView` `PreviewType` prop */
-export const PreviewType = {
-  'DEFAULT': 'DEFAULT',
-  'CUSTOM' : 'CUSTOM' ,
-};
 
 /** Used for `MenuConfigKeys.imageType` or `MenuActionKeys.imageType` */
 export const ImageTypes = {
@@ -29,6 +24,33 @@ export const MenuElementState = {
   on   : 'on'   ,
   off  : 'off'  ,
   mixed: 'mixed',
+};
+
+/** Used for `PreviewConfigKeys.previewType` */
+export const PreviewType = {
+  'DEFAULT': 'DEFAULT',
+  'CUSTOM' : 'CUSTOM' ,
+};
+
+/** Used for `PreviewConfigKeys.previewSize` */
+export const PreviewSize = {
+  'INHERIT': 'INHERIT' ,
+  'STRETCH': 'STRETCH' ,
+};
+
+/** Used for `PreviewConfigKeys.preferredCommitStyle` */
+export const CommitStyle = {
+  'pop'    : 'pop'     ,
+  'dismiss': 'dismiss' ,
+};
+
+export const PreviewConfigKeys = {
+  previewType         : 'previewType'         , // optional - PreviewType value
+  previewSize         : 'previewSize'         , // optional - PreviewSize value
+  isResizeAnimated    : 'isResizeAnimated'    , // optional - bool
+  borderRadius        : 'borderRadius'        , // optional - number
+  backgroundColor     : 'backgroundColor'     , // optional - string
+  preferredCommitStyle: 'preferredCommitStyle', // optional - CommitStyle value
 };
 
 export const MenuActionKeys = {
