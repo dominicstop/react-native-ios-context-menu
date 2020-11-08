@@ -161,8 +161,7 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 |--------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
 | `menuConfig`             | **Required**:  [￼`MenuConfig`￼](#332-menuconfig-object) Object | An object that represents the menu to display. You can use state if you want to dynamically change the menu configuration: See `ContextMenuView` [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js) for examples. Check the [`MenuConfig`](#332-menuconfig-object) section for the object's structure/properties. On iOS 14+ the menu config can be updated while it's visible. |
 | `useActionSheetFallback` | **Optional**: `Bool`                                         | If set to true, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop. Default value is `false` on iOS 13+ and true on android, and on iOS 12 and below. |
-| `previewType`            | **Optional**: `String` i.e. a `PreviewType` enum value       | **Default**: `DEFAULT` — Configures what to use for the context menu preview. |
-| `previewSize`            | **Optional**: `{width: Number, height: Number} Object`       | **Default**: `null` — The size of the context meu preview. By default, it wil try to fill the entire screen. |
+| `previewConfig`          | **Optional**:  [￼`PreviewConfig`￼](#332-previewconfig-object) Object |                                                              |
 | `lazyPreview`            | **Optional**: `Bool`                                         | **Default**: `true` — By default, the context mrenu preview is only mounted/rendered when the context menu is visible. Set this to `false` if you want the preview to be always mounted. |
 | `renderPreview`          | **Optional**: `Function`                                     | Accepts a function that returns a react component. The returned component will displayed in the context menu preview. See  section [Example #11](#4111-contextmenuview-simple-example-11) and [Example #12](#4112-contextmenuview-simple-example-12) for more details. |
 | `onMenuWillShow`         | **Event**: Function                                          | Event that gets called **before** the context menu is  shown, i.e. this event is immediently invoked when the menu is about to become visible. |
@@ -208,7 +207,7 @@ A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This mo
 
 ### 3.2 Enum Values
 #### 3.2.1 `ImageTypes` Enum
-Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.imageType`.
+Enum string values you can use for `MenuConfig.imageType` or `MenuAction.imageType`.
 * Import the enum like this: `import { ImageTypes } from "react-native-ios-context-menu";`
 * And use it  like this: `imageType: ImageTypes.SYSTEM` 
 * Or you can directly pass a string like this: `imageType: 'SYSTEM'`
@@ -223,7 +222,7 @@ Enum values of strings you can use for `MenuConfig.imageType` or `MenuAction.ima
 <br>
 
 #### 3.2.2 `MenuOptions` Enum
-Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the swift/objc-c  `UIMenu.Options` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
+Enum string values you can use in a `MenuConfig` object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the swift/objc-c  `UIMenu.Options` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
 * Import the enum like this: `import { MenuOptions } from "react-native-ios-context-menu";`
 * And use it  like this: `menuOptions: [MenuOptions.destructive`] 
 * Or you can directly pass a string like this: `menuOptions: ['destructive']`
@@ -239,7 +238,7 @@ Enum values of strings you can use in a `MenuConfig` object (i.e. in the `MenuCo
 <br>
 
 #### 3.2.3 `MenuElementAtrributes` Enum
-Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the swift/obj-c `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
+Enum string values you can use in a `MenuAction` object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the swift/obj-c `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
 * Import the enum like this: `import { MenuElementAtrributes } from "react-native-ios-context-menu";`
 * And use it  like this: `menuAttributes: [MenuElementAtrributes.destructive]` 
 * Or you can directly pass a string like this: `menuAttributes: ['destructive']`
@@ -256,7 +255,7 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 <br>
 
 #### 3.2.4 `UIMenuElementState` Enum
-Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAction.menuState` property). These string values corresponds to the swift/obj-c  `UIMenuElementState ` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more info.
+Enum string values you can use in a `MenuAction` object (i.e. in the `MenuAction.menuState` property). These string values corresponds to the swift/obj-c  `UIMenuElementState ` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more info.
 * Import the enum like this: `import { UIMenuElementState } from "react-native-ios-context-menu";`
 * And use it  like this: `menuState: UIMenuElementState.on` 
 * Or you can directly pass a string like this: `menuState: 'on'`
@@ -271,16 +270,47 @@ Enum values of strings you can use in a `MenuAction` object (i.e. in the `MenuAc
 | `mixed` | Indicates that the menu element is in the “mixed” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark (same as the `on` state). |
 <br>
 
-#### 3.2.4 `PreviewType` Enum
-Enum values of strings you can use in the `ContextMenuView` `PreviewType` prop.
+#### 3.2.5 `PreviewType` Enum
+Enum string values you can use in the `ContextMenuView.previewConfig` prop's `PreviewConfig.previewType` property.
 * Import the enum like this: `import { PreviewType } from "react-native-ios-context-menu";`
-* And use it  like this: `previewSize={PreviewType.CUSTOM}` 
-* Or you can directly pass a string like this: `previewSize={'CUSTOM'}` 
+* And use it  like this: `{previewType: PreviewType.CUSTOM}` 
+* Or you can directly pass a string like this: `{previewType: 'CUSTOM'}` 
+
+<br>
 
 | Value     | Description                                                  |
 |-----------|--------------------------------------------------------------|
 | `DEFAULT` | The default value for the `previewSize` prop. Indicates that we don't want to use a custom context menu preview. |
 | `CUSTOM`  | Indicates that we want to use a custom context menu preview. |
+<br>
+
+#### 3.2.6 `PreviewSize` Enum
+Enum string values you can use in the `ContextMenuView.previewConfig` prop's `PreviewConfig.previewSize` property.
+* Import the enum like this: `import { PreviewSize } from "react-native-ios-context-menu";`
+* And use it  like this: `{previewSize: PreviewSize.STRETCH}` 
+* Or you can directly pass a string like this: `{previewSize: 'STRETCH'}` 
+
+<br>
+
+| Value     | Description                                                  |
+|-----------|--------------------------------------------------------------|
+| `INHERIT` | The default value. Specifies that the context menu preview's size should match the view you return from `ContextMenuView.renderPreview` prop. `UIContextMenu` will automatically resize/scale the preview to fit in the screen. |
+| `STRETCH` | Specifies that we want the context menu preview to stretch and fill up the screen. |
+<br>
+
+#### 3.2.7 `CommitStyle` Enum
+Enum string values you can use in the `ContextMenuView.previewConfig` prop's `PreviewConfig.preferredCommitStyle` property. This enum corresponds to the`UIContextMenuInteractionCommitStyle` enum, check the [apple docs](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle) for more info. 
+* This enum is used to configure `animator.preferredCommitStyle` in this [function](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate/3375807-contextmenuinteraction) in the [`UIContextMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate).
+* Import the enum like this: `import { PreviewType } from "react-native-ios-context-menu";`
+* And use it  like this: `{preferredCommitStyle: CommitStyle.pop}` 
+* Or you can directly pass a string like this: `{preferredCommitStyle: 'pop'}` 
+
+<br>
+
+| Value     | Description                                                  |
+|-----------|--------------------------------------------------------------|
+| `dismiss` | The default value. An interaction with no animations. Visually (as of iOS 13/14), when the context menu preview is tapped, the preview scale back to the orginal position. |
+| `pop`     | The default value. An interaction with no animations. Visually (as of iOS 13/14), when the context menu preview is tapped, the preview will abruptly zoom in to fill the screen while fading out. |
 <br>
 
 ### 3.3 Object Types
@@ -330,6 +360,22 @@ The `nativeEvent` object that you receive inside the `onPressMenuItem` event. Th
   "target": 1175
 }
 ```
+
+<br>
+
+#### 3.3.3 `PreviewConfig` Object
+The object  you pass in the `ContextMenuView.menuConfig` prop. This object is used to configure the context menu preview. Most of the properties in this object is used to configure [￼`UITargetedPreview`￼](https://developer.apple.com/documentation/uikit/uitargetedpreview), specifically: [￼`UIPreviewParameters`￼](https://developer.apple.com/documentation/uikit/uipreviewparameters).
+
+<br>
+
+| Key/Property           | Type                                                         | Description                                                  |
+|------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
+| `previewType`          | **Optional**: `String` (`PreviewType` value), **Default**: `DEFAULT` | Contols the type of preview to show when the context menu is visible. |
+| `previewSize`          | **Optional**: `String` (`PreviewSize` value), **Default**: `INHERIT` | Controls the size of the context menu preview.               |
+| `isResizeAnimated`     | **Optional**: `Bool`, **Default**: `true`                    | Controls whether or not the context menu preview should animate the view's size changes. |
+| `borderRadius`         | **Optional**: `Number`                                       | The radius of the context menu preview. When no value is provided,  it will use the system default value. |
+| `backgroundColor`      | **Optional**: `String`, **Default**: `transparent`           | Sets the background color of the context menu preview.       |
+| `preferredCommitStyle` | **Optional**: `String` (`PreferredCommitStyle` value), **Default**: `dismiss` | Controls the type of exit animation to use for the context menu preview when its tapped. |
 
 <br>
 
@@ -826,34 +872,49 @@ function ContextMenuViewSimpleExample10(props) {
 
 #### 4.1.11 `ContextMenuView` [Simple Example #11](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample11.js)
 A context menu configured to have a custom preview.
-* To show a custom preview, first set the `previewType` prop to `CUSTOM`. Then pass a "render" function in the `renderPreview` prop. The `renderPreview` prop must return a react component.
-* The `previewSize` prop is an optional property that sets the preview size. If you don't set the `previewSize` prop, the preview will stretch to fill the screen. 
-* The `previewSize` prop accepts an object: `{ width: Number, height: Number }`. If the `width`  property is omitted or null, then it it's default value will be the screen width. Conversely, If the `height`  property is omitted or null, then it it's default value will be the screen height.
-* Note, `UIContextMenu` will automatically resize/scale the preview to fit the screen, but it will try to match the values you pass to `previewSize`.
+* To show a custom preview, we need to pass a `PreviewConfig` object to the `previewConfig` prop, and set the optional `PreviewConfig.previewType` property to `CUSTOM`, and then pass a "render" function in the `renderPreview` prop. The `renderPreview` prop must return a react component.
+	*  `PreviewConfig.previewType` property accepts a `PreviewType` value.
+
+* A `PreviewConfig` object has an optional property called `previewSize`. It accepts a string (a `PreviewSize` value). In this example we set it to `STRETCH` to fill the screen.
+* The `PreviewConfig.backgroundColor` is set to `transparent` by default, so we set it to `white` in this example.
+* **Note**: `UIContextMenu` will automatically resize/scale the preview to fit the screen.
 
 <br>
 
 ```jsx
-<ContextMenuView
-  previewType={'CUSTOM'}
-  previewSize={{ height: 200 }}
-  renderPreview={() => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize: 32}}>
-        Hello World
-      </Text>
-      <Text style={{fontSize: 32}}>
-        Hello World
-      </Text>
-      <Text style={{fontSize: 32}}>
-        Hello World
-      </Text>
-    </View>
-  )}
-  menuConfig={{
-    menuTitle: 'ContextMenuViewSimpleExample11',
-  }}
-/>
+function ContextMenuViewSimpleExample11(props) {
+  return(
+    <ContextMenuView
+      previewConfig={{
+        // To show a custom context menu preview set `previewType` to `CUSTOM`
+        previewType: 'CUSTOM',
+        // To take make the preview as big as possible, set `previewSize` to
+        // STRETCH, otherwise set it to `INHERIT`
+        previewSize: 'STRETCH',
+        backgroundColor: 'white'
+      }}
+      renderPreview={() => (
+		 // Since we set `previewConfig.previewSize` to `STRETCH`, we need to
+        // add `flex: 1` style to our preview so that it will fill the space
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+        </View>
+      )}
+      menuConfig={{
+        // `menuItems` is optional
+        menuTitle: 'ContextMenuViewSimpleExample11',
+      }}
+    />
+  );
+};
 ```
 
 ![Simple Example 11](./assets/example-screenshots/ContextMenuView-SimpleExample11.png)
@@ -862,6 +923,7 @@ A context menu configured to have a custom preview.
 
 #### 4.1.12 `ContextMenuView` [Simple Example #12](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample12.js)
 Another context menu with custom preview example. This example shows a counter in the context menu preview that increments every half a second. The context menu is also configured with a menu action to add 100 to the counter, and an action to reset the counter.
+* A `PreviewConfig` object has an optional property called `previewSize`. It accepts a string (a `PreviewSize` value).  The default value of `PreviewConfig.previewSize` is `INHERIT`, which means the size of the preview is the same as the view you returned in the `renderPreview` prop. So in this example, the size of the preview changes to fit the content.
 
 <br>
 
@@ -873,7 +935,7 @@ function ContextMenuViewSimpleExample12(props) {
   const handleStart = () => {
     increment.current = setInterval(() => {
       setTimer((timer) => timer + 1);
-    }, 500);
+    }, 1000);
   };
 
   const handleStop = () => {
@@ -887,12 +949,18 @@ function ContextMenuViewSimpleExample12(props) {
 
   return(
     <ContextMenuView
-      previewType={'CUSTOM'}
-      previewSize={{ height: 200 }}
+      // `ContextMenuView` Props
+      previewConfig={{
+        previewType: 'CUSTOM',
+        backgroundColor: 'white'
+      }}
       renderPreview={() => (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ padding: 20 }}>
           <Text style={{fontSize: 32}}>
             {`Counter: ${timer}`}
+          </Text>
+          <Text style={{fontSize: 32}}>
+            {(timer % 2 == 0)? 'EVEN' : 'The number is: ODD'}
           </Text>
         </View>
       )}
@@ -943,16 +1011,19 @@ A context menu configured with 3 menu actions with each having a `discoverabilit
   menuConfig={{
     menuTitle: 'ContextMenuViewSimpleExample13',
     menuItems: [{
-      actionKey           : 'key-01',
-      actionTitle         : 'Action #1',
-      discoverabilityTitle: 'Action subtitle', // <- set the property
+      actionKey  : 'key-01',
+      actionTitle: 'Action #1',
+      // set the optional `discoverabilityTitle` property to a string
+      discoverabilityTitle: 'Action subtitle',
     }, {
-      actionKey           : 'key-02'   ,
-      actionTitle         : 'Action #2',
+      actionKey  : 'key-02'   ,
+      actionTitle: 'Action #2',
+      // if the string is long, it will be split into two lines
       discoverabilityTitle: 'Lorum ipsum sit amit dolor aspicing',
     }, {
-      actionKey           : 'key-03'   ,
-      actionTitle         : 'Action #3',
+      actionKey  : 'key-03'   ,
+      actionTitle: 'Action #3',
+      // and if the string is too long, it will be truncated...
       discoverabilityTitle: 'Very long `discoverabilityTitle` lorum ipsum sit amit',
     }],
   }}
@@ -960,6 +1031,49 @@ A context menu configured with 3 menu actions with each having a `discoverabilit
 ```
 
 ![Simple Example 13](./assets/example-screenshots/ContextMenuView-SimpleExample13.png)
+
+<br>
+
+#### 4.1.14 `ContextMenuView` [Simple Example #14](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
+A context menu configured to have a custom preview and the optional  `PreviewConfig.preferredCommitStyle` property set to  `pop`. 
+* The default value for `preferredCommitStyle` is dismiss, that's why when you tap the context menu preview, the preview will animate back to it's original position.
+* If you set `preferredCommitStyle` to `pop`, when you tap the context menu preview, the preview will rapidly zoom in and fade out. This is great if you want to show something different when the preview is tapped.
+* A `PreviewConfig.preferredCommitStyle` object has an optional `isResizeAnimated` boolean property, and its set to `true` by default. If you don't want the preview to animate whenever the size changes, set this property to `false`.
+
+<br>
+
+```jsx
+function ContextMenuViewSimpleExample14(props) {
+  return(
+    <ContextMenuView
+      previewConfig={{
+        previewType: 'CUSTOM',
+        previewSize: 'STRETCH',
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        preferredCommitStyle: 'pop',
+      }}
+      renderPreview={() => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+        </View>
+      )}
+      menuConfig={{
+        menuTitle: 'ContextMenuViewSimpleExample14',
+      }}
+    />
+  );
+};
+```
+
+![Simple Example 14](./assets/example-screenshots/ContextMenuView-SimpleExample14.png)
 
 <br>
 
