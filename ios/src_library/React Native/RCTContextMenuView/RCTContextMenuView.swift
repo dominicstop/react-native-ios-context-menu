@@ -201,20 +201,24 @@ extension RCTContextMenuView {
       // set preview bg color
       param.backgroundColor = previewConfig.backgroundColor;
       
-      let previewShape = UIBezierPath(
-        // get width/height from custom preview view
-        roundedRect: CGRect(
-          origin: CGPoint(x: 0, y: 0),
-          size  : self.frame.size
-        ),
-        // set the preview corner radius
-        cornerRadius: previewConfig.borderRadius
-      );
-      
-      // set preview border shape
-      param.visiblePath = previewShape;
-      if #available(iOS 14, *){
-        param.shadowPath  = previewShape;
+      // set the preview border shape
+      if let borderRadius = previewConfig.borderRadius {
+        let previewShape = UIBezierPath(
+          // get width/height from custom preview view
+          roundedRect: CGRect(
+            origin: CGPoint(x: 0, y: 0),
+            size  : self.frame.size
+          ),
+          // set the preview corner radius
+          cornerRadius: borderRadius
+        );
+        
+        // set preview border shape
+        param.visiblePath = previewShape;
+        // set preview border shadow
+        if #available(iOS 14, *){
+          param.shadowPath  = previewShape;
+        };
       };
       
       return param;

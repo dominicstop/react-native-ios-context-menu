@@ -35,7 +35,7 @@ struct PreviewConfig {
 
   var isResizeAnimated = true;
   
-  var borderRadius   : CGFloat = 10;
+  var borderRadius   : CGFloat?;
   var backgroundColor: UIColor = .clear;
   
   var preferredCommitStyle: UIContextMenuInteractionCommitStyle = .dismiss;
