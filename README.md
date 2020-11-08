@@ -829,6 +829,7 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
 #### 4.1.10 `ContextMenuView` [Simple Example #10](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample10.js)
 On iOS 14 and above, you can update the menu while it's visible. You can update the menu while its open by updating the `menuConfig` prop via state. This is a simple demo with a counter state incrementing every second when the menu is open.
 * This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-9-10.gif).
+
 <br>
 
 ```jsx
@@ -936,6 +937,7 @@ function ContextMenuViewSimpleExample11(props) {
 #### 4.1.12 `ContextMenuView` [Simple Example #12](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample12.js)
 Another context menu with custom preview example. This example shows a counter in the context menu preview that increments every half a second. The context menu is also configured with a menu action to add 100 to the counter, and an action to reset the counter.
 * A `PreviewConfig` object has an optional property called `previewSize`. It accepts a string (a `PreviewSize` value).  The default value of `PreviewConfig.previewSize` is `INHERIT`, which means the size of the preview is the same as the view you returned in the `renderPreview` prop. So in this example, the size of the preview changes to fit the content.
+* A `PreviewConfig.preferredCommitStyle` object has an optional `isResizeAnimated` boolean property, and its set to `true` by default. If you don't want the preview to animate whenever the size changes, set this property to `false`.
 
 <br>
 
@@ -1050,7 +1052,6 @@ A context menu configured with 3 menu actions with each having a `discoverabilit
 A context menu configured to have a custom preview and the optional  `PreviewConfig.preferredCommitStyle` property set to  `pop`. 
 * The default value for `preferredCommitStyle` is dismiss, that's why when you tap the context menu preview, the preview will animate back to it's original position.
 * If you set `preferredCommitStyle` to `pop`, when you tap the context menu preview, the preview will rapidly zoom in and fade out. This is great if you want to show something different when the preview is tapped.
-* A `PreviewConfig.preferredCommitStyle` object has an optional `isResizeAnimated` boolean property, and its set to `true` by default. If you don't want the preview to animate whenever the size changes, set this property to `false`.
 
 <br>
 
