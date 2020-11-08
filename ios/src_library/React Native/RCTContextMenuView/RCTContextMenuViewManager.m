@@ -26,13 +26,17 @@ RCT_EXPORT_VIEW_PROPERTY(onMenuDidCancel, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem   , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuPreview, RCTBubblingEventBlock);
 
+RCT_EXPORT_VIEW_PROPERTY(onMenuWillCreate, RCTBubblingEventBlock);
+
 // -----------------------------------
 // MARK: Props - RN Comp Props: Values
 // -----------------------------------
 
-RCT_EXPORT_VIEW_PROPERTY(menuConfig , NSDictionary);
-RCT_EXPORT_VIEW_PROPERTY(previewSize, NSDictionary);
+RCT_EXPORT_VIEW_PROPERTY(menuConfig   , NSDictionary);
+RCT_EXPORT_VIEW_PROPERTY(previewConfig, NSDictionary);
 
+// TOOD: remove
+RCT_EXPORT_VIEW_PROPERTY(previewSize, NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(previewType, NSString);
 
 @end

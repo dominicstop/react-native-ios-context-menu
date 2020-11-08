@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity, processColor } from 'react-native';
 import Proptypes from 'prop-types';
 
 import { PreviewType } from './Enums';
@@ -19,9 +19,8 @@ const NativeComponent = requireNativeComponent(componentName);
 
 const NATIVE_PROP_KEYS = {
   // props: values ----------
-  menuConfig : 'menuConfig' ,
-  previewType: 'previewType',
-  previewSize: 'previewSize',
+  menuConfig   : 'menuConfig'   ,
+  previewConfig: 'previewConfig',
   // props: events --------------------
   onMenuWillShow  : 'onMenuWillShow'  ,
   onMenuWillHide  : 'onMenuWillHide'  ,
@@ -29,6 +28,7 @@ const NATIVE_PROP_KEYS = {
   onMenuDidShow   : 'onMenuDidShow'   ,
   onMenuDidHide   : 'onMenuDidHide'   ,
   onMenuDidCancel : 'onMenuDidCancel' ,
+  onMenuWillCreate: 'onMenuWillCreate',
   // props: onPress events ----------------
   onPressMenuItem   : 'onPressMenuItem'   ,
   onPressMenuPreview: 'onPressMenuPreview',
@@ -37,9 +37,8 @@ const NATIVE_PROP_KEYS = {
 
 export class ContextMenuView extends React.PureComponent {
   static proptypes = {
-    menuConfig : Proptypes.object,
-    previewType: Proptypes.string,
-    previewSize: Proptypes.object,
+    menuConfig   : Proptypes.object,
+    previewConfig: Proptypes.object,
     renderPreview: Proptypes.func,
     // flags -----------------------
     lazyPreview           : Proptypes.bool,
@@ -66,7 +65,8 @@ export class ContextMenuView extends React.PureComponent {
     super(props);
 
     this.state = {
-      menuVisible: false,
+      menuVisible : false,
+      mountPreview: false,
     };
   };
 
@@ -79,6 +79,15 @@ export class ContextMenuView extends React.PureComponent {
     for (const key of nativeKeys) {
       nativeProps[key] = otherProps[key];
       delete otherProps[key];
+    };
+
+    let previewBgColor = 
+      nativeProps[NATIVE_PROP_KEYS.previewConfig]?.backgroundColor;
+    
+    if(previewBgColor){
+      // process previewConfig.backgroundColor prop
+      nativeProps[NATIVE_PROP_KEYS.previewConfig].backgroundColor = 
+        processColor(previewBgColor);
     };
 
     return { nativeProps, ...otherProps };
@@ -98,6 +107,10 @@ export class ContextMenuView extends React.PureComponent {
     };
   };
 
+  _handleOnMenuWillCreate = () => {
+    this.setState({mountPreview: true});
+  };
+
   _handleOnMenuWillShow = (event) => {
     const { onMenuWillShow } = this.props;
     onMenuWillShow?.(event);
@@ -109,7 +122,10 @@ export class ContextMenuView extends React.PureComponent {
     const { onMenuWillHide } = this.props;
     onMenuWillHide?.(event);
 
-    this.setState({menuVisible: false});
+    this.setState({
+      menuVisible : false,
+      mountPreview: false,
+    });
   };
 
   _handleOnMenuWillCancel = (event) => {
@@ -146,7 +162,7 @@ export class ContextMenuView extends React.PureComponent {
 
   _renderContextMenuView(){
     const { style, children, nativeProps, ...props } = this.getProps();
-    const { menuVisible } = this.state;
+    const { menuVisible, mountPreview } = this.state;
 
     const nativeCompProps = {
       ...nativeProps,
@@ -157,6 +173,7 @@ export class ContextMenuView extends React.PureComponent {
       [NATIVE_PROP_KEYS.onMenuDidShow   ]: this._handleOnMenuDidShow   ,
       [NATIVE_PROP_KEYS.onMenuDidHide   ]: this._handleOnMenuDidHide   ,
       [NATIVE_PROP_KEYS.onMenuDidCancel ]: this._handleOnMenuDidCancel ,
+      [NATIVE_PROP_KEYS.onMenuWillCreate]: this._handleOnMenuWillCreate,
       // Native Props: OnPress Events --------------------------------------
       [NATIVE_PROP_KEYS.onPressMenuItem   ]: this._handleOnPressMenuItem   ,
       [NATIVE_PROP_KEYS.onPressMenuPreview]: this._handleOnPressMenuPreview,
@@ -168,7 +185,7 @@ export class ContextMenuView extends React.PureComponent {
         {...nativeCompProps}
       >
         <View style={styles.previewContainer}>
-          {(menuVisible || !props.lazyPreview) && (
+          {(mountPreview || !props.lazyPreview) && (
             props.renderPreview?.()
           )}
         </View>
@@ -209,5 +226,6 @@ const styles = StyleSheet.create({
   },
   previewContainer: {
     position: 'absolute',
+    backgroundColor: 'transparent',
   },
 });
