@@ -44,11 +44,10 @@ class RCTMenuActionItem: RCTMenuElement {
     
     self.actionKey   = actionKey   as String;
     self.actionTitle = actionTitle as String;
-
-    self.imageType = {
-      let text = dictionary["imageType"] as? String ?? "";
-      return ImageType.withLabel(text) ?? .NONE;
-    }();
+    
+    if let imageType = dictionary["imageType"] as? String {
+      self.imageType = ImageType(rawValue: imageType) ?? .NONE;
+    };
     
     self.discoverabilityTitle = dictionary["discoverabilityTitle"] as? String;
     

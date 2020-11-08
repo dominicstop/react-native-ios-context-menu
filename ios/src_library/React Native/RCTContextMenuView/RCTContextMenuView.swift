@@ -11,85 +11,6 @@ import UIKit;
 @available(iOS 13, *)
 class RCTContextMenuView: UIView {
   
-  enum PreviewType: String, CaseIterable, Encodable {
-    case DEFAULT;
-    case CUSTOM;
-  };
-  
-  enum PreviewSize {
-    case inherit;
-    case stretch;
-    case custom(size: CGFloat);
-    
-    init?(fromString string: String) {
-      switch string {
-        case "inherit": self = .inherit;
-        case "stretch": self = .stretch;
-
-        default: return nil;
-      };
-    };
-    
-    init?(fromAny value: Any) {
-      if let string      = value as? String,
-         let previewSize = PreviewSize(fromString: string) {
-        
-        self = previewSize;
-        
-      } else if let size = value as? CGFloat {
-        self = .custom(size: size);
-        
-      } else {
-        return nil;
-      };
-    };
-  };
-  
-  struct PreviewConfig {
-    var previewType: PreviewType;
-    
-    var previewHeight: PreviewSize;
-    var previewWidth : PreviewSize;
-    
-    var previewBorderRadius: CGFloat;
-    
-    var backgroundColor: UIColor;
-    
-    init(){
-      // TODO: replace with extension
-      // init struct with default values
-      self.previewType         = .DEFAULT;
-      self.previewHeight       = .inherit;
-      self.previewWidth        = .inherit;
-      self.backgroundColor     = .red;
-      self.previewBorderRadius = 10;
-    };
-    
-    init(dictionary: NSDictionary){
-      self.init();
-      
-      if let previewTypeString = dictionary["previewType"] as? String,
-         let previewType       = PreviewType(rawValue: previewTypeString) {
-        
-        self.previewType = previewType;
-      };
-      
-      if let previewHeight = dictionary["previewHeight"],
-         let previewSize   = PreviewSize(fromAny: previewHeight) {
-        
-        self.previewHeight = previewSize;
-      };
-      
-      if let previewWidth = dictionary["previewWidth"],
-         let previewSize  = PreviewSize(fromAny: previewWidth) {
-        
-        self.previewWidth = previewSize;
-      };
-      
-      //RCTConvert.uiColor(0000000000);
-    };
-  };
-  
   // -------------------------------------
   // MARK: RCTContextMenuView - Properties
   // -------------------------------------
@@ -162,23 +83,6 @@ class RCTContextMenuView: UIView {
     }
   };
   
-  // TODO: remove
-  private var _previewType: PreviewType = .DEFAULT;
-  @objc var previewType: NSString? {
-    didSet {
-      guard
-        let previewTypeString = self.previewType as String?,
-        let previewType       = PreviewType(rawValue: previewTypeString)
-      else { return };
-      
-      self._previewType = previewType;
-    }
-  };
-  
-  // TODO: remove
-  @objc var previewSize: NSDictionary?;
-  
-  
   private var _previewConfig = PreviewConfig();
   @objc var previewConfig: NSDictionary? {
     didSet {
@@ -232,6 +136,15 @@ class RCTContextMenuView: UIView {
 @available(iOS 13, *)
 extension RCTContextMenuView {
   
+  private func notifyForBoundsChange(_ newBounds: CGRect){
+    guard
+      let bridge    = self.bridge,
+      let reactView = self.reactPreviewView else { return };
+        
+    bridge.uiManager.setSize(newBounds.size, for: reactView);
+  };
+  
+  /// get the menu preview size based on `PreviewConfig` prop
   private func getPreviewSize() -> CGSize {
     // alias to variable
     let previewConfig = self._previewConfig;
@@ -272,23 +185,10 @@ extension RCTContextMenuView {
       };
     }();
     
-    
-    print("getPreviewSize - previewWidth: \(previewWidth)");
-    print("getPreviewSize - previewHeight: \(previewHeight)");
-    print("getPreviewSize - previewConfig - previewWidth: \(previewConfig.previewWidth)");
-    print("getPreviewSize - previewConfig - previewHeight: \(previewConfig.previewHeight)");
-    
     return CGSize(width: previewWidth, height: previewHeight);
   };
   
-  private func notifyForBoundsChange(_ newBounds: CGRect){
-    guard
-      let bridge    = self.bridge,
-      let reactView = self.reactPreviewView else { return };
-        
-    bridge.uiManager.setSize(newBounds.size, for: reactView);
-  };
-  
+  /// create `UIMenu` based on `menuConfig` prop
   private func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
     guard  let menuConfig = self._menuConfig else {
       #if DEBUG
@@ -304,6 +204,7 @@ extension RCTContextMenuView {
       self.onPressMenuItem?(dict);
     };
   };
+  
   
   private func createMenuPreview() -> UIViewController? {
     // alias to variable

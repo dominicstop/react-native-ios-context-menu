@@ -10,11 +10,7 @@ import Foundation
 
 
 public enum ImageType: String, CaseIterable, Encodable {
-  case NONE   = "NONE";
-  case URL    = "URL";
-  case SYSTEM = "SYSTEM";
-  
-  static func withLabel(_ label: String) -> ImageType? {
-    return self.allCases.first{ $0.rawValue == label };
-  };
+  case NONE;
+  case URL;
+  case SYSTEM;
 };
