@@ -10,44 +10,10 @@ import Foundation
 
 
 struct PreviewConfig {
-  
-  // -----------------------
-  // MARK: Type Declarations
-  // -----------------------
-  
+    
   enum PreviewType: String {
     case DEFAULT;
     case CUSTOM;
-  };
-
-  enum PreviewSize {
-    
-    case inherit;
-    case stretch;
-    case custom(size: CGFloat);
-    
-    init?(fromString string: String) {
-      switch string {
-        case "inherit": self = .inherit;
-        case "stretch": self = .stretch;
-
-        default: return nil;
-      };
-    };
-    
-    init?(fromAny value: Any) {
-      if let string      = value as? String,
-         let previewSize = PreviewSize(fromString: string) {
-        
-        self = previewSize;
-        
-      } else if let size = value as? CGFloat {
-        self = .custom(size: size);
-        
-      } else {
-        return nil;
-      };
-    };
   };
   
   // ----------------
@@ -55,14 +21,11 @@ struct PreviewConfig {
   // ----------------
   
   var previewType: PreviewType = .DEFAULT;
+    
+  var isResizeAnimated = true;
   
-  var previewHeight: PreviewSize = .inherit;
-  var previewWidth : PreviewSize = .inherit;
-  
-  var previewBorderRadius: CGFloat = 10;
-  
+  var borderRadius   : CGFloat = 10;
   var backgroundColor: UIColor = .red;
-  
 };
 
 // --------------------------
@@ -72,22 +35,18 @@ struct PreviewConfig {
 extension PreviewConfig {
   
   init(dictionary: NSDictionary){
-    if let previewTypeString = dictionary["previewType"] as? String,
-       let previewType       = PreviewType(rawValue: previewTypeString) {
+    if let string      = dictionary["previewType"] as? String,
+       let previewType = PreviewType(rawValue: string) {
       
       self.previewType = previewType;
     };
     
-    if let previewHeight = dictionary["previewHeight"],
-       let previewSize   = PreviewSize(fromAny: previewHeight) {
-      
-      self.previewHeight = previewSize;
+    if let borderRadius = dictionary["borderRadius"] as? CGFloat {
+      self.borderRadius = borderRadius;
     };
     
-    if let previewWidth = dictionary["previewWidth"],
-       let previewSize  = PreviewSize(fromAny: previewWidth) {
-      
-      self.previewWidth = previewSize;
+    if let isResizeAnimated = dictionary["isResizeAnimated"] as? Bool {
+      self.isResizeAnimated = isResizeAnimated;
     };
     
     //RCTConvert.uiColor(0000000000);

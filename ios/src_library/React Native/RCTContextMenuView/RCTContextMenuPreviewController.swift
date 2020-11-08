@@ -11,27 +11,32 @@ import UIKit;
 
 class RCTContextMenuPreviewController: UIViewController {
   
+  var isResizeAnimated = true;
+  
   var reactView: UIView?;
   var boundsDidChangeBlock: ((CGRect) -> Void)?;
   
   override func viewDidLoad() {
     super.viewDidLoad();
     
-    // setup vc's view
-    self.view = {
-      let view = UIView();
-      view.autoresizingMask = [.flexibleHeight, .flexibleWidth];
-      return view;
-    }();
-    
     if let reactView = self.reactView {
       self.view.addSubview(reactView);
-      boundsDidChangeBlock?(self.view.bounds);
+      //boundsDidChangeBlock?(self.view.bounds);
     };
   };
   
   override func viewDidLayoutSubviews(){
     super.viewDidLayoutSubviews();
-    boundsDidChangeBlock?(self.view.bounds);
+    
+    guard let reactView = self.view.subviews.first else { return };
+    
+    if self.isResizeAnimated {
+      UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
+        self.preferredContentSize = reactView.frame.size;
+      };
+      
+    } else {
+      self.preferredContentSize = reactView.frame.size;
+    };
   };
 };

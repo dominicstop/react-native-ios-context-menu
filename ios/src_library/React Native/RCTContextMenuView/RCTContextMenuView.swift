@@ -144,50 +144,6 @@ extension RCTContextMenuView {
     bridge.uiManager.setSize(newBounds.size, for: reactView);
   };
   
-  /// get the menu preview size based on `PreviewConfig` prop
-  private func getPreviewSize() -> CGSize {
-    // alias to variable
-    let previewConfig = self._previewConfig;
-    // get screen size
-    let screenSize: CGRect = UIScreen.main.bounds;
-    
-    /// get frame from react custom preview
-    /// the frame of `reactPreviewView` and it's first subview are the same, the difference is that
-    /// the first child (i.e. the view returned from the `renderPreview` prop) will be rendered/mounted
-    /// when the context menu is about to be shown, meanwhile `reactPreviewView` will always be
-    /// mounted. Thus, when `renderPreview`is mounted, `reactPreviewView` will have the same
-    /// frame size, but when `renderPreview` is not mounted,  the frame size  of `reactPreviewView`
-    /// will be (0, 0) since it doesn't have any subviews. The first subview of `reactPreviewView` will be
-    /// `nil` when `renderPreview` is not mounted.
-    let previewFrame = self.reactPreviewView?.subviews.first?.frame;
-    
-    // get the preview width from previewConfig
-    let previewWidth: CGFloat = {
-      let screenWidth = screenSize.width;
-      
-      switch previewConfig.previewWidth {
-        case .inherit: return previewFrame?.width ?? screenWidth;
-        case .stretch: return 0;
-          
-        case let .custom(size): return size;
-      };
-    }();
-    
-    // get the preview height from previewConfig
-    let previewHeight: CGFloat = {
-      let screenHeight = screenSize.height;
-      
-      switch previewConfig.previewHeight {
-        case .inherit: return previewFrame?.height ?? screenHeight;
-        case .stretch: return 0;
-          
-        case let .custom(size): return size;
-      };
-    }();
-    
-    return CGSize(width: previewWidth, height: previewHeight);
-  };
-  
   /// create `UIMenu` based on `menuConfig` prop
   private func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
     guard  let menuConfig = self._menuConfig else {
@@ -217,7 +173,7 @@ extension RCTContextMenuView {
     vc.reactView = self.reactPreviewView;
     
     vc.view.backgroundColor = .clear;
-    vc.preferredContentSize = self.getPreviewSize();
+    vc.isResizeAnimated = previewConfig.isResizeAnimated;
     
     vc.boundsDidChangeBlock = { [weak self] (newBounds: CGRect) in
       self?.notifyForBoundsChange(newBounds);
@@ -230,29 +186,30 @@ extension RCTContextMenuView {
     // alias to variable
     let previewConfig = self._previewConfig;
     
-    guard self._previewConfig.previewType == .CUSTOM  else {
-      // no custom preview defined
-      return UITargetedPreview(view: self);
-    };
-    
     return UITargetedPreview(view: self, parameters: {
-      let parameters = UIPreviewParameters();
+      // create preview parameters based on `previewConfig`
+      let param = UIPreviewParameters();
       
       // set preview bg color
-      parameters.backgroundColor = previewConfig.backgroundColor;
+      param.backgroundColor = previewConfig.backgroundColor;
       
-      // set preview border shape
-      parameters.visiblePath = UIBezierPath(
+      let previewShape = UIBezierPath(
         // get width/height from custom preview view
         roundedRect: CGRect(
           origin: CGPoint(x: 0, y: 0),
           size  : self.frame.size
         ),
         // set the preview corner radius
-        cornerRadius: previewConfig.previewBorderRadius
+        cornerRadius: previewConfig.borderRadius
       );
       
-      return parameters;
+      // set preview border shape
+      param.visiblePath = previewShape;
+      if #available(iOS 14, *){
+        param.shadowPath  = previewShape;
+      };
+      
+      return param;
     }());
   };
 };
