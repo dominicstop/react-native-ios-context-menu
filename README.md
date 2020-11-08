@@ -306,7 +306,7 @@ Enum string values you can use in the `ContextMenuView.previewConfig` prop's [�
 #### 3.2.7 `CommitStyle` Enum
 Enum string values you can use in the `ContextMenuView.previewConfig` prop's [￼`PreviewConfig.preferredCommitStyle`￼](#333-previewconfig-object) property. This enum corresponds to the`UIContextMenuInteractionCommitStyle` enum, check the [apple docs](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle) for more info. 
 * This enum is used to configure `animator.preferredCommitStyle` in this [function](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate/3375807-contextmenuinteraction) in the [`UIContextMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate).
-* Import the enum like this: `import { PreviewType } from "react-native-ios-context-menu";`
+* Import the enum like this: `import { CommitStyle } from "react-native-ios-context-menu";`
 * And use it  like this: `{preferredCommitStyle: CommitStyle.pop}` 
 * Or you can directly pass a string like this: `{preferredCommitStyle: 'pop'}` 
 * Check out [Simple Example #13](#4113-contextmenuview-simple-example-13) section for example usage.

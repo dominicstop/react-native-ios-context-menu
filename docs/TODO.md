@@ -18,11 +18,13 @@
 		* `RCTMenuItem.createMenu` function must be updated to also handle creating a `RCTMenuDefferedItem` item.
 	* On the native side when we create a `UIDeferredMenuElement` we do this:  `UIDeferredMenuElement { completion in self.completionDict[defferedKey] = completion }`, and then invoke a RN event: `self.onRequestDefferedElement([defferedKey: defferedKey])`.
 		* `onRequestDefferedElement` event prop will be invoked. We wait for the promise to return some value and then call  a `NativeModule` function.
-		* The `NativeModule` function will probably look like this: `ModalViewModule.resolveDefferedMenuElement({nodeHandle, defferedKey, menuItem});`
+		* The `NativeModule` function will probably look like this: `ContextMenuViewModule.resolveDefferedMenuElement({nodeHandle, defferedKey, menuItem});`
+		* Completion handlers will be stored in a dictionary. I'm not sure if I can use `NSMapTable`. I can use a plain `NSDictionary` but if I accidentally forget to cleanup (i.e. remove the completion handler from the dict) then that completion handler will be retained, causing a memory leak.
+			* Completion handlers, i.e. closures, are reference types. If I assign it to `NSMapTable` with `valueOptions: .weakMemory`, will it be automatically be released when it's no longer used? Will it be retained while it's in use or will it be released the moment i add it to `NSMapTable` because nothing is using it? Technically, it is in use because it's in `UIDeferredMenuElement` argument (so the ref count  should increase?)
 
 <br>
 
-- [ ] `ContextMenu` — Add `discoverabilityTitle` to `UIAction`
+- [x] `ContextMenu` — Add `discoverabilityTitle` to `UIAction`
 - [ ] Test `ContextMenuView` and `ContextMenuButton` on different react native versions
 	- [ ] Test on **0.60**
 	- [ ] Test on **0.61**
