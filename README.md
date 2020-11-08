@@ -4,7 +4,7 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
 * Support for iOS 14 functionality (like the `UIButton` menu, and updating the menu while its visible).
 * Support for setting (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, etc.)
 * `ActionSheetIOS` menu fallback for unsupported iOS versions.
-* Support for custom context menu previews.
+* Support for creating custom context menu previews.
 
 <br>
 
@@ -96,7 +96,7 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 ### 2.1 `ContextMenuView` Usage
 Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it.
 * See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
-* See [Example 11](#4111-contextmenuview-simple-example-11), and [Example 12](#4112-contextmenuview-simple-example-12) for details on how to show a custom context menu preview.
+* See [`PreviewConfig`](https://github.com/dominicstop/react-native-ios-context-menu#334-previewconfig-object) section or [Example 11](#4111-contextmenuview-simple-example-11), and [Example 12](#4112-contextmenuview-simple-example-12) for details on how to show a custom context menu preview.
 * See [`MenuConfig`](#332-menuconfig-object) and [￼`MenuAction`￼](h#331-menuaction-object) section for the list of properties you can use on the `menuConfig` prop.
 
 ```jsx
@@ -426,7 +426,7 @@ A plain context menu configured with 3 actions (no icons, just text).
 
 ![Simple Example 1](./assets/example-screenshots/ContextMenuView-SimpleExample01.png)
 
-<br>
+<br><br>
 
 #### 4.1.2 `ContextMenuView` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample02.js)
 A menu configured with 3 actions with "system" [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icons.
@@ -463,7 +463,7 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 
 ![Simple Example 2](./assets/example-screenshots/ContextMenuView-SimpleExample02.png)
 
-<br>
+<br><br>
 
 #### 4.1.3 `ContextMenuView` [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample03.js)
 A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
@@ -524,7 +524,7 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
 
 ![Simple Example 3](./assets/example-screenshots/ContextMenuView-SimpleExample03.png)
 
-<br>
+<br><br>
 
 #### 4.1.4 `ContextMenuView` [Simple Example #4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample04.js)
 A example context menu with a "*disabled*" action, a "*destructive*" action, a "*hidden*" action (which is not visible in the context menu), and a "*disabled + destructive*" action.
@@ -581,7 +581,7 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
 
 ![Simple Example 4](./assets/example-screenshots/ContextMenuView-SimpleExample04.png)
 
-<br>
+<br><br>
 
 #### 4.1.5 `ContextMenuView` [Simple Example #5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample05.js)
 A context menu that has a "*displayInline*" submenu. This is the same as [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu#413-contextmenuview-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`. Visually, this creates a "section" in the parent menu (i.e it add top and bottom separators).
@@ -632,7 +632,7 @@ A context menu that has a "*displayInline*" submenu. This is the same as [Simple
 
 ![Simple Example 5](./assets/example-screenshots/ContextMenuView-SimpleExample05.png)
 
-<br>
+<br><br>
 
 #### 4.1.6 `ContextMenuView` [Simple Example #6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample06.js)
 A context menu that has a "*destructive*" submenu. This is the same as [Simple Example #3](#413-contextmenuview-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `['destructive']`
@@ -680,7 +680,7 @@ A context menu that has a "*destructive*" submenu. This is the same as [Simple E
 
 ![Simple Example 6](./assets/example-screenshots/ContextMenuView-SimpleExample06.png)
 
-<br>
+<br><br>
 
 #### 4.1.7 `ContextMenuView` [Simple Example #7](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample07.js)
 A context menu that has a "*displayInline*" and "*destructive*" submenu. This is the same as [Simple Example #3](#413-contextmenuview-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `['displayInline', 'destructive']`
@@ -725,7 +725,7 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
 
 ![Simple Example 7](./assets/example-screenshots/ContextMenuView-SimpleExample07.png)
 
-<br>
+<br><br>
 
 #### 4.1.8 `ContextMenuView` [Simple Example #8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample08.js)
 A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
@@ -774,7 +774,7 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
 **Left Image**: iOS 13, and **Right Image**: iOS 14
 ![Simple Example 8](./assets/example-screenshots/ContextMenuView-SimpleExample08.png)
 
-<br>
+<br><br>
 
 #### 4.1.9 `ContextMenuView` [Simple Example #9](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample09.js)
 A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `onPressMenuPreview` event props.
@@ -824,7 +824,7 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
 
 ![Simple Example 9](./assets/example-screenshots/ContextMenuView-SimpleExample09.png)
 
-<br>
+<br><br>
 
 #### 4.1.10 `ContextMenuView` [Simple Example #10](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample10.js)
 On iOS 14 and above, you can update the menu while it's visible. You can update the menu while its open by updating the `menuConfig` prop via state. This is a simple demo with a counter state incrementing every second when the menu is open.
@@ -881,7 +881,7 @@ function ContextMenuViewSimpleExample10(props) {
 
 ![Simple Example 10](./assets/example-screenshots/ContextMenuView-SimpleExample10.png)
 
-<br>
+<br><br>
 
 #### 4.1.11 `ContextMenuView` [Simple Example #11](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample11.js)
 A context menu configured to have a custom preview.
@@ -907,7 +907,7 @@ function ContextMenuViewSimpleExample11(props) {
         backgroundColor: 'white'
       }}
       renderPreview={() => (
-		 // Since we set `previewConfig.previewSize` to `STRETCH`, we need to
+        // Since we set `previewConfig.previewSize` to `STRETCH`, we need to
         // add `flex: 1` style to our preview so that it will fill the space
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{fontSize: 32}}>
@@ -932,7 +932,7 @@ function ContextMenuViewSimpleExample11(props) {
 
 ![Simple Example 11](./assets/example-screenshots/ContextMenuView-SimpleExample11.png)
 
-<br>
+<br><br>
 
 #### 4.1.12 `ContextMenuView` [Simple Example #12](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample12.js)
 Another context menu with custom preview example. This example shows a counter in the context menu preview that increments every half a second. The context menu is also configured with a menu action to add 100 to the counter, and an action to reset the counter.
@@ -1013,7 +1013,7 @@ function ContextMenuViewSimpleExample12(props) {
 
 ![Simple Example 12](./assets/example-screenshots/ContextMenuView-SimpleExample12.png)
 
-<br>
+<br><br>
 
 #### 4.1.13 `ContextMenuView` [Simple Example #13](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample13.js)
 A context menu configured with 3 menu actions with each having a `discoverabilityTitle` value. Visually, this will show 3 menu actions with subtitles below them.
@@ -1046,7 +1046,7 @@ A context menu configured with 3 menu actions with each having a `discoverabilit
 
 ![Simple Example 13](./assets/example-screenshots/ContextMenuView-SimpleExample13.png)
 
-<br>
+<br><br>
 
 #### 4.1.14 `ContextMenuView` [Simple Example #14](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
 A context menu configured to have a custom preview and the optional  `PreviewConfig.preferredCommitStyle` property set to  `pop`. 
@@ -1088,7 +1088,7 @@ function ContextMenuViewSimpleExample14(props) {
 
 ![Simple Example 14](./assets/example-screenshots/ContextMenuView-SimpleExample14.png)
 
-<br>
+<br><br>
 
 ### 4.2 `ContextMenuButton` Examples
 Most of the examples in the `ContextMenuView` section also applies here. The props in `ContextMenuView` (like the `menuConfig` and `useActionSheetFallback` props) as well as most of the events behave the same. So the examples in this section are only for `ContextMenuButton`.
@@ -1124,7 +1124,7 @@ A plain context menu button configured with 3 actions (no icons, just text). A l
 
 ![Simple Example 1](./assets/example-screenshots/ContextMenuButton-SimpleExample01.png)
 
-<br>
+<br><br>
 
 #### 4.2.2 `ContextMenuButton` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
 A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead of a long press, tapping on the `ContextMenuButton` component will now immediately show the context menu. 
@@ -1161,7 +1161,7 @@ A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead
 
 ![Simple Example 2](./assets/example-screenshots/ContextMenuButton-SimpleExample02.png)
 
-<br>
+<br><br>
 
 ## License
 
