@@ -894,6 +894,7 @@ A context menu configured to have a custom preview.
 * A `PreviewConfig` object has an optional property called `previewSize`. It accepts a string (a `PreviewSize` value). In this example we set it to `STRETCH` to fill the screen.
 * The `PreviewConfig.backgroundColor` is set to `transparent` by default, so we set it to `white` in this example.
 * **Note**: `UIContextMenu` will automatically resize/scale the preview to fit the screen.
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif).
 
 <br>
 
@@ -941,6 +942,7 @@ function ContextMenuViewSimpleExample11(props) {
 Another context menu with custom preview example. This example shows a counter in the context menu preview that increments every half a second. The context menu is also configured with a menu action to add 100 to the counter, and an action to reset the counter.
 * A `PreviewConfig` object has an optional property called `previewSize`. It accepts a string (a `PreviewSize` value).  The default value of `PreviewConfig.previewSize` is `INHERIT`, which means the size of the preview is the same as the view you returned in the `renderPreview` prop. So in this example, the size of the preview changes to fit the content.
 * A `PreviewConfig.preferredCommitStyle` object has an optional `isResizeAnimated` boolean property, and its set to `true` by default. If you don't want the preview to animate whenever the size changes, set this property to `false`.
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif).
 
 <br>
 
@@ -1020,6 +1022,7 @@ function ContextMenuViewSimpleExample12(props) {
 
 #### 4.1.13 `ContextMenuView` [Simple Example #13](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample13.js)
 A context menu configured with 3 menu actions with each having a `discoverabilityTitle` value. Visually, this will show 3 menu actions with subtitles below them.
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif).
 
 <br>
 
@@ -1055,6 +1058,7 @@ A context menu configured with 3 menu actions with each having a `discoverabilit
 A context menu configured to have a custom preview and the optional  `PreviewConfig.preferredCommitStyle` property set to  `pop`. 
 * The default value for `preferredCommitStyle` is dismiss, that's why when you tap the context menu preview, the preview will animate back to it's original position.
 * If you set `preferredCommitStyle` to `pop`, when you tap the context menu preview, the preview will rapidly zoom in and fade out. This is great if you want to show something different when the preview is tapped.
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif).
 
 <br>
 
