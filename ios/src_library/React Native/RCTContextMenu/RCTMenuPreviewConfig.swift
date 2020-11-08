@@ -10,10 +10,19 @@ import Foundation
 
 
 struct PreviewConfig {
-    
+  
+  // -----------------------
+  // MARK: Type Declarations
+  // -----------------------
+  
   enum PreviewType: String {
     case DEFAULT;
     case CUSTOM;
+  };
+
+  enum PreviewSize: String {
+    case INHERIT;
+    case STRETCH;
   };
   
   // ----------------
@@ -21,11 +30,13 @@ struct PreviewConfig {
   // ----------------
   
   var previewType: PreviewType = .DEFAULT;
-    
+  var previewSize: PreviewSize = .INHERIT;
+
   var isResizeAnimated = true;
   
   var borderRadius   : CGFloat = 10;
-  var backgroundColor: UIColor = .red;
+  var backgroundColor: UIColor = .clear;
+  
 };
 
 // --------------------------
@@ -41,6 +52,12 @@ extension PreviewConfig {
       self.previewType = previewType;
     };
     
+    if let string      = dictionary["previewSize"] as? String,
+       let previewSize = PreviewSize(rawValue: string) {
+      
+      self.previewSize = previewSize;
+    };
+
     if let borderRadius = dictionary["borderRadius"] as? CGFloat {
       self.borderRadius = borderRadius;
     };

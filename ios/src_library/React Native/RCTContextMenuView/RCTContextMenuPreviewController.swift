@@ -11,7 +11,7 @@ import UIKit;
 
 class RCTContextMenuPreviewController: UIViewController {
   
-  var isResizeAnimated = true;
+  var previewConfig = PreviewConfig();
   
   var reactView: UIView?;
   var boundsDidChangeBlock: ((CGRect) -> Void)?;
@@ -19,24 +19,44 @@ class RCTContextMenuPreviewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad();
     
+    self.view = {
+      let view = UIView();
+      view.autoresizingMask = [.flexibleHeight, .flexibleWidth];
+      view.backgroundColor = .clear;
+      
+      return view;
+    }();
+    
     if let reactView = self.reactView {
       self.view.addSubview(reactView);
-      //boundsDidChangeBlock?(self.view.bounds);
     };
   };
   
-  override func viewDidLayoutSubviews(){
-    super.viewDidLayoutSubviews();
-    
-    guard let reactView = self.view.subviews.first else { return };
-    
-    if self.isResizeAnimated {
-      UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
-        self.preferredContentSize = reactView.frame.size;
-      };
-      
-    } else {
-      self.preferredContentSize = reactView.frame.size;
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews();
+
+    switch self.previewConfig.previewSize {
+      case .STRETCH:
+        self.boundsDidChangeBlock?(self.view.bounds);
+        self.preferredContentSize = CGSize(width: 0, height: 0);
+        
+      case .INHERIT:
+        guard let previewSize = self.getPreviewSize() else { return };
+        
+        if self.previewConfig.isResizeAnimated {
+          UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
+            self.preferredContentSize = previewSize;
+          };
+          
+        } else {
+          self.preferredContentSize = previewSize;
+        };
     };
+  };
+  
+  /// get the menu preview size
+  private func getPreviewSize() -> CGSize? {
+    guard let frame = self.reactView?.subviews.first?.frame else { return nil };
+    return CGSize(width: frame.size.width, height: frame.size.height);
   };
 };

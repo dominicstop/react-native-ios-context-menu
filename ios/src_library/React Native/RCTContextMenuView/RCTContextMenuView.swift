@@ -22,7 +22,8 @@ class RCTContextMenuView: UIView {
   
   var contextMenuInteraction: UIContextMenuInteraction?;
   
-  var reactPreviewView: UIView?;
+  weak var reactPreviewView : UIView?;
+  weak var previewController: RCTContextMenuPreviewController?;
   
   // ---------------------------------------------
   // MARK: RCTContextMenuView - RN Event Callbacks
@@ -86,8 +87,16 @@ class RCTContextMenuView: UIView {
   private var _previewConfig = PreviewConfig();
   @objc var previewConfig: NSDictionary? {
     didSet {
-      guard let previewConfigDict = self.previewConfig else { return }
-      self._previewConfig = PreviewConfig(dictionary: previewConfigDict);
+      guard
+        let dictionary    = self.previewConfig else { return }
+        let previewConfig = PreviewConfig(dictionary: dictionary);
+      
+      self._previewConfig = previewConfig;
+      
+      // update the vc's previewConfig
+      if let previewController = self.previewController {
+        previewController.previewConfig = previewConfig;
+      };
     }
   };
   
@@ -171,14 +180,13 @@ extension RCTContextMenuView {
     
     let vc = RCTContextMenuPreviewController();
     vc.reactView = self.reactPreviewView;
-    
-    vc.view.backgroundColor = .clear;
-    vc.isResizeAnimated = previewConfig.isResizeAnimated;
+    vc.previewConfig = previewConfig;
     
     vc.boundsDidChangeBlock = { [weak self] (newBounds: CGRect) in
       self?.notifyForBoundsChange(newBounds);
     };
-
+    
+    self.previewController = vc;
     return vc;
   };
   
