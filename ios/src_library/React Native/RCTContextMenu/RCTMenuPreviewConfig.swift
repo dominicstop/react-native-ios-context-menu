@@ -36,7 +36,6 @@ struct PreviewConfig {
   
   var borderRadius   : CGFloat = 10;
   var backgroundColor: UIColor = .clear;
-  
 };
 
 // --------------------------
@@ -66,6 +65,10 @@ extension PreviewConfig {
       self.isResizeAnimated = isResizeAnimated;
     };
     
-    //RCTConvert.uiColor(0000000000);
+    if let value   = dictionary["backgroundColor"],
+       let bgColor = RCTConvert.uiColor(value) {
+      
+      self.backgroundColor = bgColor;
+    };
   };
 };

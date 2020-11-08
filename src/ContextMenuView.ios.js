@@ -71,8 +71,9 @@ export class ContextMenuView extends React.PureComponent {
   };
 
   getProps(){
-    const otherProps  = { ...this.props };
-    const nativeProps = {};
+    // TODO: fix this
+    let otherProps  = { ...this.props };
+    let nativeProps = {};
 
     const nativeKeys = Object.keys(NATIVE_PROP_KEYS);
 
@@ -81,13 +82,18 @@ export class ContextMenuView extends React.PureComponent {
       delete otherProps[key];
     };
 
-    let previewBgColor = 
-      nativeProps[NATIVE_PROP_KEYS.previewConfig]?.backgroundColor;
+    const previewConfig = 
+      nativeProps[NATIVE_PROP_KEYS.previewConfig];
     
-    if(previewBgColor){
-      // process previewConfig.backgroundColor prop
-      nativeProps[NATIVE_PROP_KEYS.previewConfig].backgroundColor = 
-        processColor(previewBgColor);
+    // process previewConfig.backgroundColor prop
+    if(previewConfig?.backgroundColor){
+      nativeProps = {
+        ...nativeProps,
+        [NATIVE_PROP_KEYS.previewConfig]: {
+          ...previewConfig,
+          backgroundColor: processColor(previewConfig.backgroundColor)
+        },
+      };
     };
 
     return { nativeProps, ...otherProps };
