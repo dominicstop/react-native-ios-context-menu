@@ -11,7 +11,7 @@ export function ContextMenuViewSimpleExample12(props) {
   const handleStart = () => {
     increment.current = setInterval(() => {
       setTimer((timer) => timer + 1);
-    }, 500);
+    }, 1000);
   };
 
   const handleStop = () => {
@@ -30,12 +30,17 @@ export function ContextMenuViewSimpleExample12(props) {
       subtitle={'Custom Preview #2 - Counter'}
       desc={`Another custom preview example. Show counter in the context menu, configure menu with a menu action to add 100 to the counter and a action to reset the counter.`}
       // `ContextMenuView` Props
-      previewType={'CUSTOM'}
-      previewSize={{ height: 200 }}
+      previewConfig={{
+        previewType: 'CUSTOM',
+        backgroundColor: 'white'
+      }}
       renderPreview={() => (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ padding: 20 }}>
           <Text style={{fontSize: 32}}>
             {`Counter: ${timer}`}
+          </Text>
+          <Text style={{fontSize: 32}}>
+            {(timer % 2 == 0)? 'EVEN' : 'The number is: ODD'}
           </Text>
         </View>
       )}
