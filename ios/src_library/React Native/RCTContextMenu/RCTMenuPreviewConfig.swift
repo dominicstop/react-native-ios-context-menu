@@ -9,6 +9,7 @@
 import Foundation
 
 
+@available(iOS 13.0, *)
 struct PreviewConfig {
   
   // -----------------------
@@ -36,12 +37,15 @@ struct PreviewConfig {
   
   var borderRadius   : CGFloat = 10;
   var backgroundColor: UIColor = .clear;
+  
+  var preferredCommitStyle: UIContextMenuInteractionCommitStyle = .dismiss;
 };
 
 // --------------------------
 // MARK: PreviewConfig - Init
 // --------------------------
 
+@available(iOS 13.0, *)
 extension PreviewConfig {
   
   init(dictionary: NSDictionary){
@@ -69,6 +73,12 @@ extension PreviewConfig {
        let bgColor = RCTConvert.uiColor(value) {
       
       self.backgroundColor = bgColor;
+    };
+    
+    if let string = dictionary["preferredCommitStyle"] as? String,
+       let preferredCommitStyle = UIContextMenuInteractionCommitStyle.fromString(string) {
+      
+      self.preferredCommitStyle = preferredCommitStyle;
     };
   };
 };

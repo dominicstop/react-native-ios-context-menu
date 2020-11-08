@@ -9,6 +9,7 @@
 import UIKit;
 
 
+@available(iOS 13.0, *)
 class RCTContextMenuPreviewController: UIViewController {
   
   var previewConfig = PreviewConfig();

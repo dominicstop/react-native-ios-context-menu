@@ -229,6 +229,7 @@ extension RCTContextMenuView {
 @available(iOS 13, *)
 extension RCTContextMenuView: UIContextMenuInteractionDelegate {
   
+  // create context menu
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
     self.onMenuWillCreate?([:]);
     
@@ -289,8 +290,13 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
       + " - contextMenuInteraction: preview tapped"
     );
     #endif
+    
     self.isContextMenuVisible = false;
-    self.onPressMenuPreview?([:]);
+    
+    animator.preferredCommitStyle = self._previewConfig.preferredCommitStyle;
+    animator.addCompletion {
+      self.onPressMenuPreview?([:]);
+    };
   };
 
   func contextMenuInteraction(_ : UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration: UIContextMenuConfiguration) -> UITargetedPreview? {
