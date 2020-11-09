@@ -1,10 +1,10 @@
 # react-native-ios-context-menu
 A react native component to use [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenu's (nested menu's)
-* Support for iOS 14 functionality (like the `UIButton` menu, and updating the menu while its visible).
-* Support for setting (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, etc.)
-* `ActionSheetIOS` menu fallback for unsupported iOS versions.
-* Support for creating custom context menu previews.
+* Support for iOS 14 functionality (like the `UIButton` context menu, updating the menu while its visible, etc.)
+* Support for setting (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, `discoverabilityTitle`, etc.)
+* Basic `ActionSheetIOS` menu fallback for iOS 12 and below.
+* Support for creating custom context menu previews (with support for dynamic or fixed preview sizes, setting the other options from [￼`￼UIPreviewParameters`￼](https://developer.apple.com/documentation/uikit/uipreviewparameters) etc.)
 
 <br>
 
@@ -99,7 +99,9 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 ### 2.1 `ContextMenuView` Usage
 Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it.
 * See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
-* See [`PreviewConfig`](https://github.com/dominicstop/react-native-ios-context-menu#334-previewconfig-object) section or [Example 11](#4111-contextmenuview-simple-example-11), and [Example 12](#4112-contextmenuview-simple-example-12) for details on how to show a custom context menu preview.
+* See [Example #3](#413-contextmenuview-simple-example-3) section for a basic submenu example, and [Example #7](#417-contextmenuview-simple-example-7) section for creating in-line submenu's (i.e. a "menu section").
+* See [Example 4](#414-contextmenuview-simple-example-4) section for the different `MenuAction` configurations.
+* See [`PreviewConfig`](https://github.com/dominicstop/react-native-ios-context-menu#334-previewconfig-object) section or [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12) and [Example 14](#4114-contextmenuview-simple-example-14) for details on how to show a custom context menu preview.
 * See [`MenuConfig`](#332-menuconfig-object) and [￼`MenuAction`￼](h#331-menuaction-object) section for the list of properties you can use on the `menuConfig` prop.
 
 ```jsx
@@ -371,6 +373,7 @@ The `nativeEvent` object that you receive inside the `onPressMenuItem` event. Th
 
 #### 3.3.4 `PreviewConfig` Object
 The object  you pass in the `ContextMenuView.menuConfig` prop. This object is used to configure the context menu preview. Most of the properties in this object is used to configure [￼`UITargetedPreview`￼](https://developer.apple.com/documentation/uikit/uitargetedpreview), specifically: [￼`UIPreviewParameters`￼](https://developer.apple.com/documentation/uikit/uipreviewparameters).
+* See [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12) and [Example 14](#4114-contextmenuview-simple-example-14) example usage.
 
 <br>
 
