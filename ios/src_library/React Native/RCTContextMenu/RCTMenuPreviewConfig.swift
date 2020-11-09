@@ -32,10 +32,11 @@ struct PreviewConfig {
   
   var previewType: PreviewType = .DEFAULT;
   var previewSize: PreviewSize = .INHERIT;
-
+  
   var isResizeAnimated = true;
   
   var borderRadius   : CGFloat?;
+  var targetViewNode : NSNumber?;
   var backgroundColor: UIColor = .clear;
   
   var preferredCommitStyle: UIContextMenuInteractionCommitStyle = .dismiss;
@@ -49,6 +50,9 @@ struct PreviewConfig {
 extension PreviewConfig {
   
   init(dictionary: NSDictionary){
+    self.borderRadius   = dictionary["borderRadius"  ] as? CGFloat;
+    self.targetViewNode = dictionary["targetViewNode"] as? NSNumber;
+    
     if let string      = dictionary["previewType"] as? String,
        let previewType = PreviewType(rawValue: string) {
       
@@ -59,10 +63,6 @@ extension PreviewConfig {
        let previewSize = PreviewSize(rawValue: string) {
       
       self.previewSize = previewSize;
-    };
-
-    if let borderRadius = dictionary["borderRadius"] as? CGFloat {
-      self.borderRadius = borderRadius;
     };
     
     if let isResizeAnimated = dictionary["isResizeAnimated"] as? Bool {
@@ -80,5 +80,10 @@ extension PreviewConfig {
       
       self.preferredCommitStyle = preferredCommitStyle;
     };
+  };
+  
+  init?(dictionary: NSDictionary?){
+    guard let dictionary = dictionary else { return nil };
+    self.init(dictionary: dictionary);
   };
 };

@@ -15,7 +15,7 @@ class RCTContextMenuView: UIView {
   // MARK: RCTContextMenuView - Properties
   // -------------------------------------
   
-  weak var bridge: RCTBridge?;
+  weak var bridge: RCTBridge!;
   
   var isContextMenuVisible = false;
   var didPressMenuItem     = false;
@@ -194,8 +194,8 @@ extension RCTContextMenuView {
     // alias to variable
     let previewConfig = self._previewConfig;
     
-    return UITargetedPreview(view: self, parameters: {
-      // create preview parameters based on `previewConfig`
+    // create preview parameters based on `previewConfig`
+    let parameters: UIPreviewParameters = {
       let param = UIPreviewParameters();
       
       // set preview bg color
@@ -217,12 +217,27 @@ extension RCTContextMenuView {
         param.visiblePath = previewShape;
         // set preview border shadow
         if #available(iOS 14, *){
-          param.shadowPath  = previewShape;
+          param.shadowPath = previewShape;
         };
       };
       
       return param;
-    }());
+    }();
+    
+    if let targetNode = previewConfig.targetViewNode,
+       let targetView = self.bridge.uiManager.view(forReactTag: targetNode){
+      
+      return UITargetedPreview(
+        view: targetView,
+        parameters: parameters
+      );
+      
+    } else {
+      return UITargetedPreview(
+        view: self,
+        parameters: parameters
+      );
+    };
   };
 };
 
