@@ -162,11 +162,6 @@ export class ContextMenuView extends React.PureComponent {
   _handleOnPressMenuPreview = (event) => {
     const { onPressMenuPreview } = this.props;
     onPressMenuPreview?.(event);
-
-    this.setState({
-      menuVisible : false,
-      mountPreview: false,
-    });
   };
   //#endregion
 
