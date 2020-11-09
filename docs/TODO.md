@@ -6,6 +6,18 @@
 
 <br>
 
+- [ ] Implement `ImageType.REQUIRE` to support using images via `require(path/to/image)`
+* One way to implement is to use `Image.resolveAssetSource(source);` from the RN [docs](https://reactnative.dev/docs/image#resolveassetsource). So we have something like: `{ imageType: 'REQUIRE', imageValue: require('path/to/image.png') }`. 
+	* **Reference**: [Medium Article](https://medium.com/swlh/how-to-obtain-a-uri-for-an-image-asset-in-react-native-with-expo-88dfbe1023b8). Explains how `Image.resolveAssetSource` works.
+<br>
+
+- [ ] Implement `ActionSheetModule` to display an "Action Sheet" menu via [`UIAlertController`](https://developer.apple.com/documentation/uikit/uialertcontroller).
+* **Reference**: [Article](https://developer.apple.com/documentation/uikit/windows_and_screens/getting_the_user_s_attention_with_alerts_and_action_sheets) in the apple developer about "Alerts and Action Sheets"
+* **Reference**: [￼`ActionSheetIOS`￼](https://github.com/facebook/react-native/blob/9c353b5ab060be9392a7aaf437bba4ffc56d78ca/Libraries/ActionSheetIOS/ActionSheetIOS.js) JS code. The native module is called `RCTActionSheetManager`  ([link](https://github.com/facebook/react-native/blob/9c353b5ab060be9392a7aaf437bba4ffc56d78ca/Libraries/ActionSheetIOS/NativeActionSheetManager.js) to JS native module, and [link](https://github.com/facebook/react-native/blob/9c353b5ab060be9392a7aaf437bba4ffc56d78ca/React/CoreModules/RCTActionSheetManager.mm) to native code)
+* **Reference**: [@react-native-menu/menu](https://github.com/react-native-menu/menu) library has a very good looking `ActionSheet` fallback with icons and disabled menu actions. 
+
+<br>
+
 - [ ] `ContextMenu` — Add support for `UIDefferedElement`
 * In `MenuConfig.menuItems` property or in the `menuConfig` prop, if an object has a property called `defferedKey`, then it means we want to create a `UIDefferedElement` element.
 * Impl. `onRequestDefferedElement` function. This function is called whenever a `UIDefferedElement` item needs to be loaded.
@@ -52,6 +64,7 @@
 - [x] Finish initial impl. with 1 working simple example
 - [x] Add documentation for `ContextMenuButton`
 - [ ] Add `SystemImage` component for creating a `UIImage` that uses SF Icons (Research first if the built-in image component already supports this).
+- [ ] Add example for `wrapNativeComponent` prop, i.e. example for using a different "button" component.
 
 <br>
 

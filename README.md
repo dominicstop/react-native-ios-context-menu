@@ -100,7 +100,7 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it.
 * See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration, and [Example 9](#419-contextmenuview-simple-example-9) for basic menu-related events usage.
 * See [Example #3](#413-contextmenuview-simple-example-3) section for a basic submenu example, and [Example #7](#417-contextmenuview-simple-example-7) section for creating in-line submenu's (i.e. a "menu section").
-* See [Example 4](#414-contextmenuview-simple-example-4) section for the different `MenuAction` configurations.
+* See [Example 4](#414-contextmenuview-simple-example-4), and [Example 8](#418-contextmenuview-simple-example-8) section for the different `MenuAction` configurations.
 * See [`PreviewConfig`](https://github.com/dominicstop/react-native-ios-context-menu#334-previewconfig-object) section or [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12) and [Example 14](#4114-contextmenuview-simple-example-14) for details on how to show a custom context menu preview.
 * See [`MenuConfig`](#332-menuconfig-object) and [￼`MenuAction`￼](h#331-menuaction-object) section for the list of properties you can use on the `menuConfig` prop.
 
@@ -136,6 +136,7 @@ Please check out the [examples section](#42-contextmenubutton-examples) or the [
 * The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
 * The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](#422-contextmenubutton-simple-example-2) for more details.
 * Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.
+* This component uses [￼`TouchableOpacity`￼](https://reactnative.dev/docs/touchableopacity), so it should support the same props (e.g. `onPress`, `onLongPress`, `activeOpacity`, etc.)
 
 ```jsx
 import { ContextMenuButton } from "react-native-ios-context-menu";
@@ -833,7 +834,7 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
 <br><br>
 
 #### 4.1.10 `ContextMenuView` [Simple Example #10](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample10.js)
-On iOS 14 and above, you can update the menu while it's visible. You can update the menu while its open by updating the `menuConfig` prop via state. This is a simple demo with a counter state incrementing every second when the menu is open.
+On iOS 14 and above, you can update the menu while it's visible. You can update the menu changing the `menuConfig` prop via state. This is a simple demo with a counter state incrementing every second when the menu is open.
 * This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-9-10.gif).
 
 <br>
