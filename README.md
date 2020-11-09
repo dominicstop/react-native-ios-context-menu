@@ -4,7 +4,7 @@ A react native component to use [￼`UIMenu`￼](https://developer.apple.com/doc
 * Support for iOS 14 functionality (like the `UIButton` context menu, updating the menu while its visible, etc.)
 * Support for setting (almost) all of the native [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) and ￼[￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, `discoverabilityTitle`, etc.)
 * Basic `ActionSheetIOS` menu fallback for iOS 12 and below.
-* Support for creating custom context menu previews (with support for dynamic or fixed preview sizes, setting the other options from [￼`￼UIPreviewParameters`￼](https://developer.apple.com/documentation/uikit/uipreviewparameters) etc.)
+* Support for creating custom context menu previews (with support for dynamic or fixed preview sizes, setting the [￼`￼UIPreviewParameters`￼](https://developer.apple.com/documentation/uikit/uipreviewparameters), specifying a [￼`UITargetedPreview`￼](https://developer.apple.com/documentation/uikit/uitargetedpreview), etc.)
 
 <br>
 
@@ -373,8 +373,8 @@ The `nativeEvent` object that you receive inside the `onPressMenuItem` event. Th
 <br>
 
 #### 3.3.4 `PreviewConfig` Object
-The object  you pass in the `ContextMenuView.menuConfig` prop. This object is used to configure the context menu preview. Most of the properties in this object is used to configure [￼`UITargetedPreview`￼](https://developer.apple.com/documentation/uikit/uitargetedpreview), specifically: [￼`UIPreviewParameters`￼](https://developer.apple.com/documentation/uikit/uipreviewparameters).
-* See [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12) and [Example 14](#4114-contextmenuview-simple-example-14) example usage.
+The object  you pass in the `ContextMenuView.previewConfig` prop. This object is used to configure the context menu preview. Most of the properties in this object is used to configure [￼`UITargetedPreview`￼](https://developer.apple.com/documentation/uikit/uitargetedpreview), specifically: [￼`UIPreviewParameters`￼](https://developer.apple.com/documentation/uikit/uipreviewparameters).
+* See [Example 11](#4111-contextmenuview-simple-example-11),  and [Example 12](#4112-contextmenuview-simple-example-12) for example usage.
 
 <br>
 
@@ -385,7 +385,8 @@ The object  you pass in the `ContextMenuView.menuConfig` prop. This object is us
 | `isResizeAnimated`     | **Optional**: `Bool`, **Default**: `true`                    | Controls whether or not the context menu preview should animate the view's size changes. |
 | `borderRadius`         | **Optional**: `Number`                                       | The radius of the context menu preview. When no value is provided,  it will use the system default value. |
 | `backgroundColor`      | **Optional**: `String`, **Default**: `transparent`           | Sets the background color of the context menu preview.       |
-| `preferredCommitStyle` | **Optional**: `String` ([￼`CommitStyle`￼](#327-commitstyle-enum) value), **Default**: `dismiss` | Controls the type of exit animation to use for the context menu preview when its tapped. |
+| `preferredCommitStyle` | **Optional**: `String` ([￼`CommitStyle`￼](#327-commitstyle-enum) value), **Default**: `dismiss` | Controls the type of exit animation to use for the context menu preview when its tapped. See [Example 14](#4114-contextmenuview-simple-example-14) for more details. |
+| `targetViewNode`       | **Optional**: `Number` (`NodeHandle` value)                  | Specifies the view to use as  the "target view", i.e. the view to use for [`UITargetedPreview `](https://developer.apple.com/documentation/uikit/uitargetedpreview). Accepts a number returned from `findNodeHandle` function. See [Example 15](#4115-contextmenuview-simple-example-15) for more details. |
 
 <br>
 
@@ -1098,6 +1099,62 @@ function ContextMenuViewSimpleExample14(props) {
 ```
 
 ![Simple Example 14](./assets/example-screenshots/ContextMenuView-SimpleExample14.png)
+
+<br><br>
+
+4.1.15 `ContextMenuView` [Simple Example #15](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
+A example context menu configured with a "target view". The "target view" is the view where the context menu preview will transition in and out from. Essentially, instead of transitioning the entire `ContextMenuView`, you can specify a specific view.
+* If you have a custom preview configured, then the "target view" will be used to transition your custom preview.
+* If you don't have a custom preview configured (like this example), then the target view will become the context menu's preview.
+* You can specify a "target view" in the `PreviewConfig.targetViewNode` property in the `ContextMenuView` component's `previewConfig` prop.
+	* The `targetViewNode` property accepts a number returned from the `findNodeHandle()` function. 
+* In order to specify a "target view" for your context menu, you first need a `ref` to that view. The second thing you need is a special number called a "node handle" that corresponds to the "target view". 
+	* To get a view's corresponding node handle, you can use the `findNodeHandle()` function. This functions accepts a ref to some native component (e.g. like a `<View>` component).
+
+<br>
+
+```jsx
+class ContextMenuViewSimpleExample15 extends React.PureComponent {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      targetViewNode: null,
+    };
+  };
+
+  componentDidMount(){
+    this.setState({
+      targetViewNode: findNodeHandle(this.viewRef)
+    });
+  };
+
+  render(){
+    return(
+      <ContextMenuView
+        previewConfig={{
+          targetViewNode: this.state.targetViewNode,
+        }}
+        menuConfig={{
+          menuTitle: 'ContextMenuViewSimpleExample15',
+          menuItems: [{
+            actionKey  : 'key-01',
+            actionTitle: 'Action #1',
+          }],
+        }}
+      >
+        <View ref={r => this.viewRef = r}>
+          <Text style={styles.text}>
+            {`Hello! Target Node: ${this.state.targetViewNode}`}
+          </Text>
+        </View>
+      </ExampleContextMenuItem>
+    );
+  };
+};
+```
+
+![Simple Example 15](./assets/example-screenshots/ContextMenuView-SimpleExample15.png)
 
 <br><br>
 
