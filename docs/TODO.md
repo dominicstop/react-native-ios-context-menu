@@ -1,6 +1,7 @@
 # TODO
 
 ## General
+- [x] Implement targeted previews
 - [ ] Implement `ImageType.ASSET` to support: "create an image from an image asset or image file located in your app’s main bundle"
 * The `imageValue` string from `MenuAction`/`MenuConfig` will be used to init a `UIImage`, like: `UIImage(named: imageValue)`
 
