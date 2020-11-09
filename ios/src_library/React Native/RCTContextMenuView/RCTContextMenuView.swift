@@ -295,16 +295,28 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     );
     #endif
     
-    self.isContextMenuVisible = false;
-    animator.preferredCommitStyle = self._previewConfig.preferredCommitStyle;
+    let preferredCommitStyle = self._previewConfig.preferredCommitStyle;
     
-    if self._previewConfig.previewType == .DEFAULT {
-      self.onPressMenuPreview?([:]);
+    self.isContextMenuVisible = false;
+    animator.preferredCommitStyle = preferredCommitStyle;
+    
+    switch preferredCommitStyle {
+      case .pop:
+        self.onMenuWillHide?([:]);
+        
+        animator.addCompletion {
+          self.onPressMenuPreview?([:]);
+          self.onMenuDidHide?([:]);
+        };
       
-    } else {
-      animator.addCompletion {
+      case .dismiss: fallthrough;
+      @unknown default:
+        self.onMenuWillHide?([:]);
         self.onPressMenuPreview?([:]);
-      };
+        
+        animator.addCompletion {
+          self.onMenuDidHide?([:]);
+        };
     };
   };
 
