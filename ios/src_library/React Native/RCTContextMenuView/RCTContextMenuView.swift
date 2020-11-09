@@ -296,10 +296,15 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     #endif
     
     self.isContextMenuVisible = false;
-    
     animator.preferredCommitStyle = self._previewConfig.preferredCommitStyle;
-    animator.addCompletion {
+    
+    if self._previewConfig.previewType == .DEFAULT {
       self.onPressMenuPreview?([:]);
+      
+    } else {
+      animator.addCompletion {
+        self.onPressMenuPreview?([:]);
+      };
     };
   };
 
