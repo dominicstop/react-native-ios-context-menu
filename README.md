@@ -220,7 +220,7 @@ Enum string values you can use for the [￼`MenuConfig.imageType`](#332-menuconf
 * Import the enum like this: `import { ImageTypes } from "react-native-ios-context-menu";`
 * And use it  like this: `{ imageType: ImageTypes.SYSTEM }` 
 * Or you can directly pass a string like this: `{ imageType: 'SYSTEM' }`
-* Check out the [￼￼`ContextMenuView`￼￼ Simple Example #2](#412-contextmenuview-simple-example-2) section for example usage.
+* Check out [￼￼Simple ￼￼Example #2](#412-contextmenuview-simple-example-2) or [￼￼Simple Example #16](#4116-contextmenuview-simple-example-16) section for example usage.
 
 <br>
 
@@ -236,7 +236,7 @@ Enum string values you can use in a [￼￼`MenuConfig`￼￼](#332-menuconfig-o
 * Import the enum like this: `import { MenuOptions } from "react-native-ios-context-menu";`
 * And use it  like this: `{ menuOptions: [MenuOptions.destructive] }`  
 * Or you can directly pass a string like this: `{ menuOptions: ['destructive'] }`
-* Check out `ContextMenuView` [Simple Example #5](#415-contextmenuview-simple-example-5) and [Simple Example #6](#416-contextmenuview-simple-example-6) section for example usage.
+* Check out `ContextMenuView` [￼￼Simple Example #5](#415-contextmenuview-simple-example-5) and [￼￼Simple Example #6](#416-contextmenuview-simple-example-6) section for example usage.
 
 <br>
 
@@ -252,7 +252,7 @@ Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object)
 * Import the enum like this: `import { MenuElementAtrributes } from "react-native-ios-context-menu";`
 * And use it  like this: `menuAttributes: [MenuElementAtrributes.destructive]` 
 * Or you can directly pass a string like this: `menuAttributes: ['destructive']`
-* Check out [Simple Example #4](#414-contextmenuview-simple-example-4) section for example usage.
+* Check out [￼￼Simple Example #4](#414-contextmenuview-simple-example-4) section for example usage.
 
 <br>
 
@@ -269,7 +269,7 @@ Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object)
 * Import the enum like this: `import { UIMenuElementState } from "react-native-ios-context-menu";`
 * And use it  like this: `{ menuState: UIMenuElementState.on }` 
 * Or you can directly pass a string like this: `{ menuState: 'on' }`
-* Check out [￼`ContextMenuView`￼ Simple Example #8](#418-contextmenuview-simple-example-8) section for example usage.
+* Check out [￼￼Simple Example #8](#418-contextmenuview-simple-example-8) section for example usage.
 
 <br>
 
@@ -1107,7 +1107,7 @@ function ContextMenuViewSimpleExample14(props) {
 
 <br><br>
 
-4.1.15 `ContextMenuView` [Simple Example #15](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
+#### 4.1.15 `ContextMenuView` [Simple Example #15](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample15.js)
 A example context menu configured with a "target view". The "target view" is the view where the context menu preview will transition in and out from. Essentially, instead of transitioning the entire `ContextMenuView`, you can specify a specific view.
 * If you have a custom preview configured, then the "target view" will be used to transition your custom preview.
 * If you don't have a custom preview configured (like this example), then the "target view" will become the context menu preview.
@@ -1170,9 +1170,10 @@ class ContextMenuViewSimpleExample15 extends React.PureComponent {
 
 <br><br>
 
-4.1.15 `ContextMenuView` [Simple Example #15](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
+#### 4.1.16 `ContextMenuView` [Simple Example #16](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample16.js)
 A example context menu configured to have 3 menu actions. The first action has no icon, the second uses a `SYSTEM` SF Symbols icon, and the third uses a `ASSET` icon.
 * If you are using an `ASSET` icon, the the string that you pass to the `imageValue` property must correspond to an image asset in your Xcode project's `xcasset` catalog.
+
 <br>
 
 ```jsx
