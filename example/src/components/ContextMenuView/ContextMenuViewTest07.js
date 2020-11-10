@@ -79,7 +79,7 @@ export class ContextMenuViewTest07 extends React.PureComponent {
           clearInterval(this.interval);
         }}
         renderPreview={() => (
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20}}>
+          <View style={[styles.previewContainer]}>
             <Text style={{fontWeight: '700', fontSize: 32}}>
               {'Hello World'}
             </Text>
@@ -281,4 +281,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
   },
+  previewContainer: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    padding: 20
+  }
 });
