@@ -18,6 +18,7 @@ import { ContextMenuViewSimpleExample12 } from './components/ContextMenuView/Con
 import { ContextMenuViewSimpleExample13 } from './components/ContextMenuView/ContextMenuViewSimpleExample13';
 import { ContextMenuViewSimpleExample14 } from './components/ContextMenuView/ContextMenuViewSimpleExample14';
 import { ContextMenuViewSimpleExample15 } from './components/ContextMenuView/ContextMenuViewSimpleExample15';
+import { ContextMenuViewSimpleExample16 } from './components/ContextMenuView/ContextMenuViewSimpleExample16';
 
 import { ContextMenuViewTest01 } from './components/ContextMenuView/ContextMenuViewTest01';
 import { ContextMenuViewTest02 } from './components/ContextMenuView/ContextMenuViewTest02';
@@ -47,6 +48,7 @@ const contextMenuViewItems = [
   ContextMenuViewSimpleExample13,
   ContextMenuViewSimpleExample14,
   ContextMenuViewSimpleExample15,
+  ContextMenuViewSimpleExample16,
   ContextMenuViewTest01,
   ContextMenuViewTest02,
   ContextMenuViewTest03,
