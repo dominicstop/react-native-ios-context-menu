@@ -13,4 +13,5 @@ public enum ImageType: String, CaseIterable, Encodable {
   case NONE;
   case URL;
   case SYSTEM;
+  case ASSET;
 };

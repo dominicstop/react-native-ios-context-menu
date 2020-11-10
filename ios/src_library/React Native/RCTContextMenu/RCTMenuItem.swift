@@ -34,8 +34,10 @@ class RCTMenuItem: RCTMenuElement {
     
     self.menuTitle = menuTitle as String;
     
-    if let imageType = dictionary["imageType"] as? String {
-      self.imageType = ImageType(rawValue: imageType) ?? .NONE;
+    if let string    = dictionary["imageType"] as? String,
+       let imageType = ImageType(rawValue: string) {
+      
+      self.imageType = imageType;
     };
     
     self.imageValue  = dictionary["imageValue" ] as? String;
@@ -110,6 +112,10 @@ extension RCTMenuItem {
       case .SYSTEM:
         guard let imageValue = self.imageValue else { return nil };
         return UIImage(systemName: imageValue);
+        
+      case .ASSET:
+        guard let imageValue = self.imageValue else { return nil };
+        return UIImage(named: imageValue);
     };
   };
 };

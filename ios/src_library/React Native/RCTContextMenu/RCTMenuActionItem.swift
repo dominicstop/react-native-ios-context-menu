@@ -45,8 +45,10 @@ class RCTMenuActionItem: RCTMenuElement {
     self.actionKey   = actionKey   as String;
     self.actionTitle = actionTitle as String;
     
-    if let imageType = dictionary["imageType"] as? String {
-      self.imageType = ImageType(rawValue: imageType) ?? .NONE;
+    if let string    = dictionary["imageType"] as? String,
+       let imageType = ImageType(rawValue: string) {
+      
+      self.imageType = imageType;
     };
     
     self.discoverabilityTitle = dictionary["discoverabilityTitle"] as? String;
@@ -108,6 +110,10 @@ extension RCTMenuActionItem {
       case .SYSTEM:
         guard let imageValue = self.imageValue else { return nil };
         return UIImage(systemName: imageValue);
+        
+      case .ASSET:
+        guard let imageValue = self.imageValue else { return nil };
+        return UIImage(named: imageValue);
     };
   };
   

@@ -2,8 +2,8 @@
 /** Used for `MenuConfigKeys.imageType` or `MenuActionKeys.imageType` */
 export const ImageTypes = {
   'NONE'  : 'NONE'  ,
-  'URL '  : 'URL'   ,
   'SYSTEM': 'SYSTEM',
+  'ASSET' : 'ASSET' ,
 };
 
 /** Used for `MenuConfigKeys.menuOptions` */
