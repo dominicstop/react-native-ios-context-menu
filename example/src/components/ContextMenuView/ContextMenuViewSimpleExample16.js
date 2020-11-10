@@ -4,10 +4,10 @@ import { StyleSheet } from 'react-native';
 import { ExampleContextMenuItem } from '../ExampleContextMenuItem';
 
 
-export function ContextMenuViewSimpleExample16() {
+export function ContextMenuViewSimpleExample16(props) {
   return(
     <ExampleContextMenuItem
-      {...this.props}
+      {...props}
       title={'Simple Example #16'}
       subtitle={'ImageType Icons'}
       desc={'Context menu with 3 actions that uses `ASSET` icons'}
@@ -35,7 +35,6 @@ export function ContextMenuViewSimpleExample16() {
           discoverabilityTitle: 'Use "ASSET" icon'
         }],
       }}
-      
     />
   );
 };
