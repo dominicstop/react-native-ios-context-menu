@@ -227,7 +227,8 @@ Enum string values you can use for the [￼`MenuConfig.imageType`](#332-menuconf
 | Value  | Description                                                  |
 |--------|--------------------------------------------------------------|
 | NONE   | The default value for the `imageType` property. Specifies to not use an icon. Since this is the default value, you don't have to explicitly specify: `imageType: 'NONE'` in the `MenuConfig` or `MenuAction` object if you don't want to use an icon. |
-| SYSTEM | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon). Internally, it passes the `imageValue` string from the `MenuConfig` or `MenuAction` object like this: `UIImage(systemName: imageValue)` |
+| SYSTEM | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon).  The `imageValue` string from a `MenuConfig` or `MenuAction` object  will be used to create an `UIImage` instance: `UIImage(systemName: imageValue)`. So the `imageValue` string must correspond to an SF Symbols icon. |
+| ASSET  | Specifies that we want to use an image in the Xcode project's asset catalog. The `imageValue` string from a `MenuConfig` or `MenuAction` object  will be used to create an `UIImage` instance: `UIImage(named: imageValue)`. So the `imageValue` string must correspond to an asset/item in the `xcasset` catalog. |
 <br>
 
 #### 3.2.2 `MenuOptions` Enum
@@ -1166,6 +1167,41 @@ class ContextMenuViewSimpleExample15 extends React.PureComponent {
 ```
 
 ![Simple Example 15](./assets/example-screenshots/ContextMenuView-SimpleExample15.png)
+
+<br><br>
+
+4.1.15 `ContextMenuView` [Simple Example #15](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
+A example context menu configured to have 3 menu actions. The first action has no icon, the second uses a `SYSTEM` SF Symbols icon, and the third uses a `ASSET` icon.
+* If you are using an `ASSET` icon, the the string that you pass to the `imageValue` property must correspond to an image asset in your Xcode project's `xcasset` catalog.
+<br>
+
+```jsx
+<ContextMenuView
+  menuConfig={{
+    menuTitle: 'ContextMenuViewSimpleExample16',
+    menuItems: [{
+      actionKey  : 'key-01',
+      actionTitle: 'Action #1',
+      discoverabilityTitle: 'No Icon'
+    }, {
+      actionKey  : 'key-02'   ,
+      actionTitle: 'Action #2',
+      imageType  : 'SYSTEM',
+      imageValue : 'dial.fill',
+      discoverabilityTitle: 'Use "SYSTEM" icon'
+
+    }, {
+      actionKey  : 'key-03'   ,
+      actionTitle: 'Action #3',
+      imageType  : 'ASSET'   ,
+      imageValue : 'icon-rainbow-flag',
+      discoverabilityTitle: 'Use "ASSET" icon'
+    }],
+  }}
+/>
+```
+
+![Simple Example 16](./assets/example-screenshots/ContextMenuView-SimpleExample16.png)
 
 <br><br>
 
