@@ -6,13 +6,13 @@
 <br>
 
 - [ ] Implement tinted/colored menu icons + config for line weight etc.
-- [ ] Refactor: Change "ImageType" to "IconType", and "imageValue" to "imageType"
-- [ ] Move menu icon related properties to "icon": `{ icon: { iconType: '', iconValue: '', tint: '', weight: '', ...} }` 
+	- [ ] Refactor: Change "ImageType" to "IconType", and "imageValue" to "imageType"
+	- [ ] Move menu icon related properties to "icon": `{ icon: { iconType: '', iconValue: '', tint: '', weight: '', ...} }` 
 
 <br>
 
 
-- [ ] Implement `ImageType.ASSET` to support: "create an image from an image asset or image file located in your app’s main bundle"
+- [x] Implement `ImageType.ASSET` to support: "create an image from an image asset or image file located in your app’s main bundle"
 * The `imageValue` string from `MenuAction`/`MenuConfig` will be used to init a `UIImage`, like: `UIImage(named: imageValue)`
 
 <br>
