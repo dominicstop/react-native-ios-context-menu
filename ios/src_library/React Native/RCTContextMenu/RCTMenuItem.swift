@@ -13,12 +13,10 @@ import UIKit;
 class RCTMenuItem: RCTMenuElement {
   
   var menuTitle: String;
+  var icon     : RCTMenuIcon;
   
   var menuOptions: [String]?;
-  var imageType  : ImageType = .NONE;
-  var imageValue : String?;
-  
-  var menuItems: [RCTMenuElement]?;
+  var menuItems  : [RCTMenuElement]?;
   
 // ------------------------
 // MARK: RCTMenuItem - Init
@@ -32,22 +30,29 @@ class RCTMenuItem: RCTMenuElement {
       return nil;
     };
     
-    self.menuTitle = menuTitle as String;
-    
-    if let string    = dictionary["imageType"] as? String,
-       let imageType = ImageType(rawValue: string) {
-      
-      self.imageType = imageType;
-    };
-    
-    self.imageValue  = dictionary["imageValue" ] as? String;
+    self.menuTitle   = menuTitle as String;
     self.menuOptions = dictionary["menuOptions"] as? [String];
+    
+    if let dict = dictionary["icon"] as? NSDictionary,
+       let icon = RCTMenuIcon(dictionary: dict) {
+      
+      self.icon = icon;
+    
+    // temp support for prev version, remove in the future
+    } else if let stringType = dictionary["imageType" ] as? String,
+              let iconValue  = dictionary["imageValue"] as? String,
+              let iconType   = RCTMenuIcon.IconType(rawValue: stringType) {
+      
+      self.icon = RCTMenuIcon(type: iconType, value: iconValue);
+      
+    } else {
+      self.icon = RCTMenuIcon();
+    };
     
     #if DEBUG
     print("RCTMenuItem, init"
       + " - menuTitle"   + ": \(self.menuTitle)"
-      + " - imageType"   + ": \(self.imageType)"
-      + " - imageValue"  + ": \(self.imageValue ?? "N/A")"
+      + " - icon"        + ": \(self.icon.dictionary)"
       + " - menuOptions" + ": \(self.menuOptions?.description ?? "N/A")"
       + " - menuItems"   + ": \((dictionary["menuItems"] as? NSArray)?.count ?? 0) items"
     );
@@ -103,21 +108,6 @@ extension RCTMenuItem {
       } ?? []
     );
   };
-  
-  var image: UIImage? {
-    switch self.imageType {
-      case .NONE: return nil;
-      case .URL : return nil; // to be implemented
-      
-      case .SYSTEM:
-        guard let imageValue = self.imageValue else { return nil };
-        return UIImage(systemName: imageValue);
-        
-      case .ASSET:
-        guard let imageValue = self.imageValue else { return nil };
-        return UIImage(named: imageValue);
-    };
-  };
 };
 
 // -----------------------------
@@ -156,14 +146,12 @@ extension RCTMenuItem {
     
     return UIMenu(
       title: self.menuTitle,
-      image: self.image,
+      image: self.icon.image,
       identifier: nil,
       options: self.UIMenuOptions,
       children: menuItems ?? []
     );
   };
 };
-
-
 
 

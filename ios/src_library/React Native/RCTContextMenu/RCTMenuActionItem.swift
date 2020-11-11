@@ -15,10 +15,9 @@ class RCTMenuActionItem: RCTMenuElement {
   var actionKey  : String;
   var actionTitle: String;
   
-  var imageType: ImageType = .NONE;
+  var icon: RCTMenuIcon;
   var discoverabilityTitle: String?;
   
-  var imageValue    : String?;
   var menuState     : String?;
   var menuAttributes: [String]?;
   
@@ -27,10 +26,8 @@ class RCTMenuActionItem: RCTMenuElement {
 // ------------------------------
 
   init?(dictionary: NSDictionary){
-    guard
-      let actionKey   = dictionary["actionKey"  ] as? NSString,
-      let actionTitle = dictionary["actionTitle"] as? NSString
-
+    guard let actionKey   = dictionary["actionKey"  ] as? NSString,
+          let actionTitle = dictionary["actionTitle"] as? NSString
     else {
       #if DEBUG
       print(
@@ -45,24 +42,33 @@ class RCTMenuActionItem: RCTMenuElement {
     self.actionKey   = actionKey   as String;
     self.actionTitle = actionTitle as String;
     
-    if let string    = dictionary["imageType"] as? String,
-       let imageType = ImageType(rawValue: string) {
+    if let dict = dictionary["icon"] as? NSDictionary,
+       let icon = RCTMenuIcon(dictionary: dict) {
       
-      self.imageType = imageType;
+      self.icon = icon;
+    
+    // temp support for prev version, remove in the future
+    } else if let stringType = dictionary["imageType" ] as? String,
+              let iconValue  = dictionary["imageValue"] as? String,
+              let iconType   = RCTMenuIcon.IconType(rawValue: stringType) {
+      
+      self.icon = RCTMenuIcon(type: iconType, value: iconValue);
+      
+    } else {
+      self.icon = RCTMenuIcon();
     };
     
     self.discoverabilityTitle = dictionary["discoverabilityTitle"] as? String;
     
     self.menuState      = dictionary["menuState"     ] as? String;
-    self.imageValue     = dictionary["imageValue"    ] as? String;
     self.menuAttributes = dictionary["menuAttributes"] as? [String];
     
     #if DEBUG
     print("RCTMenuActionItem, init"
-      + " - actionKey"      + ": \(self.actionKey  )"
-      + " - actionTitle"    + ": \(self.actionTitle)"
+      + " - actionKey"      + ": \(self.actionKey      )"
+      + " - actionTitle"    + ": \(self.actionTitle    )"
+      + " - icon"           + ": \(self.icon.dictionary)"
       + " - menuState"      + ": \(self.menuState?     .description ?? "N/A")"
-      + " - imageValue"     + ": \(self.imageValue?    .description ?? "N/A")"
       + " - menuAttributes" + ": \(self.menuAttributes?.description ?? "N/A")"
     );
     #endif
@@ -102,34 +108,15 @@ extension RCTMenuActionItem {
     UIAction.Identifier(self.actionKey);
   };
   
-  var image: UIImage? {
-    switch self.imageType {
-      case .NONE: return nil;
-      case .URL : return nil; // to be implemented
-      
-      case .SYSTEM:
-        guard let imageValue = self.imageValue else { return nil };
-        return UIImage(systemName: imageValue);
-        
-      case .ASSET:
-        guard let imageValue = self.imageValue else { return nil };
-        return UIImage(named: imageValue);
-    };
-  };
-  
   var dictionary: [AnyHashable: Any] {
     var dictionary: [AnyHashable: Any] = [
       "actionKey"  : self.actionKey  ,
       "actionTitle": self.actionTitle,
-      "imageType"  : self.imageType  ,
+      "icon"       : self.icon       ,
     ];
     
     if let discoverabilityTitle = self.discoverabilityTitle {
       dictionary["discoverabilityTitle"] = discoverabilityTitle;
-    };
-    
-    if let imageValue = self.imageValue {
-      dictionary["imageValue"] = imageValue;
     };
     
     if let menuAttributes = self.menuAttributes {
@@ -156,8 +143,8 @@ extension RCTMenuActionItem {
     
     return UIAction(
       title     : self.actionTitle,
-      image     : self.image,
-      identifier: self.identifier,
+      image     : self.icon.image ,
+      identifier: self.identifier ,
       discoverabilityTitle: self.discoverabilityTitle,
       attributes: self.UIMenuElementAttributes,
       state     : self.UIMenuElementState,
