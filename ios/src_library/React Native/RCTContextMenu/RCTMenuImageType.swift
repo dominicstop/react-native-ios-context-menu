@@ -44,6 +44,12 @@ extension RCTMenuIcon {
     if let string = dictionary["iconValue"] as? String {
       self.iconValue = string;
     };
+    
+    if let string = dictionary["iconTint"] as? String,
+       let color  = UIColor(cssColor: string) {
+      
+      self.iconTint = color;
+    };
   };
   
   init?(dictionary: NSDictionary?){
@@ -81,7 +87,9 @@ extension RCTMenuIcon {
       
       case .SYSTEM:
         guard let iconValue = self.iconValue else { return nil };
-        return UIImage(systemName: iconValue);
+        return UIImage(systemName: iconValue)?
+          .withTintColor(self.iconTint)
+          .withRenderingMode(.alwaysOriginal);
         
       case .ASSET:
         guard let iconValue = self.iconValue else { return nil };
