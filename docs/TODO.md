@@ -5,9 +5,10 @@
 
 <br>
 
-- [ ] Implement tinted/colored menu icons + config for line weight etc.
-	- [ ] Refactor: Change "ImageType" to "IconType", and "imageValue" to "imageType"
-	- [ ] Move menu icon related properties to "icon": `{ icon: { iconType: '', iconValue: '', tint: '', weight: '', ...} }` 
+- [x] Implement tinted/colored menu icons + config for line weight etc.
+	- [x] Refactor: Change "ImageType" to "IconType", and "imageValue" to "imageType"
+	- [x] Move menu icon related properties to "icon": `{ icon: { iconType: '', iconValue: '', tint: ''} }` 
+	- [ ] Impl. support for icon weight
 
 <br>
 
@@ -20,6 +21,8 @@
 - [ ] Implement `ImageType.REQUIRE` to support using images via `require(path/to/image)`
 * One way to implement is to use `Image.resolveAssetSource(source);` from the RN [docs](https://reactnative.dev/docs/image#resolveassetsource). So we have something like: `{ imageType: 'REQUIRE', imageValue: require('path/to/image.png') }`. 
 	* **Reference**: [Medium Article](https://medium.com/swlh/how-to-obtain-a-uri-for-an-image-asset-in-react-native-with-expo-88dfbe1023b8). Explains how `Image.resolveAssetSource` works.
+* Attempted to impl. this but ran into problems: when in debug mode, assets are provided via a local URL via the metro bundler.
+
 <br>
 
 - [ ] Implement `ActionSheetModule` to display an "Action Sheet" menu via [`UIAlertController`](https://developer.apple.com/documentation/uikit/uialertcontroller).
@@ -63,7 +66,7 @@
 - [x] ⭐️ Export `ActionSheetFallback` function and add it to the docs.
 - [x] 🛠 Rename `RCTContextMenuManager` to `RCTContextMenuViewManager` and update corresponding js native component
 - [x] ⭐️ Impl. iOS 14 specific feature: `UpdateVisibleMenu`
-- [ ] ⭐️ Impl. iOS 14 specific feature: `dismissMenu`
+- [x] ⭐️ Impl. iOS 14 specific feature: `dismissMenu`
 * Try implementing this via `NativeModule`
 
 - [x] ⭐️ Custom Preview - Add support for custom previews, i.e by passing a child component to `RCTContextMenuView`, and wrapping that child inside a view controller and passing it as the preview target in `UIMenu` config. The first child of the `RCTContextMenuView` will be reserved for the custom menu preview. If no child is passed, i.e no custom preview is configured, then the preview target is not set for the `UIMenu`. The preview view should only be mounted when the menu is visible, and thus, it should support setting the preferred size of the preview target. Test if the preview target can be changed when it's already visible.
