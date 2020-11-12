@@ -215,20 +215,20 @@ A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This mo
 <br>
 
 ### 3.2 Enum Values
-#### 3.2.1 `ImageTypes` Enum
-Enum string values you can use for the [￼`MenuConfig.imageType`](#332-menuconfig-object) or [￼`MenuAction.imageType`￼](#331-menuaction-object) property.
-* Import the enum like this: `import { ImageTypes } from "react-native-ios-context-menu";`
-* And use it  like this: `{ imageType: ImageTypes.SYSTEM }` 
-* Or you can directly pass a string like this: `{ imageType: 'SYSTEM' }`
+#### 3.2.1 `IconTypes` Enum
+Enum string values you can use for the [￼￼`IconConfig.iconType`￼](#332-iconconfig-object) property in the [￼`MenuAction.icon`￼](#331-menuaction-object) or ￼[`MenuConfig.icon`](#332-menuconfig-object) property.
+* Import the enum like this: `import { IconTypes } from "react-native-ios-context-menu";`
+* And use it  like this: `{ iconType: IconTypes }` 
+* Or you can directly pass a string like this: `{ iconType: 'SYSTEM' }`
 * Check out [￼￼Simple ￼￼Example #2](#412-contextmenuview-simple-example-2) or [￼￼Simple Example #16](#4116-contextmenuview-simple-example-16) section for example usage.
 
 <br>
 
 | Value  | Description                                                  |
 |--------|--------------------------------------------------------------|
-| NONE   | The default value for the `imageType` property. Specifies to not use an icon. Since this is the default value, you don't have to explicitly specify: `imageType: 'NONE'` in the `MenuConfig` or `MenuAction` object if you don't want to use an icon. |
-| SYSTEM | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon).  The `imageValue` string from a `MenuConfig` or `MenuAction` object  will be used to create an `UIImage` instance: `UIImage(systemName: imageValue)`. So the `imageValue` string must correspond to an SF Symbols icon. |
-| ASSET  | Specifies that we want to use an image in the Xcode project's asset catalog. The `imageValue` string from a `MenuConfig` or `MenuAction` object  will be used to create an `UIImage` instance: `UIImage(named: imageValue)`. So the `imageValue` string must correspond to an asset/item in the `xcasset` catalog. |
+| NONE   | The default value for the `iconType` property. Specifies to not use an icon. Since this is the default value, you don't have to explicitly specify: `iconType: 'NONE'` in the `IconConfig` object if you don't want to use an icon. |
+| SYSTEM | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon).  The `iconValue` string from a `IconConfig` object  will be used to create an `UIImage` instance: `UIImage(systemName: iconValue)`. So the `iconValue` string must correspond to an SF Symbols icon. |
+| ASSET  | Specifies that we want to use an image in the Xcode project's asset catalog. The `iconValue` string from a `IconConfig` object object  will be used to create an `UIImage` instance: `UIImage(named: iconValue)`. So the `iconValue` string must correspond to an asset/item in the `xcasset` catalog. |
 <br>
 
 #### 3.2.2 `MenuOptions` Enum
@@ -337,8 +337,7 @@ An object that is used to display/create a context menu action or a submenu acti
 |------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
 | `actionKey`            | **Required**: `String`                                       | A string that is used to identify a menu action. You will receive this value in the `onPressMenuItem({nativeEvent})` event. |
 | `actionTitle`          | **Required**: `String`                                       | The text to display in the menu action.                      |
-| `imageType`            | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu action's icon. Check out  the [￼￼`ImageTypes`￼￼](#321-imagetypes-enum) section. |
-| `imageValue`           | **Optional**: `String`                                       | String value used to for the menu actions's icon.            |
+| `icon`                 | **Optional**: `Object` (`IconConfig`)                        | Configures the menu action's icon. Check out  the [￼`Icon￼Config`](333-iconconfig-object) for more details. |
 | `menuState`            | **Optional**: `String` (`UIMenuElementState` value)          | Check the [￼`UIMenuElementState`￼](#324-uimenuelementstate-enum) section for the list of values to use. |
 | `menuAttributes`       | **Optional**: `[String]` (Array of `MenuElementAtrributes` values) | Options to change the look/behaviour of the menu action. Check out  the ￼[￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
 | `discoverabilityTitle` | **Optional**: `String`                                       | A string that is used to set a `UIAction`'s [`discoverabilityTitle`](https://developer.apple.com/documentation/uikit/uiaction) property. Visually, this property shows a subtitle for the menu action. See [Example 13](#4113-contextmenuview-simple-example-13) for example usage. |
@@ -353,9 +352,20 @@ An object that is used to display/create a context menu or a submenu. This objec
 |---------------|--------------------------------------------------------------|--------------------------------------------------------------|
 | `menuTitle`   | **Required**: `String`                                       | The title of the menu.                                       |
 | `menuOptions` | **Optional**: `[String]` (Array of `MenuOptions` values)     | Options to change the look/behaviour of the menu. Check out  the [￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
-| `imageType`   | **Optional**: `String` (`ImageTypes` value)                  | Configures the menu action's icon. Check out  the [￼￼`ImageTypes`￼￼](#321-imagetypes-enum) section. |
-| `imageValue`  | **Optional**: `String`                                       | String value used to for the menu's icon.                    |
+| `icon`        | **Optional**: `Object` (`IconConfig`)                        | Configures the menu action's icon. Check out  the [￼`Icon￼Config`￼](333-iconconfig-object) for more details. |
 | `menuItems`   | **Optional**: `[Object]` (An array of either `MenuAction` object or `MenuConfig`) | The items to display in a menu. if you pass a `MenuAction` it will create a menu action element, and if you pass a `MenuConfig` object, it will create a submenu. |
+
+<br>
+
+#### 3.3.3 `IconConfig` Object
+An object that is used to configure the `icon` property in the `MenuConfig` and `MenuAction` object. Represents an icon to show in a context menu or action item.
+
+<br>
+
+| Key/Property | Type                                       | Description                                                  |
+|--------------|--------------------------------------------|--------------------------------------------------------------|
+| `iconType`   | **Optional**: `String` (`IconTypes` value) | Configures the menu action's icon. Check out  the [￼￼￼`IconTypes`￼￼￼](#321-icontypes-enum) section. |
+| `iconValue`  | **Optional**: `String`                     | String value used to for the menu actions's icon.            |
 
 <br>
 
@@ -366,12 +376,14 @@ The `nativeEvent` object that you receive inside the `onPressMenuItem` event. Th
 
 ```js
 {
+  "target": 1175,
   "actionKey": "key-01",
-  "imageType": 'SYSTEM',
   "actionTitle": "Action #1",
-  "imageValue": "folder",
   "menuAttributes": [],
-  "target": 1175
+  icon: {
+    iconType : 'SYSTEM',
+    iconValue: 'folder'
+  },
 }
 ```
 
@@ -443,6 +455,8 @@ A plain context menu configured with 3 actions (no icons, just text).
 
 #### 4.1.2 `ContextMenuView` [Simple Example #2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample02.js)
 A menu configured with 3 actions with "system" [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icons.
+* A `MenuConfig` or `MenuAction` object has an optional `icon` property. 
+* To show an icon in the context menu, a `icon` object must have a `iconType` property and a `iconValue` property.
 * This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif).
 
 <br>
@@ -455,20 +469,28 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
       // a menu action config item (i.e. a `MenuAction` object)
       actionKey  : 'key-01'   ,
       actionTitle: 'Action #1',
-      imageType  : 'SYSTEM'   , // indicates that we want to use SF Symbols
-      imageValue : 'folder'   , // the icon string of SF Symbols icon
+	   // a `IconConfig` object
+      icon: {
+        iconType : 'SYSTEM', // indicates that we want to use SF Symbols
+        iconValue: 'folder', // the icon string of SF Symbols icon
+      }
     }, {
       // another `MenuAction` object item
       actionKey  : 'key-02'   ,
       actionTitle: 'Action #2',
-      imageType  : 'SYSTEM'   , // don't forget to add this property/key
-      imageValue : 'dial.fill', // a SF symbol has other variants for an icon
+      // another `IconConfig` object
+      icon: {
+        iconType : 'SYSTEM'   , // don't forget to add this property/key
+        iconValue: 'dial.fill', // a SF symbol has other variants for an icon
+      }
     }, {
       // and another `MenuAction` object item
       actionKey  : 'key-03'   ,
       actionTitle: 'Action #3',
-      imageType  : 'SYSTEM'   , // <- set `imageType` to "SYSTEM"
-      imageValue : 'archivebox.fill', // <- provide a SF Symbols icon string
+      // alternatively, as a shorthand, you can directly define `iconType`
+      // and `iconValue` in a `MenuConfig` object
+      iconType   : 'SYSTEM'         , // <- set `iconType` to "SYSTEM"
+      iconValue  : 'archivebox.fill', // <- provide a SF Symbols icon string
     }],
   }}
 />
@@ -490,7 +512,7 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
 <ContextMenuView
   // `menuConfig` prop accepts a `MenuConfig` object
   menuConfig={{
-    menuTitle: 'ContextMenuViewSimpleExample03', // title of our menu
+    menuTitle: 'pContextMenuViewSimpleExample03', // title of our menu
     // a `MenuConfig` object has `menuItems` property
     // which is an array of `MenuConfig` or `MenuAction` object
     // these are the items we want to show in our menu
@@ -498,8 +520,10 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
       // a menu action config item - `MenuAction` object
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
-      imageType  : 'SYSTEM',
-      imageValue : 'folder',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'folder',
+      }
     }, {
       // a menu config item, i.e. a submenu - `MenuConfig` object
       // the `menuItems` property can accept an array of both a `MenuAction`
@@ -515,20 +539,26 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
         // a menu action config item - `MenuAction` object
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
-        imageType  : 'SYSTEM',
-        imageValue : 'star',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star',
+        }
       }, {
         // another `MenuAction` object item
         actionKey  : 'key-01-02',
         actionTitle: 'Submenu Action #2',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.lefthalf.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.lefthalf.fill',
+        }
       }, {
         // and another `MenuAction` object item
         actionKey  : 'key-01-03',
         actionTitle: 'Submenu Action #3',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.fill',
+        }
       }]
     }],
   }}
@@ -557,36 +587,44 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
       // this menu action item to selected/pressed
       actionKey     : 'key-01',
       actionTitle   : 'Disabled Action',
-      imageType     : 'SYSTEM',
-      imageValue    : 'folder',
       menuAttributes: ['disabled'] // disable this menu action
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'folder',
+      }
     }, {
       // another `MenuAction` object item
       // but this time we make the action "destructive"
       // will tint the menu action item's text/icon bright red
       actionKey     : 'key-02'   ,
       actionTitle   : 'Destructive Action',
-      imageType     : 'SYSTEM',
-      imageValue    : 'trash',
       menuAttributes: ['destructive'] // make menu action "destructive"
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'trash',
+      }
     }, {
       // and another `MenuAction` object item
       // but this time we make the action "hidden"
       // will make the menu action item not appear in the menu
       actionKey     : 'key-03',
       actionTitle   : 'Hidden Action',
-      imageType     : 'SYSTEM',
-      imageValue    : 'trash',
       menuAttributes: ['hidden'] // make menu action "hidden"
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'trash',
+      }
     }, {
       // and yet another `MenuAction` object item
       // but this time we make the action both "hidden" and "disabled"
       // looks the same as `menuAttributes: ['disabled']`
       actionKey     : 'key-04',
       actionTitle   : 'Disabled/Destructive',
-      imageType     : 'SYSTEM',
-      imageValue    : 'trash.fill',
       menuAttributes: ['disabled', 'destructive'] // <- set `menuAttributes`
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'trash.fill',
+      }
     }],
   }}
 />
@@ -611,8 +649,10 @@ A context menu that has a "*displayInline*" submenu. This is the same as [Simple
       // a menu action config item (i.e. a `MenuAction` object)
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
-      imageType  : 'SYSTEM',
-      imageValue : 'folder',
+      icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'folder',
+        }
     }, {
       // a menu config item, i.e. a submenu - `MenuConfig` object
       // but this time we make it an inline submenu.
@@ -623,20 +663,26 @@ A context menu that has a "*displayInline*" submenu. This is the same as [Simple
         // a `MenuAction` object
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
-        imageType  : 'SYSTEM',
-        imageValue : 'star',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star',
+        }
       }, {
         // another `MenuAction` object
         actionKey  : 'key-01-02',
         actionTitle: 'Submenu Action #2',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.lefthalf.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.lefthalf.fill',
+        }
       }, {
         // yet another `MenuAction` object
         actionKey  : 'key-01-03',
         actionTitle: 'Submenu Action #3',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.fill',
+        }
       }]
     }]
   }}
@@ -661,8 +707,10 @@ A context menu that has a "*destructive*" submenu. This is the same as [Simple E
       // a `MenuAction` object
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
-      imageType  : 'SYSTEM',
-      imageValue : 'folder',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'folder',
+      }
     }, {
       // a `MenuConfig` object i.e a submenu
       menuTitle: 'Submenu...',
@@ -671,20 +719,26 @@ A context menu that has a "*destructive*" submenu. This is the same as [Simple E
         // a submenu action i.e `MenuAction` object
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
-        imageType  : 'SYSTEM',
-        imageValue : 'star',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star',
+        }
       }, {
         // another submenu `MenuAction` object
         actionKey  : 'key-01-02',
         actionTitle: 'Submenu Action #2',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.lefthalf.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.lefthalf.fill',
+        }
       }, {
         // and another submenu `MenuAction` object
         actionKey  : 'key-01-03',
         actionTitle: 'Submenu Action #3',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.fill',
+        }
       }]
     }],
   }}
@@ -709,8 +763,10 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
     menuItems: [{
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
-      imageType  : 'SYSTEM',
-      imageValue : 'folder',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'folder',
+      }
     }, {
       menuTitle: 'Submenu...',
 	   // set the optional `menuOptions` property
@@ -718,18 +774,26 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
       menuItems: [{
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
-        imageType  : 'SYSTEM',
-        imageValue : 'star',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star',
+        }
+        
       }, {
         actionKey  : 'key-01-02',
         actionTitle: 'Submenu Action #2',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.lefthalf.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.lefthalf.fill',
+        }
+        
       }, {
         actionKey  : 'key-01-03',
         actionTitle: 'Submenu Action #3',
-        imageType  : 'SYSTEM',
-        imageValue : 'star.fill',
+        icon: {
+          iconType : 'SYSTEM',
+          iconValue: 'star.fill',
+        }
       }]
     }],
   }}
@@ -757,26 +821,32 @@ A context menu with 3 actions that has "on", "off", and "mixed" `menuState`
       // we set the optional `menuState` property to: "on"
       actionKey  : 'key-01',
       actionTitle: 'menuState: on',
-      imageType  : 'SYSTEM',
-      imageValue : 'folder',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'folder',
+      }
       menuState  : 'on', // <- set the `menuState` property
     }, {
       // another `MenuAction` object
       // but this time we set the optional `menuState` property to: "off"
       actionKey  : 'key-02',
       actionTitle: 'menuState: off',
-      imageType  : 'SYSTEM',
-      imageValue : 'dial',
       menuState  : 'off', // <- set `menuState` property
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'dial',
+      }
     }, {
       // and another `MenuAction` object
       // but this time we set the optional `menuState` property to: "mixed"
       // note: visually, appears the same as `menuState: "on"`
       actionKey  : 'key-03',
       actionTitle: 'menuState: mixed',
-      imageType  : 'SYSTEM',
-      imageValue : 'archivebox',
       menuState  : 'mixed', // <- set `menuState` property
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'archivebox',
+      }
     }],
   }}
 />
@@ -818,18 +888,24 @@ A example context menu that uses the `ContextMenuView`'s `onPressMenuItem` and `
     menuItems: [{
       actionKey  : 'save',
       actionTitle: 'Save',
-      imageType  : 'SYSTEM',
-      imageValue : 'square.and.arrow.down',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'square.and.arrow.down',
+      }
     }, {
-      actionKey  : 'like'         ,
-      actionTitle: 'Like'         ,
-      imageType  : 'SYSTEM'       ,
-      imageValue : 'hand.thumbsup',
+      actionKey  : 'like',
+      actionTitle: 'Like',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'hand.thumbsup',
+      }
     }, {
-      actionKey  : 'play'  ,
-      actionTitle: 'Play'  ,
-      imageType  : 'SYSTEM',
-      imageValue : 'play'  ,
+      actionKey  : 'play',
+      actionTitle: 'Play',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'play',
+      }
     }],
   }}
 />
@@ -870,21 +946,27 @@ function ContextMenuViewSimpleExample10(props) {
         menuItems: [{
           actionKey  : 'key-00',
           actionTitle: `Static Action`,
-          imageType  : 'SYSTEM',
-          imageValue : 'square.and.arrow.down',
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'square.and.arrow.down',
+          }
         }, {
           actionKey  : 'key-01',
           actionTitle: `timer: ${timer}`, // <- the action title should update
-          imageType  : 'SYSTEM',
-          imageValue : ((timer % 2 == 0) // <- will show/hide
-            ? 'heart'
-            : 'heart.fill'
-          ),
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: ((timer % 2 == 0) // <- will show/hide
+              ? 'heart'
+              : 'heart.fill'
+            ),
+          }
         }, (timer % 3 == 0) && {
           actionKey  : 'key-02',
           actionTitle: `Dynamic Action`,
-          imageType  : 'SYSTEM',
-          imageValue : 'scissors.badge.ellipsis',
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'scissors.badge.ellipsis',
+          }
         }],
       }}
     />
@@ -1011,14 +1093,18 @@ function ContextMenuViewSimpleExample12(props) {
         menuItems: [{
           actionKey     : 'add',
           actionTitle   : `Add 100`,
-          imageType     : 'SYSTEM',
-          imageValue    : 'plus',
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'plus',
+          }
         }, (timer > 0) && {
           actionKey     : 'reset',
           actionTitle   : `Reset Counter`,
-          imageType     : 'SYSTEM',
-          imageValue    : 'trash',
-          menuAttributes: ['destructive']
+          menuAttributes: ['destructive'],
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'trash',
+          }
         }],
       }}
     />
@@ -1172,7 +1258,7 @@ class ContextMenuViewSimpleExample15 extends React.PureComponent {
 
 #### 4.1.16 `ContextMenuView` [Simple Example #16](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample16.js)
 A example context menu configured to have 3 menu actions. The first action has no icon, the second uses a `SYSTEM` SF Symbols icon, and the third uses a `ASSET` icon.
-* If you are using an `ASSET` icon, the the string that you pass to the `imageValue` property must correspond to an image asset in your Xcode project's `xcasset` catalog.
+* If you are using an `ASSET` icon, the the string that you pass to the `iconValue` property must correspond to an image asset in your Xcode project's `xcasset` catalog.
 
 <br>
 
@@ -1183,20 +1269,23 @@ A example context menu configured to have 3 menu actions. The first action has n
     menuItems: [{
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
-      discoverabilityTitle: 'No Icon'
+      discoverabilityTitle: 'No Icon',
     }, {
       actionKey  : 'key-02'   ,
       actionTitle: 'Action #2',
-      imageType  : 'SYSTEM',
-      imageValue : 'dial.fill',
-      discoverabilityTitle: 'Use "SYSTEM" icon'
-
+      discoverabilityTitle: 'Use "SYSTEM" icon',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'dial.fill',
+      }
     }, {
       actionKey  : 'key-03'   ,
       actionTitle: 'Action #3',
-      imageType  : 'ASSET'   ,
-      imageValue : 'icon-rainbow-flag',
-      discoverabilityTitle: 'Use "ASSET" icon'
+      discoverabilityTitle: 'Use "ASSET" icon',
+      icon: {
+        iconType : 'ASSET',
+        iconValue: 'icon-rainbow-flag',
+      }
     }],
   }}
 />
@@ -1205,6 +1294,67 @@ A example context menu configured to have 3 menu actions. The first action has n
 ![Simple Example 16](./assets/example-screenshots/ContextMenuView-SimpleExample16.png)
 
 <br><br>
+
+#### 4.1.17 `ContextMenuView` [Simple Example #17](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample17.js)
+A example context menu configured to have menu actions with custom colors. 
+* A `MenuConfig` or `MenuAction` object has an optional `icon` property.  Aside from the`iconType` and `iconValue` properties, an `icon` object also has an optional `iconTint` property.
+* The `IconConfig.iconTint` property accepts a color string. The color string can be an rgb, rgba, hex, or css color code format.
+
+<br>
+
+```jsx
+<ContextMenuView
+  menuConfig={{
+    menuTitle: 'ContextMenuViewSimpleExample17',
+    menuItems: [{
+      actionKey  : 'key-01',
+      actionTitle: 'Action #1',
+      discoverabilityTitle: 'Blue Icon',
+      // a `IconConfig` object
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'cloud.heavyrain.fill',
+        iconTint : 'blue', // <- set the optional `iconTint` property
+      },
+    }, {
+      actionKey  : 'key-02',
+      actionTitle: 'Action #2',
+      discoverabilityTitle: 'Orange Icon',
+      // another `IconConfig` object
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'exclamationmark.triangle.fill',
+        iconTint : 'rgb(218,165,32)', // <- can be a css color/rgb/rgba...
+      },
+    }, {
+      actionKey  : 'key-03',
+      actionTitle: 'Action #3',
+      discoverabilityTitle: 'Pink Icon',
+      // and another `IconConfig` object
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'heart.fill',
+        iconTint : '#FF1493', // <- can be a hex/hex w/ alpha string
+      },
+    }, {
+      actionKey  : 'key-04',
+      actionTitle: 'Action #4',
+      discoverabilityTitle: 'Green Icon',
+      // and yet another `IconConfig` object
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'bubble.right.fill',
+        iconTint : 'rgba(124,252,0,0.5)', //  <- pass any valid color string
+      },
+    }]
+  }}
+/>
+```
+
+![Simple Example 17](./assets/example-screenshots/ContextMenuView-SimpleExample17.png)
+
+<br><br>
+
 
 ### 4.2 `ContextMenuButton` Examples
 Most of the examples in the `ContextMenuView` section also applies here. The props in `ContextMenuView` (like the `menuConfig` and `useActionSheetFallback` props) as well as most of the events behave the same.
@@ -1256,20 +1406,26 @@ A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead
   menuConfig={{
     menuTitle: 'ContextMenuButtonSimpleExample02',
     menuItems: [{
-      actionKey  : 'key-01',
+      actionKey  : 'key-01' ,
       actionTitle: 'Action #1',
-      imageType  : 'SYSTEM',
-      imageValue : 'folder',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'folder',
+      }
     }, {
       actionKey  : 'key-02'   ,
       actionTitle: 'Action #2',
-      imageType  : 'SYSTEM',
-      imageValue : 'dial.fill',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'dial.fill',
+      }
     }, {
       actionKey  : 'key-03'   ,
       actionTitle: 'Action #3',
-      imageType  : 'SYSTEM'   ,
-      imageValue : 'archivebox.fill',
+      icon: {
+        iconType : 'SYSTEM',
+        iconValue: 'archivebox.fill',
+      }
     }],
   }}
 />
