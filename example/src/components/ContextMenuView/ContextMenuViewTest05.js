@@ -72,18 +72,24 @@ export class ContextMenuViewTest05 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
-            imageType  : 'SYSTEM',
-            imageValue : 'folder',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'folder',
+            }
           }, {
             actionKey  : 'key-02'   ,
             actionTitle: 'Action #2',
-            imageType  : 'SYSTEM',
-            imageValue : 'dial.fill',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'dial.fill',
+            }
           }, {
             actionKey  : 'key-03'   ,
             actionTitle: 'Action #3',
-            imageType  : 'SYSTEM'   ,
-            imageValue : 'archivebox.fill',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'archivebox.fill',
+            }
           }],
         }}
       >

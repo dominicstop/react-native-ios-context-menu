@@ -52,22 +52,28 @@ export class ContextMenuViewTest06 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'add-action',
             actionTitle: 'Add Action',
-            imageType  : 'SYSTEM',
-            imageValue : 'plus',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'plus',
+            }
           }, {
             actionKey     : 'delete-all',
             actionTitle   : 'Delete All',
-            imageType     : 'SYSTEM',
-            imageValue    : 'trash',
             menuAttributes: [hasItems? 'destructive' : 'disabled'],
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'trash',
+            }
           }, {
             menuTitle  : 'submenu',
             menuOptions: ['displayInline'],
             menuItems  : menuItems.map(item => ({
               actionKey  : `item-key-${item}`,
               actionTitle: `Action #${item}`,
-              imageType  : 'SYSTEM',
-              imageValue : (item % 2 == 0)? 'heart.fill' : 'heart',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: (item % 2 == 0)? 'heart.fill' : 'heart',
+              }
             })),
           }],
         }}

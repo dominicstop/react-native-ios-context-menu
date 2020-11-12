@@ -37,18 +37,24 @@ export class ContextMenuViewSimpleExample09 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'save',
             actionTitle: 'Save',
-            imageType  : 'SYSTEM',
-            imageValue : 'square.and.arrow.down',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'square.and.arrow.down',
+            }
           }, {
-            actionKey  : 'like'         ,
-            actionTitle: 'Like'         ,
-            imageType  : 'SYSTEM'       ,
-            imageValue : 'hand.thumbsup',
+            actionKey  : 'like',
+            actionTitle: 'Like',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'hand.thumbsup',
+            }
           }, {
-            actionKey  : 'play'  ,
-            actionTitle: 'Play'  ,
-            imageType  : 'SYSTEM',
-            imageValue : 'play'  ,
+            actionKey  : 'play',
+            actionTitle: 'Play',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'play',
+            }
           }],
         }}
       />

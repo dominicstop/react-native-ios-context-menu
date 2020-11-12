@@ -20,25 +20,33 @@ export class ContextMenuViewSimpleExample03 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
-            imageType  : 'SYSTEM',
-            imageValue : 'folder',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'folder',
+            }
           }, {
             menuTitle: 'Submenu...',
             menuItems: [{
               actionKey  : 'key-01-01',
               actionTitle: 'Submenu Action #1',
-              imageType  : 'SYSTEM',
-              imageValue : 'star',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'star',
+              }
             }, {
               actionKey  : 'key-01-02',
               actionTitle: 'Submenu Action #2',
-              imageType  : 'SYSTEM',
-              imageValue : 'star.lefthalf.fill',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'star.lefthalf.fill',
+              }
             }, {
               actionKey  : 'key-01-03',
               actionTitle: 'Submenu Action #3',
-              imageType  : 'SYSTEM',
-              imageValue : 'star.fill',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'star.fill',
+              }
             }]
           }],
         }}

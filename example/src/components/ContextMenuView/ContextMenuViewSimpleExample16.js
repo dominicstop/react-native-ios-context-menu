@@ -19,20 +19,23 @@ export function ContextMenuViewSimpleExample16(props) {
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Action #1',
-          discoverabilityTitle: 'No Icon'
+          discoverabilityTitle: 'No Icon',
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'Action #2',
-          imageType  : 'SYSTEM',
-          imageValue : 'dial.fill',
-          discoverabilityTitle: 'Use "SYSTEM" icon'
-
+          discoverabilityTitle: 'Use "SYSTEM" icon',
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'dial.fill',
+          }
         }, {
           actionKey  : 'key-03'   ,
           actionTitle: 'Action #3',
-          imageType  : 'ASSET'   ,
-          imageValue : 'icon-rainbow-flag',
-          discoverabilityTitle: 'Use "ASSET" icon'
+          discoverabilityTitle: 'Use "ASSET" icon',
+          icon: {
+            iconType : 'ASSET',
+            iconValue: 'icon-rainbow-flag',
+          }
         }],
       }}
     />

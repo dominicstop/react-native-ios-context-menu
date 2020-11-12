@@ -34,21 +34,27 @@ export function ContextMenuViewSimpleExample10(props) {
         menuItems: [{
           actionKey  : 'key-00',
           actionTitle: `Static Action`,
-          imageType  : 'SYSTEM',
-          imageValue : 'square.and.arrow.down',
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'square.and.arrow.down',
+          }
         }, {
           actionKey  : 'key-01',
           actionTitle: `timer: ${timer}`,
-          imageType  : 'SYSTEM',
-          imageValue : ((timer % 2 == 0)
-            ? 'heart'
-            : 'heart.fill'
-          ),
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: ((timer % 2 == 0)
+              ? 'heart'
+              : 'heart.fill'
+            ),
+          }
         }, (timer % 3 == 0) && {
           actionKey  : 'key-02',
           actionTitle: `Dynamic Action`,
-          imageType  : 'SYSTEM',
-          imageValue : 'scissors.badge.ellipsis',
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'scissors.badge.ellipsis',
+          }
         }],
       }}
     />

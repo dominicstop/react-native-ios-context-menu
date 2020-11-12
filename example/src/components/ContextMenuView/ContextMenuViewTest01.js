@@ -21,74 +21,104 @@ export class ContextMenuViewTest01 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'key-01'   ,
             actionTitle: 'Action #1',
-            imageType  : 'SYSTEM',
-            imageValue : 'hare',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'hare',
+            }
           }, {
             actionKey  : 'key-02'   ,
             actionTitle: 'Action #2',
-            imageType  : 'SYSTEM',
-            imageValue : 'calendar',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'calendar',
+            }
           }, {
             menuTitle: 'Submenu #1...',
-            imageType: 'SYSTEM',
-            imageValue: 'ant',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'ant',
+            },
             menuItems: [{
               actionKey  : 'key-03-01'   ,
               actionTitle: 'Submenu Action #3',
-              imageType  : 'SYSTEM',
-              imageValue : 'moon',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'moon',
+              },
             }, {
               actionKey  : 'key-03-02'   ,
               actionTitle: 'Submenu Action #4',
-              imageType  : 'SYSTEM',
-              imageValue : 'house',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'house',
+              }
             }, {
               menuTitle: 'Submenu #5...',
-              imageType: 'SYSTEM',
-              imageValue: 'moon.stars',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'moon.stars',
+              },
               menuItems: [{
                 actionKey  : 'key-03-03-01',
                 actionTitle: 'Submenu Action #5',
-                imageType  : 'SYSTEM',
-                imageValue : 'dial',
+                icon: {
+                  iconType : 'SYSTEM',
+                  iconValue: 'dial',
+                }
               }, {
                 actionKey  : 'key-03-03-02',
                 actionTitle: 'Submenu Action #6',
-                imageType  : 'SYSTEM',
-                imageValue : 'square.and.arrow.up.on.square',
+                icon: {
+                  iconType : 'SYSTEM',
+                  iconValue: 'square.and.arrow.up.on.square',
+                }
               }, {
                 menuTitle: 'Submenu #3...',
-                imageType: 'SYSTEM',
-                imageValue: 'archivebox',
+                icon: {
+                  iconType : 'SYSTEM',
+                  iconValue: 'archivebox',
+                },
                 menuItems: [{
                   actionKey  : 'key-03-03-03-01',
                   actionTitle: 'Submenu Action #7',
-                  imageType  : 'SYSTEM',
-                  imageValue : 'folder',
+                  icon: {
+                    iconType : 'SYSTEM',
+                    iconValue: 'folder',
+                  },
                 }, {
                   actionKey  : 'key-03-03-03-02',
                   actionTitle: 'Submenu Action #8',
-                  imageType  : 'SYSTEM',
-                  imageValue : 'pencil.slash',
+                  icon: {
+                    iconType : 'SYSTEM',
+                    iconValue: 'pencil.slash',
+                  }
                 }, {
                   menuTitle: 'Submenu #4...',
-                  imageType: 'SYSTEM',
-                  imageValue: 'rosette',
+                  icon: {
+                    iconType : 'SYSTEM',
+                    iconValue: 'rosette',
+                  },
                   menuItems: [{
                     actionKey  : 'key-03-03-03-03-01',
                     actionTitle: 'Submenu Action #9',
-                    imageType  : 'SYSTEM',
-                    imageValue : 'lessthan.circle',
+                    icon: {
+                      iconType : 'SYSTEM',
+                      iconValue: 'lessthan.circle',
+                    }
                   }, {
                     actionKey  : 'key-03-03-03-03-02',
                     actionTitle: 'Submenu Action #10',
-                    imageType  : 'SYSTEM',
-                    imageValue : 'divide.square',
+                    icon: {
+                      iconType : 'SYSTEM',
+                      iconValue: 'divide.square',
+                    }
                   }, {
                     actionKey  : 'key-03-03-03-03-03',
                     actionTitle: 'Submenu Action #11',
-                    imageType  : 'SYSTEM',
-                    imageValue : 'cloud.moon',
+                    icon: {
+                      iconType : 'SYSTEM',
+                      iconValue: 'cloud.moon',
+                    }
                   }],
                 }],
               }],

@@ -68,28 +68,36 @@ export class ContextMenuViewTest04 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: `Action 1: ${state.actionToggle1? 'on' : 'off'}`,
-            imageType  : 'SYSTEM',
-            imageValue : (state.actionToggle1? 'heart.fill' : 'heart'),
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: (state.actionToggle1? 'heart.fill' : 'heart'),
+            }
           }, {
             actionKey  : 'key-02',
             actionTitle: `Action 2: ${state.actionToggle2? 'on' : 'off'}`,
-            imageType  : 'SYSTEM',
-            imageValue : (state.actionToggle2? 'suit.club.fill' : 'suit.club'),
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: (state.actionToggle2? 'suit.club.fill' : 'suit.club'),
+            }
           }, {
             actionKey  : 'key-03',
             actionTitle: `Action 3: ${state.actionToggle3? 'on' : 'off'}`,
-            imageType  : 'SYSTEM',
-            imageValue : (state.actionToggle3? 'suit.spade.fill' : 'suit.spade'),
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: (state.actionToggle3? 'suit.spade.fill' : 'suit.spade'),
+            }
           }, {
             menuTitle  : 'Inline Menu',
             menuOptions: ['displayInline'],
             menuItems  : [{
               actionKey     : 'key-04',
               actionTitle   : `Reset All`,
-              imageType     : 'SYSTEM',
-              imageValue    : 'trash',
               menuAttributes: [resetEnabled? 'destructive' : 'hidden'],
               menuState     : 'off',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'trash',
+              }
             }],
           }]
         }}

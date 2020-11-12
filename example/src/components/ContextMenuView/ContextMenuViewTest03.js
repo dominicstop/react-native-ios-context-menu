@@ -69,28 +69,36 @@ export class ContextMenuViewTest03 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: `Action 1: ${state.actionState1? 'on' : 'off'}`,
-            imageType  : 'SYSTEM',
-            imageValue : 'heart',
             menuState  : (state.actionState1? 'on' : 'off'),
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'heart',
+            }
           }, {
             actionKey  : 'key-02',
             actionTitle: `Action 2: ${state.actionState2? 'on' : 'off'}`,
-            imageType  : 'SYSTEM',
-            imageValue : 'suit.club',
             menuState  : (state.actionState2? 'on' : 'off'),
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'suit.club',
+            }
           }, {
             actionKey  : 'key-03',
             actionTitle: `Action 3: ${state.actionState3? 'on' : 'off'}`,
-            imageType  : 'SYSTEM',
-            imageValue : 'suit.spade',
             menuState  : (state.actionState3? 'on' : 'off'),
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'suit.spade',
+            }
           }, {
             actionKey     : 'key-04',
             actionTitle   : `Reset All`,
-            imageType     : 'SYSTEM',
-            imageValue    : 'trash',
             menuAttributes: [resetEnabled? 'destructive' : 'hidden'],
             menuState     : 'off',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'trash',
+            }
           }]
         }}
       />

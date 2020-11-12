@@ -20,27 +20,35 @@ export class ContextMenuViewSimpleExample04 extends React.PureComponent {
           menuItems: [{
             actionKey     : 'key-01',
             actionTitle   : 'Disabled Action',
-            imageType     : 'SYSTEM',
-            imageValue    : 'folder',
-            menuAttributes: ['disabled']
+            menuAttributes: ['disabled'],
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'folder',
+            }
           }, {
             actionKey     : 'key-02'   ,
             actionTitle   : 'Destructive Action',
-            imageType     : 'SYSTEM',
-            imageValue    : 'trash',
-            menuAttributes: ['destructive']
+            menuAttributes: ['destructive'],
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'trash',
+            }
           }, {
             actionKey     : 'key-03'   ,
             actionTitle   : 'Hidden Action',
-            imageType     : 'SYSTEM',
-            imageValue    : 'trash',
-            menuAttributes: ['hidden']
+            menuAttributes: ['hidden'],
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'trash',
+            }
           }, {
             actionKey     : 'key-04'   ,
             actionTitle   : 'Disabled/Destructive',
-            imageType     : 'SYSTEM',
-            imageValue    : 'trash.fill',
-            menuAttributes: ['disabled', 'destructive']
+            menuAttributes: ['disabled', 'destructive'],
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'trash.fill',
+            }
           }],
         }}
       />

@@ -24,36 +24,48 @@ export class ContextMenuViewTest02 extends React.PureComponent {
             menuItems: [{
               actionKey  : 'key-01'   ,
               actionTitle: 'Inline Action #1',
-              imageType  : 'SYSTEM',
-              imageValue : 'hare',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'hare',
+              }
             }, {
               menuTitle  : 'Submenu #1...',
-              imageType  : 'SYSTEM',
-              imageValue : 'calendar',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'calendar',
+              },
               menuItems: [{
                 actionKey  : 'key-02-01',
                 actionTitle: 'Submenu Action #1',
-                imageType  : 'SYSTEM',
-                imageValue : 'paperclip',
+                icon: {
+                  iconType : 'SYSTEM',
+                  iconValue: 'paperclip',
+                }
               }, {
                 menuTitle: 'Inline Submenu #4',
                 menuOptions: ['displayInline'],
                 menuItems: [{
                   actionKey  : 'key-02-02',
                   actionTitle: 'Inline Submenu Action #2',
-                  imageType  : 'SYSTEM',
-                  imageValue : 'house',
+                  icon: {
+                    iconType : 'SYSTEM',
+                    iconValue: 'house',
+                  }
                 }, {
                   actionKey  : 'key-02-03',
                   actionTitle: 'Inline Submenu Action #3',
-                  imageType  : 'SYSTEM',
-                  imageValue : 'tag',
+                  icon: {
+                    iconType : 'SYSTEM',
+                    iconValue: 'tag',
+                  }
                 }],
               }, {
                 actionKey  : 'key-02-04',
                 actionTitle: 'Submenu Action #4',
-                imageType  : 'SYSTEM',
-                imageValue : 'sun.haze',
+                icon: {
+                  iconType : 'SYSTEM',
+                  iconValue: 'sun.haze',
+                }
               }],
             }],
           }, {
@@ -63,20 +75,26 @@ export class ContextMenuViewTest02 extends React.PureComponent {
               actionKey     : 'key-03'   ,
               actionTitle   : 'Inline Submenu Action #2',
               menuAttributes: ['disabled'],
-              imageType     : 'SYSTEM',
-              imageValue    : 'suit.heart',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'suit.heart',
+              }
             }, {
               actionKey  : 'key-04'   ,
               actionTitle: 'Inline Submenu Action #3',
-              imageType  : 'SYSTEM',
-              imageValue : 'suit.club',
+              icon: {
+                iconType : 'SYSTEM',
+                iconValue: 'suit.club',
+              }
             }],
           }, {
             actionKey     : 'key-05'   ,
             actionTitle   : 'Action #4',
             menuAttributes: ['destructive'],
-            imageType     : 'SYSTEM',
-            imageValue    : 'trash',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'trash',
+            }
           }]
         }}
       />

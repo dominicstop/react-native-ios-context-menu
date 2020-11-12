@@ -62,14 +62,18 @@ export function ContextMenuViewSimpleExample12(props) {
         menuItems: [{
           actionKey     : 'add',
           actionTitle   : `Add 100`,
-          imageType     : 'SYSTEM',
-          imageValue    : 'plus',
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'plus',
+          }
         }, (timer > 0) && {
           actionKey     : 'reset',
           actionTitle   : `Reset Counter`,
-          imageType     : 'SYSTEM',
-          imageValue    : 'trash',
-          menuAttributes: ['destructive']
+          menuAttributes: ['destructive'],
+          icon: {
+            iconType : 'SYSTEM',
+            iconValue: 'trash',
+          }
         }],
       }}
     />

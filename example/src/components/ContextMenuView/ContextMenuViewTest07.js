@@ -108,16 +108,20 @@ export class ContextMenuViewTest07 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'add',
             actionTitle: `Add 100`,
-            imageType  : 'SYSTEM',
-            imageValue : 'plus',
-            discoverabilityTitle: `Current counter ${state.counter}`
+            discoverabilityTitle: `Current counter ${state.counter}`,
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'plus',
+            }
           }, 
           (state.counter > 0) && {
             actionKey     : 'reset',
             actionTitle   : `Reset Counter`,
-            imageType     : 'SYSTEM',
-            imageValue    : 'trash',
-            menuAttributes: ['destructive']
+            menuAttributes: ['destructive'],
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'trash',
+            }
           }],
         }}
       >

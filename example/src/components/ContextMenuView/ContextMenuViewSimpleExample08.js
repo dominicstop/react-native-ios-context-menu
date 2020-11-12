@@ -20,21 +20,27 @@ export class ContextMenuViewSimpleExample08 extends React.PureComponent {
           menuItems: [{
             actionKey  : 'key-01',
             actionTitle: 'menuState: on',
-            imageType  : 'SYSTEM',
-            imageValue : 'folder',
             menuState  : 'on',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'folder',
+            }
           }, {
             actionKey  : 'key-02'   ,
             actionTitle: 'menuState: off',
-            imageType  : 'SYSTEM',
-            imageValue : 'dial',
             menuState  : 'off',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'dial',
+            }
           }, {
             actionKey  : 'key-03'   ,
             actionTitle: 'menuState: mixed',
-            imageType  : 'SYSTEM'   ,
-            imageValue : 'archivebox',
             menuState  : 'mixed',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'archivebox',
+            }
           }],
         }}
       />
