@@ -20,10 +20,9 @@ public struct RCTMenuIcon {
   
   var iconType : IconType = .NONE;
   var iconValue: String?;
+  var iconSize : CGFloat?;
+  var iconTint : UIColor?;
   
-  var iconSize: CGFloat?;
-  
-  var iconTint  : UIColor              = .black;
   var iconScale : UIImage.SymbolScale  = .default;
   var iconWeight: UIImage.SymbolWeight = .regular;
 };
@@ -63,15 +62,6 @@ extension RCTMenuIcon {
   };
 };
 
-// -----------------------------------
-// MARK: RCTMenuIcon - Private Methods
-// -----------------------------------
-
-@available(iOS 13.0, *)
-fileprivate extension RCTMenuIcon {
-  
-};
-
 // ---------------------------------------
 // MARK: RCTMenuIcon - Computed Properties
 // ---------------------------------------
@@ -87,9 +77,15 @@ extension RCTMenuIcon {
       
       case .SYSTEM:
         guard let iconValue = self.iconValue else { return nil };
-        return UIImage(systemName: iconValue)?
-          .withTintColor(self.iconTint)
-          .withRenderingMode(.alwaysOriginal);
+        
+        if let iconTint = self.iconTint {
+          return UIImage(systemName: iconValue)?
+            .withTintColor(iconTint)
+            .withRenderingMode(.alwaysOriginal);
+          
+        } else {
+          return UIImage(systemName: iconValue);
+        };
         
       case .ASSET:
         guard let iconValue = self.iconValue else { return nil };
