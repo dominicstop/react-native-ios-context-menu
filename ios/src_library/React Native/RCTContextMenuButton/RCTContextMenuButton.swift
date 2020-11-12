@@ -108,13 +108,16 @@ class RCTContextMenuButton: UIButton {
   override func reactSetFrame(_ frame: CGRect) {
     super.reactSetFrame(frame);
   };
+};
   
 // ---------------------------------------------------------
 // MARK: RCTContextMenuButton - Public Functions for Manager
 // ---------------------------------------------------------
-  
-  func dismissMenu(){
-    // TODO: wip
+
+@available(iOS 14, *)
+extension RCTContextMenuButton {
+  @objc func dissmissMenu(){
+    self.contextMenuInteraction?.dismissMenu();
   };
 };
 

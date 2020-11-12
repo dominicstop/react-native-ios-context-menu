@@ -35,4 +35,10 @@ RCT_EXPORT_VIEW_PROPERTY(onMenuWillCreate, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(menuConfig   , NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(previewConfig, NSDictionary);
 
+// ---------------------------
+// MARK: View Manager Commands
+// ---------------------------
+
+RCT_EXTERN_METHOD(dismissMenu:(nonnull NSNumber *)node);
+
 @end

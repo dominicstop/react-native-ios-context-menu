@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity, processColor } from 'react-native';
+import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity, processColor, findNodeHandle } from 'react-native';
 import Proptypes from 'prop-types';
 
 import { PreviewType } from './Enums';
@@ -32,6 +32,10 @@ const NATIVE_PROP_KEYS = {
   // props: onPress events ----------------
   onPressMenuItem   : 'onPressMenuItem'   ,
   onPressMenuPreview: 'onPressMenuPreview',
+};
+
+const NATIVE_COMMAND_KEYS = {
+  'dismissMenu': 'dismissMenu',
 };
 
 
@@ -97,6 +101,14 @@ export class ContextMenuView extends React.PureComponent {
     };
 
     return { nativeProps, ...otherProps };
+  };
+
+  dismissMenu = () => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.nativeRef),
+      NativeCommands?.[NATIVE_COMMAND_KEYS.dismissMenu],
+      null
+    );
   };
 
   //#region - Event Handlers
@@ -187,6 +199,7 @@ export class ContextMenuView extends React.PureComponent {
     return(
       <NativeComponent
         style={[styles.menuView, style]}
+        ref={r => this.nativeRef = r}
         {...nativeCompProps}
       >
         <View style={styles.previewContainer}>

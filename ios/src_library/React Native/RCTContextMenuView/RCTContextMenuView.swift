@@ -138,14 +138,25 @@ class RCTContextMenuView: UIView {
   };
 };
 
+// ------------------------------------------------
+// MARK: RCTContextMenuView - ViewManager Functions
+// ------------------------------------------------
+
+@available(iOS 13, *)
+extension RCTContextMenuView {
+  @objc func dissmissMenu(){
+    self.contextMenuInteraction?.dismissMenu();
+  };
+};
+
 // --------------------------------------------
 // MARK: RCTContextMenuView - Private Functions
 // --------------------------------------------
 
 @available(iOS 13, *)
-extension RCTContextMenuView {
+fileprivate extension RCTContextMenuView {
   
-  private func notifyForBoundsChange(_ newBounds: CGRect){
+  func notifyForBoundsChange(_ newBounds: CGRect){
     guard
       let bridge    = self.bridge,
       let reactView = self.reactPreviewView else { return };
@@ -154,7 +165,7 @@ extension RCTContextMenuView {
   };
   
   /// create `UIMenu` based on `menuConfig` prop
-  private func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
+  func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
     guard  let menuConfig = self._menuConfig else {
       #if DEBUG
       print("RCTContextMenuView, createMenu"
@@ -170,8 +181,8 @@ extension RCTContextMenuView {
     };
   };
   
-  
-  private func createMenuPreview() -> UIViewController? {
+  /// create custom menu preview based on `previewConfig` and `reactPreviewView`
+  func createMenuPreview() -> UIViewController? {
     // alias to variable
     let previewConfig = self._previewConfig;
     
@@ -190,7 +201,8 @@ extension RCTContextMenuView {
     return vc;
   };
   
-  private func makeTargetedPreview() -> UITargetedPreview {
+  /// confgiure target preview based on `previewConfig`
+  func makeTargetedPreview() -> UITargetedPreview {
     // alias to variable
     let previewConfig = self._previewConfig;
     
