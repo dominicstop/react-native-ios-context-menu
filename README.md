@@ -238,7 +238,7 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 
 | Name            | Description                                                  |
 |-----------------|--------------------------------------------------------------|
-| `dismissMenu()` | Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
+| `dismissMenu()` | Same as `ContextMenuView`. Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
 
 <br>
 
@@ -469,11 +469,11 @@ A plain context menu configured with 3 actions (no icons, just text).
   // `menuConfig` prop accepts a `MenuConfig` object
   menuConfig={{
     menuTitle: 'ContextMenuViewSimpleExample01', // title of our menu
-    // a `MenuConfig` object has `menuItems` property
-    // which is an array of `MenuConfig` or `MenuAction` object
+    // a `MenuConfig` object has a `menuItems` property
+    // it accepts an array of `MenuConfig` or `MenuAction` object.
     // these are the items we want to show in our menu
     menuItems: [{
-	   // a menu action config item  - `MenuAction` object
+      // a `MenuAction` object item
       // represents an menu item that we want to show in our menu
       actionKey  : 'key-01'   , // an id for your action
       actionTitle: 'Action #1', // text to display in your menu action
@@ -513,7 +513,7 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
 	   // a `IconConfig` object
       icon: {
         iconType : 'SYSTEM', // indicates that we want to use SF Symbols
-        iconValue: 'folder', // the icon string of SF Symbols icon
+        iconValue: 'folder', // the icon string of the SF Symbols icon
       }
     }, {
       // another `MenuAction` object item
@@ -522,7 +522,7 @@ A menu configured with 3 actions with "system" [SF Symbols](https://developer.ap
       // another `IconConfig` object
       icon: {
         iconType : 'SYSTEM'   , // don't forget to add this property/key
-        iconValue: 'dial.fill', // a SF symbol has other variants for an icon
+        iconValue: 'dial.fill', // a SF symbol can have other variants
       }
     }, {
       // and another `MenuAction` object item
@@ -554,11 +554,11 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
   // `menuConfig` prop accepts a `MenuConfig` object
   menuConfig={{
     menuTitle: 'pContextMenuViewSimpleExample03', // title of our menu
-    // a `MenuConfig` object has `menuItems` property
-    // which is an array of `MenuConfig` or `MenuAction` object
-    // these are the items we want to show in our menu
+    // a `MenuConfig` object has a `menuItems` property
+    // it accepts an array of either a `MenuConfig` or `MenuAction` object
+    // this property contains the items we want to show in our menu
     menuItems: [{
-      // a menu action config item - `MenuAction` object
+      // a menu action config item, i.e. a `MenuAction` object
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
       icon: {
@@ -566,16 +566,14 @@ A context menu  configured with 1 action, and a submenu (with 3 submenu actions)
         iconValue: 'folder',
       }
     }, {
-      // a menu config item, i.e. a submenu - `MenuConfig` object
-      // the `menuItems` property can accept an array of both a `MenuAction`
-      // object and a `MenuConfig` object. If we pass a `MenuConfig` object
-      // this means that we want to show another menu i.e. a submenu
-      menuTitle: 'Submenu...', // the title of submenu
-
-      // Since this is a `MenuConfig` object, we have a `menuItems` property.
-      // This represents the items that we want to show in our submenu.
-      // An array of `MenuAction` or `MenuConfig` object. If you want another 
-      // submenu in your submenu, pass a `MenuConfig` object.
+      // If you want to show a submenu, just add a `MenuConfig` object.
+      // The `menuItems` property can accept an array of `MenuAction`
+      // or `MenuConfig` objects. If we pass a `MenuConfig` object, then
+      // it means that we want to show another menu (i.e. a submenu)
+      menuTitle: 'Submenu...', // <- the title of submenu
+      // Since this is a `MenuConfig` object, it also has a `menuItems`
+      // property. If you want another submenu, just pass another `MenuConfig`
+      // object. You can have as many as you like.
       menuItems: [{
         // a menu action config item - `MenuAction` object
         actionKey  : 'key-01-01',
@@ -623,12 +621,12 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
     menuTitle: 'ContextMenuViewSimpleExample04',
     menuItems: [{
       // a menu action config item (i.e. a `MenuAction` object)
-      // but we set an optional property called `menuAttributes`
+      // but we set an optional property called `menuAttributes`.
       // we set the `menuAttributes` to `disabled` which will prevent
-      // this menu action item to selected/pressed
+      // this menu action item from being selected/pressed
       actionKey     : 'key-01',
       actionTitle   : 'Disabled Action',
-      menuAttributes: ['disabled'] // disable this menu action
+      menuAttributes: ['disabled'] // <- disable this menu action
       icon: {
         iconType : 'SYSTEM',
         iconValue: 'folder',
@@ -639,26 +637,26 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
       // will tint the menu action item's text/icon bright red
       actionKey     : 'key-02'   ,
       actionTitle   : 'Destructive Action',
-      menuAttributes: ['destructive'] // make menu action "destructive"
+      menuAttributes: ['destructive'] // <- make menu action "destructive"
       icon: {
         iconType : 'SYSTEM',
         iconValue: 'trash',
       }
     }, {
-      // and another `MenuAction` object item
+      // and another `MenuAction` object item,
       // but this time we make the action "hidden"
       // will make the menu action item not appear in the menu
       actionKey     : 'key-03',
       actionTitle   : 'Hidden Action',
-      menuAttributes: ['hidden'] // make menu action "hidden"
+      menuAttributes: ['hidden'] // <- make menu action "hidden"
       icon: {
         iconType : 'SYSTEM',
         iconValue: 'trash',
       }
     }, {
-      // and yet another `MenuAction` object item
-      // but this time we make the action both "hidden" and "disabled"
-      // looks the same as `menuAttributes: ['disabled']`
+      // and yet another `MenuAction` object item,
+      // but this time we make the action both "hidden" and "disabled".
+      // this looks the same as `menuAttributes: ['disabled']`
       actionKey     : 'key-04',
       actionTitle   : 'Disabled/Destructive',
       menuAttributes: ['disabled', 'destructive'] // <- set `menuAttributes`
@@ -676,7 +674,7 @@ A example context menu with a "*disabled*" action, a "*destructive*" action, a "
 <br><br>
 
 #### 4.1.5 `ContextMenuView` [Simple Example #5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample05.js)
-A context menu that has a "*displayInline*" submenu. This is the same as [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu#413-contextmenuview-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`. Visually, this creates a "section" in the parent menu (i.e it add top and bottom separators).
+A context menu that has a "*displayInline*" submenu. This is the same as [Simple Example #3](https://github.com/dominicstop/react-native-ios-context-menu#413-contextmenuview-simple-example-3) but we set the `MenuConfig`'s optional `menuOptions` property to `["displayInline"]`. Visually, this creates a "section" in the parent menu (i.e it add top and bottom separators). This is great if you want to separate your menu actions.
 * This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif).
 
 <br>
@@ -691,11 +689,11 @@ A context menu that has a "*displayInline*" submenu. This is the same as [Simple
       actionKey  : 'key-01',
       actionTitle: 'Action #1',
       icon: {
-          iconType : 'SYSTEM',
-          iconValue: 'folder',
-        }
+        iconType : 'SYSTEM',
+        iconValue: 'folder',
+      }
     }, {
-      // a menu config item, i.e. a submenu - `MenuConfig` object
+      // a `MenuConfig` object, i.e. a submenu item,
       // but this time we make it an inline submenu.
       // A `MenuConfig` object has an optional `menuOptions` property.
       menuTitle: 'Submenu...',
@@ -811,7 +809,7 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
     }, {
       menuTitle: 'Submenu...',
 	   // set the optional `menuOptions` property
-      menuOptions: ['displayInline', 'destructive'],
+      menuOptions: ['displayInline', 'destructive'], // <- set menu options
       menuItems: [{
         actionKey  : 'key-01-01',
         actionTitle: 'Submenu Action #1',
@@ -819,7 +817,6 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
           iconType : 'SYSTEM',
           iconValue: 'star',
         }
-        
       }, {
         actionKey  : 'key-01-02',
         actionTitle: 'Submenu Action #2',
@@ -827,7 +824,6 @@ A context menu that has a "*displayInline*" and "*destructive*" submenu. This is
           iconType : 'SYSTEM',
           iconValue: 'star.lefthalf.fill',
         }
-        
       }, {
         actionKey  : 'key-01-03',
         actionTitle: 'Submenu Action #3',
@@ -1039,8 +1035,9 @@ function ContextMenuViewSimpleExample11(props) {
         // To show a custom context menu preview set `previewType` to `CUSTOM`
         previewType: 'CUSTOM',
         // To take make the preview as big as possible, set `previewSize` to
-        // STRETCH, otherwise set it to `INHERIT`
+        // STRETCH. By default, its set to `INHERIT`
         previewSize: 'STRETCH',
+        // The preview is transparent by default, so let's set a bg color
         backgroundColor: 'white'
       }}
       renderPreview={() => (
@@ -1059,7 +1056,7 @@ function ContextMenuViewSimpleExample11(props) {
         </View>
       )}
       menuConfig={{
-        // `menuItems` is optional
+        // `menuItems` is optional if you have a custom preview
         menuTitle: 'ContextMenuViewSimpleExample11',
       }}
     />
