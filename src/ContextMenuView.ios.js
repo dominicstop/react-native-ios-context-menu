@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity, processColor, findNodeHandle } from 'react-native';
+import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity, findNodeHandle } from 'react-native';
 import Proptypes from 'prop-types';
 
 import { PreviewType } from './Enums';
@@ -84,20 +84,6 @@ export class ContextMenuView extends React.PureComponent {
     for (const key of nativeKeys) {
       nativeProps[key] = otherProps[key];
       delete otherProps[key];
-    };
-
-    const previewConfig = 
-      nativeProps[NATIVE_PROP_KEYS.previewConfig];
-    
-    // process previewConfig.backgroundColor prop
-    if(previewConfig?.backgroundColor){
-      nativeProps = {
-        ...nativeProps,
-        [NATIVE_PROP_KEYS.previewConfig]: {
-          ...previewConfig,
-          backgroundColor: processColor(previewConfig.backgroundColor)
-        },
-      };
     };
 
     return { nativeProps, ...otherProps };

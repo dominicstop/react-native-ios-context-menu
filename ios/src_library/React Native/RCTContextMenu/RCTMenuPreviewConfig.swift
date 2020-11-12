@@ -69,8 +69,8 @@ extension PreviewConfig {
       self.isResizeAnimated = isResizeAnimated;
     };
     
-    if let value   = dictionary["backgroundColor"],
-       let bgColor = RCTConvert.uiColor(value) {
+    if let string  = dictionary["backgroundColor"] as? String,
+       let bgColor = UIColor(cssColor: string) {
       
       self.backgroundColor = bgColor;
     };
