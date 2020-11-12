@@ -58,11 +58,16 @@ export class ExampleContextMenuItem extends React.Component {
     index   : Proptypes.number,
   };
 
+  getContextMenuRef = () => {
+    return this.contexMenuRef;
+  };
+
   render(){
     const { title, subtitle, desc, index, style, children, ...props } = this.props;
 
     return(
-      <ContextMenuView 
+      <ContextMenuView
+        ref={r => this.contexMenuRef = r}
         style={[styles.rootContainer, style]}
         {...props}
       >
