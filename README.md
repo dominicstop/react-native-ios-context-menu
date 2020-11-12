@@ -185,7 +185,8 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 
 ## 3. Documentation
 ### 3.1 Modules/Components
-#### 3.1.1 `ContextMenuView` Component Props
+#### 3.1.1 `ContextMenuView` Component
+##### `ContextMenuView` Props
 
 | Prop                     | Type                                                         | Description                                                  |
 |--------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
@@ -205,7 +206,16 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 
 <br>
 
-#### 3.1.2 `ContextMenuButton` Component Props
+##### `ContextMenuView` Functions
+
+| Name            | Description                                                  |
+|-----------------|--------------------------------------------------------------|
+| `dismissMenu()` | Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
+
+<br>
+
+#### 3.1.2 `ContextMenuButton` Component
+##### `ContextMenuButton` Props
 
 | Prop                     | Type                                                 | Description                                                  |
 |--------------------------|------------------------------------------------------|--------------------------------------------------------------|
@@ -221,6 +231,15 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 | `onMenuWillCancel`       | **Event**: Function                                  | Same as `ContextMenuView`                                    |
 | `onMenuDidCancel`        | **Event**: Function                                  | Same as `ContextMenuView`                                    |
 | `onPressMenuItem`        | **Event**: Function `onPressMenuItem({nativeEvent})` | Same as `ContextMenuView`                                    |
+
+<br>
+
+##### `ContextMenuButton` Functions
+
+| Name            | Description                                                  |
+|-----------------|--------------------------------------------------------------|
+| `dismissMenu()` | Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
+
 <br>
 
 #### 3.1.2 `ActionSheetFallback` Module
