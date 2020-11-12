@@ -1,6 +1,6 @@
 
-/** Used for `MenuConfigKeys.imageType` or `MenuActionKeys.imageType` */
-export const ImageTypes = {
+/** Used for `IconConfigKeys.iconType` or `IconConfigKeys.iconType` */
+export const IconTypes = {
   'NONE'  : 'NONE'  ,
   'SYSTEM': 'SYSTEM',
   'ASSET' : 'ASSET' ,
@@ -44,6 +44,12 @@ export const CommitStyle = {
   'dismiss': 'dismiss' ,
 };
 
+export const IconConfigKeys = {
+  iconType : 'iconType',
+  iconValue: 'iconValue',
+  iconTint : 'iconTint',
+};
+
 export const PreviewConfigKeys = {
   previewType         : 'previewType'         , // optional - PreviewType value
   previewSize         : 'previewSize'         , // optional - PreviewSize value
@@ -56,8 +62,7 @@ export const PreviewConfigKeys = {
 export const MenuActionKeys = {
   actionKey           : 'actionKey'           , // required - string: unique identifier
   actionTitle         : 'actionTitle'         , // required - string value
-  imageType           : 'imageType'           , // optional - ImageTypes item
-  imageValue          : 'imageValue'          , // optional - string value
+  icon                : 'icon'                , // optional - IconKeys object
   menuState           : 'menuState'           , // optional - MenuElementState item
   menuAttributes      : 'menuAttributes'      , // optional - MenuElementAtrributes item
   discoverabilityTitle: 'discoverabilityTitle', // optional - string value
@@ -66,7 +71,6 @@ export const MenuActionKeys = {
 export const MenuConfigKeys = {
   menuTitle  : 'menuTitle'  , // required - string
   menuOptions: 'menuOptions', // optional - array of MenuOptions
-  imageType  : 'imageType'  , // optional - ImageTypes item
-  imageValue : 'imageValue' , // optional - string value
+  icon       : 'icon'       , // optional - IconKeys object
   menuItems  : 'menuItems'  , // optional - array of MenuConfigKeys/MenuActionKeys
 };
