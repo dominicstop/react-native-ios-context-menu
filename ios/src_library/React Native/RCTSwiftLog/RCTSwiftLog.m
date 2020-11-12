@@ -8,7 +8,7 @@
 #import <React/RCTLog.h>
 #import "RCTSwiftLog.h"
 
-@implementation RCTSwiftLog
+@implementation RCTContextMenuSwiftLog
 
 + (void)info:(NSString *)message file:(NSString *)file line:(NSUInteger)line
 {

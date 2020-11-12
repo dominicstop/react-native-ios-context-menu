@@ -7,23 +7,27 @@
 
 import Foundation
 
-public func RCTLogError(_ message: String, _ file: String=#file, _ line: UInt=#line) {
-  RCTSwiftLog.error(message, file: file, line: line)
-}
+internal class RCTSwiftLog {
+  func error(_ message: String, _ file: String=#file, _ line: UInt=#line) {
+    RCTContextMenuSwiftLog.error(message, file: file, line: line);
+  };
 
-public func RCTLogWarn(_ message: String, _ file: String=#file, _ line: UInt=#line) {
-  RCTSwiftLog.warn(message, file: file, line: line)
-}
+  func warn(_ message: String, _ file: String=#file, _ line: UInt=#line) {
+    RCTContextMenuSwiftLog.warn(message, file: file, line: line);
+  };
 
-public func RCTLogInfo(_ message: String, _ file: String=#file, _ line: UInt=#line) {
-  RCTSwiftLog.info(message, file: file, line: line)
-}
+  func info(_ message: String, _ file: String=#file, _ line: UInt=#line) {
+    RCTContextMenuSwiftLog.info(message, file: file, line: line);
+  };
 
-public func RCTLog(_ message: String, _ file: String=#file, _ line: UInt=#line) {
-  RCTSwiftLog.log(message, file: file, line: line)
-}
+  func log(_ message: String, _ file: String=#file, _ line: UInt=#line) {
+    RCTContextMenuSwiftLog.log(message, file: file, line: line);
+  };
 
-public func RCTLogTrace(_ message: String, _ file: String=#file, _ line: UInt=#line) {
-  RCTSwiftLog.trace(message, file: file, line: line)
-}
+  func trace(_ message: String, _ file: String=#file, _ line: UInt=#line) {
+    RCTContextMenuSwiftLog.trace(message, file: file, line: line);
+  };
+};
+
+
 
