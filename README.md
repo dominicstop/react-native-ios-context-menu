@@ -68,6 +68,7 @@ cd ios && pod install
 <br>
 
 ### 1.1 Installation Notes
+#### 1.1.1 Xcode Build Error A
 This library is written in Swift. If you are having trouble building your app after installing this library, try adding an empty swift file:
 1. Open up your `ios/project.xcworkspace` project
 2. On the project navigator panel (located on the right side of Xcode), right click on your project group (or another folder/group i.e the blue or yellow icons) and select the "*New File...*" option
@@ -81,7 +82,8 @@ This library is written in Swift. If you are having trouble building your app af
 
 <br>
 
-When installing this library on Xcode 12 (and on RN version `0.63.3`), you'll get the following error in Xcode:
+#### 1.1.2 Xcode Build Error B
+When installing this library on Xcode 12, you'll get the following error in Xcode:
 ```
 Undefined symbol: (extension in UIKit):
 __C.UIMenu.init(title: Swift.String, image: __C.UIImage?, identifier: __C.UIMenuIdentifier?, options: __C.UIMenuOptions, children: [__C.UIMenuElement]) -> __C.UIMenu
@@ -102,6 +104,24 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 	* Alternatively, according to this [issue comment](https://github.com/facebook/react-native/issues/29246#issuecomment-667518920), you can clear all the items listed in the "Library Search Paths" setting. **TLDR**: Xcode automatically manages this setting, and the RN template hardcodes it to use Swift 5.0.
 
 7. If you haven't already, make sure to create an empty swift file. Then clean the build folder (the option is in the menu bar under: "Product" -> "Clean Build Folder").
+
+<br>
+
+#### 1.1.3 Cocoapods Static Libraries Error
+If you encounter the following error when running `pod install`:
+```
+[!] The following Swift pods cannot yet be integrated as static libraries:
+
+The Swift pod `react-native-ios-context-menu` depends upon `React-Core`, which does not define modules. To opt into those targets generating module maps (which is necessary to import them from Swift when building as static libraries), you may set `use_modular_headers!` globally in your Podfile, or specify `:modular_headers => true` for particular dependencies.
+```
+
+<br>
+
+Then try following these steps:
+1. Open up your project's `ios/podfile` configuration
+2. Under `target 'ProjectName' do` block, find the `'React-Core'` pod, and append the following snippet to the end of the line: `, :modular_headers => true`
+3. It should now look something similar to this: `pod 'React-Core', :path => '../node_modules/react-native/', :modular_headers => true`
+4. Try running `pod install` again.
 
 <br>
 
