@@ -10,7 +10,7 @@ import Foundation
 
 
 @available(iOS 13.0, *)
-public struct RCTMenuIcon {
+struct RCTMenuIcon {
   enum IconType: String, CaseIterable, Encodable {
     case NONE;
     case URL;
@@ -18,7 +18,8 @@ public struct RCTMenuIcon {
     case ASSET;
   };
   
-  var iconType : IconType = .NONE;
+  var iconType: IconType = .NONE;
+  
   var iconValue: String?;
   var iconSize : CGFloat?;
   var iconTint : UIColor?;

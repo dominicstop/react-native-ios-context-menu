@@ -42,10 +42,8 @@ class RCTMenuActionItem: RCTMenuElement {
     self.actionKey   = actionKey   as String;
     self.actionTitle = actionTitle as String;
     
-    if let dict = dictionary["icon"] as? NSDictionary,
-       let icon = RCTMenuIcon(dictionary: dict) {
-      
-      self.icon = icon;
+    if let dict = dictionary["icon"] as? NSDictionary {
+      self.icon =  RCTMenuIcon(dictionary: dict);
       
     // temp support for icon config shorthand/shortcut
     } else if let stringType = dictionary["iconType" ] as? String,
