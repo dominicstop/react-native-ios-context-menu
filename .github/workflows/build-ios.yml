@@ -8,28 +8,21 @@ on:
       - master
 
 jobs:
-  install:
-    name: Install packages
-    runs-on: macos-latest
-    steps: 
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
-
   build-ios-example:
-      needs: install
       runs-on: macos-latest
       steps: 
         - uses: actions/checkout@v2
-        - name: Install npm dependencies
+        - name: Install library npm dependencies
           run: |
-            pwd && npm install && cd example && pwd && npm install
-        - name: Install pod dependencies
+            pwd && npm install
+        - name: Install example npm dependencies
+          run: |
+            pwd && cd example && pwd && npm install
+        - name: Install example pod dependencies
           run: |
             pwd && cd example/ios && pwd && pod install
         - name: Build app
           run: |       
-            xcodebuild xcodebuild -workspace IosContextMenuExample.xcworkspace -configuration Debug -scheme IosContextMenuExample
+            xcodebuild -workspace IosContextMenuExample.xcworkspace -configuration Debug -scheme IosContextMenuExample
     
     
