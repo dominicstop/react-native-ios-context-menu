@@ -24,10 +24,10 @@ jobs:
         - uses: actions/checkout@v2
         - name: Install npm dependencies
           run: |
-            npm install && cd example && npm install
+            pwd && npm install && cd example && pwd && npm install
         - name: Install pod dependencies
           run: |
-            cd ios && pod install
+            pwd && cd example/ios && pwd && pod install
         - name: Build app
           run: |       
             xcodebuild xcodebuild -workspace IosContextMenuExample.xcworkspace -configuration Debug -scheme IosContextMenuExample
