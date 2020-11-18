@@ -23,6 +23,6 @@ jobs:
             pwd && cd example/ios && pwd && pod install
         - name: Build app
           run: |       
-            xcodebuild -workspace IosContextMenuExample.xcworkspace -configuration Debug -scheme IosContextMenuExample
+            pwd && cd example/ios && xcodebuild -workspace IosContextMenuExample.xcworkspace -configuration Debug -scheme IosContextMenuExample
     
     
