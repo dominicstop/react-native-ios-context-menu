@@ -51,7 +51,8 @@ class RCTContextMenuView: UIView {
     didSet {
       guard
         let menuConfig     = self.menuConfig, menuConfig.count > 0,
-        let rootMenuConfig = RCTMenuItem(dictionary: menuConfig) else { return };
+        let rootMenuConfig = RCTMenuItem(dictionary: menuConfig)
+      else { return };
       
       #if DEBUG
       print("menuConfig didSet"
@@ -87,10 +88,10 @@ class RCTContextMenuView: UIView {
   private var _previewConfig = PreviewConfig();
   @objc var previewConfig: NSDictionary? {
     didSet {
-      guard
-        let dictionary    = self.previewConfig else { return }
-        let previewConfig = PreviewConfig(dictionary: dictionary);
+      guard let dictionary = self.previewConfig
+      else { return };
       
+      let previewConfig = PreviewConfig(dictionary: dictionary);
       self._previewConfig = previewConfig;
       
       // update the vc's previewConfig
@@ -159,7 +160,8 @@ fileprivate extension RCTContextMenuView {
   func notifyForBoundsChange(_ newBounds: CGRect){
     guard
       let bridge    = self.bridge,
-      let reactView = self.reactPreviewView else { return };
+      let reactView = self.reactPreviewView
+    else { return };
         
     bridge.uiManager.setSize(newBounds.size, for: reactView);
   };
@@ -187,7 +189,8 @@ fileprivate extension RCTContextMenuView {
     let previewConfig = self._previewConfig;
     
     /// dont make preview if `previewType` is default.
-    guard previewConfig.previewType != .DEFAULT else { return nil };
+    guard previewConfig.previewType != .DEFAULT
+    else { return nil };
     
     let vc = RCTContextMenuPreviewController();
     vc.reactView = self.reactPreviewView;
@@ -265,7 +268,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
     self.onMenuWillCreate?([:]);
     
     return UIContextMenuConfiguration(
-      identifier: nil,
+      identifier     : nil,
       previewProvider: self.createMenuPreview,
       actionProvider : self.createMenu
     );

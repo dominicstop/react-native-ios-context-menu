@@ -28,22 +28,13 @@ class RCTMenuActionItem: RCTMenuElement {
   init?(dictionary: NSDictionary){
     guard let actionKey   = dictionary["actionKey"  ] as? NSString,
           let actionTitle = dictionary["actionTitle"] as? NSString
-    else {
-      #if DEBUG
-      print(
-          "RCTMenuActionItem, init failed"
-        + " - actionKey  : \(dictionary["actionKey"  ] as? NSString ?? "N/A")"
-        + " - actionTitle: \(dictionary["actionTitle"] as? NSString ?? "N/A")"
-      );
-      #endif
-      return nil;
-    };
+    else { return nil };
     
     self.actionKey   = actionKey   as String;
     self.actionTitle = actionTitle as String;
     
     if let dict = dictionary["icon"] as? NSDictionary {
-      self.icon =  RCTMenuIcon(dictionary: dict);
+      self.icon = RCTMenuIcon(dictionary: dict);
       
     // temp support for icon config shorthand/shortcut
     } else if let stringType = dictionary["iconType" ] as? String,
@@ -67,16 +58,6 @@ class RCTMenuActionItem: RCTMenuElement {
     
     self.menuState      = dictionary["menuState"     ] as? String;
     self.menuAttributes = dictionary["menuAttributes"] as? [String];
-    
-    #if DEBUG
-    print("RCTMenuActionItem, init"
-      + " - actionKey"      + ": \(self.actionKey      )"
-      + " - actionTitle"    + ": \(self.actionTitle    )"
-      + " - icon"           + ": \(self.icon.dictionary)"
-      + " - menuState"      + ": \(self.menuState?     .description ?? "N/A")"
-      + " - menuAttributes" + ": \(self.menuAttributes?.description ?? "N/A")"
-    );
-    #endif
   };
   
   convenience init?(dictionary: NSDictionary?){

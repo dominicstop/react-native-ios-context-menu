@@ -38,7 +38,8 @@ class RCTContextMenuButton: UIButton {
     didSet {
       guard
         let menuConfig     = self.menuConfig, menuConfig.count > 0,
-        let rootMenuConfig = RCTMenuItem(dictionary: menuConfig) else { return };
+        let rootMenuConfig = RCTMenuItem(dictionary: menuConfig)
+      else { return };
       
       #if DEBUG
       print("RCTContextMenuButton"

@@ -23,20 +23,14 @@ class RCTMenuItem: RCTMenuElement {
 // ------------------------
 
   init?(dictionary: NSDictionary){
-    guard let menuTitle = dictionary["menuTitle"] as? NSString else {
-      #if DEBUG
-      print("RCTMenuItem, init failed - menuTitle: nil");
-      #endif
-      return nil;
-    };
+    guard let menuTitle = dictionary["menuTitle"] as? NSString
+    else { return nil };
     
     self.menuTitle   = menuTitle as String;
     self.menuOptions = dictionary["menuOptions"] as? [String];
     
-    if let dict = dictionary["icon"] as? NSDictionary,
-       let icon = RCTMenuIcon(dictionary: dict) {
-      
-      self.icon = icon;
+    if let dict = dictionary["icon"] as? NSDictionary {
+      self.icon = RCTMenuIcon(dictionary: dict);
       
     // temp support for icon config shorthand/shortcut
     } else if let stringType = dictionary["iconType" ] as? String,
@@ -55,15 +49,6 @@ class RCTMenuItem: RCTMenuElement {
     } else {
       self.icon = RCTMenuIcon();
     };
-    
-    #if DEBUG
-    print("RCTMenuItem, init"
-      + " - menuTitle"   + ": \(self.menuTitle)"
-      + " - icon"        + ": \(self.icon.dictionary)"
-      + " - menuOptions" + ": \(self.menuOptions?.description ?? "N/A")"
-      + " - menuItems"   + ": \((dictionary["menuItems"] as? NSArray)?.count ?? 0) items"
-    );
-    #endif
     
     if let menuElements = dictionary["menuItems"] as? NSArray {
       self.menuItems = menuElements.compactMap {
@@ -87,12 +72,6 @@ class RCTMenuItem: RCTMenuElement {
         };
       };
     };
-    
-    #if DEBUG
-    print("RCTMenuItem, init"
-      + " - menuItems" + ": \(self.menuItems?.count ?? 0) Items"
-    );
-    #endif
   };
   
   convenience init?(dictionary: NSDictionary?){
@@ -144,12 +123,6 @@ extension RCTMenuItem {
         return nil;
       };
     };
-    
-    #if DEBUG
-    print("RCTMenuItem, createMenu"
-      + " - menuItems count: \(menuItems?.count ?? 0)"
-    );
-    #endif
     
     return UIMenu(
       title: self.menuTitle,
