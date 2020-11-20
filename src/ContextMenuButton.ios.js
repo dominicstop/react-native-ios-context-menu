@@ -3,11 +3,17 @@ import { StyleSheet, Platform, requireNativeComponent, UIManager, View, Touchabl
 import Proptypes from 'prop-types';
 
 import { ActionSheetFallback } from './functions/ActionSheetFallback';
+import { ContextMenuView } from './ContextMenuView';
 
 
-const isContextMenuSupported = (
+const isContextMenuButtonSupported = (
   (Platform.OS === 'ios') &&
-  (parseInt(Platform.Version, 10) > 13)
+  (parseInt(Platform.Version, 10) >= 14)
+);
+
+const isContextMenuViewSupported = (
+  (Platform.OS === 'ios') &&
+  (parseInt(Platform.Version, 10) >= 13)
 );
 
 
@@ -55,7 +61,7 @@ export class ContextMenuButton extends React.PureComponent {
   static defaultProps = {
     enableContextMenu     : true,
     wrapNativeComponent   : true,
-    useActionSheetFallback: !isContextMenuSupported,
+    useActionSheetFallback: !isContextMenuViewSupported,
   };
 
   constructor(props){
@@ -154,36 +160,48 @@ export class ContextMenuButton extends React.PureComponent {
       React.cloneElement(child, {menuVisible})
     );
 
-    return props.wrapNativeComponent? (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        {...{style, ...props}}
-      >
+    const nativeComp = (
+      isContextMenuButtonSupported? (
         <NativeComponent
-          style={styles.wrappedMenuButton}
           {...nativeCompProps}
+          style={(props.wrapNativeComponent
+            ? styles.wrappedMenuButton
+            : [styles.menuButton, style]
+          )}
+          
         >
           {childItems}
         </NativeComponent>
-      </TouchableOpacity>
-    ):(
-      <NativeComponent
-        style={[styles.menuButton, style]}
-        {...props}
-        {...nativeCompProps}
-      >
-        {childItems}
-      </NativeComponent>
+      ):(
+        <ContextMenuView
+          {...nativeCompProps}
+        >
+          {childItems}
+        </ContextMenuView>
+      )
     );
+
+    if(props.wrapNativeComponent){
+      return(
+        <TouchableOpacity
+          activeOpacity={0.8}
+          {...{style, ...props}}
+        >
+          {nativeComp}
+        </TouchableOpacity>
+      );
+    } else {
+      return nativeComp;
+    };
   };
 
   render(){
     const { useActionSheetFallback } = this.props;
-    const useContextMenuView = 
-      (isContextMenuSupported && !useActionSheetFallback);
+    const useContextMenu = 
+      (isContextMenuViewSupported && !useActionSheetFallback);
 
     return(
-      useContextMenuView? this._renderContextMenuView() : 
+      useContextMenu? this._renderContextMenuView() : 
       useActionSheetFallback? (
         <TouchableOpacity 
           onLongPress={this._handleOnLongPress}

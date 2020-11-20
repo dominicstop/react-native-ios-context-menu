@@ -20,9 +20,6 @@ class RCTContextMenuButtonManager: RCTViewManager {
     if #available(iOS 14, *) {
       return RCTContextMenuButton(bridge: self.bridge);
       
-    } else if #available(iOS 13, *) {
-      return RCTContextMenuView(bridge: self.bridge);
-      
     } else {
       return RCTView();
     };
@@ -30,19 +27,12 @@ class RCTContextMenuButtonManager: RCTViewManager {
   
   @objc func dismissMenu(_ node: NSNumber) {
     DispatchQueue.main.async {
-      guard let view =  self.bridge.uiManager.view(forReactTag: node)
+      guard #available(iOS 14, *),
+            let view = self.bridge.uiManager.view(forReactTag: node),
+            let contextMenuButton = view as? RCTContextMenuButton
       else { return };
       
-      if #available(iOS 14, *),
-         let contextMenuButton = view as? RCTContextMenuButton {
-
-        contextMenuButton.dissmissMenu();
-        
-      } else if #available(iOS 13, *),
-                let contextMenuView = view as? RCTContextMenuView {
-        
-        contextMenuView.dissmissMenu();
-      };
+      contextMenuButton.dissmissMenu();
     };
   };
 };
