@@ -4,7 +4,7 @@
 
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenu's (nested and in-line menu's)
-* Support for customizing the menu icons (i.e. support for SF Symbols and asset icons, icon tint, etc.)
+* Support for customizing the menu icons (i.e. support for SF Symbols, `require()`, and asset icons, icon tint, etc.)
 * Support for iOS 14 functionality (like the `UIButton` context menu, updating the menu while its visible, etc.)
 * Support for setting (almost) all of the native [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) and ￼[`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, `discoverabilityTitle`, etc.)
 * Basic `ActionSheetIOS` menu fallback for iOS 12 and below.
@@ -160,16 +160,16 @@ Here is an overview of all the documentation and examples for the `ContextMenuVi
 <details open>
   <summary>Show/Hide Section</summary>
 
-| Description                                                  | Section Link                                                 |
+| Section Link                                                 | Description                                                  |
 |--------------------------------------------------------------|--------------------------------------------------------------|
-| General examples for  `ContextMenuView`.                     | [Example 1](#411-contextmenuview-simple-example-1) (bare min. example),<br> [Example 9](#419-contextmenuview-simple-example-9) (events). |
-| Examples for configuring the menu icons.                     | [Example 2](#412-contextmenuview-simple-example-2) (SF Symbol icon),<br> [Example 16](#4116-contextmenuview-simple-example-16) (asset icon),<br> [Example 17](#4117-contextmenuview-simple-example-17) (icon tint), <br> [Example 18](#4118-contextmenuview-simple-example-18) (require icon). |
-| Examples for the different menu configurations.              | [Example 3](#413-contextmenuview-simple-example-3) (submenu's),<br> [Example 5](#415-contextmenuview-simple-example-5) (inline menu i.e. menu sections),<br> [Example 6](#416-contextmenuview-simple-example-6) (destructive atrribute),<br> [Example 7](#417-contextmenuview-simple-example-7) (inline + destructive atrribute),<br> [Example 10](#4110-contextmenuview-simple-example-10) (updating the menu). |
-| Examples for the different menu action configurations.       | [Example 4](#414-contextmenuview-simple-example-4) (attributes: disabled, destructive, etc.),<br> [Example 8](#418-contextmenuview-simple-example-8) (menu state),<br> [Example 13](#4113-contextmenuview-simple-example-13) (subtitles) |
-| Examples for creating custom `ContextMenuView` previews.     | [Example 11](https://github.com/dominicstop/react-native-ios-context-menu#4111-contextmenuview-simple-example-11) (simple preview),<br> [Example 12](#4112-contextmenuview-simple-example-12) (preview size),<br> [Example 14](#4114-contextmenuview-simple-example-14) (`commitStyle`),<br> [Example 15](#4115-contextmenuview-simple-example-15) (target preview). |
-| `MenuConfig` object and related enums/objects. This object is used in the component's `menuConfig` prop. | [￼`MenuConfig`￼](#332-menuconfig-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [`MenuOptions`](#322-menuoptions-enum) enum. |
-| `MenuAction` and related enums/objects. This object is used in a `MenuConfig` object (i.e. the `MenuConfig.menuItems` property). | [`￼MenuAction￼`](#331-menuaction-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [￼`MenuState`￼](#324-menustate-enum) enum,<br> [`MenuAttributes`](#323-menuatrributes-enum) enum. |
-| `PreviewConfig` object and related enums. This object is used in the component's `previewConfig` prop. | [￼`PreviewConfig`￼](#334-previewconfig-object) object,<br> `PreviewType` enum,<br> [￼`PreviewSize`￼](#326-previewsize-enum) enum,<br> [￼`CommitStyle`￼](#327-commitstyle-enum) enum. |
+| [Example 1](#411-contextmenuview-simple-example-1) (bare min. example),<br> [Example 9](#419-contextmenuview-simple-example-9) (events). | General examples for  `ContextMenuView`.                     |
+| [Example 2](#412-contextmenuview-simple-example-2) (SF Symbol icon),<br> [Example 16](#4116-contextmenuview-simple-example-16) (asset icon),<br> [Example 17](#4117-contextmenuview-simple-example-17) (icon tint), <br> [Example 18](#4118-contextmenuview-simple-example-18) (require icon). | Examples for configuring the menu icons.                     |
+| [Example 3](#413-contextmenuview-simple-example-3) (submenu's),<br> [Example 5](#415-contextmenuview-simple-example-5) (inline menu i.e. menu sections),<br> [Example 6](#416-contextmenuview-simple-example-6) (destructive atrribute),<br> [Example 7](#417-contextmenuview-simple-example-7) (inline + destructive atrribute),<br> [Example 10](#4110-contextmenuview-simple-example-10) (updating the menu). | Examples for the different menu configurations.              |
+| [Example 4](#414-contextmenuview-simple-example-4) (attributes: disabled, destructive, etc.),<br> [Example 8](#418-contextmenuview-simple-example-8) (menu state),<br> [Example 13](#4113-contextmenuview-simple-example-13) (subtitles) | Examples for the different menu action configurations.       |
+| [Example 11](https://github.com/dominicstop/react-native-ios-context-menu#4111-contextmenuview-simple-example-11) (simple preview),<br> [Example 12](#4112-contextmenuview-simple-example-12) (preview size),<br> [Example 14](#4114-contextmenuview-simple-example-14) (`commitStyle`),<br> [Example 15](#4115-contextmenuview-simple-example-15) (target preview). | Examples for creating custom `ContextMenuView` previews.     |
+| [￼`MenuConfig`￼](#332-menuconfig-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [`MenuOptions`](#322-menuoptions-enum) enum. | `MenuConfig` object and related enums/objects. This object is used in the component's `menuConfig` prop. |
+| [`￼MenuAction￼`](#331-menuaction-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [￼`MenuState`￼](#324-menustate-enum) enum,<br> [`MenuAttributes`](#323-menuatrributes-enum) enum. | `MenuAction` and related enums/objects. This object is used in a `MenuConfig` object (i.e. the `MenuConfig.menuItems` property). |
+| [￼`PreviewConfig`￼](#334-previewconfig-object) object,<br> `PreviewType` enum,<br> [￼`PreviewSize`￼](#326-previewsize-enum) enum,<br> [￼`CommitStyle`￼](#327-commitstyle-enum) enum. | `PreviewConfig` object and related enums. This object is used in the component's `previewConfig` prop. |
 
 </details>
 
