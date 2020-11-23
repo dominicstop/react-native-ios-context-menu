@@ -160,26 +160,23 @@ export class ContextMenuButton extends React.PureComponent {
       React.cloneElement(child, {menuVisible})
     );
 
-    const nativeComp = (
-      isContextMenuButtonSupported? (
-        <NativeComponent
-          {...nativeCompProps}
-          style={(props.wrapNativeComponent
-            ? styles.wrappedMenuButton
-            : [styles.menuButton, style]
-          )}
-          
-        >
-          {childItems}
-        </NativeComponent>
-      ):(
-        <ContextMenuView
-          {...nativeCompProps}
-        >
-          {childItems}
-        </ContextMenuView>
-      )
-    );
+    const nativeComp = (isContextMenuButtonSupported? (
+      <NativeComponent
+        {...nativeCompProps}
+        style={(props.wrapNativeComponent
+          ? styles.wrappedMenuButton
+          : [styles.menuButton, style]
+        )}
+      >
+        {childItems}
+      </NativeComponent>
+    ):(
+      <ContextMenuView
+        {...nativeCompProps}
+      >
+        {childItems}
+      </ContextMenuView>
+    ));
 
     if(props.wrapNativeComponent){
       return(
