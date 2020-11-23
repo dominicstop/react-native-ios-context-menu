@@ -18,7 +18,7 @@
 
 <br>
 
-- [ ] Implement `ImageType.REQUIRE` to support using images via `require(path/to/image)`
+- [x] Implement `ImageType.REQUIRE` to support using images via `require(path/to/image)`
 * One way to implement is to use `Image.resolveAssetSource(source);` from the RN [docs](https://reactnative.dev/docs/image#resolveassetsource). So we have something like: `{ imageType: 'REQUIRE', imageValue: require('path/to/image.png') }`. 
 	* **Reference**: [Medium Article](https://medium.com/swlh/how-to-obtain-a-uri-for-an-image-asset-in-react-native-with-expo-88dfbe1023b8). Explains how `Image.resolveAssetSource` works.
 * Attempted to impl. this but ran into problems: when in debug mode, assets are provided via a local URL via the metro bundler.
