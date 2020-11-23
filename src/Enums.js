@@ -1,9 +1,10 @@
 
 /** Used for `IconConfigKeys.iconType` or `IconConfigKeys.iconType` */
 export const IconTypes = {
-  'NONE'  : 'NONE'  ,
-  'SYSTEM': 'SYSTEM',
-  'ASSET' : 'ASSET' ,
+  'NONE'   : 'NONE'   ,
+  'SYSTEM' : 'SYSTEM' ,
+  'ASSET'  : 'ASSET'  ,
+  'REQUIRE': 'REQUIRE',
 };
 
 /** Used for `MenuConfigKeys.menuOptions` */
