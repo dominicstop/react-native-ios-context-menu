@@ -27,6 +27,9 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 `ContextMenuView` **Left**: [Example 11](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample11.js), [Example 12](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample12.js), and **Right**: [Example 13](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample13.js), [Example 14](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
 ![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif)
 
+`ContextMenuView` **Left**: [Example 15](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample15.js), [Example 16](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample16.js), and **Right**: [Example 17](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample17.js), [Example 18](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample18.js)
+![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif)
+
 `ContextMenuView` **Left**: [Test 1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest01.js), and **Right**: [Test 2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest02.js)
 ![Context Menu View Test 1 and 2 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-01-02.gif)
 
@@ -1269,6 +1272,7 @@ A example context menu configured with a "target view". The target view is the v
 * In order to specify a "target view" for your context menu, you first need a `ref` to that view. The second thing you need is a special value called a "node handle". 
 	* A node handle is a number that corresponds to a specific native component instance in your app's view hierarchy.  In other words, native components (like `View`, `Text`, etc.) all have a corresponding node handle. You can use a node handle to uniquely refer to a specific native component. 
 	* To get a native components's corresponding node handle, you can use the `findNodeHandle()` function. This functions accepts a ref to some native component (e.g. like a `<View>` component).
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif).
 
 <br>
 
@@ -1326,6 +1330,7 @@ class ContextMenuViewSimpleExample15 extends React.PureComponent {
 #### 4.1.16 `ContextMenuView` [Simple Example #16](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample16.js)
 A example context menu configured to have 3 menu actions. The first action has no icon, the second uses a `SYSTEM` SF Symbols icon, and the third uses a `ASSET` icon.
 * If you are using an `ASSET` icon, then the string that you pass to the `iconValue` property must correspond to an image asset in your Xcode project's `xcasset` catalog.
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif).
 
 <br>
 
@@ -1366,6 +1371,7 @@ A example context menu configured to have 3 menu actions. The first action has n
 A example context menu configured to have menu actions with custom colors. 
 * A `MenuConfig` or `MenuAction` object has an optional `icon` property.  Aside from the`iconType` and `iconValue` properties, an `icon` object also has an optional `iconTint` property.
 * The `IconConfig.iconTint` property accepts a color string. The color string can be an rgb, rgba, hex, or css color code format.
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif).
 
 <br>
 
@@ -1428,7 +1434,7 @@ A example context menu configured to have menu actions that uses a `REQUIRE` ico
 * The image component has a function called `Image.resolveAssetSource(souce)`. This function accepts a number returned from the `require()` function.
 * In the `MenuConfig` or `MenuAction` object's optional `icon` property,  set the`IconConfig.iconType` property to `REQUIRE`, and then set the `IconConfig.iconValue` property to the object returned by the `Image.resolveAssetSource()` function.
 * In other words, when we want to use a `REQUIRE` icon, i.e. an icon that is resolved via `require('directory/image.png')`, then the `iconValue` property accepts a `AssetSource` object. You can get an `AssetSource` object via the built-in`Image.resolveAssetSource` function.
-
+* This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif).
 <br>
 
 ```jsx
