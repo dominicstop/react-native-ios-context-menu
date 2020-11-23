@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image, Text } from 'react-native';
 
 import { ExampleContextMenuItem } from '../ExampleContextMenuItem';
 
@@ -10,7 +10,7 @@ export function ContextMenuViewSimpleExample16(props) {
       {...props}
       title={'Simple Example #16'}
       subtitle={'ImageType Icons'}
-      desc={'Context menu with 3 actions that uses `ASSET` icons'}
+      desc={'Context menu with an action that uses a `ASSET` icon'}
       // `ContextMenuView` Props
       onPressMenuItem={({nativeEvent}) => alert(`onPressMenuItem nativeEvent: ${JSON.stringify(nativeEvent)}`)}
       onPressMenuPreview={() => alert('onPressMenuPreview')}
