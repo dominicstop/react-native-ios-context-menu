@@ -1,4 +1,7 @@
 # react-native-ios-context-menu
+
+![Build Example iOS Project](https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example%20iOS%20Project/badge.svg)
+
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenu's (nested and in-line menu's)
 * Support for customizing the menu icons (i.e. support for SF Symbols and asset icons, icon tint, etc.)
@@ -159,14 +162,14 @@ Here is an overview of all the documentation and examples for the `ContextMenuVi
 
 | Description                                                  | Section Link                                                 |
 |--------------------------------------------------------------|--------------------------------------------------------------|
-| General examples for  `ContextMenuView`.                     | [Example 1](#411-contextmenuview-simple-example-1) (bare min. example)<br> [Example 9](#419-contextmenuview-simple-example-9) (events) |
-| Examples for configuring the menu icons.                     | [Example 2](#412-contextmenuview-simple-example-2) (SF Symbol icon)<br> [Example 16](#4116-contextmenuview-simple-example-16) (asset icon)<br> [Example 17](#4117-contextmenuview-simple-example-17) (icon tint) |
-| Examples for the different menu configurations.              | [Example 3](#413-contextmenuview-simple-example-3) (submenu's)<br> [Example 5](#415-contextmenuview-simple-example-5) (inline menu i.e. menu sections)<br> [Example 6](#416-contextmenuview-simple-example-6) (destructive atrribute)<br> [Example 7](#417-contextmenuview-simple-example-7) (inline + destructive atrribute)<br> [Example 10](#4110-contextmenuview-simple-example-10) (updating the menu) |
-| Examples for the different menu action configurations.       | [Example 4](#414-contextmenuview-simple-example-4) (attributes: disabled, destructive, etc.)<br> [Example 8](#418-contextmenuview-simple-example-8) (menu state)<br> [Example 13](#4113-contextmenuview-simple-example-13) (subtitles) |
-| Examples for creating custom `ContextMenuView` previews.     | [Example 11](https://github.com/dominicstop/react-native-ios-context-menu#4111-contextmenuview-simple-example-11) (simple preview)<br> [Example 12](#4112-contextmenuview-simple-example-12) (preview size)<br> [Example 14](#4114-contextmenuview-simple-example-14) (`commitStyle`)<br> [Example 15](#4115-contextmenuview-simple-example-15) (target preview) |
-| `MenuConfig` object and related enums/objects. This object is used in the component's `menuConfig` prop. | [￼`MenuConfig`￼](#332-menuconfig-object) object<br> [￼`IconConfig`￼](#333-iconconfig-object) object<br> [`MenuOptions`](#322-menuoptions-enum) enum |
-| `MenuAction` and related enums/objects. This object is used in a `MenuConfig` object (i.e. the `MenuConfig.menuItems` property). | [`￼MenuAction￼`](#331-menuaction-object) object<br> [￼`IconConfig`￼](#333-iconconfig-object) object<br> [￼`MenuState`￼](#324-menustate-enum) enum<br> [`MenuAttributes`](#323-menuatrributes-enum) enum |
-| `PreviewConfig` object and related enums. This object is used in the component's `previewConfig` prop. | [￼`PreviewConfig`￼](#334-previewconfig-object) object<br> `PreviewType` enum<br> [￼`PreviewSize`￼](#326-previewsize-enum) enum<br> [￼`CommitStyle`￼](#327-commitstyle-enum) enum |
+| General examples for  `ContextMenuView`.                     | [Example 1](#411-contextmenuview-simple-example-1) (bare min. example),<br> [Example 9](#419-contextmenuview-simple-example-9) (events). |
+| Examples for configuring the menu icons.                     | [Example 2](#412-contextmenuview-simple-example-2) (SF Symbol icon),<br> [Example 16](#4116-contextmenuview-simple-example-16) (asset icon),<br> [Example 17](#4117-contextmenuview-simple-example-17) (icon tint), <br> [Example 18](#4118-contextmenuview-simple-example-18) (require icon). |
+| Examples for the different menu configurations.              | [Example 3](#413-contextmenuview-simple-example-3) (submenu's),<br> [Example 5](#415-contextmenuview-simple-example-5) (inline menu i.e. menu sections),<br> [Example 6](#416-contextmenuview-simple-example-6) (destructive atrribute),<br> [Example 7](#417-contextmenuview-simple-example-7) (inline + destructive atrribute),<br> [Example 10](#4110-contextmenuview-simple-example-10) (updating the menu). |
+| Examples for the different menu action configurations.       | [Example 4](#414-contextmenuview-simple-example-4) (attributes: disabled, destructive, etc.),<br> [Example 8](#418-contextmenuview-simple-example-8) (menu state),<br> [Example 13](#4113-contextmenuview-simple-example-13) (subtitles) |
+| Examples for creating custom `ContextMenuView` previews.     | [Example 11](https://github.com/dominicstop/react-native-ios-context-menu#4111-contextmenuview-simple-example-11) (simple preview),<br> [Example 12](#4112-contextmenuview-simple-example-12) (preview size),<br> [Example 14](#4114-contextmenuview-simple-example-14) (`commitStyle`),<br> [Example 15](#4115-contextmenuview-simple-example-15) (target preview). |
+| `MenuConfig` object and related enums/objects. This object is used in the component's `menuConfig` prop. | [￼`MenuConfig`￼](#332-menuconfig-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [`MenuOptions`](#322-menuoptions-enum) enum. |
+| `MenuAction` and related enums/objects. This object is used in a `MenuConfig` object (i.e. the `MenuConfig.menuItems` property). | [`￼MenuAction￼`](#331-menuaction-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [￼`MenuState`￼](#324-menustate-enum) enum,<br> [`MenuAttributes`](#323-menuatrributes-enum) enum. |
+| `PreviewConfig` object and related enums. This object is used in the component's `previewConfig` prop. | [￼`PreviewConfig`￼](#334-previewconfig-object) object,<br> `PreviewType` enum,<br> [￼`PreviewSize`￼](#326-previewsize-enum) enum,<br> [￼`CommitStyle`￼](#327-commitstyle-enum) enum. |
 
 </details>
 
@@ -1415,6 +1418,69 @@ A example context menu configured to have menu actions with custom colors.
 ```
 
 ![Simple Example 17](./assets/example-screenshots/ContextMenuView-SimpleExample17.png)
+
+<br><br>
+
+#### 4.1.18 `ContextMenuView` [Simple Example #18](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample18.js)
+A example context menu configured to have menu actions that uses a `REQUIRE` icon.
+* Import the image component from react-native: `import { Image } from 'react-native';`
+* The image component has a function called `Image.resolveAssetSource(souce)`. This function accepts a number returned from the `require()` function.
+* In the `MenuConfig` or `MenuAction` object's optional `icon` property,  set the`IconConfig.iconType` property to `REQUIRE`, and then set the `IconConfig.iconValue` property to the object returned by the `Image.resolveAssetSource()` function.
+* In other words, when we want to use a `REQUIRE` icon, i.e. an icon that is resolved via `require('directory/image.png')`, then the `iconValue` property accepts a `AssetSource` object. You can get an `AssetSource` object via the built-in`Image.resolveAssetSource` function.
+
+<br>
+
+```jsx
+
+const iconA = Image.resolveAssetSource(
+  require('../../assets/emoji-pleading-face.png')
+);
+
+const iconB = Image.resolveAssetSource(
+  require('../../assets/emoji-smiling-face-with-hearts.png')
+);
+
+const iconC = Image.resolveAssetSource(
+  require('../../assets/emoji-sparkling-heart.png')
+);
+
+export function ContextMenuViewSimpleExample18(props) {
+  return(
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewSimpleExample18',
+        menuItems: [{
+          actionKey  : 'key-01'   ,
+          actionTitle: 'Action #1',
+          discoverabilityTitle: 'Use "REQUIRE" icon',
+          icon: {
+            iconType : 'REQUIRE',
+            iconValue: iconA,
+          }
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+          discoverabilityTitle: 'Use "REQUIRE" icon',
+          icon: {
+            iconType : 'REQUIRE',
+            iconValue: iconB,
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          discoverabilityTitle: 'Use "REQUIRE" icon',
+          icon: {
+            iconType : 'REQUIRE',
+            iconValue: iconC,
+          }
+        }],
+      }}
+    />
+  );
+};
+```
+
+![Simple Example 18](./assets/example-screenshots/ContextMenuView-SimpleExample18.png)
 
 <br><br>
 
