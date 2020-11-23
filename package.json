@@ -29,7 +29,11 @@
   },
   "keywords": [
     "react-native",
-    "ios"
+    "ios",
+    "UIMenu",
+    "react native context menu",
+    "react native component",
+    "react native UIMenu"
   ],
   "repository": "https://github.com/dominicstop/react-native-ios-context-menu",
   "author": "Dominic Go <dominicstop@gmail.com> (https://github.com/dominicstop)",
