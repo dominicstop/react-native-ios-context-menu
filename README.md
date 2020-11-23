@@ -169,7 +169,7 @@ Here is an overview of all the documentation and examples for the `ContextMenuVi
 | Examples for creating custom `ContextMenuView` previews.     | [Example 11](https://github.com/dominicstop/react-native-ios-context-menu#4111-contextmenuview-simple-example-11) (simple preview),<br> [Example 12](#4112-contextmenuview-simple-example-12) (preview size),<br> [Example 14](#4114-contextmenuview-simple-example-14) (`commitStyle`),<br> [Example 15](#4115-contextmenuview-simple-example-15) (target preview). |
 | `MenuConfig` object and related enums/objects. This object is used in the component's `menuConfig` prop. | [￼`MenuConfig`￼](#332-menuconfig-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [`MenuOptions`](#322-menuoptions-enum) enum. |
 | `MenuAction` and related enums/objects. This object is used in a `MenuConfig` object (i.e. the `MenuConfig.menuItems` property). | [`￼MenuAction￼`](#331-menuaction-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [￼`MenuState`￼](#324-menustate-enum) enum,<br> [`MenuAttributes`](#323-menuatrributes-enum) enum. |
-| `PreviewConfig` object and related enums. This object is used in the component's `previewConfig` prop. | [￼`PreviewConfig`￼](#334-previewconfig-object) object,<br> `PreviewType` enum,<br> [￼`PreviewSize`￼](#326-previewsize-enum) enum,<br> [￼`CommitStyle`￼](#327-commitstyle-enum) enum.                                                                                                                                                                         <br> |
+| `PreviewConfig` object and related enums. This object is used in the component's `previewConfig` prop. | [￼`PreviewConfig`￼](#334-previewconfig-object) object,<br> `PreviewType` enum,<br> [￼`PreviewSize`￼](#326-previewsize-enum) enum,<br> [￼`CommitStyle`￼](#327-commitstyle-enum) enum.                                                            |
 
 </details>
 
@@ -181,7 +181,7 @@ Here is an overview of all the documentation and examples for the `ContextMenuVi
 
 <br>
 
-### 2.2 `ContextMenuButton` Usage
+### 2.3 `ContextMenuButton` Usage
 Please check out the [examples section](#42-contextmenubutton-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuButton) for more on how to use it. See  [Example 1](#421-contextmenubutton-simple-example-1) section for the basic `menuConfig` configuration. 
 * The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
 * The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](#422-contextmenubutton-simple-example-2) for more details.
@@ -290,11 +290,12 @@ Enum string values you can use for the [￼￼`IconConfig.iconType`￼](#332-ico
 
 <br>
 
-| Value  | Description                                                  |
-|--------|--------------------------------------------------------------|
-| NONE   | The default value for the `iconType` property. Specifies to not use an icon. Since this is the default value, you don't have to explicitly specify: `iconType: 'NONE'` in the `IconConfig` object if you don't want to use an icon. |
-| SYSTEM | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon).  The `iconValue` string from a `IconConfig` object  will be used to create an `UIImage` instance: `UIImage(systemName: iconValue)`. So the `iconValue` string must correspond to an SF Symbols icon. |
-| ASSET  | Specifies that we want to use an image in the Xcode project's asset catalog. The `iconValue` string from a `IconConfig` object object  will be used to create an `UIImage` instance: `UIImage(named: iconValue)`. So the `iconValue` string must correspond to an asset/item in the `xcasset` catalog. |
+| Value   | Description                                                  |
+|---------|--------------------------------------------------------------|
+| NONE    | The default value for the `iconType` property. Specifies to not use an icon. Since this is the default value, you don't have to explicitly specify: `iconType: 'NONE'` in the `IconConfig` object if you don't want to use an icon. |
+| SYSTEM  | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon).  The `iconValue` string from a `IconConfig` object  will be used to create an `UIImage` instance: `UIImage(systemName: iconValue)`. So the `iconValue` string must correspond to an SF Symbols icon. |
+| ASSET   | Specifies that we want to use an image in the Xcode project's asset catalog. The `iconValue` string from a `IconConfig` object object  will be used to create an `UIImage` instance: `UIImage(named: iconValue)`. So the `iconValue` string must correspond to an asset/item in the `xcasset` catalog. |
+| REQUIRE | Specifies that we want to use an icon via `require('directory/image.png')`. The `iconValue` property from a `IconConfig` object must be set with a value returned from `Image.resolveAssetSource(souce`. See [Example 18](#4118-contextmenuview-simple-example-18) section for more details. |
 <br>
 
 #### 3.2.2 `MenuOptions` Enum
