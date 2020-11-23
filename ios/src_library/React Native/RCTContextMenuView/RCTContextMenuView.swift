@@ -115,6 +115,14 @@ class RCTContextMenuView: UIView {
       
       return interaction;
     }();
+    
+    /// init shared `RCTImageLoader` instance if nil
+    if RCTMenuIcon.ImageLoader.sharedInstance == nil,
+       let module      = bridge.module(for: RCTImageLoader.self),
+       let imageLoader = module as? RCTImageLoader {
+      
+      RCTMenuIcon.ImageLoader.sharedInstance = imageLoader;
+    };
   };
   
   required init?(coder: NSCoder) {

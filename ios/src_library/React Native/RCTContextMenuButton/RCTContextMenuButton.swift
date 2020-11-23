@@ -100,6 +100,14 @@ class RCTContextMenuButton: UIButton {
       print("menuActionTriggered");
       // TODO: wip
     }, for: .menuActionTriggered);
+    
+    /// init shared `RCTImageLoader` instance if nil
+    if RCTMenuIcon.ImageLoader.sharedInstance == nil,
+       let module      = bridge.module(for: RCTImageLoader.self),
+       let imageLoader = module as? RCTImageLoader {
+      
+      RCTMenuIcon.ImageLoader.sharedInstance = imageLoader;
+    };
   };
   
   required init?(coder: NSCoder) {

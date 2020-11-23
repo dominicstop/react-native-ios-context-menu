@@ -10,56 +10,89 @@ import Foundation
 
 
 @available(iOS 13.0, *)
-struct RCTMenuIcon {
+class RCTMenuIcon {
+  // -------------------------
+  // MARK: RCTMenuIcon - Types
+  // -------------------------
+  
+  struct ImageLoader {
+    static var sharedInstance: RCTImageLoader?;
+  };
+  
   enum IconType: String, CaseIterable, Encodable {
     case NONE;
     case URL;
     case SYSTEM;
     case ASSET;
+    case REQUIRE;
   };
   
-  var iconType: IconType = .NONE;
+  // ------------------------------
+  // MARK: RCTMenuIcon - Properties
+  // ------------------------------
   
-  var iconValue: String?;
+  var iconType: IconType;
+  
+  var iconValue: Any?;
   var iconSize : CGFloat?;
   var iconTint : UIColor?;
   
-  var iconScale : UIImage.SymbolScale  = .default;
-  var iconWeight: UIImage.SymbolWeight = .regular;
-};
-
-// ------------------------
-// MARK: RCTMenuIcon - Init
-// ------------------------
-
-@available(iOS 13.0, *)
-extension RCTMenuIcon {
-  init(dictionary: NSDictionary){
+  var iconScale : UIImage.SymbolScale;
+  var iconWeight: UIImage.SymbolWeight;
+  
+  private var loadedImage: UIImage?;
+  
+  // ------------------------
+  // MARK: RCTMenuIcon - Init
+  // ------------------------
+  
+  init() {
+    self.iconType = .NONE;
+    self.iconScale = .default;
+    self.iconWeight = .regular;
+  };
+  
+  convenience init(type: IconType, value: String){
+    self.init();
+    
+    self.iconType  = type;
+    self.iconValue = value;
+  };
+  
+  convenience init(dictionary: NSDictionary){
+    self.init();
+    
     if let string   = dictionary["iconType"] as? String,
        let iconType = IconType(rawValue: string) {
       
       self.iconType = iconType;
     };
     
-    if let string = dictionary["iconValue"] as? String {
-      self.iconValue = string;
-    };
+    self.iconValue = dictionary["iconValue"];
     
     if let string = dictionary["iconTint"] as? String,
        let color  = UIColor(cssColor: string) {
       
       self.iconTint = color;
     };
+    
+    // preload `REQUIRE` image
+    if self.iconType == .REQUIRE,
+       let iconValue   = self.iconValue as? NSDictionary,
+       let imageSource = RCTConvert.rctImageSource(iconValue),
+       let imageLoader = ImageLoader.sharedInstance {
+      
+      DispatchQueue.global(qos: .utility).async {
+        imageLoader.loadImage(with: imageSource.request) { error, image in
+          self.loadedImage = image;
+        };
+      };
+    };
   };
   
-  init?(dictionary: NSDictionary?){
+  convenience init?(dictionary: NSDictionary?){
     guard let dictionary = dictionary else { return nil };
     self.init(dictionary: dictionary);
-  };
-  
-  init(type: IconType, value: String){
-    self.iconType  = type;
-    self.iconValue = value;
   };
 };
 
@@ -77,7 +110,8 @@ extension RCTMenuIcon {
       case .URL : return nil; // to be implemented
       
       case .SYSTEM:
-        guard let iconValue = self.iconValue else { return nil };
+        guard let iconValue = self.iconValue as? String
+        else { return nil };
         
         if let iconTint = self.iconTint {
           return UIImage(systemName: iconValue)?
@@ -89,8 +123,12 @@ extension RCTMenuIcon {
         };
         
       case .ASSET:
-        guard let iconValue = self.iconValue else { return nil };
+        guard let iconValue = self.iconValue as? String
+        else { return nil };
         return UIImage(named: iconValue);
+        
+      case .REQUIRE:
+        return self.loadedImage;
     };
   };
   
