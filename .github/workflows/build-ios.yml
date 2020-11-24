@@ -1,4 +1,4 @@
-name: Build Example iOS Project
+name: Build Example
 
 on:
   pull_request:
