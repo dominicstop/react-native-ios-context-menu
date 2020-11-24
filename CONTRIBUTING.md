@@ -10,7 +10,7 @@ To get started with the project, run `yarn bootstrap` in the root directory to i
 yarn bootstrap
 ```
 
-While developing, you can run the [example app](/example/) to test your changes. Make sure all of the context menu examples/tests still work.
+While developing, you can run the [example app](/example/) to test your changes. 
 
 To start the packager:
 
@@ -28,13 +28,13 @@ yarn example ios
 To edit the Objective-C files, open `example/ios/IosContextMenuExample.xcworkspace` in Xcode and find the source files at `Pods > Development Pods > react-native-ios-context-menu`.
 
 ### Commit message convention
-Prefix the commit with an emoji:
-
+Please prefix the commit with an emoji:
 - `(🐞)`: bug fixes, e.g. fix crash due to deprecated method.
 - `(⭐️)`: new features, e.g. add new method to the module.
 - `(🛠)`: code refactor, e.g. migrate from class components to hooks.
 - `(📝)`: changes into documentation, e.g. add usage example for the module.. 
 - `(✨)`: tooling changes, e.g. change CI config, anything misc.
+- Or any other emoji that you think fits the commit.
 
 ### Scripts
 
@@ -54,10 +54,10 @@ The `package.json` file contains various scripts for common tasks:
 When you're sending a pull request:
 
 - Prefer small pull requests focused on one change.
-- Verify that linters and tests are passing.
 - Review the documentation to make sure it looks good.
-- Follow the pull request template when opening a pull request.
 - For pull requests that change the API or implementation, discuss with maintainers first by opening an issue.
+- Make sure all of the context menu examples/tests still work.
+- If you're adding a new feature, please add a simple demo to the example app.
 
 ## Code of Conduct
 
