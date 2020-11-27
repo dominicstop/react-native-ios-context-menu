@@ -1,6 +1,11 @@
 # react-native-ios-context-menu
 
-![Build Example iOS Project](https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example%20iOS%20Project/badge.svg)
+<p>
+  <img src="https://img.shields.io/npm/dm/react-native-ios-context-menu"/>
+  <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
+</p>
+
+
 
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenu's (nested and in-line menu's)
