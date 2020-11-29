@@ -1,7 +1,6 @@
 # react-native-ios-context-menu
 
 <p>
-  <img src="https://img.shields.io/npm/dm/react-native-ios-context-menu"/>
   <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
 </p>
 
@@ -79,7 +78,7 @@ cd ios && pod install
 <br>
 
 ### 1.1 Installation Notes
-If you encounter any errors/bugs while using this library, or want a particular feauture implemented, please create an issue and I'll try my best. PR's are also welcome! I don't check github very often, so If i take too long to respond, I'm [@DominicGo](https://twitter.com/GoDominic) on twitter.
+If you encounter any errors/bugs while using this library, or want a particular feauture implemented, please create an issue!
 
 <br>
 
