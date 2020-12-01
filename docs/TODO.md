@@ -56,6 +56,7 @@
 	- [ ] Test on **0.61**
 	- [ ] Test on **0.62**
 	- [x] Test on **0.63.3**
+	- [x] Test on **0.63.4**
 - [ ] `react-native-context-menu` uses autolinking for installation. Check if this library will work on older react-native versions prior to 0.60 i.e test `ContextMenuView` and `ContextMenuButton` on react native versions older than 0.60
 	- [ ] Test on **0.59**
 	- [ ] Test on **0.58**
