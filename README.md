@@ -89,11 +89,6 @@ This library is written in Swift. If you are having trouble building your app af
 3. In the popup sheet, select "Swift" as the template and then click the "*Next*" button
 4. A "*Save As*" popup sheet should appear and then click "*Create*" (you can rename the file first if you want to)
 5. If Xcode asks you to create a "*Objective-C Bridging Header*" choose *"Create Objective-C Bridging Header"*
-6. If you are still having problems building the app, try the following:
-	* Try clearing out Xcode's `derivedData` directory: `rm -rf ~/Library/Developer/Xcode/DerivedData/*` (check out this [gist](https://gist.github.com/maciekish/66b6deaa7bc979d0a16c50784e16d697) for instructions on how to clean up Xcode)
-	* Try clearing out the `Cocoapods` cache: `rm -rf "${HOME}/Library/Caches/CocoaPods"` (and then try running `pod install` again).
-	* Try clearing the yarn cache: `yarn cache clean`
-
 <br>
 
 #### 1.1.2 Xcode Build Error (Undefined symbol)
@@ -118,6 +113,9 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 	* Alternatively, according to this [issue comment](https://github.com/facebook/react-native/issues/29246#issuecomment-667518920), you can clear all the items listed in the "Library Search Paths" setting. **TLDR**: Xcode automatically manages this setting, and the RN template hardcodes it to use Swift 5.0.
 
 7. If you haven't already, make sure to create an empty swift file. Then clean the build folder (the option is in the menu bar under: "Product" -> "Clean Build Folder") and try building your project again.
+8. If you are still having problems building the app, try the following and build your project again:
+	* Try clearing out Xcode's `derivedData` directory: `rm -rf ~/Library/Developer/Xcode/DerivedData/*` (check out this [gist](https://gist.github.com/maciekish/66b6deaa7bc979d0a16c50784e16d697) for instructions on how to clean up Xcode)
+	* Try clearing out the `Cocoapods` cache: `rm -rf "${HOME}/Library/Caches/CocoaPods"` (and then try running `pod install` again).
 
 <br>
 
