@@ -77,6 +77,10 @@ cd ios && pod install
 
 <br>
 
+As of writing this, there is a bug in the RN Xcode template, so you need to do the [following steps](#112-xcode-build-error-undefined-symbol) to make this library work.
+
+<br>
+
 ### 1.1 Installation Notes
 If you encounter any errors/bugs while using this library, or want a particular feauture implemented, please create an issue!
 
@@ -108,7 +112,7 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 2. In the project navigator panel (located on the right side of Xcode), select your project group (i.e. the item with the blueprint icon).
 3. The Xcode project editor should appear. In the left panel, under the "Project" section, select your project (if it isn't already selected).
 4. In the project section's top tab bar, select the "Build Settings" tab (also make sure the "All" and "Combined" tabs are selected).
-5.  Inn the project navigator list, under the "Search Path" section, there should be a "Library Search Paths" setting (alternatively, you can search for "Library Search Paths" in the search bar).
+5. In the project navigator list, under the "Search Path" section, there should be a "Library Search Paths" setting (alternatively, you can search for "Library Search Paths" in the search bar).
 6. Change the entry `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)"` to `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.3/$(PLATFORM_NAME)"` i.e. change `swift-5.0` to `swift-5.3` (to show the popup dialog, double click the value/item).
 	* Alternatively, according to this [issue comment](https://github.com/facebook/react-native/issues/29246#issuecomment-667518920), you can clear all the items listed in the "Library Search Paths" setting. **TLDR**: Xcode automatically manages this setting, and the RN template hardcodes it to use Swift 5.0.
 
