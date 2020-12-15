@@ -5,7 +5,6 @@
 </p>
 
 
-
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenu's (nested and in-line menu's)
 * Support for customizing the menu icons (i.e. support for SF Symbols, `require()`, and xcasset icons, icon tint, etc.)
@@ -18,20 +17,19 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 
 <details open>
   <summary>Show/Hide Gifs</summary>
-
-`ContextMenuView` **Left**: [Example 1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample01.js), [Example 2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample02.js), and **Right**: [Example 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample03.js), [Example 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample04.js)
+`ContextMenuView` **Left**: [Example 1](#411-contextmenuview-simple-example-1), [Example 2](#412-contextmenuview-simple-example-2), and **Right**: [Example 3](#413-contextmenuview-simple-example-3), [Example 4](#414-contextmenuview-simple-example-4)
 ![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
 
-`ContextMenuView` **Left**: [Example 5](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample05.js), [Example 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample06.js), and **Right**: [Example 7](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample07.js), [Example 8](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample08.js)
+`ContextMenuView` **Left**: [Example 5](#415-contextmenuview-simple-example-5), [Example 6](#416-contextmenuview-simple-example-6), and **Right**: [Example 7](#417-contextmenuview-simple-example-7), [Example 8](#418-contextmenuview-simple-example-8)
 ![Simple Example 5 to 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif)
 
-`ContextMenuView` **Left**: [Example 9](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample09.js), and **Right**: [Example 10](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample10.js)
+`ContextMenuView` **Left**: [Example 9](#419-contextmenuview-simple-example-9), and **Right**: [Example 10](#4110-contextmenuview-simple-example-10)
 ![Simple Example 9 and 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-9-10.gif)
 
-`ContextMenuView` **Left**: [Example 11](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample11.js), [Example 12](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample12.js), and **Right**: [Example 13](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample13.js), [Example 14](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample14.js)
+`ContextMenuView` **Left**: [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12), and **Right**: [Example 13](#4113-contextmenuview-simple-example-13), [Example 14](#4114-contextmenuview-simple-example-14)
 ![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif)
 
-`ContextMenuView` **Left**: [Example 15](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample15.js), [Example 16](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample16.js), and **Right**: [Example 17](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample17.js), [Example 18](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample18.js)
+`ContextMenuView` **Left**: [Example 15](#4115-contextmenuview-simple-example-15), [Example 16](#4116-contextmenuview-simple-example-16), and **Right**: [Example 17](#4117-contextmenuview-simple-example-17), [Example 18](#4118-contextmenuview-simple-example-18)
 ![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif)
 
 `ContextMenuView` **Left**: [Test 1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest01.js), and **Right**: [Test 2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest02.js)
@@ -52,8 +50,10 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 `ContextMenuView` `ActionSheetIOS` fallback for context menu view test 1 to 6
 ![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-Test-1-to-6.gif)
 
-`ContextMenuButton` **Left**: [Example 1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample01.js), and **Right**: [Example 2](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuButton/ContextMenuButtonSimpleExample02.js)
+`ContextMenuButton` **Left**: [Example 1](#421-contextmenubutton-simple-example-1), and **Right**: [Example 2](#422-contextmenubutton-simple-example-2)
 ![Simple Example 1 and 2 Gifs](./assets/context-menu-button-gifs/ContextMenuButton-SimpleExample-1-2.gif)
+
+
 
 </details>
 
@@ -78,7 +78,7 @@ cd ios && pod install
 <br>
 
 ### 1.1 Installation Notes
-If you encounter any errors/bugs while using this library, or want a particular feauture implemented, please create an issue!
+If you encounter any errors/bugs while using this library, or want a particular feature implemented, please create an issue! ✨
 
 <br>
 
@@ -108,7 +108,7 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 2. In the project navigator panel (located on the right side of Xcode), select your project group (i.e. the item with the blueprint icon).
 3. The Xcode project editor should appear. In the left panel, under the "Project" section, select your project (if it isn't already selected).
 4. In the project section's top tab bar, select the "Build Settings" tab (also make sure the "All" and "Combined" tabs are selected).
-5.  Inn the project navigator list, under the "Search Path" section, there should be a "Library Search Paths" setting (alternatively, you can search for "Library Search Paths" in the search bar).
+5.  In the project navigator list, under the "Search Path" section, there should be a "Library Search Paths" setting (alternatively, you can search for "Library Search Paths" in the search bar).
 6. Change the entry `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)"` to `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.3/$(PLATFORM_NAME)"` i.e. change `swift-5.0` to `swift-5.3` (to show the popup dialog, double click the value/item).
 	* Alternatively, according to this [issue comment](https://github.com/facebook/react-native/issues/29246#issuecomment-667518920), you can clear all the items listed in the "Library Search Paths" setting. **TLDR**: Xcode automatically manages this setting, and the RN template hardcodes it to use Swift 5.0.
 
@@ -121,6 +121,7 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 
 #### 1.1.3 Cocoapods Static Libraries Error
 If you encounter the following error when running `pod install`:
+
 ```
 [!] The following Swift pods cannot yet be integrated as static libraries:
 
@@ -171,14 +172,14 @@ Here is an overview of all the documentation and examples for the `ContextMenuVi
 
 | Description                                                  | Section Link                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| General examples for  `ContextMenuView`.                     | [Example 1](#411-contextmenuview-simple-example-1) (bare min. example),<br> [Example 9](#419-contextmenuview-simple-example-9) (events). |
-| Examples for configuring the menu icons.                     | [Example 2](#412-contextmenuview-simple-example-2) (SF Symbol icon),<br> [Example 16](#4116-contextmenuview-simple-example-16) (asset icon),<br> [Example 17](#4117-contextmenuview-simple-example-17) (icon tint), <br> [Example 18](#4118-contextmenuview-simple-example-18) (require icon). |
-| Examples for the different menu configurations.              | [Example 3](#413-contextmenuview-simple-example-3) (submenu's),<br> [Example 5](#415-contextmenuview-simple-example-5) (inline menu i.e. menu sections),<br> [Example 6](#416-contextmenuview-simple-example-6) (destructive atrribute),<br> [Example 7](#417-contextmenuview-simple-example-7) (inline + destructive atrribute),<br> [Example 10](#4110-contextmenuview-simple-example-10) (updating the menu). |
-| Examples for the different menu action configurations.       | [Example 4](#414-contextmenuview-simple-example-4) (attributes: disabled, destructive, etc.),<br> [Example 8](#418-contextmenuview-simple-example-8) (menu state),<br> [Example 13](#4113-contextmenuview-simple-example-13) (subtitles) |
-| Examples for creating custom `ContextMenuView` previews.     | [Example 11](https://github.com/dominicstop/react-native-ios-context-menu#4111-contextmenuview-simple-example-11) (simple preview),<br> [Example 12](#4112-contextmenuview-simple-example-12) (preview size),<br> [Example 14](#4114-contextmenuview-simple-example-14) (`commitStyle`),<br> [Example 15](#4115-contextmenuview-simple-example-15) (target preview). |
-| `MenuConfig` object and related enums/objects.<br>This object is used in the component's `menuConfig` prop. | [￼`MenuConfig`￼](#332-menuconfig-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [`MenuOptions`](#322-menuoptions-enum) enum. |
-| `MenuAction` and related enums/objects.<br/>This object is used in a `MenuConfig` object (i.e. the `MenuConfig.menuItems` property). | [`￼MenuAction￼`](#331-menuaction-object) object,<br> [￼`IconConfig`￼](#333-iconconfig-object) object,<br> [￼`MenuState`￼](#324-menustate-enum) enum,<br> [`MenuAttributes`](#323-menuatrributes-enum) enum. |
-| `PreviewConfig` object and related enums.<br/>This object is used in the component's `previewConfig` prop. | [￼`PreviewConfig`￼](#334-previewconfig-object) object,<br> `PreviewType` enum,<br> [￼`PreviewSize`￼](#326-previewsize-enum) enum,<br> [￼`CommitStyle`￼](#327-commitstyle-enum) enum. |
+| General examples for  `ContextMenuView`.                     | [Example 1](#411-contextmenuview-simple-example-1) (bare min. example),<br>[Example 9](#419-contextmenuview-simple-example-9) (events). |
+| Examples for configuring the menu icons.                     | [Example 2](#412-contextmenuview-simple-example-2) (SF Symbol icon),<br>[Example 16](#4116-contextmenuview-simple-example-16) (asset icon),<br>[Example 17](#4117-contextmenuview-simple-example-17) (icon tint), <br>[Example 18](#4118-contextmenuview-simple-example-18) (require icon). |
+| Examples for the different menu configurations.              | [Example 3](#413-contextmenuview-simple-example-3) (submenus),<br>[Example 5](#415-contextmenuview-simple-example-5) (inline menu i.e. menu sections),<br>[Example 6](#416-contextmenuview-simple-example-6) (destructive menu attribute),<br>[Example 7](#417-contextmenuview-simple-example-7) (inline + destructive menu attribute),<br>[Example 10](#4110-contextmenuview-simple-example-10) (updating the menu). |
+| Examples for the different menu action configurations.       | [Example 4](#414-contextmenuview-simple-example-4) (menu action attributes, e.g. disabled, destructive, etc.),<br>[Example 8](#418-contextmenuview-simple-example-8) (menu state),<br>[Example 13](#4113-contextmenuview-simple-example-13) (subtitles) |
+| Examples for creating custom `ContextMenuView` previews.     | [Example 11](https://github.com/dominicstop/react-native-ios-context-menu#4111-contextmenuview-simple-example-11) (custom preview),<br>[Example 12](#4112-contextmenuview-simple-example-12) (preview size),<br>[Example 14](#4114-contextmenuview-simple-example-14) (`commitStyle`),<br>[Example 15](#4115-contextmenuview-simple-example-15) (target preview). |
+| `MenuConfig` object and related enums/objects.<br>(used in the component's `menuConfig` prop.) | [￼`MenuConfig`￼](#332-menuconfig-object) object,<br>[￼`IconConfig`￼](#333-iconconfig-object) object,<br>[`MenuOptions`](#322-menuoptions-enum) enum. |
+| `MenuAction` and related enums/objects.<br/>(used in a `MenuConfig` object i.e. the `MenuConfig.menuItems` property). | [`￼MenuAction￼`](#331-menuaction-object) object,<br>[￼`IconConfig`￼](#333-iconconfig-object) object,<br>[￼`MenuState`￼](#324-menustate-enum) enum,<br>[`MenuAttributes`](#323-menuatrributes-enum) enum. |
+| `PreviewConfig` object and related enums.<br/>()used for the `previewConfig` prop.) | [￼`PreviewConfig`￼](#334-previewconfig-object) object,<br>[￼`PreviewType`￼](#325-previewtype-enum) enum,<br>[￼`PreviewSize`￼](#326-previewsize-enum) enum,<br>[￼`CommitStyle`￼](#327-commitstyle-enum) enum. |
 
 </details>
 
@@ -191,7 +192,7 @@ Here is an overview of all the documentation and examples for the `ContextMenuVi
 <br>
 
 ### 2.3 `ContextMenuButton` Usage
-Please check out the [examples section](#42-contextmenubutton-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuButton) for more on how to use it. See  [Example 1](#421-contextmenubutton-simple-example-1) section for the basic `menuConfig` configuration. 
+Please check out the [examples section](#42-contextmenubutton-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuButton) for more on how to use it. See [Example 1](#421-contextmenubutton-simple-example-1) section for the basic `menuConfig` configuration. 
 * The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
 * The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Simple Example 2](#422-contextmenubutton-simple-example-2) for more details.
 * Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.
@@ -223,21 +224,26 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 #### 3.1.1 `ContextMenuView` Component
 ##### `ContextMenuView` Props
 
-| Prop                     | Type                                                         | Description                                                  |
-|--------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
-| `menuConfig`             | **Required**:  [￼`MenuConfig`￼](#332-menuconfig-object) Object | An object that represents the menu to display. You can put `menuConfig` in  state if you want to dynamically change the menu configuration: See `ContextMenuView` [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js) for examples. On iOS 14+ the menu config can be updated while it's visible. |
-| `useActionSheetFallback` | **Optional**: `Bool`                                         | If set to true, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop. Default value is `false` on iOS 13+ and true on android, and on iOS 12 and below. |
-| `previewConfig`          | **Optional**:  [￼`PreviewConfig`￼](#332-previewconfig-object) Object | A prop to configure the context menu preview. See [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12), and [Example 14](#4114-contextmenuview-simple-example-14) section for example usage. |
-| `lazyPreview`            | **Optional**: `Bool`<br> **Default**: `true`                 | By default, the context mrenu preview is only mounted/rendered when the context menu is visible. Set this to `false` if you want the preview to be always mounted. |
-| `renderPreview`          | **Optional**: `Function`                                     | Accepts a function that returns a react component. The returned component will displayed in the context menu preview. See  section [Example #11](#4111-contextmenuview-simple-example-11) and [Example #12](#4112-contextmenuview-simple-example-12) for more details. |
-| `onMenuWillShow`         | **Event**: Function                                          | Event that gets called **before** the context menu is  shown, i.e. this event is immediently invoked when the menu is about to become visible. |
-| `onMenuDidShow`          | **Event**: Function                                          | Event that gets called **after** the context menu is completely shown, i.e. this event is invoked after the menu entrance animation is finished. |
-| `onMenuWillHide`         | **Event**: Function                                          | Event that gets called **before** the context menu is  hidden, i.e. this event is immediently invoked when the menu is about to become hidden. |
-| `onMenuDidHide`          | **Event**: Function                                          | Event that gets called **after** the context menu is completely hidden, i.e. this event is invoked after the menu exit animation is finished. |
-| `onMenuWillCancel`       | **Event**: Function                                          | Event that gets called when the menu is cancelled and **before** the context menu is  hidden, i.e. this event is immediently invoked when the menu is cancelled and about to become hidden. |
-| `onMenuDidCancel`        | **Event**: Function                                          | Event that gets called when the menu is cancelled and **after** the context menu is completely hidden, i.e. this event is invoked when the menu is cancelled and the menu exit animation is finished. |
-| `onPressMenuItem`        | **Event**: Function: `onPressMenuItem({nativeEvent})`        | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey `. Check out the [onPressMenuItem Object](#333-onpressmenuitem-nativeevent-object) section for more details, or [Simple Example #9](#419-contextmenuview-simple-example-9) section for example usage. |
-| `onPressMenuPreview`     | **Event**: Function                                          | Event that gets called when the menu's preview is pressed.   |
+| Prop                                                         | Description                                                  |
+|--------------------------------------------------------------|--------------------------------------------------------------|
+| `menuConfig`<br><br>**Required**: [￼`MenuConfig`￼](#332-menuconfig-object) Object | An object that represents the menu to display. <br/><br/>You can put `menuConfig` in  state if you want to dynamically change the menu configuration: See `ContextMenuView` [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js) for examples.<br/><br/> On iOS 14+ the menu config can be updated while it's visible. |
+| `useActionSheetFallback`<br/><br/>**Optional**: `Bool`       | If set to `true`, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop.<br/><br/>Note: Default value is `false` on iOS 13+, or `true` on android and on iOS 12 and below. |
+| `previewConfig`<br/><br/>**Optional**: [￼`PreviewConfig`￼](#332-previewconfig-object) Object | A prop to configure the context menu preview.<br/>See [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12), and [Example 14](#4114-contextmenuview-simple-example-14) section for example usage. |
+| `lazyPreview`<br/>**Optional**: `Bool`<br/>**Default**: `true`<br/> | By default, the context menu preview contents is only mounted/rendered when the context menu is visible.<br/><br/>Set this to `false` if you want the preview content to be always mounted. |
+| `renderPreview`<br/><br/>**Optional**: `Function`            | Accepts a function that returns a react component. The returned component will displayed in the context menu preview. See  section [Example #11](#4111-contextmenuview-simple-example-11) and [Example #12](#4112-contextmenuview-simple-example-12) for more details. |
+<br>
+
+##### `ContextMenuView` Events
+| Event                                                        | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `onMenuWillShow`<br/><br/>**Event**: Function                | Event that gets called **before** the context menu is shown, i.e. this event is immediately invoked when the menu is <u>about to become visible</u>. |
+| `onMenuDidShow`<br/><br/>**Event**: Function                 | Event that gets called **after** the context menu is shown, i.e. this event is invoked <u>after the menu entrance animation</u> is finished. |
+| `onMenuWillHide`<br/><br/>**Event**: Function                | Event that gets called **before** the context menu is  hidden, i.e. this event is immediately invoked when the menu is <u>about to become hidden</u>. |
+| `onMenuDidHide`<br/><br/>**Event**: Function                 | Event that gets called **after** the context menu is hidden, i.e. this event is invoked <u>after the menu exit animation</u> is finished. |
+| `onMenuWillCancel`<br/><br/>**Event**: Function              | Event that gets called when the menu is **cancelled and about to be hidden**, i.e. this event is immediately invoked when the menu is cancelled and about to become hidden. |
+| `onMenuDidCancel`<br/><br/>**Event**: Function               | Event that gets called when the menu is **cancelled and hidden**, i.e. this event is invoked when the menu is cancelled and the menu exit animation is finished. |
+| `onPressMenuItem`<br/><br/>**Event**: Function: `onPressMenuItem({nativeEvent})` | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out the [onPressMenuItem Object](#333-onpressmenuitem-nativeevent-object) section for more details, or [Simple Example #9](#419-contextmenuview-simple-example-9) section for example usage. |
+| `onPressMenuPreview`<br/><br/>**Event**: Function            | Event that gets called when the menu's preview is pressed.   |
 
 <br>
 
@@ -252,20 +258,26 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 #### 3.1.2 `ContextMenuButton` Component
 ##### `ContextMenuButton` Props
 
-| Prop                     | Type                                                 | Description                                                  |
-|--------------------------|------------------------------------------------------|--------------------------------------------------------------|
-| `menuConfig`             | **Required**:  `MenuConfig` Object                   | Same as `ContextMenuView`                                    |
-| `enableContextMenu`      | **Optional**: `Bool`<br> **Default**: `true`         | Whether or not the context menu is enabled.                  |
-| `isMenuPrimaryAction`    | **Optional**: `Bool`<br> **Default**: `false`        | When set to true, the context menu will be shown when its tapped instead of a long press. |
-| `wrapNativeComponent`    | **Optional**: `Bool`<br> **Default**: `true`         | When true, the `ContextMenuButton` component is wrapped inside a `TouchableOpacity` component and it handles all of the `onPress` and `onLongPress` events. If you want to use a different "button" component, set this prop to false first and wrap the `ContextMenuButton` in your own custom button component. |
-| `useActionSheetFallback` | **Optional**: `Bool`                                 | Same as `ContextMenuView`                                    |
-| `onMenuWillShow`         | **Event**: Function                                  | Same as `ContextMenuView`                                    |
-| `onMenuDidShow`          | **Event**: Function                                  | Same as `ContextMenuView`                                    |
-| `onMenuWillHide`         | **Event**: Function                                  | Same as `ContextMenuView`                                    |
-| `onMenuDidHide`          | **Event**: Function                                  | Same as `ContextMenuView`                                    |
-| `onMenuWillCancel`       | **Event**: Function                                  | Same as `ContextMenuView`                                    |
-| `onMenuDidCancel`        | **Event**: Function                                  | Same as `ContextMenuView`                                    |
-| `onPressMenuItem`        | **Event**: Function `onPressMenuItem({nativeEvent})` | Same as `ContextMenuView`                                    |
+| Prop                                                         | Description                                                  |
+|--------------------------------------------------------------|--------------------------------------------------------------|
+| `menuConfig`<br/><br/>**Required**:  `MenuConfig` Object     | Same as `ContextMenuView`                                    |
+| `enableContextMenu`<br/><br/>**Optional**: `Bool`<br/>**Default**: `true` | Whether or not the context menu is enabled.                  |
+| `isMenuPrimaryAction`<br/><br/>**Optional**: `Bool`<br/>**Default**: `false` | When set to true, the context menu will be shown when its tapped instead of a long press. |
+| `wrapNativeComponent`<br/><br/>**Optional**: `Bool`<br/>**Default**: `true` | When true, the `ContextMenuButton` component is wrapped inside a `TouchableOpacity` component and it handles all of the `onPress` and `onLongPress` events. If you want to use a different "button" component, set this prop to false first and wrap the `ContextMenuButton` in your own custom button component. |
+| `useActionSheetFallback`<br/><br/>**Optional**: `Bool`       | Same as `ContextMenuView`                                    |
+<br>
+
+`ContextMenuButton` Events
+
+| Event                                                        | Description               |
+|--------------------------------------------------------------|---------------------------|
+| `onMenuWillShow`<br/><br/>**Event**: Function                | Same as `ContextMenuView` |
+| `onMenuDidShow`<br/><br/>**Event**: Function                 | Same as `ContextMenuView` |
+| `onMenuWillHide`<br/><br/>**Event**: Function                | Same as `ContextMenuView` |
+| `onMenuDidHide`<br/><br/>**Event**: Function                 | Same as `ContextMenuView` |
+| `onMenuWillCancel`<br/><br/>**Event**: Function              | Same as `ContextMenuView` |
+| `onMenuDidCancel`<br/><br/>**Event**: Function               | Same as `ContextMenuView` |
+| `onPressMenuItem`<br/><br/>**Event**: Function `onPressMenuItem({nativeEvent})` | Same as `ContextMenuView` |
 
 <br>
 
