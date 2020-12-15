@@ -4,10 +4,8 @@
 - [x] Implement targeted previews
 - [ ] Submit a PR to the RN repo — Update RN template to fix `Undefined Symbol`
 - [ ] Update `PreviewConfig.previewSize` to support passing in a size object, e.g. `{width: 100, height: 100}`
-- [ ] Docs: Add images to steps
-- [ ] Docs: Make sections collapsabe
+
 - [ ] Docs: Fix grammar/spelling errors
-- [ ] Docs: Fix table layout
 - [ ] Docs: Test/Fix jump links
 - [ ] Attach RN touch handler to context menu
 
@@ -101,13 +99,16 @@
 		- [x] Rename `ContextMenuView` gifs i.e. prefix them with "ContextMenuView" e.g. `SimpleExample-1-2-3-4.gif` becomes `ContextMenuView-SimpleExample-1-2-3-4.gif`, etc.
 		- [x] In the `/assets/example-screenshots` folder, prefix images with "ContextMenuView", e.g. `SimpleExample01.png` becomes `ContextMenuView-SimpleExample01.png`, etc.
 
+- [x] Docs: Add images to steps: Undefined Symbol
+- [x] Docs: Make sections collapsabe
+- [x] Docs: Fix table layout
+
 <br>
 
 - [x] In the "Documentation" section, add `ContextMenuButton` props.
 - [ ] In the `MenuAction` Object section, add example object with comments.
 - [ ] In the `MenuConfig` Object section, add example object with comments.
 - [x] Finish `onPressMenuItem` `nativeEvent` Object section.
-- [ ] Create collapsable "Table of Contents"
-- [ ] Make examples content collapsable
+> - [ ] Create collapsable "Table of Contents"
 - [x] Add section for `useActionSheetFallback` prop
 - [ ] Add `README.md` in example directory
