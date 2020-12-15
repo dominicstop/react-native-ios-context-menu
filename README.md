@@ -20,6 +20,7 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 `ContextMenuView` **Left**: [Example 1](#411-contextmenuview-simple-example-1), [Example 2](#412-contextmenuview-simple-example-2), and **Right**: [Example 3](#413-contextmenuview-simple-example-3), [Example 4](#414-contextmenuview-simple-example-4)
 ![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
 
+
 `ContextMenuView` **Left**: [Example 5](#415-contextmenuview-simple-example-5), [Example 6](#416-contextmenuview-simple-example-6), and **Right**: [Example 7](#417-contextmenuview-simple-example-7), [Example 8](#418-contextmenuview-simple-example-8)
 ![Simple Example 5 to 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif)
 
@@ -221,7 +222,12 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 
 ## 3. Documentation
 ### 3.1 Modules/Components
+
+<details closed>
+  <summary>Show/Hide Section</summary>
+
 #### 3.1.1 `ContextMenuView` Component
+
 ##### `ContextMenuView` Props
 
 | Prop                                                         | Description                                                  |
@@ -299,9 +305,15 @@ A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This mo
 |---------------------------------------------|-------------------------------|--------------------------------------------------------------|
 | `async show(menuConfig: MenuConfig Object)` | `MenuAction Object` or `null` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
 
+</details>
+
 <br>
 
 ### 3.2 Enum Values
+
+<details closed>
+  <summary>Show/Hide Section</summary>
+
 #### 3.2.1 `IconTypes` Enum
 Enum string values you can use for the [￼￼`IconConfig.iconType`￼](#332-iconconfig-object) property in the [￼`MenuAction.icon`￼](#331-menuaction-object) or ￼[`MenuConfig.icon`](#332-menuconfig-object) property.
 * Import the enum like this: `import { IconTypes } from "react-native-ios-context-menu";`
@@ -413,9 +425,15 @@ Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-o
 |-----------|--------------------------------------------------------------|
 | `dismiss` | The default value. An interaction with no animations. Visually (as of iOS 13/14), when the context menu preview is tapped, the preview will scale back to it orginal position. |
 | `pop`     | The default value. An interaction with no animations. Visually (as of iOS 13/14), when the context menu preview is tapped, the preview will abruptly zoom in to fill the screen while fading out. |
+</details>
+
 <br>
 
 ### 3.3 Object Types
+
+<details closed>
+  <summary>Show/Hide Section</summary>
+
 #### 3.3.1 `MenuAction` Object
 An object that is used to display/create a context menu action or a submenu action. This object represents a [￼￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) instance. This object is used inside a `MenuConfig` object's `menuItems` property.
 
@@ -493,6 +511,8 @@ The object  you pass in the `ContextMenuView` compoent's  `previewConfig` prop. 
 | `preferredCommitStyle` | **Optional**: `String` ([￼`CommitStyle`￼](#327-commitstyle-enum) value)<br> **Default**: `dismiss` | Controls the type of exit animation to use for the context menu preview when its tapped. See [Example 14](#4114-contextmenuview-simple-example-14) for more details. |
 | `targetViewNode`       | **Optional**: `Number` (`NodeHandle` value)                  | Specifies the view to use as  the "target view", i.e. the view to use for [`UITargetedPreview `](https://developer.apple.com/documentation/uikit/uitargetedpreview). Accepts a number returned from `findNodeHandle` function. See [Example 15](#4115-contextmenuview-simple-example-15) for more details. |
 
+</details>
+
 <br>
 
 ## 4 Examples
@@ -506,6 +526,10 @@ Check out the [examples](https://github.com/dominicstop/react-native-ios-context
 <br>
 
 ### 4.1 `ContextMenuView` Examples
+
+<details closed>
+  <summary>Show/Hide Section</summary>
+
 #### 4.1.1 `ContextMenuView` [Simple Example #1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample01.js)
 A plain context menu configured with 3 actions (no icons, just text).
 * This example is demoed in this [gif](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif).
@@ -1508,11 +1532,18 @@ export function ContextMenuViewSimpleExample18(props) {
 
 ![Simple Example 18](./assets/example-screenshots/ContextMenuView-SimpleExample18.png)
 
+
+
+</details>
+
 <br><br>
 
 
 ### 4.2 `ContextMenuButton` Examples
 Most of the examples in the `ContextMenuView` section also applies here. The props in `ContextMenuView` (like the `menuConfig` and `useActionSheetFallback` props) as well as most of the events behave the same.
+
+<details closed>
+  <summary>Show/Hide Section</summary>
 
 <br>
 
@@ -1587,6 +1618,10 @@ A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead
 ```
 
 ![Simple Example 2](./assets/example-screenshots/ContextMenuButton-SimpleExample02.png)
+
+
+
+</details>
 
 <br><br>
 
