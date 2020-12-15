@@ -6,8 +6,8 @@
 
 
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
-* Support for creating menu actions and submenu's (nested and in-line menu's)
-* Support for customizing the menu icons (i.e. support for SF Symbols, `require()`, and xcasset icons, icon tint, etc.)
+* Support for creating menu actions and submenus (i.e. nested and in-line menus)
+* Support for customizing the menu icons (i.e. support for SF Symbols, `require(image)`, and `xcasset` icons, icon tint, etc.)
 * Support for iOS 14 functionality (like the `UIButton` context menu, updating the menu while its visible, etc.)
 * Support for setting (almost) all of the native [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) and ￼[`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, `discoverabilityTitle`, etc.)
 * Basic `ActionSheetIOS` menu fallback for iOS 12 and below.
@@ -21,8 +21,6 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 
 `ContextMenuView` **Left**: [Example 1](#411-contextmenuview-simple-example-1), [Example 2](#412-contextmenuview-simple-example-2), and **Right**: [Example 3](#413-contextmenuview-simple-example-3), [Example 4](#414-contextmenuview-simple-example-4)
 ![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
-
-
 
 `ContextMenuView` **Left**: [Example 5](#415-contextmenuview-simple-example-5), [Example 6](#416-contextmenuview-simple-example-6), and **Right**: [Example 7](#417-contextmenuview-simple-example-7), [Example 8](#418-contextmenuview-simple-example-8)
 ![Simple Example 5 to 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif)
@@ -106,6 +104,7 @@ __C.UIAction.init(title: Swift.String, image: __C.UIImage?, identifier: __C.UIAc
 <br>
 
 Here are some related issues in the RN repo: [Issue 30202](https://github.com/facebook/react-native/pull/30202) and [Issue 29178](https://github.com/facebook/react-native/pull/29178). This bug could be fixed in a future version of react native, but a workaround I've found is to do the following:
+
 1. Open your `ios/project.xcworkspace` project.
 2. In the project navigator panel (located on the right side of Xcode), select your project group (i.e. the item with the blueprint icon).
 3. The Xcode project editor should appear. In the left panel, under the "Project" section, select your project (if it isn't already selected).
@@ -118,6 +117,8 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 8. If you are still having problems building the app, try the following and build your project again:
 	* Try clearing out Xcode's `derivedData` directory: `rm -rf ~/Library/Developer/Xcode/DerivedData/*` (check out this [gist](https://gist.github.com/maciekish/66b6deaa7bc979d0a16c50784e16d697) for instructions on how to clean up Xcode)
 	* Try clearing out the `Cocoapods` cache: `rm -rf "${HOME}/Library/Caches/CocoaPods"` (and then try running `pod install` again).
+
+![Simple Example 1 and 2 Gifs](./assets/misc-images/1-1-2-Xcode-Build-Error-Undefined-Symbol-Screenshot-01.png)
 
 <br>
 
@@ -266,11 +267,11 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 ##### `ContextMenuButton` Props
 
 | Prop                                                         | Description                                                  |
-|--------------------------------------------------------------|--------------------------------------------------------------|
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `menuConfig`<br/><br/>**Required**:  `MenuConfig` Object     | Same as `ContextMenuView`                                    |
 | `enableContextMenu`<br/><br/>**Optional**: `Bool`<br/>**Default**: `true` | Whether or not the context menu is enabled.                  |
 | `isMenuPrimaryAction`<br/><br/>**Optional**: `Bool`<br/>**Default**: `false` | When set to true, the context menu will be shown when its tapped instead of a long press. |
-| `wrapNativeComponent`<br/><br/>**Optional**: `Bool`<br/>**Default**: `true` | When true, the `ContextMenuButton` component is wrapped inside a `TouchableOpacity` component and it handles all of the `onPress` and `onLongPress` events. If you want to use a different "button" component, set this prop to false first and wrap the `ContextMenuButton` in your own custom button component. |
+| `wrapNativeComponent`<br/><br/>**Optional**: `Bool`<br/>**Default**: `true` | When true, the `ContextMenuButton` will be wrapped inside a `TouchableOpacity` component, and it will be used to handle all of the `onPress` and `onLongPress` events.<br>If you want to use a different "button" component, set this prop to false first and wrap the `ContextMenuButton` in your own custom button component. |
 | `useActionSheetFallback`<br/><br/>**Optional**: `Bool`       | Same as `ContextMenuView`                                    |
 <br>
 
@@ -291,8 +292,8 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 ##### `ContextMenuButton` Functions
 
 | Name            | Description                                                  |
-|-----------------|--------------------------------------------------------------|
-| `dismissMenu()` | Same as `ContextMenuView`. Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
+| --------------- | ------------------------------------------------------------ |
+| `dismissMenu()` | Same as `ContextMenuView`.<br>Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
 
 <br>
 
@@ -316,7 +317,8 @@ A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This mo
   <summary>Show/Hide Section</summary>
 
 #### 3.2.1 `IconTypes` Enum
-Enum string values you can use for the [￼￼`IconConfig.iconType`￼](#332-iconconfig-object) property in the [￼`MenuAction.icon`￼](#331-menuaction-object) or ￼[`MenuConfig.icon`](#332-menuconfig-object) property.
+Enum string values you can use for the [￼￼`IconConfig.iconType`￼](#332-iconconfig-object) property in the [￼`MenuAction.icon`￼](#331-menuaction-object) or ￼[`MenuConfig.icon`](#332-menuconfig-object) property. This enum is used to configure what type of icon is used for a context menu or menu action.
+
 * Import the enum like this: `import { IconTypes } from "react-native-ios-context-menu";`
 * And use it  like this: `{ iconType: IconTypes }` 
 * Or you can directly pass a string like this: `{ iconType: 'SYSTEM' }`
@@ -325,15 +327,16 @@ Enum string values you can use for the [￼￼`IconConfig.iconType`￼](#332-ico
 <br>
 
 | Value   | Description                                                  |
-|---------|--------------------------------------------------------------|
-| NONE    | The default value for the `iconType` property. Specifies to not use an icon. Since this is the default value, you don't have to explicitly specify: `iconType: 'NONE'` in the `IconConfig` object if you don't want to use an icon. |
-| SYSTEM  | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon).  The `iconValue` string from a `IconConfig` object  will be used to create an `UIImage` instance: `UIImage(systemName: iconValue)`. So the `iconValue` string must correspond to an SF Symbols icon. |
-| ASSET   | Specifies that we want to use an image in the Xcode project's asset catalog. The `iconValue` string from a `IconConfig` object object  will be used to create an `UIImage` instance: `UIImage(named: iconValue)`. So the `iconValue` string must correspond to an asset/item in the `xcasset` catalog. |
-| REQUIRE | Specifies that we want to use an icon via `require('directory/image.png')`. The `iconValue` property from a `IconConfig` object must be set with a value returned from `Image.resolveAssetSource(souce`. See [Example 18](#4118-contextmenuview-simple-example-18) section for more details. |
+| ------- | ------------------------------------------------------------ |
+| NONE    | The default value for the `iconType` property. Specifies to not use an icon.<br><br/>Since this is the default value, you don't have to explicitly specify: `iconType: 'NONE'` in the `IconConfig` object if you don't want to use an icon. |
+| SYSTEM  | Specifies that we want to a system image (i.e. like a  [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/) icon).<br/><br/>The `iconValue` string from the `IconConfig` object  will be used to create an `UIImage` instance: `UIImage(systemName: iconValue)`. So the `iconValue` string must correspond to an SF Symbols icon. |
+| ASSET   | Specifies that we want to use an image in the Xcode project's asset catalog.<br/><br/>The `iconValue` string from a `IconConfig` object object will be used to create an `UIImage` instance: `UIImage(named: iconValue)`. So the `iconValue` string must correspond to an asset/item in the `xcasset` catalog. |
+| REQUIRE | Specifies that we want to use an icon via `require('directory/image.png')`.<br/><br/>The `iconValue` property from a `IconConfig` object must be set with a value returned from `Image.resolveAssetSource(source)`. See [Example 18](#4118-contextmenuview-simple-example-18) section for more details. |
 <br>
 
 #### 3.2.2 `MenuOptions` Enum
-Enum string values you can use in a [￼￼`MenuConfig`￼￼](#332-menuconfig-object) object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the Swift/Objc-C  `UIMenu.Options` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
+Enum string values you can use in a [￼￼`MenuConfig`￼￼](#332-menuconfig-object) object (i.e. in the `MenuConfig.menuOptions` property). These string values corresponds to the Swift  `UIMenu.Options` struct, so please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenu/options) for more info. 
+
 * Import the enum like this: `import { MenuOptions } from "react-native-ios-context-menu";`
 * And use it  like this: `{ menuOptions: [MenuOptions.destructive] }`  
 * Or you can directly pass a string like this: `{ menuOptions: ['destructive'] }`
@@ -342,14 +345,15 @@ Enum string values you can use in a [￼￼`MenuConfig`￼￼](#332-menuconfig-o
 <br>
 
 | Value           | Description                                                  |
-|-----------------|--------------------------------------------------------------|
-| `destructive`   | An option indicating the menu's appearance represents a destructive action. Visually, this will tint the submenu title and it's icon to red (the submenu's elements will be unaffected). |
-| `displayInline` | An option indicating the menu displays inline with its parent menu instead of displaying as a submenu. Visually, if you set a submenu to `menuOptions: 'displayInline'`, it will create a "section" in the parent menu. |
+| --------------- | ------------------------------------------------------------ |
+| `destructive`   | An option indicating the menu's appearance represents a destructive action.<br/><br/>Visually, this will tint the submenu title and it's icon to red (the submenu's elements will be unaffected). |
+| `displayInline` | An option indicating the menu displays inline with its parent menu instead of displaying as a submenu.<br/><br/>Visually, if you set a submenu to `menuOptions: 'displayInline'`, it will create a "section" in the parent menu. |
 
 <br>
 
 #### 3.2.3 `MenuAtrributes` Enum
-Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object) object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the swift/obj-c `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
+Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object) object (i.e. in the `MenuAction.menuAttributes` property). These string values corresponds to the swift `UIMenuElement.Attributes` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more info.
+
 * Import the enum like this: `import { MenuAtrributes } from "react-native-ios-context-menu";`
 * And use it  like this: `menuAttributes: [MenuAtrributes.destructive]` 
 * Or you can directly pass a string like this: `menuAttributes: ['destructive']`
@@ -358,15 +362,16 @@ Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object)
 <br>
 
 | Value         | Description                                                  |
-|---------------|--------------------------------------------------------------|
-| `hidden`      | An attribute indicating the hidden style. This will hide the menu action i.e the menu action will no longer be visible in the menu. You can use this to temporarily hide a menu action (via state). |
-| `disabled`    | An attribute indicating the disabled style. This will tint the menu action's title and icon to grey, and will also prevent the user from selecting/pressing the menu action. |
-| `destructive` | An attribute indicating the destructive style. This will tint the menu action's title and icon to red. |
+| ------------- | ------------------------------------------------------------ |
+| `hidden`      | An attribute indicating the hidden style.<br/><br/>This will hide the menu action i.e the menu action will no longer be visible in the context menu. You can use this to temporarily hide a menu action (via state). |
+| `disabled`    | An attribute indicating the disabled style.<br/><br/>This will tint the menu action's title and icon to grey, and will also prevent the user from selecting/pressing the menu action. |
+| `destructive` | An attribute indicating the destructive style.<br/><br/>Visually, this will tint the menu action's title and icon to red. |
 
 <br>
 
 #### 3.2.4 `MenuState` Enum
-Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object) object (i.e. in the `MenuAction.menuState` property). These string values corresponds to the swift/obj-c  `UIMenuElementState ` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more info.
+Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object) object (i.e. in the `MenuAction.menuState` property). These string values corresponds to the swift  `UIMenuElementState ` struct, please check the [Apple Docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more info.
+
 * Import the enum like this: `import { MenuState } from "react-native-ios-context-menu";`
 * And use it  like this: `{ menuState: MenuState.on }` 
 * Or you can directly pass a string like this: `{ menuState: 'on' }`
@@ -375,14 +380,15 @@ Enum string values you can use in a [￼`MenuAction`￼](#331-menuaction-object)
 <br>
 
 | Value   | Description                                                  |
-|---------|--------------------------------------------------------------|
-| `on`    | Indicates that the menu element is in the “on” state. Visually, on iOS 13 it will replace the menu action's icon with a checkmark, meanwhile on iOS 14 it will show a checkmark on the left of the menu label. |
+| ------- | ------------------------------------------------------------ |
+| `on`    | Indicates that the menu element is in the “on” state.<br/><br/>Visually, on iOS 13 it will replace the menu action's icon with a checkmark, meanwhile on iOS 14 it will show a checkmark on the left of the menu label. |
 | `off`   | Indicates that the menu element is in the “off” state.       |
-| `mixed` | Indicates that the menu element is in the “mixed” state. Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark (same as the `on` state). |
+| `mixed` | Indicates that the menu element is in the “mixed” state.<br/><br/>Visually, (at least on iOS 13) it will replace the menu action's icon with a checkmark (same as the `on` state). |
 <br>
 
 #### 3.2.5 `PreviewType` Enum
 Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-object) object (i.e. in the `PreviewConfig.previewType` property).
+
 * Import the enum like this: `import { PreviewType } from "react-native-ios-context-menu";`
 * And use it  like this: `{ previewType: PreviewType.CUSTOM }` 
 * Or you can directly pass a string like this: `{ previewType: 'CUSTOM' }` 
@@ -391,13 +397,14 @@ Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-o
 <br>
 
 | Value     | Description                                                  |
-|-----------|--------------------------------------------------------------|
-| `DEFAULT` | The default value for the `previewSize` prop. Indicates that we don't want to use a custom context menu preview. |
+| --------- | ------------------------------------------------------------ |
+| `DEFAULT` | The default value for the `previewSize` prop.<br/>Indicates that we don't want to use a custom context menu preview. |
 | `CUSTOM`  | Indicates that we want to use a custom context menu preview. |
 <br>
 
 #### 3.2.6 `PreviewSize` Enum
-Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-object) object (i.e. in the `PreviewConfig.previewSize` property).
+Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-object) object (i.e. in the `PreviewConfig.previewSize` property). This enum is used to configure the size of the context menu preview.
+
 * Import the enum like this: `import { PreviewSize } from "react-native-ios-context-menu";`
 * And use it  like this: `{ previewSize: PreviewSize.STRETCH }` 
 * Or you can directly pass a string like this: `{ previewSize: 'STRETCH' }` 
@@ -406,15 +413,16 @@ Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-o
 <br>
 
 | Value     | Description                                                  |
-|-----------|--------------------------------------------------------------|
-| `INHERIT` | The default value. Specifies that the context menu preview's size should match the view you return from `ContextMenuView.renderPreview` prop. `UIContextMenu` will automatically resize/scale the preview to fit in the screen. |
+| --------- | ------------------------------------------------------------ |
+| `INHERIT` | The default value. Specifies that the context menu preview's size should match the view you return from `ContextMenuView.renderPreview` prop.<br/><br/> Note: `UIContextMenu` will automatically resize/scale the preview to fit in the screen. |
 | `STRETCH` | Specifies that we want the context menu preview to stretch and fill up the screen. |
 <br>
 
 #### 3.2.7 `CommitStyle` Enum
-Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-object) object (i.e. in the `PreviewConfig.preferredCommitStyle` property). This enum controls the type of animation that is shown when you tap the context menu preview.
-* This enum corresponds to the Swift/Obj-C `UIContextMenuInteractionCommitStyle` enum, check the [apple docs](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle) for more info. 
-* This enum is used to configure `animator.preferredCommitStyle` in this [function](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate/3375807-contextmenuinteraction) for the [`UIContextMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate).
+Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-object) object (i.e. in the `PreviewConfig.preferredCommitStyle` property). This enum controls the type of animation that is shown when you tap the context menu preview. 
+<br>
+This enum corresponds to the Swift `UIContextMenuInteractionCommitStyle` enum, please check the [apple docs](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle) for more info. This enum is used to configure `animator.preferredCommitStyle` in this [function](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate/3375807-contextmenuinteraction) for the [`UIContextMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate).
+
 * Import the enum like this: `import { CommitStyle } from "react-native-ios-context-menu";`
 * And use it  like this: `{ preferredCommitStyle: CommitStyle.pop }` 
 * Or you can directly pass a string like this: `{ preferredCommitStyle: 'pop' }` 
@@ -436,31 +444,31 @@ Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-o
   <summary>Show/Hide Section</summary>
 
 #### 3.3.1 `MenuAction` Object
-An object that is used to display/create a context menu action or a submenu action. This object represents a [￼￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) instance. This object is used inside a `MenuConfig` object's `menuItems` property.
+An object that is used to display/create a context menu action or a submenu action. This object is used to represent a [￼￼`UIAction`￼￼](https://developer.apple.com/documentation/uikit/uiaction) instance. This object is used in the `MenuConfig.menuItems` property.
 
 <br>
 
-| Key/Property           | Type                                                         | Description                                                  |
-|------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
-| `actionKey`            | **Required**: `String`                                       | A string that is used to identify a menu action. You will receive this value in the `onPressMenuItem({nativeEvent})` event. |
-| `actionTitle`          | **Required**: `String`                                       | The text to display in the menu action.                      |
-| `icon`                 | **Optional**: `Object` (`IconConfig`)                        | Configures the menu action's icon. Check out  the [￼￼`Icon￼Config`￼](#333-iconconfig-object) for more details. |
-| `menuState`            | **Optional**: `String` (`MenuState` value)                   | Check the [￼`MenuState`￼](#324-menustate-enum) section for the list of values to use. |
-| `menuAttributes`       | **Optional**: `[String]` (Array of `MenuAtrributes` values)  | Options to change the look/behaviour of the menu action. Check out  the ￼[￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
-| `discoverabilityTitle` | **Optional**: `String`                                       | A string that is used to set a `UIAction`'s [`discoverabilityTitle`](https://developer.apple.com/documentation/uikit/uiaction) property. Visually, this property shows a subtitle for the menu action. See [Example 13](#4113-contextmenuview-simple-example-13) for example usage. |
+| Key/Property                                                 | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `actionKey`<br/><br/>**Required**: `String`                  | A string that is used to identify a menu action.<br/>You will receive this value in the `onPressMenuItem({nativeEvent})` event. |
+| `actionTitle`<br/><br/>**Required**: `String`                | The text to display in the menu action.                      |
+| `icon`<br/><br/>**Optional**: `Object` (`IconConfig`)        | Configures the menu action's icon. <br/>Check out  the [￼￼`Icon￼Config`￼](#333-iconconfig-object) for more details. |
+| `menuState`<br/><br/>**Optional**: `String` (`MenuState` value) | Check the [￼`MenuState`￼](#324-menustate-enum) section for the list of values to use. |
+| `menuAttributes`<br/><br/>**Optional**: `[String]` (Array of `MenuAtrributes` values) | Options to change the look/behaviour of the menu action.<br/>Check out  the ￼[￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
+| `discoverabilityTitle`<br/><br/>**Optional**: `String`       | A string that is used to set a `UIAction`'s [`discoverabilityTitle`](https://developer.apple.com/documentation/uikit/uiaction) property. <br/>Visually, this property shows a subtitle for the menu action. See [Example 13](#4113-contextmenuview-simple-example-13) for example usage. |
 <br>
 
 #### 3.3.2 `MenuConfig` Object
-An object that is used to display/create a context menu or a submenu. This object represents  a [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) instance. This object is used in the `menuConfig` prop for  the `ContextMenuView` component.
+An object that is used to display/create a context menu or a submenu. This object  is used to represents  a [￼`UIMenu`￼](https://developer.apple.com/documentation/uikit/uimenu) instance. This object is used in the `menuConfig` prop for the `ContextMenuView` or `ContextMenuButton` component.
 
 <br>
 
-| Key/Property  | Type                                                         | Description                                                  |
-|---------------|--------------------------------------------------------------|--------------------------------------------------------------|
-| `menuTitle`   | **Required**: `String`                                       | The title of the menu.                                       |
-| `menuOptions` | **Optional**: `[String]` (Array of `MenuOptions` values)     | Options to change the look/behaviour of the menu. Check out  the [￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
-| `icon`        | **Optional**: `Object` (`IconConfig`)                        | Configures the menu action's icon. Check out  the [￼￼`Icon￼Config`￼￼](#333-iconconfig-object) for more details. |
-| `menuItems`   | **Optional**: `[Object]` (An array of either `MenuAction` object or `MenuConfig`) | The items to display in a menu. if you pass a `MenuAction` it will create a menu action element, and if you pass a `MenuConfig` object, it will create a submenu. |
+| Key/Property                                                 | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `menuTitle`<br/><br/>**Required**: `String`                  | The title of the context menu.                               |
+| `menuOptions`<br/><br/>**Optional**: `[String]` (Array of `MenuOptions` values) | Options to change the look/behaviour of the menu.<br/>Check out  the [￼`MenuOptions`￼](#322-menuoptions-enum) section for the list of values to use. |
+| `icon`<br/><br/>**Optional**: `Object` (`IconConfig`)        | Configures the context menu's icon.<br/>Check out  the [￼￼`Icon￼Config`￼￼](#333-iconconfig-object) for more details. |
+| `menuItems`<br/><br/>**Optional**: `[Object]` (An array of either `MenuAction` object or `MenuConfig`) | The items to display in the context menu.<br/>If you pass a `MenuAction` it will create a menu action element, and if you pass a `MenuConfig` object, it will create a submenu. |
 
 <br>
 
@@ -1634,5 +1642,5 @@ MIT
 
 ## Links
 * I'm [@DominicGo](https://twitter.com/GoDominic) on twitter if you have any questions ✨
-* Other libraries: [￼react-native-ios-modal￼](https://github.com/dominicstop/react-native-ios-modal)
+* Other libraries: [￼react-native-ios-modal￼](https://github.com/dominicstop/react-native-ios-modal), [￼react-native-ios-popover](https://github.com/dominicstop/react-native-ios-popover#415-popoverview-example-5)
 * This library was generated/made using [@react-native-community/bob](https://github.com/callstack/react-native-builder-bob)
