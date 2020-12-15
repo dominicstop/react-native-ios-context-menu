@@ -54,8 +54,6 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 `ContextMenuButton` **Left**: [Example 1](#421-contextmenubutton-simple-example-1), and **Right**: [Example 2](#422-contextmenubutton-simple-example-2)
 ![Simple Example 1 and 2 Gifs](./assets/context-menu-button-gifs/ContextMenuButton-SimpleExample-1-2.gif)
 
-
-
 </details>
 
 ---
@@ -223,7 +221,7 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 ## 3. Documentation
 ### 3.1 Modules/Components
 
-<details closed>
+<details open>
   <summary>Show/Hide Section</summary>
 
 #### 3.1.1 `ContextMenuView` Component
@@ -311,7 +309,7 @@ A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This mo
 
 ### 3.2 Enum Values
 
-<details closed>
+<details open>
   <summary>Show/Hide Section</summary>
 
 #### 3.2.1 `IconTypes` Enum
@@ -431,7 +429,7 @@ Enum string values you can use in a [￼`PreviewConfig`￼](#333-previewconfig-o
 
 ### 3.3 Object Types
 
-<details closed>
+<details open>
   <summary>Show/Hide Section</summary>
 
 #### 3.3.1 `MenuAction` Object
@@ -527,7 +525,7 @@ Check out the [examples](https://github.com/dominicstop/react-native-ios-context
 
 ### 4.1 `ContextMenuView` Examples
 
-<details closed>
+<details open>
   <summary>Show/Hide Section</summary>
 
 #### 4.1.1 `ContextMenuView` [Simple Example #1](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewSimpleExample01.js)
@@ -1532,8 +1530,6 @@ export function ContextMenuViewSimpleExample18(props) {
 
 ![Simple Example 18](./assets/example-screenshots/ContextMenuView-SimpleExample18.png)
 
-
-
 </details>
 
 <br><br>
@@ -1542,7 +1538,7 @@ export function ContextMenuViewSimpleExample18(props) {
 ### 4.2 `ContextMenuButton` Examples
 Most of the examples in the `ContextMenuView` section also applies here. The props in `ContextMenuView` (like the `menuConfig` and `useActionSheetFallback` props) as well as most of the events behave the same.
 
-<details closed>
+<details open>
   <summary>Show/Hide Section</summary>
 
 <br>
@@ -1618,8 +1614,6 @@ A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead
 ```
 
 ![Simple Example 2](./assets/example-screenshots/ContextMenuButton-SimpleExample02.png)
-
-
 
 </details>
 
