@@ -17,8 +17,11 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 
 <details open>
   <summary>Show/Hide Gifs</summary>
+
+
 `ContextMenuView` **Left**: [Example 1](#411-contextmenuview-simple-example-1), [Example 2](#412-contextmenuview-simple-example-2), and **Right**: [Example 3](#413-contextmenuview-simple-example-3), [Example 4](#414-contextmenuview-simple-example-4)
 ![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
+
 
 
 `ContextMenuView` **Left**: [Example 5](#415-contextmenuview-simple-example-5), [Example 6](#416-contextmenuview-simple-example-6), and **Right**: [Example 7](#417-contextmenuview-simple-example-7), [Example 8](#418-contextmenuview-simple-example-8)
@@ -466,10 +469,10 @@ An object that is used to configure the `icon` property in the `MenuConfig` and 
 
 <br>
 
-| Key/Property | Type                                       | Description                                                  |
-|--------------|--------------------------------------------|--------------------------------------------------------------|
-| `iconType`   | **Optional**: `String` (`IconTypes` value) | Configures the menu action's icon. Check out  the [￼￼￼`IconTypes`￼￼￼](#321-icontypes-enum) section. |
-| `iconValue`  | **Optional**: `String`                     | String value used to for the menu actions's icon.            |
+| Key/Property                                                 | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `iconType`<br/><br/>**Optional**: `String` (`IconTypes` value)<br/>**Default**: `NONE` | Configures the menu action's icon. Check out  the [￼￼￼`IconTypes`￼￼￼](#321-icontypes-enum) section. |
+| `iconValue`<br/><br/>**Optional**: `String`                  | String value used to for the menu actions's icon.            |
 
 <br>
 
@@ -499,15 +502,15 @@ The object  you pass in the `ContextMenuView` compoent's  `previewConfig` prop. 
 
 <br>
 
-| Key/Property           | Type                                                         | Description                                                  |
-|------------------------|--------------------------------------------------------------|--------------------------------------------------------------|
-| `previewType`          | **Optional**: `String` ([￼`PreviewType`￼](#325-previewtype-enum) value)<br> **Default**: `DEFAULT` | Contols the type of preview to show when the context menu is visible. |
-| `previewSize`          | **Optional**: `String` ([￼`PreviewSize`￼](#326-previewsize-enum) value)<br> **Default**: `INHERIT` | Controls the size of the context menu preview.               |
-| `isResizeAnimated`     | **Optional**: `Bool`<br> **Default**: `true`                 | Controls whether or not the context menu preview should animate the view's size changes. |
-| `borderRadius`         | **Optional**: `Number`                                       | The radius of the context menu preview. When no value is provided,  it will use the system default value. |
-| `backgroundColor`      | **Optional**: `String`<br> **Default**: `transparent`        | Sets the background color of the context menu preview.       |
-| `preferredCommitStyle` | **Optional**: `String` ([￼`CommitStyle`￼](#327-commitstyle-enum) value)<br> **Default**: `dismiss` | Controls the type of exit animation to use for the context menu preview when its tapped. See [Example 14](#4114-contextmenuview-simple-example-14) for more details. |
-| `targetViewNode`       | **Optional**: `Number` (`NodeHandle` value)                  | Specifies the view to use as  the "target view", i.e. the view to use for [`UITargetedPreview `](https://developer.apple.com/documentation/uikit/uitargetedpreview). Accepts a number returned from `findNodeHandle` function. See [Example 15](#4115-contextmenuview-simple-example-15) for more details. |
+| Key/Property                                                 | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `previewType`<br/><br/>**Optional**: `String` ([￼`PreviewType`￼](#325-previewtype-enum) value)<br/>**Default**: `DEFAULT` | Contols the type of preview to show when the context menu is visible. |
+| `previewSize`<br/><br/>**Optional**: `String` ([￼`PreviewSize`￼](#326-previewsize-enum) value)<br/>**Default**: `INHERIT` | Controls the size of the context menu preview.               |
+| `isResizeAnimated`<br/><br/>**Optional**: `Bool`<br/>**Default**: `true` | Controls whether or not the context menu preview should animate the view's size changes. |
+| `borderRadius`<br/><br/>**Optional**: `Number`               | The radius of the context menu preview. When no value is provided,  it will use the system default value. |
+| `backgroundColor`<br/><br/>**Optional**: `String`<br/>**Default**: `transparent` | Sets the background color of the context menu preview.       |
+| `preferredCommitStyle`<br/><br/>**Optional**: `String` ([￼`CommitStyle`￼](#327-commitstyle-enum) value)<br/>**Default**: `dismiss` | Controls the type of exit animation to use for the context menu preview when its tapped. See [Example 14](#4114-contextmenuview-simple-example-14) for more details. |
+| `targetViewNode`<br/><br/>**Optional**: `Number` (`NodeHandle` value) | Specifies the view to use as  the "target view", i.e. the view to use for [`UITargetedPreview `](https://developer.apple.com/documentation/uikit/uitargetedpreview). Accepts a number returned from `findNodeHandle` function. See [Example 15](#4115-contextmenuview-simple-example-15) for more details. |
 
 </details>
 
@@ -1530,9 +1533,11 @@ export function ContextMenuViewSimpleExample18(props) {
 
 ![Simple Example 18](./assets/example-screenshots/ContextMenuView-SimpleExample18.png)
 
+<br>
+
 </details>
 
-<br><br>
+<br>
 
 
 ### 4.2 `ContextMenuButton` Examples
@@ -1615,9 +1620,11 @@ A context menu button but we set the `isMenuPrimaryAction` prop to true. Instead
 
 ![Simple Example 2](./assets/example-screenshots/ContextMenuButton-SimpleExample02.png)
 
+<br>
+
 </details>
 
-<br><br>
+<br>
 
 ## License
 
