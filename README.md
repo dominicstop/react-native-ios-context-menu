@@ -63,6 +63,9 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 <br>
 
 ## 1. Installation
+<details open>
+  <summary>Show/Hide Section</summary>
+
 
 ```sh
 # install via NPM
@@ -139,9 +142,14 @@ Then try following these steps:
 3. It should now look something similar to this: `pod 'React-Core', :path => '../node_modules/react-native/', :modular_headers => true`
 4. Try running `pod install` again.
 
+</details>
+
 <br>
 
 ## 2. Usage
+<details open>
+  <summary>Show/Hide Section</summary>
+
 ### 2.1 `ContextMenuView` Usage
 Please check out the [examples section](#41-contextmenuview-examples) or the [examples directory](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example/src/components/ContextMenuView) for more on how to use it.
 * See  [Example 1](#411-contextmenuview-simple-example-1) section for the basic `menuConfig` configuration.
@@ -219,6 +227,8 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
   <Text> Hello World </Text>
 </ContextMenuButton>
 ```
+
+</details>
 
 <br>
 
