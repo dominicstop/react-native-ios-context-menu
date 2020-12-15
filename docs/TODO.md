@@ -1,7 +1,16 @@
 # TODO
 
-## General
+## General/Unsorted
 - [x] Implement targeted previews
+- [ ] Submit a PR to the RN repo — Update RN template to fix `Undefined Symbol`
+- [ ] Update `PreviewConfig.previewSize` to support passing in a size object, e.g. `{width: 100, height: 100}`
+- [ ] Docs: Add images to steps
+- [ ] Docs: Make sections collapsabe
+- [ ] Docs: Fix grammar/spelling errors
+- [ ] Docs: Fix table layout
+- [ ] Docs: Test/Fix jump links
+- [ ] Attach RN touch handler to context menu
+
 
 <br>
 
