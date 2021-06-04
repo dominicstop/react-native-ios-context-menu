@@ -246,6 +246,7 @@ import { ContextMenuButton } from "react-native-ios-context-menu";
 |--------------------------------------------------------------|--------------------------------------------------------------|
 | `menuConfig`<br><br>**Required**: [￼`MenuConfig`￼](#332-menuconfig-object) Object | An object that represents the menu to display. <br/><br/>You can put `menuConfig` in  state if you want to dynamically change the menu configuration: See `ContextMenuView` [Test 3](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest03.js), [Test 4](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest04.js) and [Test 6](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/example/src/components/ContextMenuView/ContextMenuViewTest06.js) for examples.<br/><br/> On iOS 14+ the menu config can be updated while it's visible. |
 | `useActionSheetFallback`<br/><br/>**Optional**: `Bool`       | If set to `true`, a long press will show a [￼`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the `menuConfig` prop.<br/><br/>Note: Default value is `false` on iOS 13+, or `true` on android and on iOS 12 and below. |
+| `actionSheetFallbackConfig`<br/><br/>**Optional**: [￼`ActionSheetFallbackConfig`￼](#335-actionsheetfallbackconfig-object) Object       | A prop to configure the `ActionSheetIOS` menu. |
 | `previewConfig`<br/><br/>**Optional**: [￼`PreviewConfig`￼](#332-previewconfig-object) Object | A prop to configure the context menu preview.<br/>See [Example 11](#4111-contextmenuview-simple-example-11), [Example 12](#4112-contextmenuview-simple-example-12), and [Example 14](#4114-contextmenuview-simple-example-14) section for example usage. |
 | `lazyPreview`<br/>**Optional**: `Bool`<br/>**Default**: `true`<br/> | By default, the context menu preview contents is only mounted/rendered when the context menu is visible.<br/><br/>Set this to `false` if you want the preview content to be always mounted. |
 | `renderPreview`<br/><br/>**Optional**: `Function`            | Accepts a function that returns a react component. The returned component will displayed in the context menu preview. See  section [Example #11](#4111-contextmenuview-simple-example-11) and [Example #12](#4112-contextmenuview-simple-example-12) for more details. |
@@ -315,7 +316,7 @@ A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This mo
 
 | Function                                    | Returns                       | Description                                                  |
 |---------------------------------------------|-------------------------------|--------------------------------------------------------------|
-| `async show(menuConfig: MenuConfig Object)` | `MenuAction Object` or `null` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
+| `async show(menuConfig: MenuConfig Object, actionSheetFallbackConfig?: ActionSheetFallbackConfig Object)` | `MenuAction Object` or `null` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
 
 </details>
 
@@ -533,6 +534,17 @@ The object  you pass in the `ContextMenuView` compoent's  `previewConfig` prop. 
 </details>
 
 <br>
+
+#### 3.3.5 `ActionSheetFallbackConfig` Object
+
+This object is used to configure the `ActionSheetIOS` menu used as a fallback on devices running iOS 12 and below. Some properties are passed directly to the [`showActionSheetWithOptions`](https://reactnative.dev/docs/actionsheetios#showactionsheetwithoptions) call.
+
+| Key/Property                                                 | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `cancelButtonText`<br/><br/>**Optional**: `String`<br/>**Default**: `Cancel` | Sets the text of the Cancel button. |
+| `anchor`<br/><br/>**Optional**: `Number` | See [`ActionSheetIOS` docs](https://reactnative.dev/docs/actionsheetios#showactionsheetwithoptions). |
+| `tintColor`<br/><br/>**Optional**: `String` | See [`ActionSheetIOS` docs](https://reactnative.dev/docs/actionsheetios#showactionsheetwithoptions). |
+| `userInterfaceStyle`<br/><br/>**Optional**: `String` | See [`ActionSheetIOS` docs](https://reactnative.dev/docs/actionsheetios#showactionsheetwithoptions). |
 
 ## 4 Examples
 Check out the [examples](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/example) directory. The example app contains a bunch of demos that showcases the different `ContextMenuView` configurations, props and events you can use. The [assets](https://github.com/dominicstop/react-native-ios-context-menu/tree/master/assets) directory contains gifs and screenshots for every example/test shown in the example app. 
