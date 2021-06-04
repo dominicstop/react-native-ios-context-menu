@@ -172,7 +172,7 @@ class ActionSheetFallbackHelpers {
 
 export class ActionSheetFallback {
   /** based on a `MenuConfig` object, show an `ActionSheetIOS` menu  */
-  static async show(menuConfig = {}){
+  static async show(menuConfig = {}, actionSheetFallbackConfig = {}){
     let indexPath = [];
 
     let actionSheetOptions     = [];
@@ -182,6 +182,9 @@ export class ActionSheetFallback {
     const menuConfigCopy = JSON.parse(
       JSON.stringify(menuConfig)
     );
+
+    const { anchor, tintColor, userInterfaceStyle, cancelButtonText } = actionSheetFallbackConfig;
+    const nativeActionSheetConfig = {anchor, tintColor, userInterfaceStyle};
 
     // handle 'inlineMenu' submenu's
     ActionSheetFallbackHelpers.flattenMenuConfig(menuConfigCopy);
@@ -212,7 +215,8 @@ export class ActionSheetFallback {
         // action sheet config
         ...((cancelButtonIndex      != null) && {cancelButtonIndex     }),
         ...((destructiveButtonIndex != null) && {destructiveButtonIndex}),
-        options: ['cancel', ...actionSheetOptions],
+        options: [cancelButtonText ?? 'Cancel', ...actionSheetOptions],
+        ...nativeActionSheetConfig
       });
 
       // guard: cancel button pressed, exit...

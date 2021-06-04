@@ -43,6 +43,7 @@ export class ContextMenuView extends React.PureComponent {
   static proptypes = {
     menuConfig   : Proptypes.object,
     previewConfig: Proptypes.object,
+    actionSheetFallbackConfig: Proptypes.object,
     renderPreview: Proptypes.func,
     // flags -----------------------
     lazyPreview           : Proptypes.bool,
@@ -99,9 +100,9 @@ export class ContextMenuView extends React.PureComponent {
 
   //#region - Event Handlers
   _handleOnLongPress = async () => {
-    const { menuConfig, ...props } = this.props;
-    const item = await ActionSheetFallback.show(menuConfig);
-  
+    const { menuConfig, actionSheetFallbackConfig, ...props } = this.props;
+    const item = await ActionSheetFallback.show(menuConfig, actionSheetFallbackConfig);
+
     if(item == null){
       // cancelled pressed
       props.onMenuDidCancel?.();
