@@ -129,8 +129,8 @@ extension RCTMenuIcon {
     };
   };
   
-  var dictionary: [AnyHashable: Any] {
-    var dictionary: [AnyHashable: Any] = [
+  var dictionary: [String: Any] {
+    var dictionary: [String: Any] = [
       "iconType": self.iconType,
     ];
     

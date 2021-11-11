@@ -25,12 +25,12 @@ class RCTMenuActionItem: RCTMenuElement {
 // ------------
 
   init?(dictionary: NSDictionary){
-    guard let actionKey   = dictionary["actionKey"  ] as? NSString,
-          let actionTitle = dictionary["actionTitle"] as? NSString
+    guard let actionKey   = dictionary["actionKey"  ] as? String,
+          let actionTitle = dictionary["actionTitle"] as? String
     else { return nil };
     
-    self.actionKey   = actionKey   as String;
-    self.actionTitle = actionTitle as String;
+    self.actionKey   = actionKey;
+    self.actionTitle = actionTitle;
     
     if let dict = dictionary["icon"] as? NSDictionary {
       self.icon = RCTMenuIcon(dictionary: dict);
@@ -93,8 +93,8 @@ extension RCTMenuActionItem {
     UIAction.Identifier(self.actionKey);
   };
   
-  var dictionary: [AnyHashable: Any] {
-    var dictionary: [AnyHashable: Any] = [
+  var dictionary: [String: Any] {
+    var dictionary: [String: Any] = [
       "actionKey"  : self.actionKey  ,
       "actionTitle": self.actionTitle,
       "icon"       : self.icon       ,
@@ -118,7 +118,7 @@ extension RCTMenuActionItem {
 @available(iOS 13, *)
 extension RCTMenuActionItem {
   
-  typealias UIActionHandlerWithDict = ([AnyHashable: Any], UIAction) -> Void;
+  typealias UIActionHandlerWithDict = ([String: Any], UIAction) -> Void;
   
   func makeUIAction(_ handler: @escaping UIActionHandlerWithDict) -> UIAction {
     #if DEBUG

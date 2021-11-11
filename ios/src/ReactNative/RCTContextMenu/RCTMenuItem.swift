@@ -25,10 +25,10 @@ class RCTMenuItem: RCTMenuElement {
   // ------------
 
   init?(dictionary: NSDictionary){
-    guard let menuTitle = dictionary["menuTitle"] as? NSString
+    guard let menuTitle = dictionary["menuTitle"] as? String
     else { return nil };
     
-    self.menuTitle   = menuTitle as String;
+    self.menuTitle   = menuTitle;
     self.menuOptions = dictionary["menuOptions"] as? [String];
     
     if let dict = dictionary["icon"] as? NSDictionary {
