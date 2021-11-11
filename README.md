@@ -4,6 +4,16 @@
   <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
 </p>
 
+## 🚧⚠️ Re-Write WIP ⚠️🚧
+* ❤️ Support the new API's introduced in iOS 15.
+* 🧡 New `SFSymbols` + Icon API
+* 💛 Support for use with [Mac Catalyst](https://developer.apple.com/documentation/uikit/uicommand/adding_menus_and_shortcuts_to_the_menu_bar_and_user_interface) (e.g. configuring the mac's menu bar + the iPad's [shortcuts/menu bar](https://twitter.com/stroughtonsmith/status/1440344820577226752?s=20)). 
+* 💚 Typescript rewrite.
+* 💜 ...and fixing all the bugs + issues so far 😅
+
+---
+
+<br>
 
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
 * Support for creating menu actions and submenus (i.e. nested and in-line menus)
