@@ -76,7 +76,7 @@ extension PreviewConfig {
     };
     
     if let string = dictionary["preferredCommitStyle"] as? String,
-       let preferredCommitStyle = UIContextMenuInteractionCommitStyle.fromString(string) {
+       let preferredCommitStyle = UIContextMenuInteractionCommitStyle(string: string) {
       
       self.preferredCommitStyle = preferredCommitStyle;
     };

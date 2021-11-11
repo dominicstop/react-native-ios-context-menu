@@ -74,9 +74,9 @@ class RCTMenuActionItem: RCTMenuElement {
 extension RCTMenuActionItem {
   
   var UIMenuElementAttributes: UIMenuElement.Attributes {
-    UIMenuElement.Attributes.init(
+    UIMenuElement.Attributes(
       self.menuAttributes?.compactMap {
-        UIMenuElement.Attributes.fromString($0);
+        UIMenuElement.Attributes(string: $0);
       } ?? []
     );
   };
@@ -84,7 +84,7 @@ extension RCTMenuActionItem {
   var UIMenuElementState: UIMenuElement.State {
     guard
       let menuState        = self.menuState,
-      let menuElementState = UIMenuElement.State.fromString(menuState)
+      let menuElementState = UIMenuElement.State(string: menuState)
     else { return .off };
     
     return menuElementState;

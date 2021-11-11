@@ -88,9 +88,9 @@ class RCTMenuItem: RCTMenuElement {
 extension RCTMenuItem {
   /// get `UIMenu.Options` from `menuOptions` strings
   var UIMenuOptions: UIMenu.Options {
-    UIMenu.Options.init(
+    UIMenu.Options(
       self.menuOptions?.compactMap {
-        UIMenu.Options.fromString($0);
+        UIMenu.Options(string: $0);
       } ?? []
     );
   };
