@@ -4,24 +4,25 @@
     "paths": {
       "react-native-ios-context-menu": ["./src/index"]
     },
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
-    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext"],
     "module": "esnext",
+    "target": "esnext",
     "moduleResolution": "node",
+
+    "strict": true,
+    "skipLibCheck": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
+    "noStrictGenericChecks": false,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext"
+    "forceConsistentCasingInFileNames": true,
   }
 }
