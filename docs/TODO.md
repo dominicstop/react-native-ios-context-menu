@@ -8,8 +8,12 @@
 - [ ] **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between the older version.
 - [ ] **Cleanup**: Remove `RCTSwiftLog` Usage.
 - [ ] **Cleanup**: Remove print logs.
-- [ ] **Cleanup**: Cleanup native-related code.
-	* Remove usage of objective-c types in swift code (except for `NSDictionary`).
+
+<br>
+
+- [ ] **Refactor**: Update logic for handling `URI` images. 
+- [ ] **Refactor**: Refactor to use typescript + add type annotations.
+- [ ] **Refactor**: Refactor example to use typescript.
 
 <br>
 
@@ -18,6 +22,9 @@
 	* Remove numbered subsections.
 
 	* Move links to files out of the section title.
+	* Temporarily strip out links to section (i.e. replace with `PLACEHOLDER_LINK`).
+	* Add versions table.
+	* Remove collapsable sections.
 
 <br>
 
@@ -42,6 +49,7 @@
 - [x] (Commit: `d1c8277`) **Sync**: Update `UIColor+Helpers.swift`  to use the newer code in `react-native-ios-context-menu`.
 - [x] (Commit: `59d4faf`) **Refactor**: Migrate `Extension+Init`-related types to use failable initializers instead of static functions.
 - [x] (Commit: `7bb8148`) **Cleanup**: Update `MARK` comments in native code.
+- [x] (Commit: `873b61a`) **Cleanup**: Cleanup swift types (e.g. `NSString` -> `String`).
 
 ---
 
