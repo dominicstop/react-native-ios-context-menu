@@ -11,9 +11,8 @@ import UIKit;
 @available(iOS 13, *)
 class RCTContextMenuView: UIView {
   
-  // -------------------------------------
-  // MARK: RCTContextMenuView - Properties
-  // -------------------------------------
+  // MARK: - Properties
+  // ------------------
   
   weak var bridge: RCTBridge!;
   
@@ -25,9 +24,8 @@ class RCTContextMenuView: UIView {
   weak var reactPreviewView : UIView?;
   weak var previewController: RCTContextMenuPreviewController?;
   
-  // ---------------------------------------------
-  // MARK: RCTContextMenuView - RN Event Callbacks
-  // ---------------------------------------------
+  // MARK: - RN Exported Event Props
+  // -------------------------------
   
   @objc var onMenuWillShow  : RCTBubblingEventBlock?;
   @objc var onMenuWillHide  : RCTBubblingEventBlock?;
@@ -42,9 +40,8 @@ class RCTContextMenuView: UIView {
   
   @objc var onMenuWillCreate: RCTBubblingEventBlock?;
   
-  // -----------------------------------
-  // MARK: RCTContextMenuView - RN Props
-  // -----------------------------------
+  // MARK: - RN Exported Props
+  // -------------------------
     
   private var _menuConfig: RCTMenuItem?;
   @objc var menuConfig: NSDictionary? {
@@ -101,9 +98,8 @@ class RCTContextMenuView: UIView {
     }
   };
   
-  // -------------------------------
-  // MARK: RCTContextMenuView - Init
-  // -------------------------------
+  // MARK: - Init
+  // ------------
   
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
@@ -129,9 +125,8 @@ class RCTContextMenuView: UIView {
     fatalError("init(coder:) has not been implemented");
   };
   
-  // -----------------------------------------
-  // MARK: RCTContextMenuButton - RN Lifecycle
-  // -----------------------------------------
+  // MARK: - RN Lifecycle
+  // --------------------
 
   override func reactSetFrame(_ frame: CGRect) {
     super.reactSetFrame(frame);
@@ -147,9 +142,8 @@ class RCTContextMenuView: UIView {
   };
 };
 
-// ------------------------------------------------
-// MARK: RCTContextMenuView - ViewManager Functions
-// ------------------------------------------------
+// MARK: - ViewManager Functions
+// -----------------------------
 
 @available(iOS 13, *)
 extension RCTContextMenuView {
@@ -158,9 +152,8 @@ extension RCTContextMenuView {
   };
 };
 
-// --------------------------------------------
-// MARK: RCTContextMenuView - Private Functions
-// --------------------------------------------
+// MARK: - Private Functions
+// -------------------------
 
 @available(iOS 13, *)
 fileprivate extension RCTContextMenuView {
@@ -264,9 +257,8 @@ fileprivate extension RCTContextMenuView {
   };
 };
 
-// -----------------------------------------------------------
-// MARK: RCTContextMenuView - UIContextMenuInteractionDelegate
-// -----------------------------------------------------------
+// MARK: - UIContextMenuInteractionDelegate
+// ----------------------------------------
 
 @available(iOS 13, *)
 extension RCTContextMenuView: UIContextMenuInteractionDelegate {

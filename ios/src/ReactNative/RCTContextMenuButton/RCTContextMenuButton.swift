@@ -12,12 +12,14 @@ import UIKit;
 @available(iOS 14, *)
 class RCTContextMenuButton: UIButton {
   
+  // MARK: - Properties
+  // ------------------
+  
   var isContextMenuVisible = false;
   var didPressMenuItem     = false;
   
-  // ---------------------------------------------
-  // MARK: RCTContextMenuButton - RN Event Callbacks
-  // ---------------------------------------------
+  // MARK: - RN Exported Event Props
+  // -------------------------------
   
   @objc var onMenuWillShow  : RCTBubblingEventBlock?;
   @objc var onMenuWillHide  : RCTBubblingEventBlock?;
@@ -29,10 +31,8 @@ class RCTContextMenuButton: UIButton {
   
   @objc var onPressMenuItem: RCTBubblingEventBlock?;
 
-  
-  // -------------------------------------
-  // MARK: RCTContextMenuButton - RN Props
-  // -------------------------------------
+  // MARK: - RN Exported Props
+  // -------------------------
     
   @objc var menuConfig: NSDictionary? {
     didSet {
@@ -82,9 +82,8 @@ class RCTContextMenuButton: UIButton {
     }
   };
   
-  // ---------------------------------
-  // MARK: RCTContextMenuButton - Init
-  // ---------------------------------
+  // MARK: - Init
+  // ------------
   
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
@@ -119,9 +118,8 @@ class RCTContextMenuButton: UIButton {
   };
 };
   
-// ---------------------------------------------------------
-// MARK: RCTContextMenuButton - Public Functions for Manager
-// ---------------------------------------------------------
+// MARK: - Functions For Manager
+// -----------------------------
 
 @available(iOS 14, *)
 extension RCTContextMenuButton {
@@ -130,9 +128,8 @@ extension RCTContextMenuButton {
   };
 };
 
-// -------------------------------------------------------------
-// MARK: RCTContextMenuButton - UIContextMenuInteractionDelegate
-// -------------------------------------------------------------
+// MARK: - UIContextMenuInteractionDelegate
+// ----------------------------------------
 
 @available(iOS 14, *)
 extension RCTContextMenuButton {

@@ -21,9 +21,8 @@ class RCTMenuActionItem: RCTMenuElement {
   var menuState     : String?;
   var menuAttributes: [String]?;
   
-// ------------------------------
-// MARK: RCTMenuActionItem - Init
-// ------------------------------
+// MARK: - Init
+// ------------
 
   init?(dictionary: NSDictionary){
     guard let actionKey   = dictionary["actionKey"  ] as? NSString,
@@ -66,9 +65,9 @@ class RCTMenuActionItem: RCTMenuElement {
   };
 };
 
-// ---------------------------------------------
-// MARK: RCTMenuActionItem - Computed Properties
-// ---------------------------------------------
+
+// MARK: - Computed Properties
+// ---------------------------
 
 @available(iOS 13, *)
 extension RCTMenuActionItem {
@@ -113,9 +112,8 @@ extension RCTMenuActionItem {
   };
 };
 
-// -----------------------------------
-// MARK: RCTMenuActionItem - Functions
-// -----------------------------------
+// MARK: - Functions
+// -----------------
 
 @available(iOS 13, *)
 extension RCTMenuActionItem {

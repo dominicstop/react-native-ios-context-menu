@@ -12,15 +12,17 @@ import UIKit;
 @available(iOS 13.0, *)
 class RCTMenuItem: RCTMenuElement {
   
+  // MARK: - Properties
+  // ------------------
+  
   var menuTitle: String;
   var icon     : RCTMenuIcon;
   
   var menuOptions: [String]?;
   var menuItems  : [RCTMenuElement]?;
   
-// ------------------------
-// MARK: RCTMenuItem - Init
-// ------------------------
+  // MARK: - Init
+  // ------------
 
   init?(dictionary: NSDictionary){
     guard let menuTitle = dictionary["menuTitle"] as? NSString
@@ -80,9 +82,8 @@ class RCTMenuItem: RCTMenuElement {
   };
 };
 
-// ---------------------------------------
-// MARK: RCTMenuItem - Computed Properties
-// ---------------------------------------
+// MARK: - Computed Properties
+// ---------------------------
 
 @available(iOS 13.0, *)
 extension RCTMenuItem {
@@ -96,9 +97,8 @@ extension RCTMenuItem {
   };
 };
 
-// -----------------------------
-// MARK: RCTMenuItem - Functions
-// -----------------------------
+// MARK: - Functions
+// -----------------
 
 @available(iOS 13.0, *)
 extension RCTMenuItem {

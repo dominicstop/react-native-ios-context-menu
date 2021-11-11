@@ -11,9 +11,9 @@ import Foundation
 
 @available(iOS 13.0, *)
 class RCTMenuIcon {
-  // -------------------------
-  // MARK: RCTMenuIcon - Types
-  // -------------------------
+  
+  // MARK: - Nested Types
+  // --------------------
   
   struct ImageLoader {
     static var sharedInstance: RCTImageLoader?;
@@ -27,9 +27,8 @@ class RCTMenuIcon {
     case REQUIRE;
   };
   
-  // ------------------------------
-  // MARK: RCTMenuIcon - Properties
-  // ------------------------------
+  // MARK: - Properties
+  // ------------------
   
   var iconType: IconType;
   
@@ -42,9 +41,8 @@ class RCTMenuIcon {
   
   private var loadedImage: UIImage?;
   
-  // ------------------------
-  // MARK: RCTMenuIcon - Init
-  // ------------------------
+  // MARK: - Init
+  // ------------
   
   init() {
     self.iconType = .NONE;
@@ -96,9 +94,8 @@ class RCTMenuIcon {
   };
 };
 
-// ---------------------------------------
-// MARK: RCTMenuIcon - Computed Properties
-// ---------------------------------------
+// MARK: - Computed Properties
+// ---------------------------
 
 @available(iOS 13.0, *)
 extension RCTMenuIcon {

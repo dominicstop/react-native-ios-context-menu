@@ -11,9 +11,8 @@
 
 @interface RCT_EXTERN_MODULE(RCTContextMenuButtonManager, RCTViewManager)
 
-// -----------------------------------
-// MARK: Props - RN Comp Props: Events
-// -----------------------------------
+// MARK: - Export Props - Events
+// -----------------------------
 
 // TODO: WIP
 
@@ -27,18 +26,17 @@ RCT_EXPORT_VIEW_PROPERTY(onMenuDidCancel, RCTBubblingEventBlock);
 
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem   , RCTBubblingEventBlock);
 
-// -----------------------------------
-// MARK: Props - RN Comp Props: Values
-// -----------------------------------
+// MARK: - Export Props - Values
+// ----------------------------
 
 RCT_EXPORT_VIEW_PROPERTY(menuConfig, NSDictionary);
 
 RCT_EXPORT_VIEW_PROPERTY(enableContextMenu  , BOOL);
 RCT_EXPORT_VIEW_PROPERTY(isMenuPrimaryAction, BOOL);
 
-// ---------------------------
-// MARK: View Manager Commands
-// ---------------------------
+
+// MARK: -  View Manager Commands
+// ------------------------------
 
 RCT_EXTERN_METHOD(dismissMenu:(nonnull NSNumber *)node);
 

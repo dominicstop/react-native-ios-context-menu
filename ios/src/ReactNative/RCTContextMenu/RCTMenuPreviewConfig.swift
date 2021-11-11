@@ -12,9 +12,8 @@ import Foundation
 @available(iOS 13.0, *)
 struct PreviewConfig {
   
-  // -----------------------
-  // MARK: Type Declarations
-  // -----------------------
+  // MARK: - Nested Types
+  // --------------------
   
   enum PreviewType: String {
     case DEFAULT;
@@ -26,9 +25,8 @@ struct PreviewConfig {
     case STRETCH;
   };
   
-  // ----------------
-  // MARK: Properties
-  // ----------------
+  // MARK: - Properties
+  // ------------------
   
   var previewType: PreviewType = .DEFAULT;
   var previewSize: PreviewSize = .INHERIT;
@@ -42,9 +40,8 @@ struct PreviewConfig {
   var preferredCommitStyle: UIContextMenuInteractionCommitStyle = .dismiss;
 };
 
-// --------------------------
-// MARK: PreviewConfig - Init
-// --------------------------
+// MARK: - Init
+// ------------
 
 @available(iOS 13.0, *)
 extension PreviewConfig {
