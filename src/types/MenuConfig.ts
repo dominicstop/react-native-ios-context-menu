@@ -2,24 +2,21 @@
 export type MenuOptions = 'destructive' | 'displayInline';
 
 /** Maps to `UIMenuElement.State` */
-// TODO: Rename to `UIMenuElementState`
-export type MenuState = 'on' | 'off' | 'mixed';
+export type MenuElementState = 'on' | 'off' | 'mixed';
 
 /** Maps to `MenuElement.Attributes` */
-// TODO: Rename to `MenuElementAttributes`
-export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
+export type MenuElementAttributes = 'hidden' | 'disabled' | 'destructive';
 
 export type MenuActionConfig = {
   actionKey: string;
   actionTitle: string;
-  
-  menuState: MenuState;
-  menuAttributes: MenuAttributes;
-
   discoverabilityTitle: string;
+
+  menuState: MenuElementState;
+  menuAttributes: MenuElementAttributes;
+
   icon: any; // TODO
-  
-  // subtitle - TODO: TBA
+  // actionSubtitle - TODO: TBA
 };
 
 export type MenuConfig = {
