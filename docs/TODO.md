@@ -60,6 +60,7 @@
 - [x] (Commit: `3041c9c`) **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
 - [x] (Commit: `3702dfc`) **Refactor**: Replace `RCT` prefix with `RNI`.
 - [x] (Commit: `2102840`) **Refactor**: Extract `RNIContextMenuView` native component to its own separate file.
+- [x] (Commit: `3fb4faa`) **Refactor**: Extract `RNIContextMenuButton` native component to its own separate file.
 
 ---
 
