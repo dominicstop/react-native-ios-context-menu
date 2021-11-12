@@ -93,6 +93,9 @@ extension RNIMenuActionItem {
     UIAction.Identifier(self.actionKey);
   };
   
+  /// Creates a dictionary containing all the raw values that was used to create this `RNIMenuActionItem`
+  /// instance. The dictionary created will be suitable for sending it back to js/react (e.g. usually through an
+  /// event or promise callback).
   var dictionaryFromRawValues: [String: Any] {
     var dictionary: [String: Any] = [
       "actionKey"  : self.actionKey  ,

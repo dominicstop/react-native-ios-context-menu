@@ -16,8 +16,12 @@ class RNIContextMenuView: UIView {
   
   weak var bridge: RCTBridge!;
   
+  /// Keep track on whether or not the context menu is currently visible.
   var isContextMenuVisible = false;
-  var didPressMenuItem     = false;
+  
+  /// Is set to `true` when the menu is open and an item is pressed and is immediately set back
+  /// to `false` once the menu close animation finishes.
+  var didPressMenuItem = false;
   
   var contextMenuInteraction: UIContextMenuInteraction?;
   
@@ -74,6 +78,7 @@ class RNIContextMenuView: UIView {
         // context menu is open, update the menu items
         interaction.updateVisibleMenu {(menu: UIMenu) in
           return rootMenuConfig.createMenu {(dict, action) in
+            // menu item has been pressed...
             self.didPressMenuItem = true;
             self.onPressMenuItem?(dict);
           };
@@ -105,6 +110,8 @@ class RNIContextMenuView: UIView {
     super.init(frame: CGRect());
     
     self.bridge = bridge;
+    
+    // Add context menu interaction...
     self.contextMenuInteraction = {
       let interaction = UIContextMenuInteraction(delegate: self);
       self.addInteraction(interaction);
@@ -112,6 +119,7 @@ class RNIContextMenuView: UIView {
       return interaction;
     }();
     
+    // TODO: Refactor
     /// init shared `RCTImageLoader` instance if nil
     if RCTMenuIcon.ImageLoader.sharedInstance == nil,
        let module      = bridge.module(for: RCTImageLoader.self),
@@ -179,6 +187,7 @@ fileprivate extension RNIContextMenuView {
     };
     
     return menuConfig.createMenu { (dict, action) in
+      // menu item has been pressed...
       self.didPressMenuItem = true;
       self.onPressMenuItem?(dict);
     };
@@ -189,7 +198,7 @@ fileprivate extension RNIContextMenuView {
     // alias to variable
     let previewConfig = self._previewConfig;
     
-    /// dont make preview if `previewType` is default.
+    /// don't make preview if `previewType` is set to default.
     guard previewConfig.previewType != .DEFAULT
     else { return nil };
     
@@ -197,6 +206,7 @@ fileprivate extension RNIContextMenuView {
     vc.reactView = self.reactPreviewView;
     vc.previewConfig = previewConfig;
     
+    // TODO: Refactor - Move to `RNIContextMenuPreviewController`
     vc.boundsDidChangeBlock = { [weak self] (newBounds: CGRect) in
       self?.notifyForBoundsChange(newBounds);
     };
@@ -231,6 +241,7 @@ fileprivate extension RNIContextMenuView {
         
         // set preview border shape
         param.visiblePath = previewShape;
+        
         // set preview border shadow
         if #available(iOS 14, *){
           param.shadowPath = previewShape;
@@ -241,14 +252,16 @@ fileprivate extension RNIContextMenuView {
     }();
     
     if let targetNode = previewConfig.targetViewNode,
-       let targetView = self.bridge.uiManager.view(forReactTag: targetNode){
+       let targetView = self.bridge.uiManager.view(forReactTag: targetNode) {
       
+      // A - Targeted preview provided....
       return UITargetedPreview(
         view: targetView,
         parameters: parameters
       );
       
     } else {
+      // B - No targeted preview provided....
       return UITargetedPreview(
         view: self,
         parameters: parameters
@@ -264,7 +277,11 @@ fileprivate extension RNIContextMenuView {
 extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   
   // create context menu
-  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+  func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    configurationForMenuAtLocation location: CGPoint
+  ) -> UIContextMenuConfiguration? {
+    
     self.onMenuWillCreate?([:]);
     
     return UIContextMenuConfiguration(
@@ -275,7 +292,12 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   };
   
   // context menu display begins
-  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+  func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    willDisplayMenuFor configuration: UIContextMenuConfiguration,
+    animator: UIContextMenuInteractionAnimating?
+  ) {
+      
     #if DEBUG
     print("RNIContextMenuView, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: will show"
@@ -291,7 +313,12 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   };
   
   // context menu display ends
-  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+  func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    willEndFor configuration: UIContextMenuConfiguration,
+    animator: UIContextMenuInteractionAnimating?
+  ) {
+      
     #if DEBUG
     print("RNIContextMenuView, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: will hide"
@@ -301,6 +328,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     guard self.isContextMenuVisible else { return };
     
     self.onMenuWillHide?([:]);
+    
     if !self.didPressMenuItem {
       self.onMenuWillCancel?([:]);
     };
@@ -318,7 +346,12 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   };
   
   // context menu preview tapped
-  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+  func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+    animator: UIContextMenuInteractionCommitAnimating
+  ) {
+      
     #if DEBUG
     print("RNIContextMenuView, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: preview tapped"
@@ -350,11 +383,20 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     };
   };
 
-  func contextMenuInteraction(_ : UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration: UIContextMenuConfiguration) -> UITargetedPreview? {
+  func contextMenuInteraction(
+    _ : UIContextMenuInteraction,
+    previewForHighlightingMenuWithConfiguration: UIContextMenuConfiguration
+) -> UITargetedPreview? {
+  
     return self.makeTargetedPreview();
   };
   
-  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForDismissingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+  func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    previewForDismissingMenuWithConfiguration
+    configuration: UIContextMenuConfiguration
+  ) -> UITargetedPreview? {
+    
     return self.makeTargetedPreview();
   };
 };
