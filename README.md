@@ -7,7 +7,7 @@
 
 ## 🚧⚠️ Re-Write WIP ⚠️🚧
 
-📝 **Note**: The next version of this library will introduce breaking changes to the API, and will require your project/app to be built with Xcode 13.1.
+📝 Check [`TODO.md`](docs/TODO.md) for progress on re-write.
 
 * ❤️ Support the new API's introduced in iOS 15.
 * 🧡 New `SFSymbols` + menu icon config API.
@@ -15,6 +15,10 @@
 * 💚 Typescript re-write (for better autocomplete).
 * 💙 Documentation re-write (so its actually usable + better examples).
 * 💜 ...and fixing all the bugs + issues so far 😅
+
+<br>
+
+📝 **Note**: A future major version of this library will introduce breaking changes to the API in order to add new features. However, the next minor version of this library will not introduce any breaking changes but will instead focus on adding typescript annotations and fixing the existing bugs, but will require your project/app to be built with Xcode 13.1.
 
 ---
 
