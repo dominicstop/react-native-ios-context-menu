@@ -40,6 +40,16 @@
 	* In iOS 13, this used to show a subtitle blurb below the menu item title. In iOS 15, it no longer displays the subtitle.
 	* In iOS 15, there's a new property added called `UIMenuElement.subtitle`?.
 
+---
+
+<br>
+
+## For Next Major Version
+
+- [ ] **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
+
+---
+
 <br>
 
 ## Completed
@@ -57,12 +67,12 @@
 - [x] (Commit: `7bb8148`) **Cleanup**: Update `MARK` comments in native code.
 - [x] (Commit: `873b61a`) **Cleanup**: Cleanup swift types (e.g. `NSString` -> `String`).
 - [x] (Commit: `ebfa1cc`) **Cleanup**: Remove `RCTSwiftLog` + usage.
-- [x] (Commit: `3041c9c`) **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
 - [x] (Commit: `3702dfc`) **Refactor**: Replace `RCT` prefix with `RNI`.
 - [x] (Commit: `2102840`) **Refactor**: Extract `RNIContextMenuView` native component to its own separate file.
 - [x] (Commit: `3fb4faa`) **Refactor**: Extract `RNIContextMenuButton` native component to its own separate file.
 - [x] (Commit: `023f8e7`) **Implement**: Types — Add type declaration for `MenuConfig` and related types.
 - [x] (Commit: `6768b32`) **Implement**: Types — Add type declaration for `MenuPreviewConfig` and related types.
+- [x] (Commit: `01089f0`) **Implement**: Types — Add type declaration for `IconConfig` and related types.
 
 ---
 
