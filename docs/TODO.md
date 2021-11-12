@@ -61,6 +61,8 @@
 - [x] (Commit: `3702dfc`) **Refactor**: Replace `RCT` prefix with `RNI`.
 - [x] (Commit: `2102840`) **Refactor**: Extract `RNIContextMenuView` native component to its own separate file.
 - [x] (Commit: `3fb4faa`) **Refactor**: Extract `RNIContextMenuButton` native component to its own separate file.
+- [x] (Commit: `023f8e7`) **Implement**: Types — Add type declaration for `MenuConfig` and related types.
+- [x] (Commit: `6768b32`) **Implement**: Types — Add type declaration for `MenuPreviewConfig` and related types.
 
 ---
 
