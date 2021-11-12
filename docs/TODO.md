@@ -5,8 +5,6 @@
 - [ ] **Implement**: `ContextMenu` — Add support for  `UIDefferedElement`.
 - [ ] **Refactor**: Use structs instead of classes for holding configuration for making the menu items.`
 
-- [ ] **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between the older version.
-- [ ] **Cleanup**: Remove `RCTSwiftLog` Usage.
 - [ ] **Cleanup**: Remove print logs.
 
 <br>
@@ -14,6 +12,7 @@
 - [ ] **Refactor**: Update logic for handling `URI` images. 
 - [ ] **Refactor**: Refactor to use typescript + add type annotations.
 - [ ] **Refactor**: Refactor example to use typescript.
+- [ ] **Refactor**: Replace `RCT` prefix with `RNI`.
 
 <br>
 
@@ -28,11 +27,15 @@
 
 <br>
 
-- [x] **Sync**: Import the core libraries in `react-native-ios-context-menu`.
+- [ ] **Sync**: Import the core libraries in `react-native-ios-context-menu`.
+	* Import `RNIImageItem` and update `RCTMenuIcon` to use it.
 
 <br>
 
 - [ ] Read apple documentation to find any new changes added.
+- [ ] Example #13 — Setting `discoverabilityTitle` no longer does anything.
+	* In iOS 13, this used to show a subtitle blurb below the menu item title. In iOS 15, it no longer displays the subtitle.
+	* In iOS 15, there's a new property added called `UIMenuElement.subtitle`?.
 
 <br>
 
@@ -50,6 +53,8 @@
 - [x] (Commit: `59d4faf`) **Refactor**: Migrate `Extension+Init`-related types to use failable initializers instead of static functions.
 - [x] (Commit: `7bb8148`) **Cleanup**: Update `MARK` comments in native code.
 - [x] (Commit: `873b61a`) **Cleanup**: Cleanup swift types (e.g. `NSString` -> `String`).
+- [x] (Commit: `ebfa1cc`) **Cleanup**: Remove `RCTSwiftLog` + usage.
+- [x] (Commit: `3041c9c`) **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
 
 ---
 
