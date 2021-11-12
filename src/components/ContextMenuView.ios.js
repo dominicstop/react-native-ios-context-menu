@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity, findNodeHandle } from 'react-native';
+import { StyleSheet, Platform, UIManager, View, TouchableOpacity, findNodeHandle } from 'react-native';
 import Proptypes from 'prop-types';
+
+import { RNIContextMenuView, RNIContextMenuViewCommands } from '../native_components/RNIContextMenuView';
 
 import { PreviewType } from '../Enums';
 
@@ -13,9 +15,6 @@ const isContextMenuSupported = (
 );
 
 
-const componentName   = "RNIContextMenuView";
-const NativeCommands  = UIManager[componentName]?.Commands;
-const NativeComponent = requireNativeComponent(componentName);
 
 const NATIVE_PROP_KEYS = {
   // props: values ----------
@@ -33,11 +32,6 @@ const NATIVE_PROP_KEYS = {
   onPressMenuItem   : 'onPressMenuItem'   ,
   onPressMenuPreview: 'onPressMenuPreview',
 };
-
-const NATIVE_COMMAND_KEYS = {
-  'dismissMenu': 'dismissMenu',
-};
-
 
 export class ContextMenuView extends React.PureComponent {
   static proptypes = {
@@ -92,7 +86,7 @@ export class ContextMenuView extends React.PureComponent {
   dismissMenu = () => {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(this.nativeRef),
-      NativeCommands?.[NATIVE_COMMAND_KEYS.dismissMenu],
+      RNIContextMenuViewCommands?.dismissMenu,
       null
     );
   };
@@ -183,7 +177,7 @@ export class ContextMenuView extends React.PureComponent {
     };
 
     return(
-      <NativeComponent
+      <RNIContextMenuView
         style={[styles.menuView, style]}
         ref={r => this.nativeRef = r}
         {...nativeCompProps}
@@ -196,7 +190,7 @@ export class ContextMenuView extends React.PureComponent {
         {React.Children.map(children, child => 
           React.cloneElement(child, {menuVisible})
         )}
-      </NativeComponent>
+      </RNIContextMenuView>
     );
   };
 
