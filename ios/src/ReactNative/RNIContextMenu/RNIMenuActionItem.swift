@@ -108,6 +108,10 @@ extension RNIMenuActionItem {
       dictionary["menuAttributes"] = menuAttributes;
     };
     
+    if let menuState = self.menuState {
+      dictionary["menuState"] = menuState;
+    };
+    
     return dictionary;
   };
 };

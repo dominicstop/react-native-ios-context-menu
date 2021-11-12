@@ -3,6 +3,8 @@ import { StyleSheet, UIManager, View, TouchableOpacity, findNodeHandle, ViewProp
 
 import { RNIContextMenuView, RNIContextMenuViewCommands, RNIContextMenuViewProps } from '../native_components/RNIContextMenuView';
 
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnPressMenuItemEventObject,  } from '../types/MenuEvents';
+
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
 
@@ -12,12 +14,14 @@ export type RenderPreviewItem = () => React.ReactElement | null | undefined;
 export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
   | 'previewConfig'
+  // Lifecycle Events
   | 'onMenuWillShow'
   | 'onMenuWillHide'
   | 'onMenuWillCancel'
   | 'onMenuDidShow'
   | 'onMenuDidHide'
   | 'onMenuDidCancel'
+  // `OnPress` Events
   | 'onPressMenuItem'
   | 'onPressMenuPreview'
 > & {
@@ -73,7 +77,7 @@ export class ContextMenuView extends
     } = this.props;
 
     return {
-      // A. Add default values to props...
+      // A. Provide default values to props...
       lazyPreview: (
         lazyPreview ?? true
       ),
@@ -109,32 +113,42 @@ export class ContextMenuView extends
 
   //#region - Event Handlers
   _handleOnLongPress = async () => {
-    const { menuConfig, ...props } = this.props;
-    const item = await ActionSheetFallback.show(menuConfig);
+    const props = this.props;
+
+    const selectedItem = 
+      await ActionSheetFallback.show(props.menuConfig);
   
-    if(item == null){
-      // cancelled pressed
-      props.onMenuDidCancel?.();
+    if(selectedItem == null){
+      // A. cancelled pressed
+      props.onMenuDidCancel?.({
+        nativeEvent: { 
+          isUsingActionSheetFallback: true 
+        }
+      });
 
     } else {
-      props.onPressMenuItem?.({nativeEvent: {...item}});
+      // B. an item was selected
+      props.onPressMenuItem?.({
+        nativeEvent: {
+          ...selectedItem,
+          isUsingActionSheetFallback: true,
+        }
+      });
     };
   };
 
-  _handleOnMenuWillCreate = () => {
+  _handleOnMenuWillCreate: OnMenuWillCreateEvent = () => {
     this.setState({mountPreview: true});
   };
 
-  _handleOnMenuWillShow = (event) => {
-    const { onMenuWillShow } = this.props;
-    onMenuWillShow?.(event);
+  _handleOnMenuWillShow: OnMenuWillShowEvent = (event) => {
+    this.props.onMenuWillShow?.(event);
 
     this.setState({menuVisible: true});
   };
 
-  _handleOnMenuWillHide = (event) => {
-    const { onMenuWillHide } = this.props;
-    onMenuWillHide?.(event);
+  _handleOnMenuWillHide: OnMenuWillHideEvent = (event) => {
+    this.props.onMenuWillHide?.(event);
 
     this.setState({
       menuVisible : false,
@@ -142,37 +156,37 @@ export class ContextMenuView extends
     });
   };
 
-  _handleOnMenuWillCancel = (event) => {
-    const { onMenuWillCancel } = this.props;
-    onMenuWillCancel?.(event);
+  _handleOnMenuWillCancel: OnMenuWillCancelEvent = (event) => {
+    this.props.onMenuWillCancel?.(event);
   };
 
-  _handleOnMenuDidShow = (event) => {
-    const { onMenuDidShow } = this.props;
-    onMenuDidShow?.(event);
+  _handleOnMenuDidShow: OnMenuDidShowEvent = (event) => {
+    this.props.onMenuDidShow?.(event);
   };
 
-  _handleOnMenuDidHide = (event) => {
-    const { onMenuDidHide } = this.props;
-    onMenuDidHide?.(event);
+  _handleOnMenuDidHide: OnMenuDidHideEvent = (event) => {
+    this.props.onMenuDidHide?.(event);
   };
 
-  _handleOnMenuDidCancel = (event) => {
-    const { onMenuDidCancel } = this.props;
-    onMenuDidCancel?.(event);
+  _handleOnMenuDidCancel: OnMenuDidCancelEvent = (event) => {
+    this.props.onMenuDidCancel?.(event);
   };
 
-  _handleOnPressMenuItem = (event) => {
-    const { onPressMenuItem } = this.props;
-    onPressMenuItem?.(event);
+  _handleOnPressMenuItem: OnPressMenuItemEvent = (event) => {
+    const nativeEvent: OnPressMenuItemEventObject['nativeEvent'] = {
+      ...event.nativeEvent,
+      isUsingActionSheetFallback: true,
+    };
+
+    this.props.onPressMenuItem?.({
+      ...event, nativeEvent
+    });
   };
 
-  _handleOnPressMenuPreview = (event) => {
-    const { onPressMenuPreview } = this.props;
-    onPressMenuPreview?.(event);
+  _handleOnPressMenuPreview: OnPressMenuPreviewEvent = (event) => {
+    this.props.onPressMenuPreview?.(event);
   };
   //#endregion
-
 
   render(){
     const props = this.getProps();

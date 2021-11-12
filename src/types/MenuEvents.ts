@@ -1,0 +1,82 @@
+import type { NativeSyntheticEvent } from 'react-native';
+import type { MenuActionConfig } from '../types/MenuConfig';
+
+// Event Object Types
+// ------------------
+
+export type OnMenuWillShowEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnMenuWillHideEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnMenuDidShowEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnMenuDidHideEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnMenuWillCancelEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnMenuDidCancelEventObject = NativeSyntheticEvent<{
+  isUsingActionSheetFallback: false;
+}> | {
+  nativeEvent: {
+    isUsingActionSheetFallback: true;
+  }
+};
+
+export type OnMenuWillCreateEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig & {
+  isUsingActionSheetFallback: false;
+}> | { 
+  nativeEvent: MenuActionConfig & {
+    isUsingActionSheetFallback: true;
+  }
+};
+
+export type OnPressMenuPreviewEventObject = NativeSyntheticEvent<{
+}>;
+
+// Event Handler Types
+// -------------------
+
+export type OnMenuWillShowEvent = (
+  event: OnMenuWillShowEventObject
+) => void;
+
+export type OnMenuWillHideEvent = (
+  event: OnMenuWillHideEventObject
+) => void;
+
+export type OnMenuDidShowEvent = (
+  event: OnMenuDidShowEventObject
+) => void;
+
+export type OnMenuDidHideEvent = (
+  event: OnMenuDidHideEventObject
+) => void;
+
+export type OnMenuWillCancelEvent = (
+  event: OnMenuWillCancelEventObject
+) => void;
+
+export type OnMenuDidCancelEvent = (
+  event: OnMenuDidCancelEventObject
+) => void;
+
+export type OnMenuWillCreateEvent = (
+  event: OnMenuWillCreateEventObject
+) => void;
+
+export type OnPressMenuItemEvent = (
+  event: OnPressMenuItemEventObject
+) => void;
+
+export type OnPressMenuPreviewEvent = (
+  event: OnPressMenuPreviewEventObject
+) => void;
+

@@ -2,6 +2,7 @@ import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
 
 import type { MenuConfig } from '../types/MenuConfig';
 import type { MenuPreviewConfig } from '../types/MenuPreviewConfig';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent,  } from '../types/MenuEvents';
 
 
 // TODO: Add type annotation - Remove `any` type usage
@@ -16,22 +17,22 @@ export type RNIContextMenuViewProps = ViewProps & {
   // Events - Lifecycle
   // ------------------
 
-  onMenuWillShow?: any;
-  onMenuWillHide?: any;
+  onMenuWillShow?: OnMenuWillShowEvent;
+  onMenuWillHide?: OnMenuWillHideEvent;
 
-  onMenuDidShow?: any;
-  onMenuDidHide?: any;
+  onMenuDidShow?: OnMenuDidShowEvent;
+  onMenuDidHide?: OnMenuDidHideEvent;
 
-  onMenuWillCancel?: any;
-  onMenuDidCancel ?: any;
+  onMenuWillCancel?: OnMenuWillCancelEvent;
+  onMenuDidCancel ?: OnMenuDidCancelEvent;
 
-  onMenuWillCreate?: any;
+  onMenuWillCreate?: OnMenuWillCreateEvent;
 
   // Events - OnPress
   // ----------------
 
-  onPressMenuItem?: any;
-  onPressMenuPreview?: any;
+  onPressMenuItem?: OnPressMenuItemEvent;
+  onPressMenuPreview?: OnPressMenuPreviewEvent;
 };
 
 export type RNIContextMenuViewCommandIDMap = {
