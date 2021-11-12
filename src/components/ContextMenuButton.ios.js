@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity } from 'react-native';
 import Proptypes from 'prop-types';
 
-import { ActionSheetFallback } from './functions/ActionSheetFallback';
+import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { ContextMenuView } from './ContextMenuView';
 
 

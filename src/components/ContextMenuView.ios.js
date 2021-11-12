@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity, findNodeHandle } from 'react-native';
 import Proptypes from 'prop-types';
 
-import { PreviewType } from './Enums';
+import { PreviewType } from '../Enums';
 
-import { ActionSheetFallback } from './functions/ActionSheetFallback';
+import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 
 
 const isContextMenuSupported = (
