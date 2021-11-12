@@ -73,6 +73,7 @@
 - [x] (Commit: `023f8e7`) **Implement**: Types — Add type declaration for `MenuConfig` and related types.
 - [x] (Commit: `6768b32`) **Implement**: Types — Add type declaration for `MenuPreviewConfig` and related types.
 - [x] (Commit: `01089f0`) **Implement**: Types — Add type declaration for `IconConfig` and related types.
+- [x] (Commit: `0d71080`) **Refactor**: Extract constants (e.g. `isContextMenuButtonSupported`, `isContextMenuViewSupported`) to their own separate file.
 
 ---
 
