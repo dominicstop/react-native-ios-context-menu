@@ -1,4 +1,5 @@
 import type { ImageResolvedAssetSource } from "react-native";
+import type { DynamicColor } from './MiscTypes';
 
 
 // TODO: Rename to `MenuIconConfig`
@@ -9,7 +10,8 @@ export type IconConfig = {
 } | {
   iconType: 'SYSTEM';
   iconValue: string;
-
+  iconTint?: string | DynamicColor;
+  
 } | {
   iconType: 'ASSET';
   iconValue: string;
