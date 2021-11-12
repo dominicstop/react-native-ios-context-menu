@@ -3,3 +3,5 @@ export * from './components/ContextMenuButton';
 export * from './Enums';
 
 export * from './functions/ActionSheetFallback';
+
+export * from './types/MenuConfig';
