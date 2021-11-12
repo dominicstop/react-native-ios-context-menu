@@ -12,7 +12,6 @@
 - [ ] **Refactor**: Update logic for handling `URI` images. 
 - [ ] **Refactor**: Refactor to use typescript + add type annotations.
 - [ ] **Refactor**: Refactor example to use typescript.
-- [ ] **Refactor**: Replace `RCT` prefix with `RNI`.
 
 <br>
 
@@ -29,6 +28,10 @@
 
 - [ ] **Sync**: Import the core libraries in `react-native-ios-context-menu`.
 	* Import `RNIImageItem` and update `RCTMenuIcon` to use it.
+
+<br>
+
+- [ ] **Bugfix**: Fix memory leak
 
 <br>
 
@@ -55,6 +58,8 @@
 - [x] (Commit: `873b61a`) **Cleanup**: Cleanup swift types (e.g. `NSString` -> `String`).
 - [x] (Commit: `ebfa1cc`) **Cleanup**: Remove `RCTSwiftLog` + usage.
 - [x] (Commit: `3041c9c`) **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
+- [x] (Commit: `3702dfc`) **Refactor**: Replace `RCT` prefix with `RNI`.
+- [x] (Commit: `2102840`) **Refactor**: Extract `RNIContextMenuView` native component to its own separate file.
 
 ---
 
@@ -119,8 +124,8 @@
 		* In this function, based on the `defferedKey` it must return a corresponding `MenuConfig`/`MenuAction` object. If `null` is returned, then it means it failed.
 		* This function is invoked from the native side. Native UI component `NativeCommands` don't natively support promises, so a workaround must be used based on `request` callbacks (like the one i used on react-native-ios-modal). But `NativeModule` functions has support for promises built in. 
 			* We can use `findNodeHandle(this.nativeCompRef)` to get a node handle. Then we can use `self.bridge.uiManager.view(forReactTag: node)` to get a ref to the component. Then we cast it to the correct type: `component as? RCTContextMenuView` and then call the completion function for the corresponding `UIDefferedElement`,  something like: `contextMenuView.resolveDefferedMenuElement(for: defferedKey, item: menuElementDict)`
-		* We need to create a class to create a `UIDeferredMenuElement`. It will extend `RCTMenuElement` and can be init from a dictionary. Probably name it something like: `RCTMenuDefferedItem`. It will have one property: `defferedKey`
-			* `RCTMenuItem.createMenu` function must be updated to also handle creating a `RCTMenuDefferedItem` item.
+		* We need to create a class to create a `UIDeferredMenuElement`. It will extend `RNIMenuElement` and can be init from a dictionary. Probably name it something like: `RCTMenuDefferedItem`. It will have one property: `defferedKey`
+			* `RNIMenuItem.createMenu` function must be updated to also handle creating a `RCTMenuDefferedItem` item.
 		* On the native side when we create a `UIDeferredMenuElement` we do this:  `UIDeferredMenuElement { completion in self.completionDict[defferedKey] = completion }`, and then invoke a RN event: `self.onRequestDefferedElement([defferedKey: defferedKey])`.
 			* `onRequestDefferedElement` event prop will be invoked. We wait for the promise to return some value and then call  a `NativeModule` function.
 			* The `NativeModule` function will probably look like this: `ContextMenuViewModule.resolveDefferedMenuElement({nodeHandle, defferedKey, menuItem});`
