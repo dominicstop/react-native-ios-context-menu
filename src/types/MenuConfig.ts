@@ -1,3 +1,5 @@
+import type { IconConfig } from "./MenuIconConfig";
+
 /** Maps to `UIMenu.Options` */
 export type MenuOptions = 'destructive' | 'displayInline';
 
@@ -17,7 +19,7 @@ export type MenuActionConfig = {
   menuAttributes: MenuAttributes;
 
   discoverabilityTitle: string;
-  icon: any; // TODO
+  icon: IconConfig;
   
   // subtitle - TODO: TBA
 };
@@ -26,5 +28,5 @@ export type MenuConfig = {
   menuTitle: string;
   menuOptions: Array<MenuOptions>;
   menuItems: Array<MenuConfig | MenuActionConfig>;
-  icon: any; // TODO
+  icon: IconConfig;
 };
