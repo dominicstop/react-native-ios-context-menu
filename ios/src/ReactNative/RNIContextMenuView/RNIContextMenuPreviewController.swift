@@ -1,5 +1,5 @@
 //
-//  RCTContextMenuPreviewController.swift
+//  RNIContextMenuPreviewController.swift
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 11/2/20.
@@ -10,7 +10,7 @@ import UIKit;
 
 
 @available(iOS 13.0, *)
-class RCTContextMenuPreviewController: UIViewController {
+class RNIContextMenuPreviewController: UIViewController {
   
   var previewConfig = PreviewConfig();
   

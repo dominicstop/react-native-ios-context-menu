@@ -1,5 +1,5 @@
 //
-//  RCTMenuImageType.swift
+//  RNIMenuImageType.swift
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 10/23/20.

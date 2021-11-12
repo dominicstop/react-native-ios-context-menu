@@ -1,5 +1,5 @@
 //
-//  RCTMenuPreviewConfig.swift
+//  RNIMenuPreviewConfig.swift
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 11/8/20.

@@ -1,5 +1,5 @@
 //
-//  RCTContextMenuButtonManager.swift
+//  RNIContextMenuButtonManager.swift
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 10/28/20.
@@ -9,8 +9,8 @@
 import UIKit;
 
 
-@objc(RCTContextMenuButtonManager)
-class RCTContextMenuButtonManager: RCTViewManager {
+@objc(RNIContextMenuButtonManager)
+class RNIContextMenuButtonManager: RCTViewManager {
   
   override static func requiresMainQueueSetup() -> Bool {
     return true;
@@ -18,7 +18,7 @@ class RCTContextMenuButtonManager: RCTViewManager {
   
   override func view() -> UIView! {
     if #available(iOS 14, *) {
-      return RCTContextMenuButton(bridge: self.bridge);
+      return RNIContextMenuButton(bridge: self.bridge);
       
     } else {
       return RCTView();
@@ -29,7 +29,7 @@ class RCTContextMenuButtonManager: RCTViewManager {
     DispatchQueue.main.async {
       guard #available(iOS 14, *),
             let view = self.bridge.uiManager.view(forReactTag: node),
-            let contextMenuButton = view as? RCTContextMenuButton
+            let contextMenuButton = view as? RNIContextMenuButton
       else { return };
       
       contextMenuButton.dissmissMenu();

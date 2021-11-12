@@ -1,5 +1,5 @@
 //
-//  RCTContextMenuView.swift
+//  RNIContextMenuView.swift
 //  nativeUIModulesTest
 //
 //  Created by Dominic Go on 7/14/20.
@@ -9,7 +9,7 @@ import UIKit;
 
 
 @available(iOS 13, *)
-class RCTContextMenuView: UIView {
+class RNIContextMenuView: UIView {
   
   // MARK: - Properties
   // ------------------
@@ -22,7 +22,7 @@ class RCTContextMenuView: UIView {
   var contextMenuInteraction: UIContextMenuInteraction?;
   
   weak var reactPreviewView : UIView?;
-  weak var previewController: RCTContextMenuPreviewController?;
+  weak var previewController: RNIContextMenuPreviewController?;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -43,17 +43,17 @@ class RCTContextMenuView: UIView {
   // MARK: - RN Exported Props
   // -------------------------
     
-  private var _menuConfig: RCTMenuItem?;
+  private var _menuConfig: RNIMenuItem?;
   @objc var menuConfig: NSDictionary? {
     didSet {
       guard
         let menuConfig     = self.menuConfig, menuConfig.count > 0,
-        let rootMenuConfig = RCTMenuItem(dictionary: menuConfig)
+        let rootMenuConfig = RNIMenuItem(dictionary: menuConfig)
       else { return };
       
       #if DEBUG
       print("menuConfig didSet"
-        + " - RCTMenuItem init"
+        + " - RNIMenuItem init"
         + " - menuConfig count: \(menuConfig.count)"
       );
       #endif
@@ -146,7 +146,7 @@ class RCTContextMenuView: UIView {
 // -----------------------------
 
 @available(iOS 13, *)
-extension RCTContextMenuView {
+extension RNIContextMenuView {
   @objc func dissmissMenu(){
     self.contextMenuInteraction?.dismissMenu();
   };
@@ -156,7 +156,7 @@ extension RCTContextMenuView {
 // -------------------------
 
 @available(iOS 13, *)
-fileprivate extension RCTContextMenuView {
+fileprivate extension RNIContextMenuView {
   
   func notifyForBoundsChange(_ newBounds: CGRect){
     guard
@@ -171,7 +171,7 @@ fileprivate extension RCTContextMenuView {
   func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
     guard  let menuConfig = self._menuConfig else {
       #if DEBUG
-      print("RCTContextMenuView, createMenu"
+      print("RNIContextMenuView, createMenu"
         + " - guard check failed, menuConfig: nil"
       );
       #endif
@@ -193,7 +193,7 @@ fileprivate extension RCTContextMenuView {
     guard previewConfig.previewType != .DEFAULT
     else { return nil };
     
-    let vc = RCTContextMenuPreviewController();
+    let vc = RNIContextMenuPreviewController();
     vc.reactView = self.reactPreviewView;
     vc.previewConfig = previewConfig;
     
@@ -261,7 +261,7 @@ fileprivate extension RCTContextMenuView {
 // ----------------------------------------
 
 @available(iOS 13, *)
-extension RCTContextMenuView: UIContextMenuInteractionDelegate {
+extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   
   // create context menu
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
@@ -277,7 +277,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
   // context menu display begins
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
     #if DEBUG
-    print("RCTContextMenuView, UIContextMenuInteractionDelegate"
+    print("RNIContextMenuView, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: will show"
     );
     #endif
@@ -293,7 +293,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
   // context menu display ends
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
     #if DEBUG
-    print("RCTContextMenuView, UIContextMenuInteractionDelegate"
+    print("RNIContextMenuView, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: will hide"
     );
     #endif
@@ -320,7 +320,7 @@ extension RCTContextMenuView: UIContextMenuInteractionDelegate {
   // context menu preview tapped
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
     #if DEBUG
-    print("RCTContextMenuView, UIContextMenuInteractionDelegate"
+    print("RNIContextMenuView, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: preview tapped"
     );
     #endif

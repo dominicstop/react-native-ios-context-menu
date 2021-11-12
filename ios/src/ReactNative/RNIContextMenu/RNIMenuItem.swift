@@ -1,5 +1,5 @@
 //
-//  RCTMenuItem.swift
+//  RNIMenuItem.swift
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 10/23/20.
@@ -10,7 +10,7 @@ import UIKit;
 
 
 @available(iOS 13.0, *)
-class RCTMenuItem: RCTMenuElement {
+class RNIMenuItem: RNIMenuElement {
   
   // MARK: - Properties
   // ------------------
@@ -19,7 +19,7 @@ class RCTMenuItem: RCTMenuElement {
   var icon     : RCTMenuIcon;
   
   var menuOptions: [String]?;
-  var menuItems  : [RCTMenuElement]?;
+  var menuItems  : [RNIMenuElement]?;
   
   // MARK: - Init
   // ------------
@@ -54,21 +54,21 @@ class RCTMenuItem: RCTMenuElement {
     
     if let menuElements = dictionary["menuItems"] as? NSArray {
       self.menuItems = menuElements.compactMap {
-        if let menuItem = RCTMenuItem(dictionary: $0 as? NSDictionary) {
+        if let menuItem = RNIMenuItem(dictionary: $0 as? NSDictionary) {
           #if DEBUG
-          print("RCTMenuItem, init - compactMap: Creating RCTMenuItem...");
+          print("RNIMenuItem, init - compactMap: Creating RNIMenuItem...");
           #endif
           return menuItem;
           
-        } else if let menuAction = RCTMenuActionItem(dictionary: $0 as? NSDictionary) {
+        } else if let menuAction = RNIMenuActionItem(dictionary: $0 as? NSDictionary) {
           #if DEBUG
-          print("RCTMenuItem, init - compactMap: Creating RCTMenuActionItem...");
+          print("RNIMenuItem, init - compactMap: Creating RNIMenuActionItem...");
           #endif
           return menuAction;
           
         } else {
           #if DEBUG
-          print("RCTMenuItem, init - compactMap: nil");
+          print("RNIMenuItem, init - compactMap: nil");
           #endif
           return nil;
         };
@@ -86,7 +86,7 @@ class RCTMenuItem: RCTMenuElement {
 // ---------------------------
 
 @available(iOS 13.0, *)
-extension RCTMenuItem {
+extension RNIMenuItem {
   /// get `UIMenu.Options` from `menuOptions` strings
   var UIMenuOptions: UIMenu.Options {
     UIMenu.Options(
@@ -101,24 +101,24 @@ extension RCTMenuItem {
 // -----------------
 
 @available(iOS 13.0, *)
-extension RCTMenuItem {
-  func createMenu(_ handler: @escaping RCTMenuActionItem.UIActionHandlerWithDict) -> UIMenu {
+extension RNIMenuItem {
+  func createMenu(_ handler: @escaping RNIMenuActionItem.UIActionHandlerWithDict) -> UIMenu {
     let menuItems: [UIMenuElement]? = self.menuItems?.compactMap {
-      if let menu = $0 as? RCTMenuItem {
+      if let menu = $0 as? RNIMenuItem {
         #if DEBUG
-        print("RCTMenuItem, createMenu item: RCTMenuItem");
+        print("RNIMenuItem, createMenu item: RNIMenuItem");
         #endif
         return menu.createMenu(handler);
         
-      } else if let action = $0 as? RCTMenuActionItem {
+      } else if let action = $0 as? RNIMenuActionItem {
         #if DEBUG
-        print("RCTMenuItem, createMenu item: RCTMenuActionItem");
+        print("RNIMenuItem, createMenu item: RNIMenuActionItem");
         #endif
         return action.makeUIAction(handler);
         
       } else {
         #if DEBUG
-        print("RCTMenuItem, createMenu item: nil");
+        print("RNIMenuItem, createMenu item: nil");
         #endif
         return nil;
       };

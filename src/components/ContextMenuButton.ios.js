@@ -17,7 +17,7 @@ const isContextMenuViewSupported = (
 );
 
 
-const componentName   = "RCTContextMenuButton";
+const componentName   = "RNIContextMenuButton";
 const NativeCommands  = UIManager[componentName]?.Commands;
 const NativeComponent = requireNativeComponent(componentName);
 

@@ -1,5 +1,5 @@
 //
-//  RCTMenuActionItem.swift
+//  RNIMenuActionItem.swift
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 10/23/20.
@@ -10,7 +10,7 @@ import UIKit;
 
 
 @available(iOS 13, *)
-class RCTMenuActionItem: RCTMenuElement {
+class RNIMenuActionItem: RNIMenuElement {
   
   var actionKey  : String;
   var actionTitle: String;
@@ -56,7 +56,7 @@ class RCTMenuActionItem: RCTMenuElement {
 // ---------------------------
 
 @available(iOS 13, *)
-extension RCTMenuActionItem {
+extension RNIMenuActionItem {
   
   var UIMenuElementAttributes: UIMenuElement.Attributes {
     UIMenuElement.Attributes(
@@ -102,13 +102,13 @@ extension RCTMenuActionItem {
 // -----------------
 
 @available(iOS 13, *)
-extension RCTMenuActionItem {
+extension RNIMenuActionItem {
   
   typealias UIActionHandlerWithDict = ([String: Any], UIAction) -> Void;
   
   func makeUIAction(_ handler: @escaping UIActionHandlerWithDict) -> UIAction {
     #if DEBUG
-    print("RCTMenuActionItem, makeUIAction...");
+    print("RNIMenuActionItem, makeUIAction...");
     #endif
     
     return UIAction(

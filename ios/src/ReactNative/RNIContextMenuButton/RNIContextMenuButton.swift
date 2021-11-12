@@ -1,5 +1,5 @@
 //
-//  RCTContextMenuButton.swift
+//  RNIContextMenuButton.swift
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 10/28/20.
@@ -10,7 +10,7 @@ import UIKit;
 
 
 @available(iOS 14, *)
-class RCTContextMenuButton: UIButton {
+class RNIContextMenuButton: UIButton {
   
   // MARK: - Properties
   // ------------------
@@ -38,13 +38,13 @@ class RCTContextMenuButton: UIButton {
     didSet {
       guard
         let menuConfig     = self.menuConfig, menuConfig.count > 0,
-        let rootMenuConfig = RCTMenuItem(dictionary: menuConfig)
+        let rootMenuConfig = RNIMenuItem(dictionary: menuConfig)
       else { return };
       
       #if DEBUG
-      print("RCTContextMenuButton"
+      print("RNIContextMenuButton"
         + " - menuConfig didSet"
-        + " - RCTMenuItem init"
+        + " - RNIMenuItem init"
       );
       #endif
      
@@ -122,7 +122,7 @@ class RCTContextMenuButton: UIButton {
 // -----------------------------
 
 @available(iOS 14, *)
-extension RCTContextMenuButton {
+extension RNIContextMenuButton {
   @objc func dissmissMenu(){
     self.contextMenuInteraction?.dismissMenu();
   };
@@ -132,14 +132,14 @@ extension RCTContextMenuButton {
 // ----------------------------------------
 
 @available(iOS 14, *)
-extension RCTContextMenuButton {
+extension RNIContextMenuButton {
   
   // context menu display begins
   override func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
     super.contextMenuInteraction(interaction, willDisplayMenuFor: configuration, animator: animator);
     
     #if DEBUG
-    print("RCTContextMenuButton, UIContextMenuInteractionDelegate"
+    print("RNIContextMenuButton, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: will show"
     );
     #endif
@@ -157,7 +157,7 @@ extension RCTContextMenuButton {
     super.contextMenuInteraction(interaction, willEndFor: configuration, animator: animator);
     
     #if DEBUG
-    print("RCTContextMenuButton, UIContextMenuInteractionDelegate"
+    print("RNIContextMenuButton, UIContextMenuInteractionDelegate"
       + " - contextMenuInteraction: will hide"
     );
     #endif
@@ -183,7 +183,7 @@ extension RCTContextMenuButton {
 };
 
 @available(iOS 14, *)
-extension RCTContextMenuButton: UIGestureRecognizerDelegate {
+extension RNIContextMenuButton: UIGestureRecognizerDelegate {
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
     return true;
   };

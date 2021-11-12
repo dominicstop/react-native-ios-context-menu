@@ -9,8 +9,8 @@
 import Foundation
 
 
-class RCTMenuElement: Hashable, Encodable {
-  static func == (lhs: RCTMenuElement, rhs: RCTMenuElement) -> Bool {
+class RNIMenuElement: Hashable, Encodable {
+  static func == (lhs: RNIMenuElement, rhs: RNIMenuElement) -> Bool {
     return ObjectIdentifier(lhs) == ObjectIdentifier(rhs);
   };
   
