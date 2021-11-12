@@ -1,5 +1,7 @@
 import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
+
 import type { MenuConfig } from '../types/MenuConfig';
+import type { MenuPreviewConfig } from '../types/MenuPreviewConfig';
 
 
 // TODO: Add type annotation - Remove `any` type usage
@@ -9,7 +11,7 @@ export type RNIContextMenuViewProps = ViewProps & {
   // -----------
 
   menuConfig: MenuConfig; 
-  previewConfig?: any;
+  previewConfig?: MenuPreviewConfig;
 
   // Events - Lifecycle
   // ------------------
