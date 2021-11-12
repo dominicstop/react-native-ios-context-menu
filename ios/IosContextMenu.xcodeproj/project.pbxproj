@@ -7,20 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88DAC6B4273DE44B00AB068F /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC69E273DE44A00AB068F /* UIColor+Helpers.swift */; };
-		88DAC6B5273DE44B00AB068F /* Encodable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC69F273DE44A00AB068F /* Encodable+Helpers.swift */; };
-		88DAC6B6273DE44B00AB068F /* RCTContextMenuButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A2273DE44A00AB068F /* RCTContextMenuButtonManager.m */; };
-		88DAC6B7273DE44B00AB068F /* RCTContextMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A3273DE44A00AB068F /* RCTContextMenuButton.swift */; };
-		88DAC6B8273DE44B00AB068F /* RCTContextMenuButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A4273DE44A00AB068F /* RCTContextMenuButtonManager.swift */; };
-		88DAC6BB273DE44B00AB068F /* RCTContextMenuViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AA273DE44A00AB068F /* RCTContextMenuViewManager.swift */; };
-		88DAC6BC273DE44B00AB068F /* RCTContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AB273DE44B00AB068F /* RCTContextMenuView.swift */; };
-		88DAC6BD273DE44B00AB068F /* RCTContextMenuViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AC273DE44B00AB068F /* RCTContextMenuViewManager.m */; };
-		88DAC6BE273DE44B00AB068F /* RCTContextMenuPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AD273DE44B00AB068F /* RCTContextMenuPreviewController.swift */; };
-		88DAC6BF273DE44B00AB068F /* RCTMenuPreviewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AF273DE44B00AB068F /* RCTMenuPreviewConfig.swift */; };
-		88DAC6C0273DE44B00AB068F /* RCTMenuActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6B0273DE44B00AB068F /* RCTMenuActionItem.swift */; };
-		88DAC6C1273DE44B00AB068F /* RCTMenuElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6B1273DE44B00AB068F /* RCTMenuElement.swift */; };
-		88DAC6C2273DE44B00AB068F /* RCTMenuImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6B2273DE44B00AB068F /* RCTMenuImageType.swift */; };
-		88DAC6C3273DE44B00AB068F /* RCTMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6B3273DE44B00AB068F /* RCTMenuItem.swift */; };
+		88DAC6EB273DEE1000AB068F /* UIMenu+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6D4273DEE1000AB068F /* UIMenu+Init.swift */; };
+		88DAC6EC273DEE1000AB068F /* UIMenuElement+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6D5273DEE1000AB068F /* UIMenuElement+Init.swift */; };
+		88DAC6ED273DEE1000AB068F /* UIContextMenuInteractionCommitStyle+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6D6273DEE1000AB068F /* UIContextMenuInteractionCommitStyle+Init.swift */; };
+		88DAC6EE273DEE1000AB068F /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6D9273DEE1000AB068F /* UIColor+Helpers.swift */; };
+		88DAC6EF273DEE1000AB068F /* Encodable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6DA273DEE1000AB068F /* Encodable+Helpers.swift */; };
+		88DAC6F0273DEE1000AB068F /* RCTContextMenuButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6DD273DEE1000AB068F /* RCTContextMenuButtonManager.m */; };
+		88DAC6F1273DEE1000AB068F /* RCTContextMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6DE273DEE1000AB068F /* RCTContextMenuButton.swift */; };
+		88DAC6F2273DEE1000AB068F /* RCTContextMenuButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6DF273DEE1000AB068F /* RCTContextMenuButtonManager.swift */; };
+		88DAC6F3273DEE1000AB068F /* RCTContextMenuViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E1273DEE1000AB068F /* RCTContextMenuViewManager.swift */; };
+		88DAC6F4273DEE1000AB068F /* RCTContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E2273DEE1000AB068F /* RCTContextMenuView.swift */; };
+		88DAC6F5273DEE1000AB068F /* RCTContextMenuViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E3273DEE1000AB068F /* RCTContextMenuViewManager.m */; };
+		88DAC6F6273DEE1000AB068F /* RCTContextMenuPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E4273DEE1000AB068F /* RCTContextMenuPreviewController.swift */; };
+		88DAC6F7273DEE1000AB068F /* RCTMenuPreviewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E6273DEE1000AB068F /* RCTMenuPreviewConfig.swift */; };
+		88DAC6F8273DEE1000AB068F /* RCTMenuActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E7273DEE1000AB068F /* RCTMenuActionItem.swift */; };
+		88DAC6F9273DEE1000AB068F /* RCTMenuElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E8273DEE1000AB068F /* RCTMenuElement.swift */; };
+		88DAC6FA273DEE1000AB068F /* RCTMenuImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6E9273DEE1000AB068F /* RCTMenuImageType.swift */; };
+		88DAC6FB273DEE1000AB068F /* RCTMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6EA273DEE1000AB068F /* RCTMenuItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,24 +40,24 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libIosContextMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIosContextMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		88DAC69C273DE44A00AB068F /* IosContextMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IosContextMenu-Bridging-Header.h"; sourceTree = "<group>"; };
-		88DAC69E273DE44A00AB068F /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
-		88DAC69F273DE44A00AB068F /* Encodable+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Helpers.swift"; sourceTree = "<group>"; };
-		88DAC6A2273DE44A00AB068F /* RCTContextMenuButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTContextMenuButtonManager.m; sourceTree = "<group>"; };
-		88DAC6A3273DE44A00AB068F /* RCTContextMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuButton.swift; sourceTree = "<group>"; };
-		88DAC6A4273DE44A00AB068F /* RCTContextMenuButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuButtonManager.swift; sourceTree = "<group>"; };
-		88DAC6A6273DE44A00AB068F /* RCTSwiftLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSwiftLog.m; sourceTree = "<group>"; };
-		88DAC6A7273DE44A00AB068F /* RCTLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTLog.swift; sourceTree = "<group>"; };
-		88DAC6A8273DE44A00AB068F /* RCTSwiftLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSwiftLog.h; sourceTree = "<group>"; };
-		88DAC6AA273DE44A00AB068F /* RCTContextMenuViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuViewManager.swift; sourceTree = "<group>"; };
-		88DAC6AB273DE44B00AB068F /* RCTContextMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuView.swift; sourceTree = "<group>"; };
-		88DAC6AC273DE44B00AB068F /* RCTContextMenuViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTContextMenuViewManager.m; sourceTree = "<group>"; };
-		88DAC6AD273DE44B00AB068F /* RCTContextMenuPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuPreviewController.swift; sourceTree = "<group>"; };
-		88DAC6AF273DE44B00AB068F /* RCTMenuPreviewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuPreviewConfig.swift; sourceTree = "<group>"; };
-		88DAC6B0273DE44B00AB068F /* RCTMenuActionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuActionItem.swift; sourceTree = "<group>"; };
-		88DAC6B1273DE44B00AB068F /* RCTMenuElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuElement.swift; sourceTree = "<group>"; };
-		88DAC6B2273DE44B00AB068F /* RCTMenuImageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuImageType.swift; sourceTree = "<group>"; };
-		88DAC6B3273DE44B00AB068F /* RCTMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuItem.swift; sourceTree = "<group>"; };
+		88DAC6D4273DEE1000AB068F /* UIMenu+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIMenu+Init.swift"; sourceTree = "<group>"; };
+		88DAC6D5273DEE1000AB068F /* UIMenuElement+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIMenuElement+Init.swift"; sourceTree = "<group>"; };
+		88DAC6D6273DEE1000AB068F /* UIContextMenuInteractionCommitStyle+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIContextMenuInteractionCommitStyle+Init.swift"; sourceTree = "<group>"; };
+		88DAC6D7273DEE1000AB068F /* IosContextMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IosContextMenu-Bridging-Header.h"; sourceTree = "<group>"; };
+		88DAC6D9273DEE1000AB068F /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
+		88DAC6DA273DEE1000AB068F /* Encodable+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Helpers.swift"; sourceTree = "<group>"; };
+		88DAC6DD273DEE1000AB068F /* RCTContextMenuButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTContextMenuButtonManager.m; sourceTree = "<group>"; };
+		88DAC6DE273DEE1000AB068F /* RCTContextMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuButton.swift; sourceTree = "<group>"; };
+		88DAC6DF273DEE1000AB068F /* RCTContextMenuButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuButtonManager.swift; sourceTree = "<group>"; };
+		88DAC6E1273DEE1000AB068F /* RCTContextMenuViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuViewManager.swift; sourceTree = "<group>"; };
+		88DAC6E2273DEE1000AB068F /* RCTContextMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuView.swift; sourceTree = "<group>"; };
+		88DAC6E3273DEE1000AB068F /* RCTContextMenuViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTContextMenuViewManager.m; sourceTree = "<group>"; };
+		88DAC6E4273DEE1000AB068F /* RCTContextMenuPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTContextMenuPreviewController.swift; sourceTree = "<group>"; };
+		88DAC6E6273DEE1000AB068F /* RCTMenuPreviewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuPreviewConfig.swift; sourceTree = "<group>"; };
+		88DAC6E7273DEE1000AB068F /* RCTMenuActionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuActionItem.swift; sourceTree = "<group>"; };
+		88DAC6E8273DEE1000AB068F /* RCTMenuElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuElement.swift; sourceTree = "<group>"; };
+		88DAC6E9273DEE1000AB068F /* RCTMenuImageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuImageType.swift; sourceTree = "<group>"; };
+		88DAC6EA273DEE1000AB068F /* RCTMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCTMenuItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,80 +82,80 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				88DAC69B273DE44A00AB068F /* src */,
+				88DAC6D2273DEE1000AB068F /* src */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		88DAC69B273DE44A00AB068F /* src */ = {
+		88DAC6D2273DEE1000AB068F /* src */ = {
 			isa = PBXGroup;
 			children = (
-				88DAC69C273DE44A00AB068F /* IosContextMenu-Bridging-Header.h */,
-				88DAC69D273DE44A00AB068F /* Extensions */,
-				88DAC6A0273DE44A00AB068F /* ReactNative */,
+				88DAC6D3273DEE1000AB068F /* Extensions+Init */,
+				88DAC6D7273DEE1000AB068F /* IosContextMenu-Bridging-Header.h */,
+				88DAC6D8273DEE1000AB068F /* Extensions */,
+				88DAC6DB273DEE1000AB068F /* ReactNative */,
 			);
 			path = src;
 			sourceTree = "<group>";
 		};
-		88DAC69D273DE44A00AB068F /* Extensions */ = {
+		88DAC6D3273DEE1000AB068F /* Extensions+Init */ = {
 			isa = PBXGroup;
 			children = (
-				88DAC69E273DE44A00AB068F /* UIColor+Helpers.swift */,
-				88DAC69F273DE44A00AB068F /* Encodable+Helpers.swift */,
+				88DAC6D4273DEE1000AB068F /* UIMenu+Init.swift */,
+				88DAC6D5273DEE1000AB068F /* UIMenuElement+Init.swift */,
+				88DAC6D6273DEE1000AB068F /* UIContextMenuInteractionCommitStyle+Init.swift */,
+			);
+			path = "Extensions+Init";
+			sourceTree = "<group>";
+		};
+		88DAC6D8273DEE1000AB068F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88DAC6D9273DEE1000AB068F /* UIColor+Helpers.swift */,
+				88DAC6DA273DEE1000AB068F /* Encodable+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		88DAC6A0273DE44A00AB068F /* ReactNative */ = {
+		88DAC6DB273DEE1000AB068F /* ReactNative */ = {
 			isa = PBXGroup;
 			children = (
-				88DAC6A1273DE44A00AB068F /* RCTContextMenuButton */,
-				88DAC6A5273DE44A00AB068F /* RCTSwiftLog */,
-				88DAC6A9273DE44A00AB068F /* RCTContextMenuView */,
-				88DAC6AE273DE44B00AB068F /* RCTContextMenu */,
+				88DAC6DC273DEE1000AB068F /* RCTContextMenuButton */,
+				88DAC6E0273DEE1000AB068F /* RCTContextMenuView */,
+				88DAC6E5273DEE1000AB068F /* RCTContextMenu */,
 			);
 			path = ReactNative;
 			sourceTree = "<group>";
 		};
-		88DAC6A1273DE44A00AB068F /* RCTContextMenuButton */ = {
+		88DAC6DC273DEE1000AB068F /* RCTContextMenuButton */ = {
 			isa = PBXGroup;
 			children = (
-				88DAC6A2273DE44A00AB068F /* RCTContextMenuButtonManager.m */,
-				88DAC6A3273DE44A00AB068F /* RCTContextMenuButton.swift */,
-				88DAC6A4273DE44A00AB068F /* RCTContextMenuButtonManager.swift */,
+				88DAC6DD273DEE1000AB068F /* RCTContextMenuButtonManager.m */,
+				88DAC6DE273DEE1000AB068F /* RCTContextMenuButton.swift */,
+				88DAC6DF273DEE1000AB068F /* RCTContextMenuButtonManager.swift */,
 			);
 			path = RCTContextMenuButton;
 			sourceTree = "<group>";
 		};
-		88DAC6A5273DE44A00AB068F /* RCTSwiftLog */ = {
+		88DAC6E0273DEE1000AB068F /* RCTContextMenuView */ = {
 			isa = PBXGroup;
 			children = (
-				88DAC6A6273DE44A00AB068F /* RCTSwiftLog.m */,
-				88DAC6A7273DE44A00AB068F /* RCTLog.swift */,
-				88DAC6A8273DE44A00AB068F /* RCTSwiftLog.h */,
-			);
-			path = RCTSwiftLog;
-			sourceTree = "<group>";
-		};
-		88DAC6A9273DE44A00AB068F /* RCTContextMenuView */ = {
-			isa = PBXGroup;
-			children = (
-				88DAC6AA273DE44A00AB068F /* RCTContextMenuViewManager.swift */,
-				88DAC6AB273DE44B00AB068F /* RCTContextMenuView.swift */,
-				88DAC6AC273DE44B00AB068F /* RCTContextMenuViewManager.m */,
-				88DAC6AD273DE44B00AB068F /* RCTContextMenuPreviewController.swift */,
+				88DAC6E1273DEE1000AB068F /* RCTContextMenuViewManager.swift */,
+				88DAC6E2273DEE1000AB068F /* RCTContextMenuView.swift */,
+				88DAC6E3273DEE1000AB068F /* RCTContextMenuViewManager.m */,
+				88DAC6E4273DEE1000AB068F /* RCTContextMenuPreviewController.swift */,
 			);
 			path = RCTContextMenuView;
 			sourceTree = "<group>";
 		};
-		88DAC6AE273DE44B00AB068F /* RCTContextMenu */ = {
+		88DAC6E5273DEE1000AB068F /* RCTContextMenu */ = {
 			isa = PBXGroup;
 			children = (
-				88DAC6AF273DE44B00AB068F /* RCTMenuPreviewConfig.swift */,
-				88DAC6B0273DE44B00AB068F /* RCTMenuActionItem.swift */,
-				88DAC6B1273DE44B00AB068F /* RCTMenuElement.swift */,
-				88DAC6B2273DE44B00AB068F /* RCTMenuImageType.swift */,
-				88DAC6B3273DE44B00AB068F /* RCTMenuItem.swift */,
+				88DAC6E6273DEE1000AB068F /* RCTMenuPreviewConfig.swift */,
+				88DAC6E7273DEE1000AB068F /* RCTMenuActionItem.swift */,
+				88DAC6E8273DEE1000AB068F /* RCTMenuElement.swift */,
+				88DAC6E9273DEE1000AB068F /* RCTMenuImageType.swift */,
+				88DAC6EA273DEE1000AB068F /* RCTMenuItem.swift */,
 			);
 			path = RCTContextMenu;
 			sourceTree = "<group>";
@@ -214,20 +217,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88DAC6BD273DE44B00AB068F /* RCTContextMenuViewManager.m in Sources */,
-				88DAC6BE273DE44B00AB068F /* RCTContextMenuPreviewController.swift in Sources */,
-				88DAC6B7273DE44B00AB068F /* RCTContextMenuButton.swift in Sources */,
-				88DAC6B4273DE44B00AB068F /* UIColor+Helpers.swift in Sources */,
-				88DAC6C1273DE44B00AB068F /* RCTMenuElement.swift in Sources */,
-				88DAC6BB273DE44B00AB068F /* RCTContextMenuViewManager.swift in Sources */,
-				88DAC6C2273DE44B00AB068F /* RCTMenuImageType.swift in Sources */,
-				88DAC6C3273DE44B00AB068F /* RCTMenuItem.swift in Sources */,
-				88DAC6BF273DE44B00AB068F /* RCTMenuPreviewConfig.swift in Sources */,
-				88DAC6B5273DE44B00AB068F /* Encodable+Helpers.swift in Sources */,
-				88DAC6BC273DE44B00AB068F /* RCTContextMenuView.swift in Sources */,
-				88DAC6B8273DE44B00AB068F /* RCTContextMenuButtonManager.swift in Sources */,
-				88DAC6B6273DE44B00AB068F /* RCTContextMenuButtonManager.m in Sources */,
-				88DAC6C0273DE44B00AB068F /* RCTMenuActionItem.swift in Sources */,
+				88DAC6EB273DEE1000AB068F /* UIMenu+Init.swift in Sources */,
+				88DAC6F4273DEE1000AB068F /* RCTContextMenuView.swift in Sources */,
+				88DAC6F3273DEE1000AB068F /* RCTContextMenuViewManager.swift in Sources */,
+				88DAC6F5273DEE1000AB068F /* RCTContextMenuViewManager.m in Sources */,
+				88DAC6FA273DEE1000AB068F /* RCTMenuImageType.swift in Sources */,
+				88DAC6ED273DEE1000AB068F /* UIContextMenuInteractionCommitStyle+Init.swift in Sources */,
+				88DAC6F9273DEE1000AB068F /* RCTMenuElement.swift in Sources */,
+				88DAC6F8273DEE1000AB068F /* RCTMenuActionItem.swift in Sources */,
+				88DAC6F2273DEE1000AB068F /* RCTContextMenuButtonManager.swift in Sources */,
+				88DAC6F7273DEE1000AB068F /* RCTMenuPreviewConfig.swift in Sources */,
+				88DAC6F1273DEE1000AB068F /* RCTContextMenuButton.swift in Sources */,
+				88DAC6FB273DEE1000AB068F /* RCTMenuItem.swift in Sources */,
+				88DAC6F0273DEE1000AB068F /* RCTContextMenuButtonManager.m in Sources */,
+				88DAC6EF273DEE1000AB068F /* Encodable+Helpers.swift in Sources */,
+				88DAC6F6273DEE1000AB068F /* RCTContextMenuPreviewController.swift in Sources */,
+				88DAC6EC273DEE1000AB068F /* UIMenuElement+Init.swift in Sources */,
+				88DAC6EE273DEE1000AB068F /* UIColor+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
