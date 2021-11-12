@@ -3,6 +3,8 @@
 <p>
   <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
 </p>
+<br>
+
 ## 🚧⚠️ Re-Write WIP ⚠️🚧
 
 📝 **Note**: The next version of this library will introduce breaking changes to the API, and will require your project/app to be built with Xcode 13.1.
