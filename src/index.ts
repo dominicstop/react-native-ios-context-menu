@@ -4,6 +4,8 @@ export * from './Enums';
 
 export * from './functions/ActionSheetFallback';
 
+export * from './constants/LibEnv';
+
 export * from './types/MenuConfig';
 export * from './types/MenuPreviewConfig';
 export * from './types/MenuIconConfig';

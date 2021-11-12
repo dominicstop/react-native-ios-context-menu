@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, UIManager, View, TouchableOpacity, findNodeHandle } from 'react-native';
+import { StyleSheet, UIManager, View, TouchableOpacity, findNodeHandle } from 'react-native';
 import Proptypes from 'prop-types';
 
 import { RNIContextMenuView, RNIContextMenuViewCommands } from '../native_components/RNIContextMenuView';
@@ -7,13 +7,7 @@ import { RNIContextMenuView, RNIContextMenuViewCommands } from '../native_compon
 import { PreviewType } from '../Enums';
 
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
-
-
-const isContextMenuSupported = (
-  (Platform.OS === 'ios') &&
-  (parseInt(Platform.Version, 10) > 12)
-);
-
+import { LIB_ENV } from '../constants/LibEnv';
 
 
 const NATIVE_PROP_KEYS = {
@@ -56,7 +50,7 @@ export class ContextMenuView extends React.PureComponent {
   static defaultProps = {
     lazyPreview: true,
     previewType: PreviewType.DEFAULT,
-    useActionSheetFallback: !isContextMenuSupported,
+    useActionSheetFallback: !LIB_ENV.isContextMenuSupported,
   };
 
   constructor(props){
@@ -197,7 +191,7 @@ export class ContextMenuView extends React.PureComponent {
   render(){
     const { useActionSheetFallback, children, ...props } = this.getProps();
     const useContextMenuView = 
-      (isContextMenuSupported && !useActionSheetFallback);
+      (LIB_ENV.isContextMenuSupported && !useActionSheetFallback);
 
     return(
       useContextMenuView? this._renderContextMenuView() : 

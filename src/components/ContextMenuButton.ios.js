@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Proptypes from 'prop-types';
 
 import { RNIContextMenuButton } from '../native_components/RNIContextMenuButton';
@@ -7,16 +7,7 @@ import { RNIContextMenuButton } from '../native_components/RNIContextMenuButton'
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { ContextMenuView } from './ContextMenuView';
 
-
-const isContextMenuButtonSupported = (
-  (Platform.OS === 'ios') &&
-  (parseInt(Platform.Version, 10) >= 14)
-);
-
-const isContextMenuViewSupported = (
-  (Platform.OS === 'ios') &&
-  (parseInt(Platform.Version, 10) >= 13)
-);
+import { LIB_ENV } from '../constants/LibEnv';
 
 const NATIVE_PROP_KEYS = {
   // props: values --------
@@ -58,7 +49,7 @@ export class ContextMenuButton extends React.PureComponent {
   static defaultProps = {
     enableContextMenu     : true,
     wrapNativeComponent   : true,
-    useActionSheetFallback: !isContextMenuViewSupported,
+    useActionSheetFallback: !LIB_ENV.isContextMenuViewSupported,
   };
 
   constructor(props){
@@ -157,7 +148,7 @@ export class ContextMenuButton extends React.PureComponent {
       React.cloneElement(child, {menuVisible})
     );
 
-    const nativeComp = (isContextMenuButtonSupported? (
+    const nativeComp = (LIB_ENV.isContextMenuButtonSupported? (
       <RNIContextMenuButton
         {...nativeCompProps}
         style={(props.wrapNativeComponent
@@ -192,7 +183,7 @@ export class ContextMenuButton extends React.PureComponent {
   render(){
     const { useActionSheetFallback } = this.props;
     const useContextMenu = 
-      (isContextMenuViewSupported && !useActionSheetFallback);
+      (LIB_ENV.isContextMenuViewSupported && !useActionSheetFallback);
 
     return(
       useContextMenu? this._renderContextMenuView() : 
