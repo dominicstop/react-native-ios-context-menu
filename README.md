@@ -3,12 +3,15 @@
 <p>
   <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
 </p>
-
 ## 🚧⚠️ Re-Write WIP ⚠️🚧
+
+📝 **Note**: The next version of this library will introduce breaking changes to the API, and will require your project/app to be built with Xcode 13.1.
+
 * ❤️ Support the new API's introduced in iOS 15.
-* 🧡 New `SFSymbols` + Icon API
+* 🧡 New `SFSymbols` + menu icon config API.
 * 💛 Support for use with [Mac Catalyst](https://developer.apple.com/documentation/uikit/uicommand/adding_menus_and_shortcuts_to_the_menu_bar_and_user_interface) (e.g. configuring the mac's menu bar + the iPad's [shortcuts/menu bar](https://twitter.com/stroughtonsmith/status/1440344820577226752?s=20)). 
-* 💚 Typescript rewrite.
+* 💚 Typescript re-write (for better autocomplete).
+* 💙 Documentation re-write (so its actually usable + better examples).
 * 💜 ...and fixing all the bugs + issues so far 😅
 
 ---
