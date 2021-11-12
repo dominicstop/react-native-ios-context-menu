@@ -16,7 +16,7 @@ export type RNIContextMenuButtonProps = ViewProps & Pick<RNIContextMenuViewProps
   isMenuPrimaryAction: boolean;
 };
 
-export type RNIContextMenuButtonCommandID = {
+type RNIContextMenuButtonCommandIDMap = {
   dismissMenu: number;
 };
 
@@ -26,4 +26,4 @@ export const RNIContextMenuButton =
   requireNativeComponent<RNIContextMenuButtonProps>(viewName);
 
 export const RNIContextMenuButtonCommands = 
-  ((UIManager as any)[viewName]).Commands as RNIContextMenuButtonCommandID;
+  ((UIManager as any)[viewName]).Commands as RNIContextMenuButtonCommandIDMap;

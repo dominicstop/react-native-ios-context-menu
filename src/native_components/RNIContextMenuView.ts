@@ -34,7 +34,7 @@ export type RNIContextMenuViewProps = ViewProps & {
   onPressMenuPreview?: any;
 };
 
-export type RNIContextMenuViewCommandID = {
+export type RNIContextMenuViewCommandIDMap = {
   dismissMenu: number;
 };
 
@@ -44,6 +44,6 @@ export const RNIContextMenuView =
   requireNativeComponent<RNIContextMenuViewProps>(viewName);
 
 export const RNIContextMenuViewCommands = 
-  ((UIManager as any)[viewName]).Commands as RNIContextMenuViewCommandID;
+  ((UIManager as any)[viewName]).Commands as RNIContextMenuViewCommandIDMap;
   
 
