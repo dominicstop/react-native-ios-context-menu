@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Platform, requireNativeComponent, UIManager, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Platform, View, TouchableOpacity } from 'react-native';
 import Proptypes from 'prop-types';
+
+import { RNIContextMenuButton } from '../native_components/RNIContextMenuButton';
 
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { ContextMenuView } from './ContextMenuView';
@@ -15,11 +17,6 @@ const isContextMenuViewSupported = (
   (Platform.OS === 'ios') &&
   (parseInt(Platform.Version, 10) >= 13)
 );
-
-
-const componentName   = "RNIContextMenuButton";
-const NativeCommands  = UIManager[componentName]?.Commands;
-const NativeComponent = requireNativeComponent(componentName);
 
 const NATIVE_PROP_KEYS = {
   // props: values --------
@@ -161,7 +158,7 @@ export class ContextMenuButton extends React.PureComponent {
     );
 
     const nativeComp = (isContextMenuButtonSupported? (
-      <NativeComponent
+      <RNIContextMenuButton
         {...nativeCompProps}
         style={(props.wrapNativeComponent
           ? styles.wrappedMenuButton
@@ -169,7 +166,7 @@ export class ContextMenuButton extends React.PureComponent {
         )}
       >
         {childItems}
-      </NativeComponent>
+      </RNIContextMenuButton>
     ):(
       <ContextMenuView
         {...nativeCompProps}
