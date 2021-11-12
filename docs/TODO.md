@@ -32,6 +32,7 @@
 <br>
 
 - [ ] **Bugfix**: Fix memory leak
+- [ ] Dismiss menu on fast refresh.
 
 <br>
 
@@ -74,6 +75,12 @@
 - [x] (Commit: `6768b32`) **Implement**: Types — Add type declaration for `MenuPreviewConfig` and related types.
 - [x] (Commit: `01089f0`) **Implement**: Types — Add type declaration for `IconConfig` and related types.
 - [x] (Commit: `0d71080`) **Refactor**: Extract constants (e.g. `isContextMenuButtonSupported`, `isContextMenuViewSupported`) to their own separate file.
+
+<br>
+
+* **Implement**: Types — Add type declaration for `ContextMenuView`
+	- [x] (Commit: `8c72054`) **Implement**: Types — Migrate `ContextMenuView` component to use typescript and partially added type declarations.
+	- [x] (Commit: `348d2f9`) **Implement**: Types — Add type declaration for `ContextMenuView`  events.
 
 ---
 
