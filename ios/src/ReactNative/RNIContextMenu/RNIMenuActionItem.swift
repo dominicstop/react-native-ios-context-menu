@@ -72,7 +72,7 @@ class RNIMenuActionItem: RNIMenuElement {
 @available(iOS 13, *)
 extension RNIMenuActionItem {
   
-  var UIMenuElementAttributes: UIMenuElement.Attributes {
+  var synthesizedMenuElementAttributes: UIMenuElement.Attributes {
     UIMenuElement.Attributes(
       self.menuAttributes?.compactMap {
         UIMenuElement.Attributes(string: $0);
@@ -80,7 +80,7 @@ extension RNIMenuActionItem {
     );
   };
   
-  var UIMenuElementState: UIMenuElement.State {
+  var synthesizedMenuElementState: UIMenuElement.State {
     guard
       let menuState        = self.menuState,
       let menuElementState = UIMenuElement.State(string: menuState)
@@ -89,11 +89,11 @@ extension RNIMenuActionItem {
     return menuElementState;
   };
   
-  var identifier: UIAction.Identifier {
+  var synthesizedIdentifier: UIAction.Identifier {
     UIAction.Identifier(self.actionKey);
   };
   
-  var dictionary: [String: Any] {
+  var dictionaryFromRawValues: [String: Any] {
     var dictionary: [String: Any] = [
       "actionKey"  : self.actionKey  ,
       "actionTitle": self.actionTitle,
@@ -132,11 +132,16 @@ extension RNIMenuActionItem {
     return UIAction(
       title     : self.actionTitle,
       image     : self.icon.image ,
-      identifier: self.identifier ,
+      identifier: self.synthesizedIdentifier,
+      
       discoverabilityTitle: self.discoverabilityTitle,
-      attributes: self.UIMenuElementAttributes,
-      state     : self.UIMenuElementState,
-      handler   : { handler(self.dictionary, $0) }
+      
+      attributes: self.synthesizedMenuElementAttributes,
+      state     : self.synthesizedMenuElementState,
+      
+      handler: {
+        handler(self.dictionaryFromRawValues, $0)
+      }
     );
   };
 };
