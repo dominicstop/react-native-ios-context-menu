@@ -33,6 +33,10 @@
 
 - [ ] **Bugfix**: Fix memory leak
 - [ ] Dismiss menu on fast refresh.
+- [ ] **Implement**: Add support for targeted previews on text (i.e. similar to safari). 
+- [ ] **Implement**: Control `ContextMenuView` via context and create `useContextMenuViewContext` hook.
+- [ ] **Implement**: Subscribe to `ContextMenuView` events via event emitter from context.
+- [ ] **Implement**: Implement `ContextMenuView` event hook (i.e. `useContextMenuViewEvents` hook).
 
 <br>
 
