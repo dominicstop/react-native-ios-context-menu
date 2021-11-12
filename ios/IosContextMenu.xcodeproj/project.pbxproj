@@ -12,8 +12,6 @@
 		88DAC6B6273DE44B00AB068F /* RCTContextMenuButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A2273DE44A00AB068F /* RCTContextMenuButtonManager.m */; };
 		88DAC6B7273DE44B00AB068F /* RCTContextMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A3273DE44A00AB068F /* RCTContextMenuButton.swift */; };
 		88DAC6B8273DE44B00AB068F /* RCTContextMenuButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A4273DE44A00AB068F /* RCTContextMenuButtonManager.swift */; };
-		88DAC6B9273DE44B00AB068F /* RCTSwiftLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A6273DE44A00AB068F /* RCTSwiftLog.m */; };
-		88DAC6BA273DE44B00AB068F /* RCTLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6A7273DE44A00AB068F /* RCTLog.swift */; };
 		88DAC6BB273DE44B00AB068F /* RCTContextMenuViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AA273DE44A00AB068F /* RCTContextMenuViewManager.swift */; };
 		88DAC6BC273DE44B00AB068F /* RCTContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AB273DE44B00AB068F /* RCTContextMenuView.swift */; };
 		88DAC6BD273DE44B00AB068F /* RCTContextMenuViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DAC6AC273DE44B00AB068F /* RCTContextMenuViewManager.m */; };
@@ -216,7 +214,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88DAC6BA273DE44B00AB068F /* RCTLog.swift in Sources */,
 				88DAC6BD273DE44B00AB068F /* RCTContextMenuViewManager.m in Sources */,
 				88DAC6BE273DE44B00AB068F /* RCTContextMenuPreviewController.swift in Sources */,
 				88DAC6B7273DE44B00AB068F /* RCTContextMenuButton.swift in Sources */,
@@ -224,7 +221,6 @@
 				88DAC6C1273DE44B00AB068F /* RCTMenuElement.swift in Sources */,
 				88DAC6BB273DE44B00AB068F /* RCTContextMenuViewManager.swift in Sources */,
 				88DAC6C2273DE44B00AB068F /* RCTMenuImageType.swift in Sources */,
-				88DAC6B9273DE44B00AB068F /* RCTSwiftLog.m in Sources */,
 				88DAC6C3273DE44B00AB068F /* RCTMenuItem.swift in Sources */,
 				88DAC6BF273DE44B00AB068F /* RCTMenuPreviewConfig.swift in Sources */,
 				88DAC6B5273DE44B00AB068F /* Encodable+Helpers.swift in Sources */,

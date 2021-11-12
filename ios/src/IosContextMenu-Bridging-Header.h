@@ -10,6 +10,3 @@
 #import <React/RCTConvert.h>
 #import <React/RCTImageSource.h>
 #import <React/RCTImageLoader.h>
-
-#import "RCTSwiftLog.h"
-#import <React/RCTLog.h>
