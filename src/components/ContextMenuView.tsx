@@ -3,7 +3,7 @@ import { StyleSheet, UIManager, View, TouchableOpacity, findNodeHandle, ViewProp
 
 import { RNIContextMenuView, RNIContextMenuViewCommands, RNIContextMenuViewProps } from '../native_components/RNIContextMenuView';
 
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnPressMenuItemEventObject,  } from '../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../types/MenuEvents';
 
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
@@ -38,7 +38,6 @@ export type ContextMenuViewState = {
   menuVisible: boolean;
   mountPreview: boolean;
 };
-
 
 export class ContextMenuView extends 
   React.PureComponent<ContextMenuViewProps, ContextMenuViewState> {
@@ -121,34 +120,36 @@ export class ContextMenuView extends
     if(selectedItem == null){
       // A. cancelled pressed
       props.onMenuDidCancel?.({
-        nativeEvent: { 
-          isUsingActionSheetFallback: true 
-        }
+        isUsingActionSheetFallback: true
       });
 
     } else {
       // B. an item was selected
       props.onPressMenuItem?.({
+        isUsingActionSheetFallback: true,
         nativeEvent: {
           ...selectedItem,
-          isUsingActionSheetFallback: true,
         }
       });
     };
   };
 
-  _handleOnMenuWillCreate: OnMenuWillCreateEvent = () => {
+  _handleOnMenuWillCreate: OnMenuWillCreateEvent = (event) => {
+    event.stopPropagation();
     this.setState({mountPreview: true});
+    
   };
 
   _handleOnMenuWillShow: OnMenuWillShowEvent = (event) => {
     this.props.onMenuWillShow?.(event);
+    event.stopPropagation();
 
     this.setState({menuVisible: true});
   };
 
   _handleOnMenuWillHide: OnMenuWillHideEvent = (event) => {
     this.props.onMenuWillHide?.(event);
+    event.stopPropagation();
 
     this.setState({
       menuVisible : false,
@@ -158,33 +159,38 @@ export class ContextMenuView extends
 
   _handleOnMenuWillCancel: OnMenuWillCancelEvent = (event) => {
     this.props.onMenuWillCancel?.(event);
+    event.stopPropagation();
   };
 
   _handleOnMenuDidShow: OnMenuDidShowEvent = (event) => {
     this.props.onMenuDidShow?.(event);
+    event.stopPropagation();
   };
 
   _handleOnMenuDidHide: OnMenuDidHideEvent = (event) => {
     this.props.onMenuDidHide?.(event);
+    event.stopPropagation();
   };
 
   _handleOnMenuDidCancel: OnMenuDidCancelEvent = (event) => {
     this.props.onMenuDidCancel?.(event);
+
+    // guard: event is a native event
+    if(event.isUsingActionSheetFallback) return;
+    event.stopPropagation();
   };
 
   _handleOnPressMenuItem: OnPressMenuItemEvent = (event) => {
-    const nativeEvent: OnPressMenuItemEventObject['nativeEvent'] = {
-      ...event.nativeEvent,
-      isUsingActionSheetFallback: true,
-    };
+    this.props.onPressMenuItem?.(event);
 
-    this.props.onPressMenuItem?.({
-      ...event, nativeEvent
-    });
+    // guard: event is a native event
+    if(event.isUsingActionSheetFallback) return;
+    event.stopPropagation();
   };
 
   _handleOnPressMenuPreview: OnPressMenuPreviewEvent = (event) => {
     this.props.onPressMenuPreview?.(event);
+    event.stopPropagation();
   };
   //#endregion
 

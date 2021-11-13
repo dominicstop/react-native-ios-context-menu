@@ -19,24 +19,22 @@ export type OnMenuDidHideEventObject = NativeSyntheticEvent<{
 export type OnMenuWillCancelEventObject = NativeSyntheticEvent<{
 }>;
 
-export type OnMenuDidCancelEventObject = NativeSyntheticEvent<{
-  isUsingActionSheetFallback: false;
-}> | {
-  nativeEvent: {
-    isUsingActionSheetFallback: true;
-  }
+export type OnMenuDidCancelEventObject = NativeSyntheticEvent<{}> & {
+  isUsingActionSheetFallback?: false;
+} | { 
+  isUsingActionSheetFallback: true;
 };
 
 export type OnMenuWillCreateEventObject = NativeSyntheticEvent<{
 }>;
 
-export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig & {
-  isUsingActionSheetFallback: false;
-}> | { 
-  nativeEvent: MenuActionConfig & {
-    isUsingActionSheetFallback: true;
-  }
-};
+export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig> & {
+  isUsingActionSheetFallback?: false;
+  
+} | {
+  isUsingActionSheetFallback: true;
+  nativeEvent: MenuActionConfig;
+}
 
 export type OnPressMenuPreviewEventObject = NativeSyntheticEvent<{
 }>;
