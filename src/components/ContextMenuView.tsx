@@ -5,6 +5,7 @@ import { RNIContextMenuView, RNIContextMenuViewCommands, RNIContextMenuViewProps
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../types/MenuEvents';
 
+// @ts-ignore - TODO
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
 
@@ -25,10 +26,10 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'onPressMenuItem'
   | 'onPressMenuPreview'
 > & {
-  lazyPreview: boolean;
-  useActionSheetFallback: boolean;
+  lazyPreview?: boolean;
+  useActionSheetFallback?: boolean;
 
-  renderPreview: RenderPreviewItem;
+  renderPreview?: RenderPreviewItem;
 };
 
 export type ContextMenuViewProps = 

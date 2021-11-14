@@ -2,19 +2,24 @@ import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
 import type { RNIContextMenuViewProps } from './RNIContextMenuView';
 
 
-export type RNIContextMenuButtonProps = ViewProps & Pick<RNIContextMenuViewProps,
+export type RNIContextMenuButtonBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
+  // Lifecycle Events
   | 'onMenuWillShow'
   | 'onMenuWillHide'
   | 'onMenuWillCancel'
   | 'onMenuDidShow'
   | 'onMenuDidHide'
   | 'onMenuDidCancel'
+  // `OnPress` Events
   | 'onPressMenuItem'
 > & {
-  enableContextMenu: boolean;
-  isMenuPrimaryAction: boolean;
+  enableContextMenu?: boolean;
+  isMenuPrimaryAction?: boolean;
 };
+
+export type RNIContextMenuButtonProps =
+  ViewProps & RNIContextMenuButtonBaseProps;
 
 type RNIContextMenuButtonCommandIDMap = {
   dismissMenu: number;
