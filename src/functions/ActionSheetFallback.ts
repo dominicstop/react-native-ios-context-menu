@@ -3,7 +3,7 @@ import * as Helpers from './Helpers';
 import type { MenuActionConfig, MenuConfig } from '../types/MenuConfig';
 
 // TODO: Refactor/cleanup...
-// TODO: Fix types
+// TODO: Fix types + remove `@ts-ignore`
 
 class ActionSheetFallbackHelpers {
   /** is the object a `MenuAction` item */
@@ -15,9 +15,7 @@ class ActionSheetFallbackHelpers {
 
       // optional properties --------------
       ('menuState'            in object) ||
-      ('menuAttributes'       in object) ||
-      ('discoverabilityTitle' in object) ||
-      ('icon'                 in object) 
+      ('menuAttributes'       in object)
     );
   };
   
@@ -29,8 +27,7 @@ class ActionSheetFallbackHelpers {
 
       // optional properties -----
       ('menuOptions' in object) ||
-      ('menuItems'   in object) ||
-      ('icon'        in object) 
+      ('menuItems'   in object)
     );
   };
 
@@ -237,6 +234,7 @@ export class ActionSheetFallback {
       if(selectedIndex === cancelButtonIndex) return null;
 
       // push selected index to indexPath and loop
+      // @ts-ignore
       indexPath.push(selectedIndex - 1);
     };
   };
