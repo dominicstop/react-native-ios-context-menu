@@ -16,18 +16,19 @@ export type MenuActionConfig = {
   actionKey: string;
   actionTitle: string;
   
-  menuState: MenuState;
-  menuAttributes: MenuAttributes;
+  menuState?: MenuState;
+  menuAttributes?: MenuAttributes;
 
-  discoverabilityTitle: string;
-  icon: IconConfig;
+  discoverabilityTitle?: string;
+  icon?: IconConfig;
   
   // subtitle - TODO: TBA
 };
 
 export type MenuConfig = {
   menuTitle: string;
-  menuOptions: Array<UIMenuOptions>;
-  menuItems: Array<MenuConfig | MenuActionConfig>;
-  icon: IconConfig;
+  
+  menuOptions?: Array<UIMenuOptions>;
+  menuItems?: Array<MenuConfig | MenuActionConfig>;
+  icon?: IconConfig;
 };
