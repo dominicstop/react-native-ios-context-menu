@@ -18,7 +18,20 @@
 
 <br>
 
-📝 **Note**: A future major version of this library will introduce breaking changes to the API in order to add new features. However, the next minor version of this library will not introduce any breaking changes but will instead focus on adding typescript annotations and fixing the existing bugs, but will require your project/app to be built with Xcode 13.1.
+📝 **Note**: A future major version of this library will introduce breaking changes to the API (mainly just renaming some of the properties) in order to add new features. 
+
+However, the next minor version of this library will not introduce any breaking changes but will instead focus on adding typescript annotations and fixing the existing bugs, but will require your project/app to be built with Xcode 13.1.
+
+<br>
+
+### Versions
+
+| Library Version | Compatibility                |
+| :-------------- | ---------------------------- |
+| `1.4`           | iOS 13 to iOS 15<br>Xcode 13 |
+| `1.3` and Below | iOS 13 to 14<br>Xcode 12     |
+
+📝 **Note**: Supports projects targeting iOS 10 but will use the action sheet fallback when running on iOS 12 and older.
 
 ---
 
@@ -77,8 +90,6 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 </details>
 
 ---
-### 🚧⚠️ Documentation WIP 🚧⚠️
-(iOS 14 specific features also in WIP — Check [TODO](https://github.com/dominicstop/react-native-ios-context-menu/blob/master/docs/TODO.md) for progress)
 <br>
 
 ## 1. Installation
