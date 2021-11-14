@@ -1,4 +1,4 @@
-import * as Helpers from './helpers';
+import * as Helpers from './Helpers';
 
 import type { MenuActionConfig, MenuConfig } from '../types/MenuConfig';
 
