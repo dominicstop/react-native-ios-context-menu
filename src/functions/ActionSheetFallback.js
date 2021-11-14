@@ -1,4 +1,4 @@
-import { MenuActionKeys, MenuConfigKeys, MenuOptions, MenuElementAtrributes } from '../Enums';
+import { MenuActionKeys, MenuConfigKeys, MenuOptions, MenuElementAtrributes } from '../constants/Enums';
 import * as Helpers from './helpers';
 
 // TODO: Refactor/cleanup...

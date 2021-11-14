@@ -1,4 +1,3 @@
-
 /** Used for `IconConfigKeys.iconType` or `IconConfigKeys.iconType` */
 export const IconTypes = {
   'NONE'   : 'NONE'   ,
