@@ -6,6 +6,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTView.h>
 #import <React/RCTUIManager.h>
+#import <React/RCTUIManagerUtils.h>
 
 #import <React/RCTConvert.h>
 #import <React/RCTImageSource.h>
