@@ -1,18 +1,22 @@
-import { ActionSheetIOS } from 'react-native';
+import { ActionSheetIOS, ActionSheetIOSOptions } from 'react-native';
 
 
-//wrapper func for setstate that returns a promise
-export function setStateAsync(that, newState) {
-  return new Promise((resolve) => {
+/** wrapper func for setState that returns a promise */
+// eslint-disable-next-line consistent-this
+export function setStateAsync<T>(
+  that: React.Component,
+  newState: T | ((prevState: T) => T)
+){
+  return new Promise<void>((resolve) => {
     that.setState(newState, () => {
-        resolve();
+      resolve();
     });
   });
 };
 
-//wrapper for timeout that returns a promise
-export function timeout(ms) {
-  return new Promise(resolve => {
+/** wrapper for timeout that returns a promise */
+export function timeout(ms: Number) {
+  return new Promise<void>(resolve => {
     const timeoutID = setTimeout(() => {
       clearTimeout(timeoutID);
       resolve();
@@ -20,11 +24,11 @@ export function timeout(ms) {
   });
 };
 
-export function pad(num, places = 2){
+export function pad(num: number | string, places = 2){
   return String(num).padStart(places, '0');
 };
 
-export function asyncActionSheet(config){
+export function asyncActionSheet(config: ActionSheetIOSOptions){
   return new Promise(resolve => {
     ActionSheetIOS.showActionSheetWithOptions(config, (buttonIndex) => {
       resolve(buttonIndex);
@@ -32,11 +36,20 @@ export function asyncActionSheet(config){
   });
 };
 
-export function asyncActionSheetConfirm({title, message, confirmText, isDestructive = false}){
+export function asyncActionSheetConfirm(config: {
+  title        : string; 
+  message      : string; 
+  confirmText  : string; 
+  isDestructive?: boolean;
+}){
+  const isDestructive = config.isDestructive ?? false;
+
   return new Promise(resolve => {
     ActionSheetIOS.showActionSheetWithOptions({
-      title, message,
-      options: ['Cancel', confirmText],
+      title  : config.title,
+      message: config.message,
+
+      options: ['Cancel', config.confirmText],
       cancelButtonIndex: 0,
       ...(isDestructive && {
         destructiveButtonIndex: 1,
