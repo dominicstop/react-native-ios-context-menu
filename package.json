@@ -22,13 +22,17 @@
     "!**/__mocks__"
   ],
   "scripts": {
-    "typescript": "tsc --noEmit",
+    "typescript": "tsc --noEmit --project tsconfig.build.json",
+    "typescript-example": "cd example && tsc --noEmit --project tsconfig.json",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it",
+    "release": "release-it --only-version",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods"
+    "bootstrap": "yarn example && yarn && yarn pods",
+    "build": "yarn run lint && yarn run bob build && cd example/ios && pod install && cd .. && npx react-native",
+    "run-release": "cd example && npx react-native run-ios --simulator \"iPhone 8\" --configuration Release",
+    "run-debug": "cd example && npx react-native run-ios --simulator \"iPhone 8\""
   },
   "keywords": [
     "react-native",
