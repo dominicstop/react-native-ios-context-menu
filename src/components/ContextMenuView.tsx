@@ -212,11 +212,14 @@ export class ContextMenuView extends
       // A - Use Context Menu View
       return (
         <RNIContextMenuView
+          {...props.viewProps}
           style={[styles.menuView, props.viewProps.style]}
-          ref={r => { this.nativeRef = r! }}
-          menuConfig={props.menuConfig}
+          ref={r => {this.nativeRef = r!}}
 
-          // Events: Menu Lifecycle
+          menuConfig={props.menuConfig}
+          previewConfig={props.previewConfig}
+          
+          // Events: `onPress`-Related
           onMenuWillShow={this._handleOnMenuWillShow}
           onMenuWillHide={this._handleOnMenuWillHide}
           onMenuWillCancel={this._handleOnMenuWillCancel}
@@ -234,8 +237,8 @@ export class ContextMenuView extends
               props.renderPreview?.()
             )}
           </View>
-          {React.Children.map(this.props.children, (child) => 
-            //@ts-ignore
+          {React.Children.map(props.viewProps.children, child => 
+            // @ts-ignore
             React.cloneElement(child, {menuVisible})
           )}
         </RNIContextMenuView>
