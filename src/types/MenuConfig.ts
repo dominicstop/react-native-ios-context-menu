@@ -1,7 +1,8 @@
 import type { IconConfig } from "./MenuIconConfig";
 
 /** Maps to `UIMenu.Options` */
-export type MenuOptions = 'destructive' | 'displayInline';
+// TODO: Once `Enums.ts` is removed, rename back to `MenuOptions` 
+export type UIMenuOptions = 'destructive' | 'displayInline';
 
 /** Maps to `UIMenuElement.State` */
 // TODO: Rename to `UIMenuElementState`
@@ -26,7 +27,7 @@ export type MenuActionConfig = {
 
 export type MenuConfig = {
   menuTitle: string;
-  menuOptions: Array<MenuOptions>;
+  menuOptions: Array<UIMenuOptions>;
   menuItems: Array<MenuConfig | MenuActionConfig>;
   icon: IconConfig;
 };

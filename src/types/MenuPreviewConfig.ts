@@ -1,17 +1,18 @@
 import type { DynamicColor } from "./MiscTypes";
 
-export type PreviewType = 'DEFAULT' | 'CUSTOM';
+export type MenuPreviewType = 'DEFAULT' | 'CUSTOM';
 
-export type PreviewSize = 'INHERIT' | 'STRETCH';
+export type MenuPreviewSize = 'INHERIT' | 'STRETCH';
 
-export type CommitStyle = 'dismiss' | 'pop';
+/** Maps to `UIContextMenuInteractionCommitStyle` */
+export type ContextMenuInteractionCommitStyle = 'dismiss' | 'pop';
 
 export type MenuPreviewConfig = {
-  previewType?: PreviewType;
-  previewSize?: PreviewSize;
+  previewType?: MenuPreviewType;
+  previewSize?: MenuPreviewSize;
   isResizeAnimated?: boolean;
   borderRadius?: number;
   backgroundColor?: DynamicColor | string;
-  preferredCommitStyle?: CommitStyle;
+  preferredCommitStyle?: ContextMenuInteractionCommitStyle;
   targetViewNode?: number;
 };
