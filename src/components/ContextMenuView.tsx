@@ -237,10 +237,7 @@ export class ContextMenuView extends
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
           {(mountPreview || !props.lazyPreview) && (
-            <RNIWrapperView 
-              style={styles.previewContainer}
-              shouldNotifyComponentWillUnmount={true}
-            >
+            <RNIWrapperView style={styles.previewContainer}>
               {props.renderPreview?.()}
             </RNIWrapperView>
           )}
