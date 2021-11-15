@@ -160,6 +160,9 @@ class RNIContextMenuView: UIView {
     super.insertSubview(subview, at: atIndex);
     
     if let previewWrapper = subview as? RNIWrapperView {
+      // a previous preview view already exists... cleanup if needed.
+      self.previewWrapper?.cleanup();
+      
       self.previewWrapper = previewWrapper;
       
       previewWrapper.willChangeSuperview = true;

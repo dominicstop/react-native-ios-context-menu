@@ -148,7 +148,6 @@ export class ContextMenuView extends
   _handleOnMenuWillCreate: OnMenuWillCreateEvent = (event) => {
     event.stopPropagation();
     this.setState({mountPreview: true});
-    
   };
 
   _handleOnMenuWillShow: OnMenuWillShowEvent = (event) => {
@@ -207,7 +206,7 @@ export class ContextMenuView extends
 
   render(){
     const props = this.getProps();
-    const { menuVisible, mountPreview } = this.state;
+    const state = this.state;
 
     const shouldUseContextMenuView = (
       LIB_ENV.isContextMenuViewSupported && 
@@ -216,6 +215,11 @@ export class ContextMenuView extends
 
     const shouldUseActionSheetFallback = (
       IS_PLATFORM_IOS && props.useActionSheetFallback
+    );
+
+    const shouldMountPreview = (
+      (props.renderPreview != null) &&
+      (state.mountPreview || !props.lazyPreview)
     );
 
     if(shouldUseContextMenuView){
@@ -242,14 +246,19 @@ export class ContextMenuView extends
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
-          {(mountPreview || !props.lazyPreview) && (
-            <RNIWrapperView style={styles.previewContainer}>
+          {shouldMountPreview && (
+            <RNIWrapperView 
+              style={styles.previewContainer}
+              shouldNotifyComponentWillUnmount={false}
+            >
               {props.renderPreview?.()}
             </RNIWrapperView>
           )}
           {React.Children.map(props.viewProps.children, child => 
             // @ts-ignore
-            React.cloneElement(child, {menuVisible})
+            React.cloneElement(child, {
+              menuVisible: state.menuVisible
+            })
           )}
         </RNIContextMenuView>
       );
