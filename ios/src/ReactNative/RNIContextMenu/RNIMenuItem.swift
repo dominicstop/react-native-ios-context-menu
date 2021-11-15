@@ -12,14 +12,19 @@ import UIKit;
 @available(iOS 13.0, *)
 class RNIMenuItem: RNIMenuElement {
   
-  // MARK: - Properties
-  // ------------------
+  // MARK: - Serialized Properties
+  // -----------------------------
   
   var menuTitle: String;
   var icon     : RCTMenuIcon;
   
   var menuOptions: [String]?;
   var menuItems  : [RNIMenuElement]?;
+  
+  // MARK: - Properties
+  // ------------------
+  
+  var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   
   // MARK: - Init
   // ------------

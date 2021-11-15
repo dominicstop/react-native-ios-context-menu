@@ -53,18 +53,21 @@ class RNIContextMenuView: UIView {
   @objc var menuConfig: NSDictionary? {
     didSet {
       guard
-        let menuConfig     = self.menuConfig, menuConfig.count > 0,
-        let rootMenuConfig = RNIMenuItem(dictionary: menuConfig)
+        let menuConfigDict = self.menuConfig, menuConfigDict.count > 0,
+        let menuConfig     = RNIMenuItem(dictionary: menuConfigDict)
       else { return };
       
+      menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
+        self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;
+
       #if DEBUG
       print("menuConfig didSet"
         + " - RNIMenuItem init"
-        + " - menuConfig count: \(menuConfig.count)"
+        + " - menuConfig count: \(menuConfigDict.count)"
       );
       #endif
       
-      self._menuConfig = rootMenuConfig;
+      self._menuConfig = menuConfig;
       
       if #available(iOS 14.0, *)  ,
          self.isContextMenuVisible,
@@ -73,13 +76,13 @@ class RNIContextMenuView: UIView {
         #if DEBUG
         print("menuConfig didSet"
           + " - Updating  visible menu"
-          + " - menuItems: \(menuConfig["menuItems"] ?? "N/A")"
+          + " - menuItems: \(menuConfigDict["menuItems"] ?? "N/A")"
         );
         #endif
         
         // context menu is open, update the menu items
         interaction.updateVisibleMenu {(menu: UIMenu) in
-          return rootMenuConfig.createMenu {(dict, action) in
+          return menuConfig.createMenu {(dict, action) in
             // menu item has been pressed...
             self.didPressMenuItem = true;
             self.onPressMenuItem?(dict);
@@ -104,6 +107,8 @@ class RNIContextMenuView: UIView {
       };
     }
   };
+  
+  @objc var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   
   // MARK: - Init
   // ------------

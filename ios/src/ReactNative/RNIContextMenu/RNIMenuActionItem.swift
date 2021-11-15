@@ -12,6 +12,9 @@ import UIKit;
 @available(iOS 13, *)
 class RNIMenuActionItem: RNIMenuElement {
   
+  // MARK: - Serialized Properties
+  // -----------------------------
+  
   var actionKey  : String;
   var actionTitle: String;
   
@@ -21,8 +24,13 @@ class RNIMenuActionItem: RNIMenuElement {
   var menuState     : String?;
   var menuAttributes: [String]?;
   
-// MARK: - Init
-// ------------
+  // MARK: - Properties
+  // ------------------
+  
+  var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
+  
+  // MARK: - Init
+  // ------------
 
   init?(dictionary: NSDictionary){
     guard let actionKey   = dictionary["actionKey"  ] as? String,
@@ -132,7 +140,7 @@ extension RNIMenuActionItem {
     print("RNIMenuActionItem, makeUIAction...");
     #endif
     
-    return UIAction(
+    let action = UIAction(
       title     : self.actionTitle,
       image     : self.icon.image ,
       identifier: self.synthesizedIdentifier,
@@ -146,5 +154,13 @@ extension RNIMenuActionItem {
         handler(self.dictionaryFromRawValues, $0)
       }
     );
+    
+    if #available(iOS 15.0, *),
+       self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle {
+      
+      action.subtitle = self.discoverabilityTitle;
+    };
+    
+    return action;
   };
 };

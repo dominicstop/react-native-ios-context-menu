@@ -20,6 +20,7 @@ export type RenderPreviewItem = () => React.ReactElement;
 export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
   | 'previewConfig'
+  | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   // Lifecycle Events
   | 'onMenuWillShow'
   | 'onMenuWillHide'
@@ -68,6 +69,8 @@ export class ContextMenuView extends
       useActionSheetFallback,
       menuConfig,
       previewConfig,
+      shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
+      // event props
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -88,6 +91,9 @@ export class ContextMenuView extends
       ),
       useActionSheetFallback: (
         useActionSheetFallback ?? !LIB_ENV.isContextMenuViewSupported
+      ),
+      shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle: (
+        shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle ?? true
       ),
 
       // B. Pass down props...

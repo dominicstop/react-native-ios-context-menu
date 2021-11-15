@@ -33,4 +33,6 @@ RCT_EXPORT_VIEW_PROPERTY(onMenuWillCreate, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(menuConfig   , NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(previewConfig, NSDictionary);
 
+RCT_EXPORT_VIEW_PROPERTY(shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle, BOOL);
+
 @end
