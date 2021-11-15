@@ -159,8 +159,8 @@ class RNIContextMenuView: UIView {
       
       previewWrapper.willChangeSuperview = true;
       previewWrapper.autoCleanupOnJSUnmount = true;
-      previewWrapper.removeFromSuperview();
       
+      previewWrapper.removeFromSuperview();
       previewWrapper.willChangeSuperview = false;
     };
   };
