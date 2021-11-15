@@ -14,8 +14,11 @@ class RNIContextMenuPreviewController: UIViewController {
   
   var previewConfig = PreviewConfig();
   
-  var reactView: UIView?;
-  var boundsDidChangeBlock: ((CGRect) -> Void)?;
+  weak var previewWrapper: RNIWrapperView?;
+  
+  var previewSize: CGSize? {
+    self.previewWrapper?.reactContent?.frame.size;
+  };
   
   override func viewDidLoad() {
     super.viewDidLoad();
@@ -28,8 +31,8 @@ class RNIContextMenuPreviewController: UIViewController {
       return view;
     }();
     
-    if let reactView = self.reactView {
-      self.view.addSubview(reactView);
+    if let previewView = self.previewWrapper?.reactContent {
+      self.view.addSubview(previewView);
     };
   };
   
@@ -38,11 +41,11 @@ class RNIContextMenuPreviewController: UIViewController {
 
     switch self.previewConfig.previewSize {
       case .STRETCH:
-        self.boundsDidChangeBlock?(self.view.bounds);
+        self.previewWrapper?.notifyForBoundsChange(self.view.bounds);
         self.preferredContentSize = CGSize(width: 0, height: 0);
         
       case .INHERIT:
-        guard let previewSize = self.getPreviewSize() else { return };
+        guard let previewSize = self.previewSize else { return };
         
         if self.previewConfig.isResizeAnimated {
           UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
@@ -53,11 +56,5 @@ class RNIContextMenuPreviewController: UIViewController {
           self.preferredContentSize = previewSize;
         };
     };
-  };
-  
-  /// get the menu preview size
-  private func getPreviewSize() -> CGSize? {
-    guard let frame = self.reactView?.subviews.first?.frame else { return nil };
-    return CGSize(width: frame.size.width, height: frame.size.height);
   };
 };

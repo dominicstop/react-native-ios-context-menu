@@ -25,8 +25,8 @@ class RNIContextMenuView: UIView {
   
   var contextMenuInteraction: UIContextMenuInteraction?;
   
-  weak var reactPreviewView : UIView?;
-  weak var previewController: RNIContextMenuPreviewController?;
+  var previewWrapper: RNIWrapperView?;
+  var previewController: RNIContextMenuPreviewController?;
   
   private var didTriggerCleanup = false;
   
@@ -154,9 +154,14 @@ class RNIContextMenuView: UIView {
   override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
     super.insertSubview(subview, at: atIndex);
     
-    if atIndex == 0 {
-      subview.removeFromSuperview();
-      self.reactPreviewView = subview;
+    if let previewWrapper = subview as? RNIWrapperView {
+      self.previewWrapper = previewWrapper;
+      
+      previewWrapper.willChangeSuperview = true;
+      previewWrapper.autoCleanupOnJSUnmount = true;
+      previewWrapper.removeFromSuperview();
+      
+      previewWrapper.willChangeSuperview = false;
     };
   };
   
@@ -200,13 +205,8 @@ fileprivate extension RNIContextMenuView {
     self.contextMenuInteraction?.dismissMenu();
     self.contextMenuInteraction = nil;
     
-    if let reactPreviewView = self.reactPreviewView {
-      // remove review from registry
-      RNIUtilities.recursivelyRemoveFromViewRegistry(
-        bridge   : self.bridge,
-        reactView: reactPreviewView
-      );
-    };
+    // remove preview from registry
+    self.previewWrapper?.cleanup();
     
     // remove this view from registry
     RNIUtilities.recursivelyRemoveFromViewRegistry(
@@ -217,15 +217,6 @@ fileprivate extension RNIContextMenuView {
     #if DEBUG
     NotificationCenter.default.removeObserver(self);
     #endif
-  };
-  
-  func notifyForBoundsChange(_ newBounds: CGRect){
-    guard
-      let bridge    = self.bridge,
-      let reactView = self.reactPreviewView
-    else { return };
-        
-    bridge.uiManager.setSize(newBounds.size, for: reactView);
   };
   
   /// create `UIMenu` based on `menuConfig` prop
@@ -256,19 +247,14 @@ fileprivate extension RNIContextMenuView {
     else { return nil };
     
     let vc = RNIContextMenuPreviewController();
-    vc.reactView = self.reactPreviewView;
+    vc.previewWrapper = self.previewWrapper;
     vc.previewConfig = previewConfig;
-    
-    // TODO: Refactor - Move to `RNIContextMenuPreviewController`
-    vc.boundsDidChangeBlock = { [weak self] (newBounds: CGRect) in
-      self?.notifyForBoundsChange(newBounds);
-    };
     
     self.previewController = vc;
     return vc;
   };
   
-  /// confgiure target preview based on `previewConfig`
+  /// configure target preview based on `previewConfig`
   func makeTargetedPreview() -> UITargetedPreview {
     // alias to variable
     let previewConfig = self._previewConfig;

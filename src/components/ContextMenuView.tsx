@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, UIManager, View, TouchableOpacity, findNodeHandle, ViewProps } from 'react-native';
 
 import { RNIContextMenuView, RNIContextMenuViewCommands, RNIContextMenuViewProps } from '../native_components/RNIContextMenuView';
+import { RNIWrapperView } from '../native_components/RNIWrapperView';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../types/MenuEvents';
 
@@ -10,7 +11,7 @@ import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
 
 
-export type RenderPreviewItem = () => React.ReactElement | null | undefined;
+export type RenderPreviewItem = () => React.ReactElement;
 
 export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
@@ -104,10 +105,9 @@ export class ContextMenuView extends
     };
   };
 
-  dismissMenu = () => {
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.nativeRef),
-      RNIContextMenuViewCommands?.dismissMenu
+  dismissMenu = async () => {
+    await RNIContextMenuViewModule.dismissMenu(
+      Helpers.getNativeNodeHandle(this.nativeRef),
     );
   };
 
@@ -214,7 +214,7 @@ export class ContextMenuView extends
         <RNIContextMenuView
           {...props.viewProps}
           style={[styles.menuView, props.viewProps.style]}
-          ref={r => {this.nativeRef = r!}}
+          ref={r => { this.nativeRef = r! }}
 
           menuConfig={props.menuConfig}
           previewConfig={props.previewConfig}
@@ -232,11 +232,11 @@ export class ContextMenuView extends
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
-          <View style={styles.previewContainer}>
-            {(mountPreview || !props.lazyPreview) && (
-              props.renderPreview?.()
-            )}
-          </View>
+          {(mountPreview || !props.lazyPreview) && (
+            <RNIWrapperView style={styles.previewContainer}>
+              {props.renderPreview?.()}
+            </RNIWrapperView>
+          )}
           {React.Children.map(props.viewProps.children, child => 
             // @ts-ignore
             React.cloneElement(child, {menuVisible})
@@ -273,6 +273,7 @@ const styles = StyleSheet.create({
   },
   previewContainer: {
     position: 'absolute',
+    overflow: 'visible',
     backgroundColor: 'transparent',
   },
 });
