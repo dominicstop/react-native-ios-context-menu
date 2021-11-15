@@ -1,4 +1,4 @@
-import { ActionSheetIOS, ActionSheetIOSOptions } from 'react-native';
+import { ActionSheetIOS, ActionSheetIOSOptions, findNodeHandle } from 'react-native';
 
 
 /** wrapper func for setState that returns a promise */
@@ -58,4 +58,13 @@ export function asyncActionSheetConfirm(config: {
       resolve((buttonIndex === 1));
     });
   });
+};
+export function getNativeNodeHandle(nativeRef: React.Component){
+  const nodeHandle = findNodeHandle(nativeRef);
+
+  if(nodeHandle == null){
+    throw new Error('Unable to get the node handle for the native ref.');
+  };
+
+  return nodeHandle;
 };
