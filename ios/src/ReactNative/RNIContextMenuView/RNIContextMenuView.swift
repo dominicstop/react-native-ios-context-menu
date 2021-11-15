@@ -28,6 +28,8 @@ class RNIContextMenuView: UIView {
   weak var reactPreviewView : UIView?;
   weak var previewController: RNIContextMenuPreviewController?;
   
+  private var didTriggerCleanup = false;
+  
   // MARK: - RN Exported Event Props
   // -------------------------------
   
@@ -127,6 +129,15 @@ class RNIContextMenuView: UIView {
       
       RCTMenuIcon.ImageLoader.sharedInstance = imageLoader;
     };
+    
+    #if DEBUG
+    // `RCTInvalidating` doesn't trigger in view instance, so use observer
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.onRCTBridgeWillReloadNotification),
+      name: NSNotification.Name(rawValue: "RCTBridgeWillReloadNotification"),
+      object: nil
+    );
+    #endif
   };
   
   required init?(coder: NSCoder) {
@@ -148,6 +159,22 @@ class RNIContextMenuView: UIView {
       self.reactPreviewView = subview;
     };
   };
+  
+  #if DEBUG
+  @objc func onRCTBridgeWillReloadNotification(_ notification: Notification){
+    self.cleanup();
+  };
+  #endif
+  
+  // MARK: - View Lifecycle
+  // ----------------------
+  
+  public override func didMoveToWindow() {
+    if self.window == nil {
+      // this view has been "unmounted"...
+      self.cleanup();
+    };
+  };
 };
 
 // MARK: - ViewManager Functions
@@ -165,6 +192,32 @@ extension RNIContextMenuView {
 
 @available(iOS 13, *)
 fileprivate extension RNIContextMenuView {
+  
+  func cleanup(){
+    guard !self.didTriggerCleanup else { return };
+    self.didTriggerCleanup = true;
+    
+    self.contextMenuInteraction?.dismissMenu();
+    self.contextMenuInteraction = nil;
+    
+    if let reactPreviewView = self.reactPreviewView {
+      // remove review from registry
+      RNIUtilities.recursivelyRemoveFromViewRegistry(
+        bridge   : self.bridge,
+        reactView: reactPreviewView
+      );
+    };
+    
+    // remove this view from registry
+    RNIUtilities.recursivelyRemoveFromViewRegistry(
+      bridge   : self.bridge,
+      reactView: self
+    );
+    
+    #if DEBUG
+    NotificationCenter.default.removeObserver(self);
+    #endif
+  };
   
   func notifyForBoundsChange(_ newBounds: CGRect){
     guard
