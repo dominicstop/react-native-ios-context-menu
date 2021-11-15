@@ -1,14 +1,18 @@
 import React from 'react';
-import { StyleSheet, UIManager, View, TouchableOpacity, findNodeHandle, ViewProps } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, ViewProps } from 'react-native';
 
-import { RNIContextMenuView, RNIContextMenuViewCommands, RNIContextMenuViewProps } from '../native_components/RNIContextMenuView';
+import { RNIContextMenuView, RNIContextMenuViewProps } from '../native_components/RNIContextMenuView';
 import { RNIWrapperView } from '../native_components/RNIWrapperView';
+
+import { RNIContextMenuViewModule } from '../native_modules/RNIContextMenuViewModule';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../types/MenuEvents';
 
 // @ts-ignore - TODO
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
+
+import * as Helpers from '../functions/Helpers';
 
 
 export type RenderPreviewItem = () => React.ReactElement;
@@ -59,7 +63,7 @@ export class ContextMenuView extends
     };
   };
 
-  getProps = () => {
+  private getProps = () => {
     const {  
       useActionSheetFallback,
       menuConfig,

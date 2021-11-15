@@ -30,7 +30,7 @@ class RNIContextMenuViewManager: RCTViewManager {
             let contextMenuView = view as? RNIContextMenuView
       else { return };
       
-      contextMenuView.dissmissMenu();
+      contextMenuView.dismissMenu();
     };
   };
 };

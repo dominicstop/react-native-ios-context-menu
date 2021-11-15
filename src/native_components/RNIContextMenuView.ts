@@ -1,4 +1,4 @@
-import { requireNativeComponent, UIManager, ViewProps } from 'react-native';
+import { requireNativeComponent, ViewProps } from 'react-native';
 
 import type { MenuConfig } from '../types/MenuConfig';
 import type { MenuPreviewConfig } from '../types/MenuPreviewConfig';
@@ -35,16 +35,7 @@ export type RNIContextMenuViewProps = ViewProps & {
   onPressMenuPreview?: OnPressMenuPreviewEvent;
 };
 
-export type RNIContextMenuViewCommandIDMap = {
-  dismissMenu: number;
-};
-
 const viewName = "RNIContextMenuView";
 
 export const RNIContextMenuView = 
   requireNativeComponent<RNIContextMenuViewProps>(viewName);
-
-export const RNIContextMenuViewCommands = 
-  ((UIManager as any)[viewName]).Commands as RNIContextMenuViewCommandIDMap;
-  
-

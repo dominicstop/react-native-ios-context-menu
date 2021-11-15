@@ -182,12 +182,12 @@ class RNIContextMenuView: UIView {
   };
 };
 
-// MARK: - ViewManager Functions
-// -----------------------------
+// MARK: - View Module Commands
+// ----------------------------
 
 @available(iOS 13, *)
 extension RNIContextMenuView {
-  @objc func dissmissMenu(){
+  func dismissMenu(){
     self.contextMenuInteraction?.dismissMenu();
   };
 };
