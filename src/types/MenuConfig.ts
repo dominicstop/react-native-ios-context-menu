@@ -15,6 +15,15 @@ export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
 export type MenuActionConfig = {
   actionKey: string;
   actionTitle: string;
+
+  /** 
+   * Requires iOS 15 or later.
+   * Text that appears below the menu action title.
+   * 
+   * Previously, on iOS 13 and 14, the menu action's subtitle was set via 
+   * `MenuActionConfig.discoverabilityTitle`.
+   * */
+  actionSubtitle?: string;
   
   menuState?: MenuState;
   menuAttributes?: MenuAttributes;

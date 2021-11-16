@@ -18,6 +18,8 @@ class RNIMenuActionItem: RNIMenuElement {
   var actionKey  : String;
   var actionTitle: String;
   
+  var actionSubtitle: String?;
+  
   var icon: RNIImageItem?;
   var discoverabilityTitle: String?;
   
@@ -39,6 +41,10 @@ class RNIMenuActionItem: RNIMenuElement {
     
     self.actionKey   = actionKey;
     self.actionTitle = actionTitle;
+    
+    if let subtitle = dictionary["actionSubtitle"] as? String {
+      self.actionSubtitle = subtitle;
+    };
     
     self.icon = {
       if let dict = dictionary["icon"] as? NSDictionary {
@@ -108,6 +114,11 @@ extension RNIMenuActionItem {
     UIAction.Identifier(self.actionKey);
   };
   
+  var fallbackActionSubtitle: String? {
+    self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle
+      ? self.discoverabilityTitle : nil;
+  };
+  
   /// Creates a dictionary containing all the raw values that was used to create this `RNIMenuActionItem`
   /// instance. The dictionary created will be suitable for sending it back to js/react (e.g. usually through an
   /// event or promise callback).
@@ -165,10 +176,8 @@ extension RNIMenuActionItem {
       }
     );
     
-    if #available(iOS 15.0, *),
-       self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle {
-      
-      action.subtitle = self.discoverabilityTitle;
+    if #available(iOS 15.0, *) {
+      action.subtitle = self.actionSubtitle ?? self.fallbackActionSubtitle;
     };
     
     return action;
