@@ -10,7 +10,7 @@ import Foundation
 
 
 @available(iOS 13.0, *)
-class RCTMenuIcon {
+class RNIMenuIcon {
   
   // MARK: - Nested Types
   // --------------------
@@ -98,7 +98,7 @@ class RCTMenuIcon {
 // ---------------------------
 
 @available(iOS 13.0, *)
-extension RCTMenuIcon {
+extension RNIMenuIcon {
   
   /// get `UIImage` based on the `IconType` config
   var image: UIImage? {

@@ -16,7 +16,7 @@ class RNIMenuItem: RNIMenuElement {
   // -----------------------------
   
   var menuTitle: String;
-  var icon     : RCTMenuIcon;
+  var icon     : RNIMenuIcon;
   
   var menuOptions: [String]?;
   var menuItems  : [RNIMenuElement]?;
@@ -37,24 +37,24 @@ class RNIMenuItem: RNIMenuElement {
     self.menuOptions = dictionary["menuOptions"] as? [String];
     
     if let dict = dictionary["icon"] as? NSDictionary {
-      self.icon = RCTMenuIcon(dictionary: dict);
+      self.icon = RNIMenuIcon(dictionary: dict);
       
     // temp support for icon config shorthand/shortcut
     } else if let stringType = dictionary["iconType" ] as? String,
               let iconValue  = dictionary["iconValue"] as? String,
-              let iconType   = RCTMenuIcon.IconType(rawValue: stringType) {
+              let iconType   = RNIMenuIcon.IconType(rawValue: stringType) {
       
-      self.icon = RCTMenuIcon(type: iconType, value: iconValue);
+      self.icon = RNIMenuIcon(type: iconType, value: iconValue);
     
     // temp support for prev version, remove in the future
     } else if let stringType = dictionary["imageType" ] as? String,
               let iconValue  = dictionary["imageValue"] as? String,
-              let iconType   = RCTMenuIcon.IconType(rawValue: stringType) {
+              let iconType   = RNIMenuIcon.IconType(rawValue: stringType) {
       
-      self.icon = RCTMenuIcon(type: iconType, value: iconValue);
+      self.icon = RNIMenuIcon(type: iconType, value: iconValue);
       
     } else {
-      self.icon = RCTMenuIcon();
+      self.icon = RNIMenuIcon();
     };
     
     if let menuElements = dictionary["menuItems"] as? NSArray {
@@ -138,5 +138,4 @@ extension RNIMenuItem {
     );
   };
 };
-
 

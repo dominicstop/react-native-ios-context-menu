@@ -101,11 +101,11 @@ class RNIContextMenuButton: UIButton {
     }, for: .menuActionTriggered);
     
     /// init shared `RCTImageLoader` instance if nil
-    if RCTMenuIcon.ImageLoader.sharedInstance == nil,
+    if RNIMenuIcon.ImageLoader.sharedInstance == nil,
        let module      = bridge.module(for: RCTImageLoader.self),
        let imageLoader = module as? RCTImageLoader {
       
-      RCTMenuIcon.ImageLoader.sharedInstance = imageLoader;
+      RNIMenuIcon.ImageLoader.sharedInstance = imageLoader;
     };
   };
   
