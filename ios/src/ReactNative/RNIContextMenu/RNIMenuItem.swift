@@ -16,7 +16,7 @@ class RNIMenuItem: RNIMenuElement {
   // -----------------------------
   
   var menuTitle: String;
-  var icon     : RNIMenuIcon;
+  var icon     : RNIImageItem?;
   
   var menuOptions: [String]?;
   var menuItems  : [RNIMenuElement]?;
@@ -36,26 +36,34 @@ class RNIMenuItem: RNIMenuElement {
     self.menuTitle   = menuTitle;
     self.menuOptions = dictionary["menuOptions"] as? [String];
     
-    if let dict = dictionary["icon"] as? NSDictionary {
-      self.icon = RNIMenuIcon(dictionary: dict);
+    self.icon = {
+      if let dict = dictionary["icon"] as? NSDictionary {
+        /// A. `ImageItemConfig` or legacy `IconConfig`
+        return RNIImageItem(dict: dict) ??
+          RNIMenuIcon.convertLegacyIconConfigToImageItemConfig(dict: dict);
+        
+      } else if let type  = dictionary["iconType" ] as? String,
+                let value = dictionary["iconValue"] as? String {
+        
+        /// B. legacy `IconConfig`:  icon config shorthand/shortcut  (remove in the future)
+        return RNIMenuIcon.convertLegacyIconConfigToImageItemConfig(dict: [
+          "iconType" : type,
+          "iconValue": value
+        ]);
       
-    // temp support for icon config shorthand/shortcut
-    } else if let stringType = dictionary["iconType" ] as? String,
-              let iconValue  = dictionary["iconValue"] as? String,
-              let iconType   = RNIMenuIcon.IconType(rawValue: stringType) {
-      
-      self.icon = RNIMenuIcon(type: iconType, value: iconValue);
-    
-    // temp support for prev version, remove in the future
-    } else if let stringType = dictionary["imageType" ] as? String,
-              let iconValue  = dictionary["imageValue"] as? String,
-              let iconType   = RNIMenuIcon.IconType(rawValue: stringType) {
-      
-      self.icon = RNIMenuIcon(type: iconType, value: iconValue);
-      
-    } else {
-      self.icon = RNIMenuIcon();
-    };
+      } else if let type  = dictionary["imageType" ] as? String,
+                let value = dictionary["imageValue"] as? String {
+        /// C. legacy `IconConfig`:  old icon config  (remove in the future)
+        return RNIMenuIcon.convertLegacyIconConfigToImageItemConfig(dict: [
+          "iconType" : type,
+          "iconValue": value
+        ]);
+        
+      } else {
+        return nil;
+      };
+    }();
+
     
     if let menuElements = dictionary["menuItems"] as? NSArray {
       self.menuItems = menuElements.compactMap {
@@ -131,7 +139,7 @@ extension RNIMenuItem {
     
     return UIMenu(
       title: self.menuTitle,
-      image: self.icon.image,
+      image: self.icon?.image,
       identifier: nil,
       options: self.UIMenuOptions,
       children: menuItems ?? []

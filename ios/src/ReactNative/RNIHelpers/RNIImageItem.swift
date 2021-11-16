@@ -430,6 +430,18 @@ internal class RNIImageItem {
     };
   };
   
+  var dictionary: [String: Any] {
+    var dict: [String: Any] = [
+      "type": self.type
+    ];
+    
+    if let imageValue = self.imageValue {
+      dict["imageValue"] = imageValue;
+    };
+    
+    return dict;
+  };
+  
   // MARK: - Init
   // -----------
   
