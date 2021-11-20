@@ -2,8 +2,11 @@ import type { ImageResolvedAssetSource } from "react-native";
 import type { DynamicColor } from './MiscTypes';
 
 
-// TODO: Rename to `MenuIconConfig`
-// TODO: Replace with `ImageItemConfig` impl. from `react-native-ios-navigator`
+// TODO: Next Major Version - Rename to `MenuIconConfigDeprecated`
+/** 
+ * **Deprecated** - Use `ImageItemConfig` type instead.
+ * Used to configure the icons on a menu.
+ * */
 export type IconConfig = {
   iconType: 'NONE';
 

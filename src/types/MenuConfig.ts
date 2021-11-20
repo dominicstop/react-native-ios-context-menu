@@ -1,15 +1,16 @@
+import type { ImageItemConfig } from "./ImageItemConfig";
 import type { IconConfig } from "./MenuIconConfig";
 
 /** Maps to `UIMenu.Options` */
-// TODO: Once `Enums.ts` is removed, rename back to `MenuOptions` 
+// TODO: Next Major Version - Once `Enums.ts` is removed, rename back to `MenuOptions` 
 export type UIMenuOptions = 'destructive' | 'displayInline';
 
 /** Maps to `UIMenuElement.State` */
-// TODO: Rename to `UIMenuElementState`
+// TODO: Next Major Version - Rename to `MenuElementState`
 export type MenuState = 'on' | 'off' | 'mixed';
 
 /** Maps to `MenuElement.Attributes` */
-// TODO: Rename to `MenuElementAttributes`
+// TODO: Next Major Version - Rename to `MenuElementAttributes`
 export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
 
 export type MenuActionConfig = {
