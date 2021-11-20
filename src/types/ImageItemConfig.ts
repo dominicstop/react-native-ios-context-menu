@@ -92,6 +92,13 @@ export type ImageGradientConfig = Partial<Pick<ImageRectConfig,
   type?: 'axial' | 'conic' | 'radial'
 };
 
+/**
+ * A configuration object for images.
+ * 
+ * This configuration object is used to either programmatically create images,
+ * (e.g. gradients, rects, SFSymbols icons, etc)., or refer to existing image assets
+ * in the project (e.g. js image assets, XCAssets).
+ */
 export type ImageItemConfig = {
   type: 'IMAGE_ASSET';
   /** The corresponding key of asset item in the asset catalog */

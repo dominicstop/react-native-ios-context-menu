@@ -29,15 +29,26 @@ export type MenuActionConfig = {
   menuAttributes?: MenuAttributes;
 
   discoverabilityTitle?: string;
-  icon?: IconConfig;
-  
-  // subtitle - TODO: TBA
+
+  /**
+   * `IconConfig` is deprecated, use `ImageItemConfig` instead.
+   * Used to configure what icon or image to show in the menu action.
+   */
+  icon?: IconConfig | ImageItemConfig;
 };
 
 export type MenuConfig = {
   menuTitle: string;
-  
+
   menuOptions?: Array<UIMenuOptions>;
   menuItems?: Array<MenuConfig | MenuActionConfig>;
-  icon?: IconConfig;
+
+  /**
+   * `IconConfig` is deprecated, use `ImageItemConfig` instead.
+   * Used to configure what icon or image to show in the submenu.
+   * 
+   * Note: The icon is only shown if the menu is a submenu. If the menu
+   * is the root menu, the icon will not be visible.
+   */
+  icon?: IconConfig | ImageItemConfig;
 };
