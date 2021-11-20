@@ -9,7 +9,15 @@
 
 <br>
 
-- [ ] **Refactor**: Update logic for handling `URI` images. 
+- [ ] **Refactor**: Update logic for handling images.
+	* Copy over `RNIImageItem` impl. from `react-native-ios-navigator`.
+	* Rename `IconConfig` type to  `IconConfigDeprecated`.
+	* Make the `icon` property accept both `IconConfigDeprecated` and `ImageItemConfig`.
+	* Then in native, map `IconConfigDeprecated` to `ImageItemConfig`.
+	* Then use `RNIImageItem` to create the icon images for the context menu.
+
+<br>
+
 - [ ] **Refactor**: Refactor to use typescript + add type annotations.
 - [ ] **Refactor**: Refactor example to use typescript.
 
@@ -31,8 +39,7 @@
 
 <br>
 
-- [ ] **Bugfix**: Fix memory leak
-- [ ] Dismiss menu on fast refresh.
+- [ ] 
 - [ ] **Implement**: Add support for targeted previews on text (i.e. similar to safari). 
 - [ ] **Implement**: Control `ContextMenuView` via context and create `useContextMenuViewContext` hook.
 - [ ] **Implement**: Subscribe to `ContextMenuView` events via event emitter from context.
@@ -41,9 +48,6 @@
 <br>
 
 - [ ] Read apple documentation to find any new changes added.
-- [ ] Example #13 — Setting `discoverabilityTitle` no longer does anything.
-	* In iOS 13, this used to show a subtitle blurb below the menu item title. In iOS 15, it no longer displays the subtitle.
-	* In iOS 15, there's a new property added called `UIMenuElement.subtitle`?.
 
 ---
 
@@ -60,6 +64,28 @@
 ## Completed
 
 ### Version: `next`
+
+- [x] **Bugfix**: Fix memory leak
+	* (Commit: `6ddabae`) Partially fix memory leak by performing cleanup during reload + when the view is unmounted. 
+	* (Commit: `19533b2`) Use `RNIWrapperView` for the menu preview.
+	* (Commit: `c45c576`) Fix menu preview memory leak,
+
+<br>
+
+- [x] (Commit: `4c75563`) **Bugfix**: Fix menu action subtitles no longer working on iOS 15.
+
+	* Example #13 — Setting `discoverabilityTitle` no longer does anything.
+
+	- In iOS 13, this used to show a subtitle blurb below the menu item title. In iOS 15, it no longer displays the subtitle.
+	- In iOS 15, there's a new property added called `UIMenuElement.subtitle`.
+
+<br>
+
+- [x] **Refactor**: Update to use `RNIImageItem` for the menu icons.
+	* (Commit: `836f0a3`) Copy over `RNIImageItem` impl. from `react-native-ios-navigator`.
+	* (Commit: `97fa40c`) Refactor to use `RNIImageItem` for menu item icon.
+	* (Commit: `e02d96e`) Copy over `ImageItemConfig` types from `react-native-ios-navigator`.
+	* (Commit: `e176438`) Update types for menu config to accept `ImageItemConfig`.
 
 <br>
 
@@ -89,6 +115,12 @@
 * **Implement**: Types — Add type declaration for `ContextMenuView`
 	- [x] (Commit: `8c72054`) **Implement**: Types — Migrate `ContextMenuView` component to use typescript and partially added type declarations.
 	- [x] (Commit: `348d2f9`) **Implement**: Types — Add type declaration for `ContextMenuView`  events.
+
+<br>
+
+- [ ] (Commit: `e0bc64f`) **Implement**: Types —  Add type declaration for `ContextMenuButton` 
+- [ ] (Commit: `25bf0b2`) **Implement**: Types — Partially add type declaration for `ActionSheetFallback` 
+- [ ] (Commit: `47a97bc`) **Implement**: Types — Add type declaration for `Helpers`
 
 ---
 
