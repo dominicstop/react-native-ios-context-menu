@@ -65,6 +65,10 @@
 
 ### Version: `next`
 
+<br>
+
+### Version: `1.5.0`
+
 - [x] **Bugfix**: Fix memory leak
 	* (Commit: `6ddabae`) Partially fix memory leak by performing cleanup during reload + when the view is unmounted. 
 	* (Commit: `19533b2`) Use `RNIWrapperView` for the menu preview.
