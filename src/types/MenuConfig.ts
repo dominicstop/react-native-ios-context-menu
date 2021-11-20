@@ -14,6 +14,9 @@ export type MenuState = 'on' | 'off' | 'mixed';
 export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
 
 export type MenuActionConfig = {
+  // TODO: Next Major Version - Make this required
+  type?: 'action';
+
   actionKey: string;
   actionTitle: string;
 
@@ -39,6 +42,9 @@ export type MenuActionConfig = {
 };
 
 export type MenuConfig = {
+  // TODO: Next Major Version - Make this required
+  type?: 'menu';
+
   menuTitle: string;
 
   menuOptions?: Array<UIMenuOptions>;
