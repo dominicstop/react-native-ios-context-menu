@@ -130,4 +130,4 @@ export type ImageItemConfig = {
   
 };
 
-export type ImageItemConfigTypes = ImageItemConfig['type'];
+export type ImageItemConfigType = ImageItemConfig['type'];
