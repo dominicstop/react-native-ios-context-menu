@@ -6,6 +6,8 @@ import { RNIWrapperView } from '../native_components/RNIWrapperView';
 
 import { RNIContextMenuViewModule } from '../native_modules/RNIContextMenuViewModule';
 
+import { ContextMenuViewContext } from '../context/ContextMenuViewContext';
+
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../types/MenuEvents';
 
 // @ts-ignore - TODO
@@ -121,8 +123,12 @@ export class ContextMenuView extends
     );
   };
 
-  //#region - Event Handlers
-  _handleOnLongPress = async () => {
+  //#region - Handlers
+  private _handleGetRefToContextMenuView = () => {
+    return this;
+  };
+
+  private _handleOnLongPress = async () => {
     const props = this.props;
 
     const selectedItem = 
@@ -145,19 +151,19 @@ export class ContextMenuView extends
     };
   };
 
-  _handleOnMenuWillCreate: OnMenuWillCreateEvent = (event) => {
+  private _handleOnMenuWillCreate: OnMenuWillCreateEvent = (event) => {
     event.stopPropagation();
     this.setState({mountPreview: true});
   };
 
-  _handleOnMenuWillShow: OnMenuWillShowEvent = (event) => {
+  private _handleOnMenuWillShow: OnMenuWillShowEvent = (event) => {
     this.props.onMenuWillShow?.(event);
     event.stopPropagation();
 
     this.setState({menuVisible: true});
   };
 
-  _handleOnMenuWillHide: OnMenuWillHideEvent = (event) => {
+  private _handleOnMenuWillHide: OnMenuWillHideEvent = (event) => {
     this.props.onMenuWillHide?.(event);
     event.stopPropagation();
 
@@ -167,22 +173,22 @@ export class ContextMenuView extends
     });
   };
 
-  _handleOnMenuWillCancel: OnMenuWillCancelEvent = (event) => {
+  private _handleOnMenuWillCancel: OnMenuWillCancelEvent = (event) => {
     this.props.onMenuWillCancel?.(event);
     event.stopPropagation();
   };
 
-  _handleOnMenuDidShow: OnMenuDidShowEvent = (event) => {
+  private _handleOnMenuDidShow: OnMenuDidShowEvent = (event) => {
     this.props.onMenuDidShow?.(event);
     event.stopPropagation();
   };
 
-  _handleOnMenuDidHide: OnMenuDidHideEvent = (event) => {
+  private _handleOnMenuDidHide: OnMenuDidHideEvent = (event) => {
     this.props.onMenuDidHide?.(event);
     event.stopPropagation();
   };
 
-  _handleOnMenuDidCancel: OnMenuDidCancelEvent = (event) => {
+  private _handleOnMenuDidCancel: OnMenuDidCancelEvent = (event) => {
     this.props.onMenuDidCancel?.(event);
 
     // guard: event is a native event
@@ -190,7 +196,7 @@ export class ContextMenuView extends
     event.stopPropagation();
   };
 
-  _handleOnPressMenuItem: OnPressMenuItemEvent = (event) => {
+  private _handleOnPressMenuItem: OnPressMenuItemEvent = (event) => {
     this.props.onPressMenuItem?.(event);
 
     // guard: event is a native event
@@ -198,7 +204,7 @@ export class ContextMenuView extends
     event.stopPropagation();
   };
 
-  _handleOnPressMenuPreview: OnPressMenuPreviewEvent = (event) => {
+  private _handleOnPressMenuPreview: OnPressMenuPreviewEvent = (event) => {
     this.props.onPressMenuPreview?.(event);
     event.stopPropagation();
   };
@@ -246,20 +252,25 @@ export class ContextMenuView extends
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
-          {shouldMountPreview && (
-            <RNIWrapperView 
-              style={styles.previewContainer}
-              shouldNotifyComponentWillUnmount={false}
-            >
-              {props.renderPreview?.()}
-            </RNIWrapperView>
-          )}
-          {React.Children.map(props.viewProps.children, child => 
-            // @ts-ignore
-            React.cloneElement(child, {
-              menuVisible: state.menuVisible
-            })
-          )}
+          <ContextMenuViewContext.Provider value={{
+            getRefToContextMenuView: this._handleGetRefToContextMenuView,
+            isMenuVisible: state.menuVisible,
+          }}>
+            {shouldMountPreview && (
+              <RNIWrapperView 
+                style={styles.previewContainer}
+                shouldNotifyComponentWillUnmount={false}
+              >
+                {props.renderPreview?.()}
+              </RNIWrapperView>
+            )}
+            {React.Children.map(props.viewProps.children, child => 
+              // @ts-ignore
+              React.cloneElement(child, {
+                menuVisible: state.menuVisible
+              })
+            )}
+          </ContextMenuViewContext.Provider>
         </RNIContextMenuView>
       );
 
