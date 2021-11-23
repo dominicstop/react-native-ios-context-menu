@@ -3,6 +3,8 @@ export * from './components/ContextMenuButton';
 
 export * from './context/ContextMenuViewContext';
 
+export * from './hooks/useMenuContext';
+
 export * from './constants/Enums';
 export * from './constants/LibEnv';
 
