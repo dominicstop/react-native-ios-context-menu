@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-import * as Colors  from '../../../constants/Colors';
+import * as Colors  from '../../constants/Colors';
 
 /**
  * ```

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, GestureResponderEvent } from 'react-native';
 
-import * as Colors  from '../../../constants/Colors';
+import * as Colors from '../../constants/Colors';
 
 
 /**
