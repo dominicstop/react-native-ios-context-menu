@@ -24,6 +24,7 @@ import { ContextMenuViewExample18 } from './examples/ContextMenuViewExample18';
 
 import { ContextMenuViewTest01 } from './examples/ContextMenuViewTest01';
 import { ContextMenuViewTest02 } from './examples/ContextMenuViewTest02';
+import { ContextMenuViewTest03 } from './examples/ContextMenuViewTest03';
 
 
 type ExampleListItem = {
@@ -52,6 +53,7 @@ const EXAMPLE_COMPONENTS = [
   ContextMenuViewExample18,
   ContextMenuViewTest01,
   ContextMenuViewTest02,
+  ContextMenuViewTest03,
 ];
 
 const EXAMPLE_ITEMS: ExampleListItem[] = EXAMPLE_COMPONENTS.map((item, index) => ({
