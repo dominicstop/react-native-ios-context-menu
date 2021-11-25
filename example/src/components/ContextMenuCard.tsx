@@ -14,7 +14,7 @@ export function ContextMenuCard(props: {
 }) {
   const menuContext = useMenuContext();
 
-  const headerTitleContainerStyle = {
+  const titleContainerStyle = {
     backgroundColor: (menuContext.isMenuVisible
       ? Colors.PURPLE.A700
       : Colors.BLUE  .A700
@@ -33,18 +33,20 @@ export function ContextMenuCard(props: {
 
   return (
     <View style={styles.rootContainer}>
-      <View style={[styles.headerTitleContainer, headerTitleContainerStyle]}>
+      <View style={[styles.headerContainer, titleContainerStyle]}>
         <Text style={styles.headerTitleIndexText}>
-          {`${props.index ?? 0}. `}
-        </Text>
-        <Text style={styles.headerTitleText}>
-          {props.title ?? 'N/A'}
-        </Text>
-        {props.subtitle && (
-          <Text style={styles.headerSubtitleText}>
-            {props.subtitle}
+            {`${props.index ?? 0}. `}
           </Text>
-        )}
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerTitleText}>
+            {props.title ?? 'N/A'}
+          </Text>
+          {props.subtitle && (
+            <Text style={styles.headerSubtitleText}>
+              {props.subtitle}
+            </Text>
+          )}
+        </View>
       </View>
       <View style={[styles.bodyContainer, bodyContainerStyle]}>
         {descriptionMain && (
@@ -70,23 +72,25 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
   },
-  headerTitleContainer: {
+  headerContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 15,
     paddingVertical: 8,
-    alignItems: 'center',
+  },
+  headerTitleContainer: {
+    marginLeft: 5,
   },
   headerTitleText: {
     flex: 1,
     fontSize: 16,
     fontWeight: '700',
     color: 'white',
-    marginLeft: 2,
   },
   headerTitleIndexText: {
     fontSize: 16,
     fontWeight: '800',
-    color: 'rgba(255,255,255,0.5)',
+    color: 'rgba(255,255,255,0.75)',
   },
   headerSubtitleText: {
     fontSize: 14,
