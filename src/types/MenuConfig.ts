@@ -30,7 +30,7 @@ export type MenuActionConfig = {
   actionSubtitle?: string;
   
   menuState?: MenuState;
-  menuAttributes?: MenuAttributes;
+  menuAttributes?: Array<MenuAttributes>;
 
   discoverabilityTitle?: string;
 
