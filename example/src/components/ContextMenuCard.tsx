@@ -11,6 +11,8 @@ export function ContextMenuCard(props: {
   title?: string;
   subtitle?: string;
   description?: string[];
+  children?: JSX.Element;
+
 }) {
   const menuContext = useMenuContext();
 
@@ -65,6 +67,7 @@ export function ContextMenuCard(props: {
             {description}
           </Text>
         ))}
+        {props.children}
       </View>
     </View>
   );
