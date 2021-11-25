@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
+import type { ContextMenuExampleProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewExample01(props: {
-  index: number
-}) {
+export function ContextMenuViewExample01(props: ContextMenuExampleProps) {
   return (
     <ContextMenuView
+      style={props.style}
       menuConfig={{
         menuTitle: 'ContextMenuViewExample01',
         menuItems: [{
@@ -34,7 +34,3 @@ export function ContextMenuViewExample01(props: {
     </ContextMenuView>
   );
 };
-
-const styles = StyleSheet.create({
-
-});

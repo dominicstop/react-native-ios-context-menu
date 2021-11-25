@@ -1,16 +1,42 @@
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, ListRenderItem } from 'react-native';
+
+import type { ContextMenuExampleProps } from './examples/SharedExampleTypes';
 
 import { ContextMenuViewExample01 } from './examples/ContextMenuViewExample01';
 
 
+type ExampleListItem = {
+  id: number;
+  component: React.FC<ContextMenuExampleProps>;
+};
+
+const EXAMPLE_COMPONENTS = [
+  ContextMenuViewExample01,
+];
+
+const EXAMPLE_ITEMS: ExampleListItem[] = EXAMPLE_COMPONENTS.map((item, index) => ({
+  id: index,
+  component: item
+}));
+
 export default function App() {
-  let index = 1;
+  const renderItem: ListRenderItem<ExampleListItem>  = ({ item })  => (
+    React.createElement(item.component, {
+      index: item.id,
+      style: styles.exampleListItem
+    })
+  );
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContentContainer}>
-      <ContextMenuViewExample01 index={index++}/>
-    </ScrollView>
+    <SafeAreaView>
+      <FlatList
+        contentContainerStyle={styles.scrollContentContainer}
+        data={EXAMPLE_ITEMS}
+        renderItem={renderItem}
+        keyExtractor={(item) => `item-${item.id}`}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -18,5 +44,8 @@ const styles = StyleSheet.create({
   scrollContentContainer: {
     paddingHorizontal: 10,
     paddingBottom: 100,
+  },
+  exampleListItem: {
+    marginBottom: 10,
   },
 });
