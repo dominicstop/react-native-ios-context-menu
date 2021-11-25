@@ -4,6 +4,7 @@ import { StyleSheet, SafeAreaView, FlatList, ListRenderItem } from 'react-native
 import type { ContextMenuExampleProps } from './examples/SharedExampleTypes';
 
 import { ContextMenuViewExample01 } from './examples/ContextMenuViewExample01';
+import { ContextMenuViewExample02 } from './examples/ContextMenuViewExample02';
 
 
 type ExampleListItem = {
@@ -13,10 +14,11 @@ type ExampleListItem = {
 
 const EXAMPLE_COMPONENTS = [
   ContextMenuViewExample01,
+  ContextMenuViewExample02,
 ];
 
 const EXAMPLE_ITEMS: ExampleListItem[] = EXAMPLE_COMPONENTS.map((item, index) => ({
-  id: index,
+  id: index + 1,
   component: item
 }));
 
