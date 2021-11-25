@@ -57,8 +57,11 @@ export function ContextMenuCard(props: {
             {descriptionMain}
           </Text>
         )}
-        {descriptionSub?.map((description) => (
-          <Text style={[styles.bodyDescriptionText, styles.bodyDescriptionSubText]}>
+        {descriptionSub?.map((description, index) => (
+          <Text 
+            key={`desc-${index}`}
+            style={[styles.bodyDescriptionText, styles.bodyDescriptionSubText]}
+          >
             {description}
           </Text>
         ))}
