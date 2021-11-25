@@ -96,6 +96,8 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
   _handleOnLongPress = async () => {
     const props = this.props;
 
+    if(props.menuConfig == null) return;
+
     const selectedItem = 
       await ActionSheetFallback.show(props.menuConfig);
   

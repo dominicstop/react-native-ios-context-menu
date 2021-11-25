@@ -11,7 +11,7 @@ export type RNIContextMenuViewProps = ViewProps & {
   // Value Props
   // -----------
 
-  menuConfig: MenuConfig; 
+  menuConfig?: MenuConfig; 
   previewConfig?: MenuPreviewConfig;
 
   /** 
