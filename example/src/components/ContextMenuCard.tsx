@@ -11,7 +11,7 @@ export function ContextMenuCard(props: {
   title?: string;
   subtitle?: string;
   description?: string[];
-  children?: JSX.Element;
+  children?: JSX.Element[];
 
 }) {
   const menuContext = useMenuContext();
