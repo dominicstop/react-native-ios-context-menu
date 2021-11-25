@@ -13,4 +13,5 @@ export * from './functions/ActionSheetFallback';
 export * from './types/MenuConfig';
 export * from './types/MenuPreviewConfig';
 export * from './types/MenuIconConfig';
+export * from './types/MenuEvents';
 export * from './types/MiscTypes';
