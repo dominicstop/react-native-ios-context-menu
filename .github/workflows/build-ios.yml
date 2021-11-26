@@ -12,15 +12,28 @@ jobs:
       runs-on: macos-latest
       steps: 
         - uses: actions/checkout@v2
+        
+        - name: Read .nvmrc
+          run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+          id: nvm
+          
+        - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+          uses: actions/setup-node@v2
+          with:
+            node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          
         - name: Install library npm dependencies
           run: |
             pwd && npm install
+            
         - name: Install example npm dependencies
           run: |
             pwd && cd example && pwd && npm install
+            
         - name: Install example pod dependencies
           run: |
             pwd && cd example/ios && pwd && pod install
+            
         - name: Build app
           run: |       
             pwd && cd example && pwd && npm run ios
