@@ -1,6 +1,6 @@
 {
   "name": "react-native-ios-context-menu",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A react-native component to use context menu's (UIMenu) on iOS 13/14+",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -35,11 +35,11 @@
     "run-debug": "cd example && npx react-native run-ios --simulator \"iPhone 8\" --configuration Debug"
   },
   "keywords": [
-  "react-native",
+    "react-native",
     "ios",
     "android"
   ],
-"repository": "https://github.com/indominicstop/react-native-ios-context-menu",
+  "repository": "https://github.com/indominicstop/react-native-ios-context-menu",
   "author": "Dominic Go <18517029+dominicstop@users.noreply.github.com> (https://github.com/dominicstop)",
   "license": "MIT",
   "bugs": {
