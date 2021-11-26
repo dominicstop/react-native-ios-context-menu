@@ -43,6 +43,17 @@
 
 ### Version: `next`
 
+- [x] (Commit: `ca30678`) **Clenaup**: Remove `RNIMenuIcon.ImageLoader` 
+	* Fix build error due to `RCTImageCache`.
+
+<br>
+
+- [x] Fix example not building when using "Release" configuration. 
+	* (Commit: `ca30678`) **Cleanup**: Remove `RNIMenuIcon.ImageLoader`.
+	* (Commit: `78a7e51`) **Refactor**: Example - Rename `index.js` to `index.ts`
+	* (Commit: `8258328`) **Implement**: Create `.nvmrc` — Use specific node version.
+	* (Commit: `9f6f895`) **Implement**: Update `build-ios.yml` to use `.nvmrc` for node version.
+
 <br>
 
 ### Version: `1.6.0`
