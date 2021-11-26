@@ -9,6 +9,8 @@ import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMe
 import { ActionSheetFallback } from '../functions/ActionSheetFallback';
 import { ContextMenuView } from './ContextMenuView';
 
+import { ContextMenuButtonContext } from '../context/ContextMenuButtonContext';
+
 import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
 
 
@@ -87,7 +89,11 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     };
   };
 
-  //#region - Event Handlers
+  //#region - Handlers
+  _handleGetRefToContextMenuButton = () => {
+    return this;
+  };
+
   _handleOnLongPress = async () => {
     const props = this.props;
 
@@ -161,11 +167,17 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 
   render(){
     const props = this.getProps();
+    const state = this.state;
 
-    const shouldUseNativeComponent = (
+    const shouldUseContextMenuButton = (
       !props.useActionSheetFallback &&
-      LIB_ENV.isContextMenuViewSupported ||
-      LIB_ENV.isContextMenuButtonSupported 
+      LIB_ENV.isContextMenuButtonSupported
+    );
+
+    const shouldUseContextMenuView = (
+      !props.useActionSheetFallback &&
+      !LIB_ENV.isContextMenuButtonSupported &&
+      LIB_ENV.isContextMenuViewSupported
     );
 
     const shouldUseActionSheetFallback = (
@@ -186,9 +198,10 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       onMenuWillCancel: this._handleOnMenuWillCancel,
       onPressMenuItem : this._handleOnPressMenuItem ,
     };
-
-    if(shouldUseNativeComponent){
-      return (LIB_ENV.isContextMenuButtonSupported? (
+    
+    const contents = (
+      shouldUseContextMenuButton? (
+        // A - Use 'RNIContextMenuButton'
         <RNIContextMenuButton
           {...props.viewProps}
           {...nativeComponentProps}
@@ -197,17 +210,16 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
         >
           {props.viewProps.children}
         </RNIContextMenuButton>
-      ):(
+      ): shouldUseContextMenuView? (
+        // B - Use 'ContextMenuView' Fallback
         <ContextMenuView
           {...props.viewProps}
           {...nativeComponentProps}
         >
           {props.viewProps.children}
         </ContextMenuView>
-      ));
-
-    } else if(shouldUseActionSheetFallback){
-      return (
+      ): shouldUseActionSheetFallback? (
+        // C - Use 'ActionSheet' Fallback
         <TouchableOpacity 
           onLongPress={this._handleOnLongPress}
           activeOpacity={0.8}
@@ -215,15 +227,22 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
         >
           {this.props.children}
         </TouchableOpacity>
-      );
-      
-    } else {
-      return (
+      ): (
+        // D - Use Regular View
         <View {...props.viewProps}>
           {this.props.children}
         </View>
-      );
-    };
+      )
+    );
+
+    return (
+      <ContextMenuButtonContext.Provider value={{
+        getRefToContextMenuButton: this._handleGetRefToContextMenuButton,
+        isMenuVisible: state.menuVisible,
+      }}>
+        {contents}
+      </ContextMenuButtonContext.Provider>
+    );
   };
 };
 
