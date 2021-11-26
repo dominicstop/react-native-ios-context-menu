@@ -9,20 +9,6 @@
 
 <br>
 
-- [ ] **Refactor**: Update logic for handling images.
-	* Copy over `RNIImageItem` impl. from `react-native-ios-navigator`.
-	* Rename `IconConfig` type to  `IconConfigDeprecated`.
-	* Make the `icon` property accept both `IconConfigDeprecated` and `ImageItemConfig`.
-	* Then in native, map `IconConfigDeprecated` to `ImageItemConfig`.
-	* Then use `RNIImageItem` to create the icon images for the context menu.
-
-<br>
-
-- [ ] **Refactor**: Refactor to use typescript + add type annotations.
-- [ ] **Refactor**: Refactor example to use typescript.
-
-<br>
-
 - [ ] **Docs**: Update documentation sections
 
 	* Remove numbered subsections.
@@ -34,16 +20,8 @@
 
 <br>
 
-- [ ] **Sync**: Import the core libraries in `react-native-ios-context-menu`.
-	* Import `RNIImageItem` and update `RCTMenuIcon` to use it.
-
-<br>
-
-- [ ] 
 - [ ] **Implement**: Add support for targeted previews on text (i.e. similar to safari). 
-- [ ] **Implement**: Control `ContextMenuView` via context and create `useContextMenuViewContext` hook.
 - [ ] **Implement**: Subscribe to `ContextMenuView` events via event emitter from context.
-- [ ] **Implement**: Implement `ContextMenuView` event hook (i.e. `useContextMenuViewEvents` hook).
 
 <br>
 
@@ -64,6 +42,20 @@
 ## Completed
 
 ### Version: `next`
+
+- [x] (Commit: `2c55fdb`) **Implement**: Implement `ContextMenuViewContext`
+- [x] (Commit: `05f6c73`) **Implement**: Implement `useMenuContext` hook.
+- [x] **Refactor**: Update example to use typescript.
+	* Commits: `7ec95a5`, `51a50f6`, `2e3c05a`, `104d36d`, `b84a0db`, `73ff6f1`, `be6d40e`, `3bc8e2a`, `491874d`, `9596954`, `080d44f`, `497f032`, `de1f93c`, `e745dda`, `7b0c4f1`, `e714a1f`, `6483c79`, `447dd2b`, `ecd96fc`, `78a9c10`, `96877c2`, `bb3fff9`, `aea43db`, `0c5436a`, `ee446c3`, `bdee609`, `e3846d7`, `827f0bb`.
+
+<br>
+
+- [x] (Commit: `7045e61`) **Bugfix**: Fix types — Make `menuConfig` prop optional.
+- [x] (Commit: `2310b7e`) **Bugfix**: Fix types — Fix wrong type for `MenuConfig.menuAttributes`.
+- [x] (Commit: `52c0459`) **Bugfix**: Fix library exports — Export types from `MenuEvents`.
+- [x] (Commit: `9f4e332`) **Refactor**: Remove `ContextMenuButton.wrapNativeComponent` Prop.
+- [x] (Commit: `9caf7d7`) **Implement**: Implement `ContextMenuButtonContext`.
+- [x] (Commit: `4d063f9`) **Implement**: Implement `useMenuButtonContext` hook.
 
 <br>
 
@@ -86,6 +78,13 @@
 <br>
 
 - [x] **Refactor**: Update to use `RNIImageItem` for the menu icons.
+	* Update logic for handling images.
+		* Copy over `RNIImageItem` impl. from `react-native-ios-navigator`.
+		* Rename `IconConfig` type to  `IconConfigDeprecated`.
+		* Make the `icon` property accept both `IconConfigDeprecated` and `ImageItemConfig`.
+		* Then in native, map `IconConfigDeprecated` to `ImageItemConfig`.
+		* Then use `RNIImageItem` to create the icon images for the context menu.
+		* Import `RNIImageItem` and update `RCTMenuIcon` to use it.
 	* (Commit: `836f0a3`) Copy over `RNIImageItem` impl. from `react-native-ios-navigator`.
 	* (Commit: `97fa40c`) Refactor to use `RNIImageItem` for menu item icon.
 	* (Commit: `e02d96e`) Copy over `ImageItemConfig` types from `react-native-ios-navigator`.
