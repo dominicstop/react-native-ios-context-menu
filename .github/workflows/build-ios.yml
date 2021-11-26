@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-ios-example:
-      runs-on: macos-latest
+      runs-on: macos-11
       steps: 
         - uses: actions/checkout@v2
         
