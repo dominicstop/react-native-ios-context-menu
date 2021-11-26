@@ -5,6 +5,7 @@ export * from './context/ContextMenuViewContext';
 export * from './context/ContextMenuViewContext';
 
 export * from './hooks/useMenuContext';
+export * from './hooks/useMenuButtonContext';
 
 export * from './constants/Enums';
 export * from './constants/LibEnv';
