@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, ViewStyle } from 'react-native';
 
-import { useMenuContext } from 'react-native-ios-context-menu';
+import { useMenuButtonContext } from 'react-native-ios-context-menu';
 
 import * as Colors from '../constants/Colors';
 
@@ -10,7 +10,7 @@ export function ContextMenuCardButton(props: {
   style?: ViewStyle;
   buttonTitle: string;
 }){
-  const menuContext = useMenuContext();
+  const menuContext = useMenuButtonContext();
 
   const rootContainerStyle = {
     backgroundColor: (menuContext.isMenuVisible
@@ -30,11 +30,13 @@ export function ContextMenuCardButton(props: {
 
 const styles = StyleSheet.create({
   rootContainer: {
-    padding: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
     borderRadius: 10,
   },
   labelText: {
     color: 'white',
-    fontWeight: '500'
+    fontSize: 15,
+    fontWeight: '600'
   },
 });
