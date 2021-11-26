@@ -7,34 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88586DFD2749B52B0002DA19 /* UIMenu+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DD92749B52B0002DA19 /* UIMenu+Init.swift */; };
-		88586DFE2749B52B0002DA19 /* CAGradientLayerType+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DDA2749B52B0002DA19 /* CAGradientLayerType+Init.swift */; };
-		88586DFF2749B52B0002DA19 /* UIMenuElement+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DDB2749B52B0002DA19 /* UIMenuElement+Init.swift */; };
-		88586E002749B52B0002DA19 /* UIContextMenuInteractionCommitStyle+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DDC2749B52B0002DA19 /* UIContextMenuInteractionCommitStyle+Init.swift */; };
-		88586E012749B52B0002DA19 /* UIImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DDD2749B52B0002DA19 /* UIImage+Init.swift */; };
-		88586E022749B52B0002DA19 /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DE02749B52B0002DA19 /* UIColor+Helpers.swift */; };
-		88586E032749B52B0002DA19 /* Encodable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DE12749B52B0002DA19 /* Encodable+Helpers.swift */; };
-		88586E042749B52B0002DA19 /* RNIContextMenuButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88586DE42749B52B0002DA19 /* RNIContextMenuButtonManager.m */; };
-		88586E052749B52B0002DA19 /* RNIContextMenuButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DE52749B52B0002DA19 /* RNIContextMenuButtonManager.swift */; };
-		88586E062749B52B0002DA19 /* RNIContextMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DE62749B52B0002DA19 /* RNIContextMenuButton.swift */; };
-		88586E072749B52B0002DA19 /* RNIContextMenuViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DE82749B52B0002DA19 /* RNIContextMenuViewManager.swift */; };
-		88586E082749B52B0002DA19 /* RNIContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DE92749B52B0002DA19 /* RNIContextMenuView.swift */; };
-		88586E092749B52B0002DA19 /* RNIContextMenuViewModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 88586DEA2749B52B0002DA19 /* RNIContextMenuViewModule.m */; };
-		88586E0A2749B52B0002DA19 /* RNIContextMenuViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DEB2749B52B0002DA19 /* RNIContextMenuViewModule.swift */; };
-		88586E0B2749B52B0002DA19 /* RNIContextMenuViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88586DEC2749B52B0002DA19 /* RNIContextMenuViewManager.m */; };
-		88586E0C2749B52B0002DA19 /* RNIContextMenuPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DED2749B52B0002DA19 /* RNIContextMenuPreviewController.swift */; };
-		88586E0D2749B52B0002DA19 /* RNIMenuIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DEF2749B52B0002DA19 /* RNIMenuIcon.swift */; };
-		88586E0E2749B52B0002DA19 /* RNIMenuPreviewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF02749B52B0002DA19 /* RNIMenuPreviewConfig.swift */; };
-		88586E0F2749B52B0002DA19 /* RNIMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF12749B52B0002DA19 /* RNIMenuItem.swift */; };
-		88586E102749B52C0002DA19 /* RNIMenuElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF22749B52B0002DA19 /* RNIMenuElement.swift */; };
-		88586E112749B52C0002DA19 /* RNIMenuActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF32749B52B0002DA19 /* RNIMenuActionItem.swift */; };
-		88586E122749B52C0002DA19 /* RNIWrapperViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF52749B52B0002DA19 /* RNIWrapperViewManager.swift */; };
-		88586E132749B52C0002DA19 /* RNIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF62749B52B0002DA19 /* RNIWrapperView.swift */; };
-		88586E142749B52C0002DA19 /* RNIWrapperViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF72749B52B0002DA19 /* RNIWrapperViewModule.swift */; };
-		88586E152749B52C0002DA19 /* RNIWrapperViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF82749B52B0002DA19 /* RNIWrapperViewManager.m */; };
-		88586E162749B52C0002DA19 /* RNIWrapperViewModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 88586DF92749B52B0002DA19 /* RNIWrapperViewModule.m */; };
-		88586E172749B52C0002DA19 /* RNIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DFB2749B52B0002DA19 /* RNIUtilities.swift */; };
-		88586E182749B52C0002DA19 /* RNIImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88586DFC2749B52B0002DA19 /* RNIImageItem.swift */; };
+		88B468E62750D95600A4FF45 /* UIMenu+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468C22750D95500A4FF45 /* UIMenu+Init.swift */; };
+		88B468E72750D95600A4FF45 /* CAGradientLayerType+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468C32750D95500A4FF45 /* CAGradientLayerType+Init.swift */; };
+		88B468E82750D95600A4FF45 /* UIMenuElement+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468C42750D95500A4FF45 /* UIMenuElement+Init.swift */; };
+		88B468E92750D95600A4FF45 /* UIContextMenuInteractionCommitStyle+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468C52750D95500A4FF45 /* UIContextMenuInteractionCommitStyle+Init.swift */; };
+		88B468EA2750D95600A4FF45 /* UIImage+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468C62750D95500A4FF45 /* UIImage+Init.swift */; };
+		88B468EB2750D95600A4FF45 /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468C92750D95500A4FF45 /* UIColor+Helpers.swift */; };
+		88B468EC2750D95600A4FF45 /* Encodable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468CA2750D95500A4FF45 /* Encodable+Helpers.swift */; };
+		88B468ED2750D95600A4FF45 /* RNIContextMenuButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B468CD2750D95500A4FF45 /* RNIContextMenuButtonManager.m */; };
+		88B468EE2750D95600A4FF45 /* RNIContextMenuButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468CE2750D95500A4FF45 /* RNIContextMenuButtonManager.swift */; };
+		88B468EF2750D95600A4FF45 /* RNIContextMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468CF2750D95500A4FF45 /* RNIContextMenuButton.swift */; };
+		88B468F02750D95600A4FF45 /* RNIContextMenuViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D12750D95600A4FF45 /* RNIContextMenuViewManager.swift */; };
+		88B468F12750D95600A4FF45 /* RNIContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D22750D95600A4FF45 /* RNIContextMenuView.swift */; };
+		88B468F22750D95600A4FF45 /* RNIContextMenuViewModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D32750D95600A4FF45 /* RNIContextMenuViewModule.m */; };
+		88B468F32750D95600A4FF45 /* RNIContextMenuViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D42750D95600A4FF45 /* RNIContextMenuViewModule.swift */; };
+		88B468F42750D95600A4FF45 /* RNIContextMenuViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D52750D95600A4FF45 /* RNIContextMenuViewManager.m */; };
+		88B468F52750D95700A4FF45 /* RNIContextMenuPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D62750D95600A4FF45 /* RNIContextMenuPreviewController.swift */; };
+		88B468F62750D95700A4FF45 /* RNIMenuIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D82750D95600A4FF45 /* RNIMenuIcon.swift */; };
+		88B468F72750D95700A4FF45 /* RNIMenuPreviewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468D92750D95600A4FF45 /* RNIMenuPreviewConfig.swift */; };
+		88B468F82750D95700A4FF45 /* RNIMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468DA2750D95600A4FF45 /* RNIMenuItem.swift */; };
+		88B468F92750D95700A4FF45 /* RNIMenuElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468DB2750D95600A4FF45 /* RNIMenuElement.swift */; };
+		88B468FA2750D95700A4FF45 /* RNIMenuActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468DC2750D95600A4FF45 /* RNIMenuActionItem.swift */; };
+		88B468FB2750D95700A4FF45 /* RNIWrapperViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468DE2750D95600A4FF45 /* RNIWrapperViewManager.swift */; };
+		88B468FC2750D95700A4FF45 /* RNIWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468DF2750D95600A4FF45 /* RNIWrapperView.swift */; };
+		88B468FD2750D95700A4FF45 /* RNIWrapperViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468E02750D95600A4FF45 /* RNIWrapperViewModule.swift */; };
+		88B468FE2750D95700A4FF45 /* RNIWrapperViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B468E12750D95600A4FF45 /* RNIWrapperViewManager.m */; };
+		88B468FF2750D95700A4FF45 /* RNIWrapperViewModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B468E22750D95600A4FF45 /* RNIWrapperViewModule.m */; };
+		88B469002750D95700A4FF45 /* RNIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468E42750D95600A4FF45 /* RNIUtilities.swift */; };
+		88B469012750D95700A4FF45 /* RNIImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B468E52750D95600A4FF45 /* RNIImageItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,35 +51,35 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libIosContextMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIosContextMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		88586DD92749B52B0002DA19 /* UIMenu+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIMenu+Init.swift"; sourceTree = "<group>"; };
-		88586DDA2749B52B0002DA19 /* CAGradientLayerType+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAGradientLayerType+Init.swift"; sourceTree = "<group>"; };
-		88586DDB2749B52B0002DA19 /* UIMenuElement+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIMenuElement+Init.swift"; sourceTree = "<group>"; };
-		88586DDC2749B52B0002DA19 /* UIContextMenuInteractionCommitStyle+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIContextMenuInteractionCommitStyle+Init.swift"; sourceTree = "<group>"; };
-		88586DDD2749B52B0002DA19 /* UIImage+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Init.swift"; sourceTree = "<group>"; };
-		88586DDE2749B52B0002DA19 /* IosContextMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IosContextMenu-Bridging-Header.h"; sourceTree = "<group>"; };
-		88586DE02749B52B0002DA19 /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
-		88586DE12749B52B0002DA19 /* Encodable+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Helpers.swift"; sourceTree = "<group>"; };
-		88586DE42749B52B0002DA19 /* RNIContextMenuButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIContextMenuButtonManager.m; sourceTree = "<group>"; };
-		88586DE52749B52B0002DA19 /* RNIContextMenuButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuButtonManager.swift; sourceTree = "<group>"; };
-		88586DE62749B52B0002DA19 /* RNIContextMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuButton.swift; sourceTree = "<group>"; };
-		88586DE82749B52B0002DA19 /* RNIContextMenuViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuViewManager.swift; sourceTree = "<group>"; };
-		88586DE92749B52B0002DA19 /* RNIContextMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuView.swift; sourceTree = "<group>"; };
-		88586DEA2749B52B0002DA19 /* RNIContextMenuViewModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIContextMenuViewModule.m; sourceTree = "<group>"; };
-		88586DEB2749B52B0002DA19 /* RNIContextMenuViewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuViewModule.swift; sourceTree = "<group>"; };
-		88586DEC2749B52B0002DA19 /* RNIContextMenuViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIContextMenuViewManager.m; sourceTree = "<group>"; };
-		88586DED2749B52B0002DA19 /* RNIContextMenuPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuPreviewController.swift; sourceTree = "<group>"; };
-		88586DEF2749B52B0002DA19 /* RNIMenuIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuIcon.swift; sourceTree = "<group>"; };
-		88586DF02749B52B0002DA19 /* RNIMenuPreviewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuPreviewConfig.swift; sourceTree = "<group>"; };
-		88586DF12749B52B0002DA19 /* RNIMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuItem.swift; sourceTree = "<group>"; };
-		88586DF22749B52B0002DA19 /* RNIMenuElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuElement.swift; sourceTree = "<group>"; };
-		88586DF32749B52B0002DA19 /* RNIMenuActionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuActionItem.swift; sourceTree = "<group>"; };
-		88586DF52749B52B0002DA19 /* RNIWrapperViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIWrapperViewManager.swift; sourceTree = "<group>"; };
-		88586DF62749B52B0002DA19 /* RNIWrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIWrapperView.swift; sourceTree = "<group>"; };
-		88586DF72749B52B0002DA19 /* RNIWrapperViewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIWrapperViewModule.swift; sourceTree = "<group>"; };
-		88586DF82749B52B0002DA19 /* RNIWrapperViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIWrapperViewManager.m; sourceTree = "<group>"; };
-		88586DF92749B52B0002DA19 /* RNIWrapperViewModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIWrapperViewModule.m; sourceTree = "<group>"; };
-		88586DFB2749B52B0002DA19 /* RNIUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIUtilities.swift; sourceTree = "<group>"; };
-		88586DFC2749B52B0002DA19 /* RNIImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIImageItem.swift; sourceTree = "<group>"; };
+		88B468C22750D95500A4FF45 /* UIMenu+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIMenu+Init.swift"; sourceTree = "<group>"; };
+		88B468C32750D95500A4FF45 /* CAGradientLayerType+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAGradientLayerType+Init.swift"; sourceTree = "<group>"; };
+		88B468C42750D95500A4FF45 /* UIMenuElement+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIMenuElement+Init.swift"; sourceTree = "<group>"; };
+		88B468C52750D95500A4FF45 /* UIContextMenuInteractionCommitStyle+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIContextMenuInteractionCommitStyle+Init.swift"; sourceTree = "<group>"; };
+		88B468C62750D95500A4FF45 /* UIImage+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Init.swift"; sourceTree = "<group>"; };
+		88B468C72750D95500A4FF45 /* IosContextMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IosContextMenu-Bridging-Header.h"; sourceTree = "<group>"; };
+		88B468C92750D95500A4FF45 /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
+		88B468CA2750D95500A4FF45 /* Encodable+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Helpers.swift"; sourceTree = "<group>"; };
+		88B468CD2750D95500A4FF45 /* RNIContextMenuButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIContextMenuButtonManager.m; sourceTree = "<group>"; };
+		88B468CE2750D95500A4FF45 /* RNIContextMenuButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuButtonManager.swift; sourceTree = "<group>"; };
+		88B468CF2750D95500A4FF45 /* RNIContextMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuButton.swift; sourceTree = "<group>"; };
+		88B468D12750D95600A4FF45 /* RNIContextMenuViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuViewManager.swift; sourceTree = "<group>"; };
+		88B468D22750D95600A4FF45 /* RNIContextMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuView.swift; sourceTree = "<group>"; };
+		88B468D32750D95600A4FF45 /* RNIContextMenuViewModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIContextMenuViewModule.m; sourceTree = "<group>"; };
+		88B468D42750D95600A4FF45 /* RNIContextMenuViewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuViewModule.swift; sourceTree = "<group>"; };
+		88B468D52750D95600A4FF45 /* RNIContextMenuViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIContextMenuViewManager.m; sourceTree = "<group>"; };
+		88B468D62750D95600A4FF45 /* RNIContextMenuPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIContextMenuPreviewController.swift; sourceTree = "<group>"; };
+		88B468D82750D95600A4FF45 /* RNIMenuIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuIcon.swift; sourceTree = "<group>"; };
+		88B468D92750D95600A4FF45 /* RNIMenuPreviewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuPreviewConfig.swift; sourceTree = "<group>"; };
+		88B468DA2750D95600A4FF45 /* RNIMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuItem.swift; sourceTree = "<group>"; };
+		88B468DB2750D95600A4FF45 /* RNIMenuElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuElement.swift; sourceTree = "<group>"; };
+		88B468DC2750D95600A4FF45 /* RNIMenuActionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIMenuActionItem.swift; sourceTree = "<group>"; };
+		88B468DE2750D95600A4FF45 /* RNIWrapperViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIWrapperViewManager.swift; sourceTree = "<group>"; };
+		88B468DF2750D95600A4FF45 /* RNIWrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIWrapperView.swift; sourceTree = "<group>"; };
+		88B468E02750D95600A4FF45 /* RNIWrapperViewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIWrapperViewModule.swift; sourceTree = "<group>"; };
+		88B468E12750D95600A4FF45 /* RNIWrapperViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIWrapperViewManager.m; sourceTree = "<group>"; };
+		88B468E22750D95600A4FF45 /* RNIWrapperViewModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNIWrapperViewModule.m; sourceTree = "<group>"; };
+		88B468E42750D95600A4FF45 /* RNIUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIUtilities.swift; sourceTree = "<group>"; };
+		88B468E52750D95600A4FF45 /* RNIImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNIImageItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,107 +104,107 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				88586DD72749B52B0002DA19 /* src */,
+				88B468C02750D95500A4FF45 /* src */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		88586DD72749B52B0002DA19 /* src */ = {
+		88B468C02750D95500A4FF45 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				88586DD82749B52B0002DA19 /* Extensions+Init */,
-				88586DDE2749B52B0002DA19 /* IosContextMenu-Bridging-Header.h */,
-				88586DDF2749B52B0002DA19 /* Extensions */,
-				88586DE22749B52B0002DA19 /* ReactNative */,
+				88B468C12750D95500A4FF45 /* Extensions+Init */,
+				88B468C72750D95500A4FF45 /* IosContextMenu-Bridging-Header.h */,
+				88B468C82750D95500A4FF45 /* Extensions */,
+				88B468CB2750D95500A4FF45 /* ReactNative */,
 			);
 			path = src;
 			sourceTree = "<group>";
 		};
-		88586DD82749B52B0002DA19 /* Extensions+Init */ = {
+		88B468C12750D95500A4FF45 /* Extensions+Init */ = {
 			isa = PBXGroup;
 			children = (
-				88586DD92749B52B0002DA19 /* UIMenu+Init.swift */,
-				88586DDA2749B52B0002DA19 /* CAGradientLayerType+Init.swift */,
-				88586DDB2749B52B0002DA19 /* UIMenuElement+Init.swift */,
-				88586DDC2749B52B0002DA19 /* UIContextMenuInteractionCommitStyle+Init.swift */,
-				88586DDD2749B52B0002DA19 /* UIImage+Init.swift */,
+				88B468C22750D95500A4FF45 /* UIMenu+Init.swift */,
+				88B468C32750D95500A4FF45 /* CAGradientLayerType+Init.swift */,
+				88B468C42750D95500A4FF45 /* UIMenuElement+Init.swift */,
+				88B468C52750D95500A4FF45 /* UIContextMenuInteractionCommitStyle+Init.swift */,
+				88B468C62750D95500A4FF45 /* UIImage+Init.swift */,
 			);
 			path = "Extensions+Init";
 			sourceTree = "<group>";
 		};
-		88586DDF2749B52B0002DA19 /* Extensions */ = {
+		88B468C82750D95500A4FF45 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				88586DE02749B52B0002DA19 /* UIColor+Helpers.swift */,
-				88586DE12749B52B0002DA19 /* Encodable+Helpers.swift */,
+				88B468C92750D95500A4FF45 /* UIColor+Helpers.swift */,
+				88B468CA2750D95500A4FF45 /* Encodable+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		88586DE22749B52B0002DA19 /* ReactNative */ = {
+		88B468CB2750D95500A4FF45 /* ReactNative */ = {
 			isa = PBXGroup;
 			children = (
-				88586DE32749B52B0002DA19 /* RNIContextMenuButton */,
-				88586DE72749B52B0002DA19 /* RNIContextMenuView */,
-				88586DEE2749B52B0002DA19 /* RNIContextMenu */,
-				88586DF42749B52B0002DA19 /* RNIWrapperView */,
-				88586DFA2749B52B0002DA19 /* RNIHelpers */,
+				88B468CC2750D95500A4FF45 /* RNIContextMenuButton */,
+				88B468D02750D95500A4FF45 /* RNIContextMenuView */,
+				88B468D72750D95600A4FF45 /* RNIContextMenu */,
+				88B468DD2750D95600A4FF45 /* RNIWrapperView */,
+				88B468E32750D95600A4FF45 /* RNIHelpers */,
 			);
 			path = ReactNative;
 			sourceTree = "<group>";
 		};
-		88586DE32749B52B0002DA19 /* RNIContextMenuButton */ = {
+		88B468CC2750D95500A4FF45 /* RNIContextMenuButton */ = {
 			isa = PBXGroup;
 			children = (
-				88586DE42749B52B0002DA19 /* RNIContextMenuButtonManager.m */,
-				88586DE52749B52B0002DA19 /* RNIContextMenuButtonManager.swift */,
-				88586DE62749B52B0002DA19 /* RNIContextMenuButton.swift */,
+				88B468CD2750D95500A4FF45 /* RNIContextMenuButtonManager.m */,
+				88B468CE2750D95500A4FF45 /* RNIContextMenuButtonManager.swift */,
+				88B468CF2750D95500A4FF45 /* RNIContextMenuButton.swift */,
 			);
 			path = RNIContextMenuButton;
 			sourceTree = "<group>";
 		};
-		88586DE72749B52B0002DA19 /* RNIContextMenuView */ = {
+		88B468D02750D95500A4FF45 /* RNIContextMenuView */ = {
 			isa = PBXGroup;
 			children = (
-				88586DE82749B52B0002DA19 /* RNIContextMenuViewManager.swift */,
-				88586DE92749B52B0002DA19 /* RNIContextMenuView.swift */,
-				88586DEA2749B52B0002DA19 /* RNIContextMenuViewModule.m */,
-				88586DEB2749B52B0002DA19 /* RNIContextMenuViewModule.swift */,
-				88586DEC2749B52B0002DA19 /* RNIContextMenuViewManager.m */,
-				88586DED2749B52B0002DA19 /* RNIContextMenuPreviewController.swift */,
+				88B468D12750D95600A4FF45 /* RNIContextMenuViewManager.swift */,
+				88B468D22750D95600A4FF45 /* RNIContextMenuView.swift */,
+				88B468D32750D95600A4FF45 /* RNIContextMenuViewModule.m */,
+				88B468D42750D95600A4FF45 /* RNIContextMenuViewModule.swift */,
+				88B468D52750D95600A4FF45 /* RNIContextMenuViewManager.m */,
+				88B468D62750D95600A4FF45 /* RNIContextMenuPreviewController.swift */,
 			);
 			path = RNIContextMenuView;
 			sourceTree = "<group>";
 		};
-		88586DEE2749B52B0002DA19 /* RNIContextMenu */ = {
+		88B468D72750D95600A4FF45 /* RNIContextMenu */ = {
 			isa = PBXGroup;
 			children = (
-				88586DEF2749B52B0002DA19 /* RNIMenuIcon.swift */,
-				88586DF02749B52B0002DA19 /* RNIMenuPreviewConfig.swift */,
-				88586DF12749B52B0002DA19 /* RNIMenuItem.swift */,
-				88586DF22749B52B0002DA19 /* RNIMenuElement.swift */,
-				88586DF32749B52B0002DA19 /* RNIMenuActionItem.swift */,
+				88B468D82750D95600A4FF45 /* RNIMenuIcon.swift */,
+				88B468D92750D95600A4FF45 /* RNIMenuPreviewConfig.swift */,
+				88B468DA2750D95600A4FF45 /* RNIMenuItem.swift */,
+				88B468DB2750D95600A4FF45 /* RNIMenuElement.swift */,
+				88B468DC2750D95600A4FF45 /* RNIMenuActionItem.swift */,
 			);
 			path = RNIContextMenu;
 			sourceTree = "<group>";
 		};
-		88586DF42749B52B0002DA19 /* RNIWrapperView */ = {
+		88B468DD2750D95600A4FF45 /* RNIWrapperView */ = {
 			isa = PBXGroup;
 			children = (
-				88586DF52749B52B0002DA19 /* RNIWrapperViewManager.swift */,
-				88586DF62749B52B0002DA19 /* RNIWrapperView.swift */,
-				88586DF72749B52B0002DA19 /* RNIWrapperViewModule.swift */,
-				88586DF82749B52B0002DA19 /* RNIWrapperViewManager.m */,
-				88586DF92749B52B0002DA19 /* RNIWrapperViewModule.m */,
+				88B468DE2750D95600A4FF45 /* RNIWrapperViewManager.swift */,
+				88B468DF2750D95600A4FF45 /* RNIWrapperView.swift */,
+				88B468E02750D95600A4FF45 /* RNIWrapperViewModule.swift */,
+				88B468E12750D95600A4FF45 /* RNIWrapperViewManager.m */,
+				88B468E22750D95600A4FF45 /* RNIWrapperViewModule.m */,
 			);
 			path = RNIWrapperView;
 			sourceTree = "<group>";
 		};
-		88586DFA2749B52B0002DA19 /* RNIHelpers */ = {
+		88B468E32750D95600A4FF45 /* RNIHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				88586DFB2749B52B0002DA19 /* RNIUtilities.swift */,
-				88586DFC2749B52B0002DA19 /* RNIImageItem.swift */,
+				88B468E42750D95600A4FF45 /* RNIUtilities.swift */,
+				88B468E52750D95600A4FF45 /* RNIImageItem.swift */,
 			);
 			path = RNIHelpers;
 			sourceTree = "<group>";
@@ -266,34 +266,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88586DFD2749B52B0002DA19 /* UIMenu+Init.swift in Sources */,
-				88586E092749B52B0002DA19 /* RNIContextMenuViewModule.m in Sources */,
-				88586E152749B52C0002DA19 /* RNIWrapperViewManager.m in Sources */,
-				88586E172749B52C0002DA19 /* RNIUtilities.swift in Sources */,
-				88586E0F2749B52B0002DA19 /* RNIMenuItem.swift in Sources */,
-				88586E022749B52B0002DA19 /* UIColor+Helpers.swift in Sources */,
-				88586E062749B52B0002DA19 /* RNIContextMenuButton.swift in Sources */,
-				88586E042749B52B0002DA19 /* RNIContextMenuButtonManager.m in Sources */,
-				88586E052749B52B0002DA19 /* RNIContextMenuButtonManager.swift in Sources */,
-				88586E0B2749B52B0002DA19 /* RNIContextMenuViewManager.m in Sources */,
-				88586E142749B52C0002DA19 /* RNIWrapperViewModule.swift in Sources */,
-				88586E0E2749B52B0002DA19 /* RNIMenuPreviewConfig.swift in Sources */,
-				88586E082749B52B0002DA19 /* RNIContextMenuView.swift in Sources */,
-				88586DFE2749B52B0002DA19 /* CAGradientLayerType+Init.swift in Sources */,
-				88586E0C2749B52B0002DA19 /* RNIContextMenuPreviewController.swift in Sources */,
-				88586E032749B52B0002DA19 /* Encodable+Helpers.swift in Sources */,
-				88586E182749B52C0002DA19 /* RNIImageItem.swift in Sources */,
-				88586E112749B52C0002DA19 /* RNIMenuActionItem.swift in Sources */,
-				88586E002749B52B0002DA19 /* UIContextMenuInteractionCommitStyle+Init.swift in Sources */,
-				88586E0D2749B52B0002DA19 /* RNIMenuIcon.swift in Sources */,
-				88586E162749B52C0002DA19 /* RNIWrapperViewModule.m in Sources */,
-				88586E102749B52C0002DA19 /* RNIMenuElement.swift in Sources */,
-				88586E072749B52B0002DA19 /* RNIContextMenuViewManager.swift in Sources */,
-				88586E012749B52B0002DA19 /* UIImage+Init.swift in Sources */,
-				88586DFF2749B52B0002DA19 /* UIMenuElement+Init.swift in Sources */,
-				88586E122749B52C0002DA19 /* RNIWrapperViewManager.swift in Sources */,
-				88586E0A2749B52B0002DA19 /* RNIContextMenuViewModule.swift in Sources */,
-				88586E132749B52C0002DA19 /* RNIWrapperView.swift in Sources */,
+				88B468E62750D95600A4FF45 /* UIMenu+Init.swift in Sources */,
+				88B468F22750D95600A4FF45 /* RNIContextMenuViewModule.m in Sources */,
+				88B468FE2750D95700A4FF45 /* RNIWrapperViewManager.m in Sources */,
+				88B469002750D95700A4FF45 /* RNIUtilities.swift in Sources */,
+				88B468F82750D95700A4FF45 /* RNIMenuItem.swift in Sources */,
+				88B468EB2750D95600A4FF45 /* UIColor+Helpers.swift in Sources */,
+				88B468EF2750D95600A4FF45 /* RNIContextMenuButton.swift in Sources */,
+				88B468ED2750D95600A4FF45 /* RNIContextMenuButtonManager.m in Sources */,
+				88B468EE2750D95600A4FF45 /* RNIContextMenuButtonManager.swift in Sources */,
+				88B468F42750D95600A4FF45 /* RNIContextMenuViewManager.m in Sources */,
+				88B468FD2750D95700A4FF45 /* RNIWrapperViewModule.swift in Sources */,
+				88B468F72750D95700A4FF45 /* RNIMenuPreviewConfig.swift in Sources */,
+				88B468F12750D95600A4FF45 /* RNIContextMenuView.swift in Sources */,
+				88B468E72750D95600A4FF45 /* CAGradientLayerType+Init.swift in Sources */,
+				88B468F52750D95700A4FF45 /* RNIContextMenuPreviewController.swift in Sources */,
+				88B468EC2750D95600A4FF45 /* Encodable+Helpers.swift in Sources */,
+				88B469012750D95700A4FF45 /* RNIImageItem.swift in Sources */,
+				88B468FA2750D95700A4FF45 /* RNIMenuActionItem.swift in Sources */,
+				88B468E92750D95600A4FF45 /* UIContextMenuInteractionCommitStyle+Init.swift in Sources */,
+				88B468F62750D95700A4FF45 /* RNIMenuIcon.swift in Sources */,
+				88B468FF2750D95700A4FF45 /* RNIWrapperViewModule.m in Sources */,
+				88B468F92750D95700A4FF45 /* RNIMenuElement.swift in Sources */,
+				88B468F02750D95600A4FF45 /* RNIContextMenuViewManager.swift in Sources */,
+				88B468EA2750D95600A4FF45 /* UIImage+Init.swift in Sources */,
+				88B468E82750D95600A4FF45 /* UIMenuElement+Init.swift in Sources */,
+				88B468FB2750D95700A4FF45 /* RNIWrapperViewManager.swift in Sources */,
+				88B468F32750D95600A4FF45 /* RNIContextMenuViewModule.swift in Sources */,
+				88B468FC2750D95700A4FF45 /* RNIWrapperView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
