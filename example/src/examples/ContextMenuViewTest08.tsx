@@ -20,24 +20,6 @@ export function ContextMenuViewTest08(props: ContextMenuExampleProps) {
     };
   }, []);
 
-  const startTimer = () => {
-    intervalRef.current = setInterval(() => {
-      if (counter < 3){
-        setCounter(prevValue => (prevValue + 1));
-
-      } else {
-        menuRef.current.dismissMenu();
-      };
-    }, 500);
-  };
-
-  const resetTimer = () => {
-    if(this.timer){
-      clearInterval(intervalRef.current);
-      setCounter(0);
-    };
-  };
-
   return (
     <ContextMenuView
       style={props.style}
@@ -49,12 +31,27 @@ export function ContextMenuViewTest08(props: ContextMenuExampleProps) {
       renderPreview={() => (
         <View style={styles.previewContainer}>
           <Text style={styles.previewCounterText}>
-            {`Will Dismiss in: ${3 - this.state.counter}`}
+            {`Will Dismiss in: ${3 - counter}`}
           </Text>
         </View>
       )}
-      onMenuDidShow={startTimer}
-      onMenuDidHide={resetTimer}
+      onMenuDidShow={() => {
+        let internalCounter = 0;
+
+        intervalRef.current = setInterval(() => {
+          if (internalCounter < 3){
+            setCounter(prevValue => (prevValue + 1));
+            internalCounter++;
+
+          } else if(internalCounter === 3) {
+            menuRef.current.dismissMenu();
+          };
+        }, 500);
+      }}
+      onMenuDidHide={() => {
+        clearInterval(intervalRef.current);
+        setCounter(0);
+      }}
     >
       <ContextMenuCard
         index={props.index}
