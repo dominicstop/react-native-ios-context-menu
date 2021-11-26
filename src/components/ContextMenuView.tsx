@@ -230,9 +230,9 @@ export class ContextMenuView extends
       (state.mountPreview || !props.lazyPreview)
     );
 
-    if(shouldUseContextMenuView){
-      // A - Use Context Menu View
-      return (
+    const contents = (
+      shouldUseContextMenuView? (
+        // A - Use Context Menu View
         <RNIContextMenuView
           {...props.viewProps}
           style={[styles.menuView, props.viewProps.style]}
@@ -254,31 +254,18 @@ export class ContextMenuView extends
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
-          <ContextMenuViewContext.Provider value={{
-            getRefToContextMenuView: this._handleGetRefToContextMenuView,
-            isMenuVisible: state.menuVisible,
-          }}>
-            {shouldMountPreview && (
-              <RNIWrapperView 
-                style={styles.previewContainer}
-                shouldNotifyComponentWillUnmount={false}
-              >
-                {props.renderPreview?.()}
-              </RNIWrapperView>
-            )}
-            {React.Children.map(props.viewProps.children, child => 
-              // @ts-ignore
-              React.cloneElement(child, {
-                menuVisible: state.menuVisible
-              })
-            )}
-          </ContextMenuViewContext.Provider>
+          {shouldMountPreview && (
+            <RNIWrapperView 
+              style={styles.previewContainer}
+              shouldNotifyComponentWillUnmount={false}
+            >
+              {props.renderPreview?.()}
+            </RNIWrapperView>
+          )}
+          {props.viewProps.children}
         </RNIContextMenuView>
-      );
-
-    } else if (shouldUseActionSheetFallback){
-      // B - Use Context Menu Fallback
-      return (
+      ): shouldUseActionSheetFallback? (
+        // B - Use Context Menu Fallback
         <TouchableOpacity 
           onLongPress={this._handleOnLongPress}
           activeOpacity={0.8}
@@ -286,16 +273,22 @@ export class ContextMenuView extends
         >
           {this.props.children}
         </TouchableOpacity>
-      );
-
-    } else {
-      // C - Use Regular View
-      return (
+      ):(
+        // C - Use Regular View
         <View {...props.viewProps}>
           {this.props.children}
         </View>
-      );
-    };
+      )
+    );
+
+    return (
+      <ContextMenuViewContext.Provider value={{
+        getRefToContextMenuView: this._handleGetRefToContextMenuView,
+        isMenuVisible: state.menuVisible,
+      }}>
+        {contents}
+      </ContextMenuViewContext.Provider>
+    );
   };
 };
 
