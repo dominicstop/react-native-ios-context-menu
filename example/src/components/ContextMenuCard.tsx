@@ -1,40 +1,71 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ViewStyle } from 'react-native';
 
 import { useMenuContext } from 'react-native-ios-context-menu';
 
 import * as Colors from '../constants/Colors';
 
 
-export function ContextMenuCard(props: {
+export type ColorConfig = {
+  headerBGColorActive  : string;
+  headerBGColorInactive: string;
+
+  bodyBGColorActive  : string;
+  bodyBGColorInactive: string;
+
+  bodyDescriptionLabelColor: string;
+};
+
+export type ContextMenuCardProps = {
   index?: number;
   title?: string;
   subtitle?: string;
   description?: string[];
-  children?: JSX.Element[];
+  colorConfig?: ColorConfig,
 
-}) {
+  style?: ViewStyle;
+  extraContentContainerStyle?: ViewStyle;
+  children?: JSX.Element | JSX.Element[];
+};
+
+const defaultColorConfig: ColorConfig = {
+  headerBGColorActive  : Colors.PURPLE.A700,
+  headerBGColorInactive: Colors.BLUE  .A700,
+
+  bodyBGColorActive  : Colors.PURPLE[100],
+  bodyBGColorInactive: Colors.BLUE  [100],
+
+  bodyDescriptionLabelColor: Colors.BLUE[1100],
+};
+
+export function ContextMenuCard(props: ContextMenuCardProps) {
   const menuContext = useMenuContext();
+
+  const colorConfig = props.colorConfig ?? defaultColorConfig;
 
   const titleContainerStyle = {
     backgroundColor: (menuContext.isMenuVisible
-      ? Colors.PURPLE.A700
-      : Colors.BLUE  .A700
+      ? colorConfig.headerBGColorActive
+      : colorConfig.headerBGColorInactive
     )
   };
 
   const bodyContainerStyle = {
     backgroundColor: (menuContext.isMenuVisible
-      ? Colors.PURPLE[100]
-      : Colors.BLUE  [100]
+      ? colorConfig.bodyBGColorActive
+      : colorConfig.bodyBGColorInactive
     )
+  };
+
+  const bodyDescriptionLabelTextStyle = {
+    color: colorConfig.bodyDescriptionLabelColor,
   };
 
   const descriptionMain = props.description?.[0];
   const descriptionSub  = props.description?.slice(1);
 
   return (
-    <View style={styles.rootContainer}>
+    <View style={[styles.rootContainer, props.style]}>
       <View style={[styles.headerContainer, titleContainerStyle]}>
         <Text style={styles.headerTitleIndexText}>
             {`${props.index ?? 0}. `}
@@ -53,7 +84,7 @@ export function ContextMenuCard(props: {
       <View style={[styles.bodyContainer, bodyContainerStyle]}>
         {descriptionMain && (
           <Text style={styles.bodyDescriptionText}>
-            <Text style={styles.bodyDescriptionLabelText}>
+            <Text style={[styles.bodyDescriptionLabelText, bodyDescriptionLabelTextStyle]}>
               {'Description: '}
             </Text>
             {descriptionMain}
@@ -67,7 +98,11 @@ export function ContextMenuCard(props: {
             {description}
           </Text>
         ))}
-        {props.children}
+        {(React.Children.count(props.children) > 0) && (
+          <View style={props.extraContentContainerStyle}>
+            {props.children}
+          </View>
+        )}
       </View>
     </View>
   );
@@ -101,7 +136,7 @@ const styles = StyleSheet.create({
   headerSubtitleText: {
     fontSize: 14,
     color: 'rgba(255,255,255,0.75)',
-    fontWeight: '300',
+    fontWeight: '600',
   },
   bodyContainer: {
     paddingHorizontal: 12,
@@ -113,7 +148,6 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.75)'
   },
   bodyDescriptionLabelText: {
-    color: Colors.BLUE[1100],
     fontWeight: 'bold',
   },
   bodyDescriptionSubText: {
