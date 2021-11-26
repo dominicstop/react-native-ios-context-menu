@@ -30,16 +30,16 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "build": "yarn run lint && yarn run bob build && cd example/ios && pod install && xcodebuild -workspace IosContextMenuExample.xcworkspace -scheme IosContextMenuExample -configuration Release",
+    "build": "yarn run lint && yarn run bob build && cd example/ios && pod install && xcodebuild -workspace IosContextMenuExample.xcworkspace -scheme IosContextMenuExample",
     "run-release": "cd example && npx react-native run-ios --simulator \"iPhone 8\" --configuration Release",
     "run-debug": "cd example && npx react-native run-ios --simulator \"iPhone 8\" --configuration Debug"
   },
   "keywords": [
-    "react-native",
+  "react-native",
     "ios",
     "android"
   ],
-  "repository": "https://github.com/dominicstop/react-native-ios-context-menu",
+"repository": "https://github.com/indominicstop/react-native-ios-context-menu",
   "author": "Dominic Go <18517029+dominicstop@users.noreply.github.com> (https://github.com/dominicstop)",
   "license": "MIT",
   "bugs": {
