@@ -27,7 +27,6 @@ export type ContextMenuButtonBaseProps = Pick<RNIContextMenuButtonBaseProps,
   | 'onPressMenuItem'
 > & {
   useActionSheetFallback?: boolean;
-  wrapNativeComponent?: boolean;
 };
 
 export type ContextMenuButtonProps = 
@@ -53,7 +52,6 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       enableContextMenu,
       isMenuPrimaryAction,
       useActionSheetFallback,
-      wrapNativeComponent,
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -68,9 +66,6 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       // A. Provide default values to props...
       enableContextMenu: (
         enableContextMenu ?? true
-      ),
-      wrapNativeComponent: (
-        wrapNativeComponent ?? true
       ),
       useActionSheetFallback: (
         useActionSheetFallback ?? !LIB_ENV.isContextMenuViewSupported
@@ -166,11 +161,11 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 
   render(){
     const props = this.getProps();
-    const { menuVisible } = this.state;
 
-    const isNativeComponentSupported = (
-      LIB_ENV.isContextMenuButtonSupported && 
-      !props.useActionSheetFallback
+    const shouldUseNativeComponent = (
+      !props.useActionSheetFallback &&
+      LIB_ENV.isContextMenuViewSupported ||
+      LIB_ENV.isContextMenuButtonSupported 
     );
 
     const shouldUseActionSheetFallback = (
@@ -192,45 +187,24 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       onPressMenuItem : this._handleOnPressMenuItem ,
     };
 
-    if(isNativeComponentSupported){
-      const childItems = React.Children.map(this.props.children, child => 
-        //@ts-ignore
-        React.cloneElement(child, {menuVisible})
-      );
-
-      const nativeComponent = (LIB_ENV.isContextMenuButtonSupported? (
+    if(shouldUseNativeComponent){
+      return (LIB_ENV.isContextMenuButtonSupported? (
         <RNIContextMenuButton
-          {...(props.wrapNativeComponent && props.viewProps)}
+          {...props.viewProps}
           {...nativeComponentProps}
           // override style prop
-          style={(props.wrapNativeComponent
-            ? styles.wrappedMenuButton
-            : [styles.menuButton, props.viewProps.style]
-          )}
+          style={[styles.menuButton, props.viewProps.style]}
         >
-          {childItems}
+          {props.viewProps.children}
         </RNIContextMenuButton>
       ):(
         <ContextMenuView
           {...props.viewProps}
           {...nativeComponentProps}
         >
-          {childItems}
+          {props.viewProps.children}
         </ContextMenuView>
       ));
-
-      if(props.wrapNativeComponent){
-        return(
-          <TouchableOpacity
-            {...props.viewProps}
-            activeOpacity={0.8}
-          >
-            {nativeComponent}
-          </TouchableOpacity>
-        );
-      } else {
-        return nativeComponent;
-      };
 
     } else if(shouldUseActionSheetFallback){
       return (
@@ -256,8 +230,5 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 const styles = StyleSheet.create({
   menuButton: {
     backgroundColor: 'transparent',
-  },
-  wrappedMenuButton: {
-    flex: 1,
   },
 });
