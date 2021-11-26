@@ -43,6 +43,10 @@
 
 ### Version: `next`
 
+<br>
+
+### Version: `1.6.0`
+
 - [x] (Commit: `2c55fdb`) **Implement**: Implement `ContextMenuViewContext`
 - [x] (Commit: `05f6c73`) **Implement**: Implement `useMenuContext` hook.
 - [x] **Refactor**: Update example to use typescript.
