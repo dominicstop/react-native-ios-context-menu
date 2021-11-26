@@ -29,6 +29,11 @@ export function ContextMenuViewExample18(props: ContextMenuExampleProps) {
           actionKey  : 'key-01'   ,
           actionTitle: 'Action #1',
           discoverabilityTitle: 'Use "REQUIRE" icon',
+          // `IconConfig` has been deprecated, please use 
+          // `ImageItemConfig` instead (but it'll still work for now).
+          // 
+          // The other two menu actions in this example 
+          // uses `ImageItemConfig` to set the menu action icons. 
           icon: {
             iconType : 'REQUIRE',
             iconValue: iconA,
@@ -36,18 +41,18 @@ export function ContextMenuViewExample18(props: ContextMenuExampleProps) {
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'Action #2',
-          discoverabilityTitle: 'Use "REQUIRE" icon',
+          discoverabilityTitle: 'Use "IMAGE_REQUIRE" icon',
           icon: {
-            iconType : 'REQUIRE',
-            iconValue: iconB,
+            type : 'IMAGE_REQUIRE',
+            imageValue: iconB,
           }
         }, {
           actionKey  : 'key-03'   ,
           actionTitle: 'Action #3',
-          discoverabilityTitle: 'Use "REQUIRE" icon',
+          discoverabilityTitle: 'Use "IMAGE_REQUIRE" icon',
           icon: {
-            iconType : 'REQUIRE',
-            iconValue: iconC,
+            type : 'IMAGE_REQUIRE',
+            imageValue: iconC,
           }
         }],
       }}
@@ -58,7 +63,7 @@ export function ContextMenuViewExample18(props: ContextMenuExampleProps) {
         subtitle={'ImageType Icons'}
 
         description={[
-          `Context menu with actions that uses 'REQUIRE' icons`
+          `Context menu with actions that uses 'IMAGE_REQUIRE' icons`
         ]}
       />
     </ContextMenuView>
