@@ -14,10 +14,6 @@ class RNIMenuIcon {
   // MARK: - Nested Types
   // --------------------
   
-  struct ImageLoader {
-    static var sharedInstance: RCTImageLoader?;
-  };
-  
   enum IconType: String, CaseIterable, Encodable {
     case NONE;
     case URL;

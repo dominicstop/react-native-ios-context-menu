@@ -126,15 +126,6 @@ class RNIContextMenuView: UIView {
       return interaction;
     }();
     
-    // TODO: Refactor
-    /// init shared `RCTImageLoader` instance if nil
-    if RNIMenuIcon.ImageLoader.sharedInstance == nil,
-       let module      = bridge.module(for: RCTImageLoader.self),
-       let imageLoader = module as? RCTImageLoader {
-      
-      RNIMenuIcon.ImageLoader.sharedInstance = imageLoader;
-    };
-    
     #if DEBUG
     // `RCTInvalidating` doesn't trigger in view instance, so use observer
     NotificationCenter.default.addObserver(self,

@@ -12,4 +12,3 @@
 
 #import <React/RCTConvert.h>
 #import <React/RCTImageSource.h>
-#import <React/RCTImageLoader.h>

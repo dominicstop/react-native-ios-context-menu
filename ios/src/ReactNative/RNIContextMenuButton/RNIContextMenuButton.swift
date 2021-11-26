@@ -99,14 +99,6 @@ class RNIContextMenuButton: UIButton {
       print("menuActionTriggered");
       // TODO: wip
     }, for: .menuActionTriggered);
-    
-    /// init shared `RCTImageLoader` instance if nil
-    if RNIMenuIcon.ImageLoader.sharedInstance == nil,
-       let module      = bridge.module(for: RCTImageLoader.self),
-       let imageLoader = module as? RCTImageLoader {
-      
-      RNIMenuIcon.ImageLoader.sharedInstance = imageLoader;
-    };
   };
   
   required init?(coder: NSCoder) {
