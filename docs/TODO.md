@@ -43,6 +43,10 @@
 
 ### Version: `next`
 
+<br>
+
+### Version: `1.6.1`
+
 - [x] (Commit: `ca30678`) **Clenaup**: Remove `RNIMenuIcon.ImageLoader` 
 	* Fix build error due to `RCTImageCache`.
 
