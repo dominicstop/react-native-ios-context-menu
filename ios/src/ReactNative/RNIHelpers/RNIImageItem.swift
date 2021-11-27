@@ -248,6 +248,8 @@ internal struct RNIImageSystemMaker {
       configs.append( .init(scale: scale) );
     };
     
+#if swift(>=5.5)
+    
     if #available(iOS 15.0, *),
        let color = self.hierarchicalColor {
       
@@ -259,6 +261,8 @@ internal struct RNIImageSystemMaker {
       
       configs.append( .init(paletteColors: colors) );
     };
+    
+#endif
     
     return configs;
   };

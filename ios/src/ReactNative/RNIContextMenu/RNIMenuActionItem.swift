@@ -176,9 +176,13 @@ extension RNIMenuActionItem {
       }
     );
     
+#if swift(>=5.5)
+    
     if #available(iOS 15.0, *) {
       action.subtitle = self.actionSubtitle ?? self.fallbackActionSubtitle;
     };
+    
+#endif
     
     return action;
   };
