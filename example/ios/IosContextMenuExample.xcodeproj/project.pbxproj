@@ -52,6 +52,7 @@
 		2D02E4901E0B4A5D006451C7 /* IosContextMenuExample-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IosContextMenuExample-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F7ED3B7971BE374F7B8635 /* Pods-IosContextMenuExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosContextMenuExample.debug.xcconfig"; path = "Target Support Files/Pods-IosContextMenuExample/Pods-IosContextMenuExample.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = IosContextMenuExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88B469022751AFC700A4FF45 /* IosContextMenuExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = IosContextMenuExample.entitlements; path = IosContextMenuExample/IosContextMenuExample.entitlements; sourceTree = "<group>"; };
 		88DAC66C273DBC1200AB068F /* IosContextMenuExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IosContextMenuExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		88DAC66D273DBC1200AB068F /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		CA3E69C5B9553B26FBA2DF04 /* libPods-IosContextMenuExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IosContextMenuExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +114,7 @@
 		13B07FAE1A68108700A75B9A /* IosContextMenuExample */ = {
 			isa = PBXGroup;
 			children = (
+				88B469022751AFC700A4FF45 /* IosContextMenuExample.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -272,6 +274,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = ZC7A6XV8GR;
 						LastSwiftMigration = 1310;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -549,10 +552,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = IosContextMenuExample/IosContextMenuExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZC7A6XV8GR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = IosContextMenuExample/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -561,9 +569,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.reactnativeioscontextmenu;
 				PRODUCT_NAME = IosContextMenuExample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "IosContextMenuExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -574,9 +586,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = IosContextMenuExample/IosContextMenuExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZC7A6XV8GR;
 				INFOPLIST_FILE = IosContextMenuExample/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -585,8 +602,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.reactnativeioscontextmenu;
 				PRODUCT_NAME = IosContextMenuExample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "IosContextMenuExample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
