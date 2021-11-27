@@ -43,6 +43,8 @@
 
 ### Version: `next`
 
+🛠 (Commit: `ce8dbac`) **Refactor**: Add compiler directives to support building using Xcode 12.
+
 <br>
 
 ### Version: `1.6.1`
