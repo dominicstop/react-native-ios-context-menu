@@ -1,8 +1,6 @@
 name: Build Example
 
 on:
-  pull_request:
-  release:
   workflow_dispatch:
     branches:
       - master
