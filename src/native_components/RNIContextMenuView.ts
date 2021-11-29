@@ -35,6 +35,8 @@ export type RNIContextMenuViewProps = ViewProps & {
    * */
   shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle?: boolean;
 
+  isContextMenuEnabled?: boolean;
+
   // Events - Lifecycle
   // ------------------
 

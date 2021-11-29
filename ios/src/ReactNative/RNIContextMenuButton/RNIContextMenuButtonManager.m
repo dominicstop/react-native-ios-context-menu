@@ -31,9 +31,9 @@ RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem   , RCTBubblingEventBlock);
 
 RCT_EXPORT_VIEW_PROPERTY(menuConfig, NSDictionary);
 
-RCT_EXPORT_VIEW_PROPERTY(enableContextMenu  , BOOL);
-RCT_EXPORT_VIEW_PROPERTY(isMenuPrimaryAction, BOOL);
-
+RCT_EXPORT_VIEW_PROPERTY(enableContextMenu   , BOOL);
+RCT_EXPORT_VIEW_PROPERTY(isMenuPrimaryAction , BOOL);
+RCT_EXPORT_VIEW_PROPERTY(isContextMenuEnabled, BOOL);
 
 // MARK: -  View Manager Commands
 // ------------------------------

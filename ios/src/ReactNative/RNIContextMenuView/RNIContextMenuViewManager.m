@@ -35,4 +35,6 @@ RCT_EXPORT_VIEW_PROPERTY(previewConfig, NSDictionary);
 
 RCT_EXPORT_VIEW_PROPERTY(shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle, BOOL);
 
+RCT_EXPORT_VIEW_PROPERTY(isContextMenuEnabled, BOOL);
+
 @end

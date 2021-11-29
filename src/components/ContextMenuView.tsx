@@ -23,6 +23,7 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
   | 'previewConfig'
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
+  | 'isContextMenuEnabled'
   // Lifecycle Events
   | 'onMenuWillShow'
   | 'onMenuWillHide'

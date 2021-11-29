@@ -110,6 +110,8 @@ class RNIContextMenuView: UIView {
   
   @objc var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   
+  @objc var isContextMenuEnabled = true;
+  
   // MARK: - Init
   // ------------
   
@@ -319,6 +321,8 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     _ interaction: UIContextMenuInteraction,
     configurationForMenuAtLocation location: CGPoint
   ) -> UIContextMenuConfiguration? {
+    
+    guard self.isContextMenuEnabled else { return nil };
     
     self.onMenuWillCreate?([:]);
     
