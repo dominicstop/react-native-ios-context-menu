@@ -14,6 +14,7 @@ export type RNIContextMenuButtonBaseProps = Pick<RNIContextMenuViewProps,
   // `OnPress` Events
   | 'onPressMenuItem'
 > & {
+  // TODO: Next Major Version - Rename to `isContextMenuEnabled`
   enableContextMenu?: boolean;
   isMenuPrimaryAction?: boolean;
 };
