@@ -43,7 +43,13 @@
 
 ### Version: `next`
 
-🛠 (Commit: `ce8dbac`) **Refactor**: Add compiler directives to support building using Xcode 12.
+- [x]  (Commit: `6b606da`) Impl. `ContextMenuView.isContextMenuEnabled` prop.
+
+<br>
+
+### Version: `1.6.2`
+
+- [x] (Commit: `ce8dbac`) **Refactor**: Add compiler directives to support building using Xcode 12.
 
 <br>
 
