@@ -30,7 +30,7 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "build": "yarn run lint && yarn run bob build && cd example/ios && pod install && xcodebuild -workspace IosContextMenuExample.xcworkspace -scheme IosContextMenuExample",
+    "build": "yarn run typescript && yarn run bob build && cd example/ios && pod install && xcodebuild -workspace IosContextMenuExample.xcworkspace -scheme IosContextMenuExample",
     "run-release": "cd example && npx react-native run-ios --simulator \"iPhone 8\" --configuration Release",
     "run-debug": "cd example && npx react-native run-ios --simulator \"iPhone 8\" --configuration Debug"
   },
