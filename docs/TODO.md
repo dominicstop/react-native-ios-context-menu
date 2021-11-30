@@ -43,6 +43,10 @@
 
 ### Version: `next`
 
+<br>
+
+### Version: `1.7.0`
+
 - [x]  (Commit: `6b606da`) Impl. `ContextMenuView.isContextMenuEnabled` prop.
 
 <br>
