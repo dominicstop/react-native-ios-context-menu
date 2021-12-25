@@ -26,7 +26,14 @@ yarn add react-native-ios-context-menu
 cd ios && pod install
 ```
 
-📝 **Note**: You might encounter some build errors since this library is written in swift (head on over to the troubleshooting section and follow the steps in each section).
+<br>
+
+📝 **Note**: You will encounter some build errors since this library is written in swift, so there's some extra step involved to use this library (see table below for reference).
+
+| Additional Steps                                             |
+| :----------------------------------------------------------- |
+| 1️⃣ [Add an empty swift file to your project](#troubleshooting-xcode-build-error-swift) |
+| 2️⃣ [Update the project's "Library Search Paths" build settings](#troubleshooting-xcode-build-error-undefined-symbol) |
 
 <br>
 
@@ -38,7 +45,7 @@ If you encounter any errors/bugs while using this library, or want a particular 
 
 #### Troubleshooting: Xcode Build Error (Swift)
 
-📝 **Note**: This library is written in Swift. If you are having trouble building your app after installing this library, try adding an empty swift file:
+📝 **Note**: This library is written in swift. If you are having trouble building your app after installing this library, try adding an empty swift file to your project:
 
 1. Open up your `ios/project.xcworkspace` project
 2. On the project navigator panel (located on the right side of Xcode), right click on your project group (or another folder/group i.e the blue or yellow icons) and select the "*New File...*" option
@@ -64,9 +71,7 @@ __C.UIAction.init(title: Swift.String, image: __C.UIImage?, identifier: __C.UIAc
 
 <br>
 
-Some versions of the react-native template (e.g. `0.63` and below) hard codes the swift library search paths to use swift `5.0` (which causes the linker to mismatch the swift system libraries bundled with Xcode + iOS version).
-
-Here are some related issues in the RN repo: [Issue 30202](https://github.com/facebook/react-native/pull/30202) and [Issue 29178](https://github.com/facebook/react-native/pull/29178). This bug could be fixed in a future version of react native, but a fix I've found is to do the following:
+To fix this, see screenshot + follow the steps below:
 
 ![Xcode - Remove library search paths](assets/installation-troubleshooting-01-A.png)
 
@@ -77,16 +82,23 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 3. The Xcode project editor should appear. In the left panel, under the "Project" section, select your project (if it isn't already selected).
 4. In the project section's top tab bar, select the "Build Settings" tab (also make sure the "All" and "Combined" tabs are selected).
 5. In the project navigator list, under the "Search Path" section, there should be a "Library Search Paths" setting (alternatively, you can search for "Library Search Paths" in the search bar).
-6. Change the entry `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)"` to `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.3/$(PLATFORM_NAME)"` i.e. change `swift-5.0` to `swift-5.3` (to show the popup dialog, double click the value/item).
-	* Alternatively, according to this [issue comment](https://github.com/facebook/react-native/issues/29246#issuecomment-667518920), you can clear all the items listed in the "Library Search Paths" setting. **TLDR**: Xcode automatically manages this setting, and the RN template hardcodes it to use Swift 5.0.
+6.  According to this [issue comment](https://github.com/facebook/react-native/issues/29246#issuecomment-667518920), you can clear all the items listed in the "Library Search Paths" setting by selecting the items in the list, and pressing the "-" button in the popover. 
+	* **TLDR**: Xcode automatically manages this setting, and the RN template hardcodes it to use Swift 5.0.
+	* Alternatively, you can change the entry `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)"` to `"$(TOOLCHAIN_DIR)/usr/lib/swift-5.3/$(PLATFORM_NAME)"` i.e. change `swift-5.0` to `swift-5.3`, or whatever the newest version of swift that comes with your Xcode installation (to show the popup dialog, double click the value/item).
 7. If you haven't already, make sure to create an empty swift file. Then clean the build folder (the option is in the menu bar under: "Product" -> "Clean Build Folder") and try building your project again.
 8. If you are still having problems building the app, try the following and build your project again:
-	* Try clearing out Xcode's `derivedData` directory: `rm -rf ~/Library/Developer/Xcode/DerivedData/*` (check out this [gist](https://gist.github.com/maciekish/66b6deaa7bc979d0a16c50784e16d697) for instructions on how to clean up Xcode)
-	* Try clearing out the `Cocoapods` cache: `rm -rf "${HOME}/Library/Caches/CocoaPods"` (and then try running `pod install` again).
+  * Try clearing out Xcode's `derivedData` directory: `rm -rf ~/Library/Developer/Xcode/DerivedData/*` (check out this [gist](https://gist.github.com/maciekish/66b6deaa7bc979d0a16c50784e16d697) for instructions on how to clean up Xcode)
+  * Try clearing out the `Cocoapods` cache: `rm -rf "${HOME}/Library/Caches/CocoaPods"` (and then try running `pod install` again).
 
 <br>
 
 ![Xcode - Remove library search paths](assets/installation-troubleshooting-01-B.png)
+
+<br>
+
+**Explanation**: Some versions of the react-native template hard codes the swift library search paths to use swift `5.0` (which causes the linker to mismatch the swift system libraries bundled with your Xcode + iOS/Simulator installation).
+
+Here are some related issues in the RN repo: [Issue 30202](https://github.com/facebook/react-native/pull/30202) and [Issue 29178](https://github.com/facebook/react-native/pull/29178). 
 
 <br><br>
 
@@ -109,11 +121,16 @@ Here are some related issues in the RN repo: [Issue 30202](https://github.com/fa
 
 ##### `ContextMenuView` Component: Props
 
-| Prop Name and Type                                          | Description                                                  |
-| :---------------------------------------------------------- | :----------------------------------------------------------- |
-| ⚛️ `ViewProps`                                               | This component supports all the standard props from a `<View/>` component. |
-| 🔤 **Required**: `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA                                                          |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)              | TBA                                                          |
+| Prop Name and Type                                           | Description                                                  |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| ⚛️ `ViewProps`                                                | This component supports all the standard props from a `<View/>` component. |
+| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `previewConfig`<br/><br/>⚛️ [`MenuPreviewConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)<br/><br/>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `isContextMenuEnabled`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)<br/><br/>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `lazyPreview`<br/><br/>⚛️ `boolean`<br><br>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `useActionSheetFallback`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `renderPreview`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)     | TBA                                                          |
 
 <br>
 
@@ -418,7 +435,89 @@ TBA
 
 ## E. Usage And Examples
 
-<br><br>
+### `ContextMenuView` Example 01
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample01.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample01(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample01',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+        }],
+      }}
+    >
+      {/* Component */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample01-old.png)
+
+<br>
+
+### `ContextMenuView` Example 02
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample02.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample02(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+          menuTitle: 'ContextMenuViewExample02',
+          menuItems: [{
+            actionKey  : 'key-01',
+            actionTitle: 'Action #1',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'folder',
+            }
+          }, {
+            actionKey  : 'key-02'   ,
+            actionTitle: 'Action #2',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'dial.fill',
+            }
+          }, {
+            actionKey  : 'key-03'   ,
+            actionTitle: 'Action #3',
+            icon: {
+              iconType : 'SYSTEM',
+              iconValue: 'archivebox.fill',
+            }
+          }],
+        }}
+    >
+      {/* Component */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](/Volumes/SD-Card/Documents/Programming/react-native-ios-context-menu/react-native-ios-context-menu/assets/example-ContextMenuViewExample02-old.png)
+
+<br>
+
+
 
 ## F. Showcase, Tests and Demos
 
