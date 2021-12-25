@@ -16,102 +16,132 @@ export function ContextMenuViewTest01(props: ContextMenuExampleProps) {
           actionKey  : 'key-01'   ,
           actionTitle: 'Action #1',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'hare',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'hare',
+            },
           }
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'Action #2',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'calendar',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'calendar',
+            },
           }
         }, {
           menuTitle: 'Submenu #1...',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'ant',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'ant',
+            },
           },
           menuItems: [{
             actionKey  : 'key-03-01'   ,
             actionTitle: 'Submenu Action #3',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'moon',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'moon',
+              },
             },
           }, {
             actionKey  : 'key-03-02'   ,
             actionTitle: 'Submenu Action #4',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'house',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'house',
+              },
             }
           }, {
             menuTitle: 'Submenu #5...',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'moon.stars',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'moon.stars',
+              },
             },
             menuItems: [{
               actionKey  : 'key-03-03-01',
               actionTitle: 'Submenu Action #5',
               icon: {
-                iconType : 'SYSTEM',
-                iconValue: 'dial',
+                type: 'IMAGE_SYSTEM',
+                imageValue: {
+                  systemName: 'dial',
+                },
               }
             }, {
               actionKey  : 'key-03-03-02',
               actionTitle: 'Submenu Action #6',
               icon: {
-                iconType : 'SYSTEM',
-                iconValue: 'square.and.arrow.up.on.square',
+                type: 'IMAGE_SYSTEM',
+                imageValue: {
+                  systemName: 'square.and.arrow.up.on.square',
+                },
               }
             }, {
               menuTitle: 'Submenu #3...',
               icon: {
-                iconType : 'SYSTEM',
-                iconValue: 'archivebox',
+                type: 'IMAGE_SYSTEM',
+                imageValue: {
+                  systemName: 'archivebox',
+                },
               },
               menuItems: [{
                 actionKey  : 'key-03-03-03-01',
                 actionTitle: 'Submenu Action #7',
                 icon: {
-                  iconType : 'SYSTEM',
-                  iconValue: 'folder',
+                  type: 'IMAGE_SYSTEM',
+                  imageValue: {
+                    systemName: 'folder',
+                  },
                 },
               }, {
                 actionKey  : 'key-03-03-03-02',
                 actionTitle: 'Submenu Action #8',
                 icon: {
-                  iconType : 'SYSTEM',
-                  iconValue: 'pencil.slash',
+                  type: 'IMAGE_SYSTEM',
+                  imageValue: {
+                    systemName: 'pencil.slash',
+                  },
                 }
               }, {
                 menuTitle: 'Submenu #4...',
                 icon: {
-                  iconType : 'SYSTEM',
-                  iconValue: 'rosette',
+                  type: 'IMAGE_SYSTEM',
+                  imageValue: {
+                    systemName: 'rosette',
+                  },
                 },
                 menuItems: [{
                   actionKey  : 'key-03-03-03-03-01',
                   actionTitle: 'Submenu Action #9',
                   icon: {
-                    iconType : 'SYSTEM',
-                    iconValue: 'lessthan.circle',
+                    type: 'IMAGE_SYSTEM',
+                    imageValue: {
+                      systemName: 'lessthan.circle',
+                    },
                   }
                 }, {
                   actionKey  : 'key-03-03-03-03-02',
                   actionTitle: 'Submenu Action #10',
                   icon: {
-                    iconType : 'SYSTEM',
-                    iconValue: 'divide.square',
+                    type: 'IMAGE_SYSTEM',
+                    imageValue: {
+                      systemName: 'divide.square',
+                    },
                   }
                 }, {
                   actionKey  : 'key-03-03-03-03-03',
                   actionTitle: 'Submenu Action #11',
                   icon: {
-                    iconType : 'SYSTEM',
-                    iconValue: 'cloud.moon',
+                    type: 'IMAGE_SYSTEM',
+                    imageValue: {
+                      systemName: 'cloud.moon',
+                    },
                   }
                 }],
               }],

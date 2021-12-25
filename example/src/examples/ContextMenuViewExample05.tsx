@@ -17,32 +17,40 @@ export function ContextMenuViewExample05(props: ContextMenuExampleProps) {
           actionTitle   : 'Disabled Action',
           menuAttributes: ['disabled'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'folder',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
           }
         }, {
           actionKey     : 'key-02'   ,
           actionTitle   : 'Destructive Action',
           menuAttributes: ['destructive'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
           }
         }, {
           actionKey     : 'key-03'   ,
           actionTitle   : 'Hidden Action',
           menuAttributes: ['hidden'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
           }
         }, {
           actionKey     : 'key-04'   ,
           actionTitle   : 'Disabled/Destructive',
           menuAttributes: ['disabled', 'destructive'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash.fill',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash.fill',
+            },
           }
         }],
       }}

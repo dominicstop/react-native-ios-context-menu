@@ -39,16 +39,20 @@ export function ContextMenuViewTest06(props: ContextMenuExampleProps) {
           actionKey  : 'add-action',
           actionTitle: 'Add Action',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'plus',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'plus',
+            },
           }
         }, {
           actionKey     : 'delete-all',
           actionTitle   : 'Delete All',
           menuAttributes: [hasItems? 'destructive' : 'disabled'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
           }
         }, {
           menuTitle  : 'submenu',
@@ -57,8 +61,10 @@ export function ContextMenuViewTest06(props: ContextMenuExampleProps) {
             actionKey  : `item-key-${item}`,
             actionTitle: `Action #${item}`,
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: (item % 2 === 0)? 'heart.fill' : 'heart',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: (item % 2 === 0)? 'heart.fill' : 'heart',
+              },
             }
           })),
         }],

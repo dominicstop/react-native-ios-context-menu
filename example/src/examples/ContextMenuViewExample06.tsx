@@ -16,8 +16,10 @@ export function ContextMenuViewExample06(props: ContextMenuExampleProps) {
           actionKey  : 'key-01',
           actionTitle: 'Action #1',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'folder',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
           }
         }, {
           menuTitle: 'Submenu...',
@@ -26,22 +28,28 @@ export function ContextMenuViewExample06(props: ContextMenuExampleProps) {
             actionKey  : 'key-01-01',
             actionTitle: 'Submenu Action #1',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'star',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star',
+              },
             }
           }, {
             actionKey  : 'key-01-02',
             actionTitle: 'Submenu Action #2',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'star.lefthalf.fill',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.lefthalf.fill',
+              },
             }
           }, {
             actionKey  : 'key-01-03',
             actionTitle: 'Submenu Action #3',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'star.fill',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.fill',
+              },
             }
           }]
         }],

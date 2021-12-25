@@ -49,22 +49,28 @@ export function ContextMenuViewTest04(props: ContextMenuExampleProps) {
             actionKey  : 'key-01',
             actionTitle: `Action 1: ${actionToggle1? 'on' : 'off'}`,
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: (actionToggle1? 'heart.fill' : 'heart'),
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: (actionToggle1? 'heart.fill' : 'heart'),
+              },
             }
           }, {
             actionKey  : 'key-02',
             actionTitle: `Action 2: ${actionToggle2? 'on' : 'off'}`,
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: (actionToggle2? 'suit.club.fill' : 'suit.club'),
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: (actionToggle2? 'suit.club.fill' : 'suit.club'),
+              },
             }
           }, {
             actionKey  : 'key-03',
             actionTitle: `Action 3: ${actionToggle3? 'on' : 'off'}`,
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: (actionToggle3? 'suit.spade.fill' : 'suit.spade'),
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: (actionToggle3? 'suit.spade.fill' : 'suit.spade'),
+              },
             }
           }, {
             menuTitle  : 'Inline Menu',
@@ -75,8 +81,10 @@ export function ContextMenuViewTest04(props: ContextMenuExampleProps) {
               menuAttributes: [isResetEnabled? 'destructive' : 'hidden'],
               menuState     : 'off',
               icon: {
-                iconType : 'SYSTEM',
-                iconValue: 'trash',
+                type: 'IMAGE_SYSTEM',
+                imageValue: {
+                  systemName: 'trash',
+                },
               }
             }],
           }]

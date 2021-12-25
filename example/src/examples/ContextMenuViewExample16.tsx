@@ -19,18 +19,20 @@ export function ContextMenuViewExample16(props: ContextMenuExampleProps) {
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'Action #2',
-          discoverabilityTitle: 'Use "SYSTEM" icon',
+          discoverabilityTitle: 'Use "IMAGE_SYSTEM" icon',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'dial.fill',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'dial.fill',
+            },
           }
         }, {
           actionKey  : 'key-03'   ,
           actionTitle: 'Action #3',
           discoverabilityTitle: 'Use "ASSET" icon',
           icon: {
-            iconType : 'ASSET',
-            iconValue: 'icon-rainbow-flag',
+            type: 'IMAGE_ASSET',
+            imageValue: 'icon-rainbow-flag',
           }
         }],
       }}

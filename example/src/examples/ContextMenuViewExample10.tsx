@@ -32,25 +32,31 @@ export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
           actionKey  : 'key-00',
           actionTitle: `Static Action`,
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'square.and.arrow.down',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'square.and.arrow.down',
+            },
           }
         }, {
           actionKey  : 'key-01',
           actionTitle: `timer: ${timer}`,
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: ((timer % 2 === 0)
-              ? 'heart'
-              : 'heart.fill'
-            ),
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: ((timer % 2 === 0)
+                ? 'heart'
+                : 'heart.fill'
+              ),
+            },
           }
         }, (timer % 3 === 0) && {
           actionKey  : 'key-02',
           actionTitle: `Dynamic Action`,
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'scissors.badge.ellipsis',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'scissors.badge.ellipsis',
+            },
           }
         }],
       }}

@@ -18,22 +18,28 @@ export function ContextMenuViewExample09(props: ContextMenuExampleProps) {
           actionKey  : 'save',
           actionTitle: 'Save',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'square.and.arrow.down',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'square.and.arrow.down',
+            },
           }
         }, {
           actionKey  : 'like',
           actionTitle: 'Like',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'hand.thumbsup',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'hand.thumbsup',
+            },
           }
         }, {
           actionKey  : 'play',
           actionTitle: 'Play',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'play',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'play',
+            },
           }
         }],
       }}

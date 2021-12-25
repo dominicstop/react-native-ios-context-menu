@@ -50,24 +50,30 @@ export function ContextMenuViewTest03(props: ContextMenuExampleProps) {
           actionTitle: `Action 1: ${actionState1? 'on' : 'off'}`,
           menuState  : (actionState1? 'on' : 'off'),
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'heart',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'heart',
+            },
           }
         }, {
           actionKey  : 'key-02',
           actionTitle: `Action 2: ${actionState2? 'on' : 'off'}`,
           menuState  : (actionState2? 'on' : 'off'),
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'suit.club',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'suit.club',
+            },
           }
         }, {
           actionKey  : 'key-03',
           actionTitle: `Action 3: ${actionState3? 'on' : 'off'}`,
           menuState  : (actionState3? 'on' : 'off'),
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'suit.spade',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'suit.spade',
+            },
           }
         }, {
           actionKey     : 'key-04',
@@ -75,8 +81,10 @@ export function ContextMenuViewTest03(props: ContextMenuExampleProps) {
           menuAttributes: [isResetEnabled? 'destructive' : 'hidden'],
           menuState     : 'off',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
           }
         }]
       }}

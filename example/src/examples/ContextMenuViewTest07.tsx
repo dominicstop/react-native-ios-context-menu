@@ -56,8 +56,10 @@ export function ContextMenuViewTest07(props: ContextMenuExampleProps) {
           actionTitle: `Add 100`,
           discoverabilityTitle: `Current counter: ${counter}`,
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'plus',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'plus',
+            },
           }
         }, 
         (counter > 0) && {
@@ -65,8 +67,10 @@ export function ContextMenuViewTest07(props: ContextMenuExampleProps) {
           actionTitle   : `Reset Counter`,
           menuAttributes: ['destructive'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
           }
         }],
       }}

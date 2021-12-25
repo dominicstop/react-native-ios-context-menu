@@ -28,22 +28,28 @@ export function ContextMenuButtonExample02(props: ContextMenuExampleProps) {
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'folder',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'folder',
+              },
             }
           }, {
             actionKey  : 'key-02'   ,
             actionTitle: 'Action #2',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'dial.fill',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'dial.fill',
+              },
             }
           }, {
             actionKey  : 'key-03'   ,
             actionTitle: 'Action #3',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'archivebox.fill',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'archivebox.fill',
+              },
             }
           }],
         }}

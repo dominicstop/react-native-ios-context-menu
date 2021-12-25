@@ -36,16 +36,20 @@ export function ContextMenuViewExample12(props: ContextMenuExampleProps) {
           actionKey     : 'add',
           actionTitle   : `Add 100`,
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'plus',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'plus',
+            },
           }
         }, (timer > 0) && {
           actionKey     : 'reset',
           actionTitle   : `Reset Counter`,
           menuAttributes: ['destructive'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
           }
         }],
       }}

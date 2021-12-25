@@ -19,21 +19,27 @@ export function ContextMenuViewTest02(props: ContextMenuExampleProps) {
             actionKey  : 'key-01'   ,
             actionTitle: 'Inline Action #1',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'hare',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'hare',
+              },
             }
           }, {
             menuTitle  : 'Submenu #1...',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'calendar',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'calendar',
+              },
             },
             menuItems: [{
               actionKey  : 'key-02-01',
               actionTitle: 'Submenu Action #1',
               icon: {
-                iconType : 'SYSTEM',
-                iconValue: 'paperclip',
+                type: 'IMAGE_SYSTEM',
+                imageValue: {
+                  systemName: 'paperclip',
+                },
               }
             }, {
               menuTitle: 'Inline Submenu #4',
@@ -42,23 +48,29 @@ export function ContextMenuViewTest02(props: ContextMenuExampleProps) {
                 actionKey  : 'key-02-02',
                 actionTitle: 'Inline Submenu Action #2',
                 icon: {
-                  iconType : 'SYSTEM',
-                  iconValue: 'house',
+                  type: 'IMAGE_SYSTEM',
+                  imageValue: {
+                    systemName: 'house',
+                  },
                 }
               }, {
                 actionKey  : 'key-02-03',
                 actionTitle: 'Inline Submenu Action #3',
                 icon: {
-                  iconType : 'SYSTEM',
-                  iconValue: 'tag',
+                  type: 'IMAGE_SYSTEM',
+                  imageValue: {
+                    systemName: 'tag',
+                  },
                 }
               }],
             }, {
               actionKey  : 'key-02-04',
               actionTitle: 'Submenu Action #4',
               icon: {
-                iconType : 'SYSTEM',
-                iconValue: 'sun.haze',
+                type: 'IMAGE_SYSTEM',
+                imageValue: {
+                  systemName: 'sun.haze',
+                },
               }
             }],
           }],
@@ -70,15 +82,19 @@ export function ContextMenuViewTest02(props: ContextMenuExampleProps) {
             actionTitle   : 'Inline Submenu Action #2',
             menuAttributes: ['disabled'],
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'suit.heart',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'suit.heart',
+              },
             }
           }, {
             actionKey  : 'key-04'   ,
             actionTitle: 'Inline Submenu Action #3',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'suit.club',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'suit.club',
+              },
             }
           }],
         }, {
@@ -86,8 +102,10 @@ export function ContextMenuViewTest02(props: ContextMenuExampleProps) {
           actionTitle   : 'Action #4',
           menuAttributes: ['destructive'],
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'trash',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
           }
         }]
       }}

@@ -17,24 +17,30 @@ export function ContextMenuViewExample08(props: ContextMenuExampleProps) {
           actionTitle: 'menuState: on',
           menuState  : 'on',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'folder',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
           }
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'menuState: off',
           menuState  : 'off',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'dial',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'dial',
+            },
           }
         }, {
           actionKey  : 'key-03'   ,
           actionTitle: 'menuState: mixed',
           menuState  : 'mixed',
           icon: {
-            iconType : 'SYSTEM',
-            iconValue: 'archivebox',
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'archivebox',
+            },
           }
         }],
       }}
