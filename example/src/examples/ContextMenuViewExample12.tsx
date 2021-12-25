@@ -31,7 +31,7 @@ export function ContextMenuViewExample12(props: ContextMenuExampleProps) {
     <ContextMenuView
       style={props.style}
       menuConfig={{
-        menuTitle: 'ContextMenuViewSimpleExample12',
+        menuTitle: 'ContextMenuViewExample12',
         menuItems: [{
           actionKey     : 'add',
           actionTitle   : `Add 100`,

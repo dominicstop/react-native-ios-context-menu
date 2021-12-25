@@ -11,7 +11,7 @@ export function ContextMenuViewExample03(props: ContextMenuExampleProps) {
     <ContextMenuView
       style={props.style}
       menuConfig={{
-        menuTitle: 'ContextMenuViewSimpleExample03',
+        menuTitle: 'ContextMenuViewExample03',
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Action #1',

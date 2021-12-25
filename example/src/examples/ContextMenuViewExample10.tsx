@@ -27,7 +27,7 @@ export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
       onMenuDidShow={() => handleStart()}
       onMenuDidHide={() => handleReset()}
       menuConfig={{
-        menuTitle: 'ContextMenuViewSimpleExample10',
+        menuTitle: 'ContextMenuViewExample10',
         menuItems: [{
           actionKey  : 'key-00',
           actionTitle: `Static Action`,
