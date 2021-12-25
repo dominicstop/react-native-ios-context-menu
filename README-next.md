@@ -460,7 +460,7 @@ export function ContextMenuViewExample01(props) {
         }],
       }}
     >
-      {/* Component */}
+      {/** Components */}
     </ContextMenuView>
   );
 };
@@ -487,37 +487,1031 @@ export function ContextMenuViewExample02(props) {
             actionKey  : 'key-01',
             actionTitle: 'Action #1',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'folder',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'folder',
+              },
             }
           }, {
             actionKey  : 'key-02'   ,
             actionTitle: 'Action #2',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'dial.fill',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'dial.fill',
+              },
             }
           }, {
             actionKey  : 'key-03'   ,
             actionTitle: 'Action #3',
             icon: {
-              iconType : 'SYSTEM',
-              iconValue: 'archivebox.fill',
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'archivebox.fill',
+              },
             }
           }],
         }}
     >
-      {/* Component */}
+      {/** Components */}
     </ContextMenuView>
   );
 };
 ```
 
-![screenshot](/Volumes/SD-Card/Documents/Programming/react-native-ios-context-menu/react-native-ios-context-menu/assets/example-ContextMenuViewExample02-old.png)
+![screenshot](assets/example-ContextMenuViewExample02-old.png)
 
 <br>
 
+### `ContextMenuView` Example 03
 
+[🔗 Full Example](example/src/examples/ContextMenuViewExample03.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample03(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample03',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          menuTitle: 'Submenu...',
+          menuItems: [{
+            actionKey  : 'key-01-01',
+            actionTitle: 'Submenu Action #1',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-02',
+            actionTitle: 'Submenu Action #2',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.lefthalf.fill',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-03',
+            actionTitle: 'Submenu Action #3',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.fill',
+              },
+            }
+          }]
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample03-old.png)
+
+<br>
+
+### `ContextMenuView` Example 04
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample04.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample04(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample04',
+        menuItems: [{
+          actionKey     : 'key-01',
+          actionTitle   : 'Disabled Action',
+          menuAttributes: ['disabled'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          actionKey     : 'key-02'   ,
+          actionTitle   : 'Destructive Action',
+          menuAttributes: ['destructive'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
+          }
+        }, {
+          actionKey     : 'key-03'   ,
+          actionTitle   : 'Hidden Action',
+          menuAttributes: ['hidden'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
+          }
+        }, {
+          actionKey     : 'key-04'   ,
+          actionTitle   : 'Disabled/Destructive',
+          menuAttributes: ['disabled', 'destructive'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash.fill',
+            },
+          }
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample04-old.png)
+
+<br>
+
+### `ContextMenuView` Example 05
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample05.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample05(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample04',
+        menuItems: [{
+          actionKey     : 'key-01',
+          actionTitle   : 'Disabled Action',
+          menuAttributes: ['disabled'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          actionKey     : 'key-02'   ,
+          actionTitle   : 'Destructive Action',
+          menuAttributes: ['destructive'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
+          }
+        }, {
+          actionKey     : 'key-03'   ,
+          actionTitle   : 'Hidden Action',
+          menuAttributes: ['hidden'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
+          }
+        }, {
+          actionKey     : 'key-04'   ,
+          actionTitle   : 'Disabled/Destructive',
+          menuAttributes: ['disabled', 'destructive'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash.fill',
+            },
+          }
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample05-old.png)
+
+<br>
+
+### `ContextMenuView` Example 06
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample06.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample06(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample06',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          menuTitle: 'Submenu...',
+          menuOptions: ['destructive'],
+          menuItems: [{
+            actionKey  : 'key-01-01',
+            actionTitle: 'Submenu Action #1',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-02',
+            actionTitle: 'Submenu Action #2',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.lefthalf.fill',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-03',
+            actionTitle: 'Submenu Action #3',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.fill',
+              },
+            }
+          }]
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample06-old.png)
+
+<br>
+
+### `ContextMenuView` Example 07
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample07.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample07(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample07',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          menuTitle: 'Submenu...',
+          menuOptions: ['displayInline', 'destructive'],
+          menuItems: [{
+            actionKey  : 'key-01-01',
+            actionTitle: 'Submenu Action #1',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-02',
+            actionTitle: 'Submenu Action #2',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.lefthalf.fill',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-03',
+            actionTitle: 'Submenu Action #3',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.fill',
+              },
+            }
+          }]
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample07-old.png)
+
+<br>
+
+### `ContextMenuView` Example 08
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample08.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample08(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample08',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'menuState: on',
+          menuState  : 'on',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'menuState: off',
+          menuState  : 'off',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'dial',
+            },
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'menuState: mixed',
+          menuState  : 'mixed',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'archivebox',
+            },
+          }
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample08-old.png)
+
+<br>
+
+### `ContextMenuView` Example 09
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample09.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample09(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample09',
+        menuItems: [{
+          actionKey  : 'save',
+          actionTitle: 'Save',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'square.and.arrow.down',
+            },
+          }
+        }, {
+          actionKey  : 'like',
+          actionTitle: 'Like',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'hand.thumbsup',
+            },
+          }
+        }, {
+          actionKey  : 'play',
+          actionTitle: 'Play',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'play',
+            },
+          }
+        }],
+      }}
+      onPressMenuItem={({nativeEvent}) => {
+        switch (nativeEvent.actionKey) {
+          case 'save':
+            Alert.alert('saving...');
+            break;
+
+          case 'like':
+            Alert.alert('liking...');
+            break;
+
+          case 'play':
+            Alert.alert('playing...');
+            break;
+        };
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample09-old.png)
+
+<br>
+
+### `ContextMenuView` Example 10
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample10.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample10(props) {
+  const [timer, setTimer] = React.useState(0);
+  const increment = React.useRef(null);
+
+  const handleStart = () => {
+    increment.current = setInterval(() => {
+      setTimer((prevTimer) => prevTimer + 1);
+    }, 1000);
+  };
+
+  const handleReset = () => {
+    clearInterval(increment.current);
+    setTimer(0);
+  };
+
+  return (
+    <ContextMenuView
+      onMenuDidShow={() => handleStart()}
+      onMenuDidHide={() => handleReset()}
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample10',
+        menuItems: [{
+          actionKey  : 'key-00',
+          actionTitle: `Static Action`,
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'square.and.arrow.down',
+            },
+          }
+        }, {
+          actionKey  : 'key-01',
+          actionTitle: `timer: ${timer}`,
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: ((timer % 2 === 0)
+                ? 'heart'
+                : 'heart.fill'
+              ),
+            },
+          }
+        }, (timer % 3 === 0) && {
+          actionKey  : 'key-02',
+          actionTitle: `Dynamic Action`,
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'scissors.badge.ellipsis',
+            },
+          }
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample10-old.png)
+
+<br>
+
+### `ContextMenuView` Example 11
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExampleXX.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample11(props) {
+  return (
+    <ContextMenuView
+      previewConfig={{
+        previewType: 'CUSTOM',
+        previewSize: 'STRETCH',
+        backgroundColor: 'white'
+      }}
+      renderPreview={() => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+        </View>
+      )}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample11-old.png)
+
+<br>
+
+### `ContextMenuView` Example 12
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample12.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample12(props) {
+    const [timer, setTimer] = React.useState(0);
+  const increment = React.useRef(null);
+
+  const handleStart = () => {
+    increment.current = setInterval(() => {
+      setTimer((prevTimer) => prevTimer + 1);
+    }, 1000);
+  };
+
+  const handleStop = () => {
+    clearInterval(increment.current);
+  };
+
+  const handleReset = () => {
+    clearInterval(increment.current);
+    setTimer(0);
+  };
+
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample12',
+        menuItems: [{
+          actionKey     : 'add',
+          actionTitle   : `Add 100`,
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'plus',
+            },
+          }
+        }, (timer > 0) && {
+          actionKey     : 'reset',
+          actionTitle   : `Reset Counter`,
+          menuAttributes: ['destructive'],
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'trash',
+            },
+          }
+        }],
+      }}
+      previewConfig={{
+        previewType: 'CUSTOM',
+        backgroundColor: 'white'
+      }}
+      renderPreview={() => (
+        <View style={{ padding: 20 }}>
+          <Text style={{fontSize: 32}}>
+            {`Counter: ${timer}`}
+          </Text>
+          <Text style={{fontSize: 32}}>
+            {(timer % 2 === 0)? 'EVEN' : 'The number is: ODD'}
+          </Text>
+        </View>
+      )}
+      onMenuDidShow={() => handleStart()}
+      onMenuDidHide={() => handleStop()}
+      onPressMenuItem={({nativeEvent}) => {
+        switch (nativeEvent.actionKey) {
+          case 'add':
+            setTimer((prevTimer) => prevTimer + 100);
+            break;
+
+          case 'reset':
+            handleReset();
+            break;
+        };
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample12-old.png)
+
+<br>
+
+### `ContextMenuView` Example 13
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample13.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample13(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample13',
+        menuItems: [{
+          actionKey           : 'key-01',
+          actionTitle         : 'Action #1',
+          discoverabilityTitle: 'Action subtitle',
+        }, {
+          actionKey           : 'key-02'   ,
+          actionTitle         : 'Action #2',
+          discoverabilityTitle: 'Lorum ipsum sit amit dolor aspicing',
+        }, {
+          actionKey           : 'key-03'   ,
+          actionTitle         : 'Action #3',
+          discoverabilityTitle: 'Very long `discoverabilityTitle` lorum ipsum sit amit',
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample13-old.png)
+
+<br>
+
+### `ContextMenuView` Example 14
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample14.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample14(props) {
+  return (
+    <ContextMenuView
+      previewConfig={{
+        previewType: 'CUSTOM',
+        previewSize: 'STRETCH',
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        preferredCommitStyle: 'pop',
+      }}
+      renderPreview={() => (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+          <Text style={{fontSize: 32}}>
+            Hello World
+          </Text>
+        </View>
+      )}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample14-old.png)
+
+<br>
+
+### `ContextMenuView` Example 15
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample15.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample15(props) {
+  const [targetViewNode, setTargetViewNode] = React.useState(null);
+
+  const viewRef = React.useRef();
+
+  React.useEffect(() => {
+    setTargetViewNode(
+      findNodeHandle(viewRef.current)
+    );
+  }, []);
+
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample15',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+        }],
+      }}
+      previewConfig={{
+        targetViewNode: targetViewNode,
+      }}
+    >
+      <View
+        style={styles.targetContainer}
+        ref={viewRef}
+      >
+        <Text style={styles.text}>
+          {`Hello! Target Node: ${targetViewNode}`}
+        </Text>
+      </View>
+    </ContextMenuView>
+  );
+};
+
+const styles = StyleSheet.create({
+  targetContainer: {
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    alignSelf: 'flex-start',
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  text: {
+    fontSize: 16,
+  }
+});
+```
+
+![screenshot](assets/example-ContextMenuViewExample15-old.png)
+
+<br>
+
+### `ContextMenuView` Example 16
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample16.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample16(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample16',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          discoverabilityTitle: 'No Icon',
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+          discoverabilityTitle: 'Use "IMAGE_SYSTEM" icon',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'dial.fill',
+            },
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          discoverabilityTitle: 'Use "ASSET" icon',
+          icon: {
+            type: 'IMAGE_ASSET',
+            imageValue: 'icon-rainbow-flag',
+          }
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample16-old.png)
+
+<br>
+
+### `ContextMenuView` Example 17
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample17.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+export function ContextMenuViewExample17(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample17',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          discoverabilityTitle: 'Blue Icon',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'cloud.heavyrain.fill',
+            },
+            imageOptions: {
+              tint: 'blue',
+            },
+          },
+        }, {
+          actionKey  : 'key-02',
+          actionTitle: 'Action #2',
+          discoverabilityTitle: 'Orange Icon',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'exclamationmark.triangle.fill',
+            },
+            imageOptions: {
+              tint: 'rgb(218,165,32)',
+            },
+          },
+        }, {
+          actionKey  : 'key-03',
+          actionTitle: 'Action #3',
+          discoverabilityTitle: 'Pink Icon',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'heart.fill',
+            },
+            imageOptions: {
+              tint: '#FF1493',
+            },
+          },
+        }, {
+          actionKey  : 'key-04',
+          actionTitle: 'Action #4',
+          discoverabilityTitle: 'Green Icon',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'bubble.right.fill',
+            },
+            imageOptions: {
+              tint: 'rgba(124,252,0,0.5)',
+            },
+          },
+        }]
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample17-old.png)
+
+<br>
+
+### `ContextMenuView` Example 18
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample18.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+
+const iconA = Image.resolveAssetSource(
+  require('../assets/emoji-pleading-face.png')
+);
+
+const iconB = Image.resolveAssetSource(
+  require('../assets/emoji-smiling-face-with-hearts.png')
+);
+
+const iconC = Image.resolveAssetSource(
+  require('../assets/emoji-sparkling-heart.png')
+);
+
+export function ContextMenuViewExample18(props) {
+  return (
+    <ContextMenuView
+      style={props.style}
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample18',
+        menuItems: [{
+          actionKey  : 'key-01'   ,
+          actionTitle: 'Action #1',
+          discoverabilityTitle: 'Use "REQUIRE" icon',
+          // `IconConfig` has been deprecated, please use 
+          // `ImageItemConfig` instead (but it'll still work for now).
+          // 
+          // The other two menu actions in this example 
+          // uses `ImageItemConfig` to set the menu action icons. 
+          icon: {
+            iconType: 'REQUIRE',
+            iconValue: iconA,
+          }
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+          discoverabilityTitle: 'Use "IMAGE_REQUIRE" icon',
+          icon: {
+            type: 'IMAGE_REQUIRE',
+            imageValue: iconB,
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          discoverabilityTitle: 'Use "IMAGE_REQUIRE" icon',
+          icon: {
+            type: 'IMAGE_REQUIRE',
+            imageValue: iconC,
+          }
+        }],
+      }}
+    >
+      {/** Components */}
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample18-old.png)
+
+<br><br>
 
 ## F. Showcase, Tests and Demos
 
