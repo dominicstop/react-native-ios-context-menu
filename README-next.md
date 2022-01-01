@@ -482,6 +482,27 @@ TBA
 
 ### `ContextMenuView` Example 01
 
+A basic context menu that has 3 menu action items (e.g. "Action #1", "Action #2", and "Action #3").
+
+* The `ContextMenuView.menuConfig` prop accepts an optional `MenuConfig` object.
+
+	* You can set the context menu title via the `MenuConfig.menuTitle` property.
+	* To populate the context menu with items, you can pass a `MenuActionConfig` object to the `MenuConfig.menuItems` property.
+	* A `MenuActionConfig` object represents an action item in the context menu (e.g. copy, paste, delete, etc).
+		* The `MenuActionConfig.actionKey` property serves as a unique identifier for your menu action.
+			* You will receive the value you passed in `MenuActionConfig.actionKey` in the `ContextMenuView.onPressMenuItem` event (i.e. via the  `nativeEvent` object).
+			* In other words, the `actionKey` allows you to identify which menu action item was selected/pressed.
+			* 📝 **Note**: Make sure that the `actionKey` is unique for each instance of the `ContextMenuView` component.
+
+	
+
+*  You can use the `ContextMenuView.onPressMenuItem` event prop to get notified whenever a menu action item has been selected.
+	* The function you pass to the `onPressMenuItem` prop receives a `OnPressMenuItemEventObject` object.
+	* Details about the selected menu action item can be accessed via the `OnPressMenuItemEventObject.nativeEvent` object.
+		* E.g. `OnPressMenuItemEventObject.nativeEvent.actionKey`.
+
+<br>
+
 [🔗 Full Example](example/src/examples/ContextMenuViewExample01.tsx)
 
 ```jsx
@@ -504,6 +525,12 @@ export function ContextMenuViewExample01(props) {
           actionTitle: 'Action #3',
         }],
       }}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
+      }}
     >
       {/** Components */}
     </ContextMenuView>
@@ -516,6 +543,32 @@ export function ContextMenuViewExample01(props) {
 <br>
 
 ### `ContextMenuView` Example 02
+
+A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon.
+
+* A `MenuActionConfig` item can be configured to show a icon via the `MenuActionConfig.icon` property.
+
+	* The `icon` property accepts a `ImageItemConfig` object.
+		* A `ImageItemConfig` object is used to describe images/assets.
+
+	
+
+	* In this example, we want to use a "SF Symbols" icon for the menu action. 
+
+		* In order to do this, the `ImageItemConfig.type` property must be set to `"IMAGE_SYSTEM"`.
+
+			* Passing in a value of `"IMAGE_SYSTEM"` to the `type` property means that we want to create a "SF Symbols" system icon.
+			* Using a "SF Symbols" icon requires iOS 13+.
+
+			
+
+		* In order to configure what kind of "SF Symbols" icon we want to use for the menu action, we need to pass in a `ImageSystemConfig` object to the  `ImageItemConfig.imageValue` property.
+
+			* We set what kind of icon to use via the `ImageSystemConfig.systemName`.
+			* The string value passed to the `systemName` property must be a valid SF Symbols name.
+				* To view the list of SF Symbols icons (along with their corresponding icon names), you'll need to download the SF Symbols Mac app from [this page](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).
+
+<br>
 
 [🔗 Full Example](example/src/examples/ContextMenuViewExample02.tsx)
 
