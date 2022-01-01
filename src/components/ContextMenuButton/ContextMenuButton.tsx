@@ -4,10 +4,12 @@ import { View } from 'react-native';
 import type { ContextMenuButtonProps } from './ContextMenuButtonTypes';
 
 
-export const ContextMenuButton: React.FC<ContextMenuButtonProps> = (props) => {
-  return(
-    <View {...props}>
-      {props.children}
-    </View>
-  );
+export class ContextMenuButton extends React.Component<ContextMenuButtonProps> {
+  render(){
+    return(
+      <View {...this.props}>
+        {this.props.children}
+      </View>
+    );
+  };
 };
