@@ -1,42 +1,19 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, ViewProps } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
-import { RNIContextMenuButton, RNIContextMenuButtonBaseProps } from '../native_components/RNIContextMenuButton';
+import { RNIContextMenuButton, RNIContextMenuButtonBaseProps } from '../../native_components/RNIContextMenuButton';
 
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnPressMenuItemEvent } from '../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnPressMenuItemEvent } from '../../types/MenuEvents';
+import type { ContextMenuButtonProps, ContextMenuButtonState } from './ContextMenuButtonTypes';
 
 // @ts-ignore - TODO
-import { ActionSheetFallback } from '../functions/ActionSheetFallback';
-import { ContextMenuView } from './ContextMenuView';
+import { ActionSheetFallback } from '../../functions/ActionSheetFallback';
+import { ContextMenuView } from '../ContextMenuView';
 
-import { ContextMenuButtonContext } from '../context/ContextMenuButtonContext';
+import { ContextMenuButtonContext } from '../../context/ContextMenuButtonContext';
 
-import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
+import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
 
-
-export type ContextMenuButtonBaseProps = Pick<RNIContextMenuButtonBaseProps,
-  | 'enableContextMenu'
-  | 'isMenuPrimaryAction'
-  | 'menuConfig'
-  // Lifecycle Events
-  | 'onMenuWillShow'
-  | 'onMenuWillHide'
-  | 'onMenuWillCancel'
-  | 'onMenuDidShow'
-  | 'onMenuDidHide'
-  | 'onMenuDidCancel'
-  // `OnPress` Events
-  | 'onPressMenuItem'
-> & {
-  useActionSheetFallback?: boolean;
-};
-
-export type ContextMenuButtonProps = 
-  ViewProps & ContextMenuButtonBaseProps;
-
-export type ContextMenuButtonState = {
-  menuVisible: boolean;
-};
 
 export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProps, ContextMenuButtonState> {
 
