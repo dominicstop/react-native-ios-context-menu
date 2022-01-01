@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -148,6 +149,12 @@ export function ContextMenuViewTest01(props: ContextMenuExampleProps) {
             }],
           }],
         }],
+      }}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
       }}
     >
       <ContextMenuCard

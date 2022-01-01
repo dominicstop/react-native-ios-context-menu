@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, findNodeHandle } from 'react-native';
+import { StyleSheet, View, Text, findNodeHandle, Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -31,6 +31,12 @@ export function ContextMenuViewExample15(props: ContextMenuExampleProps) {
       }}
       previewConfig={{
         targetViewNode: targetViewNode,
+      }}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
       }}
     >
       <ContextMenuCard

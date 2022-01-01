@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -24,8 +25,6 @@ export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
   return (
     <ContextMenuView
       style={props.style}
-      onMenuDidShow={() => handleStart()}
-      onMenuDidHide={() => handleReset()}
       menuConfig={{
         menuTitle: 'ContextMenuViewExample10',
         menuItems: [{
@@ -59,6 +58,14 @@ export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
             },
           }
         }],
+      }}
+      onMenuDidShow={() => handleStart()}
+      onMenuDidHide={() => handleReset()}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
       }}
     >
       <ContextMenuCard

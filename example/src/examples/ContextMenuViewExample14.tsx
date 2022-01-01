@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -31,6 +31,12 @@ export function ContextMenuViewExample14(props: ContextMenuExampleProps) {
           </Text>
         </View>
       )}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
+      }}
     >
       <ContextMenuCard
         index={props.index}
