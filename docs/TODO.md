@@ -45,6 +45,14 @@
 
 <br>
 
+### Version: `1.7.1`
+
+- [x] Bugfix: Android error (importing/use of iOS-related native components on non-iOS platforms).
+	- [x] (Commit: `e57aabe`) Refactor `ContextMenuView` to use platform-specific extensions.
+	- [x] (Commit: `0acea05`) Refactor `ContextMenuButton` to use platform-specific extensions.
+
+<br>
+
 ### Version: `1.7.0`
 
 - [x]  (Commit: `6b606da`) Impl. `ContextMenuView.isContextMenuEnabled` prop.
