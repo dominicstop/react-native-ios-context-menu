@@ -1,4 +1,4 @@
-import { HostComponent, Platform, requireNativeComponent, ViewProps } from 'react-native';
+import { requireNativeComponent, ViewProps } from 'react-native';
 
 import type { MenuConfig } from '../types/MenuConfig';
 import type { MenuPreviewConfig } from '../types/MenuPreviewConfig';
@@ -60,8 +60,5 @@ export type RNIContextMenuViewProps = ViewProps & {
 
 const viewName = "RNIContextMenuView";
 
-// @ts-ignore
-export const RNIContextMenuView: HostComponent<RNIContextMenuViewProps> = Platform.select({
-  ios: () => requireNativeComponent(viewName),
-  default: () => undefined,
-})();
+export const RNIContextMenuView = 
+  requireNativeComponent<RNIContextMenuViewProps>(viewName);
