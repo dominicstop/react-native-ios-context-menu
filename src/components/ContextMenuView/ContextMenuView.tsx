@@ -1,53 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, ViewProps } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
-import { RNIContextMenuView, RNIContextMenuViewProps } from '../native_components/RNIContextMenuView';
-import { RNIWrapperView } from '../native_components/RNIWrapperView';
+import { RNIContextMenuView } from '../../native_components/RNIContextMenuView';
+import { RNIWrapperView } from '../../native_components/RNIWrapperView';
 
-import { RNIContextMenuViewModule } from '../native_modules/RNIContextMenuViewModule';
+import { RNIContextMenuViewModule } from '../../native_modules/RNIContextMenuViewModule';
 
-import { ContextMenuViewContext } from '../context/ContextMenuViewContext';
+import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
 
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../../types/MenuEvents';
+import type { ContextMenuViewProps, ContextMenuViewState } from './ContextMenuViewTypes';
 
 // @ts-ignore - TODO
-import { ActionSheetFallback } from '../functions/ActionSheetFallback';
-import { LIB_ENV, IS_PLATFORM_IOS } from '../constants/LibEnv';
+import { ActionSheetFallback } from '../../functions/ActionSheetFallback';
+import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
 
-import * as Helpers from '../functions/Helpers';
+import * as Helpers from '../../functions/Helpers';
 
-
-export type RenderPreviewItem = () => React.ReactElement;
-
-export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
-  | 'menuConfig'
-  | 'previewConfig'
-  | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
-  | 'isContextMenuEnabled'
-  // Lifecycle Events
-  | 'onMenuWillShow'
-  | 'onMenuWillHide'
-  | 'onMenuWillCancel'
-  | 'onMenuDidShow'
-  | 'onMenuDidHide'
-  | 'onMenuDidCancel'
-  // `OnPress` Events
-  | 'onPressMenuItem'
-  | 'onPressMenuPreview'
-> & {
-  lazyPreview?: boolean;
-  useActionSheetFallback?: boolean;
-
-  renderPreview?: RenderPreviewItem;
-};
-
-export type ContextMenuViewProps = 
-  ContextMenuViewBaseProps & ViewProps;
-
-export type ContextMenuViewState = {
-  menuVisible: boolean;
-  mountPreview: boolean;
-};
 
 export class ContextMenuView extends 
   React.PureComponent<ContextMenuViewProps, ContextMenuViewState> {
