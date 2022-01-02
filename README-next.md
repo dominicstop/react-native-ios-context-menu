@@ -546,10 +546,10 @@ export function ContextMenuViewExample01(props) {
 
 A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon.
 
-* A `MenuActionConfig` item can be configured to show a icon via the `MenuActionConfig.icon` property.
+* A `MenuActionConfig` object can be configured to show an icon via the `MenuActionConfig.icon` property.
 
 	* The `icon` property accepts a `ImageItemConfig` object.
-		* A `ImageItemConfig` object is used to describe images/assets.
+		* A `ImageItemConfig` object is used to describe images/assets (e.g. SF Symbols icons, images, xcasset images, programmatic images, etc).
 
 	
 
@@ -564,7 +564,7 @@ A basic context menu that has 3 menu action items, each with a different "SF Sym
 
 		* In order to configure what kind of "SF Symbols" icon we want to use for the menu action, we need to pass in a `ImageSystemConfig` object to the  `ImageItemConfig.imageValue` property.
 
-			* We set what kind of icon to use via the `ImageSystemConfig.systemName`.
+			* We set what kind of icon to use via passing a string value to the `ImageSystemConfig.systemName` property.
 			* The string value passed to the `systemName` property must be a valid SF Symbols name.
 				* To view the list of SF Symbols icons (along with their corresponding icon names), you'll need to download the SF Symbols Mac app from [this page](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).
 
@@ -622,6 +622,23 @@ export function ContextMenuViewExample02(props) {
 <br>
 
 ### `ContextMenuView` Example 03
+
+This example shows a context menu that has a submenu item inside its list of menu actions.
+
+* A context menu supports having nested menu's (i.e. submenu's).
+
+	* A submenu is basically just another menu with it's own list separate list of menu actions.
+	* Tapping/selecting a submenu will show another context menu,
+
+	
+
+* The `MenuConfig.menuItems` property can accept a `MenuActionConfig` object, or a `MenuConfig` object.
+
+	* Passing in a `MenuActionConfig` object to `MenuConfig.menuItems`  makes a menu action, conversely passing in a  `MenuConfig` object will create a submenu item.
+	* In other words, to make a submenu, you just need to pass a `MenuConfig` item in the `MenuConfig.menuItems` property.
+		* 📝 **Note**: You can nest as many submenu's you want (but just remember that having more than 3 nested submenus is considered bad UX).
+
+<br>
 
 [🔗 Full Example](example/src/examples/ContextMenuViewExample03.tsx)
 
@@ -687,6 +704,19 @@ export function ContextMenuViewExample03(props) {
 <br>
 
 ### `ContextMenuView` Example 04
+
+This example context menu showcases the `MenuActionConfig.menuAttributes` property.
+
+* The `MenuActionConfig.menuAttributes` property accepts an array of string (i.e. an array of `MenuAttributes` items),
+
+* This submenu has 3 actions:
+	* The first menu action is a "disabled" action. It has it's `menuAttributes` set to `[disabled]`.
+		* The action title text and icon becomes grey out.
+	* The second menu action is a destructive action. It has it's `menuAttributes` set to `[destructive]`.
+		* The action title text and icon becomes red.
+	* The third menu action is a "hidden" action. It has it's `menuAttributes` set to `[hidden]`.
+		* The menu action is not visible in the menu's list of actions. This is useful for temporarily hiding a menu action item.
+	* The fourth menu action is a "disabled" + "destructive"  action. Visually, it looks very similar to the `disabled` action. 
 
 [🔗 Full Example](example/src/examples/ContextMenuViewExample04.tsx)
 
