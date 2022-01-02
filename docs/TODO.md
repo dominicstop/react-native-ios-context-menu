@@ -45,9 +45,21 @@
 
 <br>
 
+### Version: `1.7.2`
+
+- [x] **Bugfix**: Android error (importing/use of iOS-related native components on non-iOS platforms).
+	- [x] (Commit: `ba00412`) Revert platform-specific extensions for `ContextMenuView`, and `ContextMenuButton`.
+	- [x] (Commit: `5fe92e8`) Use platform specific exports for native components (i.e. `RNIContextMenuView`,  `RNIContextMenuButton`).
+
+<br>
+
+- [x] (Commit: `756514b`) **Implement**: Impl. `ContextMenuButton.dismissMenu`.
+
+<br>
+
 ### Version: `1.7.1`
 
-- [x] Bugfix: Android error (importing/use of iOS-related native components on non-iOS platforms).
+- [x] **Bugfix**: Android error (importing/use of iOS-related native components on non-iOS platforms).
 	- [x] (Commit: `e57aabe`) Refactor `ContextMenuView` to use platform-specific extensions.
 	- [x] (Commit: `0acea05`) Refactor `ContextMenuButton` to use platform-specific extensions.
 
@@ -55,7 +67,7 @@
 
 ### Version: `1.7.0`
 
-- [x]  (Commit: `6b606da`) Impl. `ContextMenuView.isContextMenuEnabled` prop.
+- [x]  (Commit: `6b606da`) **Implement**: Impl. `ContextMenuView.isContextMenuEnabled` prop.
 
 <br>
 
