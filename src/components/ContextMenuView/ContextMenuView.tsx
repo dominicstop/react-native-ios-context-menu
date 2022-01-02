@@ -88,6 +88,8 @@ export class ContextMenuView extends
   };
 
   dismissMenu = async () => {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+
     await RNIContextMenuViewModule.dismissMenu(
       Helpers.getNativeNodeHandle(this.nativeRef),
     );
