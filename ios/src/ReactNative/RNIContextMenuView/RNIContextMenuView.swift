@@ -337,6 +337,10 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     );
   };
   
+  @objc func onButtonPressed(){
+    print("button pressed")
+  };
+  
   // context menu display begins
   func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
@@ -378,7 +382,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
         
         for gestureRecognizer in gestureRecognizers {
           //gestureRecognizer.isEnabled = false;
-        }
+        };
         
         if let contextMenuContentContainer =
             (contextMenuContainerView.subviews.first { !($0 is UIVisualEffectView) }),
@@ -386,17 +390,28 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
             contextMenuContentContainer.subviews.count > 0 {
           
           let morphingPlatterView = contextMenuContentContainer.subviews[0];
+          morphingPlatterView.isUserInteractionEnabled = true;
           
-          let view = UIView(frame: CGRect(
+          morphingPlatterView.gestureRecognizers?.forEach {
+            $0.isEnabled = false;
+          };
+          
+          let button = UIButton(frame: CGRect(
             origin: .zero,
-            size: CGSize(width: 75, height: 75)
+            size: CGSize(width: 100, height: 75)
           ));
           
-          view.backgroundColor = .red;
+          button.setTitle("Hello World", for: .normal);
+          button.addTarget(self, action: #selector(self.onButtonPressed), for: .touchUpInside);
+          button.translatesAutoresizingMaskIntoConstraints = false;
           
-          view.frame = view.frame.offsetBy(dx: 0, dy: -view.frame.height)
+          //button.frame = button.frame.offsetBy(dx: 0, dy: -button.frame.height)
           
-          morphingPlatterView.addSubview(view);
+          contextMenuContentContainer.addSubview(button);
+          
+          NSLayoutConstraint.activate([
+            button.bottomAnchor.constraint(equalTo: morphingPlatterView.topAnchor)
+          ]);
           
         };
       };
