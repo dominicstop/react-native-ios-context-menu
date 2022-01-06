@@ -25,6 +25,7 @@ class RNIContextMenuView: UIView {
   
   var contextMenuInteraction: UIContextMenuInteraction?;
   
+  /// contains the view to show in the preview
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
@@ -247,9 +248,12 @@ fileprivate extension RNIContextMenuView {
     guard previewConfig.previewType != .DEFAULT
     else { return nil };
     
+    // vc that holds the view to show in the preview
     let vc = RNIContextMenuPreviewController();
     vc.previewWrapper = self.previewWrapper;
     vc.previewConfig = previewConfig;
+    
+    vc.view.isUserInteractionEnabled = true;
     
     self.previewController = vc;
     return vc;
@@ -351,6 +355,42 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     animator?.addCompletion {
       self.onMenuDidShow?([:]);
+      self.previewController?.view.isUserInteractionEnabled = true;
+      
+      if let previewController = self.previewController,
+         let contextMenuVC = (previewController.next as? UIViewController)
+           ?? previewController.presentingViewController {
+        
+        contextMenuVC.view?.isUserInteractionEnabled = true;
+      };
+      
+      if let previewController = self.previewController,
+         let transitionView = previewController.next?.next as? UIView {
+        
+        transitionView.isUserInteractionEnabled = true;
+      };
+      
+      if let windowSubviews = self.window?.subviews,
+         let contextMenuContainerView =
+          (windowSubviews.first { ($0.gestureRecognizers?.count ?? 0) > 0 }),
+         
+         let gestureRecognizers = contextMenuContainerView.gestureRecognizers {
+        
+        for gestureRecognizer in gestureRecognizers {
+          gestureRecognizer.isEnabled = false;
+        }
+        
+        let view = UIView(frame: CGRect(
+          origin: .zero,
+          size: CGSize(width: 75, height: 75)
+        ));
+        
+        view.backgroundColor = .red;
+        
+        contextMenuContainerView.addSubview(view);
+        
+        
+      };
     };
   };
   

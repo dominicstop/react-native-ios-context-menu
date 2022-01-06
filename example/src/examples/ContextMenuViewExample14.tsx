@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { Text, View, Alert } from 'react-native';
+import { Text, View, Alert, TouchableOpacity } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -20,15 +20,21 @@ export function ContextMenuViewExample14(props: ContextMenuExampleProps) {
       }}
       renderPreview={() => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{fontSize: 32}}>
-            Hello World
-          </Text>
-          <Text style={{fontSize: 32}}>
-            Hello World
-          </Text>
-          <Text style={{fontSize: 32}}>
-            Hello World
-          </Text>
+          <TouchableOpacity>
+            <Text style={{fontSize: 32}}>
+              Hello World
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={{fontSize: 32}}>
+              Hello World
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={{fontSize: 32}}>
+              Hello World
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
       onPressMenuItem={({nativeEvent}) => {
