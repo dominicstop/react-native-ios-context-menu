@@ -377,19 +377,28 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
          let gestureRecognizers = contextMenuContainerView.gestureRecognizers {
         
         for gestureRecognizer in gestureRecognizers {
-          gestureRecognizer.isEnabled = false;
+          //gestureRecognizer.isEnabled = false;
         }
         
-        let view = UIView(frame: CGRect(
-          origin: .zero,
-          size: CGSize(width: 75, height: 75)
-        ));
-        
-        view.backgroundColor = .red;
-        
-        contextMenuContainerView.addSubview(view);
-        
-        
+        if let contextMenuContentContainer =
+            (contextMenuContainerView.subviews.first { !($0 is UIVisualEffectView) }),
+           
+            contextMenuContentContainer.subviews.count > 0 {
+          
+          let morphingPlatterView = contextMenuContentContainer.subviews[0];
+          
+          let view = UIView(frame: CGRect(
+            origin: .zero,
+            size: CGSize(width: 75, height: 75)
+          ));
+          
+          view.backgroundColor = .red;
+          
+          view.frame = view.frame.offsetBy(dx: 0, dy: -view.frame.height)
+          
+          morphingPlatterView.addSubview(view);
+          
+        };
       };
     };
   };
