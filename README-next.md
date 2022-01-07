@@ -1790,7 +1790,7 @@ export function ContextMenuButtonExample02(props) {
 
 ![screenshot](assets/example-ContextMenuButtonExample02-old.png)
 
-![Gif](assets/)
+![Gif](assets/example-ContextMenuButtonExample02.gif)
 
 <br><br>
 
