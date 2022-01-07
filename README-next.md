@@ -1488,6 +1488,8 @@ const styles = StyleSheet.create({
 
 ![screenshot](assets/example-ContextMenuViewExample15-old.png)
 
+![Gif](assets/example-ContextMenuViewExample15.gif)
+
 <br>
 
 ### `ContextMenuView` Example 16
