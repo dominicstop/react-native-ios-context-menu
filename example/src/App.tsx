@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
   scrollContentContainer: {
     paddingHorizontal: 10,
     paddingBottom: 100,
+    paddingTop: 20,
   },
   exampleListItem: {
     marginBottom: 15,
