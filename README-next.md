@@ -540,6 +540,8 @@ export function ContextMenuViewExample01(props) {
 
 ![screenshot](assets/example-ContextMenuViewExample01-old.png)
 
+![Gif](assets/example-ContextMenuViewExample01.gif)
+
 <br>
 
 ### `ContextMenuView` Example 02
