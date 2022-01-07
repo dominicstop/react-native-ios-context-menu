@@ -113,6 +113,34 @@ class RNIContextMenuView: UIView {
   
   @objc var isContextMenuEnabled = true;
   
+  // MARK: - Computed Properties
+  
+  /// Gets the `_UIContextMenuContainerView` that's holding the context menu controls.
+  /// Subviews:
+  /// * `UIVisualEffectView` - BG blur view
+  /// * `UIView` - Holds the context menu preview
+  /// * `_UIContextMenu` - Context menu items + context menu preview
+  ///
+  var contextMenuContainerView: UIView? {
+    self.window?.subviews.first {
+      ($0.gestureRecognizers?.count ?? 0) > 0
+    };
+  };
+  
+  /// Holds the context menu preview
+  var morphingPlatterView: UIView? {
+    self.contextMenuContainerView?.subviews.first {
+      ($0.gestureRecognizers?.count ?? 0) == 1;
+    };
+  };
+  
+  /// Holds the context menu items
+  var contextMenuItemsView: UIView? {
+    self.contextMenuContainerView?.subviews.first {
+      ($0.gestureRecognizers?.count ?? 0) > 1;
+    };
+  };
+  
   // MARK: - Init
   // ------------
   
@@ -252,7 +280,6 @@ fileprivate extension RNIContextMenuView {
     let vc = RNIContextMenuPreviewController();
     vc.previewWrapper = self.previewWrapper;
     vc.previewConfig = previewConfig;
-    
     vc.view.isUserInteractionEnabled = true;
     
     self.previewController = vc;
@@ -312,6 +339,10 @@ fileprivate extension RNIContextMenuView {
       );
     };
   };
+  
+  func attachContextMenuAuxiliaryPreviewIfAny(){
+    
+  };
 };
 
 // MARK: - UIContextMenuInteractionDelegate
@@ -359,6 +390,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     animator?.addCompletion {
       self.onMenuDidShow?([:]);
+      return;
       self.previewController?.view.isUserInteractionEnabled = true;
       
       if let previewController = self.previewController,
