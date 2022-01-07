@@ -31,10 +31,10 @@ export function ContextMenuViewExample11(props: ContextMenuExampleProps) {
           </Text>
         </View>
       )}
-      onPressMenuItem={({nativeEvent}) => {
+      onPressMenuPreview={() => {
         Alert.alert(
-          'onPressMenuItem Event',
-          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+          'onPressMenuPreview Event',
+          `Menu preview was pressed...`
         );
       }}
     >
