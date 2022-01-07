@@ -1,28 +1,118 @@
 # react-native-ios-context-menu
 
+<p>
+  <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
+</p>
+
 <br>
 
-## 🚧⚠️ **Library WIP** ⚠️🚧
+## 🚧⚠️ Library + Documentation Re-Write WIP ⚠️🚧
+
+📝 Check [`TODO.md`](docs/TODO.md) for progress on re-write.
+
+* ❤️ Support the new API's introduced in iOS 15.
+* 🧡 New `SFSymbols` + menu icon config API.
+* 💛 Support for use with [Mac Catalyst](https://developer.apple.com/documentation/uikit/uicommand/adding_menus_and_shortcuts_to_the_menu_bar_and_user_interface) (e.g. configuring the mac's menu bar + the iPad's [shortcuts/menu bar](https://twitter.com/stroughtonsmith/status/1440344820577226752?s=20)). 
+* 💚 Typescript re-write (for better autocomplete).
+* 💙 Documentation re-write (so its actually usable + better examples).
+* 💜 ...and fixing all the bugs + issues so far 😅
+
+<br>
 
 - The documentation is incomplete (some parts/sections are marked as **TBA** i.e. "to be added"). 
 - Some of the links in the documentation are broken (i.e. the URL points to `PLACE_HOLDER_LINK`).
+- For now, please see the [Usage And Examples](#e-usage-and-examples) section for information on how to use this library.
 
-<br><br>
+<br>
+
+<br>
+
+| Notice                                                       |
+| ------------------------------------------------------------ |
+| 📝 **Note** #1: A future major version of this library will introduce breaking changes to the API (mainly just renaming some of the properties) in order to add new features (and better types). <br><br>However, the next minor version of this library will not introduce any breaking changes but will instead focus on adding typescript annotations and fixing the existing bugs. |
+| 📝 **Note** #2: The documentation + examples are currently being rewritten.<br><br>💅 [`README-old.md`](./README-old.md) — The old version of the documentation (archived).<br>💖 [`example/src/examples`](./example/src/examples) — The typescript rewrite of the examples (WIP). |
+
+ <br>
+
+### Versions
+
+| Library Version | Compatibility                 |
+| :-------------- | ----------------------------- |
+| `1.6.2`         | iOS 10 to iOS 15<br>Xcode 12+ |
+| `1.4`           | iOS 10 to iOS 15<br>Xcode 13+ |
+| `1.3` and Below | iOS 10 to 14<br>Xcode 12+     |
+
+📝 **Note**: Supports projects targeting iOS 10 but will use the action sheet fallback when running on iOS 12 and older.<br>
 
 ## A. Introduction
+
+A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
+
+<br>
+
+### A.1. Gifs and Demos
+
+📝 **Note**: These gifs are from an older version of the library running on iOS 13 (see [Usage And Examples](#e-usage-and-examples) section for updated example gifs).<br>
+
+`ContextMenuView` Examples, **Left**: [Example 1](#ContextMenuView-Example-01), [Example 2](#ContextMenuView-Example-02), and **Right**: [Example 3](#ContextMenuView-Example-03), [Example 4](#ContextMenuView-Example-04)
+![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
+
+`ContextMenuView` examples, **Left**: [Example 5](#ContextMenuView-Example-05), [Example 6](#ContextMenuView-Example-06), and **Right**: [Example 7](#ContextMenuView-Example-07), [Example 8](#ContextMenuView-Example-08)
+![Simple Example 5 to 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif)
+
+`ContextMenuView` example, **Left**: [Example 9](#ContextMenuView-Example-09), and **Right**: [Example 10](#ContextMenuView-Example-10)
+![Simple Example 9 and 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-9-10.gif)
+
+`ContextMenuView` examples, **Left**: [Example 11](#ContextMenuView-Example-11), [Example 12](#ContextMenuView-Example-12), and **Right**: [Example 13](#ContextMenuView-Example-13), [	Example 14](#ContextMenuView-Example-14)
+![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif)
+
+`ContextMenuView` examples, **Left**: [Example 15](#ContextMenuView-Example-15), [Example 16](#ContextMenuView-Example-16), and **Right**: [Example 17](#ContextMenuView-Example-17), [Example 18](#ContextMenuView-Example-18)
+![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif)
+
+`ContextMenuView` tests, **Left**: [Test 1](PLACE_HOLDER_LINK), and **Right**: [Test 2](PLACE_HOLDER_LINK)
+![Context Menu View Test 1 and 2 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-01-02.gif)
+
+`ContextMenuView` tests, **Left**: [Test 3](PLACE_HOLDER_LINK), and **Right**: [Test 4](PLACE_HOLDER_LINK)
+![Context Menu View Test 3 and 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-03-04.gif)
+
+`ContextMenuView` tests, **Left**: [Test 5](PLACE_HOLDER_LINK), and **Right**: [Test 6](PLACE_HOLDER_LINK)
+![Context Menu View Test 5 and 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-05-06.gif)
+
+`ContextMenuView` tests, **Left/Right:** [Test 7](PLACE_HOLDER_LINK)
+![Context Menu View 7 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-07.gif)
+
+`ContextMenuView` `ActionSheetIOS` fallback for simple example 1 to 9
+![Action Sheet Fallback for Simple Example 1 to 9 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-SimpleExample-1-to-9.gif)
+
+`ContextMenuView` `ActionSheetIOS` fallback for context menu view test 1 to 6
+![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-Test-1-to-6.gif)
+
+`ContextMenuButton` examples, **Left**: [Example 1](#ContextMenuButton-Example-01), and **Right**: [Example 2](#ContextMenuButton-Example-02)
+![Simple Example 1 and 2 Gifs](./assets/context-menu-button-gifs/ContextMenuButton-SimpleExample-1-2.gif)
+
+<br>
+
+### A.2. Feautures
+
+* Support for creating menu actions and submenus (i.e. nested and in-line menus)
+* Support for customizing the menu icons (i.e. support for SF Symbols, `require(image)`, and `xcasset` icons, icon tint, etc.)
+* Support for iOS 14 functionality (like the `UIButton` context menu, updating the menu while its visible, etc.)
+* Support for setting (almost) all of the native [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) and ￼[`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, `discoverabilityTitle`, etc.)
+* Basic `ActionSheetIOS` menu fallback for iOS 12 and below.
+* Support for creating custom context menu previews (with support for dynamic or fixed preview sizes, setting the [`UIPreviewParameters`](https://developer.apple.com/documentation/uikit/uipreviewparameters), specifying a [`UITargetedPreview`](https://developer.apple.com/documentation/uikit/uitargetedpreview), etc.)
 
 <br><br>
 
 ## B. Installation
 
 ```sh
-# install via NPM
+# 1A) install via NPM
 npm install react-native-ios-context-menu
 
-# or install via yarn
+# 1B) or install via yarn
 yarn add react-native-ios-context-menu
 
-# then run pod install (uses auto-linking)
+# 2) then run pod install (uses auto-linking)
 cd ios && pod install
 ```
 
@@ -1803,3 +1893,5 @@ export function ContextMenuButtonExample02(props) {
 <br><br>
 
 ## H. Licence
+
+MIT
