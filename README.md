@@ -42,7 +42,9 @@
 | `1.4`           | iOS 10 to iOS 15<br>Xcode 13+ |
 | `1.3` and Below | iOS 10 to 14<br>Xcode 12+     |
 
-📝 **Note**: Supports projects targeting iOS 10 but will use the action sheet fallback when running on iOS 12 and older.<br>
+📝 **Note**: Supports projects targeting iOS 10 but will use the action sheet fallback when running on iOS 12 and older.
+
+<br><br>
 
 ## A. Introduction
 
@@ -574,22 +576,27 @@ TBA
 
 A basic context menu that has 3 menu action items (e.g. "Action #1", "Action #2", and "Action #3").
 
+<br>
+
 * The `ContextMenuView.menuConfig` prop accepts an optional `MenuConfig` object.
 
-	* You can set the context menu title via the `MenuConfig.menuTitle` property.
-	* To populate the context menu with items, you can pass a `MenuActionConfig` object to the `MenuConfig.menuItems` property.
-	* A `MenuActionConfig` object represents an action item in the context menu (e.g. copy, paste, delete, etc).
-		* The `MenuActionConfig.actionKey` property serves as a unique identifier for your menu action.
-			* You will receive the value you passed in `MenuActionConfig.actionKey` in the `ContextMenuView.onPressMenuItem` event (i.e. via the  `nativeEvent` object).
-			* In other words, the `actionKey` allows you to identify which menu action item was selected/pressed.
-			* 📝 **Note**: Make sure that the `actionKey` is unique for each instance of the `ContextMenuView` component.
+* You can set the context menu title via the `MenuConfig.menuTitle` property.
+* To populate the context menu with items, you can pass a `MenuActionConfig` object to the `MenuConfig.menuItems` property.
 
-	
+<br>
 
-*  You can use the `ContextMenuView.onPressMenuItem` event prop to get notified whenever a menu action item has been selected.
-	* The function you pass to the `onPressMenuItem` prop receives a `OnPressMenuItemEventObject` object.
-	* Details about the selected menu action item can be accessed via the `OnPressMenuItemEventObject.nativeEvent` object.
-		* E.g. `OnPressMenuItemEventObject.nativeEvent.actionKey`.
+* A `MenuActionConfig` object represents an action item in the context menu (e.g. copy, paste, delete, etc).
+* The `MenuActionConfig.actionKey` property serves as a unique identifier for your menu action.
+* You will receive the value you passed in `MenuActionConfig.actionKey` in the `ContextMenuView.onPressMenuItem` event (i.e. via the  `nativeEvent` object).
+* In other words, the `actionKey` allows you to identify which menu action item was selected/pressed.
+	* 📝 **Note**: Make sure that the `actionKey` is unique for each instance of the `ContextMenuView` component.
+
+<br>
+
+* You can use the `ContextMenuView.onPressMenuItem` event prop to get notified whenever a menu action item has been selected.
+* The function you pass to the `onPressMenuItem` prop receives a `OnPressMenuItemEventObject` object.
+* Details about the selected menu action item can be accessed via the `OnPressMenuItemEventObject.nativeEvent` object.
+  * E.g. `OnPressMenuItemEventObject.nativeEvent.actionKey`.
 
 <br>
 
@@ -636,29 +643,31 @@ export function ContextMenuViewExample01(props) {
 
 ### `ContextMenuView` Example 02
 
-A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon.
+A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon. This examples shows how to add a system icon in the context menu action.
+
+<br>
 
 * A `MenuActionConfig` object can be configured to show an icon via the `MenuActionConfig.icon` property.
 
-	* The `icon` property accepts a `ImageItemConfig` object.
-		* A `ImageItemConfig` object is used to describe images/assets (e.g. SF Symbols icons, images, xcasset images, programmatic images, etc).
+* The `icon` property accepts a `ImageItemConfig` object.
+* A `ImageItemConfig` object is used to describe images/assets (e.g. SF Symbols icons, images, xcasset images, programmatic images, etc).
 
-	
+<br>
 
-	* In this example, we want to use a "SF Symbols" icon for the menu action. 
+* In this example, we want to use a "SF Symbols" icon for the menu action. 
 
-		* In order to do this, the `ImageItemConfig.type` property must be set to `"IMAGE_SYSTEM"`.
+* In order to do this, the `ImageItemConfig.type` property must be set to `"IMAGE_SYSTEM"`.
 
-			* Passing in a value of `"IMAGE_SYSTEM"` to the `type` property means that we want to create a "SF Symbols" system icon.
-			* Using a "SF Symbols" icon requires iOS 13+.
+* Passing in a value of `"IMAGE_SYSTEM"` to the `type` property means that we want to create a "SF Symbols" system icon.
+* Using a "SF Symbols" icon requires iOS 13+.
 
-			
+<br>
 
-		* In order to configure what kind of "SF Symbols" icon we want to use for the menu action, we need to pass in a `ImageSystemConfig` object to the  `ImageItemConfig.imageValue` property.
+* In order to configure what kind of "SF Symbols" icon we want to use for the menu action, we need to pass in a `ImageSystemConfig` object to the  `ImageItemConfig.imageValue` property.
 
-			* We set what kind of icon to use via passing a string value to the `ImageSystemConfig.systemName` property.
-			* The string value passed to the `systemName` property must be a valid SF Symbols name.
-				* To view the list of SF Symbols icons (along with their corresponding icon names), you'll need to download the SF Symbols Mac app from [this page](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).
+* We set what kind of icon to use via passing a string value to the `ImageSystemConfig.systemName` property.
+* The string value passed to the `systemName` property must be a valid SF Symbols name.
+* To view the list of SF Symbols icons (along with their corresponding icon names), you'll need to download the SF Symbols Mac app from [this page](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).
 
 <br>
 
@@ -803,16 +812,32 @@ export function ContextMenuViewExample03(props) {
 
 This example context menu showcases the `MenuActionConfig.menuAttributes` property.
 
-* The `MenuActionConfig.menuAttributes` property accepts an array of string (i.e. an array of `MenuAttributes` items),
+<br>
 
-* This submenu has 3 actions:
-	* The first menu action is a "disabled" action. It has it's `menuAttributes` set to `[disabled]`.
-		* The action title text and icon becomes grey out.
-	* The second menu action is a destructive action. It has it's `menuAttributes` set to `[destructive]`.
-		* The action title text and icon becomes red.
-	* The third menu action is a "hidden" action. It has it's `menuAttributes` set to `[hidden]`.
-		* The menu action is not visible in the menu's list of actions. This is useful for temporarily hiding a menu action item.
-	* The fourth menu action is a "disabled" + "destructive"  action. Visually, it looks very similar to the `disabled` action. 
+* The `MenuActionConfig.menuAttributes` property accepts an array of string (i.e. an array of `MenuAttributes` items).
+
+<br>
+
+* In this example, the context menu has 3 actions, each with a different menu attribute assigned to it.
+* The first menu action is a "disabled" action. It has it's `menuAttributes` set to `[disabled]`.
+  * The action title text and icon becomes grey out.
+
+<br>
+
+* The second menu action is a destructive action. It has it's `menuAttributes` set to `[destructive]`.
+  * The action title text and icon becomes red.
+
+<br>
+
+* The third menu action is a "hidden" action. It has it's `menuAttributes` set to `[hidden]`.
+  * The menu action is not visible in the menu's list of actions. This is useful for temporarily hiding a menu action item.
+
+<br>
+
+* The fourth menu action is a "disabled" + "destructive"  action. 
+	* Visually, it looks very similar to the `disabled` action. 
+
+<br>
 
 [🔗 Full Example](example/src/examples/ContextMenuViewExample04.tsx)
 
