@@ -1684,6 +1684,8 @@ export function ContextMenuViewExample18(props) {
 
 ![screenshot](assets/example-ContextMenuViewExample18-old.png)
 
+![Gif](assets/example-ContextMenuViewExample18.gif)
+
 <br><br>
 
 ## F. Showcase, Tests and Demos
