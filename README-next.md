@@ -1357,17 +1357,19 @@ export function ContextMenuViewExample13(props) {
       menuConfig={{
         menuTitle: 'ContextMenuViewExample13',
         menuItems: [{
-          actionKey           : 'key-01',
-          actionTitle         : 'Action #1',
-          discoverabilityTitle: 'Action subtitle',
+          actionKey: 'key-01',
+          actionTitle: 'Action #1',
+          // iOS 13 to 14 (still works on iOS 15+)
+          actionSubtitle: 'Action subtitle',
         }, {
-          actionKey           : 'key-02'   ,
-          actionTitle         : 'Action #2',
-          discoverabilityTitle: 'Lorum ipsum sit amit dolor aspicing',
+          actionKey: 'key-02'   ,
+          actionTitle: 'Action #2',
+          // iOS 15+ only
+          actionSubtitle: 'Lorum ipsum sit amit dolor aspicing',
         }, {
-          actionKey           : 'key-03'   ,
-          actionTitle         : 'Action #3',
-          discoverabilityTitle: 'Very long `discoverabilityTitle` lorum ipsum sit amit',
+          actionKey: 'key-03'   ,
+          actionTitle: 'Action #3',
+          actionSubtitle: 'Very long `discoverabilityTitle` lorum ipsum sit amit',
         }],
       }}
     >
