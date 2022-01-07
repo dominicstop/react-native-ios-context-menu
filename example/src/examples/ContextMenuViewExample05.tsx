@@ -12,11 +12,10 @@ export function ContextMenuViewExample05(props: ContextMenuExampleProps) {
     <ContextMenuView
       style={props.style}
       menuConfig={{
-        menuTitle: 'ContextMenuViewExample04',
+        menuTitle: 'ContextMenuViewExample03',
         menuItems: [{
-          actionKey     : 'key-01',
-          actionTitle   : 'Disabled Action',
-          menuAttributes: ['disabled'],
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
@@ -24,35 +23,36 @@ export function ContextMenuViewExample05(props: ContextMenuExampleProps) {
             },
           }
         }, {
-          actionKey     : 'key-02'   ,
-          actionTitle   : 'Destructive Action',
-          menuAttributes: ['destructive'],
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'trash',
-            },
-          }
-        }, {
-          actionKey     : 'key-03'   ,
-          actionTitle   : 'Hidden Action',
-          menuAttributes: ['hidden'],
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'trash',
-            },
-          }
-        }, {
-          actionKey     : 'key-04'   ,
-          actionTitle   : 'Disabled/Destructive',
-          menuAttributes: ['disabled', 'destructive'],
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'trash.fill',
-            },
-          }
+          menuTitle: 'Submenu...',
+          menuOptions: ['displayInline'],
+          menuItems: [{
+            actionKey  : 'key-01-01',
+            actionTitle: 'Submenu Action #1',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-02',
+            actionTitle: 'Submenu Action #2',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.lefthalf.fill',
+              },
+            }
+          }, {
+            actionKey  : 'key-01-03',
+            actionTitle: 'Submenu Action #3',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'star.fill',
+              },
+            }
+          }]
         }],
       }}
       onPressMenuItem={({nativeEvent}) => {
