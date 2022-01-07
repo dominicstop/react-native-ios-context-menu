@@ -14,17 +14,17 @@ export function ContextMenuViewExample13(props: ContextMenuExampleProps) {
       menuConfig={{
         menuTitle: 'ContextMenuViewExample13',
         menuItems: [{
-          actionKey           : 'key-01',
-          actionTitle         : 'Action #1',
+          actionKey: 'key-01',
+          actionTitle: 'Action #1',
           discoverabilityTitle: 'Action subtitle',
         }, {
-          actionKey           : 'key-02'   ,
-          actionTitle         : 'Action #2',
-          discoverabilityTitle: 'Lorum ipsum sit amit dolor aspicing',
+          actionKey: 'key-02'   ,
+          actionTitle: 'Action #2',
+          actionSubtitle: 'Lorum ipsum sit amit dolor aspicing',
         }, {
-          actionKey           : 'key-03'   ,
-          actionTitle         : 'Action #3',
-          discoverabilityTitle: 'Very long `discoverabilityTitle` lorum ipsum sit amit',
+          actionKey: 'key-03'   ,
+          actionTitle: 'Action #3',
+          actionSubtitle: 'Very long `discoverabilityTitle` lorum ipsum sit amit',
         }],
       }}
       onPressMenuItem={({nativeEvent}) => {
@@ -38,7 +38,6 @@ export function ContextMenuViewExample13(props: ContextMenuExampleProps) {
         index={props.index}
         title={'ContextMenuViewExample13'}
         subtitle={'discoverabilityTitle'}
-
         description={[
           `Context menu with 3 actions that has the 'discoverabilityTitle' set.`
         ]}
