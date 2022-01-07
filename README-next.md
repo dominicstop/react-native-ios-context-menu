@@ -1728,7 +1728,7 @@ export function ContextMenuButtonExample01() {
 
 ![screenshot](assets/example-ContextMenuButtonExample01-old.png)
 
-![Gif](assets/)
+![Gif](assets/example-ContextMenuButtonExample01.gif)
 
 <br>
 
