@@ -801,7 +801,6 @@ import { ContextMenuView } from 'react-native-ios-context-menu';
 export function ContextMenuViewExample05(props) {
   return (
     <ContextMenuView
-      style={props.style}
       menuConfig={{
         menuTitle: 'ContextMenuViewExample03',
         menuItems: [{
@@ -845,12 +844,6 @@ export function ContextMenuViewExample05(props) {
             }
           }]
         }],
-      }}
-      onPressMenuItem={({nativeEvent}) => {
-        Alert.alert(
-          'onPressMenuItem Event',
-          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
-        );
       }}
     >
       {/** Components */}
@@ -1566,6 +1559,7 @@ export function ContextMenuViewExample17(props) {
             },
             imageOptions: {
               tint: 'blue',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }, {
@@ -1579,6 +1573,7 @@ export function ContextMenuViewExample17(props) {
             },
             imageOptions: {
               tint: 'rgb(218,165,32)',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }, {
@@ -1592,6 +1587,7 @@ export function ContextMenuViewExample17(props) {
             },
             imageOptions: {
               tint: '#FF1493',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }, {
@@ -1605,6 +1601,7 @@ export function ContextMenuViewExample17(props) {
             },
             imageOptions: {
               tint: 'rgba(124,252,0,0.5)',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }]
@@ -1643,7 +1640,6 @@ const iconC = Image.resolveAssetSource(
 export function ContextMenuViewExample18(props) {
   return (
     <ContextMenuView
-      style={props.style}
       menuConfig={{
         menuTitle: 'ContextMenuViewExample18',
         menuItems: [{
