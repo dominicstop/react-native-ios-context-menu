@@ -1118,6 +1118,8 @@ export function ContextMenuViewExample09(props) {
 
 ![screenshot](assets/example-ContextMenuViewExample09-old.png)
 
+![Gif](assets/example-ContextMenuViewExample09.gif)
+
 <br>
 
 ### `ContextMenuView` Example 10
