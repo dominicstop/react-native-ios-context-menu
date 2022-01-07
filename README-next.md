@@ -1339,6 +1339,8 @@ export function ContextMenuViewExample12(props) {
 
 ![screenshot](assets/example-ContextMenuViewExample12-old.png)
 
+![Gif](assets/example-ContextMenuViewExample12.gif)
+
 <br>
 
 ### `ContextMenuView` Example 13
