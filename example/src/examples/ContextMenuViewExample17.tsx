@@ -24,6 +24,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             },
             imageOptions: {
               tint: 'blue',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }, {
@@ -37,6 +38,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             },
             imageOptions: {
               tint: 'rgb(218,165,32)',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }, {
@@ -50,6 +52,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             },
             imageOptions: {
               tint: '#FF1493',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }, {
@@ -63,6 +66,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             },
             imageOptions: {
               tint: 'rgba(124,252,0,0.5)',
+              renderingMode: 'alwaysOriginal',
             },
           },
         }]
