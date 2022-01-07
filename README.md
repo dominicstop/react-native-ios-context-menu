@@ -55,40 +55,40 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 📝 **Note**: These gifs are from an older version of the library running on iOS 13 (see [Usage And Examples](#e-usage-and-examples) section for updated example gifs).<br>
 
 `ContextMenuView` Examples, **Left**: [Example 1](#ContextMenuView-Example-01), [Example 2](#ContextMenuView-Example-02), and **Right**: [Example 3](#ContextMenuView-Example-03), [Example 4](#ContextMenuView-Example-04)
-![Simple Example 1 to 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-1-2-3-4.gif)
+![Simple Example 1 to 4 Gifs](./assets/montage-ContextMenuView-Example-old-1-2-3-4.gif)
 
 `ContextMenuView` examples, **Left**: [Example 5](#ContextMenuView-Example-05), [Example 6](#ContextMenuView-Example-06), and **Right**: [Example 7](#ContextMenuView-Example-07), [Example 8](#ContextMenuView-Example-08)
-![Simple Example 5 to 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-5-6-7-8.gif)
+![Simple Example 5 to 8 Gifs](./assets/montage-ContextMenuView-Example-old-5-6-7-8.gif)
 
 `ContextMenuView` example, **Left**: [Example 9](#ContextMenuView-Example-09), and **Right**: [Example 10](#ContextMenuView-Example-10)
-![Simple Example 9 and 8 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-9-10.gif)
+![Simple Example 9 and 8 Gifs](./assets/montage-ContextMenuView-Example-old-9-10.gif)
 
 `ContextMenuView` examples, **Left**: [Example 11](#ContextMenuView-Example-11), [Example 12](#ContextMenuView-Example-12), and **Right**: [Example 13](#ContextMenuView-Example-13), [	Example 14](#ContextMenuView-Example-14)
-![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-11-12-13-14.gif)
+![Simple Example 11 to 14 Gifs](./assets/montage-ContextMenuView-Example-old-11-12-13-14.gif)
 
 `ContextMenuView` examples, **Left**: [Example 15](#ContextMenuView-Example-15), [Example 16](#ContextMenuView-Example-16), and **Right**: [Example 17](#ContextMenuView-Example-17), [Example 18](#ContextMenuView-Example-18)
-![Simple Example 11 to 14 Gifs](./assets/context-menu-view-gifs/ContextMenuView-SimpleExample-15-16-17-18.gif)
+![Simple Example 11 to 14 Gifs](./assets/montage-ContextMenuView-Example-old-15-16-17-18.gif)
 
 `ContextMenuView` tests, **Left**: [Test 1](PLACE_HOLDER_LINK), and **Right**: [Test 2](PLACE_HOLDER_LINK)
-![Context Menu View Test 1 and 2 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-01-02.gif)
+![Context Menu View Test 1 and 2 Gifs](./assets/montage-ContextMenuView-Test-old-01-02.gif)
 
 `ContextMenuView` tests, **Left**: [Test 3](PLACE_HOLDER_LINK), and **Right**: [Test 4](PLACE_HOLDER_LINK)
-![Context Menu View Test 3 and 4 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-03-04.gif)
+![Context Menu View Test 3 and 4 Gifs](./assets/montage-ContextMenuView-Test-old-03-04.gif)
 
 `ContextMenuView` tests, **Left**: [Test 5](PLACE_HOLDER_LINK), and **Right**: [Test 6](PLACE_HOLDER_LINK)
-![Context Menu View Test 5 and 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-05-06.gif)
+![Context Menu View Test 5 and 6 Gifs](./assets/montage-ContextMenuView-Test-old-05-06.gif)
 
 `ContextMenuView` tests, **Left/Right:** [Test 7](PLACE_HOLDER_LINK)
-![Context Menu View 7 Gifs](./assets/context-menu-view-gifs/ContextMenuView-Test-07.gif)
+![Context Menu View 7 Gifs](./assets/montage-ContextMenuView-Test-old-07.gif)
 
 `ContextMenuView` `ActionSheetIOS` fallback for simple example 1 to 9
-![Action Sheet Fallback for Simple Example 1 to 9 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-SimpleExample-1-to-9.gif)
+![Action Sheet Fallback for Simple Example 1 to 9 Gifs](./assets/montage-ContextMenuView-ActionSheetFallback-Example-old-1-to-9.gif)
 
 `ContextMenuView` `ActionSheetIOS` fallback for context menu view test 1 to 6
-![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/context-menu-view-gifs/ContextMenuView-ActionSheetFallback-Test-1-to-6.gif)
+![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](./assets/montage-ContextMenuView-ActionSheetFallback-Test-old-1-to-6.gif)
 
 `ContextMenuButton` examples, **Left**: [Example 1](#ContextMenuButton-Example-01), and **Right**: [Example 2](#ContextMenuButton-Example-02)
-![Simple Example 1 and 2 Gifs](./assets/context-menu-button-gifs/ContextMenuButton-SimpleExample-1-2.gif)
+![Simple Example 1 and 2 Gifs](./assets/montage-ContextMenuButton-Example-old-1-2.gif)
 
 <br>
 
