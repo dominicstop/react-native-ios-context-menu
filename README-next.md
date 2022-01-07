@@ -1686,6 +1686,112 @@ export function ContextMenuViewExample18(props) {
 
 ![Gif](assets/example-ContextMenuViewExample18.gif)
 
+<br>
+
+### `ContextMenuButton` Example 01
+
+[🔗 Full Example](example/src/examples/ContextMenuButtonExample01.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+
+import { ContextMenuButton } from 'react-native-ios-context-menu';
+
+export function ContextMenuButtonExample01() {
+  return (
+    <ContextMenuButton
+      menuConfig={{
+        menuTitle: 'ContextMenuButtonSimpleExample01',
+          menuItems: [{
+            actionKey  : 'key-01',
+            actionTitle: 'Action #1',
+          }, {
+            actionKey  : 'key-02'   ,
+            actionTitle: 'Action #2',
+          }, {
+            actionKey  : 'key-03'   ,
+            actionTitle: 'Action #3',
+          }],
+      }}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
+      }}
+    >
+      {/** Components */}
+    </ContextMenuButton>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuButtonExample01-old.png)
+
+![Gif](assets/)
+
+<br>
+
+### `ContextMenuButton` Example 02
+
+[🔗 Full Example](example/src/examples/ContextMenuButtonExample02.tsx)
+
+```jsx
+ // 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuButton } from 'react-native-ios-context-menu';
+
+export function ContextMenuButtonExample02(props) {
+  return (
+    <ContextMenuButton
+      isMenuPrimaryAction={true}
+      menuConfig={{
+        menuTitle: 'ContextMenuButtonSimpleExample02',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'dial.fill',
+            },
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'archivebox.fill',
+            },
+          }
+        }],
+      }}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
+      }}
+    >
+      {/** Components */}
+    </ContextMenuButton>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuButtonExample02-old.png)
+
+![Gif](assets/)
+
 <br><br>
 
 ## F. Showcase, Tests and Demos
