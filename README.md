@@ -263,8 +263,8 @@ const styles = StyleSheet.create({
 | ⚛️ `ViewProps`                                                | This component supports all the standard props from a `<View/>` component. |
 | 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 | 🔤  `previewConfig`<br/><br/>⚛️ [`MenuPreviewConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
-| 🔤  `shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)<br/><br/>✳️ **Default**: `true` | TBA                                                          |
-| 🔤  `isContextMenuEnabled`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)<br/><br/>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `isContextMenuEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
 | 🔤  `lazyPreview`<br/><br/>⚛️ `boolean`<br><br>✳️ **Default**: `true` | TBA                                                          |
 | 🔤  `useActionSheetFallback`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
 | 🔤  `renderPreview`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)     | TBA                                                          |
@@ -273,17 +273,25 @@ const styles = StyleSheet.create({
 
 ##### `ContextMenuView` Component: Event Props
 
-| Prop Name and Type                             | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Prop Name and Type                                           | Description |
+| :----------------------------------------------------------- | :---------- |
+| 🔤  `onMenuWillShow`<br/><br/>⚛️ [`OnMenuWillShowEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onMenuDidShow`<br/><br/>⚛️ [`OnMenuDidShowEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onMenuWillHide`<br/><br/>⚛️ [`OnMenuWillHideEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onMenuDidHide`<br/><br/>⚛️ [`OnMenuDidHideEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onMenuWillCancel`<br/><br/>⚛️ [`OnMenuWillCancelEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onMenuWillCreate`<br/><br/>⚛️ [`OnMenuWillCreateEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | TBA         |
+| 🔤  `onPressMenuPreview`<br/><br/>⚛️ [`OnPressMenuPreviewEvent`](./src/types/MenuEvents.ts) | TBA         |
 
 <br>
 
 ##### `ContextMenuView` Component: Properties/Methods
 
-| Prop Name and Type                             | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Prop Name and Type                          | Description |
+| :------------------------------------------ | :---------- |
+| 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | TBA         |
 
 <br>
 
@@ -291,27 +299,37 @@ const styles = StyleSheet.create({
 
 ##### `ContextMenuButton` Component: Props
 
-| Prop Name and Type                                          | Description                                                  |
-| :---------------------------------------------------------- | :----------------------------------------------------------- |
-| ⚛️ `ViewProps`                                               | This component supports all the standard props from a `<View/>` component. |
-| 🔤 **Required**: `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA                                                          |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)              | TBA                                                          |
+| Prop Name and Type                                           | Description                                                  |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| ⚛️ `ViewProps`                                                | This component supports all the standard props from a `<View/>` component. |
+| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `isMenuPrimaryAction`<br/><br/>⚛️ `boolean`                | TBA                                                          |
+| 🔤  `shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA / Not Implented                                          |
+| 🔤  `enableContextMenu`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `useActionSheetFallback`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
 
 <br>
 
 ##### `ContextMenuButton` Component: Event Props
 
-| Prop Name and Type                             | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Prop Name and Type                                           | Description                                       |
+| :----------------------------------------------------------- | :------------------------------------------------ |
+| 🔤  `onMenuWillShow`<br/><br/>⚛️ [`OnMenuWillShowEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onMenuWillShow` event.   |
+| 🔤  `onMenuDidShow`<br/><br/>⚛️ [`OnMenuDidShowEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onMenuDidShow` event.    |
+| 🔤  `onMenuWillHide`<br/><br/>⚛️ [`OnMenuWillHideEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onMenuWillHide` event.   |
+| 🔤  `onMenuDidHide`<br/><br/>⚛️ [`OnMenuDidHideEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onMenuDidHide` event.    |
+| 🔤  `onMenuWillCancel`<br/><br/>⚛️ [`OnMenuWillCancelEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onMenuWillCancel` event. |
+| 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onMenuDidCancel` event.  |
+| 🔤  `onMenuWillCreate`<br/><br/>⚛️ [`OnMenuWillCreateEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onMenuWillCreate` event. |
+| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Same as `ContextMenuView.onPressMenuItem` event.  |
 
 <br>
 
 ##### `ContextMenuButton` Component: Properties/Methods
 
-| Prop Name and Type                             | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Prop Name and Type                          | Description                                   |
+| :------------------------------------------ | :-------------------------------------------- |
+| 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | Same as `ContextMenuView.dismissMenu` method. |
 
 <br>
 
@@ -361,17 +379,28 @@ TBA
 
 ##### Object Type: `MenuConfig`
 
-| Name and Type                                  | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Name and Type                                                | Description |
+| :----------------------------------------------------------- | :---------- |
+| 🔤  `type`<br/><br/>⚛️ `string`, i.e.`"menu"`                  | TBA         |
+| 🔤  `menuTitle`<br/><br/>⚛️ `string`                           | TBA         |
+| 🔤  `menuOptions`<br/><br/>⚛️ `Array<UIMenuOptions>`<br>📌 [`UIMenuOptions`](PLACE_HOLDER_LINK) | TBA         |
+| 🔤  `menuItems`<br/><br/>⚛️ `Array<MenuConfig ¦ MenuActionConfig `<br/>📌 [`MenuConfig`](PLACE_HOLDER_LINK)<br/>📌 [`MenuActionConfig`](PLACE_HOLDER_LINK) | TBA         |
+| 🔤  `icon`<br/><br/>⚛️ `IconConfig ¦ ImageItemConfig`<br/>📌 [`IconConfig`](PLACE_HOLDER_LINK) (deprecated)<br/>📌 [`ImageItemConfig`](PLACE_HOLDER_LINK) | TBA         |
 
 <br>
 
 ##### Object Type: `MenuActionConfig`
 
-| Name and Type                                  | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Name and Type                                                | Description |
+| :----------------------------------------------------------- | :---------- |
+| 🔤  `type`<br/><br/>⚛️ `string`, i.e. `"action"`               | TBA         |
+| 🔤 **Required**: `actionKey`<br/><br/>⚛️ `string`              | TBA         |
+| 🔤 **Required**:  `actionTitle`<br/><br/>⚛️ `string`           | TBA         |
+| 🔤  `actionSubtitle`<br/><br/>⚛️ `string`                      | TBA         |
+| 🔤  `menuState`<br/><br/>⚛️ [`MenuState`](PLACE_HOLDER_LINK)   | TBA         |
+| 🔤  `menuAttributes`<br/><br/>⚛️ `Array<MenuAttributes>`<br>📌 [`MenuAtrributes`](PLACE_HOLDER_LINK) | TBA         |
+| 🔤  `discoverabilityTitle`<br/><br/>⚛️ `string`                | TBA         |
+| 🔤  `icon`<br/><br/>⚛️ `IconConfig ¦ ImageItemConfig`<br/>📌 [`IconConfig`](PLACE_HOLDER_LINK) (deprecated)<br/>📌 [`ImageItemConfig`](PLACE_HOLDER_LINK) | TBA         |
 
 <br>
 
