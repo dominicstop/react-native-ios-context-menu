@@ -317,11 +317,37 @@ const styles = StyleSheet.create({
 
 ### D.2. Context
 
+#### `ContextMenuViewContext` Context
+
 TBA
+
+| Property                                                     | Description |
+| ------------------------------------------------------------ | ----------- |
+| 🔤  `isMenuVisible`<br/><br/>⚛️ `boolean`                      | TBA         |
+| 🔤  `getRefToContextMenuView`<br/><br/>⚛️ `() => ContextMenuView`<br>📌 [`ContextMenuView`](PLACE_HOLDER_LINK) | TBA         |
+
+<br>
+
+#### `ContextMenuButtonContext` Context
+
+TBA
+
+| Property                                                     | Description |
+| ------------------------------------------------------------ | ----------- |
+| 🔤  `isMenuVisible`<br/><br/>⚛️ `boolean`                      | TBA         |
+| 🔤  `getRefToContextMenuButton`<br/><br/>⚛️ `() => ContextMenuView`<br>📌 [`ContextMenuButton`](PLACE_HOLDER_LINK) | TBA         |
 
 <br>
 
 ### D.3. Hooks
+
+####  `useMenuContext` Hook
+
+TBA
+
+<br>
+
+####  `useMenuButtonContext` Hook
 
 TBA
 
@@ -587,6 +613,9 @@ A basic context menu that has 3 menu action items (e.g. "Action #1", "Action #2"
 
 * A `MenuActionConfig` object represents an action item in the context menu (e.g. copy, paste, delete, etc).
 * The `MenuActionConfig.actionKey` property serves as a unique identifier for your menu action.
+
+<br>
+
 * You will receive the value you passed in `MenuActionConfig.actionKey` in the `ContextMenuView.onPressMenuItem` event (i.e. via the  `nativeEvent` object).
 * In other words, the `actionKey` allows you to identify which menu action item was selected/pressed.
 	* 📝 **Note**: Make sure that the `actionKey` is unique for each instance of the `ContextMenuView` component.
