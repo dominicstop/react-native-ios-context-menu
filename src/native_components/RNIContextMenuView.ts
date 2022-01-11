@@ -41,9 +41,9 @@ export type RNIContextMenuViewProps = ViewProps & {
   // ------------------
 
   onMenuWillShow?: OnMenuWillShowEvent;
-  onMenuWillHide?: OnMenuWillHideEvent;
-
   onMenuDidShow?: OnMenuDidShowEvent;
+
+  onMenuWillHide?: OnMenuWillHideEvent;
   onMenuDidHide?: OnMenuDidHideEvent;
 
   onMenuWillCancel?: OnMenuWillCancelEvent;
