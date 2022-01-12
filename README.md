@@ -296,6 +296,25 @@ const styles = StyleSheet.create({
 
 #### `ContextMenuButton` Component
 
+For basic usage, please see [Example 1](#contextmenubutton-example-01) section.
+
+* The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
+
+<br>
+
+* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Example 2](#422-contextmenubutton-simple-example-2) for more details.
+
+<br>
+
+* Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.
+
+<br>
+
+* If you want to add additional touch events, you can wrap this component inside a button component (e.g. `TouchableOpacity`). <br><br>
+	* When wrapping this component inside a button, please make sure to set the `useActionSheetFallback` prop to `false`.
+
+<br>
+
 ##### `ContextMenuButton` Component: Props
 
 | Prop Name and Type                                           | Description                                                  |
@@ -329,6 +348,25 @@ const styles = StyleSheet.create({
 | Prop Name and Type                          | Description                                   |
 | :------------------------------------------ | :-------------------------------------------- |
 | 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | Same as `ContextMenuView.dismissMenu` method. |
+
+<br>
+
+#### `ActionSheetFallback` Module
+
+A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This module attempts to approximate `UIMenu` behavior using `ActionSheetIOS`, so it's very limited (i.e. it does not support menu/action icons, etc.), but it does support things like submenu's, destructive actions/menu's, inline submenu's, and hidden actions.
+
+* Import the module like this: `import { ActionSheetFallback } from "react-native-ios-context-menu";`
+
+<br>
+
+* To present a ￼￼`ActionSheetIOS` menu, call `const selectedAction = await ActionSheetFallback.show(menuConfig)`
+
+<br>
+
+
+| Function                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 🔤 `show` <br/><br/>⚛️ `(menuConfig: MenuConfig):`<br/>`Promise<MenuAction ¦ null>` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
 
 <br>
 
