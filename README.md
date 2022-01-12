@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
 | Prop Name and Type                                           | Description                                                  |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | ⚛️ `ViewProps`                                                | This component supports all the standard props from a `<View/>` component. |
-| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | Configures the context menu, along with what menu actions to show.<br><br>This prop accepts a `MenuConfig` object. This object is used to configure various aspects of the context menu:<br>• `MenuConfig.menuTitle`: the context menu title (required),<br>• `MenuConfig.menuItems` the actions to show (along with their title, icons, subtitle, etc) — Accepts either an array of `MenuActionConfig` or `MenuConfig` objects.,<br>• `MenuConfig.menuOptions`: the attributes of the context menu (e.g. destructive) — Accepts an array of  `UIMenuOptions` string items,<br>• and any nested menus or submenus to show (see "**Note A**"). <br><br>📝 **Note A**: Passing a `MenuConfig` object inside of the `MenuConfig.menuItems` property will result in a nested context menu or submenu. In this scenario, the `MenuConfig.menuOptions` and `MenuConfig.icon` can be used to configure the appearance of the submenu. For usage examples regarding nested menus, see [Example 06](contextmenuview-example06)<br><br>📝 **Note B**: Passing a value of `null` (or `undefined`) to this prop will not disable the context menu. Use the `isContextMenuEnabled` prop instead to disable the context menu. <br>📝 **Note C**: You can put `MenuConfig` in  state if you want to dynamically change the menu configuration. If the context menu is currently visible, changing/updating the `MenuConfig` value passed to this prop will cause the context menu to change in real-time. This behavior is only supported on iOS 14+.<br><br>📌 Some example links to get you started:<br>• For basic usage examples regarding `MenuConfig`, see: [Example 1](#contextmenuview-example-06),<br>• For examples on creating + configuring the menu action items (i.e `MenuActionConfig`), see: [Example 2](#contextmenuview-example-02),<br>• For menu action attributes + menu state, and action subtitles, see: [Example 4](#contextmenuview-example-04), [Example 8](#contextmenuview-example-08), and [Example 13](#contextmenuview-example-13),<br>• For examples regarding the usage of icons (i.e `ImageItemConfig`), see: [Example 16](#contextmenuview-example-16), [Example 17](#contextmenuview-example-17), and [Example 18](#contextmenuview-example-18). |
+| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | Configures the context menu, along with what menu actions to show.<br><br>This prop accepts a `MenuConfig` object. This object is used to configure various aspects of the context menu:<br>• `MenuConfig.menuTitle`: the context menu title (required),<br><br/>• `MenuConfig.menuItems` the actions to show (along with their title, icons, subtitle, etc) — Accepts either an array of `MenuActionConfig` or `MenuConfig` objects.,<br><br/>• `MenuConfig.menuOptions`: the attributes of the context menu (e.g. destructive) — Accepts an array of  `UIMenuOptions` string items,<br><br/>• and any nested menus or submenus to show (see "**Note A**"). <br><br>📝 **Note A**: Passing a `MenuConfig` object inside of the `MenuConfig.menuItems` property will result in a nested context menu or submenu. In this scenario, the `MenuConfig.menuOptions` and `MenuConfig.icon` can be used to configure the appearance of the submenu. For usage examples regarding nested menus, see [Example 06](contextmenuview-example06)<br><br>📝 **Note B**: Passing a value of `null` (or `undefined`) to this prop will not disable the context menu. Use the `isContextMenuEnabled` prop instead to disable the context menu. <br><br/>📝 **Note C**: You can put `MenuConfig` in  state if you want to dynamically change the menu configuration. If the context menu is currently visible, changing/updating the `MenuConfig` value passed to this prop will cause the context menu to change in real-time. This behavior is only supported on iOS 14+.<br><br>📌 Some example links to get you started:<br>• For basic usage examples regarding `MenuConfig`, see: [Example 1](#contextmenuview-example-06),<br><br/>• For examples on creating + configuring the menu action items (i.e `MenuActionConfig`), see: [Example 2](#contextmenuview-example-02),<br><br/>• For menu action attributes + menu state, and action subtitles, see: [Example 4](#contextmenuview-example-04), [Example 8](#contextmenuview-example-08), and [Example 13](#contextmenuview-example-13),<br><br/>• For examples regarding the usage of icons (i.e `ImageItemConfig`), see: [Example 16](#contextmenuview-example-16), [Example 17](#contextmenuview-example-17), and [Example 18](#contextmenuview-example-18). |
 | 🔤  `previewConfig`<br/><br/>⚛️ [`MenuPreviewConfig`](PLACE_HOLDER_LINK) | Configures the context menu's preview.<br><br>If no configuration is provided then it will default to using the context menu component itself as the preview.<br/><br/>📝 **Note**: If you do not want to show a preview (i.e only show the context menu itself), consider using a [`ContextMenuButton`](PLACE_HOLDER_LINK) component instead.<br/><br/>📌 Some example links to get you started:<br/>• For examples regarding the configuration of the context menu preview (e.g. custom previews), see: [Example 11](#contextmenuview-example-11), [Example 12](#contextmenuview-example-12), [Example 14](#contextmenuview-example-14), and [Example 15](#contextmenuview-example-15). |
 | 🔤  `shouldUseDiscoverability`<br>`TitleAsFallbackValueForSubtitle`<br/><br>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | On iOS 15+, the value passed to the  `MenuActionConfig.discoverabilityTitle` property is no longer displayed as a subtitle under the menu action.<br><br>Instead you need to set a different a different property called `MenuActionConfig.subtitle`.<br><br>The `discoverabilityTitle` property is now used for the "discoverability heads-up display" (e.g when an app supports keyboard shortcuts, holding down the command key presents a list of shortcuts; the `discoverabilityTitle` is then used as the title for the shortcut).<br><br>If this prop is set to true, it will then uses the value passed on to the `discoverabilityTitle` value as the subtitle for the menu action, preserving the old behavior. In other words, this prop exists for backwards-compatibility reasons.<br><br>📝 **Note**: This prop is set to `true` by default; set this to `false` if you don't want this automatic behaviour to happen. |
 | 🔤  `isContextMenuEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Enables or disables the context menu. Useful if you want to temporarily disable the context menu. |
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
 | 🔤  `onMenuDidHide`<br/><br/>⚛️ [`OnMenuDidHideEvent`](./src/types/MenuEvents.ts) | Event that gets called **after** the context menu is hidden, i.e this event is invoked <u>after the menu exit animation</u> is finished. |
 | 🔤  `onMenuWillCancel`<br/><br/>⚛️ [`OnMenuWillCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and about to be hidden**, i.e this event is immediately invoked when the context menu interaction is cancelled. |
 | 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and hidden**, i.e. this event is invoked when the context menu is cancelled, and the menu exit transition is finished. |
-| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out [Example 1](#contextmenuview-example-01), and [Example 9](#contextmenuview-example-09) for examples regarding the `onPressMenuItem` event prop. |
+| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Event that gets called when a menu action is pressed.<br><br/> You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out [Example 1](#contextmenuview-example-01), and [Example 9](#contextmenuview-example-09) for examples regarding the `onPressMenuItem` event prop. |
 | 🔤  `onPressMenuPreview`<br/><br/>⚛️ [`OnPressMenuPreviewEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu's preview is pressed.   |
 
 <br>
@@ -298,17 +298,11 @@ const styles = StyleSheet.create({
 
 For basic usage, please see [Example 1](#contextmenubutton-example-01) section.
 
-* The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). 
+* The `ContextMenuButton` component is almost the same as the `ContextMenuView` component (It supports the same kind of props and events). <br><br>
 
-<br>
+* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Example 2](#422-contextmenubutton-simple-example-2) for more details.<br><br>
 
-* The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Example 2](#422-contextmenubutton-simple-example-2) for more details.
-
-<br>
-
-* Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.
-
-<br>
+* Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.<br><br>
 
 * If you want to add additional touch events, you can wrap this component inside a button component (e.g. `TouchableOpacity`). <br><br>
 	* When wrapping this component inside a button, please make sure to set the `useActionSheetFallback` prop to `false`.
@@ -353,11 +347,13 @@ For basic usage, please see [Example 1](#contextmenubutton-example-01) section.
 
 #### `ActionSheetFallback` Module
 
-A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. This module attempts to approximate `UIMenu` behavior using `ActionSheetIOS`, so it's very limited (i.e. it does not support menu/action icons, etc.), but it does support things like submenu's, destructive actions/menu's, inline submenu's, and hidden actions.
+A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. 
 
-* Import the module like this: `import { ActionSheetFallback } from "react-native-ios-context-menu";`
+This module attempts to approximate `UIMenu` behavior using `ActionSheetIOS`, so it's very limited (i.e. it does not support menu/action icons, etc.), but it does support things like submenu's, destructive actions/menu's, inline submenu's, and hidden actions.
 
 <br>
+
+* Import the module like this: `import { ActionSheetFallback } from "react-native-ios-context-menu";`<br><br>
 
 * To present a ￼￼`ActionSheetIOS` menu, call `const selectedAction = await ActionSheetFallback.show(menuConfig)`
 
@@ -710,28 +706,31 @@ A basic context menu that has 3 menu action items (e.g. "Action #1", "Action #2"
 
 <br>
 
-* The `ContextMenuView.menuConfig` prop accepts an optional `MenuConfig` object.
+* The `ContextMenuView.menuConfig` prop accepts an optional `MenuConfig` object. The object will then be used to create and configure the context menu<br><br>
+	* You can set the context menu title via passing a string value to the `MenuConfig.menuTitle` property.<br><br>
+	* To populate the context menu with items, you can pass a `MenuActionConfig` object to the `MenuConfig.menuItems` property.
 
-* You can set the context menu title via the `MenuConfig.menuTitle` property.
-* To populate the context menu with items, you can pass a `MenuActionConfig` object to the `MenuConfig.menuItems` property.
-
-<br>
-
-* A `MenuActionConfig` object represents an action item in the context menu (e.g. copy, paste, delete, etc).
-* The `MenuActionConfig.actionKey` property serves as a unique identifier for your menu action.
 
 <br>
 
-* You will receive the value you passed in `MenuActionConfig.actionKey` in the `ContextMenuView.onPressMenuItem` event (i.e. via the  `nativeEvent` object).
-* In other words, the `actionKey` allows you to identify which menu action item was selected/pressed.
+* A `MenuActionConfig` object represents an action item in the context menu (e.g. copy, paste, delete, etc).<br><br>
+	* The `MenuActionConfig.actionKey` property serves as a unique identifier for your menu action.
+
+
+<br>
+
+* You will receive the value you passed in `MenuActionConfig.actionKey` in the `ContextMenuView.onPressMenuItem` event (i.e. via the  `nativeEvent` object).<br><br>
+	* In other words, the `actionKey` allows you to identify which menu action item was selected/pressed.<br><br>
 	* 📝 **Note**: Make sure that the `actionKey` is unique for each instance of the `ContextMenuView` component.
 
+
 <br>
 
-* You can use the `ContextMenuView.onPressMenuItem` event prop to get notified whenever a menu action item has been selected.
-* The function you pass to the `onPressMenuItem` prop receives a `OnPressMenuItemEventObject` object.
-* Details about the selected menu action item can be accessed via the `OnPressMenuItemEventObject.nativeEvent` object.
-  * E.g. `OnPressMenuItemEventObject.nativeEvent.actionKey`.
+* You can use the `ContextMenuView.onPressMenuItem` event prop to get notified whenever a menu action item has been selected.<br><br>
+	* The function you pass to the `onPressMenuItem` prop receives a `OnPressMenuItemEventObject` object.<br><br>
+	* Details about the selected menu action item can be accessed via the `OnPressMenuItemEventObject.nativeEvent` object.<br><br>
+	* E.g. `OnPressMenuItemEventObject.nativeEvent.actionKey`.
+
 
 <br>
 
@@ -782,27 +781,27 @@ A basic context menu that has 3 menu action items, each with a different "SF Sym
 
 <br>
 
-* A `MenuActionConfig` object can be configured to show an icon via the `MenuActionConfig.icon` property.
+* A `MenuActionConfig` object can be configured to show an icon via the `MenuActionConfig.icon` property.<br><br>
+	* The `icon` property accepts a `ImageItemConfig` object.<br><br>
+	* A `ImageItemConfig` object is used to describe images/assets (e.g. SF Symbols icons, images, xcasset images, programmatic images, etc).
 
-* The `icon` property accepts a `ImageItemConfig` object.
-* A `ImageItemConfig` object is used to describe images/assets (e.g. SF Symbols icons, images, xcasset images, programmatic images, etc).
-
-<br>
-
-* In this example, we want to use a "SF Symbols" icon for the menu action. 
-
-* In order to do this, the `ImageItemConfig.type` property must be set to `"IMAGE_SYSTEM"`.
-
-* Passing in a value of `"IMAGE_SYSTEM"` to the `type` property means that we want to create a "SF Symbols" system icon.
-* Using a "SF Symbols" icon requires iOS 13+.
 
 <br>
 
-* In order to configure what kind of "SF Symbols" icon we want to use for the menu action, we need to pass in a `ImageSystemConfig` object to the  `ImageItemConfig.imageValue` property.
+* In this example, we want to use a "SF Symbols" icon for the menu action. <br><br>
+	* In order to do this, the `ImageItemConfig.type` property must be set to `"IMAGE_SYSTEM"`.<br><br>
 
-* We set what kind of icon to use via passing a string value to the `ImageSystemConfig.systemName` property.
-* The string value passed to the `systemName` property must be a valid SF Symbols name.
-* To view the list of SF Symbols icons (along with their corresponding icon names), you'll need to download the SF Symbols Mac app from [this page](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).
+	* Passing in a value of `"IMAGE_SYSTEM"` to the `type` property means that we want to create a "SF Symbols" system icon.<br><br>
+	* Using a "SF Symbols" icon requires iOS 13+.
+
+
+<br>
+
+* In order to configure what kind of "SF Symbols" icon we want to use for the menu action, we need to pass in a `ImageSystemConfig` object to the  `ImageItemConfig.imageValue` property.<br><br>
+	* We set what kind of icon to use via passing a string value to the `ImageSystemConfig.systemName` property.<br><br>
+	* The string value passed to the `systemName` property must be a valid SF Symbols name.<br><br>
+	* To view the list of SF Symbols icons (along with their corresponding icon names), you'll need to download the SF Symbols Mac app from [this page](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).
+
 
 <br>
 
@@ -863,18 +862,19 @@ export function ContextMenuViewExample02(props) {
 
 This example shows a context menu that has a submenu item inside its list of menu actions.
 
-* A context menu supports having nested menu's (i.e. submenu's).
+* A context menu supports having nested menu's (i.e. submenu's).<br><br>
 
-	* A submenu is basically just another menu with it's own list separate list of menu actions.
+	* A submenu is basically just another menu with it's own list separate list of menu actions.<br><br>
 	* Tapping/selecting a submenu will show another context menu,
 
-	
 
-* The `MenuConfig.menuItems` property can accept a `MenuActionConfig` object, or a `MenuConfig` object.
+<br>
 
-	* Passing in a `MenuActionConfig` object to `MenuConfig.menuItems`  makes a menu action, conversely passing in a  `MenuConfig` object will create a submenu item.
-	* In other words, to make a submenu, you just need to pass a `MenuConfig` item in the `MenuConfig.menuItems` property.
-		* 📝 **Note**: You can nest as many submenu's you want (but just remember that having more than 3 nested submenus is considered bad UX).
+* The `MenuConfig.menuItems` property can accept a `MenuActionConfig` object, or a `MenuConfig` object.<br><br>
+
+  * Passing in a `MenuActionConfig` object to `MenuConfig.menuItems`  makes a menu action, conversely passing in a  `MenuConfig` object will create a submenu item.<br><br>
+  * In other words, to make a submenu, you just need to pass a `MenuConfig` item in the `MenuConfig.menuItems` property.<br><br>
+  	* 📝 **Note**: You can nest as many submenu's you want (but just remember that having more than 3 nested submenus is considered bad UX).
 
 <br>
 
@@ -953,23 +953,24 @@ This example context menu showcases the `MenuActionConfig.menuAttributes` proper
 
 <br>
 
-* In this example, the context menu has 3 actions, each with a different menu attribute assigned to it.
-* The first menu action is a "disabled" action. It has it's `menuAttributes` set to `[disabled]`.
-  * The action title text and icon becomes grey out.
+* In this example, the context menu has 3 actions, each with a different menu attribute assigned to it.<br><br>
+	* The first menu action is a "disabled" action. It has it's `menuAttributes` set to `[disabled]`.<br><br>
+	* The action title text and icon becomes grey out.
+
 
 <br>
 
-* The second menu action is a destructive action. It has it's `menuAttributes` set to `[destructive]`.
+* The second menu action is a destructive action. It has it's `menuAttributes` set to `[destructive]`.<br><br>
   * The action title text and icon becomes red.
 
 <br>
 
-* The third menu action is a "hidden" action. It has it's `menuAttributes` set to `[hidden]`.
+* The third menu action is a "hidden" action. It has it's `menuAttributes` set to `[hidden]`.<br><br>
   * The menu action is not visible in the menu's list of actions. This is useful for temporarily hiding a menu action item.
 
 <br>
 
-* The fourth menu action is a "disabled" + "destructive"  action. 
+* The fourth menu action is a "disabled" + "destructive"  action. <br><br>
 	* Visually, it looks very similar to the `disabled` action. 
 
 <br>
