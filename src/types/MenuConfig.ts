@@ -9,7 +9,7 @@ export type UIMenuOptions = 'destructive' | 'displayInline';
 // TODO: Next Major Version - Rename to `MenuElementState`
 export type MenuState = 'on' | 'off' | 'mixed';
 
-/** Maps to `MenuElement.Attributes` */
+/** Maps to `UIMenuElement.Attributes` */
 // TODO: Next Major Version - Rename to `MenuElementAttributes`
 export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
 
