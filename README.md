@@ -261,37 +261,37 @@ const styles = StyleSheet.create({
 | Prop Name and Type                                           | Description                                                  |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | ⚛️ `ViewProps`                                                | This component supports all the standard props from a `<View/>` component. |
-| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | Configures the context menu, along with what menu actions to show.<br><br>This prop accepts a `MenuConfig` object. This object is used to configure various aspects of the context menu:<br>• `MenuConfig.menuTitle`: the context menu title (required),<br>• `MenuConfig.menuItems` the actions to show (along with their title, icons, subtitle, etc) — Accepts either an array of `MenuActionConfig` or `MenuConfig` objects.,<br>• `MenuConfig.menuOptions`: the attributes of the context menu (e.g. destructive) — Accepts an array of  `UIMenuOptions` string items,<br>• and any nested menus or submenus to show (see "**Note A**"). <br><br>📝 **Note A**: Passing a `MenuConfig` object inside of the `MenuConfig.menuItems` property will result in a nested context menu or submenu. In this scenario, the `MenuConfig.menuOptions` and `MenuConfig.icon` can be used to configure the appearance of the submenu. For usage examples regarding nested menus, see [Example 06](contextmenuview-example06)<br><br>📝 **Note B**: Passing a value of `null` (or `undefined`) to this prop will not disable the context menu. Use the `isContextMenuEnabled` prop instead to disable the context menu. <br>📝 **Note C**: You can put `MenuConfig` in  state if you want to dynamically change the menu configuration. If the context menu is currently visible, changing/updating the `MenuConfig` value passed to this prop will cause the context menu to change in real-time. This behavior is only supported on iOS 14+.<br><br>📌 Some example links to get you started:<br>• For basic usage examples regarding `MenuConfig`, see: [Example 1](#contextmenuview-example-06),<br>• For examples on creating + configuring the menu action items (i.e. `MenuActionConfig`), see: [Example 2](#contextmenuview-example-02),<br>• For menu action attributes + menu state, and action subtitles, see: [Example 4](#contextmenuview-example-04), [Example 8](#contextmenuview-example-08), and [Example 13](#contextmenuview-example-13),<br>• For examples regarding the usage of icons (i.e. `ImageItemConfig`), see: [Example 16](#contextmenuview-example-16), [Example 17](#contextmenuview-example-17), and [Example 18](#contextmenuview-example-18). |
-| 🔤  `previewConfig`<br/><br/>⚛️ [`MenuPreviewConfig`](PLACE_HOLDER_LINK) | Configures the context menu's preview.<br><br>If no configuration is provided then it will default to using the context menu component itself as the preview.<br/><br/>📝 **Note**: If you do not want to show a preview (i.e. only show the context menu itself), consider using a [`ContextMenuButton`](PLACE_HOLDER_LINK) component instead.<br/><br/>📌 Some example links to get you started:<br/>• For examples regarding the configuration of the context menu preview (e.g. custom previews), see: [Example 11](#contextmenuview-example-11), [Example 12](#contextmenuview-example-12), [Example 14](#contextmenuview-example-14), and [Example 15](#contextmenuview-example-15). |
+| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | Configures the context menu, along with what menu actions to show.<br><br>This prop accepts a `MenuConfig` object. This object is used to configure various aspects of the context menu:<br>• `MenuConfig.menuTitle`: the context menu title (required),<br>• `MenuConfig.menuItems` the actions to show (along with their title, icons, subtitle, etc) — Accepts either an array of `MenuActionConfig` or `MenuConfig` objects.,<br>• `MenuConfig.menuOptions`: the attributes of the context menu (e.g. destructive) — Accepts an array of  `UIMenuOptions` string items,<br>• and any nested menus or submenus to show (see "**Note A**"). <br><br>📝 **Note A**: Passing a `MenuConfig` object inside of the `MenuConfig.menuItems` property will result in a nested context menu or submenu. In this scenario, the `MenuConfig.menuOptions` and `MenuConfig.icon` can be used to configure the appearance of the submenu. For usage examples regarding nested menus, see [Example 06](contextmenuview-example06)<br><br>📝 **Note B**: Passing a value of `null` (or `undefined`) to this prop will not disable the context menu. Use the `isContextMenuEnabled` prop instead to disable the context menu. <br>📝 **Note C**: You can put `MenuConfig` in  state if you want to dynamically change the menu configuration. If the context menu is currently visible, changing/updating the `MenuConfig` value passed to this prop will cause the context menu to change in real-time. This behavior is only supported on iOS 14+.<br><br>📌 Some example links to get you started:<br>• For basic usage examples regarding `MenuConfig`, see: [Example 1](#contextmenuview-example-06),<br>• For examples on creating + configuring the menu action items (i.e `MenuActionConfig`), see: [Example 2](#contextmenuview-example-02),<br>• For menu action attributes + menu state, and action subtitles, see: [Example 4](#contextmenuview-example-04), [Example 8](#contextmenuview-example-08), and [Example 13](#contextmenuview-example-13),<br>• For examples regarding the usage of icons (i.e `ImageItemConfig`), see: [Example 16](#contextmenuview-example-16), [Example 17](#contextmenuview-example-17), and [Example 18](#contextmenuview-example-18). |
+| 🔤  `previewConfig`<br/><br/>⚛️ [`MenuPreviewConfig`](PLACE_HOLDER_LINK) | Configures the context menu's preview.<br><br>If no configuration is provided then it will default to using the context menu component itself as the preview.<br/><br/>📝 **Note**: If you do not want to show a preview (i.e only show the context menu itself), consider using a [`ContextMenuButton`](PLACE_HOLDER_LINK) component instead.<br/><br/>📌 Some example links to get you started:<br/>• For examples regarding the configuration of the context menu preview (e.g. custom previews), see: [Example 11](#contextmenuview-example-11), [Example 12](#contextmenuview-example-12), [Example 14](#contextmenuview-example-14), and [Example 15](#contextmenuview-example-15). |
 | 🔤  `shouldUseDiscoverability`<br>`TitleAsFallbackValueForSubtitle`<br/><br>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | On iOS 15+, the value passed to the  `MenuActionConfig.discoverabilityTitle` property is no longer displayed as a subtitle under the menu action.<br><br>Instead you need to set a different a different property called `MenuActionConfig.subtitle`.<br><br>The `discoverabilityTitle` property is now used for the "discoverability heads-up display" (e.g when an app supports keyboard shortcuts, holding down the command key presents a list of shortcuts; the `discoverabilityTitle` is then used as the title for the shortcut).<br><br>If this prop is set to true, it will then uses the value passed on to the `discoverabilityTitle` value as the subtitle for the menu action, preserving the old behavior. In other words, this prop exists for backwards-compatibility reasons.<br><br>📝 **Note**: This prop is set to `true` by default; set this to `false` if you don't want this automatic behaviour to happen. |
 | 🔤  `isContextMenuEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Enables or disables the context menu. Useful if you want to temporarily disable the context menu. |
-| 🔤  `lazyPreview`<br/><br/>⚛️ `boolean`<br><br>✳️ **Default**: `true` | If set to `true` (which it is by default), the custom context menu preview (i.e. the component returned from the `ContextMenuView.renderPreview` prop) will only be mounted/rendered when the context menu interaction begins (i.e. when the context menu is about to be shown).<br><br>Set this to `false` if you want the preview content to be always mounted. |
-| 🔤  `useActionSheetFallback`<br><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Context menus are only supported on iOS 13+ (i.e. context menus are not supported on iOS 12, and below).<br><br>On iOS 12 and below, a long press on a `ContextMenuView` will show a [`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the current `menuConfig` prop.<br><br> If you want to disable this behavior, set this  prop to false.<br><br>📝 **Note**: Default value is `false` on iOS 13+, and `true` on iOS 12 and below. |
-| 🔤  `renderPreview`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)     | This prop is a "render" prop, i.e. it accepts a function that returns a react component.<br><br>The returned component will displayed in the context menu preview. |
+| 🔤  `lazyPreview`<br/><br/>⚛️ `boolean`<br><br>✳️ **Default**: `true` | If set to `true` (which it is by default), the custom context menu preview (i.e the component returned from the `ContextMenuView.renderPreview` prop) will only be mounted/rendered when the context menu interaction begins (i.e when the context menu is about to be shown).<br><br>Set this to `false` if you want the preview content to be always mounted. |
+| 🔤  `useActionSheetFallback`<br><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Context menus are only supported on iOS 13+ (i.e context menus are not supported on iOS 12, and below).<br><br>On iOS 12 and below, a long press on a `ContextMenuView` will show a [`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the current `menuConfig` prop.<br><br> If you want to disable this behavior, set this  prop to false.<br><br>📝 **Note**: Default value is `false` on iOS 13+, and `true` on iOS 12 and below. |
+| 🔤  `renderPreview`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)     | This prop is a "render" prop, i.e it accepts a function that returns a react component.<br><br>The returned component will displayed in the context menu preview. |
 
 <br>
 
 ##### `ContextMenuView` Component: Event Props
 
-| Prop Name and Type                                           | Description |
-| :----------------------------------------------------------- | :---------- |
-| 🔤  `onMenuWillShow`<br/><br/>⚛️ [`OnMenuWillShowEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onMenuDidShow`<br/><br/>⚛️ [`OnMenuDidShowEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onMenuWillHide`<br/><br/>⚛️ [`OnMenuWillHideEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onMenuDidHide`<br/><br/>⚛️ [`OnMenuDidHideEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onMenuWillCancel`<br/><br/>⚛️ [`OnMenuWillCancelEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onMenuWillCreate`<br/><br/>⚛️ [`OnMenuWillCreateEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | TBA         |
-| 🔤  `onPressMenuPreview`<br/><br/>⚛️ [`OnPressMenuPreviewEvent`](./src/types/MenuEvents.ts) | TBA         |
+| Prop Name and Type                                           | Description                                                  |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 🔤  `onMenuWillShow`<br/><br/>⚛️ [`OnMenuWillShowEvent`](./src/types/MenuEvents.ts) | Event that gets called **before** the context menu is shown, i.e this event is immediately invoked when the menu is <u>about to become visible</u>. |
+| 🔤  `onMenuDidShow`<br/><br/>⚛️ [`OnMenuDidShowEvent`](./src/types/MenuEvents.ts) | Event that gets called **after** the context menu is shown, i.e this event is invoked <u>after the menu entrance animation</u> is finished. |
+| 🔤  `onMenuWillHide`<br/><br/>⚛️ [`OnMenuWillHideEvent`](./src/types/MenuEvents.ts) | Event that gets called **before** the context menu is  hidden, i.e this event is immediately invoked when the menu is <u>about to become hidden</u>. |
+| 🔤  `onMenuDidHide`<br/><br/>⚛️ [`OnMenuDidHideEvent`](./src/types/MenuEvents.ts) | Event that gets called **after** the context menu is hidden, i.e this event is invoked <u>after the menu exit animation</u> is finished. |
+| 🔤  `onMenuWillCancel`<br/><br/>⚛️ [`OnMenuWillCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and about to be hidden**, i.e this event is immediately invoked when the context menu interaction is cancelled. |
+| 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and hidden**, i.e. this event is invoked when the context menu is cancelled, and the menu exit transition is finished. |
+| 🔤  `onMenuWillCreate`<br/><br/>⚛️ [`OnMenuWillCreateEvent`](./src/types/MenuEvents.ts) | TBA                                                          |
+| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out [Example 1](#contextmenuview-example-01), and [Example 9](#contextmenuview-example-09) for examples regarding the `onPressMenuItem` event prop. |
+| 🔤  `onPressMenuPreview`<br/><br/>⚛️ [`OnPressMenuPreviewEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu's preview is pressed.   |
 
 <br>
 
 ##### `ContextMenuView` Component: Properties/Methods
 
-| Prop Name and Type                          | Description |
-| :------------------------------------------ | :---------- |
-| 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | TBA         |
+| Prop Name and Type                          | Description                                                  |
+| :------------------------------------------ | :----------------------------------------------------------- |
+| 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
 
 <br>
 
@@ -302,11 +302,11 @@ const styles = StyleSheet.create({
 | Prop Name and Type                                           | Description                                                  |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | ⚛️ `ViewProps`                                                | This component supports all the standard props from a `<View/>` component. |
-| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
-| 🔤  `isMenuPrimaryAction`<br/><br/>⚛️ `boolean`                | TBA                                                          |
-| 🔤  `shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA / Not Implented                                          |
-| 🔤  `enableContextMenu`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
-| 🔤  `useActionSheetFallback`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA                                                          |
+| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | Same as `ContextMenuView.menuConfig` prop.                   |
+| 🔤  `isMenuPrimaryAction`<br/><br/>⚛️ `boolean`                | When set to true, the context menu will be shown when its tapped instead of a long press. |
+| 🔤  `shouldUseDiscoverability`<br>`TitleAsFallbackValueForSubtitle`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA / Not Implented                                          |
+| 🔤  `enableContextMenu`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Same as `ContextMenuView.enableContextMenu` prop.            |
+| 🔤  `useActionSheetFallback`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Same as `ContextMenuView.useActionSheetFallback` prop.       |
 
 <br>
 
@@ -381,7 +381,7 @@ TBA
 
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | :---------- |
-| 🔤  `type`<br/><br/>⚛️ `string`, i.e.`"menu"`                  | TBA         |
+| 🔤  `type`<br/><br/>⚛️ `string`, i.e`"menu"`                   | TBA         |
 | 🔤  `menuTitle`<br/><br/>⚛️ `string`                           | TBA         |
 | 🔤  `menuOptions`<br/><br/>⚛️ `Array<UIMenuOptions>`<br>📌 [`UIMenuOptions`](PLACE_HOLDER_LINK) | TBA         |
 | 🔤  `menuItems`<br/><br/>⚛️ `Array<MenuConfig ¦ MenuActionConfig `<br/>📌 [`MenuConfig`](PLACE_HOLDER_LINK)<br/>📌 [`MenuActionConfig`](PLACE_HOLDER_LINK) | TBA         |
@@ -393,7 +393,7 @@ TBA
 
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | :---------- |
-| 🔤  `type`<br/><br/>⚛️ `string`, i.e. `"action"`               | TBA         |
+| 🔤  `type`<br/><br/>⚛️ `string`, i.e `"action"`                | TBA         |
 | 🔤 **Required**: `actionKey`<br/><br/>⚛️ `string`              | TBA         |
 | 🔤 **Required**:  `actionTitle`<br/><br/>⚛️ `string`           | TBA         |
 | 🔤  `actionSubtitle`<br/><br/>⚛️ `string`                      | TBA         |
@@ -500,7 +500,7 @@ This type is an object tagged union type, with the `type` property being the tag
 
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | ----------- |
-| 🔤  **Required**: `type`<br/><br/>⚛️  `ImageItemConfigType` string union, i.e. `'IMAGE_ASSET' ¦ 'IMAGE_SYSTEM' ¦ 'IMAGE_REQUIRE' ¦ 'IMAGE_EMPTY' ¦ 'IMAGE_RECT' ¦ 'IMAGE_GRADIENT' ` | TBA         |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `ImageItemConfigType` string union, i.e `'IMAGE_ASSET' ¦ 'IMAGE_SYSTEM' ¦ 'IMAGE_REQUIRE' ¦ 'IMAGE_EMPTY' ¦ 'IMAGE_RECT' ¦ 'IMAGE_GRADIENT' ` | TBA         |
 
 <br>
 
@@ -508,7 +508,7 @@ This type is an object tagged union type, with the `type` property being the tag
 
 | Name and Type                                                | Description                                                  |
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e. `'IMAGE_ASSET' ` | TBA<br/><br/>📌 Maps to [`UIImage.init(named:)`](https://developer.apple.com/documentation/uikit/uiimage/1624146-init) constructor in the apple docs. |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_ASSET' ` | TBA<br/><br/>📌 Maps to [`UIImage.init(named:)`](https://developer.apple.com/documentation/uikit/uiimage/1624146-init) constructor in the apple docs. |
 | 🔤  **Required**: `imageValue`<br/><br/>⚛️  `string`           | TBA                                                          |
 | 🔤  `imageOptions?`<br/><br/>⚛️  [`UIImageConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 
@@ -518,7 +518,7 @@ This type is an object tagged union type, with the `type` property being the tag
 
 | Name and Type                                                | Description                                                  |
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e. `'IMAGE_SYSTEM' ` | TBA<br/><br/>📌 Maps to [`UIImage.init(systemName:withConfiguration:)`](https://developer.apple.com/documentation/uikit/uiimage/3294234-init) constructor in the apple docs. |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_SYSTEM' ` | TBA<br/><br/>📌 Maps to [`UIImage.init(systemName:withConfiguration:)`](https://developer.apple.com/documentation/uikit/uiimage/3294234-init) constructor in the apple docs. |
 | 🔤  **Required**:  `imageValue`<br/><br/>⚛️  [`ImageSystemConfig`](PLACE_HOLDER_LINK) | TBA<br/><br/>📌 Maps to the `withConfiguration` argument label in the  [`UIImage.init(systemName:withConfiguration:)`](https://developer.apple.com/documentation/uikit/uiimage/3294234-init) constructor in the apple docs. |
 | 🔤  `imageOptions?`<br/><br/>⚛️  [`UIImageConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 
@@ -528,7 +528,7 @@ This type is an object tagged union type, with the `type` property being the tag
 
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | ----------- |
-| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e. `'IMAGE_EMPTY' ` | TBA         |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_EMPTY' ` | TBA         |
 
 <br>
 
@@ -536,7 +536,7 @@ This type is an object tagged union type, with the `type` property being the tag
 
 | Name and Type                                                | Description                                                  |
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e. `'IMAGE_RECT' ` | TBA<br/><br/>📝 **Note**: Programmatically creates an image using [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer). |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_RECT' ` | TBA<br/><br/>📝 **Note**: Programmatically creates an image using [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer). |
 | 🔤  **Required**: `imageValue`<br/><br/>⚛️  [`ImageRectConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 
 <br>
@@ -545,7 +545,7 @@ This type is an object tagged union type, with the `type` property being the tag
 
 | Name and Type                                                | Description                                                  |
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e. `'IMAGE_GRADIENT' ` | TBA<br/><br/>📝 **Note**: Programmatically creates an image using [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer). |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_GRADIENT' ` | TBA<br/><br/>📝 **Note**: Programmatically creates an image using [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer). |
 | 🔤  `imageValue`<br/><br/>⚛️  [`ImageGradientConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 
 <br>
@@ -589,7 +589,7 @@ TBA
 | 🔤  `locations?`<br/><br/>⚛️  `Array<number>`                  | TBA<br/><br/>📌 Maps to [`CAGradientLayer.locations`](https://developer.apple.com/documentation/quartzcore/cagradientlayer/1462410-locations) property in the apple docs. |
 | 🔤  `startPoint?`<br/><br/>⚛️  `Point ¦ PointPreset`<br><br>📌 [`Point`](PLACE_HOLDER_LINK)<br>📌 [`PointPreset`](PLACE_HOLDER_LINK) | TBA<br/><br/>📌 Maps to [`CAGradientLayer.startPoint`](https://developer.apple.com/documentation/quartzcore/cagradientlayer/1462408-startpoint) property in the apple docs. |
 | 🔤  `endPoint?`<br/><br/>⚛️  `Point ¦ PointPreset`<br>📌 [`Point`](PLACE_HOLDER_LINK)<br/>📌 [`PointPreset`](PLACE_HOLDER_LINK) | TBA<br/><br/>📌 Maps to [`CAGradientLayer.endPoint`](https://developer.apple.com/documentation/quartzcore/cagradientlayer/1462412-endpoint) property in the apple docs. |
-| 🔤  `type?`<br/><br/>⚛️  `string` i.e. `'axial' ¦ 'conic' ¦ 'radial'` | TBA<br/><br/>📌 Maps to [`CAGradientLayer.type`](https://developer.apple.com/documentation/quartzcore/cagradientlayer/1462413-type) property in the apple docs. |
+| 🔤  `type?`<br/><br/>⚛️  `string` i.e `'axial' ¦ 'conic' ¦ 'radial'` | TBA<br/><br/>📌 Maps to [`CAGradientLayer.type`](https://developer.apple.com/documentation/quartzcore/cagradientlayer/1462413-type) property in the apple docs. |
 
 <br>
 
