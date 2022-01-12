@@ -281,7 +281,6 @@ const styles = StyleSheet.create({
 | 🔤  `onMenuDidHide`<br/><br/>⚛️ [`OnMenuDidHideEvent`](./src/types/MenuEvents.ts) | Event that gets called **after** the context menu is hidden, i.e this event is invoked <u>after the menu exit animation</u> is finished. |
 | 🔤  `onMenuWillCancel`<br/><br/>⚛️ [`OnMenuWillCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and about to be hidden**, i.e this event is immediately invoked when the context menu interaction is cancelled. |
 | 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and hidden**, i.e. this event is invoked when the context menu is cancelled, and the menu exit transition is finished. |
-| 🔤  `onMenuWillCreate`<br/><br/>⚛️ [`OnMenuWillCreateEvent`](./src/types/MenuEvents.ts) | TBA                                                          |
 | 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Event that gets called when a menu action is pressed. You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out [Example 1](#contextmenuview-example-01), and [Example 9](#contextmenuview-example-09) for examples regarding the `onPressMenuItem` event prop. |
 | 🔤  `onPressMenuPreview`<br/><br/>⚛️ [`OnPressMenuPreviewEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu's preview is pressed.   |
 
@@ -361,11 +360,15 @@ TBA
 
 ####  `useMenuContext` Hook
 
+A hook to use the `ContextMenuViewContext` context.
+
 TBA
 
 <br>
 
 ####  `useMenuButtonContext` Hook
+
+A hook to use the `ContextMenuButtonContext` context.
 
 TBA
 
@@ -379,6 +382,12 @@ TBA
 
 ##### Object Type: `MenuConfig`
 
+> A container for grouping related menu elements in an app menu or contextual menu.
+
+An object that is used to create and configure a context menu. Internally, this object is used to create a `UIMenu` instance (see [apple docs](https://developer.apple.com/documentation/uikit/uimenu/) for more information).
+
+<br>
+
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | :---------- |
 | 🔤  `type`<br/><br/>⚛️ `string`, i.e`"menu"`                   | TBA         |
@@ -390,6 +399,10 @@ TBA
 <br>
 
 ##### Object Type: `MenuActionConfig`
+
+An object that is used to create a menu action item in the context menu. Internally, this object is used to create a `UIAction` instance (see [apple docs](https://developer.apple.com/documentation/uikit/uiaction) for more information),
+
+<br>
 
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | :---------- |
@@ -406,33 +419,48 @@ TBA
 
 ##### String Union: `MenuAttributes`
 
-| Type     | Description |
-| :------- | :---------- |
-| 🔤  `abc` | TBA         |
+> Attributes that determine the style of the menu element.
+
+A union string type that maps to `UIMenuElement.Attributes` enum (see [apple docs](https://developer.apple.com/documentation/uikit/uimenuelement/attributes) for more information).
+
+<br>
+
+| Type             | Description |
+| :--------------- | :---------- |
+| 🔤  `hidden`      | TBA         |
+| 🔤  `disabled`    | TBA         |
+| 🔤  `destructive` | TBA         |
 
 <br>
 
 ##### String Union: `MenuState`
 
-| Type                                           | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+> Constants that indicate the state of an action- or command-based menu element.
+
+A union string type that maps to `UIMenuElement.State` enum (see [apple docs](https://developer.apple.com/documentation/uikit/uimenuelement/state) for more information).
+
+<br>
+
+| Type       | Description |
+| :--------- | :---------- |
+| 🔤  `on`    | TBA         |
+| 🔤  `off`   | TBA         |
+| 🔤  `mixed` | TBA         |
 
 <br>
 
 ##### String Union: `UIMenuOptions`
 
-| Type                                           | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+> Options for configuring a menu's appearance. 
+
+A union string type that maps to `UIMenu.Options` option set (see [apple docs](https://developer.apple.com/documentation/uikit/uimenu/options/) for more information).
 
 <br>
 
-##### String Union: `abc`
-
-| Type                                           | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Type               | Description |
+| :----------------- | :---------- |
+| 🔤  `destructive`   | TBA         |
+| 🔤  `displayInline` | TBA         |
 
 <br>
 
@@ -621,7 +649,18 @@ TBA
 
 ### D.5. Constants
 
+#### Object: `LIB_ENV`
+
 TBA
+
+<br>
+
+| Type                                                    | Description |
+| :------------------------------------------------------ | :---------- |
+| 🔤  `isContextMenuButtonSupported`<br/><br/>⚛️  `boolean` | TBA         |
+| 🔤  `isContextMenuViewSupported`<br/><br/>⚛️  `boolean`   | TBA         |
+
+<br>
 
 <br><br>
 
