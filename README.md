@@ -504,33 +504,42 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 ##### Object Type: `MenuPreviewConfig`
 
-| Name and Type                                  | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Name and Type                                                | Description |
+| :----------------------------------------------------------- | :---------- |
+| 🔤  `previewType`<br/><br/>⚛️ [`MenuPreviewType`](PLACE_HOLDER_LINK)<br/><br/>✳️ **Default**: `DEFAULT` | TBA         |
+| 🔤  `previewSize`<br/><br/>⚛️ [`MenuPreviewSize`](PLACE_HOLDER_LINK)<br/><br/>✳️ **Default**: `INHERIT` | TBA         |
+| 🔤  `isResizeAnimated`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | TBA         |
+| 🔤  `borderRadius`<br/><br/>⚛️ `number`                        | TBA         |
+| 🔤  `backgroundColor`<br/><br/>⚛️ `DynamicColor ¦ string`<br>📌 [`DynamicColor`](PLACE_HOLDER_LINK) | TBA         |
+| 🔤  `previewSize`<br/><br/>⚛️ [`ContextMenuInteractionCommitStyle`](PLACE_HOLDER_LINK)<br/><br/>✳️ **Default**: `dismiss` | TBA         |
+| 🔤  `targetViewNode`<br/><br/>⚛️ `number`                      | TBA         |
 
 <br>
 
 ##### String Union: `ContextMenuInteractionCommitStyle`
 
-| Name and Type                                  | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Name and Type | Description |
+| :------------ | :---------- |
+| 🔤  `dismiss`  | TBA         |
+| 🔤  `pop`      | TBA         |
 
 <br>
 
 ##### String Union: `MenuPreviewSize`
 
-| Name and Type                                  | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Name and Type | Description |
+| :------------ | :---------- |
+| 🔤  `INHERIT`  | TBA         |
+| 🔤  `STRETCH`  | TBA         |
 
 <br>
 
 ##### String Union: `MenuPreviewType`
 
-| Name and Type                                  | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+| Name and Type | Description |
+| :------------ | :---------- |
+| 🔤  `DEFAULT`  | TBA         |
+| 🔤  `CUSTOM`   |             |
 
 <br>
 
@@ -542,11 +551,7 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 ##### Object Type: `IconConfig`
 
-This has been deprecated and will be removed in a future version. Use [`ImageItemConfig`](PLACE_HOLDER_LINK) instead.
-
-| Name and Type                                  | Description |
-| :--------------------------------------------- | :---------- |
-| 🔤  `abc`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK) | TBA         |
+This has been deprecated and will be removed in a future version. Use [`ImageItemConfig`](PLACE_HOLDER_LINK) instead. For documentation regarding `IconConfig`, please see the documentation in the [old README](./README-old.md).
 
 <br>
 
