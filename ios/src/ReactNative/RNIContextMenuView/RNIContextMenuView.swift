@@ -29,6 +29,8 @@ class RNIContextMenuView: UIView {
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
+  weak var previewAuxiliaryViewContainer: UIView?;
+  
   private var didTriggerCleanup = false;
   
   // MARK: - RN Exported Event Props
@@ -70,7 +72,7 @@ class RNIContextMenuView: UIView {
       
       self._menuConfig = menuConfig;
       
-      if #available(iOS 14.0, *)  ,
+      if #available(iOS 14.0, *),
          self.isContextMenuVisible,
          let interaction: UIContextMenuInteraction = self.contextMenuInteraction {
         
@@ -118,8 +120,9 @@ class RNIContextMenuView: UIView {
   /// Gets the `_UIContextMenuContainerView` that's holding the context menu controls.
   /// Subviews:
   /// * `UIVisualEffectView` - BG blur view
-  /// * `UIView` - Holds the context menu preview
-  /// * `_UIContextMenu` - Context menu items + context menu preview
+  /// * `UIView` - Holds `_UIMorphingPlatterView`  and `_UIContextMenu`
+  ///
+  /// **Note**: This is only exist whenever there's a context menu interaction
   ///
   var contextMenuContainerView: UIView? {
     self.window?.subviews.first {
@@ -127,18 +130,32 @@ class RNIContextMenuView: UIView {
     };
   };
   
+  /// Contains the ff. subviews:
+  /// * `_UIMorphingPlatterView` - Contains the context menu preview
+  /// * `_UIContextMenu` - Holds the context menu items
+  ///
+  var contextMenuContentContainer: UIView? {
+    self.contextMenuContainerView?.subviews.first {
+      !($0 is UIVisualEffectView) && $0.subviews.count > 0
+    };
+  };
+  
   /// Holds the context menu preview
   var morphingPlatterView: UIView? {
-    self.contextMenuContainerView?.subviews.first {
+    self.contextMenuContentContainer?.subviews.first {
       ($0.gestureRecognizers?.count ?? 0) == 1;
     };
   };
   
   /// Holds the context menu items
   var contextMenuItemsView: UIView? {
-    self.contextMenuContainerView?.subviews.first {
+    self.contextMenuContentContainer?.subviews.first {
       ($0.gestureRecognizers?.count ?? 0) > 1;
     };
+  };
+  
+  var isPreviewAuxiliaryViewAttached: Bool {
+    self.previewAuxiliaryViewContainer != nil;
   };
   
   // MARK: - Init
@@ -340,8 +357,71 @@ fileprivate extension RNIContextMenuView {
     };
   };
   
-  func attachContextMenuAuxiliaryPreviewIfAny(){
+  func attachContextMenuAuxiliaryPreviewIfAny(
+    _ animator: UIContextMenuInteractionAnimating?
+  ){
+    guard animator != nil,
+          let contextMenuContentContainer = self.contextMenuContentContainer,
+          let morphingPlatterView = self.morphingPlatterView
+    else { return };
     
+    /// whether to attach the `auxiliaryView` on the top or bottom of the context menu
+    let shouldAttachToTop: Bool = {
+      let previewFrame = morphingPlatterView.frame;
+      let screenBounds = UIScreen.main.bounds;
+      
+      return previewFrame.midY < screenBounds.midY;
+    }();
+    
+    let auxiliaryView: UIButton = {
+      let button = UIButton(frame: CGRect(
+        origin: .zero,
+        size: CGSize(width: 100, height: 75)
+      ));
+      
+      button.setTitle("Hello World", for: .normal);
+      button.addTarget(self, action: #selector(self.onPressContextMenuAuxiliaryPreview), for: .touchUpInside);
+      button.tintColor = .purple;
+      
+      button.translatesAutoresizingMaskIntoConstraints = false;
+      
+      //button.frame = button.frame.offsetBy(dx: 0, dy: -button.frame.height)
+      
+      return button;
+    }();
+    
+    self.previewAuxiliaryViewContainer = auxiliaryView;
+    
+    /// attach `auxiliaryView` to context menu preview
+    contextMenuContentContainer.addSubview(auxiliaryView);
+    
+    NSLayoutConstraint.activate([
+      auxiliaryView.leadingAnchor .constraint(equalTo: morphingPlatterView.leadingAnchor ),
+      auxiliaryView.trailingAnchor.constraint(equalTo: morphingPlatterView.trailingAnchor),
+      
+      shouldAttachToTop
+        ? auxiliaryView.bottomAnchor.constraint(equalTo: morphingPlatterView.topAnchor   )
+        : auxiliaryView.topAnchor   .constraint(equalTo: morphingPlatterView.bottomAnchor)
+    ]);
+    
+    auxiliaryView.alpha = 0;
+    
+    // fade in transition
+    UIView.animate(withDuration: 0.3) {
+      auxiliaryView.alpha = 1;
+    };
+  };
+  
+  func detachContextMenuAuxiliaryPreviewIfAny(
+    _ animator: UIContextMenuInteractionAnimating?
+  ){
+    guard let animator = animator,
+          let previewAuxiliaryViewContainer = self.previewAuxiliaryViewContainer
+    else { return };
+    
+    animator.addAnimations {
+      previewAuxiliaryViewContainer.alpha = 0;
+    };
   };
 };
 
@@ -368,8 +448,33 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     );
   };
   
-  @objc func onButtonPressed(){
-    print("button pressed")
+  @objc func onPressContextMenuAuxiliaryPreview(){
+    print("button pressed");
+    
+    let alert = UIAlertController(
+      title: "onPress",
+      message: "onPressContextMenuAuxiliaryPreview",
+      preferredStyle: .alert
+    );
+    
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+      switch $0.style {
+        case .default:
+          print("default");
+        
+        case .cancel:
+          print("cancel");
+        
+        case .destructive:
+          print("destructive");
+          
+        @unknown default:
+          print("default");
+      };
+    }));
+    
+    self.window?.rootViewController?
+      .present(alert, animated: true, completion: nil);
   };
   
   // context menu display begins
@@ -390,63 +495,12 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     animator?.addCompletion {
       self.onMenuDidShow?([:]);
-      return;
-      self.previewController?.view.isUserInteractionEnabled = true;
       
-      if let previewController = self.previewController,
-         let contextMenuVC = (previewController.next as? UIViewController)
-           ?? previewController.presentingViewController {
-        
-        contextMenuVC.view?.isUserInteractionEnabled = true;
-      };
-      
-      if let previewController = self.previewController,
-         let transitionView = previewController.next?.next as? UIView {
-        
-        transitionView.isUserInteractionEnabled = true;
-      };
-      
-      if let windowSubviews = self.window?.subviews,
-         let contextMenuContainerView =
-          (windowSubviews.first { ($0.gestureRecognizers?.count ?? 0) > 0 }),
-         
-         let gestureRecognizers = contextMenuContainerView.gestureRecognizers {
-        
-        for gestureRecognizer in gestureRecognizers {
-          //gestureRecognizer.isEnabled = false;
-        };
-        
-        if let contextMenuContentContainer =
-            (contextMenuContainerView.subviews.first { !($0 is UIVisualEffectView) }),
-           
-            contextMenuContentContainer.subviews.count > 0 {
-          
-          let morphingPlatterView = contextMenuContentContainer.subviews[0];
-          morphingPlatterView.isUserInteractionEnabled = true;
-          
-          morphingPlatterView.gestureRecognizers?.forEach {
-            $0.isEnabled = false;
-          };
-          
-          let button = UIButton(frame: CGRect(
-            origin: .zero,
-            size: CGSize(width: 100, height: 75)
-          ));
-          
-          button.setTitle("Hello World", for: .normal);
-          button.addTarget(self, action: #selector(self.onButtonPressed), for: .touchUpInside);
-          button.translatesAutoresizingMaskIntoConstraints = false;
-          
-          //button.frame = button.frame.offsetBy(dx: 0, dy: -button.frame.height)
-          
-          contextMenuContentContainer.addSubview(button);
-          
-          NSLayoutConstraint.activate([
-            button.bottomAnchor.constraint(equalTo: morphingPlatterView.topAnchor)
-          ]);
-          
-        };
-      };
+      #if DEBUG
+      // experimental
+      // show context menu auxiliary preview
+      self.attachContextMenuAuxiliaryPreviewIfAny(animator);
+      #endif
     };
   };
   
@@ -465,21 +519,32 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     guard self.isContextMenuVisible else { return };
     
+    #if DEBUG
+    // experimental
+    // hide preview auxiliary view
+    self.detachContextMenuAuxiliaryPreviewIfAny(animator);
+    #endif
+    
     self.onMenuWillHide?([:]);
     
     if !self.didPressMenuItem {
+      // nothing was selected...
       self.onMenuWillCancel?([:]);
     };
     
     animator?.addCompletion {
+      self.onMenuDidHide?([:]);
+      
       if !self.didPressMenuItem {
+        // nothing was selected...
         self.onMenuDidCancel?([:]);
       };
       
-      self.onMenuDidHide?([:]);
+      // reset flag
       self.didPressMenuItem = false;
     };
     
+    // reset flag
     self.isContextMenuVisible = false;
   };
   
