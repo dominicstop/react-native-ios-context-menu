@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, FlatList, ListRenderItem } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, ListRenderItem, View, Text, TouchableOpacity } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import type { ContextMenuExampleProps } from './examples/SharedExampleTypes';
 
@@ -30,6 +33,7 @@ import { ContextMenuViewTest05 } from './examples/ContextMenuViewTest05';
 import { ContextMenuViewTest06 } from './examples/ContextMenuViewTest06';
 import { ContextMenuViewTest07 } from './examples/ContextMenuViewTest07';
 import { ContextMenuViewTest08 } from './examples/ContextMenuViewTest08';
+
 import { ContextMenuButtonExample01 } from './examples/ContextMenuButtonExample01';
 import { ContextMenuButtonExample02 } from './examples/ContextMenuButtonExample02';
 
@@ -75,7 +79,7 @@ const EXAMPLE_ITEMS: ExampleListItem[] = EXAMPLE_COMPONENTS.map((item, index) =>
   component: item
 }));
 
-export default function App() {
+export function HomeScreen(props) {
   const renderItem: ListRenderItem<ExampleListItem>  = ({ item })  => (
     React.createElement(item.component, {
       index: item.id,
@@ -85,6 +89,15 @@ export default function App() {
 
   return (
     <SafeAreaView>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Test');
+        }}
+      >
+        <Text>
+          Push
+        </Text>
+      </TouchableOpacity>
       <FlatList
         contentContainerStyle={styles.scrollContentContainer}
         data={EXAMPLE_ITEMS}
@@ -94,6 +107,27 @@ export default function App() {
     </SafeAreaView>
   );
 };
+
+const TestScreen = () => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Test Screen</Text>
+    </View>
+  );
+};
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Test" component={TestScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   scrollContentContainer: {
