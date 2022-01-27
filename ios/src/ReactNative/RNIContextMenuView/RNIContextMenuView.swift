@@ -246,6 +246,8 @@ extension RNIContextMenuView {
 fileprivate extension RNIContextMenuView {
   
   func cleanup(){
+    // temp. disable
+    return;
     guard !self.didTriggerCleanup else { return };
     self.didTriggerCleanup = true;
     
