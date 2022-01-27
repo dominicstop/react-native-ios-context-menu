@@ -360,6 +360,9 @@ fileprivate extension RNIContextMenuView {
   func attachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating?
   ){
+    // temp. disable
+    return;
+    
     guard animator != nil,
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let morphingPlatterView = self.morphingPlatterView
