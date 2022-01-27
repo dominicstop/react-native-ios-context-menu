@@ -380,8 +380,12 @@ fileprivate extension RNIContextMenuView {
       ));
       
       button.setTitle("Hello World", for: .normal);
-      button.addTarget(self, action: #selector(self.onPressContextMenuAuxiliaryPreview), for: .touchUpInside);
-      button.tintColor = .purple;
+      button.backgroundColor = .systemPurple;
+      button.layer.cornerRadius = 15;
+      
+      button.addTarget(self, action: #selector(self.onTouchDownContextMenuAuxiliaryPreview), for: .touchDown);
+      button.addTarget(self, action: #selector(self.onTouchUpInsideContextMenuAuxiliaryPreview), for: .touchUpInside);
+      
       
       button.translatesAutoresizingMaskIntoConstraints = false;
       
@@ -392,6 +396,8 @@ fileprivate extension RNIContextMenuView {
     
     self.previewAuxiliaryViewContainer = auxiliaryView;
     
+    let margin: CGFloat = 10;
+    
     /// attach `auxiliaryView` to context menu preview
     contextMenuContentContainer.addSubview(auxiliaryView);
     
@@ -400,8 +406,11 @@ fileprivate extension RNIContextMenuView {
       auxiliaryView.trailingAnchor.constraint(equalTo: morphingPlatterView.trailingAnchor),
       
       shouldAttachToTop
-        ? auxiliaryView.bottomAnchor.constraint(equalTo: morphingPlatterView.topAnchor   )
-        : auxiliaryView.topAnchor   .constraint(equalTo: morphingPlatterView.bottomAnchor)
+        ? auxiliaryView.bottomAnchor
+          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -margin)
+      
+        : auxiliaryView.topAnchor
+          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: margin)
     ]);
     
     auxiliaryView.alpha = 0;
@@ -415,6 +424,8 @@ fileprivate extension RNIContextMenuView {
   func detachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating?
   ){
+    // temp. disable
+    return;
     guard let animator = animator,
           let previewAuxiliaryViewContainer = self.previewAuxiliaryViewContainer
     else { return };
@@ -448,33 +459,23 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     );
   };
   
-  @objc func onPressContextMenuAuxiliaryPreview(){
+  @objc func onTouchDownContextMenuAuxiliaryPreview(){
+    
+    guard let button = self.previewAuxiliaryViewContainer as? UIButton
+    else { return };
+    
+    button.layer.opacity = 0.5;
+  };
+  
+  @objc func onTouchUpInsideContextMenuAuxiliaryPreview(){
     print("button pressed");
     
-    let alert = UIAlertController(
-      title: "onPress",
-      message: "onPressContextMenuAuxiliaryPreview",
-      preferredStyle: .alert
-    );
+    guard let button = self.previewAuxiliaryViewContainer as? UIButton
+    else { return };
     
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
-      switch $0.style {
-        case .default:
-          print("default");
-        
-        case .cancel:
-          print("cancel");
-        
-        case .destructive:
-          print("destructive");
-          
-        @unknown default:
-          print("default");
-      };
-    }));
-    
-    self.window?.rootViewController?
-      .present(alert, animated: true, completion: nil);
+    UIView.animate(withDuration: 0.3) {
+      button.layer.opacity = 1;
+    };
   };
   
   // context menu display begins
