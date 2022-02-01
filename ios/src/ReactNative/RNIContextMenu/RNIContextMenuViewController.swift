@@ -41,15 +41,12 @@ class RNIContextMenuViewController: UIViewController {
     // if parent VC still exist in the stack, then it hasn't been popped yet
     let isPopping = !navVC.viewControllers.contains(parentVC);
     
-    print("viewDidDisappear...");
-    
     if isPopping,
        let contextMenuView = self.contextMenuView {
       
       let cleanup = {
         contextMenuView.detachFromParentVC();
         contextMenuView.notifyViewControllerDidPop(sender: self);
-        print("cleanup...");
       };
       
       if animated,
