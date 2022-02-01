@@ -30,8 +30,12 @@ class RNIContextMenuView: UIView {
   var previewController: RNIContextMenuPreviewController?;
   
   weak var previewAuxiliaryViewContainer: UIView?;
+  weak var contextMenuViewController: RNIContextMenuViewController?;
   
   private var didTriggerCleanup = false;
+  
+  /// Whether or not the current view was successfully added as child VC
+  private var didAttachToParentVC = false;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -167,12 +171,7 @@ class RNIContextMenuView: UIView {
     self.bridge = bridge;
     
     // Add context menu interaction...
-    self.contextMenuInteraction = {
-      let interaction = UIContextMenuInteraction(delegate: self);
-      self.addInteraction(interaction);
-      
-      return interaction;
-    }();
+    self.setupAddContextMenuInteraction();
     
     #if DEBUG
     // `RCTInvalidating` doesn't trigger in view instance, so use observer
@@ -222,10 +221,26 @@ class RNIContextMenuView: UIView {
   // ----------------------
   
   public override func didMoveToWindow() {
-    if self.window == nil {
-      // this view has been "unmounted"...
-      self.cleanup();
+    if self.window == nil,
+       self.didAttachToParentVC {
+      
+      // not using UINavigationController... manual cleanup
+      self.cleanup();    };
+    
+    if self.window != nil,
+       !self.didAttachToParentVC {
+      
+      // setup - might be using UINavigationController, attach as child vc
+      self.attachToParentVC();
     };
+  };
+  
+  // MARK: - Internal Commands
+  // -------------------------
+  
+  func notifyViewControllerDidPop(){
+    // trigger cleanup
+    self.cleanup();
   };
 };
 
@@ -245,9 +260,35 @@ extension RNIContextMenuView {
 @available(iOS 13, *)
 fileprivate extension RNIContextMenuView {
   
+  /// Add a context menu interaction to view
+  func setupAddContextMenuInteraction(){
+    self.contextMenuInteraction = {
+      let interaction = UIContextMenuInteraction(delegate: self);
+      self.addInteraction(interaction);
+      
+      return interaction;
+    }();
+  };
+  
+  func attachToParentVC(){
+    guard !self.didAttachToParentVC,
+          // find the nearest parent view controller
+          let parentVC = RNIUtilities
+            .getParent(responder: self, type: UIViewController.self)
+    else { return };
+    
+    self.didAttachToParentVC = true;
+    
+    let childVC = RNIContextMenuViewController(contextMenuView: self);
+    childVC.parentVC = parentVC;
+    
+    self.contextMenuViewController = childVC;
+
+    parentVC.addChild(childVC);
+    childVC.didMove(toParent: parentVC);
+  };
+  
   func cleanup(){
-    // temp. disable
-    return;
     guard !self.didTriggerCleanup else { return };
     self.didTriggerCleanup = true;
     
