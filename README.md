@@ -422,13 +422,13 @@ An object that is used to create and configure a context menu. Internally, this 
 
 <br>
 
-| Name and Type                                                | Description |
-| :----------------------------------------------------------- | :---------- |
-| 🔤  `type`<br/><br/>⚛️ `string`, i.e`"menu"`                   | TBA         |
-| 🔤  `menuTitle`<br/><br/>⚛️ `string`                           | TBA         |
-| 🔤  `menuOptions`<br/><br/>⚛️ `Array<UIMenuOptions>`<br>📌 [`UIMenuOptions`](PLACE_HOLDER_LINK) | TBA         |
-| 🔤  `menuItems`<br/><br/>⚛️ `Array<MenuConfig ¦ MenuActionConfig `<br/>📌 [`MenuConfig`](PLACE_HOLDER_LINK)<br/>📌 [`MenuActionConfig`](PLACE_HOLDER_LINK) | TBA         |
-| 🔤  `icon`<br/><br/>⚛️ `IconConfig ¦ ImageItemConfig`<br/>📌 [`IconConfig`](PLACE_HOLDER_LINK) (deprecated)<br/>📌 [`ImageItemConfig`](PLACE_HOLDER_LINK) | TBA         |
+| Name and Type                                                | Description                                                  |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 🔤  `type`<br/><br/>⚛️ `string`, i.e`"menu"`                   | TBA                                                          |
+| 🔤  `menuTitle`<br/><br/>⚛️ `string`                           | TBA<br><br>📝 **Note**: If you don't want a menu title to appear for your context menu, just pass in an empty string to this property. |
+| 🔤  `menuOptions`<br/><br/>⚛️ `Array<UIMenuOptions>`<br>📌 [`UIMenuOptions`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `menuItems`<br/><br/>⚛️ `Array<MenuConfig ¦ MenuActionConfig `<br/>📌 [`MenuConfig`](PLACE_HOLDER_LINK)<br/>📌 [`MenuActionConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `icon`<br/><br/>⚛️ `IconConfig ¦ ImageItemConfig`<br/>📌 [`IconConfig`](PLACE_HOLDER_LINK) (deprecated)<br/>📌 [`ImageItemConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 
 <br>
 
@@ -749,6 +749,8 @@ export function ContextMenuViewExample01(props) {
   return (
     <ContextMenuView
       menuConfig={{
+        // Note: If you don't want a menu title to appear for your 
+        // context menu, you can just pass in an empty string
         menuTitle: 'ContextMenuViewExample01',
         menuItems: [{
           actionKey  : 'key-01',
