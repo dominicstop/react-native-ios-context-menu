@@ -108,10 +108,18 @@ export function HomeScreen(props) {
   );
 };
 
-const TestScreen = () => {
+const TestScreen = (props) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Test Screen</Text>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.push('Home');
+        }}
+      >
+        <Text>
+          {'Test Screen'}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
