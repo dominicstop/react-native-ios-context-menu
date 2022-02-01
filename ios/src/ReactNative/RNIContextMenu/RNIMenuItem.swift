@@ -29,11 +29,8 @@ class RNIMenuItem: RNIMenuElement {
   // MARK: - Init
   // ------------
 
-  init?(dictionary: NSDictionary){
-    guard let menuTitle = dictionary["menuTitle"] as? String
-    else { return nil };
-    
-    self.menuTitle   = menuTitle;
+  init(dictionary: NSDictionary){
+    self.menuTitle   = (dictionary["menuTitle"] as? String) ?? "";
     self.menuOptions = dictionary["menuOptions"] as? [String];
     
     self.icon = {
