@@ -15,8 +15,17 @@ class RNIContextMenuButton: UIButton {
   // MARK: - Properties
   // ------------------
   
+  weak var bridge: RCTBridge!;
+  
   var isContextMenuVisible = false;
   var didPressMenuItem     = false;
+  
+  weak var contextMenuViewController: RNIContextMenuViewController?;
+  
+  private var didTriggerCleanup = false;
+  
+  /// Whether or not the current view was successfully added as child VC
+  private var didAttachToParentVC = false;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -87,7 +96,42 @@ class RNIContextMenuButton: UIButton {
   
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
+    self.bridge = bridge;
     
+    self.setupAddContextMenuInteraction();
+  };
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented");
+  };
+  
+  override func reactSetFrame(_ frame: CGRect) {
+    super.reactSetFrame(frame);
+  };
+  
+  public override func didMoveToWindow() {
+    if self.window == nil,
+       !self.didAttachToParentVC {
+      
+      // not using UINavigationController... manual cleanup
+      self.cleanup();
+      
+    } else if !self.didAttachToParentVC {
+      
+      // setup - might be using UINavigationController, attach as child vc
+      self.attachToParentVC();
+    };
+  };
+};
+
+// MARK: - Private Functions
+// -------------------------
+
+@available(iOS 14, *)
+private extension RNIContextMenuButton {
+  
+  /// Add a context menu interaction to button
+  func setupAddContextMenuInteraction(){
     self.isEnabled = true;
     self.isUserInteractionEnabled = true;
     
@@ -101,12 +145,21 @@ class RNIContextMenuButton: UIButton {
     }, for: .menuActionTriggered);
   };
   
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented");
-  };
-  
-  override func reactSetFrame(_ frame: CGRect) {
-    super.reactSetFrame(frame);
+  func cleanup(){
+    guard !self.didTriggerCleanup else { return };
+    self.didTriggerCleanup = true;
+    
+    self.contextMenuInteraction?.dismissMenu();
+    
+    // remove this view from registry
+    RNIUtilities.recursivelyRemoveFromViewRegistry(
+      bridge   : self.bridge,
+      reactView: self
+    );
+    
+    #if DEBUG
+    NotificationCenter.default.removeObserver(self);
+    #endif
   };
 };
   
@@ -174,9 +227,51 @@ extension RNIContextMenuButton {
   };
 };
 
+// MARK: - UIGestureRecognizerDelegate
+// -----------------------------------
+
 @available(iOS 14, *)
 extension RNIContextMenuButton: UIGestureRecognizerDelegate {
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
     return true;
+  };
+};
+
+// MARK: - RNIContextMenu
+// ----------------------
+
+@available(iOS 14, *)
+extension RNIContextMenuButton: RNIContextMenu {
+  
+  func notifyViewControllerDidPop(sender: RNIContextMenuViewController) {
+    // trigger cleanup
+    self.cleanup();
+  };
+  
+  func attachToParentVC(){
+    guard !self.didAttachToParentVC,
+          // find the nearest parent view controller
+          let parentVC = RNIUtilities
+            .getParent(responder: self, type: UIViewController.self)
+    else { return };
+    
+    self.didAttachToParentVC = true;
+    
+    let childVC = RNIContextMenuViewController(contextMenuView: self);
+    childVC.parentVC = parentVC;
+    
+    self.contextMenuViewController = childVC;
+
+    parentVC.addChild(childVC);
+    childVC.didMove(toParent: parentVC);
+  };
+  
+  func detachFromParentVC(){
+    guard !self.didAttachToParentVC,
+          let childVC = self.contextMenuViewController
+    else { return };
+    
+    childVC.willMove(toParent: nil);
+    childVC.removeFromParent();
   };
 };
