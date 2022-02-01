@@ -59,8 +59,10 @@ class RNIContextMenuView: UIView {
   private var _menuConfig: RNIMenuItem?;
   @objc var menuConfig: NSDictionary? {
     didSet {
-      guard let menuConfigDict = self.menuConfig else { return };
-      let menuConfig = RNIMenuItem(dictionary: menuConfigDict);
+      guard
+        let menuConfigDict = self.menuConfig, menuConfigDict.count > 0,
+        let menuConfig     = RNIMenuItem(dictionary: menuConfigDict)
+      else { return };
       
       menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
         self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;

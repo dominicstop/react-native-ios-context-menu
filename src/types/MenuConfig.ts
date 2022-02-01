@@ -45,7 +45,7 @@ export type MenuConfig = {
   // TODO: Next Major Version - Make this required
   type?: 'menu';
 
-  menuTitle?: string;
+  menuTitle: string;
 
   menuOptions?: Array<UIMenuOptions>;
   menuItems?: Array<MenuConfig | MenuActionConfig>;

@@ -45,8 +45,10 @@ class RNIContextMenuButton: UIButton {
     
   @objc var menuConfig: NSDictionary? {
     didSet {
-      guard let menuConfig = self.menuConfig else { return };
-      let rootMenuConfig = RNIMenuItem(dictionary: menuConfig);
+      guard
+        let menuConfig     = self.menuConfig, menuConfig.count > 0,
+        let rootMenuConfig = RNIMenuItem(dictionary: menuConfig)
+      else { return };
       
       #if DEBUG
       print("RNIContextMenuButton"
