@@ -222,25 +222,17 @@ class RNIContextMenuView: UIView {
   
   public override func didMoveToWindow() {
     if self.window == nil,
-       self.didAttachToParentVC {
+       !self.didAttachToParentVC {
       
       // not using UINavigationController... manual cleanup
-      self.cleanup();    };
-    
-    if self.window != nil,
-       !self.didAttachToParentVC {
+      self.cleanup();
+      
+    } else if self.window != nil,
+           !self.didAttachToParentVC {
       
       // setup - might be using UINavigationController, attach as child vc
       self.attachToParentVC();
     };
-  };
-  
-  // MARK: - Internal Commands
-  // -------------------------
-  
-  func notifyViewControllerDidPop(){
-    // trigger cleanup
-    self.cleanup();
   };
 };
 
@@ -268,24 +260,6 @@ fileprivate extension RNIContextMenuView {
       
       return interaction;
     }();
-  };
-  
-  func attachToParentVC(){
-    guard !self.didAttachToParentVC,
-          // find the nearest parent view controller
-          let parentVC = RNIUtilities
-            .getParent(responder: self, type: UIViewController.self)
-    else { return };
-    
-    self.didAttachToParentVC = true;
-    
-    let childVC = RNIContextMenuViewController(contextMenuView: self);
-    childVC.parentVC = parentVC;
-    
-    self.contextMenuViewController = childVC;
-
-    parentVC.addChild(childVC);
-    childVC.didMove(toParent: parentVC);
   };
   
   func cleanup(){
@@ -648,5 +622,44 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   ) -> UITargetedPreview? {
     
     return self.makeTargetedPreview();
+  };
+};
+
+// MARK: - RNIContextMenu
+// ----------------------
+
+@available(iOS 13, *)
+extension RNIContextMenuView: RNIContextMenu {
+  
+  func notifyViewControllerDidPop(sender: RNIContextMenuViewController) {
+    // trigger cleanup
+    self.cleanup();
+  };
+  
+  func attachToParentVC(){
+    guard !self.didAttachToParentVC,
+          // find the nearest parent view controller
+          let parentVC = RNIUtilities
+            .getParent(responder: self, type: UIViewController.self)
+    else { return };
+    
+    self.didAttachToParentVC = true;
+    
+    let childVC = RNIContextMenuViewController(contextMenuView: self);
+    childVC.parentVC = parentVC;
+    
+    self.contextMenuViewController = childVC;
+
+    parentVC.addChild(childVC);
+    childVC.didMove(toParent: parentVC);
+  };
+  
+  func detachFromParentVC(){
+    guard !self.didAttachToParentVC,
+          let childVC = self.contextMenuViewController
+    else { return };
+    
+    childVC.willMove(toParent: nil);
+    childVC.removeFromParent();
   };
 };

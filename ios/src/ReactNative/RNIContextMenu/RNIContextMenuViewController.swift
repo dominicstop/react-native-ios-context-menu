@@ -2,7 +2,7 @@
 //  RNIContextMenuViewController.swift
 //  react-native-ios-context-menu
 //
-//  Created by Dominic Go on 1/30/22.
+//  Created by Dominic Go on 2/1/22.
 //
 
 import UIKit;
@@ -11,16 +11,14 @@ class RNIContextMenuViewController: UIViewController {
   
   weak var parentVC: UIViewController?;
   
-  @available(iOS 13, *)
-  var contextMenuView: RNIContextMenuView? {
-    self.view as? RNIContextMenuView
+  var contextMenuView: RNIContextMenu? {
+    self.view as? RNIContextMenu
   };
   
   // MARK: - Init
   // ------------
   
-  @available(iOS 13, *)
-  init(contextMenuView: RNIContextMenuView) {
+  init(contextMenuView: RNIContextMenu) {
     super.init(nibName: nil, bundle: nil);
     self.view = contextMenuView;
   };
@@ -33,7 +31,7 @@ class RNIContextMenuViewController: UIViewController {
   // MARK: - Lifecycle
   // -----------------
   
-  override func viewWillDisappear(_ animated: Bool) {
+  override func viewDidDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated);
     
     guard let navVC = self.navigationController,
@@ -46,10 +44,10 @@ class RNIContextMenuViewController: UIViewController {
     print("viewDidDisappear...");
     
     if isPopping,
-       #available(iOS 13, *),
        let contextMenuView = self.contextMenuView {
       
-      contextMenuView.notifyViewControllerDidPop();
+      contextMenuView.detachFromParentVC();
+      contextMenuView.notifyViewControllerDidPop(sender: self);
       
       print("pop...");
     };
