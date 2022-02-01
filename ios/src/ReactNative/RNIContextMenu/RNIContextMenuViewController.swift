@@ -31,7 +31,7 @@ class RNIContextMenuViewController: UIViewController {
   // MARK: - Lifecycle
   // -----------------
   
-  override func viewDidDisappear(_ animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated);
     
     guard let navVC = self.navigationController,
@@ -46,10 +46,22 @@ class RNIContextMenuViewController: UIViewController {
     if isPopping,
        let contextMenuView = self.contextMenuView {
       
-      contextMenuView.detachFromParentVC();
-      contextMenuView.notifyViewControllerDidPop(sender: self);
+      let cleanup = {
+        contextMenuView.detachFromParentVC();
+        contextMenuView.notifyViewControllerDidPop(sender: self);
+        print("cleanup...");
+      };
       
-      print("pop...");
+      if animated,
+         let transitionCoordinator = parentVC.transitionCoordinator {
+        
+        transitionCoordinator.animate(alongsideTransition: nil){ _ in
+          cleanup();
+        };
+        
+      } else {
+        cleanup();
+      };
     };
   }
 };
