@@ -377,20 +377,56 @@ fileprivate extension RNIContextMenuView {
   func attachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating?
   ){
-    // temp. disable
-    return;
     
+    enum AnchorPosition {
+      case top, bottom;
+    };
+
     guard animator != nil,
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let morphingPlatterView = self.morphingPlatterView
     else { return };
     
-    /// whether to attach the `auxiliaryView` on the top or bottom of the context menu
-    let shouldAttachToTop: Bool = {
+    /// Base on the current menu config, does it have menu items?
+    let menuConfigHasMenuItems: Bool = {
+      guard let menuItems = self._menuConfig?.menuItems
+      else { return false };
+      
+      return menuItems.count > 0;
+    }();
+    
+    // if the context menu has menu items, where is it located in relation to
+    // the context menu preview?
+    let menuItemsPlacement: AnchorPosition? = {
+      guard menuConfigHasMenuItems,
+            let contextMenuItemsView = self.contextMenuItemsView
+      else { return nil };
+      
+      let previewFrame = morphingPlatterView.frame;
+      let menuItemsFrame = contextMenuItemsView.frame;
+      
+      return (menuItemsFrame.midY < previewFrame.midY) ? .bottom : .top;
+    }();
+    
+    // in which half does the "context menu preview" fall into?
+    let morphingPlatterViewPlacement: AnchorPosition = {
       let previewFrame = morphingPlatterView.frame;
       let screenBounds = UIScreen.main.bounds;
       
-      return previewFrame.midY < screenBounds.midY;
+      return (previewFrame.midY < screenBounds.midY) ? .top : .bottom;
+    }();
+    
+    /// whether to attach the `auxiliaryView` on the top or bottom of the context menu
+    let shouldAttachToTop: Bool = {
+      switch menuItemsPlacement {
+        case .top   : return true;
+        case .bottom: return false;
+          
+        default:
+          // the context menu does not have menu items, determine anchor, position
+          // of auxiliary view via the position of the preview in the screen
+          return morphingPlatterViewPlacement == .bottom;
+      };
     }();
     
     let auxiliaryView: UIButton = {
@@ -433,19 +469,50 @@ fileprivate extension RNIContextMenuView {
           .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: margin)
     ]);
     
+    
+    let offset: CGFloat = {
+      let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets;
+      let auxiliaryViewHeight = auxiliaryView.frame.height;
+      
+      let previewFrame = morphingPlatterView.frame;
+      let screenHeight = UIScreen.main.bounds.height;
+      
+      switch morphingPlatterViewPlacement {
+        case .top:
+          let minEdgeY = auxiliaryViewHeight + (safeAreaInsets?.top ?? 0);
+          let distanceToEdge = previewFrame.minY;
+                    
+          return (previewFrame.minY <= minEdgeY)
+            ? max(auxiliaryViewHeight - distanceToEdge, 0)
+            : 0;
+          
+        case .bottom:
+          let tolerance = auxiliaryViewHeight + (safeAreaInsets?.bottom ?? 0);
+          let maxEdgeY = screenHeight - tolerance;
+          
+          let distanceToEdge = screenHeight - previewFrame.maxY;
+          return (previewFrame.maxY > maxEdgeY)
+            ? -(auxiliaryViewHeight - distanceToEdge)
+            : 0;
+            
+      };
+    }();
+    
     auxiliaryView.alpha = 0;
     
     // fade in transition
     UIView.animate(withDuration: 0.3) {
       auxiliaryView.alpha = 1;
+      print("contextMenuContentContainer - ");
+      print(contextMenuContentContainer.description);
+      
+      contextMenuContentContainer.frame = contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
     };
   };
   
   func detachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating?
   ){
-    // temp. disable
-    return;
     guard let animator = animator,
           let previewAuxiliaryViewContainer = self.previewAuxiliaryViewContainer
     else { return };
