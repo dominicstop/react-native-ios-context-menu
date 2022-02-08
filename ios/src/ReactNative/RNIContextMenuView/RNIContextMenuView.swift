@@ -11,6 +11,11 @@ import UIKit;
 @available(iOS 13, *)
 class RNIContextMenuView: UIView {
   
+  enum NativeIDKey: String {
+    case contextMenuPreview;
+    case contextMenuAuxiliaryPreview;
+  };
+  
   // MARK: - Properties
   // ------------------
   
@@ -29,7 +34,7 @@ class RNIContextMenuView: UIView {
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
-  weak var previewAuxiliaryViewContainer: UIView?;
+  weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
   weak var contextMenuViewController: RNIContextMenuViewController?;
   
   private var didTriggerCleanup = false;
@@ -159,7 +164,7 @@ class RNIContextMenuView: UIView {
   };
   
   var isPreviewAuxiliaryViewAttached: Bool {
-    self.previewAuxiliaryViewContainer != nil;
+    self.previewAuxiliaryViewWrapper != nil;
   };
   
   // MARK: - Init
@@ -197,17 +202,27 @@ class RNIContextMenuView: UIView {
   override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
     super.insertSubview(subview, at: atIndex);
     
-    if let previewWrapper = subview as? RNIWrapperView {
-      // a previous preview view already exists... cleanup if needed.
-      self.previewWrapper?.cleanup();
+    if let wrapperView = subview as? RNIWrapperView,
+       let nativeID    = subview.nativeID,
+       let nativeIDKey = NativeIDKey(rawValue: nativeID) {
       
-      self.previewWrapper = previewWrapper;
+      wrapperView.willChangeSuperview = true;
+      wrapperView.autoCleanupOnJSUnmount = true;
+            
+      switch nativeIDKey {
+        case .contextMenuPreview:
+          // if prev. exist, cleanup if needed.
+          self.previewWrapper?.cleanup();
+          self.previewWrapper = wrapperView;
+          
+        case .contextMenuAuxiliaryPreview:
+          // if prev. exist, cleanup if needed.
+          //self.previewAuxiliaryViewWrapper?.cleanup();
+          self.previewAuxiliaryViewWrapper = wrapperView;
+      };
       
-      previewWrapper.willChangeSuperview = true;
-      previewWrapper.autoCleanupOnJSUnmount = true;
-      
-      previewWrapper.removeFromSuperview();
-      previewWrapper.willChangeSuperview = false;
+      wrapperView.removeFromSuperview();
+      wrapperView.willChangeSuperview = false;
     };
   };
   
@@ -383,11 +398,12 @@ fileprivate extension RNIContextMenuView {
     };
 
     guard animator != nil,
+          let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let morphingPlatterView = self.morphingPlatterView
     else { return };
     
-    /// Base on the current menu config, does it have menu items?
+    /// Based on the current "menu config", does it have menu items?
     let menuConfigHasMenuItems: Bool = {
       guard let menuItems = self._menuConfig?.menuItems
       else { return false };
@@ -395,8 +411,8 @@ fileprivate extension RNIContextMenuView {
       return menuItems.count > 0;
     }();
     
-    // if the context menu has menu items, where is it located in relation to
-    // the context menu preview?
+    // if the context menu has "menu items", where is it located in relation to
+    // the "context menu preview"?
     let menuItemsPlacement: AnchorPosition? = {
       guard menuConfigHasMenuItems,
             let contextMenuItemsView = self.contextMenuItemsView
@@ -423,56 +439,40 @@ fileprivate extension RNIContextMenuView {
         case .bottom: return false;
           
         default:
-          // the context menu does not have menu items, determine anchor, position
+          // the context menu does not have menu items, determine anchor position
           // of auxiliary view via the position of the preview in the screen
           return morphingPlatterViewPlacement == .bottom;
       };
     }();
     
-    let auxiliaryView: UIButton = {
-      let button = UIButton(frame: CGRect(
-        origin: .zero,
-        size: CGSize(width: 100, height: 75)
-      ));
-      
-      button.setTitle("Hello World", for: .normal);
-      button.backgroundColor = .systemPurple;
-      button.layer.cornerRadius = 15;
-      
-      button.addTarget(self, action: #selector(self.onTouchDownContextMenuAuxiliaryPreview), for: .touchDown);
-      button.addTarget(self, action: #selector(self.onTouchUpInsideContextMenuAuxiliaryPreview), for: .touchUpInside);
-      
-      
-      button.translatesAutoresizingMaskIntoConstraints = false;
-      
-      //button.frame = button.frame.offsetBy(dx: 0, dy: -button.frame.height)
-      
-      return button;
-    }();
-    
-    self.previewAuxiliaryViewContainer = auxiliaryView;
-    
+    // `auxiliaryView` margins
     let margin: CGFloat = 10;
     
+    /// enable auto layout
+    previewAuxiliaryViewWrapper.translatesAutoresizingMaskIntoConstraints = false;
+    
     /// attach `auxiliaryView` to context menu preview
-    contextMenuContentContainer.addSubview(auxiliaryView);
+    contextMenuContentContainer.addSubview(previewAuxiliaryViewWrapper);
     
     NSLayoutConstraint.activate([
-      auxiliaryView.leadingAnchor .constraint(equalTo: morphingPlatterView.leadingAnchor ),
-      auxiliaryView.trailingAnchor.constraint(equalTo: morphingPlatterView.trailingAnchor),
+      previewAuxiliaryViewWrapper.leadingAnchor
+        .constraint(equalTo: morphingPlatterView.leadingAnchor ),
+      
+      previewAuxiliaryViewWrapper.trailingAnchor
+        .constraint(equalTo: morphingPlatterView.trailingAnchor),
       
       shouldAttachToTop
-        ? auxiliaryView.bottomAnchor
+        ? previewAuxiliaryViewWrapper.bottomAnchor
           .constraint(equalTo: morphingPlatterView.topAnchor, constant: -margin)
       
-        : auxiliaryView.topAnchor
+        : previewAuxiliaryViewWrapper.topAnchor
           .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: margin)
     ]);
     
     
     let offset: CGFloat = {
       let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets;
-      let auxiliaryViewHeight = auxiliaryView.frame.height;
+      let auxiliaryViewHeight = previewAuxiliaryViewWrapper.frame.height;
       
       let previewFrame = morphingPlatterView.frame;
       let screenHeight = UIScreen.main.bounds.height;
@@ -483,7 +483,7 @@ fileprivate extension RNIContextMenuView {
           let distanceToEdge = previewFrame.minY;
                     
           return (previewFrame.minY <= minEdgeY)
-            ? max(auxiliaryViewHeight - distanceToEdge, 0)
+            ? max((auxiliaryViewHeight - distanceToEdge), 0)
             : 0;
           
         case .bottom:
@@ -498,11 +498,11 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
-    auxiliaryView.alpha = 0;
+    previewAuxiliaryViewWrapper.alpha = 0;
     
     // fade in transition
     UIView.animate(withDuration: 0.3) {
-      auxiliaryView.alpha = 1;
+      previewAuxiliaryViewWrapper.alpha = 1;
       print("contextMenuContentContainer - ");
       print(contextMenuContentContainer.description);
       
@@ -514,12 +514,22 @@ fileprivate extension RNIContextMenuView {
     _ animator: UIContextMenuInteractionAnimating?
   ){
     guard let animator = animator,
-          let previewAuxiliaryViewContainer = self.previewAuxiliaryViewContainer
+          let previewAuxiliaryViewContainer = self.previewAuxiliaryViewWrapper
     else { return };
+    
+    /// Bug:
+    /// * "Could not locate shadow view with tag #, this is probably caused by a temporary inconsistency
+    ///   between native views and shadow views."
+    /// * Triggered when the menu is about to be hidden, iOS removes the context menu along with the
+    ///   `previewAuxiliaryViewContainer`
     
     animator.addAnimations {
       previewAuxiliaryViewContainer.alpha = 0;
     };
+    
+    //animator.addCompletion {
+    //  previewAuxiliaryViewContainer.removeFromSuperview();
+    //};
   };
 };
 
@@ -544,25 +554,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       previewProvider: self.createMenuPreview,
       actionProvider : self.createMenu
     );
-  };
-  
-  @objc func onTouchDownContextMenuAuxiliaryPreview(){
-    
-    guard let button = self.previewAuxiliaryViewContainer as? UIButton
-    else { return };
-    
-    button.layer.opacity = 0.5;
-  };
-  
-  @objc func onTouchUpInsideContextMenuAuxiliaryPreview(){
-    print("button pressed");
-    
-    guard let button = self.previewAuxiliaryViewContainer as? UIButton
-    else { return };
-    
-    UIView.animate(withDuration: 0.3) {
-      button.layer.opacity = 1;
-    };
   };
   
   // context menu display begins

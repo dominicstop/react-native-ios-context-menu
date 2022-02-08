@@ -4,7 +4,7 @@ import type { ViewProps } from 'react-native';
 import type { RNIContextMenuViewProps } from '../../native_components/RNIContextMenuView';
 
 
-export type RenderPreviewItem = () => React.ReactElement;
+export type RenderItem = () => React.ReactElement;
 
 export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
@@ -25,7 +25,8 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   lazyPreview?: boolean;
   useActionSheetFallback?: boolean;
 
-  renderPreview?: RenderPreviewItem;
+  renderPreview?: RenderItem;
+  renderAuxillaryPreview?: RenderItem;
 };
 
 export type ContextMenuViewProps = 

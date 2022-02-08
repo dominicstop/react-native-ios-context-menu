@@ -18,6 +18,11 @@ import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
 import * as Helpers from '../../functions/Helpers';
 
 
+const NATIVE_ID_KEYS = {
+  contextMenuPreview: 'contextMenuPreview',
+  contextMenuAuxiliaryPreview: 'contextMenuAuxiliaryPreview',
+};
+
 export class ContextMenuView extends 
   React.PureComponent<ContextMenuViewProps, ContextMenuViewState> {
 
@@ -53,6 +58,7 @@ export class ContextMenuView extends
       onPressMenuPreview,
       lazyPreview,
       renderPreview,
+      renderAuxillaryPreview,
       ...viewProps 
     } = this.props;
 
@@ -80,6 +86,7 @@ export class ContextMenuView extends
       onPressMenuItem,
       onPressMenuPreview,
       renderPreview,
+      renderAuxillaryPreview,
 
       // C. Move all the default view-related
       //    props here...
@@ -202,14 +209,19 @@ export class ContextMenuView extends
       (state.mountPreview || !props.lazyPreview)
     );
 
+    const shouldMountAuxPreview = (
+      (props.renderAuxillaryPreview != null) && 
+      (state.mountPreview || !props.lazyPreview)
+    );
+
     const contents = (
       shouldUseContextMenuView? (
         // A - Use Context Menu View
         <RNIContextMenuView
           {...props.viewProps}
           style={[styles.menuView, props.viewProps.style]}
-          ref={r => { this.nativeRef = r! }}
 
+          ref={r => { this.nativeRef = r! }}
           menuConfig={props.menuConfig}
           previewConfig={props.previewConfig}
           
@@ -230,12 +242,23 @@ export class ContextMenuView extends
             <RNIWrapperView 
               style={styles.previewContainer}
               shouldNotifyComponentWillUnmount={false}
+              nativeID={NATIVE_ID_KEYS.contextMenuPreview}
             >
               {props.renderPreview?.()}
             </RNIWrapperView>
           )}
+          {shouldMountAuxPreview && (
+            <RNIWrapperView 
+              style={styles.previewAuxContainer}
+              shouldNotifyComponentWillUnmount={false}
+              nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
+            >
+              {props.renderAuxillaryPreview?.()}
+            </RNIWrapperView>
+          )}
           {props.viewProps.children}
         </RNIContextMenuView>
+
       ): shouldUseActionSheetFallback? (
         // B - Use Context Menu Fallback
         <TouchableOpacity 
@@ -245,6 +268,7 @@ export class ContextMenuView extends
         >
           {this.props.children}
         </TouchableOpacity>
+
       ):(
         // C - Use Regular View
         <View {...props.viewProps}>
@@ -272,5 +296,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     overflow: 'visible',
     backgroundColor: 'transparent',
+  },
+  previewAuxContainer: {
+    position: 'absolute',
+    overflow: 'visible',
+    backgroundColor: 'blue',
+    flex: 0,
   },
 });

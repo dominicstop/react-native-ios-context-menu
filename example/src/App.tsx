@@ -89,15 +89,17 @@ export function HomeScreen(props) {
 
   return (
     <SafeAreaView>
-      <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate('Test');
-        }}
-      >
-        <Text>
-          Push
-        </Text>
-      </TouchableOpacity>
+      {false && (
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate('Test');
+          }}
+        >
+          <Text>
+            Push
+          </Text>
+        </TouchableOpacity>
+      )}
       <FlatList
         contentContainerStyle={styles.scrollContentContainer}
         data={EXAMPLE_ITEMS}

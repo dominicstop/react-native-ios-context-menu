@@ -8,7 +8,7 @@ import * as Helpers from '../functions/Helpers';
 
 export type RNIWrapperViewProps = {
   style?: ViewStyle;
-  nativeID?: String;
+  nativeID?: string;
   children?: React.ReactElement;
   shouldNotifyComponentWillUnmount?: boolean;
 };
