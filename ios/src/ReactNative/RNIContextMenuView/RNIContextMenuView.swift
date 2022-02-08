@@ -399,6 +399,7 @@ fileprivate extension RNIContextMenuView {
 
     guard animator != nil,
           let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
+          let previewAuxiliaryView = previewAuxiliaryViewWrapper.reactContent,
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let morphingPlatterView = self.morphingPlatterView
     else { return };
@@ -445,68 +446,82 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
-    // `auxiliaryView` margins
-    let margin: CGFloat = 10;
+    // // TODO: Temp - `auxiliaryView` margins
+    let marginLeading: CGFloat = 10;
+    let marginTrailing: CGFloat = 10;
+    
+    let auxiliaryViewHeight: CGFloat = 100;
     
     /// enable auto layout
-    previewAuxiliaryViewWrapper.translatesAutoresizingMaskIntoConstraints = false;
+    previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
     
     /// attach `auxiliaryView` to context menu preview
-    contextMenuContentContainer.addSubview(previewAuxiliaryViewWrapper);
+    contextMenuContentContainer.addSubview(previewAuxiliaryView);
     
     NSLayoutConstraint.activate([
-      previewAuxiliaryViewWrapper.leadingAnchor
-        .constraint(equalTo: morphingPlatterView.leadingAnchor ),
+      previewAuxiliaryView.leadingAnchor
+        .constraint(equalTo: morphingPlatterView.leadingAnchor),
       
-      previewAuxiliaryViewWrapper.trailingAnchor
+      previewAuxiliaryView.trailingAnchor
         .constraint(equalTo: morphingPlatterView.trailingAnchor),
       
-      shouldAttachToTop
-        ? previewAuxiliaryViewWrapper.bottomAnchor
-          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -margin)
+      // TODO: Temp
+      previewAuxiliaryView.heightAnchor
+        .constraint(equalToConstant: auxiliaryViewHeight),
       
-        : previewAuxiliaryViewWrapper.topAnchor
-          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: margin)
+      shouldAttachToTop
+        ? previewAuxiliaryView.bottomAnchor
+          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginLeading)
+      
+        : previewAuxiliaryView.topAnchor
+          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginLeading)
     ]);
     
     
     let offset: CGFloat = {
       let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets;
-      let auxiliaryViewHeight = previewAuxiliaryViewWrapper.frame.height;
       
       let previewFrame = morphingPlatterView.frame;
       let screenHeight = UIScreen.main.bounds.height;
       
+      let marginBase = marginLeading + marginTrailing;
+      
       switch morphingPlatterViewPlacement {
         case .top:
-          let minEdgeY = auxiliaryViewHeight + (safeAreaInsets?.top ?? 0);
+          let topInsets = safeAreaInsets?.top ?? 0;
+          let margin = marginBase + topInsets;
+          
+          let minEdgeY = auxiliaryViewHeight + topInsets;
           let distanceToEdge = previewFrame.minY;
-                    
+        
           return (previewFrame.minY <= minEdgeY)
-            ? max((auxiliaryViewHeight - distanceToEdge), 0)
+            ? max((auxiliaryViewHeight - distanceToEdge + margin), 0)
             : 0;
           
         case .bottom:
+          let bottomInsets = safeAreaInsets?.bottom ?? 0;
+          let margin = marginBase + bottomInsets;
+          
           let tolerance = auxiliaryViewHeight + (safeAreaInsets?.bottom ?? 0);
           let maxEdgeY = screenHeight - tolerance;
           
           let distanceToEdge = screenHeight - previewFrame.maxY;
           return (previewFrame.maxY > maxEdgeY)
-            ? -(auxiliaryViewHeight - distanceToEdge)
+            ? -(auxiliaryViewHeight - distanceToEdge + margin)
             : 0;
             
       };
     }();
     
-    previewAuxiliaryViewWrapper.alpha = 0;
+    // transition - start value
+    previewAuxiliaryView.alpha = 0;
     
     // fade in transition
     UIView.animate(withDuration: 0.3) {
-      previewAuxiliaryViewWrapper.alpha = 1;
-      print("contextMenuContentContainer - ");
-      print(contextMenuContentContainer.description);
+      previewAuxiliaryView.alpha = 1;
       
-      contextMenuContentContainer.frame = contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
+      contextMenuContentContainer.frame =
+        contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
     };
   };
   
@@ -514,7 +529,7 @@ fileprivate extension RNIContextMenuView {
     _ animator: UIContextMenuInteractionAnimating?
   ){
     guard let animator = animator,
-          let previewAuxiliaryViewContainer = self.previewAuxiliaryViewWrapper
+          let previewAuxiliaryView = self.previewAuxiliaryViewWrapper?.reactContent
     else { return };
     
     /// Bug:
@@ -524,7 +539,7 @@ fileprivate extension RNIContextMenuView {
     ///   `previewAuxiliaryViewContainer`
     
     animator.addAnimations {
-      previewAuxiliaryViewContainer.alpha = 0;
+      previewAuxiliaryView.alpha = 0;
     };
     
     //animator.addCompletion {

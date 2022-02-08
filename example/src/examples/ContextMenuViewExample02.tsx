@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert } from 'react-native';
+import { Alert, View, Text } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -48,6 +48,15 @@ export function ContextMenuViewExample02(props: ContextMenuExampleProps) {
             `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
           );
         }}
+        renderAuxillaryPreview={() => (
+        <View
+          style={{backgroundColor: 'red'}}
+        >
+          <Text>
+            Hello
+          </Text>
+        </View>
+      )}
     >
       <ContextMenuCard
         index={props.index}

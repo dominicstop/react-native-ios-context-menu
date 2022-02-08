@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, View, Text } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -26,9 +26,11 @@ export function ContextMenuViewExample01(props: ContextMenuExampleProps) {
       }}
       renderAuxillaryPreview={() => (
         <View
-          style={{backgroundColor: 'red', minHeight: 10, minWidth: 10}}
+          style={{backgroundColor: 'red'}}
         >
-
+          <Text>
+            Hello
+          </Text>
         </View>
       )}
       onPressMenuItem={({nativeEvent}) => {

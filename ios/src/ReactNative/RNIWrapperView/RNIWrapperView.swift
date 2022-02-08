@@ -131,7 +131,7 @@ internal class RNIWrapperView: UIView {
           let reactContent = self.reactContent
     else { return };
     
-    bridge.uiManager.setSize(newBounds.size, for: reactContent);
+    //bridge.uiManager.setSize(newBounds.size, for: reactContent);
     bridge.uiManager.setSize(newBounds.size, for: self);
   };
   
