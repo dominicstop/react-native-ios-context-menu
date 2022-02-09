@@ -26,7 +26,7 @@ export type MenuAuxiliaryPreviewConfig = {
   alignmentHorizontal?: MenuAuxiliaryPreviewHorizontalAlignment;
   
   marginPreview?: number;
-  marginAuxillaryPreview?: number;
+  marginAuxiliaryPreview?: number;
 
   transitionConfigEntrance?: MenuAuxiliaryPreviewTransitionConfig;
   transitionConfigExit?: MenuAuxiliaryPreviewTransitionConfig;
