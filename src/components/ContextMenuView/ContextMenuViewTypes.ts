@@ -9,6 +9,7 @@ export type RenderItem = () => React.ReactElement;
 export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
   | 'previewConfig'
+  | 'auxiliaryPreviewConfig'
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'
   // Lifecycle Events

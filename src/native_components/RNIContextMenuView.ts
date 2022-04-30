@@ -2,6 +2,7 @@ import { requireNativeComponent, Platform, ViewProps, HostComponent, View } from
 
 import type { MenuConfig } from '../types/MenuConfig';
 import type { MenuPreviewConfig } from '../types/MenuPreviewConfig';
+import type { MenuAuxiliaryPreviewConfig } from '../types/MenuAuxiliaryPreviewConfig';
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent,  } from '../types/MenuEvents';
 
 
@@ -13,6 +14,7 @@ export type RNIContextMenuViewProps = ViewProps & {
 
   menuConfig?: MenuConfig; 
   previewConfig?: MenuPreviewConfig;
+  auxiliaryPreviewConfig?: MenuAuxiliaryPreviewConfig;
 
   /** 
    * On iOS 15+, the `MenuActionConfig.discoverabilityTitle` is no longer 

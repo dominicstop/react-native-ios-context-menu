@@ -46,6 +46,7 @@ export class ContextMenuView extends
       useActionSheetFallback,
       menuConfig,
       previewConfig,
+      auxiliaryPreviewConfig,
       shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
       // event props
       onMenuWillShow,
@@ -77,6 +78,7 @@ export class ContextMenuView extends
       // B. Pass down props...
       menuConfig,
       previewConfig,
+      auxiliaryPreviewConfig,
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -224,6 +226,7 @@ export class ContextMenuView extends
           ref={r => { this.nativeRef = r! }}
           menuConfig={props.menuConfig}
           previewConfig={props.previewConfig}
+          auxiliaryPreviewConfig={props.auxiliaryPreviewConfig}
           
           // Events: `onPress`-Related
           onMenuWillShow={this._handleOnMenuWillShow}
