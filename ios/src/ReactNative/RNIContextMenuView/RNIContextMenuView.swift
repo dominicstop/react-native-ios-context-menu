@@ -34,8 +34,11 @@ class RNIContextMenuView: UIView {
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
-  weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
   weak var contextMenuViewController: RNIContextMenuViewController?;
+  
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+  /// Holds the view to be shown in the auxiliary preview
+  weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
   
   private var didTriggerCleanup = false;
   
@@ -126,6 +129,7 @@ class RNIContextMenuView: UIView {
   
   // MARK: - Computed Properties
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Gets the `_UIContextMenuContainerView` that's holding the context menu controls.
   /// Subviews:
   /// * `UIVisualEffectView` - BG blur view
@@ -139,6 +143,7 @@ class RNIContextMenuView: UIView {
     };
   };
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Contains the ff. subviews:
   /// * `_UIMorphingPlatterView` - Contains the context menu preview
   /// * `_UIContextMenu` - Holds the context menu items
@@ -149,6 +154,7 @@ class RNIContextMenuView: UIView {
     };
   };
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Holds the context menu preview
   var morphingPlatterView: UIView? {
     self.contextMenuContentContainer?.subviews.first {
@@ -156,6 +162,7 @@ class RNIContextMenuView: UIView {
     };
   };
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Holds the context menu items
   var contextMenuItemsView: UIView? {
     self.contextMenuContentContainer?.subviews.first {
@@ -163,6 +170,7 @@ class RNIContextMenuView: UIView {
     };
   };
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   var isPreviewAuxiliaryViewAttached: Bool {
     self.previewAuxiliaryViewWrapper != nil;
   };
@@ -214,7 +222,8 @@ class RNIContextMenuView: UIView {
           // if prev. exist, cleanup if needed.
           self.previewWrapper?.cleanup();
           self.previewWrapper = wrapperView;
-          
+        
+        // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
         case .contextMenuAuxiliaryPreview:
           // if prev. exist, cleanup if needed.
           //self.previewAuxiliaryViewWrapper?.cleanup();
@@ -389,6 +398,7 @@ fileprivate extension RNIContextMenuView {
     };
   };
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   func attachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating?
   ){
@@ -446,7 +456,7 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
-    // // TODO: Temp - `auxiliaryView` margins
+    // TODO: Temp - `auxiliaryView` margins
     let marginLeading: CGFloat = 10;
     let marginTrailing: CGFloat = 10;
     
@@ -459,16 +469,19 @@ fileprivate extension RNIContextMenuView {
     contextMenuContentContainer.addSubview(previewAuxiliaryView);
     
     NSLayoutConstraint.activate([
+      // pin to left
       previewAuxiliaryView.leadingAnchor
         .constraint(equalTo: morphingPlatterView.leadingAnchor),
       
+      // pin to right
       previewAuxiliaryView.trailingAnchor
         .constraint(equalTo: morphingPlatterView.trailingAnchor),
       
-      // TODO: Temp
+      // TODO: Temp - match height
       previewAuxiliaryView.heightAnchor
         .constraint(equalToConstant: auxiliaryViewHeight),
       
+      // pin to top or bottom
       shouldAttachToTop
         ? previewAuxiliaryView.bottomAnchor
           .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginLeading)
@@ -478,6 +491,8 @@ fileprivate extension RNIContextMenuView {
     ]);
     
     
+    // compute offsets if any
+    // (i.e. distance of aux preview from anchor)
     let offset: CGFloat = {
       let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets;
       
@@ -509,7 +524,6 @@ fileprivate extension RNIContextMenuView {
           return (previewFrame.maxY > maxEdgeY)
             ? -(auxiliaryViewHeight - distanceToEdge + margin)
             : 0;
-            
       };
     }();
     
@@ -591,7 +605,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       self.onMenuDidShow?([:]);
       
       #if DEBUG
-      // experimental
+      // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
       // show context menu auxiliary preview
       self.attachContextMenuAuxiliaryPreviewIfAny(animator);
       #endif
@@ -614,7 +628,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     guard self.isContextMenuVisible else { return };
     
     #if DEBUG
-    // experimental
+    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
     // hide preview auxiliary view
     self.detachContextMenuAuxiliaryPreviewIfAny(animator);
     #endif

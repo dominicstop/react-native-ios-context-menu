@@ -23,24 +23,26 @@ internal class RNIWrapperView: UIView {
   private(set) var didTriggerCleanup = false;
   
   /// This property determines whether `cleanup` should be called when
-  /// `shouldNotifyComponentWillUnmount` is called. Defaults to `true`.
+  /// `shouldNotifyComponentWillUnmount` is called. Defaults to: `true`.
   ///
   /// When `shouldNotifyComponentWillUnmount` prop is true, the JS component
   /// will notify it's corresponding native view that it'll be unmounted (i.e.
   /// via calling the `shouldNotifyComponentWillUnmount` method).
   ///
-  /// * When react view is "detached" (i.e. when `removeFromSuperView` is called),
+  /// * When a react view is "detached" (i.e. when `removeFromSuperView` is called),
   ///   the react view is on it's own (the view will leak since it won't be removed
   ///   when the corresponding view comp. un-mounts).
+  ///
   /// * To get around this, the js comp. notifies the native view that it's
-  ///   going to unmount in `componentWillUnmount`.
-  /// * This also fixes the issue where the js comp. has already been unmounted
+  ///   going to be unmount in `componentWillUnmount` react lifecycle.
+  ///
+  /// * This also fixes the issue where the js comp. has already been unmounted,
   ///   but it's corresponding native view is still being used.
   ///
   var autoCleanupOnJSUnmount = true;
   
   /// Determines whether `cleanup` is called when this view is removed from the
-  /// view hierarchy (i.e. the window ref. becomes nil).
+  /// view hierarchy (i.e. when the window ref. becomes nil).
   var autoCleanupOnWindowNil = false;
   
   /// Determines whether `layoutSubviews` will automatically trigger
