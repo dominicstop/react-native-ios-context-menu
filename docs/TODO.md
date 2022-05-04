@@ -1,7 +1,5 @@
 # TODO
 
-## Unsorted/Misc
-
 - [ ] **Implement**: `ContextMenu` — Add support for  `UIDefferedElement`.
 - [ ] **Refactor**: Use structs instead of classes for holding configuration for making the menu items.`
 
@@ -27,9 +25,30 @@
 
 - [ ] Read apple documentation to find any new changes added.
 
+- [ ] **Refactor**: Make classes public and accessible outside the library.
+
+- [ ] **Bugfix**: Context menu auxiliary preview not sizing properly in yoga layout
+	* Layout-Related Bug: The auxiliary preview is sized properly via  autolayout (confirmed via setting the background color of the view), but react-native uses the "old size" of the view, i.e. before it was resized via autolayout (e.g. the children of the view will act as if the view's size hasn't changed yet) — In other words, react-native is not aware of the new size of the view.
+	
+	* Attempts to fix:
+	
+		* A. Updating the size via `uiManager.setSize` works, but causes a temporary layout bug where the aux. preview gets pinned towards the top left part of the screen.
+			* Likely due to the aux. view using it's parent view as the basis for it's layout — i.e. the parent view (`RNIWrapperView`) has a style of absolute positioning so it doesn't interfere with layout.
+			* The layout position bug disappears when the context menu preview's position changes (e.g. via dragging the preview) — this likely due to autolayout triggering a layout update to its subviews when you start moving the preview around.
+			* Unfortunately, manually triggering `layoutSubviews` method on the context menu preview (i.e. `morphingPlatterView`) does not fix the layout position bug.
+			* Triggering `layoutSubviews` on the aux. preview also does not fix the  layout position bug.
+			* Toggling `RNIWrapperView.autoSetSizeOnLayout` does nothing.
+			* Triggering `UIManger.setNeedsLayout` does nothing.
+			* Triggering `uiManager.setSize  ` at a later time (e.g. after the fade in transition) does nothing.
+	
+		* B. Updating the aux. view's size via it's shadow view's width and height does nothing (i.e. changing the yoga value for the its width and height does nothing, even after calling `UIManger.setNeedsLayout`).
+			* Removing the shadow view for both the aux. view and it's wrapper does nothing and causes layout problems.
+		* C. As a last resort, a possible temp. solution is to just manually change the size of the aux. view via the style prop in the JS side. This can be done via an event that gets triggered from the native side, whenever we want to change the size of the view.
+			* It works, but the solution is a bit convoluted/ugly.
+
 ---
 
-<br>
+<br><br>
 
 ## For Next Major Version
 
@@ -237,7 +256,7 @@
 		* This function will receive a `defferedKey`. This function must return a promise, i.e. either a `MenuConfig` or `MenuAction` object. 
 		* If the returned promise is a `MenuAction` object, it will use `defferedKey` for the `actionKey` property.
 		* In this function, based on the `defferedKey` it must return a corresponding `MenuConfig`/`MenuAction` object. If `null` is returned, then it means it failed.
-		* This function is invoked from the native side. Native UI component `NativeCommands` don't natively support promises, so a workaround must be used based on `request` callbacks (like the one i used on react-native-ios-modal). But `NativeModule` functions has support for promises built in. 
+		* This function is invoked from the native side. Native UI component `NativeCommands` don't natively support promises, so a workaround must be used based on `request` callbacks (like the one i used on `react-native-ios-modal`). But `NativeModule` functions has support for proimises built in. 
 			* We can use `findNodeHandle(this.nativeCompRef)` to get a node handle. Then we can use `self.bridge.uiManager.view(forReactTag: node)` to get a ref to the component. Then we cast it to the correct type: `component as? RCTContextMenuView` and then call the completion function for the corresponding `UIDefferedElement`,  something like: `contextMenuView.resolveDefferedMenuElement(for: defferedKey, item: menuElementDict)`
 		* We need to create a class to create a `UIDeferredMenuElement`. It will extend `RNIMenuElement` and can be init from a dictionary. Probably name it something like: `RCTMenuDefferedItem`. It will have one property: `defferedKey`
 			* `RNIMenuItem.createMenu` function must be updated to also handle creating a `RCTMenuDefferedItem` item.
