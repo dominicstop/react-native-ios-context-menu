@@ -29,7 +29,6 @@
 
 - [ ] **Bugfix**: Context menu auxiliary preview not sizing properly in yoga layout
 	* Layout-Related Bug: The auxiliary preview is sized properly via  autolayout (confirmed via setting the background color of the view), but react-native uses the "old size" of the view, i.e. before it was resized via autolayout (e.g. the children of the view will act as if the view's size hasn't changed yet) — In other words, react-native is not aware of the new size of the view.
-	
 	* Attempts to fix:
 	
 		* A. Updating the size via `uiManager.setSize` works, but causes a temporary layout bug where the aux. preview gets pinned towards the top left part of the screen.
@@ -40,11 +39,16 @@
 			* Toggling `RNIWrapperView.autoSetSizeOnLayout` does nothing.
 			* Triggering `UIManger.setNeedsLayout` does nothing.
 			* Triggering `uiManager.setSize  ` at a later time (e.g. after the fade in transition) does nothing.
-	
 		* B. Updating the aux. view's size via it's shadow view's width and height does nothing (i.e. changing the yoga value for the its width and height does nothing, even after calling `UIManger.setNeedsLayout`).
 			* Removing the shadow view for both the aux. view and it's wrapper does nothing and causes layout problems.
 		* C. As a last resort, a possible temp. solution is to just manually change the size of the aux. view via the style prop in the JS side. This can be done via an event that gets triggered from the native side, whenever we want to change the size of the view.
 			* It works, but the solution is a bit convoluted/ugly.
+	
+	<br>
+	
+	- [ ] **Refactor**: Extract types/components from `RNIWrapperView` to separate files.
+	- [ ] **Docs**: Add documentation for "Context Menu Preview Auxiliary View".
+	- [ ] **Refactor**: Move event-related types to their respective files where they're first used.
 
 ---
 
