@@ -49,6 +49,9 @@
 	- [ ] **Refactor**: Extract types/components from `RNIWrapperView` to separate files.
 	- [ ] **Docs**: Add documentation for "Context Menu Preview Auxiliary View".
 	- [ ] **Refactor**: Move event-related types to their respective files where they're first used.
+	- [ ] **Refactor**: Update Access Modifiers for Classes/Structs — Make classes/structs public so they can be imported by other code.
+	- [ ] **Docs**: Update version history.
+	- [ ] **Refactor**: Use `react-native-ios-utilities`. 
 
 ---
 
