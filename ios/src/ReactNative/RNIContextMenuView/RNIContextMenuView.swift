@@ -515,28 +515,6 @@ fileprivate extension RNIContextMenuView {
     // MARK: Set Layout
     // ----------------
     
-    print("LOG - before - previewAuxiliaryView frame width: \(previewAuxiliaryView.frame.width)");
-    print("LOG - before - previewAuxiliaryView frame height: \(previewAuxiliaryView.frame.height)");
-    print("LOG - before - previewAuxiliaryView frame x: \(previewAuxiliaryView.frame.minX)");
-    print("LOG - before - previewAuxiliaryView frame y: \(previewAuxiliaryView.frame.minY)");
-    print("LOG - before - previewAuxiliaryView bounds width: \(previewAuxiliaryView.bounds.width)");
-    print("LOG - before - previewAuxiliaryView bounds height: \(previewAuxiliaryView.bounds.height)");
-    print("LOG - before - previewAuxiliaryView bounds x: \(previewAuxiliaryView.bounds.minX)");
-    print("LOG - before - previewAuxiliaryView bounds y: \(previewAuxiliaryView.bounds.minY)");
-    
-    print("LOG - ...");
-    print("LOG - ...");
-    
-    print("LOG - morphingPlatterView frame width: \(morphingPlatterView.frame.width)");
-    print("LOG - morphingPlatterView frame height: \(morphingPlatterView.frame.height)");
-    
-    print("LOG - after - previewAuxiliaryView frame width: \(previewAuxiliaryView.frame.width)");
-    print("LOG - after - previewAuxiliaryView frame height: \(previewAuxiliaryView.frame.height)");
-    print("LOG - after - previewAuxiliaryView bounds width: \(previewAuxiliaryView.bounds.width)");
-    print("LOG - after - previewAuxiliaryView bounds height: \(previewAuxiliaryView.bounds.height)");
-    print("LOG - after - previewAuxiliaryView frame x: \(previewAuxiliaryView.frame.minX)");
-    print("LOG - after - previewAuxiliaryView frame y: \(previewAuxiliaryView.frame.minY)");
-    
     /// detach aux. preview
     previewAuxiliaryViewWrapper.removeFromSuperview();
     previewAuxiliaryView.removeFromSuperview();
