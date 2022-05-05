@@ -95,7 +95,7 @@ internal class RNIWrapperView: UIView {
     super.layoutSubviews();
     
     if self.autoSetSizeOnLayout {
-      self.notifyForBoundsChange(self.bounds);
+      self.notifyForBoundsChange(size: self.bounds.size);
     };
   };
   
@@ -150,14 +150,17 @@ internal class RNIWrapperView: UIView {
     };
   };
   
+  func notifyForBoundsChangeForWrapper(size: CGSize){
+    guard let bridge = self.bridge else { return };
+    bridge.uiManager.setSize(size, for: self);
+  };
   
-  func notifyForBoundsChange(_ newBounds: CGRect){
+  func notifyForBoundsChangeForContent(size: CGSize){
     guard let bridge = self.bridge,
           let reactContent = self.reactContent
     else { return };
     
-    //bridge.uiManager.setSize(newBounds.size, for: reactContent);
-    bridge.uiManager.setSize(newBounds.size, for: self);
+    bridge.uiManager.setSize(size, for: reactContent);
   };
   
   func cleanup(){

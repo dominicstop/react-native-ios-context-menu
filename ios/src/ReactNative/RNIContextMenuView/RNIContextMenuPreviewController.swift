@@ -41,7 +41,9 @@ class RNIContextMenuPreviewController: UIViewController {
 
     switch self.previewConfig.previewSize {
       case .STRETCH:
-        self.previewWrapper?.notifyForBoundsChange(self.view.bounds);
+        self.previewWrapper?
+          .notifyForBoundsChange(size: self.view.bounds.size);
+        
         self.preferredContentSize = CGSize(width: 0, height: 0);
         
       case .INHERIT:
