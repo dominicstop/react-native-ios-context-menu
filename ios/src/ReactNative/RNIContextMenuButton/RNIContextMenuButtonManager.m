@@ -24,7 +24,7 @@ RCT_EXPORT_VIEW_PROPERTY(onMenuDidShow  , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onMenuDidHide  , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onMenuDidCancel, RCTBubblingEventBlock);
 
-RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem   , RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem, RCTBubblingEventBlock);
 
 // MARK: - Export Props - Values
 // ----------------------------
