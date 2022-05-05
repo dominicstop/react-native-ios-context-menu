@@ -60,7 +60,6 @@ class RNIContextMenuView: UIView {
   @objc var onPressMenuPreview: RCTBubblingEventBlock?;
   
   @objc var onMenuWillCreate: RCTBubblingEventBlock?;
-  @objc var onAuxiliaryPreviewSizeRequest: RCTBubblingEventBlock?;
   
   // MARK: - RN Exported Props
   // -------------------------

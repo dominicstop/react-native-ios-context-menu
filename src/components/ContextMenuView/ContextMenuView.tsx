@@ -8,7 +8,7 @@ import { RNIContextMenuViewModule } from '../../native_modules/RNIContextMenuVie
 
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
 
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnAuxiliaryPreviewSizeRequestEvent } from '../../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../../types/MenuEvents';
 import type { ContextMenuViewProps, ContextMenuViewState } from './ContextMenuViewTypes';
 
 // @ts-ignore - TODO
@@ -38,9 +38,6 @@ export class ContextMenuView extends
     this.state = {
       menuVisible : false,
       mountPreview: false,
-
-      auxillaryPreviewWidth : undefined,
-      auxillaryPreviewHeight: undefined,
     };
   };
 
@@ -195,16 +192,6 @@ export class ContextMenuView extends
     event.stopPropagation();
   };
 
-  _handleOnAuxiliaryPreviewSizeRequest: OnAuxiliaryPreviewSizeRequestEvent = (event) => {
-    const { nativeEvent } = event;
-
-    this.setState({
-      auxillaryPreviewWidth : nativeEvent.newWidth ,
-      auxillaryPreviewHeight: nativeEvent.newHeight,
-    });
-
-    event.stopPropagation();
-  };
   //#endregion
 
   render(){
@@ -254,9 +241,6 @@ export class ContextMenuView extends
           // Events: `onPress`-Related
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
-
-          // Events: `AuxillaryView`-Related
-          onAuxiliaryPreviewSizeRequest={this._handleOnAuxiliaryPreviewSizeRequest}
         >
           {shouldMountPreview && (
             <RNIWrapperView 
@@ -273,12 +257,7 @@ export class ContextMenuView extends
               shouldNotifyComponentWillUnmount={false}
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
             >
-              <View style={[styles.previewAuxContainer, {
-                width : state.auxillaryPreviewWidth ,
-                height: state.auxillaryPreviewHeight,
-              }]}>
-                {props.renderAuxillaryPreview?.()}
-              </View>
+              {props.renderAuxillaryPreview?.()}
             </RNIWrapperView>
           )}
           {props.viewProps.children}

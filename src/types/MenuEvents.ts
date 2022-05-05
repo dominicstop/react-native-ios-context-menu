@@ -39,11 +39,6 @@ export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig> 
 export type OnPressMenuPreviewEventObject = NativeSyntheticEvent<{
 }>;
 
-export type OnAuxiliaryPreviewSizeRequestEventObject = NativeSyntheticEvent<{
-  newWidth : number;
-  newHeight: number;
-}>;
-
 // Event Handler Types
 // -------------------
 
@@ -82,8 +77,3 @@ export type OnPressMenuItemEvent = (
 export type OnPressMenuPreviewEvent = (
   event: OnPressMenuPreviewEventObject
 ) => void;
-
-export type OnAuxiliaryPreviewSizeRequestEvent = (
-  event: OnAuxiliaryPreviewSizeRequestEventObject
-) => void;
-
