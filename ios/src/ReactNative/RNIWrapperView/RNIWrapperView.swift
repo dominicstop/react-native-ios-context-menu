@@ -68,7 +68,7 @@ internal class RNIWrapperView: UIView {
   // MARK: - RN Exported Event Props
   // -------------------------------
   
-  @objc var onRequestSizeOverrideEventObject: RCTBubblingEventBlock?;
+  @objc var onRequestSizeOverride: RCTBubblingEventBlock?;
   
   // MARK: - RN Exported Props
   // -------------------------
@@ -134,7 +134,7 @@ internal class RNIWrapperView: UIView {
   // --------------------------
   
   func requestSizeOverrideViaJS(width: CGFloat, height: CGFloat){
-    self.onRequestSizeOverrideEventObject?([
+    self.onRequestSizeOverride?([
       "newWidth" : width,
       "newHeight": height
     ]);
