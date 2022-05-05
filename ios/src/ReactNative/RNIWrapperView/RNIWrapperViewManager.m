@@ -9,11 +9,6 @@
 
 @interface RCT_EXTERN_MODULE(RNIWrapperViewManager, RCTViewManager)
 
-// MARK: - Export Props - Events
-// -----------------------------
-
-RCT_EXPORT_VIEW_PROPERTY(onRequestSizeOverride, RCTBubblingEventBlock);
-
 // MARK: - Export Props - Values
 // -----------------------------
 

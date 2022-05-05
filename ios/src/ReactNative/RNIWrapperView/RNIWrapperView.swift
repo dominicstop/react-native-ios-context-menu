@@ -65,11 +65,6 @@ internal class RNIWrapperView: UIView {
   private var didChangeSuperview = false;
   private var touchHandler: RCTTouchHandler!;
   
-  // MARK: - RN Exported Event Props
-  // -------------------------------
-  
-  @objc var onRequestSizeOverride: RCTBubblingEventBlock?;
-  
   // MARK: - RN Exported Props
   // -------------------------
   
@@ -132,13 +127,6 @@ internal class RNIWrapperView: UIView {
   
   // MARK: - Internal Functions
   // --------------------------
-  
-  func requestSizeOverrideViaJS(width: CGFloat, height: CGFloat){
-    self.onRequestSizeOverride?([
-      "newWidth" : width,
-      "newHeight": height
-    ]);
-  };
   
   func notifyForBoundsChange(size: CGSize){
     guard let bridge = self.bridge else { return };
