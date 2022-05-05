@@ -16,6 +16,11 @@ class RNIContextMenuView: UIView {
     case contextMenuAuxiliaryPreview;
   };
   
+  private enum AnchorPosition {
+    case top;
+    case bottom;
+  };
+  
   // MARK: - Properties
   // ------------------
   
@@ -39,6 +44,9 @@ class RNIContextMenuView: UIView {
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Holds the view to be shown in the auxiliary preview
   weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
+  
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+  private var previewAuxiliaryViewPlacement: AnchorPosition?;
   
   private var didTriggerCleanup = false;
   
@@ -403,10 +411,6 @@ fileprivate extension RNIContextMenuView {
     _ animator: UIContextMenuInteractionAnimating!
   ){
     
-    enum AnchorPosition {
-      case top, bottom;
-    };
-
     guard let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
           let previewAuxiliaryView = previewAuxiliaryViewWrapper.reactContent,
           let contextMenuContentContainer = self.contextMenuContentContainer,
@@ -473,6 +477,9 @@ fileprivate extension RNIContextMenuView {
           return morphingPlatterViewPlacement == .bottom;
       };
     }();
+    
+    // temp. save aux. preview position for later...
+    self.previewAuxiliaryViewPlacement = morphingPlatterViewPlacement;
 
     // MARK: Prep - Compute Offsets
     // ----------------------------
@@ -584,13 +591,37 @@ fileprivate extension RNIContextMenuView {
     /// * Triggered when the menu is about to be hidden, iOS removes the context menu along with the
     ///   `previewAuxiliaryViewContainer`
     
+    // Add exit transition
     animator.addAnimations {
+      var transform = previewAuxiliaryView.transform;
+      
+      // transition - fade out
       previewAuxiliaryView.alpha = 0;
+      
+      // transition - zoom out
+      transform = transform.scaledBy(x: 0.7, y: 0.7);
+      
+      // transition - slide out
+      switch self.previewAuxiliaryViewPlacement {
+        case .top:
+          transform = transform.translatedBy(x: 0, y: 50);
+          
+        case .bottom:
+          transform = transform.translatedBy(x: 0, y: -50);
+          
+        default: break;
+      };
+      
+      // transition - apply transform
+      previewAuxiliaryView.transform = transform;
     };
     
-    //animator.addCompletion {
-    //  previewAuxiliaryViewContainer.removeFromSuperview();
-    //};
+    animator.addCompletion {
+      previewAuxiliaryView.removeFromSuperview();
+      
+      // clear value
+      self.previewAuxiliaryViewPlacement = nil;
+    };
   };
 };
 
