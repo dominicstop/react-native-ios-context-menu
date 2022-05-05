@@ -400,19 +400,33 @@ fileprivate extension RNIContextMenuView {
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   func attachContextMenuAuxiliaryPreviewIfAny(
-    _ animator: UIContextMenuInteractionAnimating?
+    _ animator: UIContextMenuInteractionAnimating!
   ){
     
     enum AnchorPosition {
       case top, bottom;
     };
 
-    guard animator != nil,
-          let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
+    guard let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
           let previewAuxiliaryView = previewAuxiliaryViewWrapper.reactContent,
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let morphingPlatterView = self.morphingPlatterView
     else { return };
+    
+    // MARK: Prep - Set Constants
+    // --------------------------
+    
+    // TODO: Temp - `auxiliaryView` margins
+    let marginLeading: CGFloat = 10;
+    let marginTrailing: CGFloat = 10;
+    
+    let auxiliaryViewHeight: CGFloat = 100;
+    
+    // MARK: Prep - Determine Size and Position
+    // ----------------------------------------
+    
+    /// * Determine the size and position of the context menu preview.
+    /// * Determine where to place the aux. preview in relation to the context menu preview.
     
     /// Based on the current "menu config", does it have menu items?
     let menuConfigHasMenuItems: Bool = {
@@ -422,8 +436,7 @@ fileprivate extension RNIContextMenuView {
       return menuItems.count > 0;
     }();
     
-    // if the context menu has "menu items", where is it located in relation to
-    // the "context menu preview"?
+    /// if the context menu has "menu items", where is it located in relation to the "context menu preview"?
     let menuItemsPlacement: AnchorPosition? = {
       guard menuConfigHasMenuItems,
             let contextMenuItemsView = self.contextMenuItemsView
@@ -435,7 +448,7 @@ fileprivate extension RNIContextMenuView {
       return (menuItemsFrame.midY < previewFrame.midY) ? .bottom : .top;
     }();
     
-    // in which half does the "context menu preview" fall into?
+    /// in which half does the "context menu preview" fall into?
     let morphingPlatterViewPlacement: AnchorPosition = {
       let previewFrame = morphingPlatterView.frame;
       let screenBounds = UIScreen.main.bounds;
@@ -455,44 +468,11 @@ fileprivate extension RNIContextMenuView {
           return morphingPlatterViewPlacement == .bottom;
       };
     }();
+
+    // MARK: Prep - Compute Offsets
+    // ----------------------------
     
-    // TODO: Temp - `auxiliaryView` margins
-    let marginLeading: CGFloat = 10;
-    let marginTrailing: CGFloat = 10;
-    
-    let auxiliaryViewHeight: CGFloat = 100;
-    
-    /// enable auto layout
-    previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
-    
-    /// attach `auxiliaryView` to context menu preview
-    contextMenuContentContainer.addSubview(previewAuxiliaryView);
-    
-    NSLayoutConstraint.activate([
-      // pin to left
-      previewAuxiliaryView.leadingAnchor
-        .constraint(equalTo: morphingPlatterView.leadingAnchor),
-      
-      // pin to right
-      previewAuxiliaryView.trailingAnchor
-        .constraint(equalTo: morphingPlatterView.trailingAnchor),
-      
-      // TODO: Temp - match height
-      previewAuxiliaryView.heightAnchor
-        .constraint(equalToConstant: auxiliaryViewHeight),
-      
-      // pin to top or bottom
-      shouldAttachToTop
-        ? previewAuxiliaryView.bottomAnchor
-          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginLeading)
-      
-        : previewAuxiliaryView.topAnchor
-          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginLeading)
-    ]);
-    
-    
-    // compute offsets if any
-    // (i.e. distance of aux preview from anchor)
+    /// distance of aux preview from anchor
     let offset: CGFloat = {
       let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets;
       
@@ -527,16 +507,80 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
+    // MARK: Set Layout
+    // ----------------
+    
+    print("LOG - before - previewAuxiliaryView frame width: \(previewAuxiliaryView.frame.width)");
+    print("LOG - before - previewAuxiliaryView frame height: \(previewAuxiliaryView.frame.height)");
+    print("LOG - before - previewAuxiliaryView frame x: \(previewAuxiliaryView.frame.minX)");
+    print("LOG - before - previewAuxiliaryView frame y: \(previewAuxiliaryView.frame.minY)");
+    print("LOG - before - previewAuxiliaryView bounds width: \(previewAuxiliaryView.bounds.width)");
+    print("LOG - before - previewAuxiliaryView bounds height: \(previewAuxiliaryView.bounds.height)");
+    print("LOG - before - previewAuxiliaryView bounds x: \(previewAuxiliaryView.bounds.minX)");
+    print("LOG - before - previewAuxiliaryView bounds y: \(previewAuxiliaryView.bounds.minY)");
+    
+    print("LOG - ...");
+    print("LOG - ...");
+    
+    print("LOG - morphingPlatterView frame width: \(morphingPlatterView.frame.width)");
+    print("LOG - morphingPlatterView frame height: \(morphingPlatterView.frame.height)");
+    
+    print("LOG - after - previewAuxiliaryView frame width: \(previewAuxiliaryView.frame.width)");
+    print("LOG - after - previewAuxiliaryView frame height: \(previewAuxiliaryView.frame.height)");
+    print("LOG - after - previewAuxiliaryView bounds width: \(previewAuxiliaryView.bounds.width)");
+    print("LOG - after - previewAuxiliaryView bounds height: \(previewAuxiliaryView.bounds.height)");
+    print("LOG - after - previewAuxiliaryView frame x: \(previewAuxiliaryView.frame.minX)");
+    print("LOG - after - previewAuxiliaryView frame y: \(previewAuxiliaryView.frame.minY)");
+    
+    /// detach aux. preview
+    previewAuxiliaryViewWrapper.removeFromSuperview();
+    previewAuxiliaryView.removeFromSuperview();
+
+    /// enable auto layout
+    previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
+    
+    /// attach `auxiliaryView` to context menu preview
+    contextMenuContentContainer.addSubview(previewAuxiliaryView);
+    
+    NSLayoutConstraint.activate([
+      // pin to left
+      previewAuxiliaryView.leadingAnchor
+        .constraint(equalTo: morphingPlatterView.leadingAnchor),
+      
+      // pin to right
+      previewAuxiliaryView.trailingAnchor
+        .constraint(equalTo: morphingPlatterView.trailingAnchor),
+      
+      // TODO: Temp - match height
+      previewAuxiliaryView.heightAnchor
+        .constraint(equalToConstant: auxiliaryViewHeight),
+      
+      // pin to top or bottom
+      shouldAttachToTop
+        ? previewAuxiliaryView.bottomAnchor
+          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginLeading)
+      
+        : previewAuxiliaryView.topAnchor
+          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginLeading)
+    ]);
+    
+    // MARK: Show Aux. View
+    // --------------------
+    
     // transition - start value
     previewAuxiliaryView.alpha = 0;
     
-    // fade in transition
-    UIView.animate(withDuration: 0.3) {
+    UIView.animate(withDuration: 0.3, animations: {
+      // fade in transition
       previewAuxiliaryView.alpha = 1;
       
+      // offset from anchor
       contextMenuContentContainer.frame =
         contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
-    };
+      
+    }, completion: {_ in
+      // TODO: Add RN event
+    });
   };
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
