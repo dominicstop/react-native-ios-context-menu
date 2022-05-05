@@ -422,6 +422,11 @@ fileprivate extension RNIContextMenuView {
     
     let auxiliaryViewHeight: CGFloat = 100;
     
+    let previewAuxiliaryViewSize = CGSize(
+      width: morphingPlatterView.bounds.width - 1,
+      height: auxiliaryViewHeight
+    );
+    
     // MARK: Prep - Determine Size and Position
     // ----------------------------------------
     
@@ -535,6 +540,10 @@ fileprivate extension RNIContextMenuView {
     /// detach aux. preview
     previewAuxiliaryViewWrapper.removeFromSuperview();
     previewAuxiliaryView.removeFromSuperview();
+    
+    /// manually set size of aux. preview
+    previewAuxiliaryViewWrapper
+      .notifyForBoundsChange(size: previewAuxiliaryViewSize);
 
     /// enable auto layout
     previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
