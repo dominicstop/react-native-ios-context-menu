@@ -65,8 +65,13 @@ internal class RNIWrapperView: UIView {
   private var didChangeSuperview = false;
   private var touchHandler: RCTTouchHandler!;
   
+  // MARK: - RN Exported Event Props
+  // -------------------------------
+  
+  @objc var onRequestSizeOverrideEventObject: RCTBubblingEventBlock?;
+  
   // MARK: - RN Exported Props
-  // ------------------------
+  // -------------------------
   
   /// When this prop is set to `true`, the JS component will trigger
   /// `shouldNotifyComponentWillUnmount` during `componentWillUnmount`.
@@ -126,7 +131,25 @@ internal class RNIWrapperView: UIView {
   };
   
   // MARK: - Internal Functions
-  // -------------------------
+  // --------------------------
+  
+  func requestSizeOverrideViaJS(width: CGFloat, height: CGFloat){
+    self.onRequestSizeOverrideEventObject?([
+      "newWidth" : width,
+      "newHeight": height
+    ]);
+  };
+  
+  func notifyForBoundsChange(size: CGSize){
+    guard let bridge = self.bridge else { return };
+    
+    bridge.uiManager.setSize(size, for: self);
+    
+    if let reactContent = self.reactContent {
+      bridge.uiManager.setSize(size, for: reactContent);
+    };
+  };
+  
   
   func notifyForBoundsChange(_ newBounds: CGRect){
     guard let bridge = self.bridge,
