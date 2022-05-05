@@ -60,6 +60,7 @@ class RNIContextMenuView: UIView {
   @objc var onPressMenuPreview: RCTBubblingEventBlock?;
   
   @objc var onMenuWillCreate: RCTBubblingEventBlock?;
+  @objc var onAuxiliaryPreviewSizeRequest: RCTBubblingEventBlock?;
   
   // MARK: - RN Exported Props
   // -------------------------
@@ -539,6 +540,7 @@ fileprivate extension RNIContextMenuView {
     };
   };
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   func detachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating?
   ){

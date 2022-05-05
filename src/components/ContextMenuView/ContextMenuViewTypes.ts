@@ -36,4 +36,7 @@ export type ContextMenuViewProps =
 export type ContextMenuViewState = {
   menuVisible: boolean;
   mountPreview: boolean;
+
+  auxillaryPreviewWidth?: number,
+  auxillaryPreviewHeight?: number,
 };
