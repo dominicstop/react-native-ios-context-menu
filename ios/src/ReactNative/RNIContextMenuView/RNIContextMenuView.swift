@@ -139,12 +139,63 @@ class RNIContextMenuView: UIView {
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Gets the `_UIContextMenuContainerView` that's holding the context menu controls.
-  /// Subviews:
+  /// **Note**: This `UIView` instance  only exists whenever there's a context menu interaction.
+  ///
+  /// Contains the ff. subviews:
   /// * `UIVisualEffectView` - BG blur view
   /// * `UIView` - Holds `_UIMorphingPlatterView`  and `_UIContextMenu`
   ///
-  /// **Note**: This is only exist whenever there's a context menu interaction
+  /// Debug Description
+  /// ```
+  /// <_UIContextMenuContainerView:
+  ///   frame = (0 0; 375 667); autoresize = W+H;
+  ///   gestureRecognizers = <NSArray>;
+  ///   layer = <CALayer>;
+  /// >
+  /// ```
   ///
+  /// View Hierarchy (as of iOS `15.2`)
+  /// ```
+  /// <_UIContextMenuContainerView>
+  ///    // Blur background view
+  ///    <UIVisualEffectView>
+  ///      <_UIVisualEffectBackdropView/>
+  ///    </UIVisualEffectView>
+  ///
+  ///    // Contains the context menu preview and list items, as well as
+  ///    // the aux. preview.
+  ///    <UIView>
+  ///      // Contains the context menu preview
+  ///      <_UIMorphingPlatterView>
+  ///        <_UIPlatterSoftShadowView/>
+  ///        <_UIPlatterClippingView/>
+  ///        <_UIPlatterClippingView/>
+  ///      </_UIMorphingPlatterView>
+  ///
+  ///      // Contains the context menu list
+  ///      <_UIContextMenuView>
+  ///        <_UIContextMenuListView>
+  ///          <UIView>
+  ///            <UIView>
+  ///
+  ///              // Blur backdrop for menu items list
+  ///              <UIVisualEffectView>
+  ///                <_UIVisualEffectBackdropView/>
+  ///              </UIVisualEffectView>
+  ///
+  ///             // Contains the menu items
+  ///             <UICollectionView/>
+  ///
+  ///            </UIView>
+  ///          </UIView>
+  ///        </_UIContextMenuListView>
+  ///      </_UIContextMenuView>
+  ///
+  ///      // This is the aux. preview we inserted...
+  ///      <RCTView/>
+  ///    </UIView>
+  /// </_UIContextMenuContainerView>
+  /// ```
   var contextMenuContainerView: UIView? {
     self.window?.subviews.first {
       ($0.gestureRecognizers?.count ?? 0) > 0
@@ -152,7 +203,7 @@ class RNIContextMenuView: UIView {
   };
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  /// Contains the ff. subviews:
+  /// Will return the ff. subviews:
   /// * `_UIMorphingPlatterView` - Contains the context menu preview
   /// * `_UIContextMenu` - Holds the context menu items
   ///
