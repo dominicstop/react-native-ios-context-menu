@@ -78,7 +78,10 @@ class RNIContextMenuView: UIView {
       guard
         let menuConfigDict = self.menuConfig, menuConfigDict.count > 0,
         let menuConfig     = RNIMenuItem(dictionary: menuConfigDict)
-      else { return };
+      else {
+        self._menuConfig = nil;
+        return;
+      };
       
       menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
         self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;
@@ -128,6 +131,22 @@ class RNIContextMenuView: UIView {
       if let previewController = self.previewController {
         previewController.previewConfig = previewConfig;
       };
+    }
+  };
+  
+  private var _auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
+  @objc var auxiliaryPreviewConfig: NSDictionary? {
+    didSet {
+      guard
+        let configDict = self.auxiliaryPreviewConfig,
+        configDict.count > 0
+      else {
+        self._auxiliaryPreviewConfig = nil;
+        return;
+      };
+      
+      let config = RNIContextMenuAuxiliaryPreviewConfig(dictionary: configDict);
+      self._auxiliaryPreviewConfig = config;
     }
   };
   
@@ -471,14 +490,17 @@ fileprivate extension RNIContextMenuView {
     // MARK: Prep - Set Constants
     // --------------------------
     
-    // TODO: Temp - `auxiliaryView` margins
-    let marginLeading: CGFloat = 10;
-    let marginTrailing: CGFloat = 10;
+    let auxConfig = self._auxiliaryPreviewConfig
+      ?? RNIContextMenuAuxiliaryPreviewConfig(dictionary: [:]);
     
-    let auxiliaryViewHeight: CGFloat = 100;
+    let auxiliaryViewHeight = auxConfig.height;
+    
+    let marginInner = auxConfig.marginPreview;
+    let marginOuter = auxConfig.marginAuxiliaryPreview;
     
     let previewAuxiliaryViewSize = CGSize(
-      width: morphingPlatterView.bounds.width - 1,
+      // TODO: Impl. width/height config
+      width : morphingPlatterView.bounds.width,
       height: auxiliaryViewHeight
     );
     
@@ -518,6 +540,13 @@ fileprivate extension RNIContextMenuView {
     
     /// whether to attach the `auxiliaryView` on the top or bottom of the context menu
     let shouldAttachToTop: Bool = {
+      switch auxConfig.anchorPosition {
+        case .top   : return true;
+        case .bottom: return false;
+          
+        case .automatic: break;
+      };
+      
       switch menuItemsPlacement {
         case .top   : return true;
         case .bottom: return false;
@@ -542,7 +571,7 @@ fileprivate extension RNIContextMenuView {
       let previewFrame = morphingPlatterView.frame;
       let screenHeight = UIScreen.main.bounds.height;
       
-      let marginBase = marginLeading + marginTrailing;
+      let marginBase = marginInner + marginOuter;
       
       switch morphingPlatterViewPlacement {
         case .top:
@@ -587,27 +616,61 @@ fileprivate extension RNIContextMenuView {
     /// attach `auxiliaryView` to context menu preview
     contextMenuContentContainer.addSubview(previewAuxiliaryView);
     
-    NSLayoutConstraint.activate([
-      // pin to left
-      previewAuxiliaryView.leadingAnchor
-        .constraint(equalTo: morphingPlatterView.leadingAnchor),
-      
-      // pin to right
-      previewAuxiliaryView.trailingAnchor
-        .constraint(equalTo: morphingPlatterView.trailingAnchor),
-      
+    
+    // set initial constraints
+    var constraints: Array<NSLayoutConstraint> = [
       // TODO: Temp - match height
       previewAuxiliaryView.heightAnchor
         .constraint(equalToConstant: auxiliaryViewHeight),
-      
-      // pin to top or bottom
-      shouldAttachToTop
-        ? previewAuxiliaryView.bottomAnchor
-          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginLeading)
-      
-        : previewAuxiliaryView.topAnchor
-          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginLeading)
-    ]);
+    ];
+    
+    // set vertical alignment constraint - pin to top or bottom of context menu
+    constraints.append(shouldAttachToTop
+     ? previewAuxiliaryView.bottomAnchor
+       .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginInner)
+   
+     : previewAuxiliaryView.topAnchor
+        .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginInner)
+    );
+    
+    // set horizontal alignment constraints
+    constraints += {
+      switch auxConfig.alignmentHorizontal {
+        // pin to left
+        case .previewLeading: return [
+          previewAuxiliaryView.leadingAnchor
+            .constraint(equalTo: morphingPlatterView.leadingAnchor),
+        ];
+          
+        // pin to right
+        case .previewTrailing: return [
+          previewAuxiliaryView.trailingAnchor
+            .constraint(equalTo: morphingPlatterView.trailingAnchor),
+        ];
+          
+        // pin to center
+        case .previewCenter: return [
+          previewAuxiliaryView.centerYAnchor
+            .constraint(equalTo: morphingPlatterView.centerYAnchor),
+        ];
+          
+        // match preview size
+        case .stretchPreview: return [
+          previewAuxiliaryView.leadingAnchor
+            .constraint(equalTo: morphingPlatterView.leadingAnchor),
+          
+          previewAuxiliaryView.trailingAnchor
+            .constraint(equalTo: morphingPlatterView.trailingAnchor),
+        ];
+          
+        case .stretchScreen: return [
+          previewAuxiliaryView.centerYAnchor
+            .constraint(equalTo: morphingPlatterView.centerYAnchor),           
+        ];
+      };
+    }();
+    
+    NSLayoutConstraint.activate(constraints);
     
     // MARK: Show Aux. View
     // --------------------
