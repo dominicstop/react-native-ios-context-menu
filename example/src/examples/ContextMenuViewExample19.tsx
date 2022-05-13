@@ -25,6 +25,10 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
           actionTitle: 'Action #3',
         }],
       }}
+      auxiliaryPreviewConfig={{
+        height: 50,
+        alignmentHorizontal: 'previewLeading',
+      }}
       renderAuxillaryPreview={() => (
         <View style={{
           flex: 1,
