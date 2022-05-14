@@ -26,7 +26,6 @@ import { ContextMenuViewExample17 } from './examples/ContextMenuViewExample17';
 import { ContextMenuViewExample18 } from './examples/ContextMenuViewExample18';
 import { ContextMenuViewExample19 } from './examples/ContextMenuViewExample19';
 
-
 import { ContextMenuViewTest01 } from './examples/ContextMenuViewTest01';
 import { ContextMenuViewTest02 } from './examples/ContextMenuViewTest02';
 import { ContextMenuViewTest03 } from './examples/ContextMenuViewTest03';
@@ -39,6 +38,8 @@ import { ContextMenuViewTest08 } from './examples/ContextMenuViewTest08';
 import { ContextMenuButtonExample01 } from './examples/ContextMenuButtonExample01';
 import { ContextMenuButtonExample02 } from './examples/ContextMenuButtonExample02';
 
+import { DebugControls } from './examples/DebugControls';
+
 
 type ExampleListItem = {
   id: number;
@@ -46,6 +47,7 @@ type ExampleListItem = {
 };
 
 const EXAMPLE_COMPONENTS = [
+  DebugControls,
   ContextMenuViewExample01,
   ContextMenuViewExample02,
   ContextMenuViewExample03,
