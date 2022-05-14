@@ -1,7 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { Alert, View, Text, TouchableOpacity } from 'react-native';
-
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -25,6 +23,7 @@ export function DebugControls(props: ContextMenuExampleProps) {
         title={'Push: Home'}
         subtitle={'Navigate to "Home" screen...'}
         onPress={() => {
+          // @ts-ignore
           navigation.push('Home');
         }}
       />
@@ -32,6 +31,7 @@ export function DebugControls(props: ContextMenuExampleProps) {
         title={'Push: Test'}
         subtitle={'Navigate to "Test" screen...'}
         onPress={() => {
+          // @ts-ignore
           navigation.push('Test');
         }}
       />
