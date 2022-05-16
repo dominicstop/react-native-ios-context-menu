@@ -53,6 +53,8 @@ class RNIContextMenuView: UIView {
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
+  private var shouldEnableAuxPreview = false;
+  
   // MARK: - RN Exported Event Props
   // -------------------------------
   
@@ -480,8 +482,9 @@ fileprivate extension RNIContextMenuView {
   func attachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating!
   ){
-    
-    guard let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
+
+    guard self.shouldEnableAuxPreview,
+          let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
           let previewAuxiliaryView = previewAuxiliaryViewWrapper.reactContent,
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let morphingPlatterView = self.morphingPlatterView
@@ -695,7 +698,9 @@ fileprivate extension RNIContextMenuView {
   func detachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating?
   ){
-    guard let animator = animator,
+    
+    guard self.shouldEnableAuxPreview,
+          let animator = animator,
           let previewAuxiliaryView = self.previewAuxiliaryViewWrapper?.reactContent
     else { return };
     
