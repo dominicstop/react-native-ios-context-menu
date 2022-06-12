@@ -761,6 +761,8 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     self.onMenuWillCreate?([:]);
     
+    // Note: Xcode beta + running on device (iPhone XR + iOS 15.1) causes
+    // crashes when the context menu is being created
     return UIContextMenuConfiguration(
       identifier     : nil,
       previewProvider: self.createMenuPreview,
