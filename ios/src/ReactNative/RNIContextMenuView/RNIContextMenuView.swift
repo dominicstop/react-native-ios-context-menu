@@ -877,14 +877,38 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     };
   };
 
+  #if swift(>=5.7)
+  func contextMenuInteraction(
+      _ interaction: UIContextMenuInteraction,
+      configuration: UIContextMenuConfiguration,
+      highlightPreviewForItemWithIdentifier identifier: NSCopying
+  ) -> UITargetedPreview? {
+    
+    return self.makeTargetedPreview();
+  };
+  #else
+  /// deprecated in iOS 16
   func contextMenuInteraction(
     _ : UIContextMenuInteraction,
     previewForHighlightingMenuWithConfiguration: UIContextMenuConfiguration
-) -> UITargetedPreview? {
+  ) -> UITargetedPreview? {
   
     return self.makeTargetedPreview();
   };
+  #endif
   
+  
+  #if swift(>=5.7)
+  func contextMenuInteraction(
+      _ interaction: UIContextMenuInteraction,
+      configuration: UIContextMenuConfiguration,
+      dismissalPreviewForItemWithIdentifier identifier: NSCopying
+  ) -> UITargetedPreview? {
+    
+    return self.makeTargetedPreview();
+  };
+  #else
+  /// deprecated in iOS 16
   func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
     previewForDismissingMenuWithConfiguration
@@ -893,6 +917,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     return self.makeTargetedPreview();
   };
+  #endif
 };
 
 // MARK: - RNIContextMenu
