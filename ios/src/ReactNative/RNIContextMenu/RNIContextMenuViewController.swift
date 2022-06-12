@@ -39,26 +39,28 @@ class RNIContextMenuViewController: UIViewController {
     else { return };
     
     // if parent VC still exist in the stack, then it hasn't been popped yet
-    let isPopping = !navVC.viewControllers.contains(parentVC);
+    let isParentVCPopped = { !navVC.viewControllers.contains(parentVC) };
     
-    if isPopping,
-       let contextMenuView = self.contextMenuView {
+    guard isParentVCPopped(),
+          let contextMenuView = self.contextMenuView
+    else { return };
+
+    let cleanup = {
+      contextMenuView.detachFromParentVC();
+      contextMenuView.notifyViewControllerDidPop(sender: self);
+    };
+    
+    if animated,
+       let transitionCoordinator = parentVC.transitionCoordinator {
       
-      let cleanup = {
-        contextMenuView.detachFromParentVC();
-        contextMenuView.notifyViewControllerDidPop(sender: self);
-      };
-      
-      if animated,
-         let transitionCoordinator = parentVC.transitionCoordinator {
-        
-        transitionCoordinator.animate(alongsideTransition: nil){ _ in
-          cleanup();
-        };
-        
-      } else {
+      transitionCoordinator.animate(alongsideTransition: nil){ _ in
+        guard isParentVCPopped() else { return };
         cleanup();
       };
+      
+    } else {
+      cleanup();
     };
+
   }
 };
