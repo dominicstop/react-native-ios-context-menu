@@ -185,7 +185,7 @@ PODS:
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
   - React-jsinspector (0.63.4)
-  - react-native-ios-context-menu (1.7.4):
+  - react-native-ios-context-menu (1.7.5):
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
