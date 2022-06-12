@@ -41,6 +41,32 @@
 
 - [ ] **Refactor**: Use `react-native-ios-utilities`. 
 
+<br>
+
+- [ ] **Test**: Try to re-produce the bug where the context menu no longer works after a certain period of time
+
+	* React Native Version: `0.63.4`
+
+	* Hide app, wait 1 minute,  reopen app, then test context menu
+		* Test on production mode + simulator: OK
+		* Test on production mode + Debug Off + simulator: OK
+		* Test on Production + No Xcode + Simulator: OK
+
+	* Hide app, open contacts, wait 1 minute, reopen app, then test context menu
+		* Test on production mode + simulator: OK
+			* Test  on production mode + Debug Off + simulator: OK
+			* Test on Production + No Xcode + Simulator: OK
+
+<br>
+
+- [ ] **Bugfix**: Running on device + production crashes immediately when context menu is invoked.
+	* Might be a problem with Xcode beta — Running on iOS 16 simulator works fine on both production mode and debug mode.
+	* Xcode beta + running on device (iPhone XR + iOS 15.1) causes crashes when the context menu is being created (i.e. `UIContextMenuConfiguration`).
+	* Xcode 13 + running on device (iPhone XR + iOS 15.1) works fine.
+	* Maybe the constructor for `UIContextMenuConfiguration` was changed?
+		* Still crashes when `nil` is provided as an argument to all the parameters in the constructor.
+		* Using the constructor that takes no arguments doesn't trigger a crash.
+
 ---
 
 <br><br>
@@ -56,6 +82,14 @@
 ## Completed
 
 ### Version: `next`
+
+- [x] (Commit: `0c7a91d`) **Test**: Example — Add test for react navigation tabs
+- [x] (Commit: `5092dab`) **Bugfix**: Fix + re-enable cleanup logic
+- [x] (Commit: `110dfe4`) **Refactor**: Fix iOS 16 deprecations 
+
+<br>
+
+### Version: `1.7.5`
 
 - [x] (Commit: `cde5061`) **Bugfix**: Context menu auxiliary preview not sizing properly in yoga layout
 	* Layout-Related Bug: The auxiliary preview is sized properly via  autolayout (confirmed via setting the background color of the view), but react-native uses the "old size" of the view, i.e. before it was resized via autolayout (e.g. the children of the view will act as if the view's size hasn't changed yet) — In other words, react-native is not aware of the new size of the view.
