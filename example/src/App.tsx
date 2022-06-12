@@ -1,8 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 import { StyleSheet, SafeAreaView, FlatList, ListRenderItem, View, Text, TouchableOpacity } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import type { ContextMenuExampleProps } from './examples/SharedExampleTypes';
 
@@ -84,7 +86,7 @@ const EXAMPLE_ITEMS: ExampleListItem[] = EXAMPLE_COMPONENTS.map((item, index) =>
   component: item
 }));
 
-export function HomeScreen(props) {
+export function HomeScreen() {
   const renderItem: ListRenderItem<ExampleListItem>  = ({ item })  => (
     React.createElement(item.component, {
       index: item.id,
@@ -94,17 +96,6 @@ export function HomeScreen(props) {
 
   return (
     <SafeAreaView>
-      {false && (
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.navigate('Test');
-          }}
-        >
-          <Text>
-            Push
-          </Text>
-        </TouchableOpacity>
-      )}
       <FlatList
         contentContainerStyle={styles.scrollContentContainer}
         data={EXAMPLE_ITEMS}
@@ -131,15 +122,25 @@ const TestScreen = (props) => {
   );
 };
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const Tab1Stack = createNativeStackNavigator();
+
+function Tab1StackScreen() {
+  return (
+    <Tab1Stack.Navigator initialRouteName="Home">
+      <Tab1Stack.Screen name="Home" component={HomeScreen} />
+      <Tab1Stack.Screen name="Test" component={TestScreen} />
+    </Tab1Stack.Navigator>
+  );
+};
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Test" component={TestScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Tab1" component={Tab1StackScreen} />
+        <Tab.Screen name="Tab2" component={HomeScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
