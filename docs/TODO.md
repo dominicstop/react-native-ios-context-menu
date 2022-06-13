@@ -83,6 +83,10 @@
 
 ### Version: `next`
 
+<br>
+
+### Version: `1.7.6`
+
 - [x] (Commit: `0c7a91d`) **Test**: Example — Add test for react navigation tabs
 - [x] (Commit: `5092dab`) **Bugfix**: Fix + re-enable cleanup logic
 - [x] (Commit: `110dfe4`) **Refactor**: Fix iOS 16 deprecations 
