@@ -672,28 +672,28 @@ fileprivate extension RNIContextMenuView {
           .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginInner)
       );
       
-      // set horizontal alignment constraints based on config
+      // set horizontal alignment constraints based on config...
       constraints += {
         switch auxConfig.alignmentHorizontal {
-          // pin to left
+          // A - pin to left
           case .previewLeading: return [
             previewAuxiliaryView.leadingAnchor
               .constraint(equalTo: morphingPlatterView.leadingAnchor),
           ];
             
-          // pin to right
+          // B - pin to right
           case .previewTrailing: return [
-            previewAuxiliaryView.trailingAnchor
-              .constraint(equalTo: morphingPlatterView.trailingAnchor),
+            previewAuxiliaryView.rightAnchor.constraint(
+              equalTo: morphingPlatterView.rightAnchor, constant: -auxiliaryViewWidth)
           ];
             
-          // pin to center
+          // C - pin to center
           case .previewCenter: return [
-            previewAuxiliaryView.centerYAnchor
-              .constraint(equalTo: morphingPlatterView.centerYAnchor),
+            previewAuxiliaryView.centerXAnchor
+              .constraint(equalTo: morphingPlatterView.centerXAnchor),
           ];
             
-          // match preview size
+          // D - match preview size
           case .stretchPreview: return [
             previewAuxiliaryView.leadingAnchor
               .constraint(equalTo: morphingPlatterView.leadingAnchor),
@@ -702,10 +702,13 @@ fileprivate extension RNIContextMenuView {
               .constraint(equalTo: morphingPlatterView.trailingAnchor),
           ];
           
-          // stretch to edges of screen
+          // E - stretch to edges of screen
           case .stretchScreen: return [
-            previewAuxiliaryView.centerYAnchor
-              .constraint(equalTo: morphingPlatterView.centerYAnchor),
+            previewAuxiliaryView.leadingAnchor
+              .constraint(equalTo: contextMenuContainerView.leadingAnchor),
+            
+            previewAuxiliaryView.trailingAnchor
+              .constraint(equalTo: contextMenuContainerView.trailingAnchor),
           ];
         };
       }();
