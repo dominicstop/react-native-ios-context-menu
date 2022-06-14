@@ -25,23 +25,17 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
           actionTitle: 'Action #3',
         }],
       }}
-      auxiliaryPreviewConfig={{
-        height: 50,
-        alignmentHorizontal: 'previewLeading',
-      }}
       renderAuxillaryPreview={() => (
         <View style={{
-          flex: 1,
-          backgroundColor: 'red',
+          borderRadius: 10,
+          padding: 10,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: 'white',
         }}>
-          <View style={{
-            flex: 1,
-            backgroundColor: 'blue',
-          }}>
-            <Text>
-              Hello
-            </Text>
-          </View>
+          <Text>
+            Hello World
+          </Text>
         </View>
       )}
       onPressMenuItem={({nativeEvent}) => {
