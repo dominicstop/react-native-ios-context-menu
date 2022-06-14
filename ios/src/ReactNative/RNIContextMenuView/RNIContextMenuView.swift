@@ -53,7 +53,8 @@ class RNIContextMenuView: UIView {
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
-  private var shouldEnableAuxPreview = false;
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+  private var shouldEnableAuxPreview = true;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
