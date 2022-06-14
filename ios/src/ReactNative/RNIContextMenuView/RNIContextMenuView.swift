@@ -629,61 +629,67 @@ fileprivate extension RNIContextMenuView {
     /// attach `auxiliaryView` to context menu preview
     contextMenuContentContainer.addSubview(previewAuxiliaryView);
     
-    
-    // set initial constraints
-    var constraints: Array<NSLayoutConstraint> = [
-      // TODO: Temp - match height
-      previewAuxiliaryView.heightAnchor
-        .constraint(equalToConstant: auxiliaryViewHeight),
-    ];
-    
-    // set vertical alignment constraint - pin to top or bottom of context menu
-    constraints.append(shouldAttachToTop
-     ? previewAuxiliaryView.bottomAnchor
-       .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginInner)
-   
-     : previewAuxiliaryView.topAnchor
-        .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginInner)
-    );
-    
-    // set horizontal alignment constraints
-    constraints += {
-      switch auxConfig.alignmentHorizontal {
-        // pin to left
-        case .previewLeading: return [
-          previewAuxiliaryView.leadingAnchor
-            .constraint(equalTo: morphingPlatterView.leadingAnchor),
-        ];
+    // set layout constraints based on config
+    NSLayoutConstraint.activate({
+      
+      // set initial constraints
+      var constraints: Array<NSLayoutConstraint> = [
+        // set aux preview height
+        previewAuxiliaryView.heightAnchor
+          .constraint(equalToConstant: auxiliaryViewHeight),
+      ];
+      
+      // set vertical alignment constraint - i.e. either...
+      constraints.append(shouldAttachToTop
+       // A - pin to top or...
+       ? previewAuxiliaryView.bottomAnchor
+         .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginInner)
+       
+       // B - pin to bottom.
+       : previewAuxiliaryView.topAnchor
+          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginInner)
+      );
+      
+      // set horizontal alignment constraints based on config
+      constraints += {
+        switch auxConfig.alignmentHorizontal {
+          // pin to left
+          case .previewLeading: return [
+            previewAuxiliaryView.leadingAnchor
+              .constraint(equalTo: morphingPlatterView.leadingAnchor),
+          ];
+            
+          // pin to right
+          case .previewTrailing: return [
+            previewAuxiliaryView.trailingAnchor
+              .constraint(equalTo: morphingPlatterView.trailingAnchor),
+          ];
+            
+          // pin to center
+          case .previewCenter: return [
+            previewAuxiliaryView.centerYAnchor
+              .constraint(equalTo: morphingPlatterView.centerYAnchor),
+          ];
+            
+          // match preview size
+          case .stretchPreview: return [
+            previewAuxiliaryView.leadingAnchor
+              .constraint(equalTo: morphingPlatterView.leadingAnchor),
+            
+            previewAuxiliaryView.trailingAnchor
+              .constraint(equalTo: morphingPlatterView.trailingAnchor),
+          ];
           
-        // pin to right
-        case .previewTrailing: return [
-          previewAuxiliaryView.trailingAnchor
-            .constraint(equalTo: morphingPlatterView.trailingAnchor),
-        ];
-          
-        // pin to center
-        case .previewCenter: return [
-          previewAuxiliaryView.centerYAnchor
-            .constraint(equalTo: morphingPlatterView.centerYAnchor),
-        ];
-          
-        // match preview size
-        case .stretchPreview: return [
-          previewAuxiliaryView.leadingAnchor
-            .constraint(equalTo: morphingPlatterView.leadingAnchor),
-          
-          previewAuxiliaryView.trailingAnchor
-            .constraint(equalTo: morphingPlatterView.trailingAnchor),
-        ];
-          
-        case .stretchScreen: return [
-          previewAuxiliaryView.centerYAnchor
-            .constraint(equalTo: morphingPlatterView.centerYAnchor),           
-        ];
-      };
-    }();
-    
-    NSLayoutConstraint.activate(constraints);
+          // stretch to edges of screen
+          case .stretchScreen: return [
+            previewAuxiliaryView.centerYAnchor
+              .constraint(equalTo: morphingPlatterView.centerYAnchor),
+          ];
+        };
+      }();
+      
+      return constraints;
+    }());
     
     // MARK: Show Aux. View
     // --------------------
