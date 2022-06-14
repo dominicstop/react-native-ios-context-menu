@@ -498,13 +498,21 @@ fileprivate extension RNIContextMenuView {
     let auxConfig = self._auxiliaryPreviewConfig
       ?? RNIContextMenuAuxiliaryPreviewConfig(dictionary: [:]);
     
-    let auxiliaryViewHeight = auxConfig.height;
+    let auxiliaryViewHeight: CGFloat = {
+      // A - Use height from config
+      if let height = auxConfig.height {
+        return height;
+      };
+      
+      // B - Infer aux preview height from view
+      return previewAuxiliaryView.frame.height;
+    }();
     
     let marginInner = auxConfig.marginPreview;
     let marginOuter = auxConfig.marginAuxiliaryPreview;
     
     let previewAuxiliaryViewSize = CGSize(
-      // TODO: Impl. width/height config
+      // TODO: Impl. width config
       width : morphingPlatterView.bounds.width,
       height: auxiliaryViewHeight
     );
