@@ -511,14 +511,19 @@ fileprivate extension RNIContextMenuView {
     }();
     
     let auxiliaryViewWidth: CGFloat = {
+      // amount to subtract from width - fix for layout bug
+      // if you use the full width, it triggers a bug w/ autolayout where the
+      // aux. preview snaps to the top of the screen...
+      let adj = 0.5;
+      
       switch auxConfig.alignmentHorizontal {
         // A - Set aux preview width to window width
         case .stretchScreen:
-          return contextMenuContainerView.frame.width;
+          return contextMenuContainerView.frame.width - adj;
         
         // B - Set aux preview width to preview width
         case .stretchPreview:
-          return morphingPlatterView.frame.width - 1;
+          return morphingPlatterView.frame.width - adj;
         
         // C - Infer aux preview width from view...
         default:
