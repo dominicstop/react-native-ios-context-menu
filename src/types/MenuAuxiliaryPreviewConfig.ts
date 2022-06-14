@@ -30,7 +30,4 @@ export type MenuAuxiliaryPreviewConfig = {
   marginAuxiliaryPreview?: number;
 
   transitionConfigEntrance?: MenuAuxiliaryPreviewTransitionConfig;
-
-  // TODO: Remove
-  transitionConfigExit?: MenuAuxiliaryPreviewTransitionConfig;
 };

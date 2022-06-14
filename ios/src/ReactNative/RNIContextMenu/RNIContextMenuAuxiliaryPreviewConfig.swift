@@ -62,7 +62,6 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   var marginAuxiliaryPreview: CGFloat;
 
   var transitionConfigEntrance: TransitionConfig;
-  var transitionConfigExit: TransitionConfig;
   
   // MARK: - Init
   // ------------
@@ -102,13 +101,6 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
     
     self.transitionConfigEntrance = {
       guard let dict = dictionary["transitionConfigEntrance"] as? NSDictionary
-      else { return TransitionConfig() };
-      
-      return TransitionConfig(dictionary: dict);
-    }();
-    
-    self.transitionConfigExit = {
-      guard let dict = dictionary["transitionConfigExit"] as? NSDictionary
       else { return TransitionConfig() };
       
       return TransitionConfig(dictionary: dict);
