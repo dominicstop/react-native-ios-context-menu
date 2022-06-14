@@ -85,14 +85,6 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
       return value;
     }();
     
-    self.alignmentHorizontal = {
-      guard let string = dictionary["alignmentHorizontal"] as? String,
-            let value = HorizontalAlignment(rawValue: string)
-      else { return .stretchPreview };
-      
-      return value;
-    }();
-    
     self.marginPreview =
       dictionary["marginPreview"] as? CGFloat ?? 10;
     
