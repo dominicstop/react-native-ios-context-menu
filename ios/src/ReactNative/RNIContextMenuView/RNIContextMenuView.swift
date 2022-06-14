@@ -488,7 +488,9 @@ fileprivate extension RNIContextMenuView {
     guard self.shouldEnableAuxPreview,
           let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
           let previewAuxiliaryView = previewAuxiliaryViewWrapper.reactContent,
+          
           let contextMenuContentContainer = self.contextMenuContentContainer,
+          let contextMenuContainerView = self.contextMenuContainerView,
           let morphingPlatterView = self.morphingPlatterView
     else { return };
     
@@ -508,12 +510,27 @@ fileprivate extension RNIContextMenuView {
       return previewAuxiliaryView.frame.height;
     }();
     
+    let auxiliaryViewWidth: CGFloat = {
+      switch auxConfig.alignmentHorizontal {
+        // A - Set aux preview width to window width
+        case .stretchScreen:
+          return contextMenuContainerView.frame.width;
+        
+        // B - Set aux preview width to preview width
+        case .stretchPreview:
+          return morphingPlatterView.frame.width - 1;
+        
+        // C - Infer aux preview width from view...
+        default:
+          return previewAuxiliaryView.frame.width;
+      };
+    }();
+    
     let marginInner = auxConfig.marginPreview;
     let marginOuter = auxConfig.marginAuxiliaryPreview;
     
     let previewAuxiliaryViewSize = CGSize(
-      // TODO: Impl. width config
-      width : morphingPlatterView.bounds.width,
+      width : auxiliaryViewWidth,
       height: auxiliaryViewHeight
     );
     
