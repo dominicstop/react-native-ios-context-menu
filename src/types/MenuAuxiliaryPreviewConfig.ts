@@ -21,7 +21,7 @@ export type MenuAuxiliaryPreviewTransitionConfig = {
 
 export type MenuAuxiliaryPreviewConfig = {
   // TODO: Make optional - if null determine height from component view height
-  height: number;
+  height?: number;
 
   anchorPosition?: MenuAuxiliaryPreviewAnchorPosition;
   alignmentHorizontal?: MenuAuxiliaryPreviewHorizontalAlignment;

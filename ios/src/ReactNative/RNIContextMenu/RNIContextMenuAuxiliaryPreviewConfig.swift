@@ -53,7 +53,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   // MARK: - Properties
   // ------------------
   
-  var height: CGFloat;
+  var height: CGFloat?;
 
   var anchorPosition: AnchorPosition;
   var alignmentHorizontal: HorizontalAlignment;
@@ -67,7 +67,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   // ------------
   
   init(dictionary: NSDictionary){
-    self.height = dictionary["height"] as? CGFloat ?? 50;
+    self.height = dictionary["height"] as? CGFloat;
     
     self.anchorPosition = {
       guard let string = dictionary["anchorPosition"] as? String,
