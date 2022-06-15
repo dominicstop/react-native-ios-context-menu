@@ -306,10 +306,4 @@ const styles = StyleSheet.create({
     overflow: 'visible',
     flex: 0,
   },
-  previewAuxContainer: {
-    position: 'absolute',
-    overflow: 'visible',
-    flex: 0,
-    backgroundColor: 'green',
-  },
 });
