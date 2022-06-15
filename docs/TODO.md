@@ -67,6 +67,10 @@
 		* Still crashes when `nil` is provided as an argument to all the parameters in the constructor.
 		* Using the constructor that takes no arguments doesn't trigger a crash.
 
+<br>
+
+- [ ] **Implement**: Provide a default config for `previewConfig` when a `renderPreview` prop is given a value so that there's a default behavior.
+
 ---
 
 <br><br>
