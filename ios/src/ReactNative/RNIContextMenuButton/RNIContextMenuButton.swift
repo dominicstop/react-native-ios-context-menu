@@ -147,9 +147,6 @@ private extension RNIContextMenuButton {
   
   func cleanup(){
     
-    // temp. disable cleanup
-    return;
-    
     guard !self.didTriggerCleanup else { return };
     self.didTriggerCleanup = true;
     
