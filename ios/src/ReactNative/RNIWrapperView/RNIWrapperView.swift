@@ -11,6 +11,8 @@ import UIKit
   @objc optional func onJSComponentWillUnmount(sender: RNIWrapperView, isManuallyTriggered: Bool);
 };
 
+
+// TODO: Re-Write
 /// Holds react views that have been detached, and are no longer managed by RN.
 internal class RNIWrapperView: UIView {
   
