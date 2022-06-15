@@ -73,15 +73,13 @@ internal class RNIWrapperView: UIView {
   @objc var shouldNotifyComponentWillUnmount: Bool = false;
   
   // MARK: - Init/Lifecycle
-  // ----------------------
+  // ---------------------
   
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
     
     self.bridge = bridge;
     self.touchHandler = RCTTouchHandler(bridge: self.bridge);
-    self.touchHandler.delegate = self;
-    self.touchHandler.cancelsTouchesInView = true;
   };
   
   required init?(coder: NSCoder) {
@@ -178,11 +176,5 @@ internal class RNIWrapperView: UIView {
       sender: self,
       isManuallyTriggered: isManuallyTriggered
     );
-  };
-};
-
-extension RNIWrapperView: UIGestureRecognizerDelegate {
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    print("DEBUG - touchesBegan");
   };
 };

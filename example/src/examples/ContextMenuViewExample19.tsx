@@ -36,9 +36,7 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
           // since this view is going to be resized, let's center the content
           alignItems: 'center',
           justifyContent: 'center',
-        }]}
-          pointerEvents={'auto'}
-        >
+        }]}>
           <TouchableOpacity style={styles.buttonContainer}>
             <Text style={styles.buttonLabel}>
               Button
