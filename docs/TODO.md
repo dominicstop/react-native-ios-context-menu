@@ -85,6 +85,12 @@
 
 <br>
 
+- [ ] Bugfix: Aux. Preview - Touch Event Confict
+	* Touch events originating from the context menu still propagates down the responder chain — in other words, the touch event passes through the context menu, so its like your touching the background in addition to the context menu.
+	* As such,  if you try to trigger a button in the aux. preview, it will also close the context menu since touching on the background triggers the dismissal of the context menu.
+	* The button in aux. preview still receives the touch event but `UIKit` is not aware that the touch event has already been handled.
+	* Possible fix could be to add a vanilla view to hold the aux. preview — the vanilla view will stop the touch event from propagating at the expense of bloat and memory.
+
 ### Version: `1.7.6`
 
 - [x] (Commit: `0c7a91d`) **Test**: Example — Add test for react navigation tabs
