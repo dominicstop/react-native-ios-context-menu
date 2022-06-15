@@ -109,6 +109,9 @@
 		* Setting `cancelsTouchesInView` to `true`/`false` does nothing.
 		* Becoming the delegate and handling the touch events (e.g. the `gestureRecognizer` methods) does nothing whether you choose to return `true`/`false`.
 			* Overriding `var next: UIResponder?` and returning `nil` does nothing.
+	* A custom `UIView` subclass that wraps the aux. preview with `hitTest` override returning `nil` or `self` stops the propagation from happening.
+		* However the the context menu items, its preview + background, and the aux. preview no longer responds to the touch events — as such it's impossible to close the menu.
+	* The simplest solution is to just create a dummy gesture recognizer (i.e. dummy because it does not have a selector) and attach it to the aux. preview — the dummy gesture recognizer will handle any bubbling touch events from the aux. preview and stop it from propagating.
 
 <br>
 
