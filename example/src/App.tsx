@@ -41,6 +41,7 @@ import { ContextMenuButtonExample01 } from './examples/ContextMenuButtonExample0
 import { ContextMenuButtonExample02 } from './examples/ContextMenuButtonExample02';
 
 import { DebugControls } from './examples/DebugControls';
+import { SHARED_ENV } from './constants/SharedEnv';
 
 
 type ExampleListItem = {
@@ -122,8 +123,8 @@ const TestScreen = (props) => {
   );
 };
 
-const Tab = createBottomTabNavigator();
-const Tab1Stack = createNativeStackNavigator();
+const Tab       = SHARED_ENV.enableReactNavigation && createBottomTabNavigator();
+const Tab1Stack = SHARED_ENV.enableReactNavigation && createNativeStackNavigator();
 
 function Tab1StackScreen() {
   return (
@@ -135,15 +136,17 @@ function Tab1StackScreen() {
 };
 
 export default function App() {
-  return (
+  return SHARED_ENV.enableReactNavigation ? (
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Tab1" component={Tab1StackScreen} />
         <Tab.Screen name="Tab2" component={HomeScreen} />
       </Tab.Navigator>
     </NavigationContainer>
+  ):(
+    <HomeScreen/>
   );
-}
+};
 
 const styles = StyleSheet.create({
   scrollContentContainer: {

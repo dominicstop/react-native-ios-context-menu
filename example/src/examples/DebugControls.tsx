@@ -7,10 +7,12 @@ import type { ContextMenuExampleProps } from './SharedExampleTypes';
 
 import { ContextMenuCard } from '../components/ContextMenuCard';
 import { CardButton } from '../components/Card/CardButton';
+import { SHARED_ENV } from '../constants/SharedEnv';
 
 
 export function DebugControls(props: ContextMenuExampleProps) {
-  const navigation = useNavigation();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const navigation = SHARED_ENV.enableReactNavigation && useNavigation();
 
   return (
     <ContextMenuCard
