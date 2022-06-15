@@ -306,8 +306,8 @@ class RNIContextMenuView: UIView {
         
         // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
         case .contextMenuAuxiliaryPreview:
-          // if prev. exist, cleanup if needed.
-          //self.previewAuxiliaryViewWrapper?.cleanup();
+          // TODO: if prev. exist, cleanup if needed.
+          // self.previewAuxiliaryViewWrapper?.cleanup();
           self.previewAuxiliaryViewWrapper = wrapperView;
       };
       

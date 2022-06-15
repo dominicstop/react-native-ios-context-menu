@@ -7,6 +7,13 @@
 
 import UIKit;
 
+
+// TODO: Rename to
+// * RNINavigationEventsReportingChildViewController
+// * RNINavigationEventsChildViewController
+// * Protocol: RNINavigationEventsNotifiable
+// Move: - attach vc code here
+// this is used to listen to view controller lifecycle events e.g. navigation
 class RNIContextMenuViewController: UIViewController {
   
   weak var parentVC: UIViewController?;
@@ -61,6 +68,5 @@ class RNIContextMenuViewController: UIViewController {
     } else {
       cleanup();
     };
-
-  }
+  };
 };

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: Rename
 protocol RNIContextMenu: UIView {
   
   func notifyViewControllerDidPop(sender: RNIContextMenuViewController);
