@@ -63,7 +63,7 @@ internal class RNIWrapperView: UIView {
   var willChangeSuperview = false;
   
   private var didChangeSuperview = false;
-  private var touchHandler: RCTTouchHandler!;
+  var touchHandler: RCTTouchHandler!;
   
   // MARK: - RN Exported Props
   // -------------------------
@@ -80,6 +80,11 @@ internal class RNIWrapperView: UIView {
     
     self.bridge = bridge;
     self.touchHandler = RCTTouchHandler(bridge: self.bridge);
+    self.touchHandler.delaysTouchesBegan = true;
+    self.touchHandler.delaysTouchesEnded = true;
+    self.touchHandler.cancelsTouchesInView = true;
+    
+    self.isUserInteractionEnabled = false;
   };
   
   required init?(coder: NSCoder) {
