@@ -637,9 +637,15 @@ fileprivate extension RNIContextMenuView {
     // MARK: Set Layout
     // ----------------
     
+    // TODO:  Remove?
     /// detach aux. preview
     previewAuxiliaryViewWrapper.removeFromSuperview();
     previewAuxiliaryView.removeFromSuperview();
+    
+    // Bugfix: Stop bubbling touch events from propagating to parent
+    previewAuxiliaryView.addGestureRecognizer(
+      UITapGestureRecognizer(target: nil, action: nil)
+    );
     
     /// manually set size of aux. preview
     previewAuxiliaryViewWrapper
