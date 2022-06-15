@@ -55,6 +55,7 @@ class RNIContextMenuView: UIView {
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   private var shouldEnableAuxPreview = true;
+  private var shouldUseAlternateWayToShowAuxPreview = true;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -834,14 +835,31 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     self.isContextMenuVisible = true;
     self.onMenuWillShow?([:]);
     
+    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+    // show context menu auxiliary preview via new way
+    if self.shouldUseAlternateWayToShowAuxPreview {
+      
+      // the animator does not have a `percentComplete` - so this is just a guess
+      // on how long the context menu entrance animation is
+      //
+      // Note: will break if slow animations enabled
+      let delay = 0.4;
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+        self?.attachContextMenuAuxiliaryPreviewIfAny(nil);
+      };
+    };
+    
+    
     animator?.addCompletion {
       self.onMenuDidShow?([:]);
       
-      #if DEBUG
       // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-      // show context menu auxiliary preview
-      self.attachContextMenuAuxiliaryPreviewIfAny(animator);
-      #endif
+      // show context menu auxiliary preview via old way
+      if !self.shouldUseAlternateWayToShowAuxPreview {
+        
+        self.attachContextMenuAuxiliaryPreviewIfAny(animator);
+      };
     };
   };
   
