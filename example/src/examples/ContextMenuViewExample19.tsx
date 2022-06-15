@@ -1,11 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { Alert, View, Text, StyleSheet } from 'react-native';
+import { Alert, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
 import type { ContextMenuExampleProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
+
+import * as COLORS from '../constants/Colors';
 
 
 export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
@@ -35,9 +37,11 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
           alignItems: 'center',
           justifyContent: 'center',
         }]}>
-          <Text style={styles.textLabel}>
-            Hello World
-          </Text>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <Text style={styles.buttonLabel}>
+              Button
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
       onPressMenuItem={({nativeEvent}) => {
@@ -62,10 +66,18 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
 const styles = StyleSheet.create({
   auxRootContainer: {
     backgroundColor: 'white',
-  },
-  textLabel: {
-    fontWeight: 'bold',
     borderRadius: 10,
     padding: 10,
+  },
+  buttonContainer: {
+    backgroundColor: COLORS.PURPLE.A700,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    maxWidth: 200,
+    borderRadius: 10,
+  },
+  buttonLabel: {
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
