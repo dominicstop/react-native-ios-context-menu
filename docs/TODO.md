@@ -85,33 +85,53 @@
 
 <br>
 
-- [ ] Bugfix: Aux. Preview - Touch Event Confict
-	* Touch events originating from the context menu still propagates down the responder chain — in other words, the touch event passes through the context menu, so its like your touching the background in addition to the context menu.
-	* As such,  if you try to trigger a button in the aux. preview, it will also close the context menu since touching on the background triggers the dismissal of the context menu.
-		* This can be confirmed by creating a simple `UIButton` and setting it as the aux. view for the context menu.
-		* The `UIButton` captures the touch event and does not propagate it further — as such, pressing the `UIButton` will not close the context menu.
-	* The `TouchableOpacity` button in aux. preview still receives the touch event but `UIKit` is not aware that the touch event has already been handled.
-	* Possible fix could be to add a vanilla view to hold the aux. preview — the vanilla view will stop the touch event from propagating at the expense of bloat and memory.
-		* Wrapping the aux. preview inside another `UIView` does not work.
-		* Wrapping the aux. preview inside another `UIButton` does not work.
-		* Wrapping the aux. preview inside another `UIControl` does not work.
-	* Maybe try making a `UIView` subclass that stops the propagation of the touch event?
-		* Overriding `next:UIResponder` and `gestureRecognizerShouldBegin` in `RNIWrapperView` does nothing.
-		* Overriding `point(inside point: CGPoint, with event: UIEvent?)` in `RNIWrapperView` does nothing.
-	* Setting `isExclusiveTouch` to `false` on the aux. view wrapper, the aux. view container, and the aux. view itself does nothing.
-	* Setting `pointerEvents` prop to `box-none` or `none` for `RNIWrapperView` does nothing.
-		* But setting `pointerEvents` prop to `none` for the root view component returned from the `renderAuxillaryPreview`  prop does stop the propagation.
-		* However setting it to `box-none` does not stop the propagation and still closes the context menu. 
-		* This suggests that the problem lies with react native's touch system (i.e. `RCTTouchHandler`) not stopping the touch propagation.
-	* Disabling `touchHandler.attach` in `RNIWrapperView.insertReactSubview` does not stop the propagation of the touch event.
-		* `RCTTouchHandler` is a subclass of `UIGestureRecognizer`.
-		* Setting `requiresExclusiveTouchType` to `true`/`false` does nothing.
-		* Setting `cancelsTouchesInView` to `true`/`false` does nothing.
-		* Becoming the delegate and handling the touch events (e.g. the `gestureRecognizer` methods) does nothing whether you choose to return `true`/`false`.
-			* Overriding `var next: UIResponder?` and returning `nil` does nothing.
-	* A custom `UIView` subclass that wraps the aux. preview with `hitTest` override returning `nil` or `self` stops the propagation from happening.
-		* However the the context menu items, its preview + background, and the aux. preview no longer responds to the touch events — as such it's impossible to close the menu.
-	* The simplest solution is to just create a dummy gesture recognizer (i.e. dummy because it does not have a selector) and attach it to the aux. preview — the dummy gesture recognizer will handle any bubbling touch events from the aux. preview and stop it from propagating.
+### Version: `1.8.0`
+
+<br>
+
+- [x] (Commit: d764364) **Bugfix**: Aux. Preview-Related (WIP) —  Touch Event Conflict
+  * Touch events originating from the context menu still propagates down the responder chain — in other words, the touch event passes through the context menu, so its like your touching the background in addition to the context menu.
+  * As such,  if you try to trigger a button in the aux. preview, it will also close the context menu since touching on the background triggers the dismissal of the context menu.
+  	* This can be confirmed by creating a simple `UIButton` and setting it as the aux. view for the context menu.
+  	* The `UIButton` captures the touch event and does not propagate it further — as such, pressing the `UIButton` will not close the context menu.
+  * The `TouchableOpacity` button in aux. preview still receives the touch event but `UIKit` is not aware that the touch event has already been handled.
+  * Possible fix could be to add a vanilla view to hold the aux. preview — the vanilla view will stop the touch event from propagating at the expense of bloat and memory.
+  	* Wrapping the aux. preview inside another `UIView` does not work.
+  	* Wrapping the aux. preview inside another `UIButton` does not work.
+  	* Wrapping the aux. preview inside another `UIControl` does not work.
+  * Maybe try making a `UIView` subclass that stops the propagation of the touch event?
+  	* Overriding `next:UIResponder` and `gestureRecognizerShouldBegin` in `RNIWrapperView` does nothing.
+  	* Overriding `point(inside point: CGPoint, with event: UIEvent?)` in `RNIWrapperView` does nothing.
+  * Setting `isExclusiveTouch` to `false` on the aux. view wrapper, the aux. view container, and the aux. view itself does nothing.
+  * Setting `pointerEvents` prop to `box-none` or `none` for `RNIWrapperView` does nothing.
+  	* But setting `pointerEvents` prop to `none` for the root view component returned from the `renderAuxillaryPreview`  prop does stop the propagation.
+  	* However setting it to `box-none` does not stop the propagation and still closes the context menu. 
+  	* This suggests that the problem lies with react native's touch system (i.e. `RCTTouchHandler`) not stopping the touch propagation.
+  * Disabling `touchHandler.attach` in `RNIWrapperView.insertReactSubview` does not stop the propagation of the touch event.
+  	* `RCTTouchHandler` is a subclass of `UIGestureRecognizer`.
+  	* Setting `requiresExclusiveTouchType` to `true`/`false` does nothing.
+  	* Setting `cancelsTouchesInView` to `true`/`false` does nothing.
+  	* Becoming the delegate and handling the touch events (e.g. the `gestureRecognizer` methods) does nothing whether you choose to return `true`/`false`.
+  		* Overriding `var next: UIResponder?` and returning `nil` does nothing.
+  * A custom `UIView` subclass that wraps the aux. preview with `hitTest` override returning `nil` or `self` stops the propagation from happening.
+  	* However the the context menu items, its preview + background, and the aux. preview no longer responds to the touch events — as such it's impossible to close the menu.
+  * The simplest solution is to just create a dummy gesture recognizer (i.e. dummy because it does not have a selector) and attach it to the aux. preview — the dummy gesture recognizer will handle any bubbling touch events from the aux. preview and stop it from propagating.
+
+<br>
+
+- [x] (Commit: `9f682a1`) **Implement**: Aux. Preview-Related (WIP) — Remove `transitionConfigExit` from aux. preview config.
+- [x] (Commit: `303cd6f`) **Implement**: Aux. Preview-Related (WIP) — Make `MenuAuxiliaryPreviewConfig.height` optional.
+- [x] (Commit: `1432ce9`) **Implement:** Aux. Preview-Related (WIP) —  Infer aux. preview height from root view when `MenuAuxiliaryPreviewConfig.height` is `null`.
+- [x] (Commit: `8b25e6f`) **Refactor**: Aux. Preview-Related (WIP) —  Isolate aux. preview constraints logic to closure block.
+- [x] (Commit: `22109e2`) **Implement**: Aux. Preview-Related (WIP) — Impl. logic for determining the aux. preview width.
+- [x] (Commit: `a9651e3`) **Implement**: Aux. Preview-Related (WIP) — Adjust aux. preview width, i.e. re-impl. fix for sizing + layout bug.
+- [x] (Commit: `562672d`) **Implement**: Aux. Preview-Related (WIP) — Update logic for aux. preview horizontal alignment, e.g. `previewTrailing`, `previewCenter`, and `stretchScreen`.
+- [x] (Commit: `5cb72f5`) **Implement**: Example — Add env. flag for enabling/disabling `react-navigation`.
+- [x] (Commit: `75e722e`) **Bugfix**: Re-Enable cleanup for context menu button.
+
+<br>
+
+- [x] (Commit: `75e722e`) **Bugfix**: Re-Enable cleanup for Context Menu Button.
 
 <br>
 
