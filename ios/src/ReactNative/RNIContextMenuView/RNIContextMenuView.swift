@@ -726,6 +726,7 @@ fileprivate extension RNIContextMenuView {
     // MARK: Show Aux. View
     // --------------------
     
+    // TODO: Impl. other entrance animation
     // transition - start value
     previewAuxiliaryView.alpha = 0;
     
