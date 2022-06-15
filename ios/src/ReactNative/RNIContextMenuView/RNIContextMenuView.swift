@@ -644,12 +644,38 @@ fileprivate extension RNIContextMenuView {
     /// manually set size of aux. preview
     previewAuxiliaryViewWrapper
       .notifyForBoundsChange(size: previewAuxiliaryViewSize);
-
-    /// enable auto layout
-    previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
+    
+    let wrappedAuxiliaryPreview: UIView = {
+      let view = UIView();
+      
+      let dummyGestureRecognizer = UITapGestureRecognizer(target: nil, action: nil);
+      view.addGestureRecognizer(dummyGestureRecognizer);
+      
+      view.addSubview(previewAuxiliaryView);
+      previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
+      
+      NSLayoutConstraint.activate([
+        previewAuxiliaryView.leadingAnchor
+          .constraint(equalTo: view.leadingAnchor),
+        
+        previewAuxiliaryView.trailingAnchor
+          .constraint(equalTo: view.trailingAnchor),
+        
+        previewAuxiliaryView.topAnchor
+          .constraint(equalTo: view.topAnchor),
+        
+        previewAuxiliaryView.bottomAnchor
+          .constraint(equalTo: view.bottomAnchor)
+      ]);
+      
+      return view;
+    }();
     
     /// attach `auxiliaryView` to context menu preview
-    contextMenuContentContainer.addSubview(previewAuxiliaryView);
+    contextMenuContentContainer.addSubview(wrappedAuxiliaryPreview);
+    
+    /// enable auto layout
+    wrappedAuxiliaryPreview.translatesAutoresizingMaskIntoConstraints = false;
     
     // set layout constraints based on config
     NSLayoutConstraint.activate({
@@ -657,18 +683,18 @@ fileprivate extension RNIContextMenuView {
       // set initial constraints
       var constraints: Array<NSLayoutConstraint> = [
         // set aux preview height
-        previewAuxiliaryView.heightAnchor
+        wrappedAuxiliaryPreview.heightAnchor
           .constraint(equalToConstant: auxiliaryViewHeight),
       ];
       
       // set vertical alignment constraint - i.e. either...
       constraints.append(shouldAttachToTop
        // A - pin to top or...
-       ? previewAuxiliaryView.bottomAnchor
+       ? wrappedAuxiliaryPreview.bottomAnchor
          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginInner)
        
        // B - pin to bottom.
-       : previewAuxiliaryView.topAnchor
+       : wrappedAuxiliaryPreview.topAnchor
           .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginInner)
       );
       
@@ -677,37 +703,38 @@ fileprivate extension RNIContextMenuView {
         switch auxConfig.alignmentHorizontal {
           // A - pin to left
           case .previewLeading: return [
-            previewAuxiliaryView.leadingAnchor
+            wrappedAuxiliaryPreview.leadingAnchor
               .constraint(equalTo: morphingPlatterView.leadingAnchor),
           ];
             
           // B - pin to right
           case .previewTrailing: return [
-            previewAuxiliaryView.rightAnchor.constraint(
+            // TODO: Replace with width anchor
+            wrappedAuxiliaryPreview.rightAnchor.constraint(
               equalTo: morphingPlatterView.rightAnchor, constant: -auxiliaryViewWidth)
           ];
             
           // C - pin to center
           case .previewCenter: return [
-            previewAuxiliaryView.centerXAnchor
+            wrappedAuxiliaryPreview.centerXAnchor
               .constraint(equalTo: morphingPlatterView.centerXAnchor),
           ];
             
           // D - match preview size
           case .stretchPreview: return [
-            previewAuxiliaryView.leadingAnchor
+            wrappedAuxiliaryPreview.leadingAnchor
               .constraint(equalTo: morphingPlatterView.leadingAnchor),
             
-            previewAuxiliaryView.trailingAnchor
+            wrappedAuxiliaryPreview.trailingAnchor
               .constraint(equalTo: morphingPlatterView.trailingAnchor),
           ];
           
           // E - stretch to edges of screen
           case .stretchScreen: return [
-            previewAuxiliaryView.leadingAnchor
+            wrappedAuxiliaryPreview.leadingAnchor
               .constraint(equalTo: contextMenuContainerView.leadingAnchor),
             
-            previewAuxiliaryView.trailingAnchor
+            wrappedAuxiliaryPreview.trailingAnchor
               .constraint(equalTo: contextMenuContainerView.trailingAnchor),
           ];
         };
@@ -720,11 +747,11 @@ fileprivate extension RNIContextMenuView {
     // --------------------
     
     // transition - start value
-    previewAuxiliaryView.alpha = 0;
+    wrappedAuxiliaryPreview.alpha = 0;
     
     UIView.animate(withDuration: 0.3, animations: {
       // fade in transition
-      previewAuxiliaryView.alpha = 1;
+      wrappedAuxiliaryPreview.alpha = 1;
       
       // offset from anchor
       contextMenuContentContainer.frame =
@@ -973,6 +1000,7 @@ extension RNIContextMenuView: RNIContextMenu {
     self.cleanup();
   };
   
+  // TODO: Move to class instead of protocol
   func attachToParentVC(){
     guard !self.didAttachToParentVC,
           // find the nearest parent view controller
