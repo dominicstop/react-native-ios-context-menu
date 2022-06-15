@@ -1,12 +1,12 @@
 import React from 'react';
-import { requireNativeComponent, ViewStyle } from 'react-native';
+import { requireNativeComponent, ViewProps, ViewStyle } from 'react-native';
 
 import { RNIWrapperViewModule } from '../native_modules/RNIWrapperViewModule';
 
 import * as Helpers from '../functions/Helpers';
 
 
-export type RNIWrapperViewProps = {
+export type RNIWrapperViewProps = ViewProps & {
   style?: ViewStyle;
   nativeID?: string;
   children?: React.ReactElement;
