@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { Alert, View, Text } from 'react-native';
+import { Alert, View, Text, StyleSheet } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -26,14 +26,16 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
         }],
       }}
       renderAuxillaryPreview={() => (
-        <View style={{
-          borderRadius: 10,
-          padding: 10,
+        <View style={[styles.auxRootContainer, {
+          // by default, the root view you returned will be resized to match
+          // the width of the preview (you can override this behavior via the
+          // `auxiliaryPreviewConfig` prop).
+          //
+          // since this view is going to be resized, let's center the content
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: 'white',
-        }}>
-          <Text>
+        }]}>
+          <Text style={styles.textLabel}>
             Hello World
           </Text>
         </View>
@@ -56,3 +58,14 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
     </ContextMenuView>
   );
 };
+
+const styles = StyleSheet.create({
+  auxRootContainer: {
+    backgroundColor: 'white',
+  },
+  textLabel: {
+    fontWeight: 'bold',
+    borderRadius: 10,
+    padding: 10,
+  },
+});
