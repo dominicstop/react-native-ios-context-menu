@@ -50,6 +50,32 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
     };
   };
   
+  enum TransitionEntranceDelay: Equatable {
+    case seconds(CGFloat);
+    
+    case RECOMMENDED;
+    case AFTER_PREVIEW;
+    
+    init?(string: String){
+      switch string {
+        case "RECOMMENDED"  : self = .RECOMMENDED;
+        case "AFTER_PREVIEW": self = .AFTER_PREVIEW;
+          
+        default: return nil;
+      };
+    };
+    
+    var seconds: CGFloat {
+      switch self {
+        case .seconds(let seconds):
+          return seconds;
+          
+        case .AFTER_PREVIEW: return 0;
+        case .RECOMMENDED  : return 0.25;
+      };
+    };
+  };
+  
   // MARK: - Properties
   // ------------------
   
@@ -62,6 +88,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   var marginAuxiliaryPreview: CGFloat;
 
   var transitionConfigEntrance: TransitionConfig;
+  var transitionEntranceDelay: TransitionEntranceDelay;
   
   // MARK: - Init
   // ------------
@@ -96,6 +123,22 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
       else { return TransitionConfig() };
       
       return TransitionConfig(dictionary: dict);
+    }();
+    
+    self.transitionEntranceDelay = {
+      guard let rawValue = dictionary["transitionEntranceDelay"]
+      else { return .AFTER_PREVIEW };
+      
+      if let string = rawValue as? String,
+         let value = TransitionEntranceDelay(string: string) {
+        
+        return value;
+        
+      } else if let number = rawValue as? CGFloat {
+        return .seconds(number);
+      };
+      
+      return .AFTER_PREVIEW;
     }();
   };
 };

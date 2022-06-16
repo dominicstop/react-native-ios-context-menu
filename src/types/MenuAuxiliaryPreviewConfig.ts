@@ -19,11 +19,15 @@ export type MenuAuxiliaryPreviewTransitionConfig = {
   duration?: number;
 };
 
+export type MenuAuxiliaryPreviewTransitionEntranceDelay = 
+  | number
+  | 'RECOMMENDED'
+  | 'AFTER_PREVIEW';
+
 export type MenuAuxiliaryPreviewConfig = {
   height?: number;
   // TODO: Make optional - if null determine width from component view height
-  // width?: number; 
-
+  // width?: number;
 
   anchorPosition?: MenuAuxiliaryPreviewAnchorPosition;
   alignmentHorizontal?: MenuAuxiliaryPreviewHorizontalAlignment;
@@ -32,4 +36,16 @@ export type MenuAuxiliaryPreviewConfig = {
   marginAuxiliaryPreview?: number;
 
   transitionConfigEntrance?: MenuAuxiliaryPreviewTransitionConfig;
+
+  /**
+   * The number of seconds to wait before showing the context menu
+   * 
+   * The default is `AFTER_PREVIEW` (i.e. show the aux. preview after
+   * the context menu becomes visible).
+   * 
+   * Note: If you want to show the aux. preview as soon as possible,
+   * set this to `RECOMMENDED` (i.e. 0.25 seconds). A value of less 
+   * than 0.25 seconds may cause bugs.
+   */
+  transitionEntranceDelay?: MenuAuxiliaryPreviewTransitionEntranceDelay;
 };

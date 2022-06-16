@@ -55,7 +55,6 @@ class RNIContextMenuView: UIView {
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   private var shouldEnableAuxPreview = true;
-  private var shouldUseAlternateWayToShowAuxPreview = true;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -636,6 +635,8 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
+    print("DEBUG - morphingPlatterView - y: \(morphingPlatterView.frame.origin.y)");
+    
     // MARK: Set Layout
     // ----------------
     
@@ -836,27 +837,42 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     self.onMenuWillShow?([:]);
     
     // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    // show context menu auxiliary preview via new way
-    if self.shouldUseAlternateWayToShowAuxPreview {
+    let transitionEntranceDelay = self._auxiliaryPreviewConfig?
+      .transitionEntranceDelay ?? .AFTER_PREVIEW;
+    
+    let shouldUseAlternateWayToShowAuxPreview =
+      transitionEntranceDelay != .AFTER_PREVIEW;
+    
+    
+    // A - show context menu auxiliary preview via new way
+    // i.e. immediately show aux. preview but with a slight delay
+    if shouldUseAlternateWayToShowAuxPreview {
       
       // the animator does not have a `percentComplete` - so this is just a guess
       // on how long the context menu entrance animation is
       //
       // Note: will break if slow animations enabled
-      let delay = 0.4;
+      let delay = transitionEntranceDelay.seconds;
       
       DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
         self?.attachContextMenuAuxiliaryPreviewIfAny(nil);
       };
     };
     
+    let rootVC = UIApplication.shared.windows.first!.rootViewController!;
+    
+    let point = interaction.location(in: rootVC.view);
+    print("DEBUG - location - y: \(point.y)");
+    
     
     animator?.addCompletion {
       self.onMenuDidShow?([:]);
       
       // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-      // show context menu auxiliary preview via old way
-      if !self.shouldUseAlternateWayToShowAuxPreview {
+      // B - show context menu auxiliary preview via old way
+      // i.e. wait for context menu preview to become visible before showing
+      // the aux. preview.
+      if !shouldUseAlternateWayToShowAuxPreview {
         
         self.attachContextMenuAuxiliaryPreviewIfAny(animator);
       };
