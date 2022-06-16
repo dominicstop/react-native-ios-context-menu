@@ -639,9 +639,6 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
-    // TODO: Remove
-    print("DEBUG - morphingPlatterView - y: \(morphingPlatterView.frame.origin.y)");
-    
     // MARK: Set Layout
     // ----------------
     
@@ -867,12 +864,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
         self?.attachContextMenuAuxiliaryPreviewIfAny(nil);
       };
     };
-    
-    let rootVC = UIApplication.shared.windows.first!.rootViewController!;
-    
-    let point = interaction.location(in: rootVC.view);
-    print("DEBUG - location - y: \(point.y)");
-    
     
     animator?.addCompletion {
       self.onMenuDidShow?([:]);
