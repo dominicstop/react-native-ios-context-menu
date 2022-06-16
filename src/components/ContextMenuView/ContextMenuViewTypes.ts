@@ -19,6 +19,8 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'onMenuDidShow'
   | 'onMenuDidHide'
   | 'onMenuDidCancel'
+  | 'onMenuAuxiliaryPreviewWillShow'
+  | 'onMenuAuxiliaryPreviewDidShow'
   // `OnPress` Events
   | 'onPressMenuItem'
   | 'onPressMenuPreview'

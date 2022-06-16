@@ -8,7 +8,7 @@ import { RNIContextMenuViewModule } from '../../native_modules/RNIContextMenuVie
 
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
 
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent } from '../../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent } from '../../types/MenuEvents';
 import type { ContextMenuViewProps, ContextMenuViewState } from './ContextMenuViewTypes';
 
 // @ts-ignore - TODO
@@ -55,6 +55,8 @@ export class ContextMenuView extends
       onMenuDidShow,
       onMenuDidHide,
       onMenuDidCancel,
+      onMenuAuxiliaryPreviewWillShow,
+      onMenuAuxiliaryPreviewDidShow,
       onPressMenuItem,
       onPressMenuPreview,
       lazyPreview,
@@ -85,6 +87,8 @@ export class ContextMenuView extends
       onMenuDidShow,
       onMenuDidHide,
       onMenuDidCancel,
+      onMenuAuxiliaryPreviewWillShow,
+      onMenuAuxiliaryPreviewDidShow,
       onPressMenuItem,
       onPressMenuPreview,
       renderPreview,
@@ -179,6 +183,16 @@ export class ContextMenuView extends
     event.stopPropagation();
   };
 
+  private _handleOnMenuAuxiliaryPreviewWillShow: OnMenuAuxiliaryPreviewWillShowEvent = (event) => {
+    this.props.onMenuAuxiliaryPreviewWillShow?.(event);
+    event.stopPropagation();
+  };
+
+  private _handleOnMenuAuxiliaryPreviewDidShow: OnMenuAuxiliaryPreviewDidShowEvent = (event) => {
+    this.props.onMenuAuxiliaryPreviewDidShow?.(event);
+    event.stopPropagation();
+  };
+
   private _handleOnPressMenuItem: OnPressMenuItemEvent = (event) => {
     this.props.onPressMenuItem?.(event);
 
@@ -237,6 +251,10 @@ export class ContextMenuView extends
           onMenuDidHide={this._handleOnMenuDidHide}
           onMenuDidCancel={this._handleOnMenuDidCancel}
           onMenuWillCreate={this._handleOnMenuWillCreate}
+
+          // Events: "Aux. Preview"-Related
+          onMenuAuxiliaryPreviewWillShow={this._handleOnMenuAuxiliaryPreviewWillShow}
+          onMenuAuxiliaryPreviewDidShow={this._handleOnMenuAuxiliaryPreviewDidShow}
 
           // Events: `onPress`-Related
           onPressMenuItem={this._handleOnPressMenuItem}

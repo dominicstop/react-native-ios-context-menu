@@ -34,9 +34,15 @@ export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig> 
 } | {
   isUsingActionSheetFallback: true;
   nativeEvent: MenuActionConfig;
-}
+};
 
 export type OnPressMenuPreviewEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnMenuAuxiliaryPreviewWillShowEventObject = NativeSyntheticEvent<{
+}>;
+
+export type OnMenuAuxiliaryPreviewDidShowEventObject = NativeSyntheticEvent<{
 }>;
 
 // Event Handler Types
@@ -76,4 +82,12 @@ export type OnPressMenuItemEvent = (
 
 export type OnPressMenuPreviewEvent = (
   event: OnPressMenuPreviewEventObject
+) => void;
+
+export type OnMenuAuxiliaryPreviewWillShowEvent = (
+  event: OnMenuAuxiliaryPreviewWillShowEventObject
+) => void;
+
+export type OnMenuAuxiliaryPreviewDidShowEvent = (
+  event: OnMenuAuxiliaryPreviewDidShowEventObject
 ) => void;

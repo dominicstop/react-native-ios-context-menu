@@ -72,6 +72,10 @@ class RNIContextMenuView: UIView {
   
   @objc var onMenuWillCreate: RCTBubblingEventBlock?;
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+  @objc var onMenuAuxiliaryPreviewWillShow: RCTBubblingEventBlock?;
+  @objc var onMenuAuxiliaryPreviewDidShow : RCTBubblingEventBlock?;
+  
   // MARK: - RN Exported Props
   // -------------------------
     
@@ -635,6 +639,7 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
+    // TODO: Remove
     print("DEBUG - morphingPlatterView - y: \(morphingPlatterView.frame.origin.y)");
     
     // MARK: Set Layout
@@ -732,6 +737,9 @@ fileprivate extension RNIContextMenuView {
     // transition - start value
     previewAuxiliaryView.alpha = 0;
     
+    // trigger will show event
+    self.onMenuAuxiliaryPreviewWillShow?([:]);
+    
     UIView.animate(withDuration: 0.3, animations: {
       // fade in transition
       previewAuxiliaryView.alpha = 1;
@@ -741,7 +749,8 @@ fileprivate extension RNIContextMenuView {
         contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
       
     }, completion: {_ in
-      // TODO: Add RN event
+      // trigger did show event
+      self.onMenuAuxiliaryPreviewDidShow?([:]);
     });
   };
   
