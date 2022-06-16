@@ -70,6 +70,7 @@
 <br>
 
 - [ ] **Implement**: Provide a default config for `previewConfig` when a `renderPreview` prop is given a value so that there's a default behavior.
+- [ ] Expose `location(in:)`
 
 ---
 
