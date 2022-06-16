@@ -17,11 +17,11 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
       }}
-      onMenuAuxiliaryPreviewWillShow={() => {
-        alert('onMenuAuxiliaryPreviewWillShow');
+      onMenuAuxiliaryPreviewWillShow={(event) => {
+        console.log('onMenuAuxiliaryPreviewWillShow', event.nativeEvent);
       }}
-      onMenuAuxiliaryPreviewDidShow={() => {
-        alert('onMenuAuxiliaryPreviewDidShow');
+      onMenuAuxiliaryPreviewDidShow={(event) => {
+        console.log('onMenuAuxiliaryPreviewDidShow', event.nativeEvent);
       }}
       menuConfig={{
         menuTitle: 'ContextMenuViewExample19',

@@ -46,7 +46,7 @@ class RNIContextMenuView: UIView {
   weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  private var previewAuxiliaryViewPlacement: AnchorPosition?;
+  private var morphingPlatterViewPlacement: AnchorPosition?;
   
   private var didTriggerCleanup = false;
   
@@ -599,7 +599,7 @@ fileprivate extension RNIContextMenuView {
     }();
     
     // temp. save aux. preview position for later...
-    self.previewAuxiliaryViewPlacement = morphingPlatterViewPlacement;
+    self.morphingPlatterViewPlacement = morphingPlatterViewPlacement;
 
     // MARK: Prep - Compute Offsets
     // ----------------------------
@@ -747,7 +747,7 @@ fileprivate extension RNIContextMenuView {
       
     }, completion: {_ in
       // trigger did show event
-      self.onMenuAuxiliaryPreviewDidShow?([:]);
+      self.onMenuAuxiliaryPreviewDidShow?(eventObject);
     });
   };
   
@@ -778,7 +778,7 @@ fileprivate extension RNIContextMenuView {
       transform = transform.scaledBy(x: 0.7, y: 0.7);
       
       // transition - slide out
-      switch self.previewAuxiliaryViewPlacement {
+      switch self.morphingPlatterViewPlacement {
         case .top:
           transform = transform.translatedBy(x: 0, y: 50);
           
@@ -796,7 +796,7 @@ fileprivate extension RNIContextMenuView {
       previewAuxiliaryView.removeFromSuperview();
       
       // clear value
-      self.previewAuxiliaryViewPlacement = nil;
+      self.morphingPlatterViewPlacement = nil;
     };
   };
 };

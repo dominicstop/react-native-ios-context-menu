@@ -39,11 +39,22 @@ export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig> 
 export type OnPressMenuPreviewEventObject = NativeSyntheticEvent<{
 }>;
 
-export type OnMenuAuxiliaryPreviewWillShowEventObject = NativeSyntheticEvent<{
-}>;
+export type MenuAuxiliaryPreviewDetailsEventObject = {
+  size: {
+    width: number;
+    height: number;
+  };
+  menuHasItems: boolean;
+  menuItemsPlacement: 'top' | 'bottom' | 'unknown';
+  previewPosition: 'top' | 'bottom';
+  isAuxiliaryPreviewAttachedToTop: boolean;
+}; 
+      
+export type OnMenuAuxiliaryPreviewWillShowEventObject =
+  NativeSyntheticEvent<MenuAuxiliaryPreviewDetailsEventObject>;
 
-export type OnMenuAuxiliaryPreviewDidShowEventObject = NativeSyntheticEvent<{
-}>;
+export type OnMenuAuxiliaryPreviewDidShowEventObject = 
+  NativeSyntheticEvent<MenuAuxiliaryPreviewDetailsEventObject>;
 
 // Event Handler Types
 // -------------------
