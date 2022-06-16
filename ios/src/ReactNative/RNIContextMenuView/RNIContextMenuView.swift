@@ -16,7 +16,7 @@ class RNIContextMenuView: UIView {
     case contextMenuAuxiliaryPreview;
   };
   
-  private enum AnchorPosition {
+  private enum AnchorPosition: String {
     case top;
     case bottom;
   };
@@ -729,6 +729,19 @@ fileprivate extension RNIContextMenuView {
     
     // MARK: Show Aux. View
     // --------------------
+    
+    // object to send to js when the "will/did" show events fire
+    let eventObject: Dictionary<String, Any> = [
+      "size": [
+        "width" : previewAuxiliaryViewSize.width,
+        "height": previewAuxiliaryViewSize.height,
+      ],
+      
+      "menuHasItems": menuConfigHasMenuItems,
+      "menuItemsPlacement": menuItemsPlacement?.rawValue ?? "unknown",
+      "previewPosition": morphingPlatterViewPlacement.rawValue,
+      "isAuxiliaryPreviewAttachedToTop": shouldAttachToTop,
+    ];
     
     // TODO: Impl. other entrance animation
     // transition - start value
