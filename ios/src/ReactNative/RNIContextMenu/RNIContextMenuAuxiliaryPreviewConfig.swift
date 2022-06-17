@@ -33,7 +33,11 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   struct TransitionConfig {
     
     var transition: TransitionType;
+    
+    // MARK: UIView.Animate Config
+    
     var duration: CGFloat;
+    var delay: CGFloat;
     
     init(dictionary: NSDictionary){
       
@@ -74,11 +78,14 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
       }();
       
       self.duration = dictionary["duration"] as? CGFloat ?? 50;
+      self.delay = dictionary["delay"] as? CGFloat ?? 0;
     };
     
     init(){
       self.transition = .fade;
       self.duration = 0.3;
+      self.delay = 0;
+      self.options = [];
     };
   };
   

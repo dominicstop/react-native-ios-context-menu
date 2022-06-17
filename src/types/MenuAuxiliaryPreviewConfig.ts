@@ -13,8 +13,12 @@ export type MenuAuxiliaryPreviewHorizontalAlignment =
   | 'previewCenter';
 
 export type MenuAuxiliaryPreviewTransitionConfig = {
+export type UIViewAnimateConfig = {
   duration?: number;
-} & ({
+  delay?: number;
+};
+
+export type MenuAuxiliaryPreviewTransitionConfig = UIViewAnimateConfig & ({
   transition: 'none';
 } | {
   transition: 'fade';
