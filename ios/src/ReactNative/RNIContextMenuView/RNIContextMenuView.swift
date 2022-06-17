@@ -734,8 +734,8 @@ fileprivate extension RNIContextMenuView {
       return constraints;
     }());
     
-    // MARK: Show Aux. View
-    // --------------------
+    //  MARK: Show Aux. View - Prep
+    // ----------------------------
     
     // object to send to js when the "will/did" show events fire
     let eventObject: Dictionary<String, Any> = [
@@ -750,16 +750,43 @@ fileprivate extension RNIContextMenuView {
       "isAuxiliaryPreviewAttachedToTop": shouldAttachToTop,
     ];
     
-    // TODO: Impl. other entrance animation
-    // transition - start value
-    previewAuxiliaryView.alpha = 0;
+    // closures to set the start/end values for the entrance transition
+    let (setTransitionStateStart, setTransitionStateEnd): (() -> (), () -> ()) = {
+      switch auxConfig.transitionConfigEntrance.transition {
+        case .fade:
+          return ({
+            // fade - start
+            previewAuxiliaryView.alpha = 0;
+          },{
+            // fade - end
+            previewAuxiliaryView.alpha = 1;
+          });
+          
+        case .slide:
+          return ({},{});
+          
+        case .zoom:
+          return ({},{});
+        
+        case .none: fallthrough;
+          
+        default:
+          return ({},{});
+      };
+    }();
+    
+    // MARK: Show Aux. View
+    // --------------------
     
     // trigger will show event
     self.onMenuAuxiliaryPreviewWillShow?([:]);
     
+    // transition - set start value
+    setTransitionStateStart();
+    
     UIView.animate(withDuration: 0.3, animations: {
-      // fade in transition
-      previewAuxiliaryView.alpha = 1;
+      // transition in - set end value
+      setTransitionStateEnd();
       
       // offset from anchor
       contextMenuContentContainer.frame =
