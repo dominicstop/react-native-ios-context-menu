@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
+import { TSEventEmitter } from '@dominicstop/ts-event-emitter';
+
 import { RNIContextMenuView } from '../../native_components/RNIContextMenuView';
 import { RNIWrapperView } from '../../native_components/RNIWrapperView';
 
@@ -9,7 +11,7 @@ import { RNIContextMenuViewModule } from '../../native_modules/RNIContextMenuVie
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent } from '../../types/MenuEvents';
-import type { ContextMenuViewProps, ContextMenuViewState } from './ContextMenuViewTypes';
+import type { ContextMenuViewProps, ContextMenuViewState, NavigatorViewEventEmitter } from './ContextMenuViewTypes';
 
 // @ts-ignore - TODO
 import { ActionSheetFallback } from '../../functions/ActionSheetFallback';
@@ -32,6 +34,8 @@ export class ContextMenuView extends
 
   nativeRef!: React.Component;
 
+  emitter: NavigatorViewEventEmitter;
+
   constructor(props: ContextMenuViewProps){
     super(props);
 
@@ -39,6 +43,8 @@ export class ContextMenuView extends
       menuVisible : false,
       mountPreview: false,
     };
+
+    this.emitter = new TSEventEmitter();
   };
 
   private getProps = () => {
@@ -48,6 +54,7 @@ export class ContextMenuView extends
       previewConfig,
       auxiliaryPreviewConfig,
       shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
+      shouldWaitForMenuToHideBeforeFiringOnPressMenuItem,
       // event props
       onMenuWillShow,
       onMenuWillHide,
@@ -75,6 +82,9 @@ export class ContextMenuView extends
       ),
       shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle: (
         shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle ?? true
+      ),
+      shouldWaitForMenuToHideBeforeFiringOnPressMenuItem: (
+        shouldWaitForMenuToHideBeforeFiringOnPressMenuItem ?? true
       ),
 
       // B. Pass down props...
@@ -172,7 +182,10 @@ export class ContextMenuView extends
 
   private _handleOnMenuDidHide: OnMenuDidHideEvent = (event) => {
     this.props.onMenuDidHide?.(event);
+    this.emitter.emit('onMenuDidHide', event);
+
     event.stopPropagation();
+    event.persist();
   };
 
   private _handleOnMenuDidCancel: OnMenuDidCancelEvent = (event) => {
@@ -193,12 +206,36 @@ export class ContextMenuView extends
     event.stopPropagation();
   };
 
-  private _handleOnPressMenuItem: OnPressMenuItemEvent = (event) => {
-    this.props.onPressMenuItem?.(event);
-
+  private _handleOnPressMenuItem: OnPressMenuItemEvent = async (event) => {
+    const props = this.getProps();
+  
     // guard: event is a native event
     if(event.isUsingActionSheetFallback) return;
+
     event.stopPropagation();
+    event.persist();
+
+    try {
+      if(props.shouldWaitForMenuToHideBeforeFiringOnPressMenuItem){
+        // wait for `onMenuDidHide`
+        await Helpers.promiseWithTimeout(1000, new Promise<void>((resolve) => {
+          this.emitter.once('onMenuDidHide', () => {
+            resolve();
+          });
+        }));
+
+        props.onPressMenuItem?.(event);
+
+      } else {
+        props.onPressMenuItem?.(event);
+      };
+
+    } catch(error){
+      console.error(
+          '_handleOnPressMenuItem - Promise waiting for `onMenuDidHide`'
+        + ' has timed out'
+      );
+    };
   };
 
   private _handleOnPressMenuPreview: OnPressMenuPreviewEvent = (event) => {
