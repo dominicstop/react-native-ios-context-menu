@@ -4,12 +4,11 @@ import { View, Image, StyleSheet, Text } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
+// Repro for issue #43
+// https://github.com/dominicstop/react-native-ios-context-menu/issues/43
 
 export const Test02Screen = () => {
   const [isMessageLiked, setIsMessageLiked] = useState(false);
-  const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
-
-  const shouldShowHeart = isMessageLiked && !isContextMenuVisible;
 
   return (
     <View style={styles.rootContainer}>
@@ -41,12 +40,6 @@ export const Test02Screen = () => {
                 break;
             };
           }}
-          onMenuWillShow={() => {
-            setIsContextMenuVisible(true);
-          }}
-          onMenuDidHide={() => {
-            setIsContextMenuVisible(false);
-          }}
         >
           <Image
             style={styles.messageImage}
@@ -54,8 +47,8 @@ export const Test02Screen = () => {
             resizeMode={'cover'}
           />
         </ContextMenuView>
-        {shouldShowHeart && (
-          <Text>
+        {isMessageLiked && (
+          <Text style={styles.labelReaction}>
             {'❤️'}
           </Text>
         )}
@@ -84,5 +77,9 @@ const styles = StyleSheet.create({
   messageImage: {
     width: 200,
     height: 100,
+  },
+  labelReaction: {
+    alignSelf: 'flex-end',
+    marginTop: 5,
   },
 });
