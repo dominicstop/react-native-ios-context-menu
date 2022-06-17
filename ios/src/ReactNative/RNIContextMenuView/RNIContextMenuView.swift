@@ -750,8 +750,10 @@ fileprivate extension RNIContextMenuView {
       "isAuxiliaryPreviewAttachedToTop": shouldAttachToTop,
     ];
     
+    typealias TransStartEnd =  (() -> (), () -> ());
+    
     // closures to set the start/end values for the entrance transition
-    let (setTransitionStateStart, setTransitionStateEnd): (() -> (), () -> ()) = {
+    let (setTransitionStateStart, setTransitionStateEnd): TransStartEnd = {
       var transform = previewAuxiliaryView.transform;
       
       switch auxConfig.transitionConfigEntrance.transition {
@@ -783,7 +785,7 @@ fileprivate extension RNIContextMenuView {
             // apply transform
             previewAuxiliaryView.transform = transform;
             
-          },{
+          }, {
             // fade - end
             previewAuxiliaryView.alpha = 1;
             
@@ -801,7 +803,27 @@ fileprivate extension RNIContextMenuView {
           });
           
         case .zoom:
-          return ({},{});
+          let scaleOffset: CGFloat = 0.3;
+          let scale = 1 - scaleOffset;
+          
+          return ({
+            // fade - start
+            previewAuxiliaryView.alpha = 0;
+            
+            // zoom - start
+            transform = transform
+              .scaledBy(x: scale, y: scale);
+            
+            // start - apply transform
+            previewAuxiliaryView.transform = transform;
+            
+          }, {
+            // fade - end
+            previewAuxiliaryView.alpha = 1;
+            
+            // zoom - end - reset transform
+            previewAuxiliaryView.transform = .identity;
+          });
         
         case .none: fallthrough;
           
