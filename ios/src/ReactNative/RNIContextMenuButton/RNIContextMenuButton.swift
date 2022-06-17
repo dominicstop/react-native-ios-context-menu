@@ -22,12 +22,13 @@ class RNIContextMenuButton: UIButton {
   
   weak var contextMenuViewController: RNIContextMenuViewController?;
   
+  private var shouldEnableCleanup = true;
+  
   private var didTriggerCleanup = false;
   
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
-  private var shouldDisableCleanup = true;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -148,7 +149,7 @@ private extension RNIContextMenuButton {
   };
   
   func cleanup(){
-    guard !shouldDisableCleanup,
+    guard self.shouldEnableCleanup,
           !self.didTriggerCleanup
     else { return };
     
