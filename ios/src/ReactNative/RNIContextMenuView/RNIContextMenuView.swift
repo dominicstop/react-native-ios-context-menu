@@ -146,6 +146,7 @@ class RNIContextMenuView: UIView {
     }
   };
   
+  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   private var _auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
   @objc var auxiliaryPreviewConfig: NSDictionary? {
     didSet {
