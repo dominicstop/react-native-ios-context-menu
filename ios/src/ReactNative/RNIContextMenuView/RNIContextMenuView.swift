@@ -752,15 +752,11 @@ fileprivate extension RNIContextMenuView {
       "isAuxiliaryPreviewAttachedToTop": shouldAttachToTop,
     ];
     
-    typealias TransStartEnd =  (() -> (), () -> ());
-    
     // closures to set the start/end values for the entrance transition
-    let (setTransitionStateStart, setTransitionStateEnd): TransStartEnd = {
+    let (setTransitionStateStart, setTransitionStateEnd): (() -> (), () -> ()) = {
       var transform = previewAuxiliaryView.transform;
       
-      let setTransformForTransitionSlideStart = {
-        let yOffset: CGFloat = 50;
-        
+      let setTransformForTransitionSlideStart = { (yOffset: CGFloat) in
         switch morphingPlatterViewPlacement {
           case .top:
             transform = transform.translatedBy(x: 0, y: -yOffset);
@@ -770,10 +766,8 @@ fileprivate extension RNIContextMenuView {
         };
       };
       
-      let setTransformForTransitionZoomStart = {
-        let scaleOffset: CGFloat = 0.3;
+      let setTransformForTransitionZoomStart = { (scaleOffset: CGFloat) in
         let scale = 1 - scaleOffset;
-        
         transform = transform.scaledBy(x: scale, y: scale);
       };
       
@@ -786,12 +780,12 @@ fileprivate extension RNIContextMenuView {
             previewAuxiliaryView.alpha = 1;
           });
           
-        case .slide: return ({
+        case let .slide(slideOffset): return ({
             // fade - start
             previewAuxiliaryView.alpha = 0;
             
             // slide - start
-            setTransformForTransitionSlideStart();
+            setTransformForTransitionSlideStart(slideOffset);
             
             // apply transform
             previewAuxiliaryView.transform = transform;
@@ -804,12 +798,12 @@ fileprivate extension RNIContextMenuView {
             previewAuxiliaryView.transform = .identity;
           });
           
-        case .zoom: return ({
+        case let .zoom(zoomOffset): return ({
             // fade - start
             previewAuxiliaryView.alpha = 0;
             
             // zoom - start
-            setTransformForTransitionZoomStart();
+            setTransformForTransitionZoomStart(zoomOffset);
             
             // start - apply transform
             previewAuxiliaryView.transform = transform;
@@ -822,15 +816,15 @@ fileprivate extension RNIContextMenuView {
             previewAuxiliaryView.transform = .identity;
           });
           
-        case .zoomAndSlide: return ({
+        case let .zoomAndSlide(slideOffset, zoomOffset): return ({
           // fade - start
           previewAuxiliaryView.alpha = 0;
         
           // slide - start
-          setTransformForTransitionSlideStart();
+          setTransformForTransitionSlideStart(slideOffset);
           
           // zoom - start
-          setTransformForTransitionZoomStart();
+          setTransformForTransitionZoomStart(zoomOffset);
           
           // start - apply transform
           previewAuxiliaryView.transform = transform;

@@ -22,8 +22,12 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
          previewTrailing, previewCenter;
   };
   
-  enum TransitionType: String {
-    case none, fade, slide, zoom, zoomAndSlide;
+  enum TransitionType {
+    case none, fade;
+    
+    case slide(slideOffset: CGFloat);
+    case zoom(zoomOffset: CGFloat);
+    case zoomAndSlide(slideOffset: CGFloat, zoomOffset: CGFloat);
   };
   
   struct TransitionConfig {
@@ -34,11 +38,39 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
     init(dictionary: NSDictionary){
       
       self.transition = {
-        guard let string = dictionary["transition"] as? String,
-              let value = TransitionType(rawValue: string)
+        guard let string = dictionary["transition"] as? String
         else { return .fade };
         
-        return value;
+        let getSlideOffset = {
+          return dictionary["slideOffset"] as? CGFloat ?? 50;
+        };
+        
+        let getZoomOffset = {
+          return dictionary["zoomOffset"] as? CGFloat ?? 0.3;
+        };
+        
+        switch string {
+          case "none":
+            return .none;
+            
+          case "fade":
+            return .fade;
+            
+          case "slide":
+            return .slide(slideOffset: getSlideOffset());
+            
+          case "zoom":
+            return .zoom(zoomOffset: getZoomOffset());
+            
+          case "zoomAndSlide":
+            return .zoomAndSlide(
+              slideOffset: getSlideOffset(),
+              zoomOffset: getZoomOffset()
+            );
+            
+          default:
+            return .fade;
+        };
       }();
       
       self.duration = dictionary["duration"] as? CGFloat ?? 50;

@@ -13,11 +13,22 @@ export type MenuAuxiliaryPreviewHorizontalAlignment =
   | 'previewCenter';
 
 export type MenuAuxiliaryPreviewTransitionConfig = {
+  duration?: number;
+} & ({
   transition: 'none';
 } | {
-  transition: 'fade' | 'slide' | 'zoom' | 'zoomAndSlide';
-  duration?: number;
-};
+  transition: 'fade';
+} | {
+  transition: 'slide';
+  slideOffset?: number;
+} | {
+  transition: 'zoom';
+  zoomOffset?: number;
+} | {
+  transition: 'zoomAndSlide';
+  slideOffset?: number;
+  zoomOffset?: number;
+});
 
 export type MenuAuxiliaryPreviewTransitionEntranceDelay = 
   | number

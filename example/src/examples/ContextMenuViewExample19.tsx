@@ -17,8 +17,9 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
         transitionConfigEntrance: {
-          transition: 'zoomAndSlide',
-          duration: 1,
+          transition: 'slide',
+          duration: 0.3,
+          slideOffset: 200,
         }
       }}
       onMenuAuxiliaryPreviewWillShow={(event) => {
