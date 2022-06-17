@@ -22,12 +22,13 @@ class RNIContextMenuButton: UIButton {
   
   weak var contextMenuViewController: RNIContextMenuViewController?;
   
-  private var shouldEnableCleanup = true;
-  
   private var didTriggerCleanup = false;
   
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
+  
+  // MARK: Properties - Feature Flags
+  private var shouldEnableCleanup = true;
   
   
   // MARK: - RN Exported Event Props

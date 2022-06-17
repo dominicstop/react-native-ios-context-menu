@@ -53,6 +53,8 @@ class RNIContextMenuView: UIView {
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
+  // MARK: Properties - Feature Flags
+  
   private var shouldEnableAttachToParentVC = false;
   private var shouldEnableCleanup = true;
   
