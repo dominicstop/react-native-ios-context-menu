@@ -5,8 +5,11 @@ import { View, Image, StyleSheet, Text } from 'react-native';
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
 
-export const Test02Screen = (props) => {
+export const Test02Screen = () => {
   const [isMessageLiked, setIsMessageLiked] = useState(false);
+  const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
+
+  const shouldShowHeart = isMessageLiked && !isContextMenuVisible;
 
   return (
     <View style={styles.rootContainer}>
@@ -38,6 +41,12 @@ export const Test02Screen = (props) => {
                 break;
             };
           }}
+          onMenuWillShow={() => {
+            setIsContextMenuVisible(true);
+          }}
+          onMenuDidHide={() => {
+            setIsContextMenuVisible(false);
+          }}
         >
           <Image
             style={styles.messageImage}
@@ -45,7 +54,7 @@ export const Test02Screen = (props) => {
             resizeMode={'cover'}
           />
         </ContextMenuView>
-        {isMessageLiked && (
+        {shouldShowHeart && (
           <Text>
             {'❤️'}
           </Text>
