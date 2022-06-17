@@ -59,7 +59,7 @@ class RNIContextMenuView: UIView {
   private var shouldEnableCleanup = true;
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  private var shouldEnableAuxPreview = false;
+  private var shouldEnableAuxPreview = true;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
