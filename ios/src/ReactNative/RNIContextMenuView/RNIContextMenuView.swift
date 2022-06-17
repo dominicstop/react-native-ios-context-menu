@@ -756,9 +756,27 @@ fileprivate extension RNIContextMenuView {
     let (setTransitionStateStart, setTransitionStateEnd): TransStartEnd = {
       var transform = previewAuxiliaryView.transform;
       
+      let setTransformForTransitionSlideStart = {
+        let yOffset: CGFloat = 50;
+        
+        switch morphingPlatterViewPlacement {
+          case .top:
+            transform = transform.translatedBy(x: 0, y: -yOffset);
+            
+          case .bottom:
+            transform = transform.translatedBy(x: 0, y: yOffset);
+        };
+      };
+      
+      let setTransformForTransitionZoomStart = {
+        let scaleOffset: CGFloat = 0.3;
+        let scale = 1 - scaleOffset;
+        
+        transform = transform.scaledBy(x: scale, y: scale);
+      };
+      
       switch auxConfig.transitionConfigEntrance.transition {
-        case .fade:
-          return ({
+        case .fade: return ({
             // fade - start
             previewAuxiliaryView.alpha = 0;
           },{
@@ -766,21 +784,12 @@ fileprivate extension RNIContextMenuView {
             previewAuxiliaryView.alpha = 1;
           });
           
-        case .slide:
-          let yOffset: CGFloat = 50;
-          
-          return ({
+        case .slide: return ({
             // fade - start
             previewAuxiliaryView.alpha = 0;
             
             // slide - start
-            switch morphingPlatterViewPlacement {
-              case .top:
-                transform = transform.translatedBy(x: 0, y: -yOffset);
-                
-              case .bottom:
-                transform = transform.translatedBy(x: 0, y: yOffset);
-            };
+            setTransformForTransitionSlideStart();
             
             // apply transform
             previewAuxiliaryView.transform = transform;
@@ -788,31 +797,17 @@ fileprivate extension RNIContextMenuView {
           }, {
             // fade - end
             previewAuxiliaryView.alpha = 1;
-            
-            // slide - end
-            switch morphingPlatterViewPlacement {
-              case .top:
-                transform = transform.translatedBy(x: 0, y: yOffset);
-                
-              case .bottom:
-                transform = transform.translatedBy(x: 0, y: -yOffset);
-            };
-            
-            // apply transform
-            previewAuxiliaryView.transform = transform;
+   
+            // slide - end - reset transform
+            previewAuxiliaryView.transform = .identity;
           });
           
-        case .zoom:
-          let scaleOffset: CGFloat = 0.3;
-          let scale = 1 - scaleOffset;
-          
-          return ({
+        case .zoom: return ({
             // fade - start
             previewAuxiliaryView.alpha = 0;
             
             // zoom - start
-            transform = transform
-              .scaledBy(x: scale, y: scale);
+            setTransformForTransitionZoomStart();
             
             // start - apply transform
             previewAuxiliaryView.transform = transform;
@@ -824,7 +819,28 @@ fileprivate extension RNIContextMenuView {
             // zoom - end - reset transform
             previewAuxiliaryView.transform = .identity;
           });
+          
+        case .zoomAndSlide: return ({
+          // fade - start
+          previewAuxiliaryView.alpha = 0;
         
+          // slide - start
+          setTransformForTransitionSlideStart();
+          
+          // zoom - start
+          setTransformForTransitionZoomStart();
+          
+          // start - apply transform
+          previewAuxiliaryView.transform = transform;
+                    
+        }, {
+          // fade - end
+          previewAuxiliaryView.alpha = 1;
+          
+          // slide/zoom - end - reset transform
+          previewAuxiliaryView.transform = .identity;
+        });
+          
         case .none: fallthrough;
           
         default:

@@ -15,7 +15,7 @@ export type MenuAuxiliaryPreviewHorizontalAlignment =
 export type MenuAuxiliaryPreviewTransitionConfig = {
   transition: 'none';
 } | {
-  transition: 'fade' | 'slide' | 'zoom';
+  transition: 'fade' | 'slide' | 'zoom' | 'zoomAndSlide';
   duration?: number;
 };
 

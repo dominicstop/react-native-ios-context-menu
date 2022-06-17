@@ -23,7 +23,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   };
   
   enum TransitionType: String {
-    case none, fade, slide, zoom;
+    case none, fade, slide, zoom, zoomAndSlide;
   };
   
   struct TransitionConfig {
