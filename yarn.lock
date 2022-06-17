@@ -1058,6 +1058,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dominicstop/ts-event-emitter@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@dominicstop/ts-event-emitter/-/ts-event-emitter-1.1.0.tgz#1f3d3fa878a1ccab686931280757954719cf88e4"
+  integrity sha512-CcxmJIvUb1vsFheuGGVSQf4KdPZC44XolpUT34+vlal+LyQoBUOn31pjFET5M9ctOxEpt8xa0M3/2M7uUiAoJw==
+
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.3.tgz#9e42981ef035beb3dd49add17acb96e8ff6f394c"
