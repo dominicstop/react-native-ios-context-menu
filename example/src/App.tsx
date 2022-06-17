@@ -10,27 +10,52 @@ import { TestScreen } from './screens/Test01Screen';
 import { SHARED_ENV } from './constants/SharedEnv';
 
 
-const Tab       = SHARED_ENV.enableReactNavigation && createBottomTabNavigator();
-const Tab1Stack = SHARED_ENV.enableReactNavigation && createNativeStackNavigator();
+const shouldEnableTabs = 
+  SHARED_ENV.enableReactNavigation && SHARED_ENV.enableTabNavigation;
+
 
 function Tab1StackScreen() {
-  return (
+  if(shouldEnableTabs){
+    const Tab1Stack = createNativeStackNavigator();
+
+    return (
     <Tab1Stack.Navigator initialRouteName="Home">
       <Tab1Stack.Screen name="Home" component={HomeScreen} />
       <Tab1Stack.Screen name="Test" component={TestScreen} />
     </Tab1Stack.Navigator>
   );
+
+  } else {
+    return null;
+  };
 };
 
 export default function App() {
-  return SHARED_ENV.enableReactNavigation ? (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Tab1" component={Tab1StackScreen} />
-        <Tab.Screen name="Tab2" component={HomeScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  ):(
+  if(shouldEnableTabs){
+    const TabNavigator = createBottomTabNavigator();
+
+    return(
+      <NavigationContainer>
+        <TabNavigator.Navigator>
+          <TabNavigator.Screen name="Tab1" component={Tab1StackScreen} />
+          <TabNavigator.Screen name="Tab2" component={HomeScreen} />
+        </TabNavigator.Navigator>
+      </NavigationContainer>
+    );
+  } else if(SHARED_ENV.enableReactNavigation){
+    const Stack = createNativeStackNavigator();
+
+    return(
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Test" component={TestScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  };
+
+  return (
     <HomeScreen/>
   );
 };
