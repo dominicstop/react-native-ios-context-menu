@@ -737,6 +737,8 @@ fileprivate extension RNIContextMenuView {
     //  MARK: Show Aux. View - Prep
     // ----------------------------
     
+    let transitionConfigEntrance = auxConfig.transitionConfigEntrance;
+    
     // object to send to js when the "will/did" show events fire
     let eventObject: Dictionary<String, Any> = [
       "size": [
@@ -857,7 +859,7 @@ fileprivate extension RNIContextMenuView {
     // transition - set start value
     setTransitionStateStart();
     
-    UIView.animate(withDuration: 0.3, animations: {
+    UIView.animate(withDuration: transitionConfigEntrance.duration, animations: {
       // transition in - set end value
       setTransitionStateEnd();
       
