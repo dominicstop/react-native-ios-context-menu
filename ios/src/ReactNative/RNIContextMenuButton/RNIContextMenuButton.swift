@@ -28,7 +28,7 @@ class RNIContextMenuButton: UIButton {
   private var didAttachToParentVC = false;
   
   // MARK: Properties - Feature Flags
-  private var shouldEnableCleanup = true;
+  private var shouldEnableCleanup = false;
   
   
   // MARK: - RN Exported Event Props
