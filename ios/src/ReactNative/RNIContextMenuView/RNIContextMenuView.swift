@@ -752,6 +752,8 @@ fileprivate extension RNIContextMenuView {
     
     // closures to set the start/end values for the entrance transition
     let (setTransitionStateStart, setTransitionStateEnd): (() -> (), () -> ()) = {
+      var transform = previewAuxiliaryView.transform;
+      
       switch auxConfig.transitionConfigEntrance.transition {
         case .fade:
           return ({
@@ -763,7 +765,40 @@ fileprivate extension RNIContextMenuView {
           });
           
         case .slide:
-          return ({},{});
+          let yOffset: CGFloat = 50;
+          
+          return ({
+            // fade - start
+            previewAuxiliaryView.alpha = 0;
+            
+            // slide - start
+            switch morphingPlatterViewPlacement {
+              case .top:
+                transform = transform.translatedBy(x: 0, y: -yOffset);
+                
+              case .bottom:
+                transform = transform.translatedBy(x: 0, y: yOffset);
+            };
+            
+            // apply transform
+            previewAuxiliaryView.transform = transform;
+            
+          },{
+            // fade - end
+            previewAuxiliaryView.alpha = 1;
+            
+            // slide - end
+            switch morphingPlatterViewPlacement {
+              case .top:
+                transform = transform.translatedBy(x: 0, y: yOffset);
+                
+              case .bottom:
+                transform = transform.translatedBy(x: 0, y: -yOffset);
+            };
+            
+            // apply transform
+            previewAuxiliaryView.transform = transform;
+          });
           
         case .zoom:
           return ({},{});
