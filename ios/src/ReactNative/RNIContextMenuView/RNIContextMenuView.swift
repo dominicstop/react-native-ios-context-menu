@@ -53,6 +53,7 @@ class RNIContextMenuView: UIView {
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
+  private var shouldEnableAttachToParentVC = false;
   private var shouldEnableCleanup = true;
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
@@ -1033,7 +1034,8 @@ extension RNIContextMenuView: RNIContextMenu {
   };
   
   func attachToParentVC(){
-    guard !self.didAttachToParentVC,
+    guard self.shouldEnableAttachToParentVC,
+          !self.didAttachToParentVC,
           // find the nearest parent view controller
           let parentVC = RNIUtilities
             .getParent(responder: self, type: UIViewController.self)
