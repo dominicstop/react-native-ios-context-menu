@@ -55,8 +55,8 @@ class RNIContextMenuView: UIView {
   
   // MARK: Properties - Feature Flags
   
-  private var shouldEnableAttachToParentVC = false;
-  private var shouldEnableCleanup = false;
+  private var shouldEnableAttachToParentVC = true;
+  private var shouldEnableCleanup = true;
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   private var shouldEnableAuxPreview = false;
