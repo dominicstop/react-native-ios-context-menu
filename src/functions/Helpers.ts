@@ -24,6 +24,20 @@ export function timeout(ms: Number) {
   });
 };
 
+/** Wraps a promise that will reject if not not resolved in <ms> milliseconds */
+export function promiseWithTimeout<T>(ms: Number, promise: Promise<T>){
+  // Create a promise that rejects in <ms> milliseconds
+  const timeoutPromise = new Promise<T>((_, reject) => {
+    const timeoutID = setTimeout(() => {
+      clearTimeout(timeoutID);
+      reject(`Promise timed out in ${ms} ms.`)
+    }, ms);
+  });
+
+  // Returns a race between our timeout and the passed in promise
+  return Promise.race([promise, timeoutPromise]);
+};
+
 export function pad(num: number | string, places = 2){
   return String(num).padStart(places, '0');
 };
