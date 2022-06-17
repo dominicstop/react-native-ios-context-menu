@@ -53,6 +53,8 @@ class RNIContextMenuView: UIView {
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
+  private var shouldDisableCleanup = true;
+  
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   private var shouldEnableAuxPreview = false;
   
@@ -372,8 +374,10 @@ fileprivate extension RNIContextMenuView {
   };
   
   func cleanup(){
+    guard !shouldDisableCleanup,
+          !self.didTriggerCleanup
+    else { return };
     
-    guard !self.didTriggerCleanup else { return };
     self.didTriggerCleanup = true;
     
     self.contextMenuInteraction?.dismissMenu();
