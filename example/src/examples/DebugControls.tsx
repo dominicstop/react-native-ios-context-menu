@@ -30,11 +30,19 @@ export function DebugControls(props: ContextMenuExampleProps) {
         }}
       />
       <CardButton
-        title={'Push: Test'}
+        title={'Push: Test 01'}
         subtitle={'Navigate to "Test" screen...'}
         onPress={() => {
           // @ts-ignore
           navigation.push('Test');
+        }}
+      />
+      <CardButton
+        title={'Push: Test 02'}
+        subtitle={'Navigate to "Test02" screen...'}
+        onPress={() => {
+          // @ts-ignore
+          navigation.push('Test02');
         }}
       />
     </ContextMenuCard>
