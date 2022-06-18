@@ -18,8 +18,11 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
         transitionEntranceDelay: 'RECOMMENDED',
         transitionConfigEntrance: {
           transition: 'slide',
-          duration: 0.3,
+          duration: 1,
           slideOffset: 200,
+          options: [
+            'curveEaseInOut',
+          ]
         }
       }}
       onMenuAuxiliaryPreviewWillShow={(event) => {

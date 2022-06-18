@@ -12,10 +12,18 @@ export type MenuAuxiliaryPreviewHorizontalAlignment =
   | 'previewTrailing'
   | 'previewCenter';
 
-export type MenuAuxiliaryPreviewTransitionConfig = {
+// TODO: Move to `react-native-ios-utilities`
+
+export type UIViewAnimateOptions = 
+  | 'curveEaseIn'
+  | 'curveEaseOut'
+  | 'curveEaseInOut'
+  | 'curveLinear'
+
 export type UIViewAnimateConfig = {
   duration?: number;
   delay?: number;
+  options?: UIViewAnimateOptions[];
 };
 
 export type MenuAuxiliaryPreviewTransitionConfig = UIViewAnimateConfig & ({

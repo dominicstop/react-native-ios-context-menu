@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 struct RNIContextMenuAuxiliaryPreviewConfig {
@@ -38,6 +39,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
     
     var duration: CGFloat;
     var delay: CGFloat;
+    var options: UIView.AnimationOptions;
     
     init(dictionary: NSDictionary){
       
@@ -77,8 +79,28 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
         };
       }();
       
-      self.duration = dictionary["duration"] as? CGFloat ?? 50;
+      self.duration = dictionary["duration"] as? CGFloat ?? 0.3;
+      
       self.delay = dictionary["delay"] as? CGFloat ?? 0;
+      
+      self.options = {
+        guard let rawItems = dictionary["options"] as? Array<Any>
+        else { return [] };
+        
+        // workaround for: "Generic parameter 'ElementOfResult'
+        // could not be inferred" when using `compactMap`
+        var options: UIView.AnimationOptions = [];
+        
+        for rawItem in rawItems {
+          if let string = rawItem as? String,
+             let option = UIView.AnimationOptions(string: string) {
+            
+            options.insert(option);
+          };
+        };
+        
+        return options;
+      }();
     };
     
     init(){

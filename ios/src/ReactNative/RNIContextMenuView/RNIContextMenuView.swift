@@ -851,11 +851,16 @@ fileprivate extension RNIContextMenuView {
     // trigger will show event
     self.onMenuAuxiliaryPreviewWillShow?([:]);
     
-    // transition - set start value
+    // transition - set start/initial values
     setTransitionStateStart();
     
-    UIView.animate(withDuration: transitionConfigEntrance.duration, animations: {
-      // transition in - set end value
+    UIView.animate(
+      withDuration: transitionConfigEntrance.duration,
+      delay       : transitionConfigEntrance.delay,
+      options     : transitionConfigEntrance.options,
+      animations  : {
+        
+      // transition in - set end values
       setTransitionStateEnd();
       
       // offset from anchor
