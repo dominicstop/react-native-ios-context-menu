@@ -10,12 +10,12 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 import * as COLORS from '../constants/Colors';
 
 
-export function ContextMenuViewExample20(props: ContextMenuExampleProps) {
+export function ContextMenuViewExample21(props: ContextMenuExampleProps) {
   return (
     <ContextMenuView
       style={props.style}
       menuConfig={{
-        menuTitle: 'ContextMenuViewExample20',
+        menuTitle: 'ContextMenuViewExample21',
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Everything you own',
@@ -55,7 +55,7 @@ export function ContextMenuViewExample20(props: ContextMenuExampleProps) {
     >
       <ContextMenuCard
         index={props.index}
-        title={'ContextMenuViewExample20'}
+        title={'ContextMenuViewExample21'}
         subtitle={'EXPERIMENTAL - Aux. Preview'}
         description={[
           `Basic 'ContextMenuView' w/ a auxillary preview aligned to the left.`,
