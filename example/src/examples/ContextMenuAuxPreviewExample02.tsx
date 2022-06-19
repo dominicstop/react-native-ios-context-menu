@@ -10,12 +10,12 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 import * as COLORS from '../constants/Colors';
 
 
-export function ContextMenuViewExample20(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample02(props: ContextMenuExampleProps) {
   return (
     <ContextMenuView
       style={props.style}
       menuConfig={{
-        menuTitle: 'ContextMenuViewExample20',
+        menuTitle: 'ContextMenuAuxPreviewExample02',
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Shorter Delay',
@@ -43,7 +43,7 @@ export function ContextMenuViewExample20(props: ContextMenuExampleProps) {
     >
       <ContextMenuCard
         index={props.index}
-        title={'ContextMenuViewExample20'}
+        title={'ContextMenuAuxPreviewExample02'}
         subtitle={'EXPERIMENTAL - Aux. Preview'}
         description={[
           `Basic 'ContextMenuView' w/ a auxillary preview that shows up faster`,
