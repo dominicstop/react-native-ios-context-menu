@@ -717,6 +717,9 @@ fileprivate extension RNIContextMenuView {
           case .previewCenter: return [
             previewAuxiliaryView.centerXAnchor
               .constraint(equalTo: morphingPlatterView.centerXAnchor),
+            
+            previewAuxiliaryView.widthAnchor
+              .constraint(equalToConstant: auxiliaryViewWidth),
           ];
             
           // D - match preview size
