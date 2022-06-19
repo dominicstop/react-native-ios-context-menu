@@ -45,7 +45,7 @@ export function ContextMenuViewExample24(props: ContextMenuExampleProps) {
     >
       <ContextMenuCard
         index={props.index}
-        title={'ContextMenuViewExample24'}
+        title={'ContextMenuAuxPreviewExample06'}
         subtitle={'EXPERIMENTAL - Aux. Preview'}
         description={[
           `Basic 'ContextMenuView' w/ a auxillary preview xxx`,
