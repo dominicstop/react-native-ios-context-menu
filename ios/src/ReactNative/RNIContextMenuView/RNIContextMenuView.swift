@@ -707,7 +707,10 @@ fileprivate extension RNIContextMenuView {
           // B - pin to right
           case .previewTrailing: return [
             previewAuxiliaryView.rightAnchor.constraint(
-              equalTo: morphingPlatterView.rightAnchor, constant: -auxiliaryViewWidth)
+              equalTo: morphingPlatterView.rightAnchor),
+            
+            previewAuxiliaryView.widthAnchor
+              .constraint(equalToConstant: auxiliaryViewWidth),
           ];
             
           // C - pin to center
