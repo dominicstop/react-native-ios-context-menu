@@ -27,7 +27,7 @@ import { ContextMenuAuxPreviewExample02 } from '../examples/ContextMenuAuxPrevie
 import { ContextMenuAuxPreviewExample03 } from '../examples/ContextMenuAuxPreviewExample03';
 import { ContextMenuAuxPreviewExample04 } from '../examples/ContextMenuAuxPreviewExample04';
 import { ContextMenuAuxPreviewExample05 } from '../examples/ContextMenuAuxPreviewExample05';
-import { ContextMenuViewExample24 } from '../examples/ContextMenuViewExample24';
+import { ContextMenuViewExample24 } from '../examples/ContextMenuAuxPreviewExample06';
 import { ContextMenuViewExample25 } from '../examples/ContextMenuViewExample25';
 
 import { ContextMenuViewTest01 } from '../examples/ContextMenuViewTest01';

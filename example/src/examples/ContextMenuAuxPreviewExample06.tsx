@@ -8,12 +8,12 @@ import type { ContextMenuExampleProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewExample24(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample06(props: ContextMenuExampleProps) {
   return (
     <ContextMenuView
       style={props.style}
       menuConfig={{
-        menuTitle: 'ContextMenuViewExample24',
+        menuTitle: 'ContextMenuAuxPreviewExample06',
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Action #1',
