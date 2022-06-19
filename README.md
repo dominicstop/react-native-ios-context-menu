@@ -557,49 +557,108 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 ##### Object Type: `MenuAuxiliaryPreviewConfig`
 
-| Name and Type | Description |
-| ------------- | ----------- |
-| TBA           | TBA         |
+| Name and Type                                                | Description |
+| ------------------------------------------------------------ | ----------- |
+| 🔤  `height`<br/><br/>⚛️ `number`                              | TBA         |
+| 🔤  `anchorPosition`<br/><br/>⚛️ `MenuAuxiliaryPreviewAnchorPosition`<br/><br/>✳️ **Default**: `automatic` | TBA         |
+| 🔤  `alignmentHorizontal`<br/><br/>⚛️ `MenuAuxiliaryPreviewHorizontalAlignment`<br/><br/>✳️ **Default**: `stretchPreview` | TBA         |
+| 🔤  `marginPreview`<br/><br/>⚛️ `number`                       | TBA         |
+| 🔤  `marginAuxiliaryPreview`<br/><br/>⚛️ `number`              | TBA         |
+| 🔤  `transitionConfigEntrance`<br/><br/>⚛️ `MenuAuxiliaryPreviewTransitionConfig` | TBA         |
+| 🔤  `transitionEntranceDelay`<br/><br/>⚛️ `MenuAuxiliaryPreviewTransitionEntranceDelay` | TBA         |
 
 <br>
 
 ##### String Union Type: `MenuAuxiliaryPreviewAnchorPosition`
 
-| Name and Type | Description |
-| ------------- | ----------- |
-| TBA           | TBA         |
+| Name and Type  | Description |
+| -------------- | ----------- |
+| ⚛️  `top`       | TBA         |
+| ⚛️  `bottom`    | TBA         |
+| ⚛️  `automatic` | TBA         |
+
+<br>
+
+##### String Union Type: `MenuAuxiliaryPreviewHorizontalAlignment`
+
+| Name and Type        | Description |
+| -------------------- | ----------- |
+| ⚛️  `stretchScreen`   | TBA         |
+| ⚛️  `stretchPreview`  | TBA         |
+| ⚛️  `previewLeading`  | TBA         |
+| ⚛️  `previewTrailing` | TBA         |
+| ⚛️  `previewCenter`   | TBA         |
 
 <br>
 
 ##### String Union Type: `UIViewAnimateOptions`
 
-| Name and Type | Description |
-| ------------- | ----------- |
-| TBA           | TBA         |
+| Name and Type       | Description |
+| ------------------- | ----------- |
+| ⚛️  `curveEaseIn`    | TBA         |
+| ⚛️  `curveEaseOut`   | TBA         |
+| ⚛️  `curveEaseInOut` | TBA         |
+| ⚛️  `curveLinear`    | TBA         |
 
 <br>
 
 ##### Object Type: `UIViewAnimateConfig`
 
-| Name and Type | Description |
-| ------------- | ----------- |
-| TBA           | TBA         |
+| Name and Type                                    | Description |
+| ------------------------------------------------ | ----------- |
+| 🔤  `duration`<br/><br/>⚛️ `number`                | TBA         |
+| 🔤  `delay`<br/><br/>⚛️ `number`                   | TBA         |
+| 🔤  `options`<br/><br/>⚛️ `UIViewAnimateOptions[]` | TBA         |
 
 <br>
 
-##### Object Type: `MenuAuxiliaryPreviewTransitionConfig`
+##### Object Union Type: `MenuAuxiliaryPreviewTransitionConfig`
 
-| Name and Type | Description |
-| ------------- | ----------- |
-| TBA           | TBA         |
+This type is extends/union-ed with `UIViewAnimateConfig` object type, and such is not listed in this section. Please see `UIViewAnimateConfig` type for the other object properties.<br><br>This type is an object tagged union type, with the `transition` property being the tag that separates the unions. The table below defines the possible valid values that can be assigned to the `type` property (the subsequent tables are the different possible unions).
+
+| Name and Type                                                | Description |
+| ------------------------------------------------------------ | ----------- |
+| 🔤  `transition `<br/><br/>⚛️ `string` i.e. `'none' ¦  'fade'`<br>`'slide' ¦ 'zoom' ¦ 'zoomAndSlide'` | TBA         |
 
 <br>
 
-##### Union Type: `MenuAuxiliaryPreviewTransitionEntranceDelay`
+| Name and Type                                   | Description |
+| ----------------------------------------------- | ----------- |
+| 🔤  `transition`<br/><br/>⚛️ `string` i.e. `none` | TBA         |
 
-| Name and Type | Description |
-| ------------- | ----------- |
-| TBA           | TBA         |
+<br>
+
+| Name and Type                                   | Description |
+| ----------------------------------------------- | ----------- |
+| 🔤  `transition`<br/><br/>⚛️ `string` i.e. `fade` | TBA         |
+
+<br>
+
+| Name and Type                                    | Description |
+| ------------------------------------------------ | ----------- |
+| 🔤  `transition`<br/><br/>⚛️ `string` i.e. `slide` | TBA         |
+
+<br>
+
+| Name and Type                                   | Description |
+| ----------------------------------------------- | ----------- |
+| 🔤  `transition`<br/><br/>⚛️ `string` i.e. `zoom` | TBA         |
+
+<br>
+
+| Name and Type                                           | Description |
+| ------------------------------------------------------- | ----------- |
+| 🔤  `transition`<br/><br/>⚛️ `string` i.e. `zoomAndSlide` | TBA         |
+
+<br>
+
+##### Mixed Union Type: `MenuAuxiliaryPreviewTransitionEntranceDelay`.
+
+| Name and Type     | Description |
+| ----------------- | ----------- |
+| ⚛️ `number`        | TBA         |
+| ⚛️ `RECOMMENDED`   | TBA         |
+| ⚛️ `AFTER_PREVIEW` | TBA         |
 
 <br>
 
