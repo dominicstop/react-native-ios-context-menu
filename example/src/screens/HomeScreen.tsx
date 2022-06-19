@@ -27,8 +27,8 @@ import { ContextMenuAuxPreviewExample02 } from '../examples/ContextMenuAuxPrevie
 import { ContextMenuAuxPreviewExample03 } from '../examples/ContextMenuAuxPreviewExample03';
 import { ContextMenuAuxPreviewExample04 } from '../examples/ContextMenuAuxPreviewExample04';
 import { ContextMenuAuxPreviewExample05 } from '../examples/ContextMenuAuxPreviewExample05';
-import { ContextMenuViewExample24 } from '../examples/ContextMenuAuxPreviewExample06';
-import { ContextMenuViewExample25 } from '../examples/ContextMenuViewExample25';
+import { ContextMenuAuxPreviewExample06 } from '../examples/ContextMenuAuxPreviewExample06';
+import { ContextMenuAuxPreviewExample07 } from '../examples/ContextMenuAuxPreviewExample07';
 
 import { ContextMenuViewTest01 } from '../examples/ContextMenuViewTest01';
 import { ContextMenuViewTest02 } from '../examples/ContextMenuViewTest02';
@@ -76,8 +76,8 @@ const EXAMPLE_COMPONENTS = [
   ContextMenuAuxPreviewExample03,
   ContextMenuAuxPreviewExample04,
   ContextMenuAuxPreviewExample05,
-  ContextMenuViewExample24,
-  ContextMenuViewExample25,
+  ContextMenuAuxPreviewExample06,
+  ContextMenuAuxPreviewExample07,
   ContextMenuViewTest01,
   ContextMenuViewTest02,
   ContextMenuViewTest03,
