@@ -467,9 +467,9 @@ A union string type that maps to `UIMenuElement.Attributes` enum (see [apple doc
 
 | Type             | Description |
 | :--------------- | :---------- |
-| 🔤  `hidden`      | TBA         |
-| 🔤  `disabled`    | TBA         |
-| 🔤  `destructive` | TBA         |
+| ⚛️  `hidden`      | TBA         |
+| ⚛️  `disabled`    | TBA         |
+| ⚛️  `destructive` | TBA         |
 
 <br>
 
@@ -483,9 +483,9 @@ A union string type that maps to `UIMenuElement.State` enum (see [apple docs](ht
 
 | Type       | Description |
 | :--------- | :---------- |
-| 🔤  `on`    | TBA         |
-| 🔤  `off`   | TBA         |
-| 🔤  `mixed` | TBA         |
+| ⚛️  `on`    | TBA         |
+| ⚛️  `off`   | TBA         |
+| ⚛️  `mixed` | TBA         |
 
 <br>
 
@@ -499,8 +499,8 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 | Type               | Description |
 | :----------------- | :---------- |
-| 🔤  `destructive`   | TBA         |
-| 🔤  `displayInline` | TBA         |
+| ⚛️  `destructive`   | TBA         |
+| ⚛️  `displayInline` | TBA         |
 
 <br>
 
@@ -526,8 +526,8 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 | Name and Type | Description |
 | :------------ | :---------- |
-| 🔤  `dismiss`  | TBA         |
-| 🔤  `pop`      | TBA         |
+| ⚛️  `dismiss`  | TBA         |
+| ⚛️  `pop`      | TBA         |
 
 <br>
 
@@ -535,8 +535,8 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 | Name and Type | Description |
 | :------------ | :---------- |
-| 🔤  `INHERIT`  | TBA         |
-| 🔤  `STRETCH`  | TBA         |
+| ⚛️  `INHERIT`  | TBA         |
+| ⚛️  `STRETCH`  | TBA         |
 
 <br>
 
@@ -544,8 +544,8 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 | Name and Type | Description |
 | :------------ | :---------- |
-| 🔤  `DEFAULT`  | TBA         |
-| 🔤  `CUSTOM`   |             |
+| ⚛️  `DEFAULT`  | TBA         |
+| ⚛️  `CUSTOM`   | TBA         |
 
 <br>
 
