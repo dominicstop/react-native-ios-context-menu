@@ -1017,12 +1017,10 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     guard self.isContextMenuVisible else { return };
     
-    #if DEBUG
     // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
     // hide preview auxiliary view
     self.detachContextMenuAuxiliaryPreviewIfAny(animator);
-    #endif
-    
+
     self.onMenuWillHide?([:]);
     
     if !self.didPressMenuItem {
