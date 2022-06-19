@@ -141,6 +141,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   // ------------------
   
   var height: CGFloat?;
+  var width: CGFloat?;
 
   var anchorPosition: AnchorPosition;
   var alignmentHorizontal: HorizontalAlignment;
@@ -156,6 +157,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   
   init(dictionary: NSDictionary){
     self.height = dictionary["height"] as? CGFloat;
+    self.width  = dictionary["width" ] as? CGFloat;
     
     self.anchorPosition = {
       guard let string = dictionary["anchorPosition"] as? String,

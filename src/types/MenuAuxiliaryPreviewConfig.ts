@@ -49,8 +49,7 @@ export type MenuAuxiliaryPreviewTransitionEntranceDelay =
 
 export type MenuAuxiliaryPreviewConfig = {
   height?: number;
-  // TODO: Make optional - if null determine width from component view height
-  // width?: number;
+  width?: number;
 
   anchorPosition?: MenuAuxiliaryPreviewAnchorPosition;
   alignmentHorizontal?: MenuAuxiliaryPreviewHorizontalAlignment;

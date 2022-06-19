@@ -539,9 +539,9 @@ fileprivate extension RNIContextMenuView {
         case .stretchPreview:
           return morphingPlatterView.frame.width - adj;
         
-        // C - Infer aux preview width from view...
+        // C - Infer aux config or aux preview width from view...
         default:
-          return previewAuxiliaryView.frame.width;
+          return auxConfig.width ?? previewAuxiliaryView.frame.width;
       };
     }();
     
