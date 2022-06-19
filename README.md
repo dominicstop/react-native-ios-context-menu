@@ -269,9 +269,9 @@ const styles = StyleSheet.create({
 | 🔤  `lazyPreview`<br/><br/>⚛️ `boolean`<br><br>✳️ **Default**: `true` | If set to `true` (which it is by default), the custom context menu preview (i.e the component returned from the `ContextMenuView.renderPreview` prop) will only be mounted/rendered when the context menu interaction begins (i.e when the context menu is about to be shown).<br><br>Set this to `false` if you want the preview content to be always mounted. |
 | 🔤  `useActionSheetFallback`<br><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Context menus are only supported on iOS 13+ (i.e context menus are not supported on iOS 12, and below).<br><br>On iOS 12 and below, a long press on a `ContextMenuView` will show a [`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the current `menuConfig` prop.<br><br> If you want to disable this behavior, set this  prop to false.<br><br>📝 **Note**: Default value is `false` on iOS 13+, and `true` on iOS 12 and below. |
 | 🔤  `renderPreview`<br/><br/>⚛️ [`() => React.ReactElement`](PLACE_HOLDER_LINK) | This prop is a "render" prop, i.e it accepts a function that returns a react component.<br><br>The returned component will displayed in the context menu preview. |
-| 🔤  `isAuxiliaryPreviewEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `false` | TBA                                                          |
-| 🔤  `auxiliaryPreviewConfig`<br/><br/>⚛️ `MenuAuxiliaryPreviewConfig` | TBA                                                          |
-| 🔤  `renderAuxillaryPreview`<br/><br/>⚛️ `() => React.ReactElement` | TBA                                                          |
+| 🔤  `isAuxiliaryPreviewEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `false` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
+| 🔤  `auxiliaryPreviewConfig`<br/><br/>⚛️ `MenuAuxiliaryPreviewConfig` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
+| 🔤  `renderAuxillaryPreview`<br/><br/>⚛️ `() => React.ReactElement` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
 
 <br>
 
@@ -287,8 +287,8 @@ const styles = StyleSheet.create({
 | 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and hidden**, i.e. this event is invoked when the context menu is cancelled, and the menu exit transition is finished. |
 | 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Event that gets called when a menu action is pressed.<br><br/> You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out [Example 1](#contextmenuview-example-01), and [Example 9](#contextmenuview-example-09) for examples regarding the `onPressMenuItem` event prop.<br><br> 📝 **Note**: If `shouldWaitForMenuToHide`<br/>`BeforeFiringOnPressMenuItem` prop is set to `true` (which it is by default), then this event will fire after `onMenuDidHide` is triggered. |
 | 🔤  `onPressMenuPreview`<br/><br/>⚛️ [`OnPressMenuPreviewEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu's preview is pressed.   |
-| 🔤  `onMenuAuxiliaryPreviewWillShow`<br/><br/>⚛️ [`OnMenuAuxiliaryPreviewWillShowEvent`](./src/types/MenuEvents.ts) | TBA                                                          |
-| 🔤  `onMenuAuxiliaryPreviewDidShow`<br/><br/>⚛️ [`OnMenuAuxiliaryPreviewDidShowEvent`](./src/types/MenuEvents.ts) | TBA                                                          |
+| 🔤  `onMenuAuxiliaryPreviewWillShow`<br/><br/>⚛️ [`OnMenuAuxiliaryPreviewWillShowEvent`](./src/types/MenuEvents.ts) | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
+| 🔤  `onMenuAuxiliaryPreviewDidShow`<br/><br/>⚛️ [`OnMenuAuxiliaryPreviewDidShowEvent`](./src/types/MenuEvents.ts) | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
 
 <br>
 
@@ -297,6 +297,14 @@ const styles = StyleSheet.create({
 | Prop Name and Type                          | Description                                                  |
 | :------------------------------------------ | :----------------------------------------------------------- |
 | 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
+
+<br>
+
+##### `ContextMenuView` Component: Experimental - Auxiliary Preview
+
+The context menu auxiliary preview is an experimental feature, and is not officially part of `UIKit`'s "Menu and Shortcuts" API. 
+
+This is just a feature that I've implemented myself and added to the library — as such official support is limited and might break in a future iOS version. Please use at your own risk.
 
 <br>
 
