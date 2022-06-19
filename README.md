@@ -268,7 +268,10 @@ const styles = StyleSheet.create({
 | 🔤  `isContextMenuEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Enables or disables the context menu. Useful if you want to temporarily disable the context menu. |
 | 🔤  `lazyPreview`<br/><br/>⚛️ `boolean`<br><br>✳️ **Default**: `true` | If set to `true` (which it is by default), the custom context menu preview (i.e the component returned from the `ContextMenuView.renderPreview` prop) will only be mounted/rendered when the context menu interaction begins (i.e when the context menu is about to be shown).<br><br>Set this to `false` if you want the preview content to be always mounted. |
 | 🔤  `useActionSheetFallback`<br><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Context menus are only supported on iOS 13+ (i.e context menus are not supported on iOS 12, and below).<br><br>On iOS 12 and below, a long press on a `ContextMenuView` will show a [`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the current `menuConfig` prop.<br><br> If you want to disable this behavior, set this  prop to false.<br><br>📝 **Note**: Default value is `false` on iOS 13+, and `true` on iOS 12 and below. |
-| 🔤  `renderPreview`<br/><br/>⚛️ [`abc`](PLACE_HOLDER_LINK)     | This prop is a "render" prop, i.e it accepts a function that returns a react component.<br><br>The returned component will displayed in the context menu preview. |
+| 🔤  `renderPreview`<br/><br/>⚛️ [`() => React.ReactElement`](PLACE_HOLDER_LINK) | This prop is a "render" prop, i.e it accepts a function that returns a react component.<br><br>The returned component will displayed in the context menu preview. |
+| 🔤  `isAuxiliaryPreviewEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `false` | TBA                                                          |
+| 🔤  `auxiliaryPreviewConfig`<br/><br/>⚛️ `MenuAuxiliaryPreviewConfig` | TBA                                                          |
+| 🔤  `renderAuxillaryPreview`<br/><br/>⚛️ `() => React.ReactElement` | TBA                                                          |
 
 <br>
 
@@ -282,8 +285,10 @@ const styles = StyleSheet.create({
 | 🔤  `onMenuDidHide`<br/><br/>⚛️ [`OnMenuDidHideEvent`](./src/types/MenuEvents.ts) | Event that gets called **after** the context menu is hidden, i.e this event is invoked <u>after the menu exit animation</u> is finished. |
 | 🔤  `onMenuWillCancel`<br/><br/>⚛️ [`OnMenuWillCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and about to be hidden**, i.e this event is immediately invoked when the context menu interaction is cancelled. |
 | 🔤  `onMenuDidCancel`<br/><br/>⚛️ [`OnMenuDidCancelEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu is **cancelled and hidden**, i.e. this event is invoked when the context menu is cancelled, and the menu exit transition is finished. |
-| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Event that gets called when a menu action is pressed.<br><br/> You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out [Example 1](#contextmenuview-example-01), and [Example 9](#contextmenuview-example-09) for examples regarding the `onPressMenuItem` event prop. |
+| 🔤  `onPressMenuItem`<br/><br/>⚛️ [`OnPressMenuItemEvent`](./src/types/MenuEvents.ts) | Event that gets called when a menu action is pressed.<br><br/> You can identify which action was pressed via `nativeEvent.actionKey ` property in the `nativeEvent` object. <br/><br/>Check out [Example 1](#contextmenuview-example-01), and [Example 9](#contextmenuview-example-09) for examples regarding the `onPressMenuItem` event prop.<br><br> 📝 **Note**: If `shouldWaitForMenuToHide`<br/>`BeforeFiringOnPressMenuItem` prop is set to `true` (which it is by default), then this event will fire after `onMenuDidHide` is triggered. |
 | 🔤  `onPressMenuPreview`<br/><br/>⚛️ [`OnPressMenuPreviewEvent`](./src/types/MenuEvents.ts) | Event that gets called when the menu's preview is pressed.   |
+| 🔤  `onMenuAuxiliaryPreviewWillShow`<br/><br/>⚛️ [`OnMenuAuxiliaryPreviewWillShowEvent`](./src/types/MenuEvents.ts) | TBA                                                          |
+| 🔤  `onMenuAuxiliaryPreviewDidShow`<br/><br/>⚛️ [`OnMenuAuxiliaryPreviewDidShowEvent`](./src/types/MenuEvents.ts) | TBA                                                          |
 
 <br>
 
@@ -541,6 +546,60 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 | :------------ | :---------- |
 | 🔤  `DEFAULT`  | TBA         |
 | 🔤  `CUSTOM`   |             |
+
+<br>
+
+#### 📄 `MenuAuxiliaryPreviewConfig.ts`
+
+* 📌 **Declaration**: [`MenuAuxiliaryPreviewConfig.ts`](src/types/MenuAuxiliaryPreviewConfig.ts)
+
+<br>
+
+##### Object Type: `MenuAuxiliaryPreviewConfig`
+
+| Name and Type | Description |
+| ------------- | ----------- |
+| TBA           | TBA         |
+
+<br>
+
+##### String Union Type: `MenuAuxiliaryPreviewAnchorPosition`
+
+| Name and Type | Description |
+| ------------- | ----------- |
+| TBA           | TBA         |
+
+<br>
+
+##### String Union Type: `UIViewAnimateOptions`
+
+| Name and Type | Description |
+| ------------- | ----------- |
+| TBA           | TBA         |
+
+<br>
+
+##### Object Type: `UIViewAnimateConfig`
+
+| Name and Type | Description |
+| ------------- | ----------- |
+| TBA           | TBA         |
+
+<br>
+
+##### Object Type: `MenuAuxiliaryPreviewTransitionConfig`
+
+| Name and Type | Description |
+| ------------- | ----------- |
+| TBA           | TBA         |
+
+<br>
+
+##### Union Type: `MenuAuxiliaryPreviewTransitionEntranceDelay`
+
+| Name and Type | Description |
+| ------------- | ----------- |
+| TBA           | TBA         |
 
 <br>
 
