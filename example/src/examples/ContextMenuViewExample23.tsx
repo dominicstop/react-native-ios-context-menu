@@ -7,8 +7,6 @@ import { ContextMenuView } from 'react-native-ios-context-menu';
 import type { ContextMenuExampleProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
-import * as COLORS from '../constants/Colors';
-
 
 export function ContextMenuViewExample23(props: ContextMenuExampleProps) {
   return (
@@ -65,6 +63,6 @@ const styles = StyleSheet.create({
   textLabel: {
       fontSize: 18,
     fontWeight: '600',
-    color: COLORS.BLUE.A700,
+    color: 'black',
   },
 });

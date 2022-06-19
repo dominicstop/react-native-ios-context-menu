@@ -35,6 +35,7 @@ export function ContextMenuViewExample22(props: ContextMenuExampleProps) {
       }}
       auxiliaryPreviewConfig={{
         alignmentHorizontal: 'previewTrailing',
+        transitionEntranceDelay: 'RECOMMENDED',
       }}
       renderAuxillaryPreview={() => (
         <View style={[styles.auxRootContainer, {

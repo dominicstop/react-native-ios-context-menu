@@ -15,9 +15,6 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
     <ContextMenuView
       style={props.style}
       isAuxiliaryPreviewEnabled={true}
-      auxiliaryPreviewConfig={{
-        transitionEntranceDelay: 'RECOMMENDED',
-      }}
       menuConfig={{
         menuTitle: 'ContextMenuViewExample19',
         menuItems: [{
