@@ -863,6 +863,9 @@ A basic context menu that has 3 menu action items (e.g. "Action #1", "Action #2"
 	* Details about the selected menu action item can be accessed via the `OnPressMenuItemEventObject.nativeEvent` object.<br><br>
 	* E.g. `OnPressMenuItemEventObject.nativeEvent.actionKey`.
 
+<br>
+
+-  📝 **Note**: If `shouldWaitForMenuToHide`<br/>`BeforeFiringOnPressMenuItem` prop is set to `true` (which it is by default), then this event will fire after `onMenuDidHide` is triggered.
 
 <br>
 
