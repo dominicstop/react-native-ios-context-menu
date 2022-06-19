@@ -14,16 +14,9 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
   return (
     <ContextMenuView
       style={props.style}
+      isAuxiliaryPreviewEnabled={true}
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
-        transitionConfigEntrance: {
-          transition: 'slide',
-          duration: 1,
-          slideOffset: 200,
-          options: [
-            'curveEaseInOut',
-          ]
-        }
       }}
       onMenuAuxiliaryPreviewWillShow={(event) => {
         console.log('onMenuAuxiliaryPreviewWillShow', event.nativeEvent);

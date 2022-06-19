@@ -55,6 +55,7 @@ export class ContextMenuView extends
       auxiliaryPreviewConfig,
       shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
       shouldWaitForMenuToHideBeforeFiringOnPressMenuItem,
+      isAuxiliaryPreviewEnabled,
       // event props
       onMenuWillShow,
       onMenuWillHide,
@@ -85,6 +86,9 @@ export class ContextMenuView extends
       ),
       shouldWaitForMenuToHideBeforeFiringOnPressMenuItem: (
         shouldWaitForMenuToHideBeforeFiringOnPressMenuItem ?? true
+      ),
+      isAuxiliaryPreviewEnabled: (
+        isAuxiliaryPreviewEnabled ?? false
       ),
 
       // B. Pass down props...

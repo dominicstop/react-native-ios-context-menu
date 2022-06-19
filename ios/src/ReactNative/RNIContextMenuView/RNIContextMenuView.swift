@@ -58,9 +58,6 @@ class RNIContextMenuView: UIView {
   private var shouldEnableAttachToParentVC = true;
   private var shouldEnableCleanup = true;
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  private var shouldEnableAuxPreview = true;
-  
   // MARK: - RN Exported Event Props
   // -------------------------------
   
@@ -146,7 +143,15 @@ class RNIContextMenuView: UIView {
     }
   };
   
+  @objc var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
+  
+  @objc var isContextMenuEnabled = true;
+  
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+  // -------------------------------------------------------------
+  
+  @objc var isAuxiliaryPreviewEnabled = true;
+  
   private var _auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
   @objc var auxiliaryPreviewConfig: NSDictionary? {
     didSet {
@@ -162,10 +167,6 @@ class RNIContextMenuView: UIView {
       self._auxiliaryPreviewConfig = config;
     }
   };
-  
-  @objc var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
-  
-  @objc var isContextMenuEnabled = true;
   
   // MARK: - Computed Properties
   
@@ -498,7 +499,7 @@ fileprivate extension RNIContextMenuView {
     _ animator: UIContextMenuInteractionAnimating!
   ){
 
-    guard self.shouldEnableAuxPreview,
+    guard self.isAuxiliaryPreviewEnabled,
           let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
           let previewAuxiliaryView = previewAuxiliaryViewWrapper.reactContent,
           
@@ -878,7 +879,7 @@ fileprivate extension RNIContextMenuView {
     _ animator: UIContextMenuInteractionAnimating?
   ){
     
-    guard self.shouldEnableAuxPreview,
+    guard self.isAuxiliaryPreviewEnabled,
           let animator = animator,
           let previewAuxiliaryView = self.previewAuxiliaryViewWrapper?.reactContent
     else { return };

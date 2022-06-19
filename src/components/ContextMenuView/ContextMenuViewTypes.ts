@@ -17,6 +17,7 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'auxiliaryPreviewConfig'
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'
+  | 'isAuxiliaryPreviewEnabled'
   // Lifecycle Events
   | 'onMenuWillShow'
   | 'onMenuWillHide'
