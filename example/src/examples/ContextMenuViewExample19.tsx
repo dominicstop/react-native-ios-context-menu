@@ -18,12 +18,6 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
       }}
-      onMenuAuxiliaryPreviewWillShow={(event) => {
-        console.log('onMenuAuxiliaryPreviewWillShow', event.nativeEvent);
-      }}
-      onMenuAuxiliaryPreviewDidShow={(event) => {
-        console.log('onMenuAuxiliaryPreviewDidShow', event.nativeEvent);
-      }}
       menuConfig={{
         menuTitle: 'ContextMenuViewExample19',
         menuItems: [{
