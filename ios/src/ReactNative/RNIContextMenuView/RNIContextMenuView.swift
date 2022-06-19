@@ -699,6 +699,9 @@ fileprivate extension RNIContextMenuView {
           case .previewLeading: return [
             previewAuxiliaryView.leadingAnchor
               .constraint(equalTo: morphingPlatterView.leadingAnchor),
+            
+            previewAuxiliaryView.widthAnchor
+              .constraint(equalToConstant: auxiliaryViewWidth),
           ];
             
           // B - pin to right
