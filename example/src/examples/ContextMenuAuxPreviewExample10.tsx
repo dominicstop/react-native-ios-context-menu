@@ -21,10 +21,10 @@ export function ContextMenuAuxPreviewExample10(props: ContextMenuExampleProps) {
         }],
       }}
       auxiliaryPreviewConfig={{
-        transitionEntranceDelay: 'RECOMMENDED',
+        transitionEntranceDelay: 0.5,
         transitionConfigEntrance: {
           transition: 'slide',
-          duration: 0.5,
+          duration: 0.4,
           options: ['curveEaseIn'],
         },
       }}
