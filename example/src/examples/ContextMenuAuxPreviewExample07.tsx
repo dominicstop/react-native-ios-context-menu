@@ -54,8 +54,8 @@ export function ContextMenuAuxPreviewExample07(props: ContextMenuExampleProps) {
         title={'ContextMenuAuxPreviewExample07'}
         subtitle={'EXPERIMENTAL - Aux. Preview'}
         description={[
-          `Basic 'ContextMenuView' w/ a auxillary preview xxx`,
-          `xxx'`
+          `Basic 'ContextMenuView' w/ a auxillary preview that has fixed size`,
+          '`auxiliaryPreviewConfig.width`\n`auxiliaryPreviewConfig.height`'
         ]}
       />
     </ContextMenuView>
