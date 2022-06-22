@@ -6,7 +6,7 @@ import { ContextMenuView } from 'react-native-ios-context-menu';
 import type { ContextMenuExampleProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
-import * as Helpers from '../functions/helpers';
+import * as Helpers from '../functions/Helpers';
 
 
 type EventItem = {
