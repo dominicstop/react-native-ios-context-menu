@@ -28,7 +28,7 @@ export function ContextMenuAuxPreviewExample10(props: ContextMenuExampleProps) {
           options: ['curveEaseIn'],
         },
       }}
-      renderAuxillaryPreview={() => (
+      renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
           alignItems: 'center',
           justifyContent: 'center',

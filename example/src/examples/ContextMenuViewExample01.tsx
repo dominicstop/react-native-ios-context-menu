@@ -24,7 +24,7 @@ export function ContextMenuViewExample01(props: ContextMenuExampleProps) {
           actionTitle: 'Action #3',
         }],
       }}
-      renderAuxillaryPreview={() => (
+      renderAuxiliaryPreview={() => (
         <View
           style={{backgroundColor: 'red'}}
         >

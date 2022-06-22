@@ -36,7 +36,7 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   shouldWaitForMenuToHideBeforeFiringOnPressMenuItem?: boolean;
 
   renderPreview?: RenderItem;
-  renderAuxillaryPreview?: RenderItem;
+  renderAuxiliaryPreview?: RenderItem;
 };
 
 export type ContextMenuViewProps = 

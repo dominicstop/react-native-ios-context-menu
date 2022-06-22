@@ -144,7 +144,7 @@ export function ContextMenuAuxPreviewTest01(props: ContextMenuExampleProps) {
           options: ['curveEaseInOut'],
         },
       }}
-      renderAuxillaryPreview={() => (
+      renderAuxiliaryPreview={() => (
         <View style={styles.auxRootContainer}>
           {REACTIONS_KEYS.map((reactionKey, index) => (
             <TouchableOpacity

@@ -24,7 +24,7 @@ export function ContextMenuAuxPreviewExample13(props: ContextMenuExampleProps) {
         transitionEntranceDelay: 'RECOMMENDED',
         marginPreview: 30,
       }}
-      renderAuxillaryPreview={() => (
+      renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
           alignItems: 'center',
           justifyContent: 'center',

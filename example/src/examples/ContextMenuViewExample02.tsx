@@ -48,7 +48,7 @@ export function ContextMenuViewExample02(props: ContextMenuExampleProps) {
             `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
           );
         }}
-        renderAuxillaryPreview={() => (
+        renderAuxiliaryPreview={() => (
         <View
           style={{backgroundColor: 'red'}}
         >

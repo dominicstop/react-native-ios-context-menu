@@ -69,7 +69,7 @@ export class ContextMenuView extends
       onPressMenuPreview,
       lazyPreview,
       renderPreview,
-      renderAuxillaryPreview,
+      renderAuxiliaryPreview: renderAuxillaryPreview,
       ...viewProps 
     } = this.props;
 

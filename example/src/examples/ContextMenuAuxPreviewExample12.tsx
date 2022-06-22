@@ -30,7 +30,7 @@ export function ContextMenuAuxPreviewExample12(props: ContextMenuExampleProps) {
           slideOffset: 100,
         },
       }}
-      renderAuxillaryPreview={() => (
+      renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
           alignItems: 'center',
           justifyContent: 'center',
