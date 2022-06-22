@@ -90,6 +90,12 @@
 
 <br>
 
+### Version: `1.9.1`
+
+TBA
+
+<br>
+
 ### Version: `1.9.0`
 
 TBA
