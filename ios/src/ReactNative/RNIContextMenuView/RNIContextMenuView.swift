@@ -540,7 +540,10 @@ fileprivate extension RNIContextMenuView {
       };
     }();
     
+    /// distance of aux. preview from the context menu preview
     let marginInner = auxConfig.marginPreview;
+    
+    /// distance of the aux. preview from the edges of the screen
     let marginOuter = auxConfig.marginAuxiliaryPreview;
     
     // amount to add to width - fix for layout bug
@@ -613,7 +616,7 @@ fileprivate extension RNIContextMenuView {
     // MARK: Prep - Compute Offsets
     // ----------------------------
     
-    /// distance of aux preview from anchor
+    /// the amount to the nudge the context menu
     let offset: CGFloat = {
       let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets;
       
@@ -628,10 +631,10 @@ fileprivate extension RNIContextMenuView {
           let margin = marginBase + topInsets;
           
           let minEdgeY = auxiliaryViewHeight + topInsets;
-          let distanceToEdge = previewFrame.minY;
+          let distanceToEdge = auxiliaryViewHeight - previewFrame.minY;
         
           return (previewFrame.minY <= minEdgeY)
-            ? max((auxiliaryViewHeight - distanceToEdge + margin), 0)
+            ? max((distanceToEdge + margin), 0)
             : 0;
           
         case .bottom:
@@ -640,9 +643,11 @@ fileprivate extension RNIContextMenuView {
           
           let tolerance = auxiliaryViewHeight + (safeAreaInsets?.bottom ?? 0);
           let maxEdgeY = screenHeight - tolerance;
+          let previewFrameMaxY = previewFrame.maxY + marginInner;
           
           let distanceToEdge = screenHeight - previewFrame.maxY;
-          return (previewFrame.maxY > maxEdgeY)
+          
+          return (previewFrameMaxY > maxEdgeY)
             ? -(auxiliaryViewHeight - distanceToEdge + margin)
             : 0;
       };
