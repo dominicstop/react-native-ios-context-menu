@@ -79,6 +79,7 @@
 ## For Next Major Version
 
 - [ ] **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
+- [ ] **Refactor**: `findNodeHandle` has been deprecated due to fabric support.
 
 ---
 
