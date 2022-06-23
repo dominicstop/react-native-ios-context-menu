@@ -24,12 +24,14 @@ class RNIDeferredMenuElement: RNIMenuElement {
   // -----------------------------
   
   var deferredID: String;
+  var shouldCache: Bool;
   
   override init?(dictionary: NSDictionary){
     guard let deferredID = dictionary["deferredID"] as? String
     else { return nil };
     
     self.deferredID = deferredID;
+    self.shouldCache = dictionary["shouldCache"] as? Bool ?? true;
     
     super.init(dictionary: dictionary);
     
@@ -41,6 +43,14 @@ class RNIDeferredMenuElement: RNIMenuElement {
   func createDeferredElement(handler: @escaping RequestHandler) -> UIDeferredMenuElement {
     // make local copy to prevent using `[weak self]`
     let deferredID = self.deferredID;
+    
+    if !self.shouldCache,
+       #available(iOS 15.0, *) {
+      
+      return UIDeferredMenuElement.uncached { completion in
+        handler(deferredID, completion);
+      };
+    };
     
     return UIDeferredMenuElement { completion in
       handler(deferredID, completion);

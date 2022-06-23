@@ -16,6 +16,7 @@ export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
 export type DeferredMenuElementConfig = {
   type: 'deferred';
   deferredID: string;
+  shouldCache?: boolean;
 };
 
 export type MenuActionConfig = {
