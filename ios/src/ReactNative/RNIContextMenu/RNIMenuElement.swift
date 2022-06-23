@@ -31,6 +31,7 @@ class RNIMenuElement  {
     actionItemHandler      actionHandler  : @escaping RNIMenuActionItem.ActionItemHandler,
     deferredElementHandler deferredHandler: @escaping RNIDeferredMenuElement.RequestHandler
   ) -> UIMenuElement? {
+    
     if let menuItem = self as? RNIMenuItem  {
       return menuItem.createMenu(
         actionItemHandler: actionHandler,
