@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, View, Text } from 'react-native';
+import { Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -12,51 +12,42 @@ export function ContextMenuViewExample02(props: ContextMenuExampleProps) {
     <ContextMenuView
       style={props.style}
       menuConfig={{
-          menuTitle: 'ContextMenuViewExample02',
-          menuItems: [{
-            actionKey  : 'key-01',
-            actionTitle: 'Action #1',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'folder',
-              },
-            }
-          }, {
-            actionKey  : 'key-02'   ,
-            actionTitle: 'Action #2',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'dial.fill',
-              },
-            }
-          }, {
-            actionKey  : 'key-03'   ,
-            actionTitle: 'Action #3',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'archivebox.fill',
-              },
-            }
-          }],
-        }}
-        onPressMenuItem={({nativeEvent}) => {
-          Alert.alert(
-            'onPressMenuItem Event',
-            `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
-          );
-        }}
-        renderAuxiliaryPreview={() => (
-        <View
-          style={{backgroundColor: 'red'}}
-        >
-          <Text>
-            Hello
-          </Text>
-        </View>
-      )}
+        menuTitle: 'ContextMenuViewExample02',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'dial.fill',
+            },
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'archivebox.fill',
+            },
+          }
+        }],
+      }}
+      onPressMenuItem={({nativeEvent}) => {
+        Alert.alert(
+          'onPressMenuItem Event',
+          `actionKey: ${nativeEvent.actionKey} - actionTitle: ${nativeEvent.actionTitle}`
+        );
+      }}
     >
       <ContextMenuCard
         index={props.index}
