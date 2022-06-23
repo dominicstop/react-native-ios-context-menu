@@ -134,6 +134,8 @@ cd ios && pod install
 - ✅ You can use this library with [Development Builds](https://docs.expo.dev/development/introduction/). No config plugin is required.
 - ❌ This library can't be used in the "Expo Go" app because it [requires custom native code](https://docs.expo.dev/workflow/customizing/).
 
+<br>
+
 ### Troubleshooting
 
 If you encounter any errors/bugs while using this library, or want a particular feature implemented, please create an issue! ✨
@@ -266,7 +268,7 @@ const styles = StyleSheet.create({
 | Prop Name and Type                                           | Description                                                  |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | ⚛️ `ViewProps`                                                | This component supports all the standard props from a `<View/>` component. |
-| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | Configures the context menu, along with what menu actions to show.<br><br>This prop accepts a `MenuConfig` object. This object is used to configure various aspects of the context menu:<br>• `MenuConfig.menuTitle`: the context menu title (required),<br><br/>• `MenuConfig.menuItems` the actions to show (along with their title, icons, subtitle, etc) — Accepts either an array of `MenuActionConfig` or `MenuConfig` objects.,<br><br/>• `MenuConfig.menuOptions`: the attributes of the context menu (e.g. destructive) — Accepts an array of  `UIMenuOptions` string items,<br><br/>• and any nested menus or submenus to show (see "**Note A**"). <br><br>📝 **Note A**: Passing a `MenuConfig` object inside of the `MenuConfig.menuItems` property will result in a nested context menu or submenu. In this scenario, the `MenuConfig.menuOptions` and `MenuConfig.icon` can be used to configure the appearance of the submenu. For usage examples regarding nested menus, see [Example 06](contextmenuview-example06)<br><br>📝 **Note B**: Passing a value of `null` (or `undefined`) to this prop will not disable the context menu. Use the `isContextMenuEnabled` prop instead to disable the context menu. <br><br/>📝 **Note C**: You can put `MenuConfig` in  state if you want to dynamically change the menu configuration. If the context menu is currently visible, changing/updating the `MenuConfig` value passed to this prop will cause the context menu to change in real-time. This behavior is only supported on iOS 14+.<br><br>📌 Some example links to get you started:<br>• For basic usage examples regarding `MenuConfig`, see: [Example 1](#contextmenuview-example-06),<br><br/>• For examples on creating + configuring the menu action items (i.e `MenuActionConfig`), see: [Example 2](#contextmenuview-example-02),<br><br/>• For menu action attributes + menu state, and action subtitles, see: [Example 4](#contextmenuview-example-04), [Example 8](#contextmenuview-example-08), and [Example 13](#contextmenuview-example-13),<br><br/>• For examples regarding the usage of icons (i.e `ImageItemConfig`), see: [Example 16](#contextmenuview-example-16), [Example 17](#contextmenuview-example-17), and [Example 18](#contextmenuview-example-18). |
+| 🔤  `menuConfig`<br/><br/>⚛️ [`MenuConfig`](PLACE_HOLDER_LINK) | This prop configures the context menu, along with what menu actions to show.<br><br>This prop accepts a `MenuConfig` object. This object is used to configure various aspects of the context menu. Here are some relevant properties:<br>1️⃣  `MenuConfig.menuTitle`: the context menu title (required),<br><br/>2️⃣  `MenuConfig.menuItems`: the actions to show (E.g. the title, icons, subtitle, etc) — Accepts either an array of `MenuActionConfig` or `MenuConfig` objects.,<br><br/>3️⃣  `MenuConfig.menuOptions`: the attributes of the context menu (e.g. destructive) — Accepts an array of  `UIMenuOptions` string items, and any nested menus or submenus to show (see "**Note A**"). <br><br>📝 **Note A**: Passing a `MenuConfig` object inside of the `MenuConfig.menuItems` property will result in a nested context menu or submenu. In this scenario, the `MenuConfig.menuOptions` and `MenuConfig.icon` can be used to configure the appearance of the submenu. For usage examples regarding nested menus, see [Example 06](contextmenuview-example06)<br><br>📝 **Note B**: Passing a value of `null` (or `undefined`) to this prop will not disable the context menu. Use the `isContextMenuEnabled` prop instead to disable the context menu. <br><br/>📝 **Note C**: You can put `MenuConfig` in  state if you want to dynamically change the menu configuration. If the context menu is currently visible, changing/updating the `MenuConfig` value passed to this prop will cause the context menu to change in real-time. This behavior is only supported on iOS 14+.<br><br>📌 Some example links to get you started:<br>• For basic usage examples regarding `MenuConfig`, see: [Example 1](#contextmenuview-example-06),<br><br/>• For examples on creating + configuring the menu action items (i.e `MenuActionConfig`), see: [Example 2](#contextmenuview-example-02),<br><br/>• For menu action attributes + menu state, and action subtitles, see: [Example 4](#contextmenuview-example-04), [Example 8](#contextmenuview-example-08), and [Example 13](#contextmenuview-example-13),<br><br/>• For examples regarding the usage of icons (i.e `ImageItemConfig`), see: [Example 16](#contextmenuview-example-16), [Example 17](#contextmenuview-example-17), and [Example 18](#contextmenuview-example-18). |
 | 🔤  `previewConfig`<br/><br/>⚛️ [`MenuPreviewConfig`](PLACE_HOLDER_LINK) | Configures the context menu's preview.<br><br>If no configuration is provided then it will default to using the context menu component itself as the preview.<br/><br/>📝 **Note**: If you do not want to show a preview (i.e only show the context menu itself), consider using a [`ContextMenuButton`](PLACE_HOLDER_LINK) component instead.<br/><br/>📌 Some example links to get you started:<br/>• For examples regarding the configuration of the context menu preview (e.g. custom previews), see: [Example 11](#contextmenuview-example-11), [Example 12](#contextmenuview-example-12), [Example 14](#contextmenuview-example-14), and [Example 15](#contextmenuview-example-15). |
 | 🔤  `shouldUseDiscoverability`<br>`TitleAsFallbackValueForSubtitle`<br/><br>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | On iOS 15+, the value passed to the  `MenuActionConfig.discoverabilityTitle` property is no longer displayed as a subtitle under the menu action.<br><br>Instead you need to set a different property called `MenuActionConfig.subtitle`.<br><br>The `discoverabilityTitle` property is now used for the "discoverability heads-up display" (e.g when an app supports keyboard shortcuts, holding down the command key presents a list of shortcuts; the `discoverabilityTitle` is then used as the title for the shortcut).<br><br>If this prop is set to true, it will then uses the value passed on to the `discoverabilityTitle` value as the subtitle for the menu action, preserving the old behavior. In other words, this prop exists for backwards-compatibility reasons.<br><br>📝 **Note**: This prop is set to `true` by default; set this to `false` if you don't want this automatic behaviour to happen. |
 | 🔤  `shouldWaitForMenuToHide`<br/>`BeforeFiringOnPressMenuItem`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | If set to `true`, the `onPressMenuItem` event will be triggered after the context menu has been hidden (i.e. after `onMenuDidHide` event is triggered).<br><br>Set this to `false` if you want `onPressMenuItem` to trigger as soon as an item has been pressed in the context menu.<br><br>📝 **Note**: Layout updates while the context menu is transitioning from it's open to hidden state might cause layout flickering (e.g. [Issue #43](https://github.com/dominicstop/react-native-ios-context-menu/issues/43)). |
@@ -843,7 +845,7 @@ A basic context menu that has 3 menu action items (e.g. "Action #1", "Action #2"
 
 <br>
 
-* The `ContextMenuView.menuConfig` prop accepts an optional `MenuConfig` object. The object will then be used to create and configure the context menu<br><br>
+* The `ContextMenuView.menuConfig` prop accepts an optional `MenuConfig` object. The object will be used to create and configure the context menu<br><br>
 	* You can set the context menu title via passing a string value to the `MenuConfig.menuTitle` property.<br><br>
 	* To populate the context menu with items, you can pass a `MenuActionConfig` object to the `MenuConfig.menuItems` property.
 
@@ -1091,7 +1093,7 @@ This example context menu showcases the `MenuActionConfig.menuAttributes` proper
 
 <br>
 
-* The `MenuActionConfig.menuAttributes` property accepts an array of string (i.e. an array of `MenuAttributes` items).
+* The `MenuActionConfig.menuAttributes` property accepts an array of strings (i.e. an array of `MenuAttributes` items).
 
 <br>
 
@@ -2154,6 +2156,16 @@ TBA
 ### `ContextMenuView` Auxiliary Preview Example 08
 
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample08.tsx)
+
+```jsx
+TBA
+```
+
+<br>
+
+### `ContextMenuView` Auxiliary Preview Example 09
+
+[🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample09.tsx)
 
 ```jsx
 TBA
