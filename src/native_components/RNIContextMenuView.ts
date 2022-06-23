@@ -3,7 +3,7 @@ import { requireNativeComponent, Platform, ViewProps, HostComponent, View } from
 import type { MenuConfig } from '../types/MenuConfig';
 import type { MenuPreviewConfig } from '../types/MenuPreviewConfig';
 import type { MenuAuxiliaryPreviewConfig } from '../types/MenuAuxiliaryPreviewConfig';
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent  } from '../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent, OnRequestDeferredElementEvent  } from '../types/MenuEvents';
 
 
 // TODO: Add type annotation - Remove `any` type usage
@@ -53,6 +53,7 @@ export type RNIContextMenuViewProps = ViewProps & {
   onMenuDidCancel ?: OnMenuDidCancelEvent;
 
   onMenuWillCreate?: OnMenuWillCreateEvent;
+  onRequestDeferredElement?: OnRequestDeferredElementEvent;
 
   // Events - Aux. Preview
   // ---------------------

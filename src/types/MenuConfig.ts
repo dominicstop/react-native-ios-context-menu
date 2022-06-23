@@ -13,6 +13,11 @@ export type MenuState = 'on' | 'off' | 'mixed';
 // TODO: Next Major Version - Rename to `MenuElementAttributes`
 export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
 
+export type DeferredMenuElementConfig = {
+  type: 'deferred';
+  deferredID: string;
+};
+
 export type MenuActionConfig = {
   // TODO: Next Major Version - Make this required
   type?: 'action';
@@ -41,6 +46,11 @@ export type MenuActionConfig = {
   icon?: IconConfig | ImageItemConfig;
 };
 
+export type MenuElementConfig = 
+  | MenuConfig 
+  | MenuActionConfig 
+  | DeferredMenuElementConfig;
+
 export type MenuConfig = {
   // TODO: Next Major Version - Make this required
   type?: 'menu';
@@ -48,7 +58,7 @@ export type MenuConfig = {
   menuTitle: string;
 
   menuOptions?: Array<UIMenuOptions>;
-  menuItems?: Array<MenuConfig | MenuActionConfig>;
+  menuItems?: Array<MenuElementConfig>;
 
   /**
    * `IconConfig` is deprecated, use `ImageItemConfig` instead.

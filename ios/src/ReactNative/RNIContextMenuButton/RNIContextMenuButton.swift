@@ -61,10 +61,15 @@ class RNIContextMenuButton: UIButton {
       );
       #endif
      
-      let rootMenu = rootMenuConfig.createMenu {(dict, action) in
-        self.didPressMenuItem = true;
-        self.onPressMenuItem?(dict);
-      };
+      let rootMenu = rootMenuConfig.createMenu(
+        actionItemHandler: { (dict, action) in
+          self.didPressMenuItem = true;
+          self.onPressMenuItem?(dict);
+          
+        }, deferredElementHandler: { (deferredID, completion) in
+          // TODO
+        }
+      );
       
       if self.isContextMenuVisible,
          let interaction: UIContextMenuInteraction = self.contextMenuInteraction {

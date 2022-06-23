@@ -29,15 +29,18 @@ class RNIMenuItem: RNIMenuElement {
   // MARK: - Init
   // ------------
 
-  init?(dictionary: NSDictionary){
+  override init?(dictionary: NSDictionary){
     guard let menuTitle = dictionary["menuTitle"] as? String
     else { return nil };
     
-    self.menuTitle   = menuTitle;
+    self.menuTitle = menuTitle;
+    super.init(dictionary: dictionary);
+
     self.menuOptions = dictionary["menuOptions"] as? [String];
     
     self.icon = {
       if let dict = dictionary["icon"] as? NSDictionary {
+        
         /// A. `ImageItemConfig` or legacy `IconConfig`
         return RNIImageItem(dict: dict) ??
           RNIMenuIcon.convertLegacyIconConfigToImageItemConfig(dict: dict);
@@ -53,6 +56,7 @@ class RNIMenuItem: RNIMenuElement {
       
       } else if let type  = dictionary["imageType" ] as? String,
                 let value = dictionary["imageValue"] as? String {
+        
         /// C. legacy `IconConfig`:  old icon config  (remove in the future)
         return RNIMenuIcon.convertLegacyIconConfigToImageItemConfig(dict: [
           "iconType" : type,
@@ -63,21 +67,25 @@ class RNIMenuItem: RNIMenuElement {
         return nil;
       };
     }();
-
     
     if let menuElements = dictionary["menuItems"] as? NSArray {
       self.menuItems = menuElements.compactMap {
-        if let menuItem = RNIMenuItem(dictionary: $0 as? NSDictionary) {
+        guard let dictItem = $0 as? NSDictionary else { return nil };
+        
+        if let menuItem = RNIMenuItem(dictionary: dictItem) {
           #if DEBUG
           print("RNIMenuItem, init - compactMap: Creating RNIMenuItem...");
           #endif
           return menuItem;
           
-        } else if let menuAction = RNIMenuActionItem(dictionary: $0 as? NSDictionary) {
+        } else if let menuAction = RNIMenuActionItem(dictionary: dictItem) {
           #if DEBUG
           print("RNIMenuItem, init - compactMap: Creating RNIMenuActionItem...");
           #endif
           return menuAction;
+          
+        } else if let deferredElement = RNIDeferredMenuElement(dictionary: dictItem) {
+          return deferredElement;
           
         } else {
           #if DEBUG
@@ -87,11 +95,6 @@ class RNIMenuItem: RNIMenuElement {
         };
       };
     };
-  };
-  
-  convenience init?(dictionary: NSDictionary?){
-    guard let dictionary = dictionary else { return nil };
-    self.init(dictionary: dictionary);
   };
 };
 
@@ -115,26 +118,16 @@ extension RNIMenuItem {
 
 @available(iOS 13.0, *)
 extension RNIMenuItem {
-  func createMenu(_ handler: @escaping RNIMenuActionItem.UIActionHandlerWithDict) -> UIMenu {
+  func createMenu(
+    actionItemHandler      actionHandler  : @escaping RNIMenuActionItem.ActionItemHandler,
+    deferredElementHandler deferredHandler: @escaping RNIDeferredMenuElement.RequestHandler
+  ) -> UIMenu {
+    
     let menuItems: [UIMenuElement]? = self.menuItems?.compactMap {
-      if let menu = $0 as? RNIMenuItem {
-        #if DEBUG
-        print("RNIMenuItem, createMenu item: RNIMenuItem");
-        #endif
-        return menu.createMenu(handler);
-        
-      } else if let action = $0 as? RNIMenuActionItem {
-        #if DEBUG
-        print("RNIMenuItem, createMenu item: RNIMenuActionItem");
-        #endif
-        return action.makeUIAction(handler);
-        
-      } else {
-        #if DEBUG
-        print("RNIMenuItem, createMenu item: nil");
-        #endif
-        return nil;
-      };
+      $0.createMenuElement(
+        actionItemHandler: actionHandler,
+        deferredElementHandler: deferredHandler
+      );
     };
     
     return UIMenu(

@@ -58,6 +58,9 @@ class RNIContextMenuView: UIView {
   private var shouldEnableAttachToParentVC = true;
   private var shouldEnableCleanup = true;
   
+  private var deferredElementCompletionMap:
+    [String: RNIDeferredMenuElement.CompletionHandler] = [:];
+  
   // MARK: - RN Exported Event Props
   // -------------------------------
   
@@ -73,6 +76,7 @@ class RNIContextMenuView: UIView {
   @objc var onPressMenuPreview: RCTBubblingEventBlock?;
   
   @objc var onMenuWillCreate: RCTBubblingEventBlock?;
+  @objc var onRequestDeferredElement: RCTBubblingEventBlock?;
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   @objc var onMenuAuxiliaryPreviewWillShow: RCTBubblingEventBlock?;
@@ -116,12 +120,19 @@ class RNIContextMenuView: UIView {
         #endif
         
         // context menu is open, update the menu items
-        interaction.updateVisibleMenu {(menu: UIMenu) in
-          return menuConfig.createMenu {(dict, action) in
-            // menu item has been pressed...
-            self.didPressMenuItem = true;
-            self.onPressMenuItem?(dict);
-          };
+        interaction.updateVisibleMenu { _ in
+          return menuConfig.createMenu(
+            actionItemHandler: {
+              // A. menu item has been pressed...
+              self.handleOnPressMenuActionItem(dict: $0, action: $1);
+              
+            }, deferredElementHandler: {
+              // B. deferred element is requesting for items to load...
+              self.handleOnDeferredElementRequest(
+                deferredID: $0, completion: $1
+              );
+            }
+          );
         };
       };
     }
@@ -360,6 +371,22 @@ extension RNIContextMenuView {
   func dismissMenu(){
     self.contextMenuInteraction?.dismissMenu();
   };
+  
+  // TODO: Add error throws
+  func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
+    if let completion = self.deferredElementCompletionMap[deferredID] {
+      completion( menuElements.compactMap { menuElement in
+        menuElement.createMenuElement(
+          actionItemHandler: {
+            self.handleOnPressMenuActionItem(dict: $0, action: $1);
+            
+          }, deferredElementHandler: {
+            self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
+          }
+        );
+      });
+    };
+  };
 };
 
 // MARK: - Private Functions
@@ -413,11 +440,14 @@ fileprivate extension RNIContextMenuView {
       return nil;
     };
     
-    return menuConfig.createMenu { (dict, action) in
-      // menu item has been pressed...
-      self.didPressMenuItem = true;
-      self.onPressMenuItem?(dict);
-    };
+    return menuConfig.createMenu(actionItemHandler: {
+      // A. menu item has been pressed...
+      self.handleOnPressMenuActionItem(dict: $0, action: $1);
+      
+    }, deferredElementHandler: {
+      // B. deferred element is requesting for items to load...
+      self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
+    });
   };
   
   /// create custom menu preview based on `previewConfig` and `reactPreviewView`
@@ -493,8 +523,28 @@ fileprivate extension RNIContextMenuView {
     };
   };
   
+  func handleOnPressMenuActionItem(
+    dict: [String: Any],
+    action: UIAction
+  ){
+    self.didPressMenuItem = true;
+    self.onPressMenuItem?(dict);
+  };
+  
+  func handleOnDeferredElementRequest(
+    deferredID: String,
+    completion: @escaping RNIDeferredMenuElement.CompletionHandler
+  ){
+    // register completion handler
+    self.deferredElementCompletionMap[deferredID] = completion;
+    
+    // notify js that a deferred element needs to be loaded
+    self.onRequestDeferredElement?([
+      "deferredID": deferredID,
+    ]);
+  };
+  
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  // TODO: Make it appear faster
   func attachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating!
   ){

@@ -10,7 +10,7 @@ import { RNIContextMenuViewModule } from '../../native_modules/RNIContextMenuVie
 
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
 
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent } from '../../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent, OnRequestDeferredElementEvent } from '../../types/MenuEvents';
 import type { ContextMenuViewProps, ContextMenuViewState, NavigatorViewEventEmitter } from './ContextMenuViewTypes';
 
 // @ts-ignore - TODO
@@ -18,6 +18,7 @@ import { ActionSheetFallback } from '../../functions/ActionSheetFallback';
 import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
 
 import * as Helpers from '../../functions/Helpers';
+import type { MenuElementConfig } from 'src/types/MenuConfig';
 
 
 const NATIVE_ID_KEYS = {
@@ -63,6 +64,7 @@ export class ContextMenuView extends
       onMenuDidShow,
       onMenuDidHide,
       onMenuDidCancel,
+      onRequestDeferredElement,
       onMenuAuxiliaryPreviewWillShow,
       onMenuAuxiliaryPreviewDidShow,
       onPressMenuItem,
@@ -101,6 +103,7 @@ export class ContextMenuView extends
       onMenuDidShow,
       onMenuDidHide,
       onMenuDidCancel,
+      onRequestDeferredElement,
       onMenuAuxiliaryPreviewWillShow,
       onMenuAuxiliaryPreviewDidShow,
       onPressMenuItem,
@@ -118,7 +121,19 @@ export class ContextMenuView extends
     if(!LIB_ENV.isContextMenuViewSupported) return;
 
     await RNIContextMenuViewModule.dismissMenu(
+      Helpers.getNativeNodeHandle(this.nativeRef)
+    );
+  };
+
+  provideDeferredElements = async (
+    deferredID: string, 
+    menuItems: MenuElementConfig[]
+  ) => {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+
+    await RNIContextMenuViewModule.provideDeferredElements(
       Helpers.getNativeNodeHandle(this.nativeRef),
+      deferredID, menuItems
     );
   };
 
@@ -198,6 +213,15 @@ export class ContextMenuView extends
     // guard: event is a native event
     if(event.isUsingActionSheetFallback) return;
     event.stopPropagation();
+  };
+
+  private _handleOnRequestDeferredElement: OnRequestDeferredElementEvent = (event) => {
+    const { onRequestDeferredElement } = this.props;
+    const { deferredID } = event.nativeEvent;
+
+    onRequestDeferredElement?.(deferredID, (items) => {
+      this.provideDeferredElements(deferredID, items);
+    });
   };
 
   private _handleOnMenuAuxiliaryPreviewWillShow: OnMenuAuxiliaryPreviewWillShowEvent = (event) => {
@@ -291,6 +315,7 @@ export class ContextMenuView extends
           onMenuDidShow={this._handleOnMenuDidShow}
           onMenuDidHide={this._handleOnMenuDidHide}
           onMenuDidCancel={this._handleOnMenuDidCancel}
+          onRequestDeferredElement={this._handleOnRequestDeferredElement}
           onMenuWillCreate={this._handleOnMenuWillCreate}
 
           // Events: "Aux. Preview"-Related

@@ -34,13 +34,15 @@ class RNIMenuActionItem: RNIMenuElement {
   // MARK: - Init
   // ------------
 
-  init?(dictionary: NSDictionary){
+  override init?(dictionary: NSDictionary){
     guard let actionKey   = dictionary["actionKey"  ] as? String,
           let actionTitle = dictionary["actionTitle"] as? String
     else { return nil };
     
     self.actionKey   = actionKey;
     self.actionTitle = actionTitle;
+    
+    super.init(dictionary: dictionary);
     
     if let subtitle = dictionary["actionSubtitle"] as? String {
       self.actionSubtitle = subtitle;
@@ -78,11 +80,6 @@ class RNIMenuActionItem: RNIMenuElement {
     
     self.menuState      = dictionary["menuState"     ] as? String;
     self.menuAttributes = dictionary["menuAttributes"] as? [String];
-  };
-  
-  convenience init?(dictionary: NSDictionary?){
-    guard let dictionary = dictionary else { return nil };
-    self.init(dictionary: dictionary);
   };
 };
 
@@ -154,9 +151,9 @@ extension RNIMenuActionItem {
 @available(iOS 13, *)
 extension RNIMenuActionItem {
   
-  typealias UIActionHandlerWithDict = ([String: Any], UIAction) -> Void;
+  typealias ActionItemHandler = ([String: Any], UIAction) -> Void;
   
-  func makeUIAction(_ handler: @escaping UIActionHandlerWithDict) -> UIAction {
+  func createAction(handler: @escaping ActionItemHandler) -> UIAction {
     #if DEBUG
     print("RNIMenuActionItem, makeUIAction...");
     #endif
@@ -176,13 +173,11 @@ extension RNIMenuActionItem {
       }
     );
     
-#if swift(>=5.5)
-    
+    #if swift(>=5.5)
     if #available(iOS 15.0, *) {
       action.subtitle = self.actionSubtitle ?? self.fallbackActionSubtitle;
     };
-    
-#endif
+    #endif
     
     return action;
   };

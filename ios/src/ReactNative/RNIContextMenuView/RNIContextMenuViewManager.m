@@ -26,6 +26,8 @@ RCT_EXPORT_VIEW_PROPERTY(onPressMenuItem   , RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onPressMenuPreview, RCTBubblingEventBlock);
 
 RCT_EXPORT_VIEW_PROPERTY(onMenuWillCreate, RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onRequestDeferredElement, RCTBubblingEventBlock);
+
 
 RCT_EXPORT_VIEW_PROPERTY(onMenuAuxiliaryPreviewWillShow, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onMenuAuxiliaryPreviewDidShow , RCTBubblingEventBlock);

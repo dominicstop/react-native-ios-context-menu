@@ -49,4 +49,38 @@ internal class RNIContextMenuViewModule: NSObject {
       resolve(nil);
     };
   };
+  
+  @objc func provideDeferredElements(
+    _ node: NSNumber,
+    deferredID: String,
+    menuItems: NSArray,
+    // promise blocks ------------------------
+    resolve: @escaping RCTPromiseResolveBlock,
+    reject : @escaping RCTPromiseRejectBlock
+  ){
+    DispatchQueue.main.async {
+      // get `RNIContextMenuView` instance that matches node/reactTag
+      guard #available(iOS 13, *),
+            let contextMenuView = self.getContextMenuView(node) else {
+              
+        reject(nil, "Unable to get the corresponding 'RNIContextMenuView' for node: \(node)", nil);
+        return;
+      };
+      
+      contextMenuView.provideDeferredElements(
+        id: deferredID,
+        menuElements: menuItems.compactMap {
+          guard let dictItem = $0 as? NSDictionary else { return nil };
+          
+          return (
+            RNIMenuItem(dictionary: dictItem) ??
+            RNIMenuActionItem(dictionary: dictItem) ??
+            RNIDeferredMenuElement(dictionary: dictItem)
+          );
+        }
+      );
+      
+      resolve(nil);
+    };
+  };
 };

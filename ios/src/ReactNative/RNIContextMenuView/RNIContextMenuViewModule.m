@@ -16,4 +16,11 @@ RCT_EXTERN_METHOD(dismissMenu: (nonnull NSNumber)node
                   resolve: (RCTPromiseResolveBlock *)resolve
                   reject : (RCTPromiseRejectBlock  *)reject);
 
+RCT_EXTERN_METHOD(provideDeferredElements: (nonnull NSNumber)node
+                  deferredID: NSString
+                  menuItems : NSArray
+                  // promise blocks -----------------------
+                  resolve: (RCTPromiseResolveBlock *)resolve
+                  reject : (RCTPromiseRejectBlock  *)reject);
+
 @end

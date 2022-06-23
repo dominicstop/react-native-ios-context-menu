@@ -28,6 +28,10 @@ export type OnMenuDidCancelEventObject = NativeSyntheticEvent<{}> & {
 export type OnMenuWillCreateEventObject = NativeSyntheticEvent<{
 }>;
 
+export type OnRequestDeferredElementObject = NativeSyntheticEvent<{
+  deferredID: string;
+}>;
+
 export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig> & {
   isUsingActionSheetFallback?: false;
   
@@ -85,6 +89,10 @@ export type OnMenuDidCancelEvent = (
 
 export type OnMenuWillCreateEvent = (
   event: OnMenuWillCreateEventObject
+) => void;
+
+export type OnRequestDeferredElementEvent = (
+  event: OnRequestDeferredElementObject
 ) => void;
 
 export type OnPressMenuItemEvent = (
