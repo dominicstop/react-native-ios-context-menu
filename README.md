@@ -472,6 +472,18 @@ An object that is used to create a menu action item in the context menu. Interna
 
 <br>
 
+##### Object Type: `DeferredMenuElementConfig`
+
+An object that is used to create a deferred menu element. Internally, this object is used to create a `UIDeferredMenuElement` instance (see [apple docs](https://developer.apple.com/documentation/uikit/uideferredmenuelement) for more information),
+
+| Name and Type                                               | Description |
+| ----------------------------------------------------------- | ----------- |
+| 🔤 **Required**: `type`<br/><br/>⚛️ `string` i.e. `deferred`. | TBA         |
+| 🔤 **Required**: `deferredID`<br/><br/>⚛️ `string`            | TBA         |
+| 🔤: `shouldCache`<br/><br/>⚛️ `boolean`                       | TBA         |
+
+<br>
+
 ##### String Union: `MenuAttributes`
 
 > Attributes that determine the style of the menu element.
@@ -652,18 +664,22 @@ This type is extends/union-ed with `UIViewAnimateConfig` object type, and such i
 | Name and Type                                    | Description |
 | :----------------------------------------------- | ----------- |
 | 🔤  `transition`<br/><br/>⚛️ `string` i.e. `slide` | TBA         |
+| 🔤  `slideOffset`<br/><br/>⚛️ `number`             | TBA         |
 
 <br>
 
 | Name and Type                                   | Description |
 | :---------------------------------------------- | ----------- |
 | 🔤  `transition`<br/><br/>⚛️ `string` i.e. `zoom` | TBA         |
+| 🔤  `zoomOffset`<br/><br/>⚛️ `number`             | TBA         |
 
 <br>
 
 | Name and Type                                           | Description |
 | :------------------------------------------------------ | ----------- |
 | 🔤  `transition`<br/><br/>⚛️ `string` i.e. `zoomAndSlide` | TBA         |
+| 🔤  `slideOffset`<br/><br/>⚛️ `number`                    | TBA         |
+| 🔤  `zoomOffset`<br/><br/>⚛️ `number`                     | TBA         |
 
 <br>
 
@@ -832,8 +848,6 @@ TBA
 | :------------------------------------------------------ | :---------- |
 | 🔤  `isContextMenuButtonSupported`<br/><br/>⚛️  `boolean` | TBA         |
 | 🔤  `isContextMenuViewSupported`<br/><br/>⚛️  `boolean`   | TBA         |
-
-<br>
 
 <br><br>
 
@@ -2080,6 +2094,16 @@ export function ContextMenuViewExample18(props) {
 ![screenshot](assets/example-ContextMenuViewExample18-old.png)
 
 ![Gif](assets/example-ContextMenuViewExample18.gif)
+
+<br>
+
+### `ContextMenuView` Example 19
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample19.tsx)
+
+```jsx
+TBA
+```
 
 <br>
 
