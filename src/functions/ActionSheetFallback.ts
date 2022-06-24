@@ -1,6 +1,6 @@
 import * as Helpers from './Helpers';
 
-import type { MenuActionConfig, MenuConfig } from '../types/MenuConfig';
+import type { MenuActionConfig, MenuConfig, MenuElementConfig } from '../types/MenuConfig';
 
 // TODO: Refactor/cleanup...
 // TODO: Fix types + remove `@ts-ignore`
@@ -36,11 +36,13 @@ class ActionSheetFallbackHelpers {
     if(indexPath  == null) return null;
     if(menuConfig == null) return null;
 
-    let currentObject: 
-      MenuConfig | MenuActionConfig | undefined = menuConfig;
+    let currentObject: MenuElementConfig | undefined = menuConfig;
 
     for (const index of indexPath) {
       if(currentObject == null){
+        return null;
+
+      } else if(currentObject?.type === 'deferred') {
         return null;
 
       } else if(ActionSheetFallbackHelpers.isObjectMenuAction(currentObject)){
@@ -177,9 +179,15 @@ class ActionSheetFallbackHelpers {
       // @ts-ignore
       const isHiddenAction = menuItem?.menuAttributes
         ?.includes('hidden') ?? false;
+
+      const isDeferredElement = menuItem?.type === 'deferred';
       
-      return (!isDisabledAction && !isHiddenAction);
-    });
+      return (
+        !isDisabledAction && 
+        !isHiddenAction && 
+        !isDeferredElement
+      );
+    }) as Array<MenuConfig | MenuActionConfig>;
   };
 };
 
@@ -209,6 +217,7 @@ export class ActionSheetFallback {
       };
 
       // selected item is menu, get submenu and remove hidden/disable actions
+      // @ts-ignore
       const menuItems = ActionSheetFallbackHelpers.filterMenuItems(menuItem?.menuItems ?? []);
       // add menu items to action sheet
       actionSheetOptions = menuItems.map(item => (
