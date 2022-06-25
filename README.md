@@ -2106,7 +2106,48 @@ export function ContextMenuViewExample18(props) {
 [🔗 Full Example](example/src/examples/ContextMenuViewExample19.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample19(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample19',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          actionSubtitle: 'Dummy action'
+        }, {
+          // Create a deferred menu item... 
+          // this will act as a placeholder and will be replaced
+          // with the actual menu items later
+          type: 'deferred',
+          // if we have multiple deferred items, you can use 
+          // the `deferredID` to distinguish between them
+          deferredID: 'deferred-01'
+        }],
+      }}
+      // this event will fire when a deferred menu item 
+      // is present...
+      onRequestDeferredElement={async (deferredID, provider) => {
+        switch(deferredID) {
+          case 'deferred-01':
+            // dummy delay, wait for 1 second...
+            await Helpers.timeout(1000);
+
+            // provide the items to add to the context menu...
+            provider([{
+              type: 'action',
+              actionKey: 'action-01',
+              actionTitle: 'Deferred Item 01'
+            }]);
+            break;
+        };
+      }}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 <br>
