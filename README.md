@@ -2157,7 +2157,36 @@ export function ContextMenuViewExample19(props) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample01.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample01(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      isAuxiliaryPreviewEnabled={true}
+      renderAuxiliaryPreview={() => (
+        <View style={[styles.auxRootContainer, {
+          // by default, the root view you returned will be 
+          // resized to match the width of the preview 
+          // (you can override this behavior via the
+          // `auxiliaryPreviewConfig` prop).
+          //
+          // since this view is going to be resized, let's 
+          // center the content...
+          alignItems: 'center',
+          justifyContent: 'center',
+        }]}>
+          <TouchableOpacity style={styles.buttonContainer}>
+            { /** ... */ }
+          </TouchableOpacity>
+        </View>
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 <br>
