@@ -34,6 +34,8 @@ export function ContextMenuAuxPreviewExample03(props: ContextMenuExampleProps) {
         }],
       }}
       auxiliaryPreviewConfig={{
+        // Align the aux. preview to the left...
+        // 📝 Note: By default, this is set to: `stretchPreview`
         alignmentHorizontal: 'previewLeading',
         transitionEntranceDelay: 'RECOMMENDED',
       }}
