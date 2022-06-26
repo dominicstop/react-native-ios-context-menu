@@ -2196,7 +2196,38 @@ export function ContextMenuAuxPreviewExample01(props) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample02.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample02(props: ContextMenuExampleProps) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      // If you want to immediately show the aux. preview, then
+      // set `transitionEntranceDelay` to: `RECOMMENDED`.
+      // 
+      // The default is: `AFTER_PREVIEW`.
+      //
+      // You can also pass in a number indicating how long delay
+      // is in seconds  (e.g. 0.3).
+      //
+      // Note: Do not pass in a number below 0.25 to avoid any
+      // layout bugs...
+      auxiliaryPreviewConfig={{
+        transitionEntranceDelay: 'RECOMMENDED'
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={styles.auxRootContainer}>
+          <Text style={styles.textLabel}>
+            Faster Transition
+          </Text>
+        </View>
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 <br>
