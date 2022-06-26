@@ -21,6 +21,16 @@ export function ContextMenuAuxPreviewExample02(props: ContextMenuExampleProps) {
           actionTitle: 'Shorter Delay',
         }],
       }}
+      // If you want to immediately show the aux. preview, then
+      // set `transitionEntranceDelay` to: `RECOMMENDED`.
+      // 
+      // The default is: `AFTER_PREVIEW`.
+      //
+      // You can also pass in a number indicating how long delay
+      // is in seconds  (e.g. 0.3).
+      //
+      // Note: Do not pass in a number below 0.25 to avoid any
+      // layout bugs...
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED'
       }}
