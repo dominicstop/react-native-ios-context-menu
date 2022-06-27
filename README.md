@@ -2257,7 +2257,7 @@ export function ContextMenuAuxPreviewExample03(props: ContextMenuExampleProps) {
         </View>
       )}
     >
-      {/** */}
+      {/** ... */}
     </ContextMenuView>
   );
 };
@@ -2270,7 +2270,30 @@ export function ContextMenuAuxPreviewExample03(props: ContextMenuExampleProps) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample04.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample04(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      auxiliaryPreviewConfig={{
+        // Align the aux. preview to the right...
+        // 📝 Note: By default, this is set to: `stretchPreview`
+        alignmentHorizontal: 'previewTrailing',
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={styles.auxRootContainer}>
+          <Text style={styles.textLabel}>
+            Yeah right, yeah right
+          </Text>
+        </View>
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 <br>
