@@ -1856,19 +1856,6 @@ export function ContextMenuViewExample15(props) {
     </ContextMenuView>
   );
 };
-
-const styles = StyleSheet.create({
-  targetContainer: {
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    alignSelf: 'flex-start',
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  text: {
-    fontSize: 16,
-  }
-});
 ```
 
 ![screenshot](assets/example-ContextMenuViewExample15-old.png)
@@ -2041,7 +2028,8 @@ export function ContextMenuViewExample18(props) {
           actionTitle: 'Action #1',
           discoverabilityTitle: 'Use "REQUIRE" icon',
           // `IconConfig` has been deprecated, please use 
-          // `ImageItemConfig` instead (but it'll still work for now).
+          // `ImageItemConfig` instead (but it'll still work 
+          // for now).
           // 
           // The other two menu actions in this example 
           // uses `ImageItemConfig` to set the menu action icons. 
@@ -2100,11 +2088,13 @@ export function ContextMenuViewExample19(props) {
           // this will act as a placeholder and will be replaced
           // with the actual menu items later
           type: 'deferred',
+          
           // if we have multiple deferred items, you can use 
           // the `deferredID` to distinguish between them
           deferredID: 'deferred-01'
         }],
       }}
+      
       // this event will fire when a deferred menu item 
       // is present...
       onRequestDeferredElement={async (deferredID, provider) => {
@@ -2137,7 +2127,7 @@ export function ContextMenuViewExample19(props) {
 
 ```jsx
 // 📝 Note: for the sake of brevity, some of the code is omitted...
-export function ContextMenuAuxPreviewExample01(props) {
+export function ContextMenuAuxPreviewExample01() {
   return (
     <ContextMenuView
       menuConfig={{
@@ -2176,7 +2166,7 @@ export function ContextMenuAuxPreviewExample01(props) {
 
 ```jsx
 // 📝 Note: for the sake of brevity, some of the code is omitted...
-export function ContextMenuAuxPreviewExample02(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample02() {
   return (
     <ContextMenuView
       menuConfig={{
@@ -2217,7 +2207,7 @@ export function ContextMenuAuxPreviewExample02(props: ContextMenuExampleProps) {
 
 ```jsx
 // 📝 Note: for the sake of brevity, some of the code is omitted...
-export function ContextMenuAuxPreviewExample03(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample03() {
   return (
     <ContextMenuView
       menuConfig={{
@@ -2250,7 +2240,7 @@ export function ContextMenuAuxPreviewExample03(props: ContextMenuExampleProps) {
 
 ```jsx
 // 📝 Note: for the sake of brevity, some of the code is omitted...
-export function ContextMenuAuxPreviewExample04(props) {
+export function ContextMenuAuxPreviewExample04() {
   return (
     <ContextMenuView
       menuConfig={{
