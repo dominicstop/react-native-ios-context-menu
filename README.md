@@ -2272,7 +2272,32 @@ export function ContextMenuAuxPreviewExample04() {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample05.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample05() {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      // Align the aux. preview to the center of the context
+      // menu preview...
+      //
+      // 📝 Note: By default, this is set to: `stretchPreview`
+      auxiliaryPreviewConfig={{
+        alignmentHorizontal: 'previewCenter',
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={styles.auxRootContainer}>
+          <Text style={styles.textLabel}>
+            Center
+          </Text>
+        </View>
+      )}
+    >
+      { /** ... */ }
+    </ContextMenuView>
+  );
+};
 ```
 
 <br>
