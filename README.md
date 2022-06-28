@@ -46,6 +46,24 @@
 
 <br><br>
 
+## Table of Contents
+
+| Sections and Links                                           |
+| ------------------------------------------------------------ |
+| <br/>• [abc](#abc)                                           |
+| <br/>   • [abc](#abc)                                        |
+| [A. **Introduction**](#a-introduction)<br/><br/>• [Gifs and Demos](#gifs-and-demos)<br/>• [Features](#features) |
+| [B. **Installation**](#b-installation)<br><br>• [Expo](#expo)<br/>• [Troubleshooting](#troubleshooting)<br>--• [Xcode Build Error (Swift)](#troubleshooting-xcode-build-error-(swift))<br>--• [Xcode Build Error (Undefined symbol)](#troubleshooting-xcode-build-error-(undefined-symbol)) |
+| [C. **Basic Usage**](#c-basic-usage)                         |
+| [D. **Documentation**](#d-documentation)<br/><br/>• [D.1. Components](#d1-components)<br/>--• [`ContextMenuView` Component](#contextmenuview-component)<br/>----• [Props](#contextmenuview-component-props)<br/>----• [Event Props](#contextmenuview-component-event-props)<br>----• [Properties/Methods](#contextmenuview-component-properties/methods)<br>----• [Experimental - Aux. Preview](#contextmenuview-component-experimental---auxiliary-preview)<br><br>   • [abc](#abc) |
+| [X. **abc**](#x-abc)<br/>                                    |
+| [X. **abc**](#x-abc)<br/>                                    |
+| [X. **abc**](#x-abc)<br/>                                    |
+| [X. **abc**](#x-abc)<br/>                                    |
+| [X. **abc**](#x-abc)<br/>                                    |
+
+<br><br>
+
 ## A. Introduction
 
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
@@ -918,7 +936,7 @@ export function ContextMenuViewExample01(props) {
 
 ### `ContextMenuView` Example 02
 
-A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon. This examples shows how to add a system icon in the context menu action.
+**Summary**: A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon. This examples shows how to add a system icon in the context menu action.
 
 <br>
 
