@@ -52,7 +52,7 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 
 <br>
 
-### A.1. Gifs and Demos
+### Gifs and Demos
 
 📝 **Note**: These gifs are from an older version of the library running on iOS 13 (see [Usage And Examples](#e-usage-and-examples) section for updated example gifs).<br>
 
@@ -94,7 +94,7 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 
 <br>
 
-### A.2. Feautures
+### Features
 
 * Support for creating menu actions and submenus (i.e. nested and in-line menus).
 * Support for customizing the menu icons (i.e. support for SF Symbols, `require(image)`, and `xcasset` icons, icon tint, etc).
