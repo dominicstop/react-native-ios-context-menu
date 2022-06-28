@@ -19,6 +19,10 @@ export function ContextMenuAuxPreviewExample05(props: ContextMenuExampleProps) {
           actionTitle: 'Lorum ipsum',
         }],
       }}
+      // Align the aux. preview to the center of the context
+      // menu preview...
+      //
+      // 📝 Note: By default, this is set to: `stretchPreview`
       auxiliaryPreviewConfig={{
         alignmentHorizontal: 'previewCenter',
         transitionEntranceDelay: 'RECOMMENDED',
