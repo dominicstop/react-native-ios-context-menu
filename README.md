@@ -453,7 +453,7 @@ TBA
 
 ### D.4. Objects and Types
 
-#### 📄 `MenuConfig.ts`
+####  `MenuConfig.ts`
 
 * 📌 **Declaration**: [`MenuConfig.ts`](src/types/MenuConfig.ts)
 
@@ -553,7 +553,7 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 <br>
 
-#### 📄 `MenuPreviewConfig.ts`
+#### `MenuPreviewConfig.ts`
 
 * 📌 **Declaration**: [`MenuPreviewConfig.ts`](src/types/MenuPreviewConfig.ts)
 
@@ -598,7 +598,7 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 <br>
 
-#### 📄 `MenuAuxiliaryPreviewConfig.ts`
+#### `MenuAuxiliaryPreviewConfig.ts`
 
 * 📌 **Declaration**: [`MenuAuxiliaryPreviewConfig.ts`](src/types/MenuAuxiliaryPreviewConfig.ts)
 
@@ -715,7 +715,7 @@ This type is extends/union-ed with `UIViewAnimateConfig` object type, and such i
 
 <br>
 
-#### 📄 `MenuIconConfig.ts`
+#### `MenuIconConfig.ts`
 
 * 📌 **Declaration**: [`MenuIconConfig.ts`](src/types/MenuIconConfig.ts)
 
@@ -727,7 +727,7 @@ This has been deprecated and will be removed in a future version. Use [`ImageIte
 
 <br>
 
-#### 📄 `ImageItemConfig.ts`
+#### `ImageItemConfig.ts`
 
 * 📌 **Declaration**: [`ImageItemConfig.ts`](src/types/ImageItemConfig.ts)
 
