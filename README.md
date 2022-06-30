@@ -662,9 +662,11 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 
 <br>
 
-##### Object Union Type: `MenuAuxiliaryPreviewTransitionConfig`
+##### Object Type: `MenuAuxiliaryPreviewBaseTransitionConfig`
 
-This type is extends/union-ed with `UIViewAnimateConfig` object type, and such is not listed in this section. Please see `UIViewAnimateConfig` type for the other object properties.<br><br>This type is an object tagged union type, with the `transition` property being the tag that separates the unions. The table below defines the possible valid values that can be assigned to the `type` property (the subsequent tables are the different possible unions).
+This type is an object tagged union type, with the `transition` property being the tag that separates the unions. 
+
+The table below defines the possible valid values that can be assigned to the `type` property (the subsequent tables are the different possible unions).
 
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | ----------- |
@@ -703,6 +705,18 @@ This type is extends/union-ed with `UIViewAnimateConfig` object type, and such i
 | 🔤  `transition`<br/><br/>⚛️ `string` i.e. `zoomAndSlide` | TBA         |
 | 🔤  `slideOffset`<br/><br/>⚛️ `number`                    | TBA         |
 | 🔤  `zoomOffset`<br/><br/>⚛️ `number`                     | TBA         |
+
+<br>
+
+##### Object Union Type: `MenuAuxiliaryPreviewTransitionConfig
+
+This type is a union between the `UIViewAnimateConfig` object type, and the `MenuAuxiliaryPreviewBaseTransitionConfig` object type.
+
+```typescript
+export type MenuAuxiliaryPreviewTransitionConfig = 
+  | UIViewAnimateConfig
+  | MenuAuxiliaryPreviewBaseTransitionConfig;
+```
 
 <br>
 
