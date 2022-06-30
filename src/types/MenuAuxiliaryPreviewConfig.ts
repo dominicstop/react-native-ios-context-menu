@@ -26,7 +26,7 @@ export type UIViewAnimateConfig = {
   options?: UIViewAnimateOptions[];
 };
 
-export type MenuAuxiliaryPreviewTransitionConfig = UIViewAnimateConfig & ({
+export type MenuAuxiliaryPreviewBaseTransitionConfig =  & ({
   transition: 'none';
 } | {
   transition: 'fade';
@@ -41,6 +41,10 @@ export type MenuAuxiliaryPreviewTransitionConfig = UIViewAnimateConfig & ({
   slideOffset?: number;
   zoomOffset?: number;
 });
+
+export type MenuAuxiliaryPreviewTransitionConfig = 
+  | UIViewAnimateConfig
+  | MenuAuxiliaryPreviewBaseTransitionConfig;
 
 export type MenuAuxiliaryPreviewTransitionEntranceDelay = 
   | number
