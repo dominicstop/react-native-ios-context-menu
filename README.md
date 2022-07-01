@@ -54,10 +54,52 @@
 | [B. **Installation**](#b-installation)<br><br>• [Expo](#expo)<br/>• [Troubleshooting](#troubleshooting)<br>--• [Xcode Build Error (Swift)](#troubleshooting-xcode-build-error-(swift))<br>--• [Xcode Build Error (Undefined symbol)](#troubleshooting-xcode-build-error-(undefined-symbol)) |
 | [C. **Basic Usage**](#c-basic-usage)                         |
 | [D. **Documentation**](#d-documentation)<br/><br/>• [D.1. Components](#d1-components)<br/>--• [`ContextMenuView` Component](#contextmenuview-component)<br/>----• [Props](#contextmenuview-component-props)<br/>----• [Event Props](#contextmenuview-component-event-props)<br>----• [Properties/Methods](#contextmenuview-component-properties/methods)<br>----• [Experimental - Aux. Preview](#contextmenuview-component-experimental---auxiliary-preview)<br><br>--• [`ContextMenuButton` Component](#contextmenubutton-component)<br/>----• [Props](#contextmenubutton-component-props)<br/>----• [Event Props](#contextmenubutton-component-event-props)<br/>----• [Properties/Methods](#contextmenubutton-component-properties/methods)<br/><br/>• [D.2. Context](#d2-context)<br/>--• [`ContextMenuButtonContext`](#ContextMenuButtonContext-context)<br/>--• [`ContextMenuButtonContext`](#ContextMenuButtonContext-context)<br><br/>• [D.3. Hooks](#d3-hooks)<br/>--• [`useMenuContext`](#useMenuContext-hook)<br/>--• [`useMenuButtonContext`](#useMenuButtonContext-hook)<br><br>• [D.4. Objects and Types](#d4-objects-and-types)<br/>--• [`MenuConfig.ts`](#MenuConfigts)<br/>----• [Object Type: `MenuConfig`](#Object-Type-MenuConfig)<br/>----• [Object Type: `MenuActionConfig`](#Object-Type-MenuActionConfig)<br/>----• [Object Type: `DeferredMenuElementConfig`](#Object-Type-DeferredMenuElementConfig)<br/>----• [String Union: `MenuAttributes`](#String-Union-MenuAttributes)<br/>----• [String Union: `MenuState`](#String-Union-MenuState)<br/>----• [String Union: `UIMenuOptions`](#String-Union-UIMenuOptions)<br/><br>--• [`MenuPreviewConfig.ts`](#MenuPreviewConfigts)<br/>----• [Object Type: `MenuPreviewConfig`](#Object-Type-MenuPreviewConfig)<br/>----• [String Union: `ContextMenuInteractionCommitStyle`](#String-Union-ContextMenuInteractionCommitStyle)<br/>----• [String Union: `MenuPreviewSize`](#String-Union-MenuPreviewSize)<br/>----• [String Union: `MenuPreviewType`](#String-Union-MenuPreviewType)<br/><br>--• [`MenuAuxiliaryPreviewConfig.ts`](#MenuAuxiliaryPreviewConfigts)<br/>----• [Object Type: `MenuAuxiliaryPreviewConfig`](#Object-Type-MenuAuxiliaryPreviewConfig)<br/>----• [String Union Type: `MenuAuxiliaryPreviewAnchorPosition`](#String-Union-Type-MenuAuxiliaryPreviewAnchorPosition)<br/>----• [String Union Type: `MenuAuxiliaryPreviewHorizontalAlignment`](#String-Union-Type-MenuAuxiliaryPreviewHorizontalAlignment)<br/>----• [String Union Type: `UIViewAnimateOptions`](#String-Union-Type-UIViewAnimateOptions)<br/>----• [Object Type: `UIViewAnimateConfig`](#Object-Type-UIViewAnimateConfig)<br/>----• [Object Type: `MenuAuxiliaryPreviewBaseTransitionConfig`](#Object-Type-MenuAuxiliaryPreviewBaseTransitionConfig)<br/>----• [Object Union Type: `MenuAuxiliaryPreviewTransitionConfig`](#Object-Union-Type-`MenuAuxiliaryPreviewTransitionConfig`)<br/>----• [Mixed Union Type: `MenuAuxiliaryPreviewTransitionEntranceDelay`](#Mixed-Union-Type-MenuAuxiliaryPreviewTransitionEntranceDelay)<br/><br>--• [`MenuIconConfig.ts`](#MenuIconConfigts)<br/>--• [`ImageItemConfig.ts`](#ImageItemConfigts)<br/>----• [Object Type: `ImageItemConfig`](#Object-Type-ImageItemConfig)<br/>----• [Object Type: `ImageResolvedAssetSource`](#Object-Type-ImageResolvedAssetSource)<br/>----• [Object Type: `ImageRectConfig`](#Object-Type-ImageRectConfig)<br/>----• [Object Type: `ImageGradientConfig`](#Object-Type-ImageGradientConfig)<br/>----• [Object Type: `ImageSystemConfig`](#Object-Type-ImageSystemConfig)<br/><br>--• [Undocumented Types](#Undocumented-Types)<br><br>• [D.5. Constants](#d5-constants) |
-| [E. **Usage And Examples**](#E-Usage-And-Examples)<br/>📝 **Note**: See [Example List](#example-list) section for a complete list of examples. |
+| [E. **Usage And Examples**](#E-Usage-And-Examples)<br/>📝 **Note**: See [Example Index](#toc-examples-index) section for a complete list of examples. |
 | [F. **Showcase, Tests and Demos**](#F-Showcase-Tests-and-Demos) |
 | [G. **Meta**](#G-Meta)                                       |
 | [H. **Licence**](#H-Licence)                                 |
+
+<br>
+
+### TOC: Examples Index
+
+| Examples                                                     |
+| ------------------------------------------------------------ |
+| 📌 **[`ContextMenuView` Example 01](#ContextMenuView-Example-01)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 02](#ContextMenuView-Example-02)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 03](#ContextMenuView-Example-03)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 04](#ContextMenuView-Example-04)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 05](#ContextMenuView-Example-05)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 06](#ContextMenuView-Example-06)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 07](#ContextMenuView-Example-07)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 08](#ContextMenuView-Example-08)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 09](#ContextMenuView-Example-09)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 10](#ContextMenuView-Example-10)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 11](#ContextMenuView-Example-11)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 12](#ContextMenuView-Example-12)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 13](#ContextMenuView-Example-13)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 14](#ContextMenuView-Example-14)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 15](#ContextMenuView-Example-15)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 16](#ContextMenuView-Example-16)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 17](#ContextMenuView-Example-17)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 18](#ContextMenuView-Example-18)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Example 19](#ContextMenuView-Example-19)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 01](#ContextMenuView-Auxiliary-Preview---Example-01)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 02](#ContextMenuView-Auxiliary-Preview---Example-02)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 03](#ContextMenuView-Auxiliary-Preview---Example-03)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 04](#ContextMenuView-Auxiliary-Preview---Example-04)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 05](#ContextMenuView-Auxiliary-Preview---Example-05)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 06](#ContextMenuView-Auxiliary-Preview---Example-06)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 07](#ContextMenuView-Auxiliary-Preview---Example-07)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 08](#ContextMenuView-Auxiliary-Preview---Example-08)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 09](#ContextMenuView-Auxiliary-Preview---Example-09)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 10](#ContextMenuView-Auxiliary-Preview---Example-10)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 11](#ContextMenuView-Auxiliary-Preview---Example-11)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 12](#ContextMenuView-Auxiliary-Preview---Example-12)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 13](#ContextMenuView-Auxiliary-Preview---Example-13)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 14](#ContextMenuView-Auxiliary-Preview---Example-14)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuButton` Example 01](#ContextMenuButton-Example-01)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuButton` Example 02](#ContextMenuButton-Example-02)**<br/>💭 **Summary**: TBA |
 
 <br><br>
 
