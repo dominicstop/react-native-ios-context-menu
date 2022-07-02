@@ -1134,33 +1134,16 @@ export function ContextMenuViewExample03(props) {
 
 ### `ContextMenuView` Example 04
 
-This example context menu showcases the `MenuActionConfig.menuAttributes` property.
+**Summary**: This example context menu showcases the `MenuActionConfig.menuAttributes` property.
 
 <br>
 
-* The `MenuActionConfig.menuAttributes` property accepts an array of strings (i.e. an array of `MenuAttributes` items).
-
-<br>
-
-* In this example, the context menu has 3 actions, each with a different menu attribute assigned to it.<br><br>
-	* The first menu action is a "disabled" action. It has it's `menuAttributes` set to `[disabled]`.<br><br>
-	* The action title text and icon becomes grey out.
-
-
-<br>
-
-* The second menu action is a destructive action. It has it's `menuAttributes` set to `[destructive]`.<br><br>
-  * The action title text and icon becomes red.
-
-<br>
-
-* The third menu action is a "hidden" action. It has it's `menuAttributes` set to `[hidden]`.<br><br>
-  * The menu action is not visible in the menu's list of actions. This is useful for temporarily hiding a menu action item.
-
-<br>
-
-* The fourth menu action is a "disabled" + "destructive"  action. <br><br>
-	* Visually, it looks very similar to the `disabled` action. 
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| 1️⃣ — The `MenuActionConfig.menuAttributes` property accepts an array of strings (i.e. an array of `MenuAttributes` items).<br><br>In this example, the context menu has 3 actions, each with a different menu attribute assigned to it.<br/><br/>The first menu action is a "disabled" action, i.e. it has it's `menuAttributes` set to `['disabled']`, causing the action title text and icon becomes greyed out. |
+| 2️⃣ — The second menu action is a destructive action.<br><br>It has it's `menuAttributes` set to `['destructive']`, causing the action title text and icon becomes red. |
+| 3️⃣ — The third menu action is a "hidden" action. It has it's `menuAttributes` set to `['hidden']`.<br/><br/>The menu action is not visible in the menu's list of actions. This is useful for temporarily hiding a menu action item. |
+| 4️⃣ — The fourth menu action is a "disabled" + "destructive"  action.<br>Visually, it looks very similar to an action that has the `['disabled']`  attribute. |
 
 <br>
 
