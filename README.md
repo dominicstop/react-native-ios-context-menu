@@ -1056,21 +1056,14 @@ export function ContextMenuViewExample02(props) {
 
 ### `ContextMenuView` Example 03
 
-This example shows a context menu that has a submenu item inside its list of menu actions.
-
-* A context menu supports having nested menu's (i.e. submenu's).<br><br>
-
-	* A submenu is basically just another menu with it's own separate list of menu actions.<br><br>
-	* Tapping/selecting a submenu will show another context menu,
-
+**Summary**: This example shows a context menu that has a submenu item inside its list of menu actions.
 
 <br>
 
-* The `MenuConfig.menuItems` property can accept a `MenuActionConfig` object, or a `MenuConfig` object.<br><br>
-
-  * Passing in a `MenuActionConfig` object to `MenuConfig.menuItems`  makes a menu action, conversely passing in a  `MenuConfig` object will create a submenu item.<br><br>
-  * In other words, to make a submenu, you just need to pass a `MenuConfig` item in the `MenuConfig.menuItems` property.<br><br>
-  	* 📝 **Note**: You can nest as many submenu's you want (but just remember that having more than 3 nested submenus is considered bad UX).
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| 1️⃣ — A context menu supports having nested menu's (i.e. submenu's).<br><br>A submenu is basically just another menu with it's own separate list of menu actions, and tapping/selecting a submenu will show another context menu, |
+| 2️⃣ — The `MenuConfig.menuItems` property can accept a `MenuActionConfig` object, or a `MenuConfig` object.<br/><br/>Passing in a `MenuActionConfig` object to `MenuConfig.menuItems`  makes a menu action, conversely passing in a  `MenuConfig` object will create a submenu item.<br/><br/>In other words, to make a submenu, you just need to pass a `MenuConfig` item in the `MenuConfig.menuItems` property.<br/><br/>📝 **Note**: You can nest as many submenu's you want (but just remember that having more than 3 nested submenus is considered bad UX). |
 
 <br>
 
