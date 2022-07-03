@@ -1335,6 +1335,16 @@ export function ContextMenuViewExample06(props) {
 
 ### `ContextMenuView` Example 07
 
+**Summary**: A context menu that set to be both "destructive" and "display in-line".
+
+<br>
+
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| You can set the menu options via the `MenuConfig.menuOptions` property. It accepts an array of `UIMenuOptions` strings (e.g. `destructive`, `displayInline`).<br><br>Passing in `['destructive', 'displayInline']` to `menuOptions`, is functionally the same as passing in `['displayInline']`. |
+
+<br>
+
 [🔗 Full Example](example/src/examples/ContextMenuViewExample07.tsx)
 
 ```jsx
@@ -1349,42 +1359,27 @@ export function ContextMenuViewExample07(props) {
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Action #1',
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'folder',
-            },
-          }
+          // ...
         }, {
           menuTitle: 'Submenu...',
+          // Make the submenu both `'displayInline'` and
+          // `'destructive'`.
+          //
+          // Visually, this is just the same as passing in 
+          // 'displayInline'.
           menuOptions: ['displayInline', 'destructive'],
           menuItems: [{
             actionKey  : 'key-01-01',
             actionTitle: 'Submenu Action #1',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'star',
-              },
-            }
+            // ...
           }, {
             actionKey  : 'key-01-02',
             actionTitle: 'Submenu Action #2',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'star.lefthalf.fill',
-              },
-            }
+            // ...
           }, {
             actionKey  : 'key-01-03',
             actionTitle: 'Submenu Action #3',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'star.fill',
-              },
-            }
+            // ...
           }]
         }],
       }}
