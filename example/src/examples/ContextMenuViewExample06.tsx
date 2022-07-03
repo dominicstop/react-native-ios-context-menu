@@ -24,6 +24,8 @@ export function ContextMenuViewExample06(props: ContextMenuExampleProps) {
           }
         }, {
           menuTitle: 'Submenu...',
+          // Create an "destructive" submenu by adding
+          // `destructive` in the menu options...
           menuOptions: ['destructive'],
           menuItems: [{
             actionKey  : 'key-01-01',
