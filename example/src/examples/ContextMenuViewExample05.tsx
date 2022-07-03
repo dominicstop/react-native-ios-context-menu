@@ -24,6 +24,8 @@ export function ContextMenuViewExample05(props: ContextMenuExampleProps) {
           }
         }, {
           menuTitle: 'Submenu...',
+          // Create "Inline submenu" by adding `displayInline`
+          // in the menu options...
           menuOptions: ['displayInline'],
           menuItems: [{
             actionKey  : 'key-01-01',
