@@ -24,6 +24,11 @@ export function ContextMenuViewExample07(props: ContextMenuExampleProps) {
           }
         }, {
           menuTitle: 'Submenu...',
+          // Make the submenu both `'displayInline'` and
+          // `'destructive'`.
+          //
+          // Visually, this is just the same as passing in 
+          // 'displayInline'.
           menuOptions: ['displayInline', 'destructive'],
           menuItems: [{
             actionKey  : 'key-01-01',
