@@ -1215,6 +1215,16 @@ export function ContextMenuViewExample04(props) {
 
 ### `ContextMenuView` Example 05
 
+**Summary**: A context menu that has a in-line submenu.
+
+<br>
+
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| You can set the menu options via the `MenuConfig.menuOptions` property. It accepts an array of `UIMenuOptions` strings (e.g. `'destructive'`, `'displayInline'`).<br><br>If you pass in `['displayInline']` to `menuOptions`, the submenu will be added/combined to its parent menu, but with a small separator between them. |
+
+<br>
+
 [🔗 Full Example](example/src/examples/ContextMenuViewExample05.tsx)
 
 ```jsx
@@ -1229,42 +1239,24 @@ export function ContextMenuViewExample05(props) {
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Action #1',
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'folder',
-            },
-          }
+          // ...
         }, {
           menuTitle: 'Submenu...',
+          // Create an "Inline submenu" by adding `displayInline`
+          // in the menu options...
           menuOptions: ['displayInline'],
           menuItems: [{
             actionKey  : 'key-01-01',
             actionTitle: 'Submenu Action #1',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'star',
-              },
-            }
+            // ...
           }, {
             actionKey  : 'key-01-02',
             actionTitle: 'Submenu Action #2',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'star.lefthalf.fill',
-              },
-            }
+            // ...
           }, {
             actionKey  : 'key-01-03',
             actionTitle: 'Submenu Action #3',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'star.fill',
-              },
-            }
+            // ...
           }]
         }],
       }}
