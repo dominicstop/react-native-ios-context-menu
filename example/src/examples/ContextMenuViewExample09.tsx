@@ -44,6 +44,8 @@ export function ContextMenuViewExample09(props: ContextMenuExampleProps) {
         }],
       }}
       onPressMenuItem={({nativeEvent}) => {
+        // Use `actionKey` to identify which menu action was
+        // pressed....
         switch (nativeEvent.actionKey) {
           case 'save':
             Alert.alert('saving...');
