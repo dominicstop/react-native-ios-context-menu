@@ -16,7 +16,8 @@ export function ContextMenuViewExample08(props: ContextMenuExampleProps) {
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'menuState: on',
-          menuState  : 'on',
+          // show a checkmark
+          menuState: 'on',
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
@@ -26,7 +27,8 @@ export function ContextMenuViewExample08(props: ContextMenuExampleProps) {
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'menuState: off',
-          menuState  : 'off',
+          // no checkmark
+          menuState: 'off',
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
