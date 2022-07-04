@@ -1398,6 +1398,16 @@ export function ContextMenuViewExample07(props) {
 
 ### `ContextMenuView` Example 08
 
+**Summary**: A context menu with 3 actions that has `'on'`, `'off'`, and `'mixed'` `menuState`.<br>
+
+<br>
+
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| You can set an menu action item's the menu state via the `MenuActionConfig.menuState` property.<br><br>📝 **Note**: On iOS 13, an action item's menu state is indicated via changing it's icon to a checkmark. However on later version of iOS this behavior has been changed to showing a checkmark besides the action title (see gifs/screenshots below). |
+
+<br>
+
 [🔗 Full Example](example/src/examples/ContextMenuViewExample08.tsx)
 
 ```jsx
@@ -1412,33 +1422,21 @@ export function ContextMenuViewExample08(props) {
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'menuState: on',
-          menuState  : 'on',
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'folder',
-            },
-          }
+          // show a checkmark
+          menuState: 'on',
+          // ...
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'menuState: off',
-          menuState  : 'off',
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'dial',
-            },
-          }
+          // no checkmark
+          menuState: 'off',
+          // ...
         }, {
           actionKey  : 'key-03'   ,
           actionTitle: 'menuState: mixed',
-          menuState  : 'mixed',
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'archivebox',
-            },
-          }
+          // visually this is the same as 'on'
+          menuState: 'mixed',
+          // ...
         }],
       }}
     >
