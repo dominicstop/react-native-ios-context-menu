@@ -8,6 +8,7 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
 export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
+  // `timer` will increment every second... 
   const [timer, setTimer] = React.useState(0);
   const increment = React.useRef(null);
 
@@ -38,17 +39,21 @@ export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
           }
         }, {
           actionKey  : 'key-01',
+          // update the action title every second...
           actionTitle: `timer: ${timer}`,
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
+               // update the icon every second...
               systemName: ((timer % 2 === 0)
                 ? 'heart'
                 : 'heart.fill'
               ),
             },
           }
-        }, (timer % 3 === 0) && {
+        }, 
+        // this item will be added and removed...
+        (timer % 3 === 0) && {
           actionKey  : 'key-02',
           actionTitle: `Dynamic Action`,
           icon: {
