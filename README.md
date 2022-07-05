@@ -1519,63 +1519,54 @@ export function ContextMenuViewExample09(props) {
 
 ### `ContextMenuView` Example 10
 
+**Summary**: An example showing how to dynamically update the context menu while it's visible. In this example, the menu action changes every time the counter increments every second.
+
+<br>
+
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| On iOS 14+ you can update the menu while it's visible, e.g. like adding and removing items in the context menu, or changing the action title, etc.<br><br>You can control the context menu config using state, and dynamically change it as shown in the example below.<br><br>📝 **Note A**: On iOS 13 the context menu will not update while it's visible.<br/><br/>📝 **Note B**: On iOS 15+, all changes to the context menu config are applied using a fade/crossfade transition. |
+
+<br>
+
 [🔗 Full Example](example/src/examples/ContextMenuViewExample10.tsx)
 
 ```jsx
  // 📝 Note: for the sake of brevity, some of the code is omitted...
-import { ContextMenuView } from 'react-native-ios-context-menu';
-
 export function ContextMenuViewExample10(props) {
+  // `timer` will increment every second... 
   const [timer, setTimer] = React.useState(0);
-  const increment = React.useRef(null);
 
-  const handleStart = () => {
-    increment.current = setInterval(() => {
-      setTimer((prevTimer) => prevTimer + 1);
-    }, 1000);
-  };
-
-  const handleReset = () => {
-    clearInterval(increment.current);
-    setTimer(0);
-  };
-
+  // ...
   return (
     <ContextMenuView
-      onMenuDidShow={() => handleStart()}
-      onMenuDidHide={() => handleReset()}
+      // ...
       menuConfig={{
         menuTitle: 'ContextMenuViewExample10',
         menuItems: [{
           actionKey  : 'key-00',
           actionTitle: `Static Action`,
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'square.and.arrow.down',
-            },
-          }
+          // ...
         }, {
           actionKey  : 'key-01',
+          // update the action title every second...
           actionTitle: `timer: ${timer}`,
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
+               // update the icon every second...
               systemName: ((timer % 2 === 0)
                 ? 'heart'
                 : 'heart.fill'
               ),
             },
           }
-        }, (timer % 3 === 0) && {
+        }, 
+        // this item will be added and removed...
+        (timer % 3 === 0) && {
           actionKey  : 'key-02',
           actionTitle: `Dynamic Action`,
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'scissors.badge.ellipsis',
-            },
-          }
+          // ...
         }],
       }}
     >
