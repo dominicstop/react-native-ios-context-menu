@@ -1644,13 +1644,13 @@ export function ContextMenuViewExample11(props) {
 
 ### `ContextMenuView` Example 12
 
-**Summary**: TBA
+**Summary**: An example showing a custom context menu preview that dynamically changes its size due to its contents updating every second.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| 📝 **Note**: By default, custom preview will animate to its new size. If you want to disable this behavior, set `MenuPreviewConfig.isResizeAnimated` property to `false`. |
 
 <br>
 
@@ -1658,79 +1658,37 @@ export function ContextMenuViewExample11(props) {
 
 ```jsx
  // 📝 Note: for the sake of brevity, some of the code is omitted...
-import { ContextMenuView } from 'react-native-ios-context-menu';
 
 export function ContextMenuViewExample12(props) {
-    const [timer, setTimer] = React.useState(0);
-  const increment = React.useRef(null);
+  // increments every second...
+  const [timer, setTimer] = React.useState(0);
 
-  const handleStart = () => {
-    increment.current = setInterval(() => {
-      setTimer((prevTimer) => prevTimer + 1);
-    }, 1000);
-  };
-
-  const handleStop = () => {
-    clearInterval(increment.current);
-  };
-
-  const handleReset = () => {
-    clearInterval(increment.current);
-    setTimer(0);
-  };
-
+	// ...
   return (
     <ContextMenuView
       menuConfig={{
         menuTitle: 'ContextMenuViewExample12',
         menuItems: [{
-          actionKey     : 'add',
-          actionTitle   : `Add 100`,
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'plus',
-            },
-          }
-        }, (timer > 0) && {
-          actionKey     : 'reset',
-          actionTitle   : `Reset Counter`,
-          menuAttributes: ['destructive'],
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'trash',
-            },
-          }
+          // ...
         }],
       }}
       previewConfig={{
         previewType: 'CUSTOM',
         backgroundColor: 'white'
       }}
+      // The context menu preview grows and shrinks due to the labels/
+      // text changing every second...
       renderPreview={() => (
-        <View style={{ padding: 20 }}>
-          <Text style={{fontSize: 32}}>
+        <View>
+          <Text>
             {`Counter: ${timer}`}
           </Text>
-          <Text style={{fontSize: 32}}>
+          <Text>
             {(timer % 2 === 0)? 'EVEN' : 'The number is: ODD'}
           </Text>
         </View>
       )}
-      onMenuDidShow={() => handleStart()}
-      onMenuDidHide={() => handleStop()}
-      onPressMenuItem={({nativeEvent}) => {
-        switch (nativeEvent.actionKey) {
-          case 'add':
-            setTimer((prevTimer) => prevTimer + 100);
-            break;
-
-          case 'reset':
-            handleReset();
-            break;
-        };
-      }}
+      // ...
     >
       {/** Components */}
     </ContextMenuView>
