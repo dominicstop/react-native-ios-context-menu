@@ -9,7 +9,8 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
 export function ContextMenuViewExample12(props: ContextMenuExampleProps) {
-    const [timer, setTimer] = React.useState(0);
+  // increments every second...
+  const [timer, setTimer] = React.useState(0);
   const increment = React.useRef(null);
 
   const handleStart = () => {
@@ -33,8 +34,8 @@ export function ContextMenuViewExample12(props: ContextMenuExampleProps) {
       menuConfig={{
         menuTitle: 'ContextMenuViewExample12',
         menuItems: [{
-          actionKey     : 'add',
-          actionTitle   : `Add 100`,
+          actionKey  : 'add',
+          actionTitle: `Add 100`,
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
@@ -57,6 +58,8 @@ export function ContextMenuViewExample12(props: ContextMenuExampleProps) {
         previewType: 'CUSTOM',
         backgroundColor: 'white'
       }}
+      // The context menu preview grows and shrinks due to the labels/
+      // text changing every second...
       renderPreview={() => (
         <View style={{ padding: 20 }}>
           <Text style={{fontSize: 32}}>
