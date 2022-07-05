@@ -1584,17 +1584,19 @@ export function ContextMenuViewExample10(props) {
 
 ### `ContextMenuView` Example 11
 
-**Summary**: TBA
+**Summary**: An example showing how to use a custom preview for the context menu.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| 1️⃣ — The `ContextMenuView.renderPreview` render prop allows you show a custom preview when the context menu appears.<br><br>📝 **Note**: The `renderPreview` prop accepts a function that returns an element. The returned element will be used for the context menu preview. |
+| 2️⃣ — The `ContextMenuView.previewConfig` is used to control the behaviours and appearance of the custom context menu preview.<br/><br/>In order to show the custom context menu preview, we must first set `MenuPreviewConfig.previewType` to `'CUSTOM'`. Bu default, this property is set to `'DEFAULT'`, which means that you do not want to use a custom preview.<br/><br/>📝 **Note A**: The `previewConfig` prop accepts a `MenuPreviewConfig` object.<br/><br/>📝 **Note B**: The `previewType` property accepts a `MenuPreviewType` string. You can set this to `'DEFAULT'` if you want to quickly disable the custom preview. |
+| 3️⃣ — In this example, we want the custom preview to be as big as possible, so we set the `MenuPreviewConfig.previewSize` property to `'STRETCH'`.<br/><br/>📝 **Note**: The `previewSize` property accepts a `MenuPreviewSize` string. By default, this prop is set to `'INHERIT'`, which means to just match the size of the root view returned from `renderPreview`. |
 
 <br>
 
-[🔗 Full Example](example/src/examples/ContextMenuViewExampleXX.tsx)
+[🔗 Full Example](example/src/examples/ContextMenuViewExample11.tsx)
 
 ```jsx
  // 📝 Note: for the sake of brevity, some of the code is omitted...
