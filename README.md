@@ -1915,13 +1915,13 @@ export function ContextMenuViewExample16(props) {
 
 ### `ContextMenuView` Example 17
 
-**Summary**: TBA
+**Summary**: Icon Example — An example showing a context menu with action items that have different colored icons.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| A `ImageItemConfig` object has an optional called `imageOptions`. This property accepts a `UIImageConfig` object.<br><br>You to tint the image to a specified color using the `UIImageConfig.tint` property. It accepts a color string in either `rgb`, `rgba`, or `hex` format. You can also choose to provide a dynamic color config if you want to use a specific color for light/dark mode.<br><br>📝 **Note A**: Any image can be tinted to a specific color, not just `'IMAGE_SYSTEM'` images.<br/><br/>📝 **Note B**: In order for the tint to take effect, set `UIImageConfig.renderingMode` to `alwaysOriginal`. |
 
 <br>
 
@@ -1939,12 +1939,12 @@ export function ContextMenuViewExample17(props) {
         menuItems: [{
           actionKey  : 'key-01',
           actionTitle: 'Action #1',
-          discoverabilityTitle: 'Blue Icon',
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
               systemName: 'cloud.heavyrain.fill',
             },
+            // blue icon
             imageOptions: {
               tint: 'blue',
               renderingMode: 'alwaysOriginal',
@@ -1953,12 +1953,9 @@ export function ContextMenuViewExample17(props) {
         }, {
           actionKey  : 'key-02',
           actionTitle: 'Action #2',
-          discoverabilityTitle: 'Orange Icon',
           icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'exclamationmark.triangle.fill',
-            },
+            // ...
+            // orange icon
             imageOptions: {
               tint: 'rgb(218,165,32)',
               renderingMode: 'alwaysOriginal',
@@ -1967,12 +1964,9 @@ export function ContextMenuViewExample17(props) {
         }, {
           actionKey  : 'key-03',
           actionTitle: 'Action #3',
-          discoverabilityTitle: 'Pink Icon',
           icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'heart.fill',
-            },
+            // ...
+            // pink icon
             imageOptions: {
               tint: '#FF1493',
               renderingMode: 'alwaysOriginal',
@@ -1981,12 +1975,9 @@ export function ContextMenuViewExample17(props) {
         }, {
           actionKey  : 'key-04',
           actionTitle: 'Action #4',
-          discoverabilityTitle: 'Green Icon',
           icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'bubble.right.fill',
-            },
+            // ...
+            // green icon
             imageOptions: {
               tint: 'rgba(124,252,0,0.5)',
               renderingMode: 'alwaysOriginal',
