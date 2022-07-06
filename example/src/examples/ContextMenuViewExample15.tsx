@@ -30,6 +30,7 @@ export function ContextMenuViewExample15(props: ContextMenuExampleProps) {
         }],
       }}
       previewConfig={{
+        // specify which view to use as the preview target.
         targetViewNode: targetViewNode,
       }}
       onPressMenuItem={({nativeEvent}) => {
