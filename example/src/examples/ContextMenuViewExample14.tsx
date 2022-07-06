@@ -16,6 +16,8 @@ export function ContextMenuViewExample14(props: ContextMenuExampleProps) {
         previewType: 'CUSTOM',
         previewSize: 'STRETCH',
         backgroundColor: 'rgba(255,255,255,0.75)',
+        // change the exit transition that occurs when the 
+        // context menu preview is pressed.
         preferredCommitStyle: 'pop',
       }}
       renderPreview={() => (
