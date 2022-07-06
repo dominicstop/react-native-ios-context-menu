@@ -32,7 +32,9 @@ export function ContextMenuViewExample16(props: ContextMenuExampleProps) {
           actionTitle: 'Action #3',
           discoverabilityTitle: 'Use "ASSET" icon',
           icon: {
+            // specify that you want to use an asset icon
             type: 'IMAGE_ASSET',
+            // pass the name of the asset
             imageValue: 'icon-rainbow-flag',
           }
         }],
