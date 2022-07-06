@@ -1758,13 +1758,13 @@ export function ContextMenuViewExample13(props) {
 
 ### `ContextMenuView` Example 14
 
-**Summary**: TBA
+**Summary**: An example that changes the exit transition of the context menu preview when its tapped using the `preferredCommitStyle ` config.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| 📝 **Note A**: By default, `MenuPreviewConfig.preferredCommitStyle` is set to `'dismiss'`.<br><br>📝 **Note B**:  A `preferredCommitStyle` of `'pop'`' is usually used when navigating to another screen (i.e. a view controller is pushed without the normal push transition). |
 
 <br>
 
@@ -1772,8 +1772,6 @@ export function ContextMenuViewExample13(props) {
 
 ```jsx
  // 📝 Note: for the sake of brevity, some of the code is omitted...
-import { ContextMenuView } from 'react-native-ios-context-menu';
-
 export function ContextMenuViewExample14(props) {
   return (
     <ContextMenuView
@@ -1781,20 +1779,12 @@ export function ContextMenuViewExample14(props) {
         previewType: 'CUSTOM',
         previewSize: 'STRETCH',
         backgroundColor: 'rgba(255,255,255,0.75)',
+	      // change the exit transition that occurs when the 
+        // context menu preview is pressed.
         preferredCommitStyle: 'pop',
       }}
       renderPreview={() => (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{fontSize: 32}}>
-            Hello World
-          </Text>
-          <Text style={{fontSize: 32}}>
-            Hello World
-          </Text>
-          <Text style={{fontSize: 32}}>
-            Hello World
-          </Text>
-        </View>
+        {/** ... */}
       )}
     >
       {/** Components */}
