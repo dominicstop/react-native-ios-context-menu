@@ -1704,13 +1704,13 @@ export function ContextMenuViewExample12(props) {
 
 ### `ContextMenuView` Example 13
 
-**Summary**: TBA
+**Summary**: An example showing how to add a subtitle to menu action.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| You can add a subtitle to a menu action via passing a string value to the `MenuActionConfig.actionSubtitle` property.<br><br>📝 **Note A**: On iOS 13/14, you add subtitles to the menu action via the `MenuActionConfig.discoverabilityTitle` property, but on iOS 15+ this property is now used for the "discoverability heads-up display" UI.<br/><br/>📝 **Note B**: For backwards compatibility, the string value you passed to `discoverabilityTitle` will also be used to set `actionSubtitle` on iOS 15+.<br><br>To disable this automatic behavior, set the `ContextMenuView.shouldUseDiscoverability` `TitleAsFallbackValueForSubtitle` prop to `false`. |
 
 <br>
 
@@ -1728,12 +1728,15 @@ export function ContextMenuViewExample13(props) {
         menuItems: [{
           actionKey: 'key-01',
           actionTitle: 'Action #1',
+          // old way of adding a subtitle...
           // iOS 13 to 14 (still works on iOS 15+)
-          actionSubtitle: 'Action subtitle',
+          discoverabilityTitle: 'Action subtitle',
         }, {
           actionKey: 'key-02'   ,
           actionTitle: 'Action #2',
-          // iOS 15+ only
+          // new way of adding a subtitle...
+          // iOS 15+ only, but is automatically backwards compatible w/
+          // iOS 13/14...
           actionSubtitle: 'Lorum ipsum sit amit dolor aspicing',
         }, {
           actionKey: 'key-03'   ,
