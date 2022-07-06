@@ -3,7 +3,6 @@
 <p>
   <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
 </p>
-
 <br>
 
 ## 🚧⚠️ Library + Documentation Re-Write WIP ⚠️🚧
