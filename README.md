@@ -1859,13 +1859,13 @@ export function ContextMenuViewExample15(props) {
 
 ### `ContextMenuView` Example 16
 
-**Summary**: TBA
+**Summary**: Icon Example — An example showing a context menu with an action that uses a `'IMAGE_ASSET'` image for its icon.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| A config of `ImageItemConfig.type` set to `'IMAGE_ASSET'` means that you want to use a `xcasset` image asset.<br/><br/>📝 **Note**: The string value you pass to the `ImageItemConfig.imageValue` must match the corresponding asset that you want to use in your project's `xcasset` catalog. |
 
 <br>
 
@@ -1881,25 +1881,21 @@ export function ContextMenuViewExample16(props) {
       menuConfig={{
         menuTitle: 'ContextMenuViewExample16',
         menuItems: [{
-          actionKey  : 'key-01',
+          actionKey: 'key-01',
           actionTitle: 'Action #1',
-          discoverabilityTitle: 'No Icon',
+          // ...
         }, {
-          actionKey  : 'key-02'   ,
+          actionKey: 'key-02'   ,
           actionTitle: 'Action #2',
-          discoverabilityTitle: 'Use "IMAGE_SYSTEM" icon',
-          icon: {
-            type: 'IMAGE_SYSTEM',
-            imageValue: {
-              systemName: 'dial.fill',
-            },
-          }
+          // ...
         }, {
           actionKey  : 'key-03'   ,
           actionTitle: 'Action #3',
           discoverabilityTitle: 'Use "ASSET" icon',
           icon: {
+            // specify that you want to use an asset icon
             type: 'IMAGE_ASSET',
+            // pass the name of the asset
             imageValue: 'icon-rainbow-flag',
           }
         }],
