@@ -1764,7 +1764,7 @@ export function ContextMenuViewExample13(props) {
 
 | Notes                                                        |
 | ------------------------------------------------------------ |
-| 📝 **Note A**: By default, `MenuPreviewConfig.preferredCommitStyle` is set to `'dismiss'`.<br><br>📝 **Note B**:  A `preferredCommitStyle` of `'pop'`' is usually used when navigating to another screen (i.e. a view controller is pushed without the normal push transition). |
+| The `MenuPreviewConfig.preferredCommitStyle` allows you to configure what preset exit transition to use when the context menu preview is pressed.<br><br>📝 **Note A**: By default, `MenuPreviewConfig.preferredCommitStyle` is set to `'dismiss'`.<br><br>📝 **Note B**:  A `preferredCommitStyle` of `'pop'`' is usually used when navigating to another screen (i.e. a view controller is pushed without the normal push transition). |
 
 <br>
 
@@ -1801,13 +1801,13 @@ export function ContextMenuViewExample14(props) {
 
 ### `ContextMenuView` Example 15
 
-**Summary**: TBA
+**Summary**: An example showing how to configure a context menu that uses targeted previews.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| By default, the child elements you render inside the `ContextMenuView` component will be used as the preview when the context menu interaction is triggered.<br><br>Targeted previews allows you to specify which specific view to use for the context menu preview, so that when the context menu interaction begins, a different view will be used for the preview (including the initial transition, see the gif below the example).<br><br>📝 **Note A**: The context menu interaction will still be triggered by long pressing on the child elements in the `ContextMenuView` component.<br><br>As such, if the view that you are using for the targeted preview is not a child of `ContextMenuView`, then holding down on that view will not trigger the context menu interaction.<br/><br/>📝 **Note B**: Targeted previews is different from setting a [custom context menu preview](#ContextMenuView-Example-11) via the `renderPreview` prop.<br><br>A custom context menu preview will replace the preview content entirely with your custom preview, while a targeted preview on the other hand will change which view to use for the context menu entrance/exit transition (as well as what view to show in the preview if you do not have a custom preview). |
 
 <br>
 
@@ -1831,13 +1831,10 @@ export function ContextMenuViewExample15(props) {
   return (
     <ContextMenuView
       menuConfig={{
-        menuTitle: 'ContextMenuViewExample15',
-        menuItems: [{
-          actionKey  : 'key-01',
-          actionTitle: 'Action #1',
-        }],
+        // ...
       }}
       previewConfig={{
+        // specify which view to use as the preview target
         targetViewNode: targetViewNode,
       }}
     >
