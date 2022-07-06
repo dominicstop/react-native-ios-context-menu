@@ -22,6 +22,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             imageValue: {
               systemName: 'cloud.heavyrain.fill',
             },
+            // blue icon
             imageOptions: {
               tint: 'blue',
               renderingMode: 'alwaysOriginal',
@@ -36,6 +37,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             imageValue: {
               systemName: 'exclamationmark.triangle.fill',
             },
+            // orange icon
             imageOptions: {
               tint: 'rgb(218,165,32)',
               renderingMode: 'alwaysOriginal',
@@ -50,6 +52,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             imageValue: {
               systemName: 'heart.fill',
             },
+            // pink icon
             imageOptions: {
               tint: '#FF1493',
               renderingMode: 'alwaysOriginal',
@@ -64,6 +67,7 @@ export function ContextMenuViewExample17(props: ContextMenuExampleProps) {
             imageValue: {
               systemName: 'bubble.right.fill',
             },
+            // green icon
             imageOptions: {
               tint: 'rgba(124,252,0,0.5)',
               renderingMode: 'alwaysOriginal',
