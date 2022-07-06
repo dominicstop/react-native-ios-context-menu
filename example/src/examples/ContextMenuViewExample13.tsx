@@ -16,10 +16,15 @@ export function ContextMenuViewExample13(props: ContextMenuExampleProps) {
         menuItems: [{
           actionKey: 'key-01',
           actionTitle: 'Action #1',
+          // old way of adding a subtitle...
+          // iOS 13 to 14 (still works on iOS 15+)
           discoverabilityTitle: 'Action subtitle',
         }, {
           actionKey: 'key-02'   ,
           actionTitle: 'Action #2',
+          // new way of adding a subtitle...
+          // iOS 15+ only, but is automatically backwards compatible w/
+          // iOS 13/14...
           actionSubtitle: 'Lorum ipsum sit amit dolor aspicing',
         }, {
           actionKey: 'key-03'   ,
