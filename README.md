@@ -2000,13 +2000,14 @@ export function ContextMenuViewExample17(props) {
 
 ### `ContextMenuView` Example 18
 
-**Summary**: TBA
+**Summary**: Icon Example — An example showing a context menu with action items that has icons that uses local image assets imported via `require(...)`.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| 1️⃣ — The first step that we need to do is to generate a `ImageResolvedAssetSource` object of the local image asset we want to use. This object contains metadata about the image as well as its URI in the file system.<br><br> The `Image.resolveAssetSource` function returns a `ImageResolvedAssetSource` that corresponds to the source argument you pass into it. Give this function the return value of `require(path/to/image.png)`. |
+| 2️⃣ — A config of `ImageItemConfig.type` set to `'IMAGE_REQUIRE'` means that we want to use a local image asset imported via the `require(...)` function.<br/><br/>The `ImageItemConfig.imageValue` property accepts a `ImageResolvedAssetSource` object that corresponds to the image asset that you want to use. |
 
 <br>
 
@@ -2015,6 +2016,9 @@ export function ContextMenuViewExample17(props) {
 ```jsx
  // 📝 Note: for the sake of brevity, some of the code is omitted...
 import { ContextMenuView } from 'react-native-ios-context-menu';
+
+// Generate a `ImageResolvedAssetSource` object based on the
+// image assets...
 
 const iconA = Image.resolveAssetSource(
   require('../assets/emoji-pleading-face.png')
@@ -2048,17 +2052,19 @@ export function ContextMenuViewExample18(props) {
             iconValue: iconA,
           }
         }, {
-          actionKey  : 'key-02'   ,
+          actionKey: 'key-02'   ,
           actionTitle: 'Action #2',
-          discoverabilityTitle: 'Use "IMAGE_REQUIRE" icon',
-          icon: {
-            type: 'IMAGE_REQUIRE',
-            imageValue: iconB,
-          }
+          
+          // Set config to use images via `require`
+          type: 'IMAGE_REQUIRE',
+          
+          // Pass in the corresponding
+          // `ImageResolvedAssetSource` object of the image
+          // that you want to use as the icon...
+          imageValue: iconB,
         }, {
-          actionKey  : 'key-03'   ,
+          actionKey: 'key-03'   ,
           actionTitle: 'Action #3',
-          discoverabilityTitle: 'Use "IMAGE_REQUIRE" icon',
           icon: {
             type: 'IMAGE_REQUIRE',
             imageValue: iconC,
