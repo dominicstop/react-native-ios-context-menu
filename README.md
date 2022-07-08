@@ -995,7 +995,7 @@ export function ContextMenuViewExample01(props) {
 | Notes                                                        |
 | ------------------------------------------------------------ |
 | 1️⃣ — A `MenuActionConfig` object can be configured to show an icon via the `MenuActionConfig.icon` property.<br><br>📝 **Note A**: The `icon` property accepts a `ImageItemConfig` object.<br/><br/>📝 **Note B**: A `ImageItemConfig` object is used to describe images/assets (e.g. SF Symbols icons, images, xcasset images, programmatic images, etc). |
-| 2️⃣ — In this example, we want to use a "SF Symbols" icon for the menu action.<br/>In order to do this, the `ImageItemConfig.type` property must be set to `"IMAGE_SYSTEM"`.<br><br>📝 **Note A**: Passing in a value of `"IMAGE_SYSTEM"` to the `type` property means that we want to create a "SF Symbols" system icon.<br/><br/>📝 **Note B**: Using a "SF Symbols" icon requires iOS 13+.<br/><br/> 📝 **Note C**: Via the `ImageItemConfig` object, you can also configure the context menu action to use other icons (e.g. `xcasset` items, images, gradients, solid colors, etc).<br/><br/>📝 **Note D**: You can apply a tint to the icon via the `ImageItemConfig.imageOptions` property using the `UIImageConfig.tint` and `UIImageConfig.renderingMode` property. |
+| 2️⃣ — In this example, we want to use a "SF Symbols" icon for the menu action.<br/>In order to do this, the `ImageItemConfig.type` property must be set to `"IMAGE_SYSTEM"`.<br><br>📝 **Note A**: Passing in a value of `"IMAGE_SYSTEM"` to the `type` property means that we want to create a "SF Symbols" system icon.<br/><br/>📝 **Note B**: Using a "SF Symbols" icon requires iOS 13+.<br/><br/> 📝 **Note C**: Via the `ImageItemConfig` object, you can also configure the context menu action to use other icons (e.g. `xcasset` items, images, gradients, solid colors, etc).<br/><br/>📝 **Note D**: You can apply a tint to the icon via the `ImageItemConfig.imageOptions` property using the `UIImageConfig.tint` and `UIImageConfig.renderingMode` property. See [`ContextMenuView` Example 17](#ContextMenuView-Example-17) for more details. |
 | 3️⃣ — In order to configure what kind of "SF Symbols" icon we want to use for the menu action, we need to pass in a `ImageSystemConfig` object to the  `ImageItemConfig.imageValue` property.<br/><br/>We can set what kind of icon to use via passing a string value to the `ImageSystemConfig.systemName` property.<br/><br/>📝 **Note A**: The string value passed to the `systemName` property must be a valid SF Symbols name.<br/><br/>📝 **Note B**: To view the list of SF Symbols icons (along with their corresponding icon names), you'll need to download the SF Symbols Mac app from [this page](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).<br/><br/>📝 **Note C**: You can customize the "SF Symbols" icon further via the `ImageItemConfig` (e.g. `pointSize`, `weight`, `scale`, `hierarchicalColor`, `paletteColors`, etc). |
 
 <br>
@@ -1010,36 +1010,36 @@ export function ContextMenuViewExample02(props) {
   return (
     <ContextMenuView
       menuConfig={{
-          menuTitle: 'ContextMenuViewExample02',
-          menuItems: [{
-            actionKey  : 'key-01',
-            actionTitle: 'Action #1',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'folder',
-              },
-            }
-          }, {
-            actionKey  : 'key-02'   ,
-            actionTitle: 'Action #2',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'dial.fill',
-              },
-            }
-          }, {
-            actionKey  : 'key-03'   ,
-            actionTitle: 'Action #3',
-            icon: {
-              type: 'IMAGE_SYSTEM',
-              imageValue: {
-                systemName: 'archivebox.fill',
-              },
-            }
-          }],
-        }}
+        menuTitle: 'ContextMenuViewExample02',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'folder',
+            },
+          }
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'dial.fill',
+            },
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'archivebox.fill',
+            },
+          }
+        }],
+      }}
     >
       {/** Components */}
     </ContextMenuView>
