@@ -6,6 +6,8 @@ import { ContextMenuView } from 'react-native-ios-context-menu';
 import type { ContextMenuExampleProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
+// Generate a `ImageResolvedAssetSource` object based on the
+// image assets....
 
 const iconA = Image.resolveAssetSource(
   require('../assets/emoji-pleading-face.png')
@@ -43,7 +45,11 @@ export function ContextMenuViewExample18(props: ContextMenuExampleProps) {
           actionTitle: 'Action #2',
           discoverabilityTitle: 'Use "IMAGE_REQUIRE" icon',
           icon: {
+            // Set config to use images via `require`
             type: 'IMAGE_REQUIRE',
+            // Pass in the corresponding
+            // `ImageResolvedAssetSource` object of the image
+            // that you want to use as the icon...
             imageValue: iconB,
           }
         }, {
