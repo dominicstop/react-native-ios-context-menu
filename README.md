@@ -2086,13 +2086,17 @@ export function ContextMenuViewExample18(props) {
 
 ### `ContextMenuView` Example 19
 
-**Summary**: TBA
+**Summary**: An example showing a context menu that has a loading indicator using deferred menu elements.
 
 <br>
 
-| Notes                    |
-| ------------------------ |
-| TBA<br><br>📝 **Note A**: |
+| Notes                                                        |
+| ------------------------------------------------------------ |
+| 1️⃣ — If you control your `ContextMenuView.menuConfig` via state, then you can already dynamically add menu items while the context menu is visible (See [`ContextMenuView` Example 10](#ContextMenuView-Example-10)). However, there is no indication in the UI that items are currently being loaded.<br><br>You can use a "deferred element" in order to add an action item that has a loading indicator. Once you are done loading the content, then you can replace the deferred element with the actual menu items that you want to add.<br/><br/>📝 **Note**: Deferred elements are only available on iOS 14 and above. |
+| 2️⃣ —  The `MenuConfig.menuItems` property can accept an array of `MenuElementConfig` union type. This means that it can accept an array containing any of the following object types:  `MenuConfig` object, `MenuActionConfig`, and `DeferredMenuElementConfig`.<br/><br/>If we pass in a `DeferredMenuElementConfig` to `menuItems`, it means that we want to create "deferred element" item. |
+| 3️⃣ — To create a deferred element, we just need to create a "config" object that has a property containing both `type` and `deferredID`.<br><br>The `DeferredMenuElementConfig.type` property must be set to a string value of `'deferred'`. This indicates that we want to create a deferred element.<br/><br/>The `DeferredMenuElementConfig.deferredID` property must be set to a unique string value. Since we can have multiple deferred elements, the value you pass into this property will be used to identify which deferred element will be replaced with the menu items you want to add when the loading is complete. |
+| 4️⃣ — Once the context menu is open, any deferred menu items in `MenuConfig.menuItems` will trigger the `ContextMenuView.onRequestDeferredElement` event to fire. Via the event, you will receive two arguments: `deferredID` string and `provider` callback function.<br><br>The `deferredID` string corresponds to which deferred element that we need to load, while the `provider` callback function is used to provide the menu items that we want to add and replace the deferred element with. |
+| 5️⃣ — The `provider` callback function accepts an array of `MenuElementConfig` items.<br/><br/>To replace the deferred element with the menu items you want add, simply call the `provider` callback function with the array of  `MenuConfig`, `MenuActionConfig`, or `DeferredMenuElementConfig` objects.<br/><br/>📝 **Note**: Since the deferred elements were loaded/replaced using the `onRequestDeferredElement` event, there is now two sources of truths for the context menu config: One provided via the `ContextMenuView.menuConfig` prop, and the other via the `onRequestDeferredElement` event.<br><br>It is recommended that you cache the items you have loaded, and then combine them with the existing `menuConfig` once the menu has been closed. |
 
 <br>
 
@@ -2132,8 +2136,14 @@ export function ContextMenuViewExample19(props) {
             // provide the items to add to the context menu...
             provider([{
               type: 'action',
-              actionKey: 'action-01',
-              actionTitle: 'Deferred Item 01'
+              actionKey: 'action-02',
+              actionTitle: 'Deferred Item 02',
+              actionSubtitle: 'Deferred item...'
+            }, {
+              type: 'action',
+              actionKey: 'action-03',
+              actionTitle: 'Deferred Item 03',
+              actionSubtitle: 'Deferred item...'
             }]);
             break;
         };
