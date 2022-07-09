@@ -2208,6 +2208,10 @@ export function ContextMenuAuxPreviewExample01() {
 };
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 02
@@ -2259,6 +2263,10 @@ export function ContextMenuAuxPreviewExample02() {
 };
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 03
@@ -2302,6 +2310,10 @@ export function ContextMenuAuxPreviewExample03() {
 };
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 04
@@ -2344,6 +2356,10 @@ export function ContextMenuAuxPreviewExample04() {
   );
 };
 ```
+
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
 
 <br>
 
@@ -2390,6 +2406,10 @@ export function ContextMenuAuxPreviewExample05() {
 };
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 06
@@ -2409,6 +2429,10 @@ export function ContextMenuAuxPreviewExample05() {
 ```jsx
 TBA
 ```
+
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
 
 <br>
 
@@ -2430,6 +2454,10 @@ TBA
 TBA
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 08
@@ -2449,6 +2477,10 @@ TBA
 ```jsx
 TBA
 ```
+
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
 
 <br>
 
@@ -2470,6 +2502,10 @@ TBA
 TBA
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 10
@@ -2489,6 +2525,10 @@ TBA
 ```jsx
 TBA
 ```
+
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
 
 <br>
 
@@ -2510,6 +2550,10 @@ TBA
 TBA
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 12
@@ -2529,6 +2573,10 @@ TBA
 ```jsx
 TBA
 ```
+
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
 
 <br>
 
@@ -2550,6 +2598,10 @@ TBA
 TBA
 ```
 
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview Example 14
@@ -2569,6 +2621,10 @@ TBA
 ```jsx
 TBA
 ```
+
+![placeholder](assets/placeholder.jpg)
+
+![placeholder](assets/placeholder.gif)
 
 <br>
 
