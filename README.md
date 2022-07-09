@@ -2155,6 +2155,10 @@ export function ContextMenuViewExample19(props) {
 };
 ```
 
+![example-ContextMenuViewExample19](assets/example-ContextMenuViewExample19.jpg)
+
+![example-ContextMenuViewExample19](assets/example-ContextMenuViewExample19.gif)
+
 <br>
 
 ### `ContextMenuView` Auxiliary Preview - Example 01
