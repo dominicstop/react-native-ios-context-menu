@@ -988,7 +988,7 @@ export function ContextMenuViewExample01(props) {
 
 ### `ContextMenuView` Example 02
 
-**Summary**: A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon. This examples shows how to add a system icon in the context menu action.
+**Summary**: Icon Example — A basic context menu that has 3 menu action items, each with a different "SF Symbols" icon. This examples shows how to add a system icon in the context menu action.
 
 <br>
 
@@ -1055,7 +1055,7 @@ export function ContextMenuViewExample02(props) {
 
 ### `ContextMenuView` Example 03
 
-**Summary**: This example shows a context menu that has a submenu item inside its list of menu actions.
+**Summary**: Nested Menu — This example shows a context menu that has a submenu item inside its list of menu actions.
 
 <br>
 
@@ -1133,7 +1133,7 @@ export function ContextMenuViewExample03(props) {
 
 ### `ContextMenuView` Example 04
 
-**Summary**: This example context menu showcases the `MenuActionConfig.menuAttributes` property.
+**Summary**: Menu Attributes — This example context menu showcases the `MenuActionConfig.menuAttributes` property.
 
 <br>
 
@@ -1214,7 +1214,7 @@ export function ContextMenuViewExample04(props) {
 
 ### `ContextMenuView` Example 05
 
-**Summary**: A context menu that has a in-line submenu.
+**Summary**: Nested Menu + Menu Attributes — A context menu that has a in-line submenu.
 
 <br>
 
@@ -1274,7 +1274,7 @@ export function ContextMenuViewExample05(props) {
 
 ### `ContextMenuView` Example 06
 
-**Summary**: A context menu that has a destructive submenu.
+**Summary**: Menu Options — A context menu that has a destructive submenu.
 
 <br>
 
@@ -1334,7 +1334,7 @@ export function ContextMenuViewExample06(props) {
 
 ### `ContextMenuView` Example 07
 
-**Summary**: A context menu that set to be both "destructive" and "display in-line".
+**Summary**: Menu Options — A context menu that set to be both "destructive" and "display in-line".
 
 <br>
 
@@ -1397,7 +1397,7 @@ export function ContextMenuViewExample07(props) {
 
 ### `ContextMenuView` Example 08
 
-**Summary**: A context menu with 3 actions that has `'on'`, `'off'`, and `'mixed'` `menuState`.<br>
+**Summary**: Menu State — A context menu with 3 actions that has `'on'`, `'off'`, and `'mixed'` `menuState`.
 
 <br>
 
@@ -1453,7 +1453,7 @@ export function ContextMenuViewExample08(props) {
 
 ### `ContextMenuView` Example 09
 
-**Summary**: An example for the `onPressMenuItem` event prop.
+**Summary**: Events — An example for the `onPressMenuItem` event prop.
 
 | Notes                                                        |
 | ------------------------------------------------------------ |
@@ -1518,7 +1518,7 @@ export function ContextMenuViewExample09(props) {
 
 ### `ContextMenuView` Example 10
 
-**Summary**: An example showing how to dynamically update the context menu while it's visible. In this example, the menu action changes every time the counter increments every second.
+**Summary**: Dynamic Menu — An example showing how to dynamically update the context menu while it's visible. In this example, the menu action changes every time the counter increments every second.
 
 <br>
 
@@ -1583,7 +1583,7 @@ export function ContextMenuViewExample10(props) {
 
 ### `ContextMenuView` Example 11
 
-**Summary**: An example showing how to use a custom preview for the context menu.
+**Summary**: Context Menu Previews — An example showing how to use a custom preview for the context menu.
 
 <br>
 
@@ -1643,7 +1643,7 @@ export function ContextMenuViewExample11(props) {
 
 ### `ContextMenuView` Example 12
 
-**Summary**: An example showing a custom context menu preview that dynamically changes its size due to its contents updating every second.
+**Summary**: Context Menu Previews — An example showing a custom context menu preview that dynamically changes its size due to its contents updating every second.
 
 <br>
 
@@ -1703,7 +1703,7 @@ export function ContextMenuViewExample12(props) {
 
 ### `ContextMenuView` Example 13
 
-**Summary**: An example showing how to add a subtitle to menu action.
+**Summary**: Menu Action — An example showing how to add a subtitle to menu action.
 
 <br>
 
@@ -1758,7 +1758,7 @@ export function ContextMenuViewExample13(props) {
 
 ### `ContextMenuView` Example 14
 
-**Summary**: An example that changes the exit transition of the context menu preview when its tapped using the `preferredCommitStyle ` config.
+**Summary**: Context Menu Previews — An example that changes the exit transition of the context menu preview when its tapped using the `preferredCommitStyle ` config.
 
 <br>
 
@@ -1801,7 +1801,7 @@ export function ContextMenuViewExample14(props) {
 
 ### `ContextMenuView` Example 15
 
-**Summary**: An example showing how to configure a context menu that uses targeted previews.
+**Summary**: Context Menu Previews — An example showing how to configure a context menu that uses targeted previews.
 
 <br>
 
@@ -2086,7 +2086,7 @@ export function ContextMenuViewExample18(props) {
 
 ### `ContextMenuView` Example 19
 
-**Summary**: An example showing a context menu that has a loading indicator using deferred menu elements.
+**Summary**: Dynamic Menu — An example showing a context menu that has a loading indicator using deferred menu elements.
 
 <br>
 
