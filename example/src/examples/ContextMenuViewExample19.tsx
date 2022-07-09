@@ -40,13 +40,19 @@ export function ContextMenuViewExample19(props: ContextMenuExampleProps) {
         switch(deferredID) {
           case 'deferred-01':
             // dummy delay, wait for 1 second...
-            await Helpers.timeout(1000);
+            await Helpers.timeout(2000);
 
             // provide the items to add to the context menu...
             provider([{
               type: 'action',
-              actionKey: 'action-01',
-              actionTitle: 'Deferred Item 01'
+              actionKey: 'action-02',
+              actionTitle: 'Deferred Item 02',
+              actionSubtitle: 'Deferred item...'
+            }, {
+              type: 'action',
+              actionKey: 'action-03',
+              actionTitle: 'Deferred Item 03',
+              actionSubtitle: 'Deferred item...'
             }]);
             break;
         };
