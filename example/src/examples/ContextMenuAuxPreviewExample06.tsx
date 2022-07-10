@@ -21,6 +21,10 @@ export function ContextMenuAuxPreviewExample06(props: ContextMenuExampleProps) {
         }],
       }}
       auxiliaryPreviewConfig={{
+        // Configure the aux. preview to use the entire width of
+        // the screen...
+        //
+        // 📝 Note: By default, this is set to: `stretchPreview`
         alignmentHorizontal: 'stretchScreen',
         transitionEntranceDelay: 'RECOMMENDED',
       }}
