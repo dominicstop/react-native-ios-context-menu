@@ -21,6 +21,8 @@ export function ContextMenuAuxPreviewExample07(props: ContextMenuExampleProps) {
         }],
       }}
       auxiliaryPreviewConfig={{
+        // Configure the aux. preview to have a fixed size 
+        // of 100 x 100
         width: 100,
         height: 100,
         alignmentHorizontal: 'previewCenter',
