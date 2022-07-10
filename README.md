@@ -2624,7 +2624,31 @@ export function ContextMenuAuxPreviewExample09(props) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample10.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample10(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      auxiliaryPreviewConfig={{
+        // configure the entrance transition for the aux.
+        // preview to use a 'slide' transition...
+        transitionEntranceDelay: 0.5,
+        transitionConfigEntrance: {
+          transition: 'slide',
+          duration: 0.4,
+          options: ['curveEaseIn'],
+        },
+      }}
+      renderAuxiliaryPreview={() => (
+        // ...
+      )}
+    >
+      {/** .... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 ![placeholder](assets/placeholder.jpg)
