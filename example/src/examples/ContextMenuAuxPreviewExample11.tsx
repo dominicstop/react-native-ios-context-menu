@@ -22,6 +22,8 @@ export function ContextMenuAuxPreviewExample11(props: ContextMenuExampleProps) {
       }}
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
+        // configure the entrance transition for the aux.
+        // preview to use a 'zoom' transition...
         transitionConfigEntrance: {
           transition: 'zoom',
           duration: 0.5,
