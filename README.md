@@ -2478,7 +2478,38 @@ export function ContextMenuAuxPreviewExample06(props) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample07.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample07(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      auxiliaryPreviewConfig={{
+        // Configure the aux. preview to have a fixed size 
+        // of 100 x 100
+        width: 100,
+        height: 100,
+        alignmentHorizontal: 'previewCenter',
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={styles.auxRootContainer}>
+          <Text style={styles.textLabel}>
+            100
+          </Text>
+          <Text style={styles.textLabel}>
+            x
+          </Text>
+          <Text style={styles.textLabel}>
+            100
+          </Text>
+        </View>
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 ![placeholder](assets/placeholder.jpg)
