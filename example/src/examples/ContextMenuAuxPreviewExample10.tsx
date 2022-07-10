@@ -21,6 +21,8 @@ export function ContextMenuAuxPreviewExample10(props: ContextMenuExampleProps) {
         }],
       }}
       auxiliaryPreviewConfig={{
+        // configure the entrance transition for the aux.
+        // preview to use a 'slide' transition...
         transitionEntranceDelay: 0.5,
         transitionConfigEntrance: {
           transition: 'slide',
