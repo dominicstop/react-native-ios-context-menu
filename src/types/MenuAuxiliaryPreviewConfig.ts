@@ -23,7 +23,7 @@ export type UIViewAnimateOptions =
 export type UIViewAnimateConfig = {
   duration?: number;
   delay?: number;
-  options?: UIViewAnimateOptions[];
+  options?: [UIViewAnimateOptions];
 };
 
 export type MenuAuxiliaryPreviewBaseTransitionConfig =  & ({
@@ -43,8 +43,7 @@ export type MenuAuxiliaryPreviewBaseTransitionConfig =  & ({
 });
 
 export type MenuAuxiliaryPreviewTransitionConfig = 
-  | UIViewAnimateConfig
-  | MenuAuxiliaryPreviewBaseTransitionConfig;
+  UIViewAnimateConfig & MenuAuxiliaryPreviewBaseTransitionConfig;
 
 export type MenuAuxiliaryPreviewTransitionEntranceDelay = 
   | number
