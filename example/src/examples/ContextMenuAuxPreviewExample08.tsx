@@ -17,6 +17,10 @@ export function ContextMenuAuxPreviewExample08(props: ContextMenuExampleProps) {
       }}
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
+        // Configure the aux. preview to always appear on top of
+        // the context menu preview...
+        //
+        // 📝 Note: This is set to `automatic` by default.
         anchorPosition: 'top',
       }}
       renderAuxiliaryPreview={() => (
