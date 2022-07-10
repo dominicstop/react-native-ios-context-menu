@@ -2578,7 +2578,29 @@ export function ContextMenuAuxPreviewExample08(props) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample09.tsx)
 
 ```jsx
-TBA
+export function ContextMenuAuxPreviewExample09(props) {
+  return (
+    <ContextMenuView
+      // ...
+      auxiliaryPreviewConfig={{
+        // Configure the aux. preview to always appear on the
+        // bottom of the context menu preview...
+        //
+        // 📝 Note: This is set to `automatic` by default.
+        anchorPosition: 'bottom',
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={styles.auxRootContainer}>
+          <Text style={styles.textLabel}>
+            Always Bottom
+          </Text>
+        </View>
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 ![placeholder](assets/placeholder.jpg)
