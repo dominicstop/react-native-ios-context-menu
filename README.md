@@ -2427,7 +2427,34 @@ export function ContextMenuAuxPreviewExample05() {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample06.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample06(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      auxiliaryPreviewConfig={{
+        // Configure the aux. preview to use the entire width of
+        // the screen...
+        //
+        // 📝 Note: By default, this is set to: `stretchPreview`
+        alignmentHorizontal: 'stretchScreen',
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={styles.auxRootContainer}>
+          <View style={styles.innerContainer}>
+            <Text style={styles.textLabel}>
+              Stretch to Edges of Screen
+            </Text>
+          </View>
+        </View>
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 ![placeholder](assets/placeholder.jpg)
