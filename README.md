@@ -2533,7 +2533,29 @@ export function ContextMenuAuxPreviewExample07(props) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample08.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample08(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuAuxPreviewExample08',
+      }}
+      auxiliaryPreviewConfig={{
+        transitionEntranceDelay: 'RECOMMENDED',
+        // Configure the aux. preview to always appear on top of
+        // the context menu preview...
+        //
+        // 📝 Note: This is set to `automatic` by default.
+        anchorPosition: 'top',
+      }}
+      renderAuxiliaryPreview={() => (
+        // ...
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 ![placeholder](assets/placeholder.jpg)
