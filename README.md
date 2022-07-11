@@ -2770,7 +2770,26 @@ export function ContextMenuAuxPreviewExample12(props) {
 [🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample13.tsx)
 
 ```jsx
-TBA
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample13(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      auxiliaryPreviewConfig={{
+        // Add some space between the aux. preview, and the
+        // menu preview...
+        marginPreview: 30,
+      }}
+      renderAuxiliaryPreview={() => (
+        // ...
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
 ```
 
 ![placeholder](assets/placeholder.jpg)
