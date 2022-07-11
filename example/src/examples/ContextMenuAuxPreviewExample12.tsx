@@ -23,9 +23,13 @@ export function ContextMenuAuxPreviewExample12(props: ContextMenuExampleProps) {
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
         transitionConfigEntrance: {
+          // configure the entrance transition for the aux.
+          // preview to use a 'zoom' transition...
           transition: 'zoomAndSlide',
           duration: 0.4,
           options: ['curveEaseInOut'],
+
+          // change transition offsets
           zoomOffset: 0.2,
           slideOffset: 100,
         },
