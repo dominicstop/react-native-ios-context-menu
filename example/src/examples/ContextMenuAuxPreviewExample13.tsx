@@ -22,6 +22,8 @@ export function ContextMenuAuxPreviewExample13(props: ContextMenuExampleProps) {
       }}
       auxiliaryPreviewConfig={{
         transitionEntranceDelay: 'RECOMMENDED',
+        // Add some space between the aux. preview, and the
+        // menu preview...
         marginPreview: 30,
       }}
       renderAuxiliaryPreview={() => (
