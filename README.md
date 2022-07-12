@@ -2310,7 +2310,7 @@ export function ContextMenuAuxPreviewExample03() {
 };
 ```
 
-![placeholder](assets/placeholder.jpg)
+![ContextMenuAuxPreviewExample03](assets/example-ContextMenuAuxPreviewExample03.jpg)
 
 ![placeholder](assets/placeholder.gif)
 
