@@ -2263,7 +2263,7 @@ export function ContextMenuAuxPreviewExample02() {
 };
 ```
 
-![placeholder](assets/placeholder.jpg)
+![ContextMenuAuxPreviewExample02](assets/example-ContextMenuAuxPreviewExample02.jpg)
 
 ![placeholder](assets/placeholder.gif)
 
