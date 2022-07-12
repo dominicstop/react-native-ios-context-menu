@@ -2357,7 +2357,7 @@ export function ContextMenuAuxPreviewExample04() {
 };
 ```
 
-![placeholder](assets/placeholder.jpg)
+![ContextMenuAuxPreviewExample04](assets/example-ContextMenuAuxPreviewExample04.jpg)
 
 ![placeholder](assets/placeholder.gif)
 
