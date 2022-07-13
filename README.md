@@ -2512,7 +2512,7 @@ export function ContextMenuAuxPreviewExample07(props) {
 };
 ```
 
-![placeholder](assets/placeholder.jpg)
+![ContextMenuAuxPreviewExample07](assets/example-ContextMenuAuxPreviewExample07.jpg)
 
 ![placeholder](assets/placeholder.gif)
 
