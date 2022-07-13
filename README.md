@@ -2457,7 +2457,7 @@ export function ContextMenuAuxPreviewExample06(props) {
 };
 ```
 
-![placeholder](assets/placeholder.jpg)
+![ContextMenuAuxPreviewExample06](assets/example-ContextMenuAuxPreviewExample06.jpg)
 
 ![placeholder](assets/placeholder.gif)
 
