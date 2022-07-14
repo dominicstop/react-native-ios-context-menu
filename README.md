@@ -2749,7 +2749,7 @@ export function ContextMenuAuxPreviewExample12(props) {
 };
 ```
 
-![placeholder](assets/placeholder.jpg)
+![ContextMenuAuxPreviewExample12](assets/example-ContextMenuAuxPreviewExample12.jpg)
 
 ![placeholder](assets/placeholder.gif)
 
