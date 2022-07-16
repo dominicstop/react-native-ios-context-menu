@@ -93,6 +93,11 @@
 - [x] (Commit: `3451290`) **Bugfix**: Layout Bug - Aux. Preview Margin
 	* Fix aux. preview going out of bounds when near edges.
 
+<br>
+
+- [x] (Commit: `ffae806`) **Bugfix**: Aux. Preview Exit Transition
+	* Fix bug where the aux. preview's exit transition is not triggered when tapping the menu preview.
+
 ### Version: `1.9.2`
 
 TBA
