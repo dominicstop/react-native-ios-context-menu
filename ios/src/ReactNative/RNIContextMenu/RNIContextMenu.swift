@@ -10,10 +10,13 @@ import UIKit
 // TODO: Rename
 protocol RNIContextMenu: UIView {
   
+  // remove - move
   func notifyViewControllerDidPop(sender: RNIContextMenuViewController);
   
+  // remove
   func attachToParentVC();
   
+  // remove
   func detachFromParentVC();
   
 };
