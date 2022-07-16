@@ -1,7 +1,6 @@
 # TODO
 
-- [ ] **Implement**: `ContextMenu` — Add support for  `UIDefferedElement`.
-- [ ] **Refactor**: Use structs instead of classes for holding configuration for making the menu items.`
+- [ ] **Refactor**: Use structs instead of classes for holding configuration for making the menu items.
 
 - [ ] **Cleanup**: Remove print logs.
 
@@ -72,6 +71,48 @@
 - [ ] **Implement**: Provide a default config for `previewConfig` when a `renderPreview` prop is given a value so that there's a default behavior.
 - [ ] Expose `location(in:)`
 
+
+
+### Uncategorized
+
+- [ ] **Bug**: Aux. Preview - Layout Jank on Exit Transition
+	* When the exit transition begins, the aux. preview jumps. This is especially noticeable when there's a custom preview.
+	* During the exit transition, the aux. preview jumps to the target view because it's attached to the platter view. The platter view's contents changes from the custom preview, back to the target view.
+	* A possible solution is to just attach the aux. preview directly to the custom preview.
+
+<br>
+
+- [ ] **Refactor**:  `RNIContextMenu` and `RNIContextMenuViewController`
+
+	- [ ] **Remove**: `RNIContextMenu.attachToParentVC` and `RNIContextMenu.detachFromParentVC`
+
+		* Move these to `RNIContextMenuView` and `RNIContextMenuButton`.
+		* Maybe: Create `RNIAttachableToParent` protocol?
+			* Alt: `RNIParentAttachable`
+
+		<br>
+
+	- [ ] Rename: `RNIContextMenu` to `RNINavigationEventsChildViewController`
+
+		* Alt protocol: `NavigationEventsReporting`?
+			* `RNINavigationEventsNotifiable` — Any classes that conform to this protocol means that it can be notified of navigation events (e.g. push, pop, etc).
+
+		- Keep `notifyViewControllerDidPop`.
+
+<br>
+
+- [ ] **Refactor**: Use `RNICleanable` Protocol
+- [ ] **Refactor**: Re-write `RNIWrapperView`
+	* Create `detachedViews` lookup table.
+
+
+
+
+
+
+
+
+
 ---
 
 <br><br>
@@ -89,6 +130,10 @@
 
 ### Version: `next`
 
+<br>
+
+### Version: ` 1.10.1`
+
 - [x] (Commit: `cecf70c`) **Bugfix**: Types - `MenuAuxiliaryPreviewTransitionConfig`
 - [x] (Commit: `3451290`) **Bugfix**: Layout Bug - Aux. Preview Margin
 	* Fix aux. preview going out of bounds when near edges.
@@ -97,6 +142,11 @@
 
 - [x] (Commit: `ffae806`) **Bugfix**: Aux. Preview Exit Transition
 	* Fix bug where the aux. preview's exit transition is not triggered when tapping the menu preview.
+
+<br>
+
+- [x] (Commit: `3451290`) **Bugfix**: Deferred Elements - Memory Leak
+	* Trigger cleanup for deferred elements
 
 ### Version: `1.9.2`
 
