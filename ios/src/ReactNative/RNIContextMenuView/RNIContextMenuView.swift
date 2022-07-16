@@ -377,6 +377,8 @@ extension RNIContextMenuView {
   // TODO: Add error throws
   func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
     if let completion = self.deferredElementCompletionMap[deferredID] {
+
+      // create + add menu elements
       completion( menuElements.compactMap { menuElement in
         menuElement.createMenuElement(
           actionItemHandler: {
@@ -387,6 +389,9 @@ extension RNIContextMenuView {
           }
         );
       });
+      
+      // cleanup
+      self.deferredElementCompletionMap.removeValue(forKey: deferredID);
     };
   };
 };
@@ -416,6 +421,9 @@ fileprivate extension RNIContextMenuView {
     
     self.contextMenuInteraction?.dismissMenu();
     self.contextMenuInteraction = nil;
+    
+    // remove deferred handlers
+    self.deferredElementCompletionMap.removeAll();
     
     // remove preview from registry
     self.previewWrapper?.cleanup();
