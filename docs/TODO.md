@@ -89,7 +89,9 @@
 
 ### Version: `next`
 
-<br>
+- [x] (Commit: `cecf70c`) **Bugfix**: Types - `MenuAuxiliaryPreviewTransitionConfig`
+- [x] (Commit: `3451290`) **Bugfix**: Layout Bug - Aux. Preview Margin
+	* Fix aux. preview going out of bounds when near edges.
 
 ### Version: `1.9.2`
 
