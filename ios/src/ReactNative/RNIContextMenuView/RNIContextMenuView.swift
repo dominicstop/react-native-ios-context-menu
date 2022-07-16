@@ -680,7 +680,7 @@ fileprivate extension RNIContextMenuView {
           let topInsets = safeAreaInsets?.top ?? 0;
           let margin = marginBase + topInsets;
           
-          let minEdgeY = auxiliaryViewHeight + topInsets;
+          let minEdgeY = auxiliaryViewHeight + topInsets + margin;
           let distanceToEdge = auxiliaryViewHeight - previewFrame.minY;
         
           return (previewFrame.minY <= minEdgeY)
@@ -691,7 +691,7 @@ fileprivate extension RNIContextMenuView {
           let bottomInsets = safeAreaInsets?.bottom ?? 0;
           let margin = marginBase + bottomInsets;
           
-          let tolerance = auxiliaryViewHeight + (safeAreaInsets?.bottom ?? 0);
+          let tolerance = auxiliaryViewHeight + margin;
           let maxEdgeY = screenHeight - tolerance;
           let previewFrameMaxY = previewFrame.maxY + marginInner;
           
