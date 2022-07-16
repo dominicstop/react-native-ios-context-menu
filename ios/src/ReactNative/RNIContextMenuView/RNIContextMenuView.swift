@@ -29,6 +29,8 @@ class RNIContextMenuView: UIView {
   /// Keep track on whether or not the context menu is currently visible.
   var isContextMenuVisible = false;
   
+  var isAuxPreviewVisible = false;
+  
   /// Is set to `true` when the menu is open and an item is pressed and is immediately set back
   /// to `false` once the menu close animation finishes.
   var didPressMenuItem = false;
@@ -915,6 +917,7 @@ fileprivate extension RNIContextMenuView {
     
     // trigger will show event
     self.onMenuAuxiliaryPreviewWillShow?([:]);
+    self.isAuxPreviewVisible = true;
     
     // transition - set start/initial values
     setTransitionStateStart();
@@ -924,18 +927,19 @@ fileprivate extension RNIContextMenuView {
       delay       : transitionConfigEntrance.delay,
       options     : transitionConfigEntrance.options,
       animations  : {
+
+        // transition in - set end values
+        setTransitionStateEnd();
         
-      // transition in - set end values
-      setTransitionStateEnd();
+        // offset from anchor
+        contextMenuContentContainer.frame =
+          contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
       
-      // offset from anchor
-      contextMenuContentContainer.frame =
-        contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
-      
-    }, completion: {_ in
-      // trigger did show event
-      self.onMenuAuxiliaryPreviewDidShow?(eventObject);
-    });
+      }, completion: {_ in
+        // trigger did show event
+        self.onMenuAuxiliaryPreviewDidShow?(eventObject);
+      }
+    );
   };
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
@@ -944,6 +948,7 @@ fileprivate extension RNIContextMenuView {
   ){
     
     guard self.isAuxiliaryPreviewEnabled,
+          self.isAuxPreviewVisible,
           let animator = animator,
           let previewAuxiliaryView = self.previewAuxiliaryViewWrapper?.reactContent
     else { return };
@@ -953,6 +958,10 @@ fileprivate extension RNIContextMenuView {
     ///   between native views and shadow views."
     /// * Triggered when the menu is about to be hidden, iOS removes the context menu along with the
     ///   `previewAuxiliaryViewContainer`
+    ///   
+    
+    // reset flag
+    self.isAuxPreviewVisible = false;
     
     // Add exit transition
     animator.addAnimations {
@@ -1120,6 +1129,10 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       + " - contextMenuInteraction: preview tapped"
     );
     #endif
+    
+    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+    // hide preview auxiliary view
+    self.detachContextMenuAuxiliaryPreviewIfAny(animator);
     
     let preferredCommitStyle = self._previewConfig.preferredCommitStyle;
     
