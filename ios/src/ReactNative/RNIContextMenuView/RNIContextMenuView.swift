@@ -553,6 +553,7 @@ fileprivate extension RNIContextMenuView {
   func attachToParentVC(){
     guard self.shouldEnableAttachToParentVC,
           !self.didAttachToParentVC,
+          
           // find the nearest parent view controller
           let parentVC = RNIUtilities
             .getParent(responder: self, type: UIViewController.self)
