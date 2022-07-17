@@ -12,14 +12,34 @@ import UIKit
 /// Holds react views that have been detached, and are no longer managed by RN.
 internal class RNIWrapperView: UIView {
   
+  // MARK: - Properties
+  // ------------------
+  
   var bridge: RCTBridge!;
   var reactContent: UIView?;
   
   weak var delegate: RNIWrapperViewEventsNotifiable?;
   
+  private var touchHandler: RCTTouchHandler!;
+  
+  // MARK: - Properties - Flags
+  // ------------------
+  
   /// Whether or not `cleanup` was triggered.
   private(set) var didTriggerCleanup = false;
   
+  /// Set this property to `true` before moving this view somewhere else (i.e.
+  /// before calling `removeFromSuperView`).
+  ///
+  /// Setting this property to `true` will prevent triggering `cleanup` when removing this view
+  /// from it's  parent view...
+  ///
+  /// After you've finished moving this view, set this back to `false`.
+  var isMovingToParent = false;
+  
+  // MARK: - Properties - Config-Related
+  // ------------------
+    
   /// This property determines whether `cleanup` should be called when
   /// `shouldNotifyComponentWillUnmount` is called. Defaults to: `true`.
   ///
@@ -38,7 +58,7 @@ internal class RNIWrapperView: UIView {
   ///   but it's corresponding native view is still being used.
   ///
   var shouldAutoCleanupOnJSUnmount = true;
-  
+      
   /// Determines whether `cleanup` is called when this view is removed from the
   /// view hierarchy (i.e. when the window ref. becomes nil).
   var shouldAutoCleanupOnWindowNil = false;
@@ -47,13 +67,10 @@ internal class RNIWrapperView: UIView {
   /// `notifyForBoundsChange`. Defaults to `true`.
   ///
   /// * If the layout size is determined from the react/js side, set this to `false`.
+  ///
   /// * Otherwise if the layout size is determined from the native side (e.g. via
   ///   the view controller, etc.) then set this to `true`.
   var shouldAutoSetSizeOnLayout = true;
-  
-  var isMovingToParent = false;
-
-  private var touchHandler: RCTTouchHandler!;
   
   // MARK: - RN Exported Props
   // -------------------------
