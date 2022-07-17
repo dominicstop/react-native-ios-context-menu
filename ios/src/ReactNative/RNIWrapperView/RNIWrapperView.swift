@@ -8,7 +8,6 @@
 import UIKit
 
 
-// TODO: Re-Write
 /// Holds react views that have been detached, and are no longer managed by RN.
 internal class RNIWrapperView: UIView {
   
