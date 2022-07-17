@@ -527,6 +527,36 @@ fileprivate extension RNIContextMenuView {
     ]);
   };
   
+  
+  func attachToParentVC(){
+    guard self.shouldEnableAttachToParentVC,
+          !self.didAttachToParentVC,
+          // find the nearest parent view controller
+          let parentVC = RNIUtilities
+            .getParent(responder: self, type: UIViewController.self)
+    else { return };
+    
+    self.didAttachToParentVC = true;
+    
+    let childVC = RNINavigationEventsReportingViewController();
+    childVC.view = self;
+    childVC.parentVC = parentVC;
+    
+    self.contextMenuViewController = childVC;
+
+    parentVC.addChild(childVC);
+    childVC.didMove(toParent: parentVC);
+  };
+  
+  func detachFromParentVC(){
+    guard !self.didAttachToParentVC,
+          let childVC = self.contextMenuViewController
+    else { return };
+    
+    childVC.willMove(toParent: nil);
+    childVC.removeFromParent();
+  };
+  
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   func attachContextMenuAuxiliaryPreviewIfAny(
     _ animator: UIContextMenuInteractionAnimating!
@@ -1194,35 +1224,7 @@ extension RNIContextMenuView: RNINavigationEventsNotifiable {
     self.detachFromParentVC();
     self.cleanup();
   };
-  
-  func attachToParentVC(){
-    guard self.shouldEnableAttachToParentVC,
-          !self.didAttachToParentVC,
-          // find the nearest parent view controller
-          let parentVC = RNIUtilities
-            .getParent(responder: self, type: UIViewController.self)
-    else { return };
-    
-    self.didAttachToParentVC = true;
-    
-    let childVC = RNINavigationEventsReportingViewController();
-    childVC.view = self;
-    childVC.parentVC = parentVC;
-    
-    self.contextMenuViewController = childVC;
 
-    parentVC.addChild(childVC);
-    childVC.didMove(toParent: parentVC);
-  };
-  
-  func detachFromParentVC(){
-    guard !self.didAttachToParentVC,
-          let childVC = self.contextMenuViewController
-    else { return };
-    
-    childVC.willMove(toParent: nil);
-    childVC.removeFromParent();
-  };
 };
 
 // MARK: - RNICleanable

@@ -153,6 +153,34 @@ private extension RNIContextMenuButton {
       // TODO: wip
     }, for: .menuActionTriggered);
   };
+  
+  func attachToParentVC(){
+    guard !self.didAttachToParentVC,
+          // find the nearest parent view controller
+          let parentVC = RNIUtilities
+            .getParent(responder: self, type: UIViewController.self)
+    else { return };
+    
+    self.didAttachToParentVC = true;
+    
+    let childVC = RNINavigationEventsReportingViewController();
+    childVC.view = self;
+    childVC.parentVC = parentVC;
+    
+    self.contextMenuViewController = childVC;
+
+    parentVC.addChild(childVC);
+    childVC.didMove(toParent: parentVC);
+  };
+  
+  func detachFromParentVC(){
+    guard !self.didAttachToParentVC,
+          let childVC = self.contextMenuViewController
+    else { return };
+    
+    childVC.willMove(toParent: nil);
+    childVC.removeFromParent();
+  };
 };
   
 // MARK: - Functions For Manager
@@ -239,34 +267,6 @@ extension RNIContextMenuButton: RNINavigationEventsNotifiable {
     // trigger cleanup
     self.cleanup();
     self.detachFromParentVC();
-  };
-  
-  func attachToParentVC(){
-    guard !self.didAttachToParentVC,
-          // find the nearest parent view controller
-          let parentVC = RNIUtilities
-            .getParent(responder: self, type: UIViewController.self)
-    else { return };
-    
-    self.didAttachToParentVC = true;
-    
-    let childVC = RNINavigationEventsReportingViewController();
-    childVC.view = self;
-    childVC.parentVC = parentVC;
-    
-    self.contextMenuViewController = childVC;
-
-    parentVC.addChild(childVC);
-    childVC.didMove(toParent: parentVC);
-  };
-  
-  func detachFromParentVC(){
-    guard !self.didAttachToParentVC,
-          let childVC = self.contextMenuViewController
-    else { return };
-    
-    childVC.willMove(toParent: nil);
-    childVC.removeFromParent();
   };
 };
 
