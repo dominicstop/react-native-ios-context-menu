@@ -18,9 +18,8 @@ class RNINavigationEventsReportingViewController: UIViewController {
   // MARK: - Init
   // ------------
   
-  init(contextMenuView: RNINavigationEventsNotifiable) {
+  init() {
     super.init(nibName: nil, bundle: nil);
-    self.view = contextMenuView;
   };
   
   // loaded from a storyboard

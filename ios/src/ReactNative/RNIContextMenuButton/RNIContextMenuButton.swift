@@ -250,7 +250,8 @@ extension RNIContextMenuButton: RNINavigationEventsNotifiable {
     
     self.didAttachToParentVC = true;
     
-    let childVC = RNINavigationEventsReportingViewController(contextMenuView: self);
+    let childVC = RNINavigationEventsReportingViewController();
+    childVC.view = self;
     childVC.parentVC = parentVC;
     
     self.contextMenuViewController = childVC;
