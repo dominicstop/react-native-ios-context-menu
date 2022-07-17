@@ -1183,11 +1183,11 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   #endif
 };
 
-// MARK: - RNIContextMenu
+// MARK: - RNINavigationEventsNotifiable
 // ----------------------
 
 @available(iOS 13, *)
-extension RNIContextMenuView: RNIContextMenu {
+extension RNIContextMenuView: RNINavigationEventsNotifiable {
   
   func notifyViewControllerDidPop(sender: RNIContextMenuViewController) {
     // trigger cleanup

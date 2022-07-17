@@ -18,14 +18,14 @@ class RNIContextMenuViewController: UIViewController {
   
   weak var parentVC: UIViewController?;
   
-  var contextMenuView: RNIContextMenu? {
-    self.view as? RNIContextMenu
+  var contextMenuView: RNINavigationEventsNotifiable? {
+    self.view as? RNINavigationEventsNotifiable
   };
   
   // MARK: - Init
   // ------------
   
-  init(contextMenuView: RNIContextMenu) {
+  init(contextMenuView: RNINavigationEventsNotifiable) {
     super.init(nibName: nil, bundle: nil);
     self.view = contextMenuView;
   };

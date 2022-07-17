@@ -229,11 +229,11 @@ extension RNIContextMenuButton: UIGestureRecognizerDelegate {
   };
 };
 
-// MARK: - RNIContextMenu
+// MARK: - RNINavigationEventsNotifiable
 // ----------------------
 
 @available(iOS 14, *)
-extension RNIContextMenuButton: RNIContextMenu {
+extension RNIContextMenuButton: RNINavigationEventsNotifiable {
   
   func notifyViewControllerDidPop(sender: RNIContextMenuViewController) {
     // trigger cleanup

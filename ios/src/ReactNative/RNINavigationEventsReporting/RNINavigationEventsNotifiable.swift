@@ -8,7 +8,7 @@
 import UIKit
 
 // TODO: Rename
-protocol RNIContextMenu: UIView {
+protocol RNINavigationEventsNotifiable: UIView {
   
   // remove - move
   func notifyViewControllerDidPop(sender: RNIContextMenuViewController);
