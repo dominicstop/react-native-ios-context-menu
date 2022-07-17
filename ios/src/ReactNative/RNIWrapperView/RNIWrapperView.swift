@@ -86,15 +86,20 @@ internal class RNIWrapperView: UIView {
   
   override func didMoveToWindow() {
     
-    /// Prevent `cleanup` during the first move (i.e. when the view is detached
-    /// for the 1st time).
-    /// * if `willChangeSuperview` is true, don't allow cleanup until
-    ///   `didChangeSuperview` is also true.
-    ///
-    /// * Otherwise, if `willChangeSuperview` is false, allow cleanup.
-    let triggerCleanup = !self.isMovingToParent;
+    let isMovingToWindowNil = self.window == nil;
     
-    if self.window == nil, self.shouldAutoCleanupOnWindowNil, triggerCleanup {
+    let isViewOrphaned =
+      self.superview == nil && self.reactContent?.superview == nil;
+    
+    /// A: Prevent `cleanup` when changing parent views
+    /// B: Only trigger cleanup when moving to a `nil` window
+    /// C: Only trigger cleanup if view is orphaned
+    let shouldTriggerCleanup =
+         !self.isMovingToParent
+      && isMovingToWindowNil
+      && isViewOrphaned;
+    
+    if shouldTriggerCleanup {
       self.cleanup();
     };
   };
