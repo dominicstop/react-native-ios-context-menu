@@ -144,15 +144,15 @@ internal class RNIWrapperView: UIView {
   // --------------------------
   
   /// Called by `RNIWrapperViewModule.notifyComponentWillUnmount`
-  func onJSComponentWillUnmount(isManuallyTriggered: Bool){    
-    if self.shouldAutoCleanupOnJSUnmount {
-      self.cleanup();
-    };
-    
+  func onJSComponentWillUnmount(isManuallyTriggered: Bool){
     self.delegate?.onJSComponentWillUnmount?(
       sender: self,
       isManuallyTriggered: isManuallyTriggered
     );
+    
+    if self.shouldAutoCleanupOnJSUnmount {
+      self.cleanup();
+    };
   };
 };
 
