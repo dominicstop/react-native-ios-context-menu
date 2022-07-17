@@ -326,8 +326,8 @@ class RNIContextMenuView: UIView {
        let nativeID    = subview.nativeID,
        let nativeIDKey = NativeIDKey(rawValue: nativeID) {
       
-      wrapperView.willChangeSuperview = true;
-      wrapperView.autoCleanupOnJSUnmount = true;
+      wrapperView.isMovingToParent = true;
+      wrapperView.shouldAutoCleanupOnJSUnmount = false;
             
       switch nativeIDKey {
         case .contextMenuPreview:
@@ -346,7 +346,7 @@ class RNIContextMenuView: UIView {
       };
       
       wrapperView.removeFromSuperview();
-      wrapperView.willChangeSuperview = false;
+      wrapperView.isMovingToParent = false;
     };
   };
   

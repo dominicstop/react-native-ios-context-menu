@@ -51,16 +51,8 @@ internal class RNIWrapperView: UIView {
   ///   the view controller, etc.) then set this to `true`.
   var shouldAutoSetSizeOnLayout = true;
   
-  /// Set this property to `true` before moving this view somewhere else (i.e.
-  /// before calling `removeFromSuperView`).
-  ///
-  /// Setting this property to `true` will prevent triggering `cleanup` for the
-  /// first time when removing this view from it's `superview`.
-  ///
-  /// After you've finished moving this view, set this back to `false`.
-  var willChangeSuperview = false;
-  
-  private var didChangeSuperview = false;
+  var isMovingToParent = false;
+
   private var touchHandler: RCTTouchHandler!;
   
   // MARK: - RN Exported Props
@@ -100,16 +92,10 @@ internal class RNIWrapperView: UIView {
     ///   `didChangeSuperview` is also true.
     ///
     /// * Otherwise, if `willChangeSuperview` is false, allow cleanup.
-    let triggerCleanup = self.willChangeSuperview ? self.didChangeSuperview : true;
+    let triggerCleanup = !self.isMovingToParent;
     
     if self.window == nil, self.shouldAutoCleanupOnWindowNil, triggerCleanup {
       self.cleanup();
-    };
-    
-    if self.window == nil, self.willChangeSuperview {
-      // * The view has been moved to another parent
-      // * the next time this view is removed, it will trigger cleanup
-      self.didChangeSuperview = true;
     };
   };
   
