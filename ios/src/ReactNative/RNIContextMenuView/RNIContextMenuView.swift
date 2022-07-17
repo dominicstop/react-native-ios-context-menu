@@ -26,15 +26,6 @@ class RNIContextMenuView: UIView {
   
   weak var bridge: RCTBridge!;
   
-  /// Keep track on whether or not the context menu is currently visible.
-  var isContextMenuVisible = false;
-  
-  var isAuxPreviewVisible = false;
-  
-  /// Is set to `true` when the menu is open and an item is pressed and is immediately set back
-  /// to `false` once the menu close animation finishes.
-  var didPressMenuItem = false;
-  
   var contextMenuInteraction: UIContextMenuInteraction?;
   
   /// contains the view to show in the preview
@@ -42,26 +33,44 @@ class RNIContextMenuView: UIView {
   var previewController: RNIContextMenuPreviewController?;
   
   weak var contextMenuViewController: RNINavigationEventsReportingViewController?;
+      
+  private var deferredElementCompletionMap:
+    [String: RNIDeferredMenuElement.CompletionHandler] = [:];
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  /// Holds the view to be shown in the auxiliary preview
-  weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
+  // MARK: - Properties - Fags
+  // -------------------------
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  private var morphingPlatterViewPlacement: AnchorPosition?;
+  /// Keep track on whether or not the context menu is currently visible.
+  var isContextMenuVisible = false;
   
+  /// This is set to `true` when the menu is open and an item is pressed, and is immediately set back
+  /// to `false` once the menu close animation finishes.
+  var didPressMenuItem = false;
+  
+  /// Whether or not `cleanup` method was called
   private var didTriggerCleanup = false;
   
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
-  // MARK: Properties - Feature Flags
+  // MARK: - Properties - Feature Flags
+  // ----------------------------------
   
   private var shouldEnableAttachToParentVC = true;
   private var shouldEnableCleanup = true;
   
-  private var deferredElementCompletionMap:
-    [String: RNIDeferredMenuElement.CompletionHandler] = [:];
+  // MARK: - Properties - "Auxiliary Preview"-Related (Experimental)
+  // ------------------------
+  
+  /// Keep track on whether or not the aux. preview is currently visible.
+  var isAuxPreviewVisible = false;
+
+  /// Holds the view to be shown in the auxiliary preview
+  weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
+  
+  /// Cached value - in which side of the preview was aux. preview attached to?
+  /// Cleared when the aux. preview is hidden.
+  private var morphingPlatterViewPlacement: AnchorPosition?;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -80,7 +89,9 @@ class RNIContextMenuView: UIView {
   @objc var onMenuWillCreate: RCTBubblingEventBlock?;
   @objc var onRequestDeferredElement: RCTBubblingEventBlock?;
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
+  // MARK: - RN Exported Event Props - "Auxiliary Preview"-Related (Experimental)
+  // -------------------------------
+
   @objc var onMenuAuxiliaryPreviewWillShow: RCTBubblingEventBlock?;
   @objc var onMenuAuxiliaryPreviewDidShow : RCTBubblingEventBlock?;
   
@@ -181,9 +192,9 @@ class RNIContextMenuView: UIView {
     }
   };
   
-  // MARK: - Computed Properties
+  // MARK: - Computed Properties - "Auxiliary Context Menu Preview"-Related
+  // ---------------------------
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Gets the `_UIContextMenuContainerView` that's holding the context menu controls.
   /// **Note**: This `UIView` instance  only exists whenever there's a context menu interaction.
   ///
@@ -248,7 +259,6 @@ class RNIContextMenuView: UIView {
     };
   };
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Will return the ff. subviews:
   /// * `_UIMorphingPlatterView` - Contains the context menu preview
   /// * `_UIContextMenu` - Holds the context menu items
@@ -259,7 +269,6 @@ class RNIContextMenuView: UIView {
     };
   };
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Holds the context menu preview
   var morphingPlatterView: UIView? {
     self.contextMenuContentContainer?.subviews.first {
@@ -267,7 +276,6 @@ class RNIContextMenuView: UIView {
     };
   };
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Holds the context menu items
   var contextMenuItemsView: UIView? {
     self.contextMenuContentContainer?.subviews.first {
@@ -275,7 +283,6 @@ class RNIContextMenuView: UIView {
     };
   };
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   var isPreviewAuxiliaryViewAttached: Bool {
     self.previewAuxiliaryViewWrapper != nil;
   };
