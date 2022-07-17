@@ -82,26 +82,27 @@
 
 <br>
 
-- [ ] **Refactor**:  `RNIContextMenu` and `RNIContextMenuViewController`
+- [x] **Refactor**:  `RNIContextMenu` and `RNIContextMenuViewController`
 
-	- [ ] **Remove**: `RNIContextMenu.attachToParentVC` and `RNIContextMenu.detachFromParentVC`
+	- [x] (Commit: `821657d`) **Remove**: `RNIContextMenu.attachToParentVC` and `RNIContextMenu.detachFromParentVC`
 
-		* Move these to `RNIContextMenuView` and `RNIContextMenuButton`.
-		* Maybe: Create `RNIAttachableToParent` protocol?
-			* Alt: `RNIParentAttachable`
+	  * Move these to `RNIContextMenuView` and `RNIContextMenuButton`.
+	
+	  <br>
 
-		<br>
+	- [x] (Commit: `82bcde4`) **Refactor**: Rename `RNIContextMenuViewController` to `RNINavigationEventsReportingViewController`.
 
-	- [ ] Rename: `RNIContextMenu` to `RNINavigationEventsChildViewController`
+	- [x] (Commit: `a6210ea`) **Refactor**: Rename `RNIContextMenu` to `RNINavigationEventsChildViewController`
 
-		* Alt protocol: `NavigationEventsReporting`?
-			* `RNINavigationEventsNotifiable` — Any classes that conform to this protocol means that it can be notified of navigation events (e.g. push, pop, etc).
-
-		- Keep `notifyViewControllerDidPop`.
+	  * Any classes that conform to this protocol means that it can be notified of navigation events (e.g. push, pop, etc).
+	
+	    <br>
+	
+	- [x] (Commit: `821657d`) **Refactor**: `RNINavigationEventsNotifiable` — Separations of concerns - Remove unrelated methods (e.g. `attachToParentVC`, `detachFromParentVC`).
 
 <br>
 
-- [ ] **Refactor**: Use `RNICleanable` Protocol
+- [x] (Commit: `42653ae`) **Refactor**: Use `RNICleanable` Protocol
 - [ ] **Refactor**: Re-write `RNIWrapperView`
 	* Create `detachedViews` lookup table.
 
