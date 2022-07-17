@@ -28,7 +28,7 @@ class RNIContextMenuButton: UIButton {
   private var didAttachToParentVC = false;
   
   // MARK: Properties - Feature Flags
-  private var shouldEnableCleanup = false;
+  private var shouldEnableCleanup = true;
   
   
   // MARK: - RN Exported Event Props
@@ -165,6 +165,7 @@ private extension RNIContextMenuButton {
     
     let childVC = RNINavigationEventsReportingViewController();
     childVC.view = self;
+    childVC.delegate = self;
     childVC.parentVC = parentVC;
     
     self.contextMenuViewController = childVC;

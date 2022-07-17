@@ -331,8 +331,11 @@ class RNIContextMenuView: UIView {
             
       switch nativeIDKey {
         case .contextMenuPreview:
-          // if prev. exist, cleanup if needed.
-          self.previewWrapper?.cleanup();
+          // if prev. exist, cleanup first.
+          if self.previewWrapper !== wrapperView {
+            self.previewWrapper?.cleanup();
+          };
+          
           self.previewWrapper = wrapperView;
         
         // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
@@ -562,6 +565,7 @@ fileprivate extension RNIContextMenuView {
     
     let childVC = RNINavigationEventsReportingViewController();
     childVC.view = self;
+    childVC.delegate = self;
     childVC.parentVC = parentVC;
     
     self.contextMenuViewController = childVC;
@@ -1284,6 +1288,7 @@ extension RNIContextMenuView: RNICleanable {
     
     // remove preview from registry
     self.previewWrapper?.cleanup();
+    self.previewAuxiliaryViewWrapper?.cleanup();
     
     // remove this view from registry
     RNIUtilities.recursivelyRemoveFromViewRegistry(
