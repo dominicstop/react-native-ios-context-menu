@@ -360,17 +360,29 @@ class RNIContextMenuView: UIView {
   // ----------------------
   
   public override func didMoveToWindow() {
-    if self.window == nil,
-       !self.didAttachToParentVC {
-      
-      // not using UINavigationController... manual cleanup
-      self.cleanup();
-      
-    } else if self.window != nil,
-           !self.didAttachToParentVC {
-      
-      // setup - might be using UINavigationController, attach as child vc
-      self.attachToParentVC();
+    
+    let isMovingToNilWindow = self.window == nil;
+    
+    // not attached to parent vc yet...
+    if !self.didAttachToParentVC {
+     
+      if isMovingToNilWindow {
+        // moving to nil window and not attached to parent vc,
+        // possible end of lifecycle for this view...
+        //
+        // trigger manual cleanup
+        self.cleanup();
+        
+      } else {
+        // Moving to a non-nil window and is not attached to a parent yet...
+        //
+        // The VC attached to this view is possibly being attached as a child
+        // view controller to a view controller managed by
+        // `UINavigationController`...
+        //
+        // begin setup - attach this view as child vc
+        self.attachToParentVC();
+      };
     };
   };
 };
