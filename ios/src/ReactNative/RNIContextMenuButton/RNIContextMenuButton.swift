@@ -153,26 +153,6 @@ private extension RNIContextMenuButton {
       // TODO: wip
     }, for: .menuActionTriggered);
   };
-  
-  func cleanup(){
-    guard self.shouldEnableCleanup,
-          !self.didTriggerCleanup
-    else { return };
-    
-    self.didTriggerCleanup = true;
-    
-    self.contextMenuInteraction?.dismissMenu();
-    
-    // remove this view from registry
-    RNIUtilities.recursivelyRemoveFromViewRegistry(
-      bridge   : self.bridge,
-      reactView: self
-    );
-    
-    #if DEBUG
-    NotificationCenter.default.removeObserver(self);
-    #endif
-  };
 };
   
 // MARK: - Functions For Manager
@@ -285,5 +265,32 @@ extension RNIContextMenuButton: RNIContextMenu {
     
     childVC.willMove(toParent: nil);
     childVC.removeFromParent();
+  };
+};
+
+// MARK: - RNICleanable
+// --------------------
+
+@available(iOS 14, *)
+extension RNIContextMenuButton: RNICleanable {
+  
+  func cleanup(){
+    guard self.shouldEnableCleanup,
+          !self.didTriggerCleanup
+    else { return };
+    
+    self.didTriggerCleanup = true;
+    
+    self.contextMenuInteraction?.dismissMenu();
+    
+    // remove this view from registry
+    RNIUtilities.recursivelyRemoveFromViewRegistry(
+      bridge   : self.bridge,
+      reactView: self
+    );
+    
+    #if DEBUG
+    NotificationCenter.default.removeObserver(self);
+    #endif
   };
 };

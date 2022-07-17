@@ -153,18 +153,6 @@ internal class RNIWrapperView: UIView {
     bridge.uiManager.setSize(size, for: reactContent);
   };
   
-  func cleanup(){
-    guard !self.didTriggerCleanup else { return };
-    self.didTriggerCleanup = true;
-    
-    self.touchHandler.detach(from: self.reactContent);
-    
-    RNIUtilities.recursivelyRemoveFromViewRegistry(
-      bridge: self.bridge,
-      reactView: self
-    );
-  };
-  
   // MARK: - Commands For Module
   // --------------------------
   
@@ -177,6 +165,25 @@ internal class RNIWrapperView: UIView {
     self.delegate?.onJSComponentWillUnmount?(
       sender: self,
       isManuallyTriggered: isManuallyTriggered
+    );
+  };
+};
+
+
+// MARK: - RNICleanable
+// --------------------
+
+extension RNIWrapperView: RNICleanable {
+  
+  func cleanup(){
+    guard !self.didTriggerCleanup else { return };
+    self.didTriggerCleanup = true;
+    
+    self.touchHandler.detach(from: self.reactContent);
+    
+    RNIUtilities.recursivelyRemoveFromViewRegistry(
+      bridge: self.bridge,
+      reactView: self
     );
   };
 };

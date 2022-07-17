@@ -412,33 +412,6 @@ fileprivate extension RNIContextMenuView {
     }();
   };
   
-  func cleanup(){
-    guard self.shouldEnableCleanup,
-          !self.didTriggerCleanup
-    else { return };
-    
-    self.didTriggerCleanup = true;
-    
-    self.contextMenuInteraction?.dismissMenu();
-    self.contextMenuInteraction = nil;
-    
-    // remove deferred handlers
-    self.deferredElementCompletionMap.removeAll();
-    
-    // remove preview from registry
-    self.previewWrapper?.cleanup();
-    
-    // remove this view from registry
-    RNIUtilities.recursivelyRemoveFromViewRegistry(
-      bridge   : self.bridge,
-      reactView: self
-    );
-    
-    #if DEBUG
-    NotificationCenter.default.removeObserver(self);
-    #endif
-  };
-  
   /// create `UIMenu` based on `menuConfig` prop
   func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
     guard  let menuConfig = self._menuConfig else {
@@ -1247,5 +1220,39 @@ extension RNIContextMenuView: RNIContextMenu {
     
     childVC.willMove(toParent: nil);
     childVC.removeFromParent();
+  };
+};
+
+// MARK: - RNICleanable
+// --------------------
+
+@available(iOS 13, *)
+extension RNIContextMenuView: RNICleanable {
+  
+  func cleanup(){
+    guard self.shouldEnableCleanup,
+          !self.didTriggerCleanup
+    else { return };
+    
+    self.didTriggerCleanup = true;
+    
+    self.contextMenuInteraction?.dismissMenu();
+    self.contextMenuInteraction = nil;
+    
+    // remove deferred handlers
+    self.deferredElementCompletionMap.removeAll();
+    
+    // remove preview from registry
+    self.previewWrapper?.cleanup();
+    
+    // remove this view from registry
+    RNIUtilities.recursivelyRemoveFromViewRegistry(
+      bridge   : self.bridge,
+      reactView: self
+    );
+    
+    #if DEBUG
+    NotificationCenter.default.removeObserver(self);
+    #endif
   };
 };
