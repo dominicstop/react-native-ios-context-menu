@@ -113,7 +113,7 @@
 	- [x] Refactor: `RNIWrapperView` - Initial Rewrite
 	
 		- [x] (Commit: `0dcff7a`) **Refactor**: Add `should` prefix to bool configs.
-		- [x] (Commit: `21cc17b`) **Gloss**: Re-arrange and group related properties into section .
+		- [x] (Commit: `21cc17b`) **Gloss**: Yakshaving - Re-arrange and group related properties into section .
 		- [x] (Commit: `46f6509`) **Cleanup**: Rewrite `didMoveToWindow`.
 		- [x] (Commit: `ff165b8`) **Refactor**: Replace `willChangeSuperview` and `didChangeSuperview` to `isMovingToParent`.
 		- [x] (Commit: `68b068a`): Update:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
@@ -121,6 +121,7 @@
 	
 		<br>
 	
+		- [x] (Commit: `bac3096`) Fix: Re-Enable Cleanup - Fix `cleanup` Not Being Invoked.
 		- [ ] Use `detachedViews` lookup table.
 
 
