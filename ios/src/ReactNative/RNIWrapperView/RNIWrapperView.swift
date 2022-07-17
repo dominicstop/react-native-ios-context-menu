@@ -37,11 +37,11 @@ internal class RNIWrapperView: UIView {
   /// * This also fixes the issue where the js comp. has already been unmounted,
   ///   but it's corresponding native view is still being used.
   ///
-  var autoCleanupOnJSUnmount = true;
+  var shouldAutoCleanupOnJSUnmount = true;
   
   /// Determines whether `cleanup` is called when this view is removed from the
   /// view hierarchy (i.e. when the window ref. becomes nil).
-  var autoCleanupOnWindowNil = false;
+  var shouldAutoCleanupOnWindowNil = false;
   
   /// Determines whether `layoutSubviews` will automatically trigger
   /// `notifyForBoundsChange`. Defaults to `true`.
@@ -49,7 +49,7 @@ internal class RNIWrapperView: UIView {
   /// * If the layout size is determined from the react/js side, set this to `false`.
   /// * Otherwise if the layout size is determined from the native side (e.g. via
   ///   the view controller, etc.) then set this to `true`.
-  var autoSetSizeOnLayout = true;
+  var shouldAutoSetSizeOnLayout = true;
   
   /// Set this property to `true` before moving this view somewhere else (i.e.
   /// before calling `removeFromSuperView`).
@@ -87,7 +87,7 @@ internal class RNIWrapperView: UIView {
   override func layoutSubviews() {
     super.layoutSubviews();
     
-    if self.autoSetSizeOnLayout {
+    if self.shouldAutoSetSizeOnLayout {
       self.notifyForBoundsChange(size: self.bounds.size);
     };
   };
@@ -102,7 +102,7 @@ internal class RNIWrapperView: UIView {
     /// * Otherwise, if `willChangeSuperview` is false, allow cleanup.
     let triggerCleanup = self.willChangeSuperview ? self.didChangeSuperview : true;
     
-    if self.window == nil, self.autoCleanupOnWindowNil, triggerCleanup {
+    if self.window == nil, self.shouldAutoCleanupOnWindowNil, triggerCleanup {
       self.cleanup();
     };
     
@@ -154,7 +154,7 @@ internal class RNIWrapperView: UIView {
   
   /// Called by `RNIWrapperViewModule.notifyComponentWillUnmount`
   func onJSComponentWillUnmount(isManuallyTriggered: Bool){    
-    if self.autoCleanupOnJSUnmount {
+    if self.shouldAutoCleanupOnJSUnmount {
       self.cleanup();
     };
     
