@@ -549,7 +549,6 @@ fileprivate extension RNIContextMenuView {
     ]);
   };
   
-  
   func attachToParentVC(){
     guard self.shouldEnableAttachToParentVC,
           !self.didAttachToParentVC,
@@ -601,6 +600,8 @@ fileprivate extension RNIContextMenuView {
       ?? RNIContextMenuAuxiliaryPreviewConfig(dictionary: [:]);
     
     let auxiliaryViewHeight: CGFloat = {
+      // Begin inferring the height of the aux. view...
+      
       // A - Use height from config
       if let height = auxConfig.height {
         return height;
@@ -611,6 +612,8 @@ fileprivate extension RNIContextMenuView {
     }();
     
     let auxiliaryViewWidth: CGFloat = {
+      // Begin inferring the width of the aux. view...
+      
       switch auxConfig.alignmentHorizontal {
         // A - Set aux preview width to window width
         case .stretchScreen:
@@ -633,6 +636,7 @@ fileprivate extension RNIContextMenuView {
     let marginOuter = auxConfig.marginAuxiliaryPreview;
     
     // amount to add to width - fix for layout bug
+    //
     // if you use the actual width, it triggers a bug w/ autolayout where the
     // aux. preview snaps to the top of the screen...
     let adj = 0.5;
@@ -656,7 +660,7 @@ fileprivate extension RNIContextMenuView {
       return menuItems.count > 0;
     }();
     
-    /// if the context menu has "menu items", where is it located in relation to the "context menu preview"?
+    /// if the context menu has "menu items", where is it located in relation to the "menu preview"?
     let menuItemsPlacement: AnchorPosition? = {
       guard menuConfigHasMenuItems,
             let contextMenuItemsView = self.contextMenuItemsView
@@ -668,7 +672,7 @@ fileprivate extension RNIContextMenuView {
       return (menuItemsFrame.midY < previewFrame.midY) ? .bottom : .top;
     }();
     
-    /// in which half does the "context menu preview" fall into?
+    /// in which vertical half does the "context menu preview" fall into?
     let morphingPlatterViewPlacement: AnchorPosition = {
       let previewFrame = morphingPlatterView.frame;
       let screenBounds = UIScreen.main.bounds;
@@ -702,8 +706,8 @@ fileprivate extension RNIContextMenuView {
     // MARK: Prep - Compute Offsets
     // ----------------------------
     
-    /// the amount to the nudge the context menu
-    let offset: CGFloat = {
+    /// the amount to nudge the context menu
+    let yOffset: CGFloat = {
       let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets;
       
       let previewFrame = morphingPlatterView.frame;
@@ -875,32 +879,35 @@ fileprivate extension RNIContextMenuView {
       
       switch auxConfig.transitionConfigEntrance.transition {
         case .fade: return ({
-            // fade - start
-            previewAuxiliaryView.alpha = 0;
-          },{
-            // fade - end
-            previewAuxiliaryView.alpha = 1;
-          });
+          // A - fade - entrance transition
+          previewAuxiliaryView.alpha = 0;
+        }, {
+          // B - fade - exit transition
+          previewAuxiliaryView.alpha = 1;
+        });
           
         case let .slide(slideOffset): return ({
-            // fade - start
-            previewAuxiliaryView.alpha = 0;
-            
-            // slide - start
-            setTransformForTransitionSlideStart(slideOffset);
-            
-            // apply transform
-            previewAuxiliaryView.transform = transform;
-            
-          }, {
-            // fade - end
-            previewAuxiliaryView.alpha = 1;
-   
-            // slide - end - reset transform
-            previewAuxiliaryView.transform = .identity;
-          });
+          // A - slide - entrance transition
+          // fade - start
+          previewAuxiliaryView.alpha = 0;
+          
+          // slide - start
+          setTransformForTransitionSlideStart(slideOffset);
+          
+          // apply transform
+          previewAuxiliaryView.transform = transform;
+          
+        }, {
+          // B - slide - exit transition
+          // fade - end
+          previewAuxiliaryView.alpha = 1;
+ 
+          // slide - end - reset transform
+          previewAuxiliaryView.transform = .identity;
+        });
           
         case let .zoom(zoomOffset): return ({
+            // A - zoom - entrance transition
             // fade - start
             previewAuxiliaryView.alpha = 0;
             
@@ -911,6 +918,7 @@ fileprivate extension RNIContextMenuView {
             previewAuxiliaryView.transform = transform;
             
           }, {
+            // B - zoom - exit transition
             // fade - end
             previewAuxiliaryView.alpha = 1;
             
@@ -919,6 +927,7 @@ fileprivate extension RNIContextMenuView {
           });
           
         case let .zoomAndSlide(slideOffset, zoomOffset): return ({
+          // A - zoomAndSlide - entrance transition
           // fade - start
           previewAuxiliaryView.alpha = 0;
         
@@ -932,6 +941,7 @@ fileprivate extension RNIContextMenuView {
           previewAuxiliaryView.transform = transform;
                     
         }, {
+          // B - zoomAndSlide - exit transition
           // fade - end
           previewAuxiliaryView.alpha = 1;
           
@@ -939,9 +949,12 @@ fileprivate extension RNIContextMenuView {
           previewAuxiliaryView.transform = .identity;
         });
           
-        case .none: fallthrough;
+        case .none:
+          // don't use any entrance transitions...
+          fallthrough;
           
         default:
+          // noop entrance + exit transition
           return ({},{});
       };
     }();
@@ -967,7 +980,7 @@ fileprivate extension RNIContextMenuView {
         
         // offset from anchor
         contextMenuContentContainer.frame =
-          contextMenuContentContainer.frame.offsetBy(dx: 0, dy: offset)
+          contextMenuContentContainer.frame.offsetBy(dx: 0, dy: yOffset)
       
       }, completion: {_ in
         // trigger did show event
