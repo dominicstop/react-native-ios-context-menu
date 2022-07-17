@@ -15,7 +15,7 @@ internal class RNIWrapperView: UIView {
   var bridge: RCTBridge!;
   var reactContent: UIView?;
   
-  weak var delegate: RNIWrapperViewDelegate?;
+  weak var delegate: RNIWrapperViewEventsNotifiable?;
   
   /// Whether or not `cleanup` was triggered.
   private(set) var didTriggerCleanup = false;
