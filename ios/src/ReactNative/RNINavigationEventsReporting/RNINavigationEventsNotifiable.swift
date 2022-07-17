@@ -11,7 +11,7 @@ import UIKit
 protocol RNINavigationEventsNotifiable: UIView {
   
   // remove - move
-  func notifyViewControllerDidPop(sender: RNIContextMenuViewController);
+  func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController);
   
   // remove
   func attachToParentVC();

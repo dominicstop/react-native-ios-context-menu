@@ -1,5 +1,5 @@
 //
-//  RNIContextMenuViewController.swift
+//  RNINavigationEventsReportingViewController.swift
 //  react-native-ios-context-menu
 //
 //  Created by Dominic Go on 2/1/22.
@@ -14,7 +14,7 @@ import UIKit;
 // * Protocol: RNINavigationEventsNotifiable
 // Move: - attach vc code here
 // this is used to listen to view controller lifecycle events e.g. navigation
-class RNIContextMenuViewController: UIViewController {
+class RNINavigationEventsReportingViewController: UIViewController {
   
   weak var parentVC: UIViewController?;
   

@@ -41,7 +41,7 @@ class RNIContextMenuView: UIView {
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
-  weak var contextMenuViewController: RNIContextMenuViewController?;
+  weak var contextMenuViewController: RNINavigationEventsReportingViewController?;
   
   // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
   /// Holds the view to be shown in the auxiliary preview
@@ -1189,7 +1189,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
 @available(iOS 13, *)
 extension RNIContextMenuView: RNINavigationEventsNotifiable {
   
-  func notifyViewControllerDidPop(sender: RNIContextMenuViewController) {
+  func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
     // trigger cleanup
     self.cleanup();
   };
@@ -1204,7 +1204,7 @@ extension RNIContextMenuView: RNINavigationEventsNotifiable {
     
     self.didAttachToParentVC = true;
     
-    let childVC = RNIContextMenuViewController(contextMenuView: self);
+    let childVC = RNINavigationEventsReportingViewController(contextMenuView: self);
     childVC.parentVC = parentVC;
     
     self.contextMenuViewController = childVC;

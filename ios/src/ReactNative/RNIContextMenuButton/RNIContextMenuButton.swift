@@ -20,7 +20,7 @@ class RNIContextMenuButton: UIButton {
   var isContextMenuVisible = false;
   var didPressMenuItem     = false;
   
-  weak var contextMenuViewController: RNIContextMenuViewController?;
+  weak var contextMenuViewController: RNINavigationEventsReportingViewController?;
   
   private var didTriggerCleanup = false;
   
@@ -235,7 +235,7 @@ extension RNIContextMenuButton: UIGestureRecognizerDelegate {
 @available(iOS 14, *)
 extension RNIContextMenuButton: RNINavigationEventsNotifiable {
   
-  func notifyViewControllerDidPop(sender: RNIContextMenuViewController) {
+  func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
     // trigger cleanup
     self.cleanup();
   };
@@ -249,7 +249,7 @@ extension RNIContextMenuButton: RNINavigationEventsNotifiable {
     
     self.didAttachToParentVC = true;
     
-    let childVC = RNIContextMenuViewController(contextMenuView: self);
+    let childVC = RNINavigationEventsReportingViewController(contextMenuView: self);
     childVC.parentVC = parentVC;
     
     self.contextMenuViewController = childVC;
