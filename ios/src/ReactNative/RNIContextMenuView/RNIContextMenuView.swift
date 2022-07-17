@@ -1191,6 +1191,7 @@ extension RNIContextMenuView: RNINavigationEventsNotifiable {
   
   func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
     // trigger cleanup
+    self.detachFromParentVC();
     self.cleanup();
   };
   

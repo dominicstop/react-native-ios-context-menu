@@ -8,19 +8,12 @@
 import UIKit;
 
 
-// TODO: Rename to
-// * RNINavigationEventsReportingChildViewController
-// * RNINavigationEventsChildViewController
-// * Protocol: RNINavigationEventsNotifiable
-// Move: - attach vc code here
-// this is used to listen to view controller lifecycle events e.g. navigation
+/// When added as a child VC, it will listen to the parent VC + navigation controller  for navigation events
+/// and report them to it's delegate and root view.
 class RNINavigationEventsReportingViewController: UIViewController {
   
   weak var parentVC: UIViewController?;
-  
-  var contextMenuView: RNINavigationEventsNotifiable? {
-    self.view as? RNINavigationEventsNotifiable
-  };
+  weak var delegate: RNINavigationEventsNotifiable?;
   
   // MARK: - Init
   // ------------
@@ -45,16 +38,17 @@ class RNINavigationEventsReportingViewController: UIViewController {
           let parentVC = self.parentVC
     else { return };
     
-    // if parent VC still exist in the stack, then it hasn't been popped yet
-    let isParentVCPopped = { !navVC.viewControllers.contains(parentVC) };
+    // if parent VC still exist in the stack,
+    // then it hasn't been popped yet...
+    let isParentVCPopped = {
+      !navVC.viewControllers.contains(parentVC)
+    };
     
-    guard isParentVCPopped(),
-          let contextMenuView = self.contextMenuView
+    guard isParentVCPopped()
     else { return };
 
-    let cleanup = {
-      contextMenuView.detachFromParentVC();
-      contextMenuView.notifyViewControllerDidPop(sender: self);
+    let notifyDelegate = {
+      self.delegate?.notifyViewControllerDidPop(sender: self);
     };
     
     if animated,
@@ -62,11 +56,11 @@ class RNINavigationEventsReportingViewController: UIViewController {
       
       transitionCoordinator.animate(alongsideTransition: nil){ _ in
         guard isParentVCPopped() else { return };
-        cleanup();
+        notifyDelegate();
       };
       
     } else {
-      cleanup();
+      notifyDelegate();
     };
   };
 };
