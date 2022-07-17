@@ -57,7 +57,7 @@ internal class RNIWrapperView: UIView {
   /// * This also fixes the issue where the js comp. has already been unmounted,
   ///   but it's corresponding native view is still being used.
   ///
-  var shouldAutoCleanupOnJSUnmount = true;
+  var shouldAutoCleanupOnJSUnmount = false;
       
   /// Determines whether `cleanup` is called when this view is removed from the
   /// view hierarchy (i.e. when the window ref. becomes nil).
@@ -70,7 +70,7 @@ internal class RNIWrapperView: UIView {
   ///
   /// * Otherwise if the layout size is determined from the native side (e.g. via
   ///   the view controller, etc.) then set this to `true`.
-  var shouldAutoSetSizeOnLayout = true;
+  var shouldAutoSetSizeOnLayout = false;
   
   // MARK: - RN Exported Props
   // -------------------------
