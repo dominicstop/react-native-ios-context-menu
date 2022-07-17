@@ -103,14 +103,25 @@
 <br>
 
 - [x] (Commit: `42653ae`) **Refactor**: Use `RNICleanable` Protocol
+
 - [ ] **Refactor**: Re-write `RNIWrapperView`
-	* Create `detachedViews` lookup table.
-
-
-
-
-
-
+	
+	- [x] (Commit: `5bcac3a`) Refactor: Extract Delegate to Own File
+	
+	- [x] (Commit: `97f73d1`) Refactor: Rename `RNIWrapperViewDelegate` to `RNIWrapperViewEventsNotifiable`.
+	
+	- [x] Refactor: `RNIWrapperView` - Initial Rewrite
+	
+		- [x] (Commit: `0dcff7a`) **Refactor**: Add `should` prefix to bool configs.
+		- [x] (Commit: `21cc17b`) **Gloss**: Re-arrange and group related properties into section .
+		- [x] (Commit: `46f6509`) **Cleanup**: Rewrite `didMoveToWindow`.
+		- [x] (Commit: `ff165b8`) **Refactor**: Replace `willChangeSuperview` and `didChangeSuperview` to `isMovingToParent`.
+		- [x] (Commit: `68b068a`): Update:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
+		- [x] (Commit: `79a4be8`) Update: Change default values — Set all feature flags to false by default.
+	
+		<br>
+	
+		- [ ] Use `detachedViews` lookup table.
 
 
 
