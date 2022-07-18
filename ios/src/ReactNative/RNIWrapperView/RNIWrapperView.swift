@@ -11,6 +11,11 @@ import UIKit
 /// Holds react views that have been detached, and are no longer managed by RN.
 internal class RNIWrapperView: UIView {
   
+  static var detachedViews = NSMapTable<NSNumber, RNIWrapperView>.init(
+    keyOptions: .copyIn,
+    valueOptions: .weakMemory
+  );
+  
   // MARK: - Properties
   // ------------------
   
@@ -157,6 +162,11 @@ internal class RNIWrapperView: UIView {
       self.cleanup();
     };
   };
+  
+  override func removeFromSuperview() {
+    super.removeFromSuperview();
+    Self.detachedViews.setObject(self, forKey: self.reactTag);
+  }
   
   // MARK: - React Lifecycle
   // ----------------------
