@@ -147,12 +147,16 @@
     - [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
 
     - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
+    
+    - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
 
   <br>
 
 - [x] (Commit: `5ab2e0f`) **Fix**: Memory Leak - Property Animators Retain Cycle.
 
 - [x] (Commit: `406362d`) **Fix**: Memory Leak - `UIAction` Retain Cycle.
+
+- [x] (Commit: `8be7831`) **Implement** `ContextMenuView.shouldEnableAggressiveCleanup` prop. 
 
 
 
