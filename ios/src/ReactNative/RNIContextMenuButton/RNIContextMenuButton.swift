@@ -62,7 +62,7 @@ class RNIContextMenuButton: UIButton {
       #endif
      
       let rootMenu = rootMenuConfig.createMenu(
-        actionItemHandler: { (dict, action) in
+        actionItemHandler: { [unowned self] (dict, action) in
           self.didPressMenuItem = true;
           self.onPressMenuItem?(dict);
           
