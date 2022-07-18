@@ -56,6 +56,7 @@ export class ContextMenuView extends
       auxiliaryPreviewConfig,
       shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
       shouldWaitForMenuToHideBeforeFiringOnPressMenuItem,
+      shouldEnableAggressiveCleanup,
       isAuxiliaryPreviewEnabled,
       // event props
       onMenuWillShow,
@@ -88,6 +89,9 @@ export class ContextMenuView extends
       ),
       shouldWaitForMenuToHideBeforeFiringOnPressMenuItem: (
         shouldWaitForMenuToHideBeforeFiringOnPressMenuItem ?? true
+      ),
+      shouldEnableAggressiveCleanup: (
+        shouldEnableAggressiveCleanup ?? false
       ),
       isAuxiliaryPreviewEnabled: (
         isAuxiliaryPreviewEnabled ?? false
@@ -333,6 +337,8 @@ export class ContextMenuView extends
               isDummyView={true}
               shouldAutoDetachSubviews={true}
               shouldCreateTouchHandlerForSubviews={true}
+              shouldNotifyComponentWillUnmount={props.shouldEnableAggressiveCleanup}
+              shouldAutoCleanupOnJSUnmount={props.shouldEnableAggressiveCleanup}
             >
               {props.renderPreview?.()}
             </RNIWrapperView>
@@ -344,6 +350,8 @@ export class ContextMenuView extends
               isDummyView={true}
               shouldAutoDetachSubviews={true}
               shouldCreateTouchHandlerForSubviews={true}
+              shouldNotifyComponentWillUnmount={props.shouldEnableAggressiveCleanup}
+              shouldAutoCleanupOnJSUnmount={props.shouldEnableAggressiveCleanup}
             >
               {props.renderAuxillaryPreview?.()}
             </RNIWrapperView>

@@ -40,6 +40,7 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   lazyPreview?: boolean;
   useActionSheetFallback?: boolean;
   shouldWaitForMenuToHideBeforeFiringOnPressMenuItem?: boolean;
+  shouldEnableAggressiveCleanup?: boolean;
 
   onRequestDeferredElement?: DeferredElementProvider;
 
