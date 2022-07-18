@@ -88,7 +88,7 @@ internal class RNIWrapperView: UIView {
   @objc var shouldCreateTouchHandlerForParentView = false;
   
   /// If you are planning on removing the subviews from the view hierarchy (i.e. using "dummy view" mode),
-  ///  and you still want them to receive touch event, then set this property to `true`.
+  /// and you still want them to receive touch event, then set this property to `true`.
   @objc var shouldCreateTouchHandlerForSubviews = false;
   
   // MARK: - Init/Lifecycle
