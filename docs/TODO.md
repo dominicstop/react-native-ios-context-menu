@@ -122,6 +122,9 @@
 		<br>
 	
 		- [x] (Commit: `bac3096`) Fix: Re-Enable Cleanup - Fix `cleanup` Not Being Invoked.
+		- [x] (Commit: `13c5236`) **Refactor**: `RNIWrapperView` - Convert Config Bools to React Props
+			* Convert "config" bool props to react props
+	
 		- [ ] Implement `RNIWrapperView.isDummyView` bool config.
 		- [ ] Use `detachedViews` lookup table.
 
