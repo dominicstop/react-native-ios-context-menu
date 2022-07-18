@@ -46,6 +46,8 @@ internal class RNIWrapperView: UIView {
   /// After you've finished moving this view, set this back to `false`.
   var isMovingToParent = false;
   
+  var shouldDelayAutoCleanupOnJSUnmount = true;
+  
   // MARK: - RN Exported Props - Config - Lifecycle Related
   // ------------------------------------------------------
   
@@ -229,7 +231,14 @@ internal class RNIWrapperView: UIView {
       isManuallyTriggered: isManuallyTriggered
     );
     
-    if self.shouldAutoCleanupOnJSUnmount {
+    guard self.shouldAutoCleanupOnJSUnmount else { return };
+    
+    if self.shouldDelayAutoCleanupOnJSUnmount {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        self?.cleanup();
+      };
+      
+    } else {
       self.cleanup();
     };
   };
