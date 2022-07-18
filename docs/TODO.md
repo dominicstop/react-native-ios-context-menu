@@ -105,28 +105,50 @@
 - [x] (Commit: `42653ae`) **Refactor**: Use `RNICleanable` Protocol
 
 - [ ] **Refactor**: Re-write `RNIWrapperView`
-	
-	- [x] (Commit: `5bcac3a`) Refactor: Extract Delegate to Own File
-	
-	- [x] (Commit: `97f73d1`) Refactor: Rename `RNIWrapperViewDelegate` to `RNIWrapperViewEventsNotifiable`.
-	
-	- [x] Refactor: `RNIWrapperView` - Initial Rewrite
-	
-		- [x] (Commit: `0dcff7a`) **Refactor**: Add `should` prefix to bool configs.
-		- [x] (Commit: `21cc17b`) **Gloss**: Yakshaving - Re-arrange and group related properties into section .
-		- [x] (Commit: `46f6509`) **Cleanup**: Rewrite `didMoveToWindow`.
-		- [x] (Commit: `ff165b8`) **Refactor**: Replace `willChangeSuperview` and `didChangeSuperview` to `isMovingToParent`.
-		- [x] (Commit: `68b068a`): Update:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
-		- [x] (Commit: `79a4be8`) Update: Change default values — Set all feature flags to false by default.
-	
-		<br>
-	
-		- [x] (Commit: `bac3096`) Fix: Re-Enable Cleanup - Fix `cleanup` Not Being Invoked.
-		- [x] (Commit: `13c5236`) **Refactor**: `RNIWrapperView` - Convert Config Bools to React Props
-			* Convert "config" bool props to react props
-	
-		- [ ] Implement `RNIWrapperView.isDummyView` bool config.
-		- [ ] Use `detachedViews` lookup table.
+
+  - [x] (Commit: `5bcac3a`) Refactor: Extract Delegate to Own File
+
+  - [x] (Commit: `97f73d1`) Refactor: Rename `RNIWrapperViewDelegate` to `RNIWrapperViewEventsNotifiable`.
+
+  - [x] Refactor: `RNIWrapperView` - Initial Rewrite
+
+    - [x] (Commit: `0dcff7a`) **Refactor**: Add `should` prefix to bool configs.
+    - [x] (Commit: `21cc17b`) **Gloss**: Yakshaving - Re-arrange and group related properties into section .
+    - [x] (Commit: `46f6509`) **Cleanup**: Rewrite `didMoveToWindow`.
+    - [x] (Commit: `ff165b8`) **Refactor**: Replace `willChangeSuperview` and `didChangeSuperview` to `isMovingToParent`.
+    - [x] (Commit: `68b068a`): Update:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
+    - [x] (Commit: `79a4be8`) Update: Change default values — Set all feature flags to false by default.
+
+    <br>
+
+    - [x] (Commit: `bac3096`) Fix: Re-Enable Cleanup - Fix `cleanup` Not Being Invoked.
+
+    - [x] (Commit: `13c5236`) **Refactor**: `RNIWrapperView` - Convert Config Bools to React Props
+    	* Convert "config" bool props to react props.
+
+    - [x] (Commit: `e505737`) Implement: `RNIWrapperView.shouldCreateTouchHandlerForSubviews`.
+
+    - [x] (Commit: `d058bf4`) Implement: `RNIWrapperView.shouldCreateTouchHandlerForParentView`.
+
+    - [x] (Commit: `3e2857b`) Implement `RNIWrapperView.isDummyView` bool config.
+
+    - [x] Task: Check if  `RNIWrapperView` cleans up — Inspect for memory leaks
+
+    	* Push screen and open all context menu that either has a custom menu preview, or aux. preview, and then inspect memory.
+    		* N0: `RNIWrapperView` count: 0
+    		* N1: `RNIWrapperView` count: 19
+    		* N2: `RNIWrapperView` count: 38
+    		* N3: `RNIWrapperView` count: 55
+    		* N0: `RNIWrapperView` count: 0 — Go back to home/root.
+    		* Result: After going to the root/home, no `RNIWrapperView` instance remained in memory.
+
+    	<br>
+
+    - [ ] Use `detachedViews` lookup table.
+
+    
+
+- [x] (Commit: `5ab2e0f`) **Fix**: Memory Leak - Property Animators Retain Cycle
 
 
 
