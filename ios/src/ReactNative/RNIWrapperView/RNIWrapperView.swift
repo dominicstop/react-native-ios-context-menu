@@ -75,14 +75,11 @@ internal class RNIWrapperView: UIView {
   ///   the view controller, etc.) then set this to `true`.
   @objc var shouldAutoSetSizeOnLayout = false;
   
-  /// When set to `true`, the view itself is not used for content, as such  its a "dummy" view (i.e. its not
-  /// going to be displayed or used).
+  /// When set to `true`, the view itself is not the one that's being used for content, as such its a
+  /// "dummy" view (i.e. its not going to be displayed or used).
   ///
-  /// In this mode, it's child views are the ones that are being used for content, and the parent view will get
-  /// removed from the view hierarchy. The child views will be stored in `reactViews` and will be
-  /// automatically removed from it's parent.
-  ///
-  /// When in dummy view mode, use `reactContents`
+  /// In this mode, it's child views are the ones that are being used for content, and the parent view will
+  /// usually get removed from the view hierarchy.
   @objc var isDummyView = false;
   
   /// If you are planning on removing the parent view (i.e. this view instance) from the view hierarchy via
@@ -146,19 +143,17 @@ internal class RNIWrapperView: UIView {
   
   override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
     super.insertSubview(subview, at: atIndex);
+        
+    self.reactViews.append(subview);
+    subview.removeFromSuperview();
     
-    if self.isDummyView {
-      self.reactViews.append(subview);
-      subview.removeFromSuperview();
-      
-      if self.shouldCreateTouchHandlerForSubviews {
-        self.touchHandlers[subview.reactTag] = {
-          let handler = RCTTouchHandler(bridge: self.bridge);
-          handler?.attach(to: subview);
-          
-          return handler;
-        }();
-      };
+    if self.shouldCreateTouchHandlerForSubviews {
+      self.touchHandlers[subview.reactTag] = {
+        let handler = RCTTouchHandler(bridge: self.bridge);
+        handler?.attach(to: subview);
+        
+        return handler;
+      }();
     };
   };
   
