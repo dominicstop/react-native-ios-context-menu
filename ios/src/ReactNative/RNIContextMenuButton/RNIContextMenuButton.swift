@@ -67,7 +67,7 @@ class RNIContextMenuButton: UIButton {
           self.onPressMenuItem?(dict);
           
         }, deferredElementHandler: { (deferredID, completion) in
-          // TODO
+          // noop - TODO
         }
       );
       
@@ -148,10 +148,10 @@ private extension RNIContextMenuButton {
     gesture.cancelsTouchesInView = true;
     gesture.delegate = self;
     
-    self.addAction( UIAction(title: ""){ action in
-      print("menuActionTriggered");
-      // TODO: wip
-    }, for: .menuActionTriggered);
+    // self.addAction( UIAction(title: ""){ action in
+    //   print("menuActionTriggered");
+    //   // TODO: wip
+    // }, for: .menuActionTriggered);
   };
   
   func attachToParentVC(){
