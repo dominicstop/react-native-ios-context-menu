@@ -36,8 +36,12 @@ internal class RNIWrapperView: UIView {
   /// After you've finished moving this view, set this back to `false`.
   var isMovingToParent = false;
   
-  // MARK: - Properties - Config-Related
-  // ------------------
+  // MARK: - RN Exported Props
+  // -------------------------
+  
+  /// When this prop is set to `true`, the JS component will trigger
+  /// `shouldNotifyComponentWillUnmount` during `componentWillUnmount`.
+  @objc var shouldNotifyComponentWillUnmount: Bool = false;
     
   /// This property determines whether `cleanup` should be called when
   /// `shouldNotifyComponentWillUnmount` is called. Defaults to: `true`.
@@ -56,11 +60,11 @@ internal class RNIWrapperView: UIView {
   /// * This also fixes the issue where the js comp. has already been unmounted,
   ///   but it's corresponding native view is still being used.
   ///
-  var shouldAutoCleanupOnJSUnmount = false;
+  @objc var shouldAutoCleanupOnJSUnmount = false;
       
   /// Determines whether `cleanup` is called when this view is removed from the
   /// view hierarchy (i.e. when the window ref. becomes nil).
-  var shouldAutoCleanupOnWindowNil = false;
+  @objc var shouldAutoCleanupOnWindowNil = false;
   
   /// Determines whether `layoutSubviews` will automatically trigger
   /// `notifyForBoundsChange`. Defaults to `true`.
@@ -69,14 +73,7 @@ internal class RNIWrapperView: UIView {
   ///
   /// * Otherwise if the layout size is determined from the native side (e.g. via
   ///   the view controller, etc.) then set this to `true`.
-  var shouldAutoSetSizeOnLayout = false;
-  
-  // MARK: - RN Exported Props
-  // -------------------------
-  
-  /// When this prop is set to `true`, the JS component will trigger
-  /// `shouldNotifyComponentWillUnmount` during `componentWillUnmount`.
-  @objc var shouldNotifyComponentWillUnmount: Bool = false;
+  @objc var shouldAutoSetSizeOnLayout = false;
   
   // MARK: - Init/Lifecycle
   // ---------------------

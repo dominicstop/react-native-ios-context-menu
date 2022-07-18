@@ -10,7 +10,11 @@ export type RNIWrapperViewProps = ViewProps & {
   style?: ViewStyle;
   nativeID?: string;
   children?: React.ReactElement;
+
   shouldNotifyComponentWillUnmount?: boolean;  
+  shouldAutoCleanupOnJSUnmount?: boolean;
+  shouldAutoCleanupOnWindowNil?: boolean;
+  shouldAutoSetSizeOnLayout?: boolean;
 };
 
 
