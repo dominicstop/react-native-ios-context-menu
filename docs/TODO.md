@@ -104,11 +104,11 @@
 
 - [x] (Commit: `42653ae`) **Refactor**: Use `RNICleanable` Protocol
 
-- [ ] **Refactor**: Re-write `RNIWrapperView`
+- [x] **Refactor**: Re-write `RNIWrapperView`
 
-  - [x] (Commit: `5bcac3a`) Refactor: Extract Delegate to Own File
+  - [x] (Commit: `5bcac3a`) **Refactor**: Extract Delegate to Own File
 
-  - [x] (Commit: `97f73d1`) Refactor: Rename `RNIWrapperViewDelegate` to `RNIWrapperViewEventsNotifiable`.
+  - [x] (Commit: `97f73d1`) **Refactor**: Rename `RNIWrapperViewDelegate` to `RNIWrapperViewEventsNotifiable`.
 
   - [x] Refactor: `RNIWrapperView` - Initial Rewrite
 
@@ -116,22 +116,17 @@
     - [x] (Commit: `21cc17b`) **Gloss**: Yakshaving - Re-arrange and group related properties into section .
     - [x] (Commit: `46f6509`) **Cleanup**: Rewrite `didMoveToWindow`.
     - [x] (Commit: `ff165b8`) **Refactor**: Replace `willChangeSuperview` and `didChangeSuperview` to `isMovingToParent`.
-    - [x] (Commit: `68b068a`): Update:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
-    - [x] (Commit: `79a4be8`) Update: Change default values — Set all feature flags to false by default.
+    - [x] (Commit: `68b068a`): **Update**:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
+    - [x] (Commit: `79a4be8`) **Update**: Change default values — Set all feature flags to false by default.
 
     <br>
 
     - [x] (Commit: `bac3096`) Fix: Re-Enable Cleanup - Fix `cleanup` Not Being Invoked.
-
     - [x] (Commit: `13c5236`) **Refactor**: `RNIWrapperView` - Convert Config Bools to React Props
     	* Convert "config" bool props to react props.
-
-    - [x] (Commit: `e505737`) Implement: `RNIWrapperView.shouldCreateTouchHandlerForSubviews`.
-
-    - [x] (Commit: `d058bf4`) Implement: `RNIWrapperView.shouldCreateTouchHandlerForParentView`.
-
-    - [x] (Commit: `3e2857b`) Implement `RNIWrapperView.isDummyView` bool config.
-
+    - [x] (Commit: `e505737`) **Implement**: `RNIWrapperView.shouldCreateTouchHandlerForSubviews`.
+    - [x] (Commit: `d058bf4`) **Implement**: `RNIWrapperView.shouldCreateTouchHandlerForParentView`.
+    - [x] (Commit: `3e2857b`) **Implement** `RNIWrapperView.isDummyView` bool config.
     - [x] Task: Check if  `RNIWrapperView` cleans up — Inspect for memory leaks
 
     	* Push screen and open all context menu that either has a custom menu preview, or aux. preview, and then inspect memory.
@@ -142,21 +137,38 @@
     		* N0: `RNIWrapperView` count: 0 — Go back to home/root.
     		* Result: After going to the root/home, no `RNIWrapperView` instance remained in memory.
 
-    	<br>
 
-    - [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
+    <br>
 
-    - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
-    
-    - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
+  - [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
 
-  <br>
+  - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
+
+  - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
+
+
+<br>
 
 - [x] (Commit: `5ab2e0f`) **Fix**: Memory Leak - Property Animators Retain Cycle.
 
 - [x] (Commit: `406362d`) **Fix**: Memory Leak - `UIAction` Retain Cycle.
 
 - [x] (Commit: `8be7831`) **Implement** `ContextMenuView.shouldEnableAggressiveCleanup` prop. 
+
+- [x] **Task**: Test all context menu items — Check if the `RNIWrapperView` refactor + `shouldEnableAggressiveCleanup` is causing any problems.
+
+	* Push screen, test items, pop screen, test items, and so on...
+
+	- [x] **Task**: Test all context menu view items in debug mode.
+	- [x] **Task**: Test all context menu button items in debug mode.
+	- [x] **Task**: Test all context menu view items in release mode.
+	- [x] **Task**: Test all context menu button items in release mode.
+	- [x] **Task**: Inspect for memory leaks.
+		* Results: 13 `RNIWrapperView` instances retained by `RNIContextMenuView`, but no memory leaks or retain cycles found. 
+
+<br>
+
+- [x] (Commit: `abc`) **Implement**: Cleanup orphaned deferred menu items.
 
 
 
