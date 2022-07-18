@@ -32,7 +32,7 @@ internal class RNIWrapperView: UIView {
   var touchHandlers: Dictionary<NSNumber, RCTTouchHandler> = [:];
   
   // MARK: - Properties - Flags
-  // ------------------
+  // --------------------------
   
   /// Whether or not `cleanup` was triggered.
   private(set) var didTriggerCleanup = false;
