@@ -146,7 +146,7 @@
 
     - [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
 
-    - [ ] Use `detachedViews` lookup table.
+    - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
 
   <br>
 
