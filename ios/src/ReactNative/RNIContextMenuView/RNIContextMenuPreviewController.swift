@@ -16,8 +16,17 @@ class RNIContextMenuPreviewController: UIViewController {
   
   weak var previewWrapper: RNIWrapperView?;
   
+  /// Shorthand to get the "preview view" that we want to display in the context menu preview.
+  ///
+  /// Note: This is the view that we received from JS side via `RNIWrapperView`.
+  /// The wrapper view  is set o "dummy view mode".
+  var reactPreviewView: UIView? {
+    self.previewWrapper?.reactViews.first
+  };
+  
+  /// Shorthand for the preview view's size/dimensions.
   var previewSize: CGSize? {
-    self.previewWrapper?.reactContent?.frame.size;
+    self.reactPreviewView?.frame.size;
   };
   
   override func viewDidLoad() {
@@ -31,7 +40,7 @@ class RNIContextMenuPreviewController: UIViewController {
       return view;
     }();
     
-    if let previewView = self.previewWrapper?.reactContent {
+    if let previewView = self.reactPreviewView {
       self.view.addSubview(previewView);
     };
   };
@@ -41,9 +50,9 @@ class RNIContextMenuPreviewController: UIViewController {
 
     switch self.previewConfig.previewSize {
       case .STRETCH:
-        self.previewWrapper?
-          .notifyForBoundsChange(size: self.view.bounds.size);
+        guard let previewWrapper = self.previewWrapper else { return };
         
+        previewWrapper.notifyForBoundsChange(size: self.view.bounds.size);
         self.preferredContentSize = CGSize(width: 0, height: 0);
         
       case .INHERIT:

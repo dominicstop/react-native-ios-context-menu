@@ -329,8 +329,8 @@ export class ContextMenuView extends
           {shouldMountPreview && (
             <RNIWrapperView 
               style={styles.previewContainer}
-              shouldNotifyComponentWillUnmount={false}
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
+              isDummyView={true}
             >
               {props.renderPreview?.()}
             </RNIWrapperView>
@@ -338,8 +338,8 @@ export class ContextMenuView extends
           {shouldMountAuxPreview && (
             <RNIWrapperView 
               style={styles.previewAuxWrapper}
-              shouldNotifyComponentWillUnmount={false}
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
+              isDummyView={true}
             >
               {props.renderAuxillaryPreview?.()}
             </RNIWrapperView>

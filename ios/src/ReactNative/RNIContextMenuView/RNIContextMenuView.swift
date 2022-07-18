@@ -66,7 +66,7 @@ class RNIContextMenuView: UIView {
   var isAuxPreviewVisible = false;
 
   /// Holds the view to be shown in the auxiliary preview
-  weak var previewAuxiliaryViewWrapper: RNIWrapperView?;
+  var previewAuxiliaryViewWrapper: RNIWrapperView?;
   
   /// Cached value - in which side of the preview was aux. preview attached to?
   /// Cleared when the aux. preview is hidden.
@@ -287,6 +287,14 @@ class RNIContextMenuView: UIView {
     self.previewAuxiliaryViewWrapper != nil;
   };
   
+  /// Shorthand to get the "preview view" that we want to display in the context menu preview.
+  ///
+  /// Note: This is the view that we received from JS side via `RNIWrapperView`.
+  /// The wrapper view  is configured to use "dummy mode".
+  var previewAuxiliaryView: UIView? {
+    self.previewAuxiliaryViewWrapper?.reactViews.first
+  };
+  
   // MARK: - Init
   // ------------
   
@@ -327,8 +335,7 @@ class RNIContextMenuView: UIView {
        let nativeIDKey = NativeIDKey(rawValue: nativeID) {
       
       wrapperView.isMovingToParent = true;
-      wrapperView.shouldAutoCleanupOnJSUnmount = false;
-            
+      
       switch nativeIDKey {
         case .contextMenuPreview:
           // if prev. exist, cleanup first.
@@ -590,7 +597,7 @@ fileprivate extension RNIContextMenuView {
 
     guard self.isAuxiliaryPreviewEnabled,
           let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
-          let previewAuxiliaryView = previewAuxiliaryViewWrapper.reactContent,
+          let previewAuxiliaryView = self.previewAuxiliaryView,
           
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let contextMenuContainerView = self.contextMenuContainerView,
@@ -749,11 +756,6 @@ fileprivate extension RNIContextMenuView {
     
     // MARK: Set Layout
     // ----------------
-    
-    // TODO:  Remove?
-    /// detach aux. preview
-    previewAuxiliaryViewWrapper.removeFromSuperview();
-    previewAuxiliaryView.removeFromSuperview();
     
     // Bugfix: Stop bubbling touch events from propagating to parent
     previewAuxiliaryView.addGestureRecognizer(
@@ -1000,8 +1002,9 @@ fileprivate extension RNIContextMenuView {
     
     guard self.isAuxiliaryPreviewEnabled,
           self.isAuxPreviewVisible,
+          
           let animator = animator,
-          let previewAuxiliaryView = self.previewAuxiliaryViewWrapper?.reactContent
+          let previewAuxiliaryView = self.previewAuxiliaryView
     else { return };
     
     /// Bug:
