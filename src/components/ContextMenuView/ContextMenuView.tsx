@@ -91,7 +91,7 @@ export class ContextMenuView extends
         shouldWaitForMenuToHideBeforeFiringOnPressMenuItem ?? true
       ),
       shouldEnableAggressiveCleanup: (
-        shouldEnableAggressiveCleanup ?? false
+        shouldEnableAggressiveCleanup ?? true
       ),
       isAuxiliaryPreviewEnabled: (
         isAuxiliaryPreviewEnabled ?? false
