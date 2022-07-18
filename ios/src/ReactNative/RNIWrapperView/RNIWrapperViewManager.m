@@ -16,10 +16,13 @@ RCT_EXPORT_VIEW_PROPERTY(shouldNotifyComponentWillUnmount, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(shouldAutoCleanupOnJSUnmount, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(shouldAutoCleanupOnWindowNil, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(shouldAutoSetSizeOnLayout, BOOL);
+
 RCT_EXPORT_VIEW_PROPERTY(isDummyView, BOOL);
+RCT_EXPORT_VIEW_PROPERTY(shouldAutoDetachSubviews, BOOL);
+
 RCT_EXPORT_VIEW_PROPERTY(shouldCreateTouchHandlerForParentView, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(shouldCreateTouchHandlerForSubviews, BOOL);
-RCT_EXPORT_VIEW_PROPERTY(shouldAutoDetachSubviews, BOOL);
+
 
 
 @end

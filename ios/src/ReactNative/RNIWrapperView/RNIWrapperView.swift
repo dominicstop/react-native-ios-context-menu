@@ -41,8 +41,8 @@ internal class RNIWrapperView: UIView {
   /// After you've finished moving this view, set this back to `false`.
   var isMovingToParent = false;
   
-  // MARK: - RN Exported Props
-  // -------------------------
+  // MARK: - RN Exported Props - Config - Lifecycle Related
+  // ------------------------------------------------------
   
   /// When this prop is set to `true`, the JS component will trigger
   /// `shouldNotifyComponentWillUnmount` during `componentWillUnmount`.
@@ -80,12 +80,24 @@ internal class RNIWrapperView: UIView {
   ///   the view controller, etc.) then set this to `true`.
   @objc var shouldAutoSetSizeOnLayout = false;
   
+  // MARK: - RN Exported Props - Config - "Dummy View"-Related
+  // ---------------------------------------------------------
+  
   /// When set to `true`, the view itself is not the one that's being used for content, as such its a
   /// "dummy" view (i.e. its not going to be displayed or used).
   ///
   /// In this mode, it's child views are the ones that are being used for content, and the parent view will
   /// usually get removed from the view hierarchy.
   @objc var isDummyView = false;
+  
+  /// When enabled, the child views will be automatically removed from it's parent, and will be stored in
+  /// the `reactViews` property.
+  ///
+  /// This is usually enabled together with `isDummyView`.
+  @objc var shouldAutoDetachSubviews = false;
+  
+  // MARK: - RN Exported Props - Config - Touch Handlers
+  // ---------------------------------------------------
   
   /// If you are planning on removing the parent view (i.e. this view instance) from the view hierarchy via
   /// calling `removeFromSuperview`, and you still want it to receive touch events , then set this
@@ -98,11 +110,6 @@ internal class RNIWrapperView: UIView {
   /// and you still want them to receive touch event, then set this property to `true`.
   @objc var shouldCreateTouchHandlerForSubviews = false;
   
-  /// When enabled, the child views will be automatically removed from it's parent, and will be stored in
-  /// the `reactViews` property.
-  ///
-  /// This is usually enabled together with `isDummyView`.
-  @objc var shouldAutoDetachSubviews = false;
   
   // MARK: - Init/Lifecycle
   // ---------------------
