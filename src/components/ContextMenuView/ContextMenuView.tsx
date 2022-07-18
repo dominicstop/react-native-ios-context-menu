@@ -340,6 +340,7 @@ export class ContextMenuView extends
               style={styles.previewAuxWrapper}
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
               isDummyView={true}
+              shouldCreateTouchHandlerForSubviews={true}
             >
               {props.renderAuxillaryPreview?.()}
             </RNIWrapperView>
