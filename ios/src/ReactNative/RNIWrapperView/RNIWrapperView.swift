@@ -19,7 +19,7 @@ internal class RNIWrapperView: UIView {
   
   weak var delegate: RNIWrapperViewEventsNotifiable?;
   
-  private var touchHandler: RCTTouchHandler!;
+  var touchHandlers: Dictionary<NSNumber, RCTTouchHandler> = [:];
   
   // MARK: - Properties - Flags
   // ------------------
@@ -74,15 +74,17 @@ internal class RNIWrapperView: UIView {
   /// * Otherwise if the layout size is determined from the native side (e.g. via
   ///   the view controller, etc.) then set this to `true`.
   @objc var shouldAutoSetSizeOnLayout = false;
+    
+  /// If you are planning on removing the subviews from the view hierarchy (i.e. using "dummy view" mode),
+  ///  and you still want them to receive touch event, then set this property to `true`.
+  @objc var shouldCreateTouchHandlerForSubviews = false;
   
   // MARK: - Init/Lifecycle
   // ---------------------
   
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
-    
     self.bridge = bridge;
-    self.touchHandler = RCTTouchHandler(bridge: self.bridge);
   };
   
   required init?(coder: NSCoder) {
@@ -124,7 +126,15 @@ internal class RNIWrapperView: UIView {
     super.insertSubview(subview, at: atIndex);
     
     self.reactContent = subview;
-    self.touchHandler.attach(to: subview);
+    
+    if self.shouldCreateTouchHandlerForSubviews {
+      self.touchHandlers[subview.reactTag] = {
+        let handler = RCTTouchHandler(bridge: self.bridge);
+        handler?.attach(to: subview);
+        
+        return handler;
+      }();
+    };
   };
   
   // MARK: - Internal Functions
@@ -147,10 +157,12 @@ internal class RNIWrapperView: UIView {
   
   func notifyForBoundsChangeForContent(size: CGSize){
     guard let bridge = self.bridge,
-          let reactContent = self.reactContent
+          self.subviews.count > 0
     else { return };
     
-    bridge.uiManager.setSize(size, for: reactContent);
+    for subview in subviews {
+      bridge.uiManager.setSize(size, for: subview);
+    };
   };
   
   // MARK: - Commands For Module
@@ -179,11 +191,19 @@ extension RNIWrapperView: RNICleanable {
     guard !self.didTriggerCleanup else { return };
     self.didTriggerCleanup = true;
     
-    self.touchHandler.detach(from: self.reactContent);
+    let viewsToCleanup = self.subviews + [self];
+ 
+    for view in viewsToCleanup  {
+      if let touchHandler = self.touchHandlers[view.reactTag] {
+        touchHandler.detach(from: view);
+      };
+      
+      RNIUtilities.recursivelyRemoveFromViewRegistry(
+        bridge: self.bridge,
+        reactView: view
+      );
+    };
     
-    RNIUtilities.recursivelyRemoveFromViewRegistry(
-      bridge: self.bridge,
-      reactView: self
-    );
+    self.touchHandlers.removeAll();
   };
 };
