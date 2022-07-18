@@ -222,8 +222,6 @@ internal class RNIWrapperView: UIView {
     if self.shouldAutoCleanupOnJSUnmount {
       self.cleanup();
     };
-    
-    print("debug - onJSComponentWillUnmount - \(Unmanaged.passUnretained(self).toOpaque()) - didTriggerCleanup: \(self.didTriggerCleanup)");
   };
 };
 
@@ -236,8 +234,6 @@ extension RNIWrapperView: RNICleanable {
   func cleanup(){
     guard !self.didTriggerCleanup else { return };
     self.didTriggerCleanup = true;
-    
-    print("debug - cleanup - \(Unmanaged.passUnretained(self).toOpaque())");
     
     let viewsToCleanup = self.reactViews + [self];
  
