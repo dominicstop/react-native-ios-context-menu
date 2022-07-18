@@ -18,7 +18,12 @@ internal class RNIWrapperView: UIView {
   
   weak var delegate: RNIWrapperViewEventsNotifiable?;
   
+  /// When `shouldAutoDetachSubviews` is enabled, all the child views that were removed from
+  /// its parent  will be stored here.
+  ///
+  /// This is only usually used when `isDummyView` is enabled.
   var reactViews: [UIView] = [];
+  
   var touchHandlers: Dictionary<NSNumber, RCTTouchHandler> = [:];
   
   // MARK: - Properties - Flags
@@ -85,11 +90,19 @@ internal class RNIWrapperView: UIView {
   /// If you are planning on removing the parent view (i.e. this view instance) from the view hierarchy via
   /// calling `removeFromSuperview`, and you still want it to receive touch events , then set this
   /// property to `true`.
+  ///
+  /// When in dummy mode, `shouldAutoDetachSubviews` is usually also enabled.
   @objc var shouldCreateTouchHandlerForParentView = false;
   
   /// If you are planning on removing the subviews from the view hierarchy (i.e. using "dummy view" mode),
   /// and you still want them to receive touch event, then set this property to `true`.
   @objc var shouldCreateTouchHandlerForSubviews = false;
+  
+  /// When enabled, the child views will be automatically removed from it's parent, and will be stored in
+  /// the `reactViews` property.
+  ///
+  /// This is usually enabled together with `isDummyView`.
+  @objc var shouldAutoDetachSubviews = false;
   
   // MARK: - Init/Lifecycle
   // ---------------------
@@ -143,10 +156,12 @@ internal class RNIWrapperView: UIView {
   
   override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
     super.insertSubview(subview, at: atIndex);
-        
-    self.reactViews.append(subview);
-    subview.removeFromSuperview();
     
+    if self.shouldAutoDetachSubviews {
+      self.reactViews.append(subview);
+      subview.removeFromSuperview();
+    };
+        
     if self.shouldCreateTouchHandlerForSubviews {
       self.touchHandlers[subview.reactTag] = {
         let handler = RCTTouchHandler(bridge: self.bridge);

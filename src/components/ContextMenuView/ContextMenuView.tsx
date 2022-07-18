@@ -331,6 +331,7 @@ export class ContextMenuView extends
               style={styles.previewContainer}
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
               isDummyView={true}
+              shouldAutoDetachSubviews={true}
               shouldCreateTouchHandlerForSubviews={true}
             >
               {props.renderPreview?.()}
@@ -341,6 +342,7 @@ export class ContextMenuView extends
               style={styles.previewAuxWrapper}
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
               isDummyView={true}
+              shouldAutoDetachSubviews={true}
               shouldCreateTouchHandlerForSubviews={true}
             >
               {props.renderAuxillaryPreview?.()}

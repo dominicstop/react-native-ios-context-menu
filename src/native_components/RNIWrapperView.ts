@@ -18,6 +18,7 @@ export type RNIWrapperViewProps = ViewProps & {
   isDummyView?: boolean;
   shouldCreateTouchHandlerForParentView?: boolean;
   shouldCreateTouchHandlerForSubviews?: boolean;
+  shouldAutoDetachSubviews?: boolean;
 };
 
 

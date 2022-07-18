@@ -19,6 +19,7 @@ RCT_EXPORT_VIEW_PROPERTY(shouldAutoSetSizeOnLayout, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(isDummyView, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(shouldCreateTouchHandlerForParentView, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(shouldCreateTouchHandlerForSubviews, BOOL);
+RCT_EXPORT_VIEW_PROPERTY(shouldAutoDetachSubviews, BOOL);
 
 
 @end
