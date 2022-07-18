@@ -1299,6 +1299,10 @@ extension RNIContextMenuView: RNICleanable {
       reactView: self
     );
     
+    self.previewWrapper = nil;
+    self.previewController = nil;
+    self.previewAuxiliaryViewWrapper = nil;
+    
     #if DEBUG
     NotificationCenter.default.removeObserver(self);
     #endif
