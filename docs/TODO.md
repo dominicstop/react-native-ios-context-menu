@@ -146,9 +146,11 @@
 
     - [ ] Use `detachedViews` lookup table.
 
-    
+  <br>
 
-- [x] (Commit: `5ab2e0f`) **Fix**: Memory Leak - Property Animators Retain Cycle
+- [x] (Commit: `5ab2e0f`) **Fix**: Memory Leak - Property Animators Retain Cycle.
+
+- [x] (Commit: `406362d`) **Fix**: Memory Leak - `UIAction` Retain Cycle.
 
 
 
