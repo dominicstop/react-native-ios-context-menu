@@ -75,6 +75,11 @@ internal class RNIWrapperView: UIView {
   ///   the view controller, etc.) then set this to `true`.
   @objc var shouldAutoSetSizeOnLayout = false;
     
+  /// If you are planning on removing the parent view (i.e. this view instance) from the view hierarchy via
+  /// calling `removeFromSuperview`, and you still want it to receive touch events , then set this
+  /// property to `true`.
+  @objc var shouldCreateTouchHandlerForParentView = false;
+  
   /// If you are planning on removing the subviews from the view hierarchy (i.e. using "dummy view" mode),
   ///  and you still want them to receive touch event, then set this property to `true`.
   @objc var shouldCreateTouchHandlerForSubviews = false;
@@ -85,6 +90,15 @@ internal class RNIWrapperView: UIView {
   init(bridge: RCTBridge) {
     super.init(frame: CGRect());
     self.bridge = bridge;
+    
+    if self.shouldCreateTouchHandlerForParentView {
+      self.touchHandlers[self.reactTag] = {
+        let handler = RCTTouchHandler(bridge: self.bridge)!;
+        handler.attach(to: self);
+        
+        return handler;
+      }();
+    };
   };
   
   required init?(coder: NSCoder) {

@@ -15,6 +15,7 @@ export type RNIWrapperViewProps = ViewProps & {
   shouldAutoCleanupOnJSUnmount?: boolean;
   shouldAutoCleanupOnWindowNil?: boolean;
   shouldAutoSetSizeOnLayout?: boolean;
+  shouldCreateTouchHandlerForParentView?: boolean;
   shouldCreateTouchHandlerForSubviews?: boolean;
 };
 
