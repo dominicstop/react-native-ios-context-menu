@@ -60,7 +60,7 @@ class RNIContextMenuView: UIView {
   private var shouldEnableCleanup = true;
   
   // MARK: - Properties - "Auxiliary Preview"-Related (Experimental)
-  // ------------------------
+  // ---------------------------------------------------------------
   
   /// Keep track on whether or not the aux. preview is currently visible.
   var isAuxPreviewVisible = false;
@@ -90,7 +90,7 @@ class RNIContextMenuView: UIView {
   @objc var onRequestDeferredElement: RCTBubblingEventBlock?;
   
   // MARK: - RN Exported Event Props - "Auxiliary Preview"-Related (Experimental)
-  // -------------------------------
+  // ----------------------------------------------------------------------------
 
   @objc var onMenuAuxiliaryPreviewWillShow: RCTBubblingEventBlock?;
   @objc var onMenuAuxiliaryPreviewDidShow : RCTBubblingEventBlock?;
@@ -171,8 +171,8 @@ class RNIContextMenuView: UIView {
   
   @objc var isContextMenuEnabled = true;
   
-  // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-  // -------------------------------------------------------------
+  // MARK: - RN Exported Props: "Auxiliary Context Menu Preview"-Related (Experimental)
+  // ----------------------------------------------------------------------------------
   
   @objc var isAuxiliaryPreviewEnabled = true;
   
@@ -193,7 +193,7 @@ class RNIContextMenuView: UIView {
   };
   
   // MARK: - Computed Properties - "Auxiliary Context Menu Preview"-Related
-  // ---------------------------
+  // ----------------------------------------------------------------------
   
   /// Gets the `_UIContextMenuContainerView` that's holding the context menu controls.
   /// **Note**: This `UIView` instance  only exists whenever there's a context menu interaction.
