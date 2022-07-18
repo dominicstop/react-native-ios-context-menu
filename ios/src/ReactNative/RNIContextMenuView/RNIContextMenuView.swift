@@ -1018,7 +1018,7 @@ fileprivate extension RNIContextMenuView {
     self.isAuxPreviewVisible = false;
     
     // Add exit transition
-    animator.addAnimations {
+    animator.addAnimations { [unowned self] in
       var transform = previewAuxiliaryView.transform;
       
       // transition - fade out
@@ -1042,7 +1042,7 @@ fileprivate extension RNIContextMenuView {
       previewAuxiliaryView.transform = transform;
     };
     
-    animator.addCompletion {
+    animator.addCompletion { [unowned self] in
       previewAuxiliaryView.removeFromSuperview();
       
       // clear value
@@ -1115,7 +1115,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       };
     };
     
-    animator?.addCompletion {
+    animator?.addCompletion { [unowned self] in
       self.onMenuDidShow?([:]);
       
       // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
@@ -1155,7 +1155,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       self.onMenuWillCancel?([:]);
     };
     
-    animator?.addCompletion {
+    animator?.addCompletion { [unowned self] in
       self.onMenuDidHide?([:]);
       
       if !self.didPressMenuItem {
@@ -1197,7 +1197,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       case .pop:
         self.onMenuWillHide?([:]);
         
-        animator.addCompletion {
+        animator.addCompletion { [unowned self] in
           self.onPressMenuPreview?([:]);
           self.onMenuDidHide?([:]);
         };
@@ -1207,7 +1207,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
         self.onMenuWillHide?([:]);
         self.onPressMenuPreview?([:]);
         
-        animator.addCompletion {
+        animator.addCompletion { [unowned self] in
           self.onMenuDidHide?([:]);
         };
     };

@@ -213,7 +213,7 @@ extension RNIContextMenuButton {
     self.isContextMenuVisible = true;
     
     self.onMenuWillShow?([:]);
-    animator?.addCompletion {
+    animator?.addCompletion { [unowned self] in
       self.onMenuDidShow?([:]);
     };
   };
@@ -235,7 +235,7 @@ extension RNIContextMenuButton {
       self.onMenuWillCancel?([:]);
     };
     
-    animator?.addCompletion {
+    animator?.addCompletion { [unowned self] in
       if !self.didPressMenuItem {
         self.onMenuDidCancel?([:]);
       };
