@@ -45,7 +45,7 @@ internal class RNIContextMenuButtonModule: NSObject {
         return;
       };
       
-      contextMenuButton.dissmissMenu();
+      contextMenuButton.dismissMenu();
       resolve(nil);
     };
   };

@@ -195,7 +195,8 @@ private extension RNIContextMenuButton {
 
 @available(iOS 14, *)
 extension RNIContextMenuButton {
-  @objc func dissmissMenu(){
+  
+  @objc func dismissMenu(){
     self.contextMenuInteraction?.dismissMenu();
   };
 };

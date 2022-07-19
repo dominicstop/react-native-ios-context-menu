@@ -32,7 +32,7 @@ class RNIContextMenuButtonManager: RCTViewManager {
             let contextMenuButton = view as? RNIContextMenuButton
       else { return };
       
-      contextMenuButton.dissmissMenu();
+      contextMenuButton.dismissMenu();
     };
   };
 };
