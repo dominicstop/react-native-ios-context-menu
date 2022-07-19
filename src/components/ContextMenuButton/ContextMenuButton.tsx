@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
-import { RNIContextMenuButton, RNIContextMenuButtonBaseProps } from '../../native_components/RNIContextMenuButton';
+import { RNIContextMenuButton } from '../../native_components/RNIContextMenuButton';
 import { RNIContextMenuButtonModule } from '../../native_modules/RNIContextMenuButtonModule';
 
-import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnPressMenuItemEvent } from '../../types/MenuEvents';
+import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnPressMenuItemEvent, OnRequestDeferredElementEvent } from '../../types/MenuEvents';
 import type { ContextMenuButtonProps, ContextMenuButtonState } from './ContextMenuButtonTypes';
 
 // @ts-ignore - TODO
@@ -14,6 +14,7 @@ import { ContextMenuView } from '../ContextMenuView';
 import { ContextMenuButtonContext } from '../../context/ContextMenuButtonContext';
 
 import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
+import type { MenuElementConfig } from 'src/types/MenuConfig';
 
 import * as Helpers from '../../functions/Helpers';
 
@@ -43,6 +44,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       onMenuDidHide,
       onMenuDidCancel,
       onPressMenuItem,
+      onRequestDeferredElement,
       ...viewProps 
     } = this.props;
 
@@ -65,6 +67,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       onMenuDidHide,
       onMenuDidCancel,
       onPressMenuItem,
+      onRequestDeferredElement,
       // C. Move all the default view-related
       //    props here...
       viewProps
@@ -165,6 +168,15 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     if(event.isUsingActionSheetFallback) return;
     event.stopPropagation();
   };
+
+  private _handleOnRequestDeferredElement: OnRequestDeferredElementEvent = (event) => {
+    const { onRequestDeferredElement } = this.props;
+    const { deferredID } = event.nativeEvent;
+
+    onRequestDeferredElement?.(deferredID, (items) => {
+      this.provideDeferredElements(deferredID, items);
+    });
+  };
   //#endregion
 
   render(){
@@ -186,7 +198,8 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       IS_PLATFORM_IOS && props.useActionSheetFallback
     );
 
-    const nativeComponentProps: RNIContextMenuButtonBaseProps = {
+    // TODO: Rename to 'sharedProps'
+    const nativeComponentProps = {
       menuConfig: props.menuConfig,
       enableContextMenu: props.enableContextMenu,
       isMenuPrimaryAction: props.isMenuPrimaryAction,
@@ -210,6 +223,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
           ref={r => { this.nativeRef = r! }}
           // override style prop
           style={[styles.menuButton, props.viewProps.style]}
+          onRequestDeferredElement={this._handleOnRequestDeferredElement}
         >
           {props.viewProps.children}
         </RNIContextMenuButton>
@@ -218,6 +232,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
         <ContextMenuView
           {...props.viewProps}
           {...nativeComponentProps}
+          onRequestDeferredElement={props.onRequestDeferredElement}
         >
           {props.viewProps.children}
         </ContextMenuView>

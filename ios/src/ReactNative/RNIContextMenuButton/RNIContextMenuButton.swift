@@ -46,6 +46,8 @@ class RNIContextMenuButton: UIButton {
   @objc var onMenuDidCancel: RCTBubblingEventBlock?;
   
   @objc var onPressMenuItem: RCTBubblingEventBlock?;
+  
+  @objc var onRequestDeferredElement: RCTBubblingEventBlock?;
 
   // MARK: - RN Exported Props
   // -------------------------
@@ -146,8 +148,11 @@ private extension RNIContextMenuButton {
       actionItemHandler: { [unowned self] in
         self.handleOnPressMenuActionItem(dict: $0, action: $1);
         
-      }, deferredElementHandler: { (deferredID, completion) in
-        // noop - TODO
+      }, deferredElementHandler: {  [unowned self] in
+        // B. deferred element is requesting for items to load...
+        self.handleOnDeferredElementRequest(
+          deferredID: $0, completion: $1
+        );
       }
     );
     
@@ -169,6 +174,21 @@ private extension RNIContextMenuButton {
     self.didPressMenuItem = true;
     self.onPressMenuItem?(dict);
   };
+  
+  func handleOnDeferredElementRequest(
+    deferredID: String,
+    completion: @escaping RNIDeferredMenuElement.CompletionHandler
+  ){
+    // register completion handler
+    self.deferredElementCompletionMap[deferredID] = completion;
+    
+    // notify js that a deferred element needs to be loaded
+    self.onRequestDeferredElement?([
+      "deferredID": deferredID,
+    ]);
+  };
+  
+  
   func attachToParentVC(){
     guard !self.didAttachToParentVC,
           // find the nearest parent view controller

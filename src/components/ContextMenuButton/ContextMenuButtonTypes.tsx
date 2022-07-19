@@ -1,6 +1,7 @@
 import type {  ViewProps } from 'react-native';
 
 import type { RNIContextMenuButtonBaseProps } from '../../native_components/RNIContextMenuButton';
+import type { ContextMenuViewProps } from '../ContextMenuView';
 
 
 export type ContextMenuButtonBaseProps = Pick<RNIContextMenuButtonBaseProps,
@@ -16,6 +17,8 @@ export type ContextMenuButtonBaseProps = Pick<RNIContextMenuButtonBaseProps,
   | 'onMenuDidCancel'
   // `OnPress` Events
   | 'onPressMenuItem'
+> & Pick<ContextMenuViewProps,
+  | 'onRequestDeferredElement'
 > & {
   useActionSheetFallback?: boolean;
 };
