@@ -120,34 +120,7 @@ class RNIContextMenuView: UIView {
       #endif
       
       self._menuConfig = menuConfig;
-      
-      if #available(iOS 14.0, *),
-         self.isContextMenuVisible,
-         let interaction: UIContextMenuInteraction = self.contextMenuInteraction {
-        
-        #if DEBUG
-        print("menuConfig didSet"
-          + " - Updating  visible menu"
-          + " - menuItems: \(menuConfigDict["menuItems"] ?? "N/A")"
-        );
-        #endif
-        
-        // context menu is open, update the menu items
-        interaction.updateVisibleMenu { _ in
-          return menuConfig.createMenu(
-            actionItemHandler: {
-              // A. menu item has been pressed...
-              self.handleOnPressMenuActionItem(dict: $0, action: $1);
-              
-            }, deferredElementHandler: {
-              // B. deferred element is requesting for items to load...
-              self.handleOnDeferredElementRequest(
-                deferredID: $0, completion: $1
-              );
-            }
-          );
-        };
-      };
+      self.updateContextMenuIfVisible(with: menuConfig);
     }
   };
   
@@ -534,6 +507,35 @@ fileprivate extension RNIContextMenuView {
       return UITargetedPreview(
         view: self,
         parameters: parameters
+      );
+    };
+  };
+  
+  func updateContextMenuIfVisible(with menuConfig: RNIMenuItem){
+    guard #available(iOS 14.0, *),
+          self.isContextMenuVisible,
+          let interaction: UIContextMenuInteraction = self.contextMenuInteraction
+    else { return };
+      
+      #if DEBUG
+      print("menuConfig didSet"
+        + " - Updating  visible menu"
+      );
+      #endif
+      
+    // context menu is open, update the menu items
+    interaction.updateVisibleMenu { _ in
+      return menuConfig.createMenu(
+        actionItemHandler: {
+          // A. menu item has been pressed...
+          self.handleOnPressMenuActionItem(dict: $0, action: $1);
+          
+        }, deferredElementHandler: {
+          // B. deferred element is requesting for items to load...
+          self.handleOnDeferredElementRequest(
+            deferredID: $0, completion: $1
+          );
+        }
       );
     };
   };
