@@ -392,10 +392,10 @@ extension RNIContextMenuView {
       // create + add menu elements
       completion( menuElements.compactMap { menuElement in
         menuElement.createMenuElement(
-          actionItemHandler: {
+          actionItemHandler: { [unowned self] in
             self.handleOnPressMenuActionItem(dict: $0, action: $1);
             
-          }, deferredElementHandler: {
+          }, deferredElementHandler: { [unowned self] in
             self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
           }
         );
