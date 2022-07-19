@@ -73,7 +73,7 @@
 
 
 
-### Uncategorized
+### Uncategorized/WIP
 
 - [ ] **Bug**: Aux. Preview - Layout Jank on Exit Transition
 	* When the exit transition begins, the aux. preview jumps. This is especially noticeable when there's a custom preview.
@@ -168,7 +168,8 @@
 
 <br>
 
-- [x] (Commit: `abc`) **Implement**: Cleanup orphaned deferred menu items.
+- [x] (Commit: `57f817a`) **Example**: Deferred Menu Items - Add alt. usage (i.e. state controller menu config).
+- [ ] (Commit: `abc`) **Implement**: Cleanup orphaned deferred menu items.
 
 
 
