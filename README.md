@@ -83,6 +83,7 @@
 | 📌 **[`ContextMenuView` Example 17](#ContextMenuView-Example-17)**<br/>💭 **Summary**: Icon Example — An example showing a context menu with action items that have different colored icons. |
 | 📌 **[`ContextMenuView` Example 18](#ContextMenuView-Example-18)**<br/>💭 **Summary**: Icon Example — An example showing a context menu with action items that has icons that uses local image assets imported via `require(...)`. |
 | 📌 **[`ContextMenuView` Example 19](#ContextMenuView-Example-19)**<br/>💭 **Summary**: Dynamic Menu — An example showing a context menu that has a loading indicator using deferred menu elements. |
+| 📌 **[`ContextMenuView` Example 20](#ContextMenuView-Example-20)**<br/>💭 **Summary**: Dynamic Menu — An example showing a state-controlled context menu that shows a loading indicator using deferred menu elements. |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 01](#ContextMenuView-Auxiliary-Preview---Example-01)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 02](#ContextMenuView-Auxiliary-Preview---Example-02)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 03](#ContextMenuView-Auxiliary-Preview---Example-03)**<br/>💭 **Summary**: TBA |
@@ -2159,6 +2160,110 @@ export function ContextMenuViewExample19(props) {
 ![example-ContextMenuViewExample19](assets/example-ContextMenuViewExample19.jpg)
 
 ![example-ContextMenuViewExample19](assets/example-ContextMenuViewExample19.gif)
+
+<br>
+
+### `ContextMenuView` Example 20
+
+**Summary**: Dynamic Menu — An example showing a state-controlled context menu that shows a loading indicator using deferred menu elements.
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample20.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample20(props) {
+  const [extraMenuItems, setExtraMenuItems] = React.useState([]);
+
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [didLoadItems, setDidLoadItems] = React.useState(false);
+
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample20',
+        menuItems: [{
+          actionKey  : 'key-01',
+          actionTitle: 'Action #1',
+          actionSubtitle: 'Dummy action'
+        },
+
+        // add deferred item so that the loading indicator
+        // appears...
+        isLoading && ({
+          type: 'deferred',
+          deferredID: 'deferred-01'
+        }), 
+
+        // add the extra menu items...
+        ...extraMenuItems,
+
+        didLoadItems && ({
+          type: 'menu',
+          menuTitle: '',
+          menuOptions: ['displayInline'],
+          menuItems: [{
+            type: 'action',
+            actionKey: 'clear_cache',
+            actionTitle: 'Clear Cache',
+            actionSubtitle: 'Remove loaded items...',
+            menuAttributes: ['destructive'],
+          }]
+        })],
+      }}
+      // this event will fire when a deferred menu item is present...
+      onMenuWillShow={async () => {
+        if(didLoadItems) return;
+
+        // for the purposes of this example, let's add a delay
+        // before showing the loading indicator...
+        // 
+        // this way, we can see the context menu updating and
+        // showing the loading indicator.
+        // 
+        // Ideally, `isLoading` should already be set to `true`
+        // before the context menu is shown...
+        await Helpers.timeout(750);
+        setIsLoading(true);
+
+        // loading...
+        // dummy delay, wait for 2 second...
+        await Helpers.timeout(2000);
+        setDidLoadItems(true);
+
+        // add extra menu items
+        setExtraMenuItems([{
+          type: 'action',
+          actionKey: 'action-02',
+          actionTitle: 'Deferred Item 02',
+          actionSubtitle: 'Deferred item...'
+        }, {
+          type: 'action',
+          actionKey: 'action-03',
+          actionTitle: 'Deferred Item 03',
+          actionSubtitle: 'Deferred item...'
+        }]);
+
+        // hide the loading indicator
+        setIsLoading(false);
+      }}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
+```
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
 
 <br>
 
