@@ -619,18 +619,18 @@ fileprivate extension RNIContextMenuView {
       return deferredElements;
     };
     
-    let prevDeferredElements =
-      getDeferredElements(menuConfig: prevMenuConfig);
-    
     let nextDeferredElements =
       getDeferredElements(menuConfig: nextMenuConfig);
     
-    // get the deferred elements that were removed in the new config
-    let orphaned: [RNIDeferredMenuElement] = prevDeferredElements.filter { prevItem in
-      nextDeferredElements.contains {
-        prevItem.deferredID != $0.deferredID
+    // get the deferred elements that are not in the new config
+    let orphaned = nextDeferredElements.filter { nextItem in
+      self.deferredElementCompletionMap.keys.contains {
+        nextItem.deferredID != $0
       };
     };
+    
+    print("cleanup - nextDeferredElements: \(nextDeferredElements.map { $0.deferredID })");
+    print("cleanup - deferredElementCompletionMap.keys: \(self.deferredElementCompletionMap.keys)");
     
     // cleanup
     orphaned.forEach {
