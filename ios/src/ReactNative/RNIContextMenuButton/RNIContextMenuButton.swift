@@ -50,8 +50,10 @@ class RNIContextMenuButton: UIButton {
   @objc var menuConfig: NSDictionary? {
     didSet {
       guard
-        let menuConfig     = self.menuConfig, menuConfig.count > 0,
-        let rootMenuConfig = RNIMenuItem(dictionary: menuConfig)
+        let rawMenuConfig = self.menuConfig,
+        rawMenuConfig.count > 0,
+        
+        let rootMenuConfig = RNIMenuItem(dictionary: rawMenuConfig)
       else { return };
       
       #if DEBUG
@@ -61,28 +63,7 @@ class RNIContextMenuButton: UIButton {
       );
       #endif
      
-      let rootMenu = rootMenuConfig.createMenu(
-        actionItemHandler: { [unowned self] (dict, action) in
-          self.didPressMenuItem = true;
-          self.onPressMenuItem?(dict);
-          
-        }, deferredElementHandler: { (deferredID, completion) in
-          // noop - TODO
-        }
-      );
-      
-      if self.isContextMenuVisible,
-         let interaction: UIContextMenuInteraction = self.contextMenuInteraction {
-        
-        // context menu is open, update the menu items
-        interaction.updateVisibleMenu {(menu: UIMenu) in
-          return rootMenu;
-        };
-        
-      } else {
-        // set menu property
-        self.menu = rootMenu;
-      };
+      self.updateContextMenu(with: rootMenuConfig);
     }
   };
   
@@ -152,6 +133,31 @@ private extension RNIContextMenuButton {
     //   print("menuActionTriggered");
     //   // TODO: wip
     // }, for: .menuActionTriggered);
+  };
+  
+  func updateContextMenu(with menuConfig: RNIMenuItem){
+    guard let interaction = self.contextMenuInteraction
+    else { return };
+    
+    let menu = menuConfig.createMenu(
+      actionItemHandler: { [unowned self] (dict, action) in
+        self.didPressMenuItem = true;
+        self.onPressMenuItem?(dict);
+        
+      }, deferredElementHandler: { (deferredID, completion) in
+        // noop - TODO
+      }
+    );
+    
+    if self.isContextMenuVisible {
+      // context menu is open, update the menu items
+      interaction.updateVisibleMenu { _ in
+        return menu;
+      };
+      
+    } else {
+      self.menu = menu;
+    };
   };
   
   func attachToParentVC(){
