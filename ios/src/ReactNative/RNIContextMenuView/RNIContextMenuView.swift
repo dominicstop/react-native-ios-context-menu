@@ -119,8 +119,18 @@ class RNIContextMenuView: UIView {
       );
       #endif
       
-      self._menuConfig = menuConfig;
       self.updateContextMenuIfVisible(with: menuConfig);
+      
+      // cleanup `deferredElementCompletionMap`
+      if let prevMenuConfig = self._menuConfig {
+        self.cleanupOrphanedDeferredElements(
+          prevConfig: prevMenuConfig,
+          nextConfig: menuConfig
+        );
+      };
+      
+      // update config
+      self._menuConfig = menuConfig;
     }
   };
   
@@ -581,6 +591,52 @@ fileprivate extension RNIContextMenuView {
 
     parentVC.addChild(childVC);
     childVC.didMove(toParent: parentVC);
+  };
+  
+  func cleanupOrphanedDeferredElements(
+    prevConfig prevMenuConfig: RNIMenuItem,
+    nextConfig nextMenuConfig: RNIMenuItem
+  ) {
+    
+    func getDeferredElements(menuConfig: RNIMenuItem) -> [RNIDeferredMenuElement] {
+      guard let menuItems = menuConfig.menuItems
+      else { return [] };
+      
+      var deferredElements: [RNIDeferredMenuElement] = [];
+      
+      for menuItem in menuItems {
+        if let submenu = menuItem as? RNIMenuItem {
+          // recursive
+          deferredElements.append(
+            contentsOf: getDeferredElements(menuConfig: submenu)
+          );
+          
+        } else if let deferredElement = menuItem as? RNIDeferredMenuElement {
+          deferredElements.append(deferredElement);
+        };
+      };
+      
+      return deferredElements;
+    };
+    
+    let prevDeferredElements =
+      getDeferredElements(menuConfig: prevMenuConfig);
+    
+    let nextDeferredElements =
+      getDeferredElements(menuConfig: nextMenuConfig);
+    
+    // get the deferred elements that were removed in the new config
+    let orphaned: [RNIDeferredMenuElement] = prevDeferredElements.filter { prevItem in
+      nextDeferredElements.contains {
+        prevItem.deferredID != $0.deferredID
+      };
+    };
+    
+    // cleanup
+    orphaned.forEach {
+      print("cleanup orphaned deferred element: \($0.deferredID)");
+      self.deferredElementCompletionMap.removeValue(forKey: $0.deferredID);
+    };
   };
   
   func detachFromParentVC(){
