@@ -178,8 +178,8 @@
 	- [x] Refactor:  `ContextMenuButton` - Migrate to Native Modules — Replace view manager commands with native modules.
 	- [x] Remove: `ContextMenuButton` - View Manager Commands — Remove `RNIContextMenuButtonCommands`.
 
-	- [ ] Implement: `provideDeferredElements`
-	- [ ] Implement: `ContextMenuButton.onRequestDeferredElement`
+	- [x] Implement: `RNIContextMenuButton` -  `provideDeferredElements`
+	- [x] Implement: `ContextMenuButton.onRequestDeferredElement`
 	- [ ] Gloss: Re-arrange and group.
 	- [ ] Example: Deferred Menu Elements - Context Menu Button
 
