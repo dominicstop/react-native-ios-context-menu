@@ -2261,7 +2261,7 @@ export function ContextMenuViewExample20(props) {
 };
 ```
 
-![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+![example-ContextMenuViewExample20](assets/example-ContextMenuViewExample20.jpg)
 
 ![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
 
