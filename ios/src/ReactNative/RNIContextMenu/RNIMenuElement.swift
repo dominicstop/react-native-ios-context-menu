@@ -11,8 +11,36 @@ import Foundation
 
 class RNIMenuElement  {
   
+  // MARK: - Embedded Types
+  // ----------------------
+  
   enum MenuElementType: String, Encodable {
     case action, deferred, menu;
+  };
+  
+  @available(iOS 13.0, *)
+  static func recursivelyGetAllElements<T>(
+    from menuConfig: RNIMenuItem,
+    ofType type: T.Type
+  ) -> [T] {
+    guard let menuItems = menuConfig.menuItems
+    else { return [] };
+    
+    var matchingElements: [T] = [];
+    
+    for menuItem in menuItems {
+      if let submenu = menuItem as? RNIMenuItem {
+        // recursive
+        matchingElements.append(
+          contentsOf: Self.recursivelyGetAllElements(from: submenu, ofType: T.self)
+        );
+        
+      } else if let element = menuItem as? T {
+        matchingElements.append(element);
+      };
+    };
+    
+    return matchingElements;
   };
   
   var type: MenuElementType?;
