@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
