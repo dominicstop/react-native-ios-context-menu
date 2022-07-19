@@ -598,29 +598,10 @@ fileprivate extension RNIContextMenuView {
     nextConfig nextMenuConfig: RNIMenuItem
   ) {
     
-    func getDeferredElements(menuConfig: RNIMenuItem) -> [RNIDeferredMenuElement] {
-      guard let menuItems = menuConfig.menuItems
-      else { return [] };
-      
-      var deferredElements: [RNIDeferredMenuElement] = [];
-      
-      for menuItem in menuItems {
-        if let submenu = menuItem as? RNIMenuItem {
-          // recursive
-          deferredElements.append(
-            contentsOf: getDeferredElements(menuConfig: submenu)
-          );
-          
-        } else if let deferredElement = menuItem as? RNIDeferredMenuElement {
-          deferredElements.append(deferredElement);
-        };
-      };
-      
-      return deferredElements;
-    };
-    
-    let nextDeferredElements =
-      getDeferredElements(menuConfig: nextMenuConfig);
+    let nextDeferredElements = RNIMenuElement.recursivelyGetAllElements(
+      from: nextMenuConfig,
+      ofType: RNIDeferredMenuElement.self
+    );
     
     // get the deferred elements that are not in the new config
     let orphaned = nextDeferredElements.filter { nextItem in
