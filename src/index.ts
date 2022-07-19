@@ -12,6 +12,7 @@ export * from './constants/LibEnv';
 
 export * from './functions/ActionSheetFallback';
 
+export * from './types/MenuSharedTypes';
 export * from './types/MenuConfig';
 export * from './types/MenuPreviewConfig';
 export * from './types/MenuAuxiliaryPreviewConfig';

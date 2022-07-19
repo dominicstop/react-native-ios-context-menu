@@ -5,17 +5,12 @@ import type { TSEventEmitter } from '@dominicstop/ts-event-emitter';
 import type { ViewProps } from 'react-native';
 import type { OnMenuDidHideEventObject } from 'src/types/MenuEvents';
 import type { KeyMapType } from 'src/types/UtilityTypes';
+import type { DeferredElementProvider } from 'src/types/MenuSharedTypes';
 
 import type { RNIContextMenuViewProps } from '../../native_components/RNIContextMenuView';
-import type { MenuElementConfig } from 'src/types/MenuConfig';
 
 
 export type RenderItem = () => React.ReactElement;
-
-export type DeferredElementProvider = ( 
-  deferredID: string, 
-  completion: (items: MenuElementConfig[]) => void
-) => void;
 
 export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   | 'menuConfig'
