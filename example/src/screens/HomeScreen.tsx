@@ -53,6 +53,7 @@ import { ContextMenuAuxPreviewTest01 } from '../examples/ContextMenuAuxPreviewTe
 
 import { ContextMenuButtonExample01 } from '../examples/ContextMenuButtonExample01';
 import { ContextMenuButtonExample02 } from '../examples/ContextMenuButtonExample02';
+import { ContextMenuButtonExample03 } from '../examples/ContextMenuButtonExample03';
 
 import { DebugControls } from '../examples/DebugControls';
 import { SHARED_ENV } from '../constants/SharedEnv';
@@ -111,6 +112,7 @@ const EXAMPLE_COMPONENTS = [
   ContextMenuAuxPreviewTest01,
   ContextMenuButtonExample01,
   ContextMenuButtonExample02,
+  ContextMenuButtonExample03,
 ];
 
 const EXAMPLE_ITEMS: ExampleListItem[] = EXAMPLE_COMPONENTS.map((item, index) => ({
