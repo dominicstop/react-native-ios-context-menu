@@ -605,14 +605,8 @@ fileprivate extension RNIContextMenuView {
       };
     };
     
-    print("cleanup - currentDeferredElements: \(currentDeferredElements.map { $0.deferredID })");
-    print("cleanup - deferredElementCompletionMap.keys: \(self.deferredElementCompletionMap.keys)");
-    print("cleanup - orphaned: \(orphanedKeys)");
-    
-    
     // cleanup
     orphanedKeys.forEach {
-      print("cleanup orphaned deferred element: \($0)");
       self.deferredElementCompletionMap.removeValue(forKey: $0);
     };
   };
