@@ -1,4 +1,4 @@
-import { requireNativeComponent, UIManager, View, Platform, HostComponent, ViewProps } from 'react-native';
+import { requireNativeComponent, View, Platform, HostComponent, ViewProps } from 'react-native';
 import type { RNIContextMenuViewProps } from './RNIContextMenuView';
 
 
@@ -34,12 +34,4 @@ const viewName = "RNIContextMenuButton";
 export const RNIContextMenuButton: HostComponent<RNIContextMenuViewProps> = Platform.select({
   ios: () => requireNativeComponent(viewName) as any,
   default: () => View,
-})();
-
-/**
- * Do not use `RNIContextMenuButtonCommands` if platform is not iOS.
- */
-export const RNIContextMenuButtonCommands: RNIContextMenuButtonCommandIDMap = Platform.select({
-  ios: () => ((UIManager as any)[viewName])?.Commands,
-  default: () => ({})
 })();

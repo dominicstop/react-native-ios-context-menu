@@ -24,15 +24,4 @@ class RNIContextMenuButtonManager: RCTViewManager {
       return RCTView();
     };
   };
-  
-  @objc func dismissMenu(_ node: NSNumber) {
-    DispatchQueue.main.async {
-      guard #available(iOS 14, *),
-            let view = self.bridge.uiManager.view(forReactTag: node),
-            let contextMenuButton = view as? RNIContextMenuButton
-      else { return };
-      
-      contextMenuButton.dismissMenu();
-    };
-  };
 };
