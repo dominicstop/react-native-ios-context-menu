@@ -47,6 +47,7 @@ import { ContextMenuViewTest05 } from '../examples/ContextMenuViewTest05';
 import { ContextMenuViewTest06 } from '../examples/ContextMenuViewTest06';
 import { ContextMenuViewTest07 } from '../examples/ContextMenuViewTest07';
 import { ContextMenuViewTest08 } from '../examples/ContextMenuViewTest08';
+import { ContextMenuViewTest09 } from '../examples/ContextMenuViewTest09';
 
 import { ContextMenuAuxPreviewTest01 } from '../examples/ContextMenuAuxPreviewTest01';
 
@@ -106,6 +107,7 @@ const EXAMPLE_COMPONENTS = [
   ContextMenuViewTest06,
   ContextMenuViewTest07,
   ContextMenuViewTest08,
+  ContextMenuViewTest09,
   ContextMenuAuxPreviewTest01,
   ContextMenuButtonExample01,
   ContextMenuButtonExample02,
