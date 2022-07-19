@@ -121,13 +121,9 @@ class RNIContextMenuView: UIView {
       
       self.updateContextMenuIfVisible(with: menuConfig);
       
+      
       // cleanup `deferredElementCompletionMap`
-      if let prevMenuConfig = self._menuConfig {
-        self.cleanupOrphanedDeferredElements(
-          prevConfig: prevMenuConfig,
-          nextConfig: menuConfig
-        );
-      };
+      self.cleanupOrphanedDeferredElements(currentMenuConfig: menuConfig);
       
       // update config
       self._menuConfig = menuConfig;
@@ -593,30 +589,31 @@ fileprivate extension RNIContextMenuView {
     childVC.didMove(toParent: parentVC);
   };
   
-  func cleanupOrphanedDeferredElements(
-    prevConfig prevMenuConfig: RNIMenuItem,
-    nextConfig nextMenuConfig: RNIMenuItem
-  ) {
+  func cleanupOrphanedDeferredElements(currentMenuConfig: RNIMenuItem) {
+    guard self.deferredElementCompletionMap.count > 0
+    else { return };
     
-    let nextDeferredElements = RNIMenuElement.recursivelyGetAllElements(
-      from: nextMenuConfig,
+    let currentDeferredElements = RNIMenuElement.recursivelyGetAllElements(
+      from: currentMenuConfig,
       ofType: RNIDeferredMenuElement.self
     );
-    
+      
     // get the deferred elements that are not in the new config
-    let orphaned = nextDeferredElements.filter { nextItem in
-      self.deferredElementCompletionMap.keys.contains {
-        nextItem.deferredID != $0
+    let orphanedKeys = self.deferredElementCompletionMap.keys.filter { deferredID in
+      !currentDeferredElements.contains {
+        $0.deferredID == deferredID
       };
     };
     
-    print("cleanup - nextDeferredElements: \(nextDeferredElements.map { $0.deferredID })");
+    print("cleanup - currentDeferredElements: \(currentDeferredElements.map { $0.deferredID })");
     print("cleanup - deferredElementCompletionMap.keys: \(self.deferredElementCompletionMap.keys)");
+    print("cleanup - orphaned: \(orphanedKeys)");
+    
     
     // cleanup
-    orphaned.forEach {
-      print("cleanup orphaned deferred element: \($0.deferredID)");
-      self.deferredElementCompletionMap.removeValue(forKey: $0.deferredID);
+    orphanedKeys.forEach {
+      print("cleanup orphaned deferred element: \($0)");
+      self.deferredElementCompletionMap.removeValue(forKey: $0);
     };
   };
   
@@ -1051,7 +1048,7 @@ fileprivate extension RNIContextMenuView {
     ///   between native views and shadow views."
     /// * Triggered when the menu is about to be hidden, iOS removes the context menu along with the
     ///   `previewAuxiliaryViewContainer`
-    ///   
+    ///
     
     // reset flag
     self.isAuxPreviewVisible = false;
