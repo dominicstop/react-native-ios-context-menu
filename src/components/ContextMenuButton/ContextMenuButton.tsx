@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, TouchableOpacity, UIManager, findNodeHandle } from 'react-native';
 
 import { RNIContextMenuButton, RNIContextMenuButtonBaseProps, RNIContextMenuButtonCommands } from '../../native_components/RNIContextMenuButton';
+import { RNIContextMenuButtonModule } from '../../native_modules/RNIContextMenuButtonModule';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnPressMenuItemEvent } from '../../types/MenuEvents';
 import type { ContextMenuButtonProps, ContextMenuButtonState } from './ContextMenuButtonTypes';
@@ -13,6 +14,8 @@ import { ContextMenuView } from '../ContextMenuView';
 import { ContextMenuButtonContext } from '../../context/ContextMenuButtonContext';
 
 import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
+
+import * as Helpers from '../../functions/Helpers';
 
 
 export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProps, ContextMenuButtonState> {
@@ -68,13 +71,11 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     };
   };
 
-  dismissMenu = () => {
+  dismissMenu = async () => {
     if(!LIB_ENV.isContextMenuButtonSupported) return;
 
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.nativeRef),
-      RNIContextMenuButtonCommands.dismissMenu,
-      []
+    await RNIContextMenuButtonModule.dismissMenu(
+      Helpers.getNativeNodeHandle(this.nativeRef)
     );
   };
 
