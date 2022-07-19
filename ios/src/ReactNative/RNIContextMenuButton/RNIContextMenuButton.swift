@@ -17,6 +17,9 @@ class RNIContextMenuButton: UIButton {
   
   weak var bridge: RCTBridge!;
   
+  private var deferredElementCompletionMap:
+    [String: RNIDeferredMenuElement.CompletionHandler] = [:];
+  
   var isContextMenuVisible = false;
   var didPressMenuItem     = false;
   
@@ -204,6 +207,26 @@ extension RNIContextMenuButton {
   
   @objc func dismissMenu(){
     self.contextMenuInteraction?.dismissMenu();
+  };
+  
+  func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
+    if let completion = self.deferredElementCompletionMap[deferredID] {
+
+      // create + add menu elements
+      completion( menuElements.compactMap { menuElement in
+        menuElement.createMenuElement(
+          actionItemHandler: { [unowned self] in
+            self.handleOnPressMenuActionItem(dict: $0, action: $1);
+            
+          }, deferredElementHandler: { [unowned self] in
+            self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
+          }
+        );
+      });
+      
+      // cleanup
+      self.deferredElementCompletionMap.removeValue(forKey: deferredID);
+    };
   };
 };
 

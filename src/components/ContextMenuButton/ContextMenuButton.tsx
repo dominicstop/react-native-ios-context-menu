@@ -79,6 +79,18 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     );
   };
 
+  provideDeferredElements = async (
+    deferredID: string, 
+    menuItems: MenuElementConfig[]
+  ) => {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+
+    await RNIContextMenuButtonModule.provideDeferredElements(
+      Helpers.getNativeNodeHandle(this.nativeRef),
+      deferredID, menuItems
+    );
+  };
+
   //#region - Handlers
   _handleGetRefToContextMenuButton = () => {
     return this;

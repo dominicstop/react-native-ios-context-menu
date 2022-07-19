@@ -1,9 +1,17 @@
+import type { MenuElementConfig } from 'src/types/MenuConfig';
+
 import { NativeModules } from 'react-native';
 
 
 interface RNIContextMenuButtonModule {
   dismissMenu(
     node: number,
+  ): Promise<void>;
+
+  provideDeferredElements(
+    node: number,
+    deferredID: string, 
+    menuItems: MenuElementConfig[]
   ): Promise<void>;
 };
 
