@@ -140,9 +140,8 @@ private extension RNIContextMenuButton {
     else { return };
     
     let menu = menuConfig.createMenu(
-      actionItemHandler: { [unowned self] (dict, action) in
-        self.didPressMenuItem = true;
-        self.onPressMenuItem?(dict);
+      actionItemHandler: { [unowned self] in
+        self.handleOnPressMenuActionItem(dict: $0, action: $1);
         
       }, deferredElementHandler: { (deferredID, completion) in
         // noop - TODO
@@ -160,6 +159,13 @@ private extension RNIContextMenuButton {
     };
   };
   
+  func handleOnPressMenuActionItem(
+    dict: [String: Any],
+    action: UIAction
+  ){
+    self.didPressMenuItem = true;
+    self.onPressMenuItem?(dict);
+  };
   func attachToParentVC(){
     guard !self.didAttachToParentVC,
           // find the nearest parent view controller
