@@ -169,20 +169,16 @@
 <br>
 
 - [x] (Commit: `57f817a`) **Example**: Deferred Menu Items - Add alt. usage (i.e. state controller menu config).
-
 - [x] (Commit: `c015098`) **Implement**: Cleanup orphaned deferred menu items.
+- [x] Implement: Deferred Menu Elements - Context Menu Button
 
-- [ ] Implement: Deferred Menu Elements - Context Menu Button
-
-	- [x] Implement: `RNIContextMenuButtonModule`
-	- [x] Refactor:  `ContextMenuButton` - Migrate to Native Modules — Replace view manager commands with native modules.
-	- [x] Remove: `ContextMenuButton` - View Manager Commands — Remove `RNIContextMenuButtonCommands`.
-
-	- [x] Implement: `RNIContextMenuButton` -  `provideDeferredElements`
-	- [x] Implement: `ContextMenuButton.onRequestDeferredElement`
+	- [x] (Commit: `5c02acf`) Implement: `RNIContextMenuButtonModule`
+	- [x] (Commit: `de54124`) Refactor:  `ContextMenuButton` - Migrate to Native Modules — Replace view manager commands with native modules.
+	- [x] (Commit: `a7b71a3`) Remove: `ContextMenuButton` - View Manager Commands — Remove `RNIContextMenuButtonCommands`.
+	- [x] (Commit: `dda3e14`) Implement: `RNIContextMenuButton` -  `provideDeferredElements`
+	- [x] (Commit: `30a9179`) Implement: `ContextMenuButton.onRequestDeferredElement`
+	- [x] (Commit: `26526d0`) Example: Context Menu Button - Add example for deferred Menu elements
 	- [ ] Gloss: Re-arrange and group.
-	- [ ] Example: Deferred Menu Elements - Context Menu Button
-
 - [ ] Example: Menu Icons - More customizations 
 
 
