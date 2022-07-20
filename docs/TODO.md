@@ -136,15 +136,17 @@
     		* N3: `RNIWrapperView` count: 55
     		* N0: `RNIWrapperView` count: 0 — Go back to home/root.
     		* Result: After going to the root/home, no `RNIWrapperView` instance remained in memory.
-
-
+    
     <br>
-
-  - [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
-
-  - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
-
-  - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
+  
+    - [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
+  
+  
+    - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
+  
+  
+    - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
+  
 
 
 <br>
@@ -184,16 +186,39 @@
 - [ ] **Task**: Test all context menu items.
 
 	- Push screen, test items, pop screen, test items, and so on...
+		- Simulator: iPhone 8 - iOS 15.2
+		- Device: iPhone XR
 
-	- [ ] **Task**: Test all context menu view items in debug mode.
+	<br>
 
-	- [ ] **Task**: Test all context menu button items in debug mode.
+	- [ ] **Task**: Simulator - Debug — Test all context menu view example items.
+	- [ ] **Task**: Simulator - Debug — Test all context menu view test items.
+	- [ ] **Task**: Simulator - Debug — Test all context button items.
+	- [ ] **Task**: Post Test — Inspect memory.
 
-	- [ ] **Task**: Test all context menu view items in release mode.
+	<br>
 
-	- [ ] **Task**: Test all context menu button items in release mode.
+	- [ ] **Task**: Simulator - Release — Test all context menu view example items.
+	- [ ] **Task**: Simulator - Release — Test all context menu view test items.
+	- [ ] **Task**: Simulator - Release — Test all context button items.
 
-	- [ ] **Task**: Inspect for memory leaks.
+	- [ ] **Task**: Post Test — Inspect memory.
+
+	<br>
+
+	- [ ] **Task**: Device - Debug — Test all context menu view example items.
+	- [ ] **Task**: Device - Debug — Test all context menu view test items.
+	- [ ] **Task**: Device - Debug — Test all context button items.
+
+	- [ ] **Task**: Post Test — Inspect memory.
+
+	<br>
+
+	- [ ] **Task**: Device - Release — Test all context menu view example items.
+	- [ ] **Task**: Device - Release — Test all context menu view test items.
+
+	- [ ] **Task**: Device - Release — Test all context button items.
+	- [ ] **Task**: Post Test — Inspect memory.
 
 <br>
 
