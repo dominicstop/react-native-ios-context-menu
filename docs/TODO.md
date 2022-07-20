@@ -177,8 +177,26 @@
 	- [x] (Commit: `a7b71a3`) Remove: `ContextMenuButton` - View Manager Commands — Remove `RNIContextMenuButtonCommands`.
 	- [x] (Commit: `dda3e14`) Implement: `RNIContextMenuButton` -  `provideDeferredElements`
 	- [x] (Commit: `30a9179`) Implement: `ContextMenuButton.onRequestDeferredElement`
-	- [x] (Commit: `26526d0`) Example: Context Menu Button - Add example for deferred Menu elements
-	- [ ] Gloss: Re-arrange and group.
+	- [x] (Commit: `26526d0`) Example: Context Menu Button - Add example for deferred Menu elements.
+
+<br>
+
+- [ ] **Task**: Test all context menu items.
+
+	- Push screen, test items, pop screen, test items, and so on...
+
+	- [ ] **Task**: Test all context menu view items in debug mode.
+
+	- [ ] **Task**: Test all context menu button items in debug mode.
+
+	- [ ] **Task**: Test all context menu view items in release mode.
+
+	- [ ] **Task**: Test all context menu button items in release mode.
+
+	- [ ] **Task**: Inspect for memory leaks.
+
+<br>
+
 - [ ] Example: Menu Icons - More customizations 
 
 
