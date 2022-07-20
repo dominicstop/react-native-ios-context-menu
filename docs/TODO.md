@@ -82,22 +82,47 @@
 
 <br>
 
+- [ ] Example: Menu Icons - More customizations 
+
+
+
+---
+
+<br><br>
+
+## For Next Major Version
+
+- [ ] **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
+- [ ] **Refactor**: `findNodeHandle` has been deprecated due to fabric support.
+
+---
+
+<br>
+
+## Completed
+
+### Version: `next`
+
+<br>
+
+### Version: `1.11.0`
+
 - [x] **Refactor**:  `RNIContextMenu` and `RNIContextMenuViewController`
 
 	- [x] (Commit: `821657d`) **Remove**: `RNIContextMenu.attachToParentVC` and `RNIContextMenu.detachFromParentVC`
 
-	  * Move these to `RNIContextMenuView` and `RNIContextMenuButton`.
-	
-	  <br>
+		* Move these to `RNIContextMenuView` and `RNIContextMenuButton`.
+
+		<br>
 
 	- [x] (Commit: `82bcde4`) **Refactor**: Rename `RNIContextMenuViewController` to `RNINavigationEventsReportingViewController`.
 
 	- [x] (Commit: `a6210ea`) **Refactor**: Rename `RNIContextMenu` to `RNINavigationEventsChildViewController`
 
-	  * Any classes that conform to this protocol means that it can be notified of navigation events (e.g. push, pop, etc).
-	
-	    <br>
-	
+		* Any classes that conform to this protocol means that it can be notified of navigation events (e.g. push, pop, etc).
+
+			<br>
+
 	- [x] (Commit: `821657d`) **Refactor**: `RNINavigationEventsNotifiable` — Separations of concerns - Remove unrelated methods (e.g. `attachToParentVC`, `detachFromParentVC`).
 
 <br>
@@ -106,47 +131,46 @@
 
 - [x] **Refactor**: Re-write `RNIWrapperView`
 
-  - [x] (Commit: `5bcac3a`) **Refactor**: Extract Delegate to Own File
+	- [x] (Commit: `5bcac3a`) **Refactor**: Extract Delegate to Own File
 
-  - [x] (Commit: `97f73d1`) **Refactor**: Rename `RNIWrapperViewDelegate` to `RNIWrapperViewEventsNotifiable`.
+	- [x] (Commit: `97f73d1`) **Refactor**: Rename `RNIWrapperViewDelegate` to `RNIWrapperViewEventsNotifiable`.
 
-  - [x] Refactor: `RNIWrapperView` - Initial Rewrite
+	- [x] Refactor: `RNIWrapperView` - Initial Rewrite
 
-    - [x] (Commit: `0dcff7a`) **Refactor**: Add `should` prefix to bool configs.
-    - [x] (Commit: `21cc17b`) **Gloss**: Yakshaving - Re-arrange and group related properties into section .
-    - [x] (Commit: `46f6509`) **Cleanup**: Rewrite `didMoveToWindow`.
-    - [x] (Commit: `ff165b8`) **Refactor**: Replace `willChangeSuperview` and `didChangeSuperview` to `isMovingToParent`.
-    - [x] (Commit: `68b068a`): **Update**:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
-    - [x] (Commit: `79a4be8`) **Update**: Change default values — Set all feature flags to false by default.
+		- [x] (Commit: `0dcff7a`) **Refactor**: Add `should` prefix to bool configs.
+		- [x] (Commit: `21cc17b`) **Gloss**: Yakshaving - Re-arrange and group related properties into section .
+		- [x] (Commit: `46f6509`) **Cleanup**: Rewrite `didMoveToWindow`.
+		- [x] (Commit: `ff165b8`) **Refactor**: Replace `willChangeSuperview` and `didChangeSuperview` to `isMovingToParent`.
+		- [x] (Commit: `68b068a`): **Update**:  Fix potential order of operations bug — Switch call order in `RNIWrapperView.onJSComponentWillUnmount`, i.e. trigger cleanup at the end.
+		- [x] (Commit: `79a4be8`) **Update**: Change default values — Set all feature flags to false by default.
 
-    <br>
+		<br>
 
-    - [x] (Commit: `bac3096`) Fix: Re-Enable Cleanup - Fix `cleanup` Not Being Invoked.
-    - [x] (Commit: `13c5236`) **Refactor**: `RNIWrapperView` - Convert Config Bools to React Props
-    	* Convert "config" bool props to react props.
-    - [x] (Commit: `e505737`) **Implement**: `RNIWrapperView.shouldCreateTouchHandlerForSubviews`.
-    - [x] (Commit: `d058bf4`) **Implement**: `RNIWrapperView.shouldCreateTouchHandlerForParentView`.
-    - [x] (Commit: `3e2857b`) **Implement** `RNIWrapperView.isDummyView` bool config.
-    - [x] Task: Check if  `RNIWrapperView` cleans up — Inspect for memory leaks
+		- [x] (Commit: `bac3096`) Fix: Re-Enable Cleanup - Fix `cleanup` Not Being Invoked.
+		- [x] (Commit: `13c5236`) **Refactor**: `RNIWrapperView` - Convert Config Bools to React Props
+			* Convert "config" bool props to react props.
+		- [x] (Commit: `e505737`) **Implement**: `RNIWrapperView.shouldCreateTouchHandlerForSubviews`.
+		- [x] (Commit: `d058bf4`) **Implement**: `RNIWrapperView.shouldCreateTouchHandlerForParentView`.
+		- [x] (Commit: `3e2857b`) **Implement** `RNIWrapperView.isDummyView` bool config.
+		- [x] Task: Check if  `RNIWrapperView` cleans up — Inspect for memory leaks
 
-    	* Push screen and open all context menu that either has a custom menu preview, or aux. preview, and then inspect memory.
-    		* N0: `RNIWrapperView` count: 0
-    		* N1: `RNIWrapperView` count: 19
-    		* N2: `RNIWrapperView` count: 38
-    		* N3: `RNIWrapperView` count: 55
-    		* N0: `RNIWrapperView` count: 0 — Go back to home/root.
-    		* Result: After going to the root/home, no `RNIWrapperView` instance remained in memory.
-    
-    <br>
-  
-    - [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
-  
-  
-    - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
-  
-  
-    - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
-  
+			* Push screen and open all context menu that either has a custom menu preview, or aux. preview, and then inspect memory.
+				* N0: `RNIWrapperView` count: 0
+				* N1: `RNIWrapperView` count: 19
+				* N2: `RNIWrapperView` count: 38
+				* N3: `RNIWrapperView` count: 55
+				* N0: `RNIWrapperView` count: 0 — Go back to home/root.
+				* Result: After going to the root/home, no `RNIWrapperView` instance remained in memory.
+
+		<br>
+
+		- [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
+
+
+	  - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
+
+
+	  - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
 
 <br>
 
@@ -182,7 +206,7 @@
 
 <br>
 
-- [ ] **Task**: Test all context menu items.
+- [x] **Task**: Test all context menu items.
 
 	- Push screen, test items, pop screen, test items, and so on...
 		- Simulator: iPhone 8 - iOS 15.2
@@ -218,29 +242,6 @@
 	- [x] **Task**: Device - Release — Test all context menu view test items.
 
 	- [x] **Task**: Device - Release — Test all context button items.
-
-<br>
-
-- [ ] Example: Menu Icons - More customizations 
-
-
-
----
-
-<br><br>
-
-## For Next Major Version
-
-- [ ] **Cleanup**: <u>Breaking Change</u> — Remove legacy support for icon config shorthand/shortcut that was added temporarily when migrating between an older version of this library.
-- [ ] **Refactor**: `findNodeHandle` has been deprecated due to fabric support.
-
----
-
-<br>
-
-## Completed
-
-### Version: `next`
 
 <br>
 
