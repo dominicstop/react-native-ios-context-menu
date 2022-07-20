@@ -73,6 +73,9 @@ class RNIContextMenuButton: UIButton {
       );
       #endif
      
+      // cleanup `deferredElementCompletionMap`
+      self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
+      
       self.updateContextMenu(with: rootMenuConfig);
     }
   };
@@ -191,6 +194,28 @@ private extension RNIContextMenuButton {
     self.onRequestDeferredElement?([
       "deferredID": deferredID,
     ]);
+  };
+  
+  func cleanupOrphanedDeferredElements(currentMenuConfig: RNIMenuItem) {
+    guard self.deferredElementCompletionMap.count > 0
+    else { return };
+    
+    let currentDeferredElements = RNIMenuElement.recursivelyGetAllElements(
+      from: currentMenuConfig,
+      ofType: RNIDeferredMenuElement.self
+    );
+      
+    // get the deferred elements that are not in the new config
+    let orphanedKeys = self.deferredElementCompletionMap.keys.filter { deferredID in
+      !currentDeferredElements.contains {
+        $0.deferredID == deferredID
+      };
+    };
+    
+    // cleanup
+    orphanedKeys.forEach {
+      self.deferredElementCompletionMap.removeValue(forKey: $0);
+    };
   };
   
   func attachToParentVC(){
