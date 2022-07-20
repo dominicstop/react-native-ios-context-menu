@@ -20,8 +20,7 @@ class RNIContextMenuButton: UIButton {
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
   
-  // TODO: rename to `viewController`
-  weak var contextMenuViewController: RNINavigationEventsReportingViewController?;
+  weak var viewController: RNINavigationEventsReportingViewController?;
   
   // MARK: - Properties - Fags
   // -------------------------
@@ -209,7 +208,7 @@ private extension RNIContextMenuButton {
     childVC.delegate = self;
     childVC.parentVC = parentVC;
     
-    self.contextMenuViewController = childVC;
+    self.viewController = childVC;
 
     parentVC.addChild(childVC);
     childVC.didMove(toParent: parentVC);
@@ -217,7 +216,7 @@ private extension RNIContextMenuButton {
   
   func detachFromParentVC(){
     guard !self.didAttachToParentVC,
-          let childVC = self.contextMenuViewController
+          let childVC = self.viewController
     else { return };
     
     childVC.willMove(toParent: nil);

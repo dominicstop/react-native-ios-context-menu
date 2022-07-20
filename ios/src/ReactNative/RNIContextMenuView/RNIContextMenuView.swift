@@ -32,8 +32,7 @@ class RNIContextMenuView: UIView {
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
-  // TODO: rename to `viewController`
-  weak var contextMenuViewController: RNINavigationEventsReportingViewController?;
+  weak var viewController: RNINavigationEventsReportingViewController?;
       
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
@@ -583,7 +582,7 @@ fileprivate extension RNIContextMenuView {
     childVC.delegate = self;
     childVC.parentVC = parentVC;
     
-    self.contextMenuViewController = childVC;
+    self.viewController = childVC;
 
     parentVC.addChild(childVC);
     childVC.didMove(toParent: parentVC);
@@ -613,7 +612,7 @@ fileprivate extension RNIContextMenuView {
   
   func detachFromParentVC(){
     guard !self.didAttachToParentVC,
-          let childVC = self.contextMenuViewController
+          let childVC = self.viewController
     else { return };
     
     childVC.willMove(toParent: nil);
