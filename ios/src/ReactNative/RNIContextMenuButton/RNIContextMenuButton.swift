@@ -37,6 +37,7 @@ class RNIContextMenuButton: UIButton {
   // MARK: - Properties - Feature Flags
   // ----------------------------------
   
+  private var shouldEnableAttachToParentVC = true;
   private var shouldEnableCleanup = true;
   
   // MARK: - RN Exported Event Props
@@ -194,7 +195,8 @@ private extension RNIContextMenuButton {
   };
   
   func attachToParentVC(){
-    guard !self.didAttachToParentVC,
+    guard self.shouldEnableAttachToParentVC,
+          !self.didAttachToParentVC,
           // find the nearest parent view controller
           let parentVC = RNIUtilities
             .getParent(responder: self, type: UIViewController.self)
