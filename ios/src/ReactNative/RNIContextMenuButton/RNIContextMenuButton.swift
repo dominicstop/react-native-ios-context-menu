@@ -20,19 +20,24 @@ class RNIContextMenuButton: UIButton {
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
   
-  var isContextMenuVisible = false;
-  var didPressMenuItem     = false;
-  
+  // TODO: rename to `viewController`
   weak var contextMenuViewController: RNINavigationEventsReportingViewController?;
+  
+  // MARK: - Properties - Fags
+  // -------------------------
+  
+  var isContextMenuVisible = false;
+  var didPressMenuItem = false;
   
   private var didTriggerCleanup = false;
   
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
-  // MARK: Properties - Feature Flags
-  private var shouldEnableCleanup = true;
+  // MARK: - Properties - Feature Flags
+  // ----------------------------------
   
+  private var shouldEnableCleanup = true;
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -188,7 +193,6 @@ private extension RNIContextMenuButton {
     ]);
   };
   
-  
   func attachToParentVC(){
     guard !self.didAttachToParentVC,
           // find the nearest parent view controller
@@ -315,7 +319,7 @@ extension RNIContextMenuButton: UIGestureRecognizerDelegate {
 };
 
 // MARK: - RNINavigationEventsNotifiable
-// ----------------------
+// -------------------------------------
 
 @available(iOS 14, *)
 extension RNIContextMenuButton: RNINavigationEventsNotifiable {

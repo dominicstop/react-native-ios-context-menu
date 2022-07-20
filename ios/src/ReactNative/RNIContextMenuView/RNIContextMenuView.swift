@@ -32,6 +32,7 @@ class RNIContextMenuView: UIView {
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
+  // TODO: rename to `viewController`
   weak var contextMenuViewController: RNINavigationEventsReportingViewController?;
       
   private var deferredElementCompletionMap:
@@ -120,7 +121,6 @@ class RNIContextMenuView: UIView {
       #endif
       
       self.updateContextMenuIfVisible(with: menuConfig);
-      
       
       // cleanup `deferredElementCompletionMap`
       self.cleanupOrphanedDeferredElements(currentMenuConfig: menuConfig);
