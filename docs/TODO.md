@@ -148,7 +148,6 @@
     - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
   
 
-
 <br>
 
 - [x] (Commit: `5ab2e0f`) **Fix**: Memory Leak - Property Animators Retain Cycle.
@@ -191,34 +190,34 @@
 
 	<br>
 
-	- [ ] **Task**: Simulator - Debug — Test all context menu view example items.
-	- [ ] **Task**: Simulator - Debug — Test all context menu view test items.
-	- [ ] **Task**: Simulator - Debug — Test all context button items.
-	- [ ] **Task**: Post Test — Inspect memory.
+	- [x] **Task**: Simulator - Debug — Test all context menu view example items.
+	- [x] **Task**: Simulator - Debug — Test all context menu view test items.
+	- [x] **Task**: Simulator - Debug — Test all context button items.
+	- [x] **Task**: Post Test — Inspect memory.
+		* Result: No memory leaks.
 
 	<br>
 
-	- [ ] **Task**: Simulator - Release — Test all context menu view example items.
-	- [ ] **Task**: Simulator - Release — Test all context menu view test items.
-	- [ ] **Task**: Simulator - Release — Test all context button items.
+	- [x] **Task**: Simulator - Release — Test all context menu view example items.
+	- [x] **Task**: Simulator - Release — Test all context menu view test items.
+	- [x] **Task**: Simulator - Release — Test all context button items.
 
-	- [ ] **Task**: Post Test — Inspect memory.
-
-	<br>
-
-	- [ ] **Task**: Device - Debug — Test all context menu view example items.
-	- [ ] **Task**: Device - Debug — Test all context menu view test items.
-	- [ ] **Task**: Device - Debug — Test all context button items.
-
-	- [ ] **Task**: Post Test — Inspect memory.
+	- [x] **Task**: Post Test — Inspect memory.
 
 	<br>
 
-	- [ ] **Task**: Device - Release — Test all context menu view example items.
-	- [ ] **Task**: Device - Release — Test all context menu view test items.
+	- [x] **Task**: Device - Debug — Test all context menu view example items.
+	- [x] **Task**: Device - Debug — Test all context menu view test items.
+	- [x] **Task**: Device - Debug — Test all context button items.
 
-	- [ ] **Task**: Device - Release — Test all context button items.
-	- [ ] **Task**: Post Test — Inspect memory.
+	- [x] **Task**: Post Test — Inspect memory.
+
+	<br>
+
+	- [x] **Task**: Device - Release — Test all context menu view example items.
+	- [x] **Task**: Device - Release — Test all context menu view test items.
+
+	- [x] **Task**: Device - Release — Test all context button items.
 
 <br>
 
