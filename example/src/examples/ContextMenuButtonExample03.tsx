@@ -36,7 +36,8 @@ export function ContextMenuButtonExample03(props: ContextMenuExampleProps) {
 
             // if we have multiple deferred items, you can use the `deferredID`
             // to distinguish between them
-            deferredID: 'deferred-01'
+            deferredID: 'deferred-01',
+            shouldCache: false,
           }],
         }}
         // this event will fire when a deferred menu item is present...
@@ -48,15 +49,19 @@ export function ContextMenuButtonExample03(props: ContextMenuExampleProps) {
 
               // provide the items to add to the context menu...
               provider([{
-                type: 'action',
-                actionKey: 'action-02',
-                actionTitle: 'Deferred Item 02',
-                actionSubtitle: 'Deferred item...'
-              }, {
-                type: 'action',
-                actionKey: 'action-03',
-                actionTitle: 'Deferred Item 03',
-                actionSubtitle: 'Deferred item...'
+                type: 'menu',
+                menuTitle: 'Deferred Submenu...',
+                menuItems: [{
+                  type: 'action',
+                  actionKey: 'action-02',
+                  actionTitle: 'Deferred Item 02',
+                  actionSubtitle: 'Deferred item...'
+                }, {
+                  type: 'action',
+                  actionKey: 'action-03',
+                  actionTitle: 'Deferred Item 03',
+                  actionSubtitle: 'Deferred item...'
+                }],
               }]);
               break;
           };
