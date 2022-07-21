@@ -21,6 +21,8 @@ class RNIMenuItem: RNIMenuElement {
   var menuOptions: [String]?;
   var menuItems  : [RNIMenuElement]?;
   
+  var menuPreferredElementSize: String?;
+  
   // MARK: - Properties
   // ------------------
   
@@ -37,6 +39,7 @@ class RNIMenuItem: RNIMenuElement {
     super.init(dictionary: dictionary);
 
     self.menuOptions = dictionary["menuOptions"] as? [String];
+    self.menuPreferredElementSize = dictionary["menuPreferredElementSize"] as? String;
     
     self.icon = {
       if let dict = dictionary["icon"] as? NSDictionary {
@@ -103,6 +106,8 @@ class RNIMenuItem: RNIMenuElement {
 
 @available(iOS 13.0, *)
 extension RNIMenuItem {
+  
+  // TODO: Rename - `synthesizedMenuOptions`
   /// get `UIMenu.Options` from `menuOptions` strings
   var UIMenuOptions: UIMenu.Options {
     UIMenu.Options(
@@ -110,6 +115,14 @@ extension RNIMenuItem {
         UIMenu.Options(string: $0);
       } ?? []
     );
+  };
+  
+  @available(iOS 16.0, *)
+  var synthesizedPreferredMenuElementSize: UIMenu.ElementSize? {
+    guard let menuPreferredElementSize = self.menuPreferredElementSize
+    else { return nil };
+    
+    return UIMenu.ElementSize(string: menuPreferredElementSize);
   };
 };
 
@@ -130,13 +143,21 @@ extension RNIMenuItem {
       );
     };
     
-    return UIMenu(
+    let menu: UIMenu = UIMenu(
       title: self.menuTitle,
       image: self.icon?.image,
-      identifier: nil,
-      options: self.UIMenuOptions,
+      identifier: nil, 
+      options: UIMenuOptions,
       children: menuItems ?? []
     );
+    
+    if #available(iOS 16.0, *),
+       let preferredElementSize = self.synthesizedPreferredMenuElementSize {
+      
+      menu.preferredElementSize = preferredElementSize;
+    };
+    
+    return menu;
   };
 };
 

@@ -13,6 +13,10 @@ export type MenuState = 'on' | 'off' | 'mixed';
 // TODO: Next Major Version - Rename to `MenuElementAttributes`
 export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
 
+/** Maps to `UIMenuElement.Attributes` */
+export type MenuElementSize = 'small' | 'medium' | 'large';
+
+// Maps to `UIMenu.ElementSize`
 export type DeferredMenuElementConfig = {
   type: 'deferred';
   deferredID: string;
@@ -60,6 +64,7 @@ export type MenuConfig = {
 
   menuOptions?: Array<UIMenuOptions>;
   menuItems?: Array<MenuElementConfig>;
+  menuPreferredElementSize?: MenuElementSize;
 
   /**
    * `IconConfig` is deprecated, use `ImageItemConfig` instead.
