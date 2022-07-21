@@ -83,14 +83,22 @@
 <br>
 
 - [ ] Example: Menu Icons - More customizations 
+
 - [ ] Implement: Menu subtitle
+
 - [ ] Implement: Make `menuTitle` optional.
+
 - [ ] Implement: iOS 16
+
+	- [ ] Write Documentation
+		* `menuPreferredElementSize`
+	- [x] (Commit: `a657334`, `7920970`, `abc`) Examples: `menuPreferredElementSize`
+
 	- [ ] `UIMenuElement.Attributes.keepsMenuPresented`
 	- [ ] `UIMenuLeaf`
 	- [ ] Maybe: `UIEditMenu`
 	- [x] (Commit: `b0a9cfb`) **Implement**:  `UIMenu.ElementSize`
-
+	- [ ] Make backwards compatible to prev. Xcode version.
 
 
 
