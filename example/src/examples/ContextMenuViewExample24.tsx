@@ -125,7 +125,8 @@ export function ContextMenuViewExample24(props: ContextMenuExampleProps) {
         title={'ContextMenuViewExample24'}
         subtitle={'menuAttributes'}
         description={[
-          `Example for menu actions that have menuAttributes set to 'keepsMenuPresented'`
+          `Example for menu actions that have menuAttributes set to 'keepsMenuPresented' `
+          + 'Requires iOS 16+.'
         ]}
       />
     </ContextMenuView>

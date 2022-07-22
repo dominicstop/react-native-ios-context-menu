@@ -69,7 +69,7 @@ export function ContextMenuViewExample22(props: ContextMenuExampleProps) {
         title={'ContextMenuViewExample22'}
         subtitle={'menuPreferredElementSize'}
         description={[
-          `menuPreferredElementSize: 'small'`
+          `menuPreferredElementSize: 'small' - Requires iOS 16+.`
         ]}
       />
     </ContextMenuView>
