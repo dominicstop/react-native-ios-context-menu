@@ -19,3 +19,16 @@ extension UIMenu.Options {
   };
 };
 
+@available(iOS 16, *)
+extension UIMenu.ElementSize {
+  init?(string: String){
+    switch string {
+      case "small" : self = .small;
+      case "medium": self = .medium;
+      case "large" : self = .large;
+      
+      default: return nil;
+    };
+  };
+};
+
