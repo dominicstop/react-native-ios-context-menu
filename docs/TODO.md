@@ -106,7 +106,7 @@
 	
 	<br>
 	
-	- [ ] Make backwards compatible to prev. Xcode version.
+	- [x] (Commit: `34b64e6`) Make iOS 16 implemented features backwards compatible to prev. Xcode version.
 
 
 
