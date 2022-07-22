@@ -117,6 +117,7 @@ extension RNIMenuItem {
     );
   };
   
+  #if swift(>=5.7)
   @available(iOS 16.0, *)
   var synthesizedPreferredMenuElementSize: UIMenu.ElementSize? {
     guard let menuPreferredElementSize = self.menuPreferredElementSize
@@ -124,6 +125,7 @@ extension RNIMenuItem {
     
     return UIMenu.ElementSize(string: menuPreferredElementSize);
   };
+  #endif
 };
 
 // MARK: - Functions
@@ -151,11 +153,13 @@ extension RNIMenuItem {
       children: menuItems ?? []
     );
     
+    #if swift(>=5.7)
     if #available(iOS 16.0, *),
        let preferredElementSize = self.synthesizedPreferredMenuElementSize {
       
       menu.preferredElementSize = preferredElementSize;
     };
+    #endif
     
     return menu;
   };

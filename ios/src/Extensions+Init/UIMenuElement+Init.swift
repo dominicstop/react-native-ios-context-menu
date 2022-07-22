@@ -14,10 +14,12 @@ extension UIMenuElement.Attributes {
       case "hidden"     : self = .hidden;
       case "disabled"   : self = .disabled;
       case "destructive": self = .destructive;
-        
+      
+      #if swift(>=5.7)
       case "keepsMenuPresented":
         guard #available(iOS 16.0, *) else { return nil };
         self = .keepsMenuPresented
+      #endif
       
       default: return nil;
     };

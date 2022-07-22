@@ -19,6 +19,7 @@ extension UIMenu.Options {
   };
 };
 
+#if swift(>=5.7)
 @available(iOS 16, *)
 extension UIMenu.ElementSize {
   init?(string: String){
@@ -31,4 +32,5 @@ extension UIMenu.ElementSize {
     };
   };
 };
+#endif
 
