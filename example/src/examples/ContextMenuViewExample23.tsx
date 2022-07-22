@@ -27,19 +27,72 @@ export function ContextMenuViewExample23(props: ContextMenuExampleProps) {
             },
           },
         }, {
+          type: 'action',
+          actionKey: 'info',
+          actionTitle: 'Information',
+          icon: {
+            type: 'IMAGE_SYSTEM',
+            imageValue: {
+              systemName: 'info.circle',
+            },
+          },
+        }, {
           type: 'menu',
           menuTitle: '',
           menuOptions: ['displayInline'],
           menuPreferredElementSize: 'small',
           menuItems: [{
-          actionKey: 'key-01',
+          actionKey: 'key-01-01',
+          actionTitle: '',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'hand.thumbsup',
+              },
+              imageOptions: {
+                renderingMode: 'alwaysOriginal',
+                tint: Colors.GREEN.A700,
+              }
+            }
+          }, {
+            actionKey: 'key-01-02',
+            actionTitle: '',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'plus.circle',
+              },
+              imageOptions: {
+                renderingMode: 'alwaysOriginal',
+                tint: Colors.BLUE.A700,
+              }
+            }
+          }, {
+            actionKey: 'key-01-03',
+            actionTitle: '',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'hand.thumbsdown',
+              },
+              imageOptions: {
+                renderingMode: 'alwaysOriginal',
+                tint: Colors.RED.A700,
+              }
+            }
+          }],
+        }, {
+          type: 'menu',
+          menuTitle: '',
+          menuOptions: ['displayInline'],
+          menuPreferredElementSize: 'small',
+          menuItems: [{
+          actionKey: 'key-02-01',
           actionTitle: '',
             icon: {
               type: 'IMAGE_SYSTEM',
               imageValue: {
                 systemName: 'star',
-                weight: 'heavy',
-                scale: 'large',
               },
               imageOptions: {
                 renderingMode: 'alwaysOriginal',
@@ -47,14 +100,12 @@ export function ContextMenuViewExample23(props: ContextMenuExampleProps) {
               }
             }
           }, {
-            actionKey: 'key-02'   ,
+            actionKey: 'key-02-02'   ,
             actionTitle: '',
             icon: {
               type: 'IMAGE_SYSTEM',
               imageValue: {
                 systemName: 'star.lefthalf.fill',
-                weight: 'heavy',
-                scale: 'large',
               },
               imageOptions: {
                 renderingMode: 'alwaysOriginal',
@@ -62,14 +113,12 @@ export function ContextMenuViewExample23(props: ContextMenuExampleProps) {
               }
             }
           }, {
-            actionKey: 'key-03',
+            actionKey: 'key-02-03',
             actionTitle: '',
             icon: {
               type: 'IMAGE_SYSTEM',
               imageValue: {
                 systemName: 'star.fill',
-                weight: 'heavy',
-                scale: 'large',
               },
               imageOptions: {
                 renderingMode: 'alwaysOriginal',
