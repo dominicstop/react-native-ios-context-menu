@@ -90,14 +90,22 @@
 
 - [ ] Implement: iOS 16
 
-	- [ ] Write Documentation
-		* `menuPreferredElementSize`
-	- [x] (Commit: `a657334`, `7920970`, `abc`) Examples: `menuPreferredElementSize`
-
-	- [ ] `UIMenuElement.Attributes.keepsMenuPresented`
 	- [ ] `UIMenuLeaf`
 	- [ ] Maybe: `UIEditMenu`
 	- [x] (Commit: `b0a9cfb`) **Implement**:  `UIMenu.ElementSize`
+		- [x] (Commit: `a657334`, `7920970`, `67d5145`) Example: Create example for  `menuPreferredElementSize`.
+		- [ ] Docs: Add documentation stubs for `menuPreferredElementSize` and `MenuElementSize`.
+		- [ ] Docs: Add example code to example section.
+	
+	<br>
+	
+	- [x] (Commit: `b1c048e`) Implement: `UIMenuElement.Attributes.keepsMenuPresented`.
+		- [x] (Commit: `77ecb00`) Example: Create example for `menuAttributes: ['keepsMenuPresented']`.
+		- [ ] Docs: Add documentation stubs for `keepsMenuPresented`.
+		- [ ] Docs: Add example code to example section.
+	
+	<br>
+	
 	- [ ] Make backwards compatible to prev. Xcode version.
 
 
