@@ -107,9 +107,8 @@ class RNIMenuItem: RNIMenuElement {
 @available(iOS 13.0, *)
 extension RNIMenuItem {
   
-  // TODO: Rename - `synthesizedMenuOptions`
   /// get `UIMenu.Options` from `menuOptions` strings
-  var UIMenuOptions: UIMenu.Options {
+  var synthesizedMenuOptions: UIMenu.Options {
     UIMenu.Options(
       self.menuOptions?.compactMap {
         UIMenu.Options(string: $0);
@@ -149,7 +148,7 @@ extension RNIMenuItem {
       title: self.menuTitle,
       image: self.icon?.image,
       identifier: nil, 
-      options: UIMenuOptions,
+      options: self.synthesizedMenuOptions,
       children: menuItems ?? []
     );
     
