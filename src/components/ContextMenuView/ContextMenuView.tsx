@@ -247,8 +247,15 @@ export class ContextMenuView extends
     event.stopPropagation();
     event.persist();
 
+    const isKeepsMenuPresentedEnabled = 
+      event.nativeEvent.menuAttributes?.includes('keepsMenuPresented');
+
+    const shouldWaitForMenuToHide =
+      !isKeepsMenuPresentedEnabled &&
+      props.shouldWaitForMenuToHideBeforeFiringOnPressMenuItem;
+
     try {
-      if(props.shouldWaitForMenuToHideBeforeFiringOnPressMenuItem){
+      if(shouldWaitForMenuToHide){
         // wait for `onMenuDidHide`
         await Helpers.promiseWithTimeout(1000, new Promise<void>((resolve) => {
           this.emitter.once('onMenuDidHide', () => {

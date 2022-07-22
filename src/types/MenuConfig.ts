@@ -11,7 +11,7 @@ export type MenuState = 'on' | 'off' | 'mixed';
 
 /** Maps to `UIMenuElement.Attributes` */
 // TODO: Next Major Version - Rename to `MenuElementAttributes`
-export type MenuAttributes = 'hidden' | 'disabled' | 'destructive';
+export type MenuAttributes = 'hidden' | 'disabled' | 'destructive' | 'keepsMenuPresented';
 
 /** Maps to `UIMenuElement.Attributes` */
 export type MenuElementSize = 'small' | 'medium' | 'large';

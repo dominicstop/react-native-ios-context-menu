@@ -14,6 +14,10 @@ extension UIMenuElement.Attributes {
       case "hidden"     : self = .hidden;
       case "disabled"   : self = .disabled;
       case "destructive": self = .destructive;
+        
+      case "keepsMenuPresented":
+        guard #available(iOS 16.0, *) else { return nil };
+        self = .keepsMenuPresented
       
       default: return nil;
     };
@@ -33,6 +37,7 @@ extension UIMenuElement.State {
   };
 };
 
+// TODO: Move to `UIMenu+Init`
 @available(iOS 16, *)
 extension UIMenu.ElementSize {
   init?(string: String){
