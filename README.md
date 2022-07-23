@@ -555,11 +555,12 @@ A union string type that maps to `UIMenuElement.Attributes` enum (see [apple doc
 
 <br>
 
-| Type             | Description |
-| :--------------- | :---------- |
-| ⚛️  `hidden`      | TBA         |
-| ⚛️  `disabled`    | TBA         |
-| ⚛️  `destructive` | TBA         |
+| Type                    | Description |
+| :---------------------- | :---------- |
+| ⚛️  `hidden`             | TBA         |
+| ⚛️  `disabled`           | TBA         |
+| ⚛️  `destructive`        | TBA         |
+| ⚛️  `keepsMenuPresented` | TBA         |
 
 <br>
 
