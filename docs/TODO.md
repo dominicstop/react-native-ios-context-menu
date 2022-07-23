@@ -82,7 +82,7 @@
 
 <br>
 
-- [ ] Example: Menu Icons - More customizations 
+- [x] (Commit: `82c3743`) Example: Menu Icons - Advanced SF Symbols customizations 
 
 - [ ] Implement: Menu subtitle
 
@@ -94,7 +94,7 @@
 	- [ ] Maybe: `UIEditMenu`
 	- [x] (Commit: `b0a9cfb`) **Implement**:  `UIMenu.ElementSize`
 		- [x] (Commit: `a657334`, `7920970`, `67d5145`) Example: Create example for  `menuPreferredElementSize`.
-		- [ ] Docs: Add documentation stubs for `menuPreferredElementSize` and `MenuElementSize`.
+		- [x] (Commit: `4454f49`) Docs: Add documentation stubs for `menuPreferredElementSize` and `MenuElementSize`.
 		- [ ] Docs: Add example code to example section.
 	
 	<br>
