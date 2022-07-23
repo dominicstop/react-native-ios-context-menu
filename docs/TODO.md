@@ -96,9 +96,9 @@
 
 <br>
 
-- [ ] Implement: Make `menuTitle` optional.
+- [x] (Commit: `5e834e1`) Implement: Make `menuTitle` optional in `RNIMenuItem`.
 
-- [ ] Use subtitle for `discoverabilityTitle` on iOS 13 if there's no `discoverabilityTitle`.
+- [x] (Commit: `7c3fa85`) Use subtitle for `discoverabilityTitle` on iOS 13 if there's no `discoverabilityTitle`.
 
 - [ ] Implement: iOS 16
 
