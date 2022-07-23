@@ -514,6 +514,7 @@ An object that is used to create and configure a context menu. Internally, this 
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | 🔤  `type`<br/><br/>⚛️ `string`, i.e`"menu"`                   | TBA                                                          |
 | 🔤  `menuTitle`<br/><br/>⚛️ `string`                           | TBA<br><br>📝 **Note**: If you don't want a menu title to appear for your context menu, just pass in an empty string to this property. |
+| 🔤  `menuSubtitle`<br/><br/>⚛️ `string`                        | TBA<br/><br/>📝 **Note**: Requires iOS 15+.                   |
 | 🔤  `menuOptions`<br/><br/>⚛️ `Array<UIMenuOptions>`<br>📌 [`UIMenuOptions`](PLACE_HOLDER_LINK) | TBA                                                          |
 | 🔤  `menuPreferredElementSize`<br/><br/>⚛️ `MenuElementSize`   | TBA                                                          |
 | 🔤  `menuItems`<br/><br/>⚛️ `MenuElementConfig[]` i.e. <br/>`MenuConfig ¦ MenuActionConfig`<br/>`¦ DeferredMenuElementConfig`<br><br/>📌 [`MenuConfig`](PLACE_HOLDER_LINK)<br/>📌 [`MenuActionConfig`](PLACE_HOLDER_LINK)<br/>📌 [`DeferredMenuElementConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
