@@ -510,6 +510,7 @@ An object that is used to create and configure a context menu. Internally, this 
 | 🔤  `type`<br/><br/>⚛️ `string`, i.e`"menu"`                   | TBA                                                          |
 | 🔤  `menuTitle`<br/><br/>⚛️ `string`                           | TBA<br><br>📝 **Note**: If you don't want a menu title to appear for your context menu, just pass in an empty string to this property. |
 | 🔤  `menuOptions`<br/><br/>⚛️ `Array<UIMenuOptions>`<br>📌 [`UIMenuOptions`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `menuPreferredElementSize`<br/><br/>⚛️ `MenuElementSize`   | TBA                                                          |
 | 🔤  `menuItems`<br/><br/>⚛️ `MenuElementConfig[]` i.e. <br/>`MenuConfig ¦ MenuActionConfig`<br/>`¦ DeferredMenuElementConfig`<br><br/>📌 [`MenuConfig`](PLACE_HOLDER_LINK)<br/>📌 [`MenuActionConfig`](PLACE_HOLDER_LINK)<br/>📌 [`DeferredMenuElementConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 | 🔤  `icon`<br/><br/>⚛️ `IconConfig ¦ ImageItemConfig`<br/>📌 [`IconConfig`](PLACE_HOLDER_LINK) (deprecated)<br/>📌 [`ImageItemConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 
@@ -590,6 +591,22 @@ A union string type that maps to `UIMenu.Options` option set (see [apple docs](h
 | :----------------- | :---------- |
 | ⚛️  `destructive`   | TBA         |
 | ⚛️  `displayInline` | TBA         |
+
+<br>
+
+##### String Union: `MenuElementSize`
+
+> Constants that determine the size of an element in a menu.
+
+A union string type that maps to `UIMenu.ElementSize` enum (see [apple docs](https://developer.apple.com/documentation/uikit/uimenu/elementsize) for more information).
+
+<br>
+
+| Type        | Description |
+| :---------- | :---------- |
+| ⚛️  `small`  | TBA         |
+| ⚛️  `medium` | TBA         |
+| ⚛️  `large`  | TBA         |
 
 <br>
 
