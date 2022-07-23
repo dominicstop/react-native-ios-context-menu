@@ -18,12 +18,11 @@ class RNIMenuItem: RNIMenuElement {
   var menuTitle: String?;
   var menuSubtitle: String?;
   
-  var icon: RNIImageItem?;
-  
   var menuOptions: [String]?;
-  var menuItems: [RNIMenuElement]?;
-  
   var menuPreferredElementSize: String?;
+  
+  var icon: RNIImageItem?;
+  var menuItems: [RNIMenuElement]?;
   
   // MARK: - Properties
   // ------------------
