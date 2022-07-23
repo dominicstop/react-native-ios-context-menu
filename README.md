@@ -84,6 +84,9 @@
 | 📌 **[`ContextMenuView` Example 18](#ContextMenuView-Example-18)**<br/>💭 **Summary**: Icon Example — An example showing a context menu with action items that has icons that uses local image assets imported via `require(...)`. |
 | 📌 **[`ContextMenuView` Example 19](#ContextMenuView-Example-19)**<br/>💭 **Summary**: Dynamic Menu — An example showing a context menu that has a loading indicator using deferred menu elements. |
 | 📌 **[`ContextMenuView` Example 20](#ContextMenuView-Example-20)**<br/>💭 **Summary**: Dynamic Menu — An example showing a state-controlled context menu that shows a loading indicator using deferred menu elements. |
+| 📌 **[`ContextMenuView` Example 21](#ContextMenuView-Example-21)**<br/>💭 **Summary**: Menu Element Size — TBA |
+| 📌 **[`ContextMenuView` Example 22](#ContextMenuView-Example-22)**<br/>💭 **Summary**: Menu Element Size — TBA |
+| 📌 **[`ContextMenuView` Example 23](#ContextMenuView-Example-23)**<br/>💭 **Summary**: Menu Element Size — TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 01](#ContextMenuView-Auxiliary-Preview---Example-01)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 02](#ContextMenuView-Auxiliary-Preview---Example-02)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 03](#ContextMenuView-Auxiliary-Preview---Example-03)**<br/>💭 **Summary**: TBA |
@@ -2285,6 +2288,191 @@ export function ContextMenuViewExample20(props) {
 
 <br>
 
+### `ContextMenuView` Example 21
+
+**Summary**: Menu Element Size — TBA
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample21.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample21(props) {
+
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample21',
+        menuPreferredElementSize: 'medium',
+        menuItems: [{
+          actionKey: 'key-01',
+          actionTitle: 'Action #1',
+          // ...
+        }, {
+          actionKey: 'key-02'   ,
+          actionTitle: 'Action #2',
+          // ...
+
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          // ...
+        }],
+      }}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
+```
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
+
+<br>
+
+### `ContextMenuView` Example 22
+
+**Summary**: Menu Element Size — TBA
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample22.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample22(props) {
+
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: '',
+        menuPreferredElementSize: 'small',
+        menuItems: [{
+          actionKey: 'key-01',
+          actionTitle: '',
+          // ...
+        }, {
+          actionKey: 'key-02'   ,
+          actionTitle: '',
+          // ...
+          }
+        }, {
+          actionKey: 'key-03',
+          actionTitle: '',
+          // ...
+        }],
+      }}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
+```
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
+
+<br>
+
+### `ContextMenuView` Example 23
+
+**Summary**: Menu Element Size — TBA
+
+<br>
+
+| Notes |
+| ----- |
+|       |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample23.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample23(props) {
+
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: '',
+        menuItems: [{
+          type: 'action',
+          actionKey: 'remove-rating',
+          menuAttributes: ['destructive'],
+          actionTitle: 'Remove Rating',
+           icon: { /** ... */ }
+        }, {
+          type: 'action',
+          actionKey: 'info',
+          actionTitle: 'Information',
+           icon: { /** ... */ }
+        }, {
+          type: 'menu',
+          menuTitle: '',
+          menuOptions: ['displayInline'],
+          menuPreferredElementSize: 'small',
+          menuItems: [{
+            actionKey: 'key-01-01',
+            actionTitle: '',
+            icon: { /** ... */ }
+          }, {
+            actionKey: 'key-01-02',
+            actionTitle: '',
+            icon: { /** ... */ }
+          }, {
+            actionKey: 'key-01-03',
+            actionTitle: '',
+            icon: { /** ... */ }
+          }],
+        }, {
+          type: 'menu',
+          menuTitle: '',
+          menuOptions: ['displayInline'],
+          menuPreferredElementSize: 'small',
+          menuItems: [{
+            actionKey: 'key-02-01',
+            actionTitle: '',
+            icon: { /** ... */ }
+          }, {
+            actionKey: 'key-02-02',
+            actionTitle: '',
+            icon: { /** ... */ }
+          }, {
+            actionKey: 'key-02-03',
+            actionTitle: '',
+            icon: { /** ... */ }
+          }],
+        }]
+      }}
+    >
+      { /** ... */ }
+    </ContextMenuView>
+  );
+};
+```
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
+
+<br>
 ### `ContextMenuView` Auxiliary Preview - Example 01
 
 **Summary**: TBA
