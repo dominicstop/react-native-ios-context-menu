@@ -91,7 +91,7 @@
 <br>
 
 - [x] (Commit: `ed32e8d`) Implement: `menuSubtitle`
-	- [ ] Docs: Add documentation stubs for `menuSubtitle`.
+	- [x] (Commit: `171a49a`) Docs: Add documentation stubs for `menuSubtitle`.
 
 
 <br>
