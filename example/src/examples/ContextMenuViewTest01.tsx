@@ -33,6 +33,7 @@ export function ContextMenuViewTest01(props: ContextMenuExampleProps) {
           }
         }, {
           menuTitle: 'Submenu #1...',
+          menuSubtitle: 'Nested Menu',
           icon: {
             type: 'IMAGE_SYSTEM',
             imageValue: {
@@ -59,6 +60,7 @@ export function ContextMenuViewTest01(props: ContextMenuExampleProps) {
             }
           }, {
             menuTitle: 'Submenu #5...',
+            menuSubtitle: 'Nested Menu',
             icon: {
               type: 'IMAGE_SYSTEM',
               imageValue: {
@@ -85,6 +87,7 @@ export function ContextMenuViewTest01(props: ContextMenuExampleProps) {
               }
             }, {
               menuTitle: 'Submenu #3...',
+              menuSubtitle: 'Nested Menu',
               icon: {
                 type: 'IMAGE_SYSTEM',
                 imageValue: {
@@ -111,6 +114,7 @@ export function ContextMenuViewTest01(props: ContextMenuExampleProps) {
                 }
               }, {
                 menuTitle: 'Submenu #4...',
+                menuSubtitle: 'Nested Menu',
                 icon: {
                   type: 'IMAGE_SYSTEM',
                   imageValue: {
