@@ -90,9 +90,15 @@
 
 <br>
 
-- [ ] Implement: Menu subtitle
+- [x] (Commit: `ed32e8d`) Implement: `menuSubtitle`
+	- [ ] Docs: Add documentation stubs for `menuSubtitle`.
+
+
+<br>
 
 - [ ] Implement: Make `menuTitle` optional.
+
+- [ ] Use subtitle for `discoverabilityTitle` on iOS 13 if there's no `discoverabilityTitle`.
 
 - [ ] Implement: iOS 16
 
