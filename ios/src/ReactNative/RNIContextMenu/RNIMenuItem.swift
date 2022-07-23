@@ -15,9 +15,9 @@ class RNIMenuItem: RNIMenuElement {
   // MARK: - Serialized Properties
   // -----------------------------
   
-  var menuTitle: String;
-  
+  var menuTitle: String?;
   var menuSubtitle: String?;
+  
   var icon: RNIImageItem?;
   
   var menuOptions: [String]?;
@@ -34,12 +34,9 @@ class RNIMenuItem: RNIMenuElement {
   // ------------
 
   override init?(dictionary: NSDictionary){
-    guard let menuTitle = dictionary["menuTitle"] as? String
-    else { return nil };
-    
-    self.menuTitle = menuTitle;
     super.init(dictionary: dictionary);
     
+    self.menuTitle = dictionary["menuTitle"] as? String;
     self.menuSubtitle = dictionary["menuSubtitle"] as? String;
 
     self.menuOptions = dictionary["menuOptions"] as? [String];
@@ -149,7 +146,7 @@ extension RNIMenuItem {
     };
     
     let menu: UIMenu = UIMenu(
-      title: self.menuTitle,
+      title: self.menuTitle ?? "",
       image: self.icon?.image,
       identifier: nil, 
       options: self.synthesizedMenuOptions,
