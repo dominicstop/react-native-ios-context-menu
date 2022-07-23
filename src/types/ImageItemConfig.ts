@@ -64,7 +64,7 @@ type ImageSystemSymbolConfiguration = {
   hierarchicalColor?: string | DynamicColor;
 } | {
   /** Requires iOS 15+ */
-  paletteColors?: [string | DynamicColor];
+  paletteColors?: Array<string | DynamicColor>;
 });
 
 export type ImageSystemConfig = ImageSystemSymbolConfiguration & {
