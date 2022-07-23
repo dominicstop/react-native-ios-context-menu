@@ -2470,7 +2470,7 @@ export function ContextMenuViewExample23(props) {
 };
 ```
 
-![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExample23.jpg)
 
 ![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
 
