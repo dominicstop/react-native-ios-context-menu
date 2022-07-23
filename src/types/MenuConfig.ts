@@ -73,6 +73,7 @@ export type MenuConfig = {
   type?: 'menu';
 
   menuTitle: string;
+  menuSubtitle?: string;
 
   menuOptions?: Array<UIMenuOptions>;
   menuItems?: Array<MenuElementConfig>;

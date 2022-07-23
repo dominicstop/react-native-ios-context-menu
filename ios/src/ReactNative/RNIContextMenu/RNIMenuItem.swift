@@ -16,10 +16,12 @@ class RNIMenuItem: RNIMenuElement {
   // -----------------------------
   
   var menuTitle: String;
-  var icon     : RNIImageItem?;
+  
+  var menuSubtitle: String?;
+  var icon: RNIImageItem?;
   
   var menuOptions: [String]?;
-  var menuItems  : [RNIMenuElement]?;
+  var menuItems: [RNIMenuElement]?;
   
   var menuPreferredElementSize: String?;
   
@@ -37,6 +39,8 @@ class RNIMenuItem: RNIMenuElement {
     
     self.menuTitle = menuTitle;
     super.init(dictionary: dictionary);
+    
+    self.menuSubtitle = dictionary["menuSubtitle"] as? String;
 
     self.menuOptions = dictionary["menuOptions"] as? [String];
     self.menuPreferredElementSize = dictionary["menuPreferredElementSize"] as? String;
@@ -151,6 +155,12 @@ extension RNIMenuItem {
       options: self.synthesizedMenuOptions,
       children: menuItems ?? []
     );
+    
+    if #available(iOS 15.0, *),
+       let subtitle = self.menuSubtitle {
+      
+      menu.subtitle = subtitle;
+    };
     
     #if swift(>=5.7)
     if #available(iOS 16.0, *),
