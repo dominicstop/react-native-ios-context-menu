@@ -163,7 +163,9 @@ extension RNIMenuActionItem {
       image     : self.icon?.image,
       identifier: self.synthesizedIdentifier,
       
-      discoverabilityTitle: self.discoverabilityTitle,
+      discoverabilityTitle: self.discoverabilityTitle ?? {
+        RNIUtilities.osVersion.majorVersion < 15 ? self.actionSubtitle : nil
+      }(),
       
       attributes: self.synthesizedMenuElementAttributes,
       state     : self.synthesizedMenuElementState,
