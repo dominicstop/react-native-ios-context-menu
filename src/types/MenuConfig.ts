@@ -3,18 +3,30 @@ import type { IconConfig } from "./MenuIconConfig";
 
 /** Maps to `UIMenu.Options` */
 // TODO: Next Major Version - Once `Enums.ts` is removed, rename back to `MenuOptions` 
-export type UIMenuOptions = 'destructive' | 'displayInline';
+export type UIMenuOptions = 
+  | 'destructive' 
+  | 'displayInline';
 
 /** Maps to `UIMenuElement.State` */
 // TODO: Next Major Version - Rename to `MenuElementState`
-export type MenuState = 'on' | 'off' | 'mixed';
+export type MenuState = 
+  | 'on' 
+  | 'off' 
+  | 'mixed';
 
 /** Maps to `UIMenuElement.Attributes` */
 // TODO: Next Major Version - Rename to `MenuElementAttributes`
-export type MenuAttributes = 'hidden' | 'disabled' | 'destructive' | 'keepsMenuPresented';
+export type MenuAttributes = 
+  | 'hidden' 
+  | 'disabled'
+  | 'destructive' 
+  | 'keepsMenuPresented';
 
 /** Maps to `UIMenuElement.Attributes` */
-export type MenuElementSize = 'small' | 'medium' | 'large';
+export type MenuElementSize = 
+  | 'small' 
+  | 'medium' 
+  | 'large';
 
 // Maps to `UIMenu.ElementSize`
 export type DeferredMenuElementConfig = {
