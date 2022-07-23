@@ -87,6 +87,7 @@
 | 📌 **[`ContextMenuView` Example 21](#ContextMenuView-Example-21)**<br/>💭 **Summary**: Menu Element Size — TBA |
 | 📌 **[`ContextMenuView` Example 22](#ContextMenuView-Example-22)**<br/>💭 **Summary**: Menu Element Size — TBA |
 | 📌 **[`ContextMenuView` Example 23](#ContextMenuView-Example-23)**<br/>💭 **Summary**: Menu Element Size — TBA |
+| 📌 **[`ContextMenuView` Example 24](#ContextMenuView-Example-24)**<br/>💭 **Summary**: Menu Attributes — `keepsMenuPresented` |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 01](#ContextMenuView-Auxiliary-Preview---Example-01)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 02](#ContextMenuView-Auxiliary-Preview---Example-02)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 03](#ContextMenuView-Auxiliary-Preview---Example-03)**<br/>💭 **Summary**: TBA |
@@ -2473,6 +2474,85 @@ export function ContextMenuViewExample23(props) {
 ![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
 
 <br>
+
+### `ContextMenuView` Example 24
+
+**Summary**: Menu Attributes — `keepsMenuPresented`
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample24.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample24(props) {
+  const [actionState1, setActionState1] = React.useState(false);
+  const [actionState2, setActionState2] = React.useState(false);
+  const [actionState3, setActionState3] = React.useState(false);
+
+  const isResetEnabled = (
+    actionState1 ||
+    actionState2 ||
+    actionState3 
+  );
+
+  const handleOnPressMenuItem = ({nativeEvent}) => {
+    // ...
+  };
+
+  return (
+    <ContextMenuView
+      style={props.style}
+      onPressMenuItem={handleOnPressMenuItem}
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample24',
+        menuItems: [{
+          actionKey: 'key-01',
+          actionTitle: `Action 1: ${actionState1? 'on' : 'off'}`,
+          menuState: (actionState1? 'on' : 'off'),
+          menuAttributes: ['keepsMenuPresented'],
+          icon: { /** ... */ }
+        }, {
+          actionKey  : 'key-02',
+          actionTitle: `Action 2: ${actionState2? 'on' : 'off'}`,
+          menuState  : (actionState2? 'on' : 'off'),
+          menuAttributes: ['keepsMenuPresented'],
+          icon: { /** ... */ }
+        }, {
+          actionKey: 'key-03',
+          actionTitle: `Action 3: ${actionState3? 'on' : 'off'}`,
+          menuState: (actionState3? 'on' : 'off'),
+          menuAttributes: ['keepsMenuPresented'],
+          icon: { /** ... */ }
+        }, {
+          actionKey: 'key-04',
+          actionTitle: `Reset All`,
+          menuAttributes: [
+            'keepsMenuPresented',
+            isResetEnabled? 'destructive' : 'hidden',
+          ],
+          icon: { /** ... */ }
+        }]
+      }}
+    >
+      { /** ... */ }
+    </ContextMenuView>
+  );
+};
+```
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
+
+<br>
+
 ### `ContextMenuView` Auxiliary Preview - Example 01
 
 **Summary**: TBA
