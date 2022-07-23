@@ -10,6 +10,8 @@ import Foundation;
 
 internal class RNIUtilities {
   
+  static let osVersion = ProcessInfo().operatingSystemVersion;
+  
   /// If you remove a "react view" from the view hierarchy (e.g. via
   /// `removeFromSuperview`), it won't be released, because it's being retained
   /// by the `_viewRegistry` ivar in the shared `UIManager` (singleton) instance.
