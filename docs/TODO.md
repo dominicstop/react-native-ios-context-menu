@@ -73,7 +73,9 @@
 
 
 
-### Uncategorized/WIP
+
+
+## Uncategorized/WIP
 
 - [ ] **Bug**: Aux. Preview - Layout Jank on Exit Transition
 	* When the exit transition begins, the aux. preview jumps. This is especially noticeable when there's a custom preview.
@@ -83,6 +85,10 @@
 <br>
 
 - [x] (Commit: `82c3743`) Example: Menu Icons - Advanced SF Symbols customizations 
+	- [x] (Commit: `Uncategorized/WIP`) Docs: Add example for "advanced SF Symbols customizations"  to example section.
+
+
+<br>
 
 - [ ] Implement: Menu subtitle
 
@@ -90,23 +96,23 @@
 
 - [ ] Implement: iOS 16
 
-	- [ ] `UIMenuLeaf`
-	- [ ] Maybe: `UIEditMenu`
-	- [x] (Commit: `b0a9cfb`) **Implement**:  `UIMenu.ElementSize`
-		- [x] (Commit: `a657334`, `7920970`, `67d5145`) Example: Create example for  `menuPreferredElementSize`.
-		- [x] (Commit: `4454f49`) Docs: Add documentation stubs for `menuPreferredElementSize` and `MenuElementSize`.
-		- [ ] Docs: Add example code to example section.
-	
-	<br>
-	
-	- [x] (Commit: `b1c048e`) Implement: `UIMenuElement.Attributes.keepsMenuPresented`.
-		- [x] (Commit: `77ecb00`) Example: Create example for `menuAttributes: ['keepsMenuPresented']`.
-		- [ ] Docs: Add documentation stubs for `keepsMenuPresented`.
-		- [ ] Docs: Add example code to example section.
-	
-	<br>
-	
-	- [x] (Commit: `34b64e6`) Make iOS 16 implemented features backwards compatible to prev. Xcode version.
+  - [ ] `UIMenuLeaf`
+  - [ ] Maybe: `UIEditMenu`
+  - [x] (Commit: `b0a9cfb`) **Implement**:  `UIMenu.ElementSize`
+  	- [x] (Commit: `a657334`, `7920970`, `67d5145`) Example: Create example for  `menuPreferredElementSize`.
+  	- [x] (Commit: `4454f49`) Docs: Add documentation stubs for `menuPreferredElementSize` and `MenuElementSize`.
+  	- [x] (Commit: `1ed3f1c`) Docs: Add examples for `menuPreferredElementSize` to example section.
+
+  <br>
+
+  - [x] (Commit: `b1c048e`) Implement: `UIMenuElement.Attributes.keepsMenuPresented`.
+  	- [x] (Commit: `77ecb00`) Example: Create example for `menuAttributes: ['keepsMenuPresented']`.
+  	- [x]  (Commit: `1ed3f1c`) Docs: Add documentation stubs for `keepsMenuPresented`.
+  	- [x] (Commit: `de92b52`) Docs: Add examples for `keepsMenuPresented` to example section.
+
+  <br>
+
+  - [x] (Commit: `34b64e6`) Make iOS 16 implemented features backwards compatible to prev. Xcode version.
 
 
 
