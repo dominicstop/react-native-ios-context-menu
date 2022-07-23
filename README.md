@@ -88,6 +88,7 @@
 | 📌 **[`ContextMenuView` Example 22](#ContextMenuView-Example-22)**<br/>💭 **Summary**: Menu Element Size — TBA |
 | 📌 **[`ContextMenuView` Example 23](#ContextMenuView-Example-23)**<br/>💭 **Summary**: Menu Element Size — TBA |
 | 📌 **[`ContextMenuView` Example 24](#ContextMenuView-Example-24)**<br/>💭 **Summary**: Menu Attributes — `keepsMenuPresented` |
+| 📌 **[`ContextMenuView` Example 25](#ContextMenuView-Example-25)**<br/>💭 **Summary**: Icon Example — Advanced customization (E.g. `scale`, `weight`, `paletteColors`, `hierarchicalColor`). |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 01](#ContextMenuView-Auxiliary-Preview---Example-01)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 02](#ContextMenuView-Auxiliary-Preview---Example-02)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 03](#ContextMenuView-Auxiliary-Preview---Example-03)**<br/>💭 **Summary**: TBA |
@@ -2546,6 +2547,160 @@ export function ContextMenuViewExample24(props) {
   );
 };
 ```
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
+
+<br>
+
+### `ContextMenuView` Example 25
+
+**Summary**:  Icon Example — Advanced customization (e.g. `scale`, `weight`, `paletteColors`, `hierarchicalColor`).
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample25.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample25(props) {
+  return (
+    <ContextMenuView
+      style={props.style}
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample25',
+        menuItems: [{
+          type: 'menu',
+          menuTitle: '',
+          menuOptions: ['displayInline'],
+          menuItems: [{
+            actionKey: 'key-01-01',
+            actionTitle: 'small',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'heart',
+                scale: 'small',
+              },
+            }
+          }, {
+            actionKey: 'key-01-02',
+            actionTitle: 'medium',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'heart',
+                scale: 'medium',
+              },
+            }
+          }, {
+            actionKey: 'key-01-03',
+            actionTitle: 'large',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'heart',
+                scale: 'large',
+              },
+            }
+          }],
+        }, {
+          type: 'menu',
+          menuTitle: '',
+          menuOptions: ['displayInline'],
+          menuItems: [{
+            actionKey: 'key-02-01',
+            actionTitle: 'ultraLight',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'heart',
+                weight: 'ultraLight',
+              },
+            }
+          }, {
+            actionKey: 'key-02-02',
+            actionTitle: 'semibold',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'heart',
+                weight: 'semibold',
+              },
+            }
+          }, {
+            actionKey: 'key-02-03',
+            actionTitle: 'black',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'heart',
+                weight: 'black',
+              },
+            }
+          }],
+        },  {
+          type: 'menu',
+          menuTitle: '',
+          menuOptions: ['displayInline'],
+          menuItems: [{
+            actionKey: 'key-03-01',
+            actionTitle: 'paletteColors',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'delete.left.fill',
+                paletteColors: ['red', 'blue']
+              },
+            }
+          }, {
+            actionKey: 'key-03-02',
+            actionTitle: 'semibold',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'delete.left.fill',
+                hierarchicalColor: 'red',
+              },
+            }
+          }, {
+            actionKey: 'key-03-03',
+            actionTitle: 'paletteColors',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'folder.fill.badge.plus',
+                paletteColors: ['blue', 'red']
+              },
+            }
+          },  {
+            actionKey: 'key-03-04',
+            actionTitle: 'hierarchicalColor',
+            icon: {
+              type: 'IMAGE_SYSTEM',
+              imageValue: {
+                systemName: 'folder.fill.badge.plus',
+                hierarchicalColor: 'blue',
+              },
+            }
+          }],
+        }],
+      }}
+    >
+      {/** .... */}
+    </ContextMenuView>
+  );
+};
+```
+
+
 
 ![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
 
