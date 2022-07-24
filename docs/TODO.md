@@ -84,41 +84,11 @@
 
 <br>
 
-- [x] (Commit: `82c3743`) Example: Menu Icons - Advanced SF Symbols customizations 
-	- [x] (Commit: `Uncategorized/WIP`) Docs: Add example for "advanced SF Symbols customizations"  to example section.
-
-
-<br>
-
-- [x] (Commit: `ed32e8d`) Implement: `menuSubtitle`
-	- [x] (Commit: `171a49a`) Docs: Add documentation stubs for `menuSubtitle`.
-
-
-<br>
-
-- [x] (Commit: `5e834e1`) Implement: Make `menuTitle` optional in `RNIMenuItem`.
-
-- [x] (Commit: `7c3fa85`) Use subtitle for `discoverabilityTitle` on iOS 13 if there's no `discoverabilityTitle`.
-
 - [ ] Implement: iOS 16
 
   - [ ] `UIMenuLeaf`
   - [ ] Maybe: `UIEditMenu`
-  - [x] (Commit: `b0a9cfb`) **Implement**:  `UIMenu.ElementSize`
-  	- [x] (Commit: `a657334`, `7920970`, `67d5145`) Example: Create example for  `menuPreferredElementSize`.
-  	- [x] (Commit: `4454f49`) Docs: Add documentation stubs for `menuPreferredElementSize` and `MenuElementSize`.
-  	- [x] (Commit: `1ed3f1c`) Docs: Add examples for `menuPreferredElementSize` to example section.
 
-  <br>
-
-  - [x] (Commit: `b1c048e`) Implement: `UIMenuElement.Attributes.keepsMenuPresented`.
-  	- [x] (Commit: `77ecb00`) Example: Create example for `menuAttributes: ['keepsMenuPresented']`.
-  	- [x]  (Commit: `1ed3f1c`) Docs: Add documentation stubs for `keepsMenuPresented`.
-  	- [x] (Commit: `de92b52`) Docs: Add examples for `keepsMenuPresented` to example section.
-
-  <br>
-
-  - [x] (Commit: `34b64e6`) Make iOS 16 implemented features backwards compatible to prev. Xcode version.
 
 
 
@@ -138,6 +108,90 @@
 ## Completed
 
 ### Version: `next`
+
+<br>
+
+### Version: `1.12.0`
+
+- [x] (Commit: `b0a9cfb`) **Implement**:  `UIMenu.ElementSize`
+	- [x] (Commit: `a657334`, `7920970`, `67d5145`) Example: Create example for  `menuPreferredElementSize`.
+	- [x] (Commit: `4454f49`) Docs: Add documentation stubs for `menuPreferredElementSize` and `MenuElementSize`.
+	- [x] (Commit: `1ed3f1c`) Docs: Add examples for `menuPreferredElementSize` to example section.
+
+<br>
+
+- [x] (Commit: `b1c048e`) Implement: `UIMenuElement.Attributes.keepsMenuPresented`.
+	- [x] (Commit: `77ecb00`) Example: Create example for `menuAttributes: ['keepsMenuPresented']`.
+	- [x] (Commit: `1ed3f1c`) Docs: Add documentation stubs for `keepsMenuPresented`.
+	- [x] (Commit: `de92b52`) Docs: Add examples for `keepsMenuPresented` to example section.
+
+<br>
+
+- [x] (Commit: `34b64e6`) Make iOS 16 implemented features backwards compatible to prev. Xcode version.
+
+- [x] (Commit: `82c3743`) Example: Menu Icons - Advanced SF Symbols customizations 
+	- [x] (Commit: `Uncategorized/WIP`) Docs: Add example for "advanced SF Symbols customizations"  to example section.
+
+
+<br>
+
+- [x] (Commit: `ed32e8d`) Implement: `menuSubtitle`
+	- [x] (Commit: `171a49a`) Docs: Add documentation stubs for `menuSubtitle`.
+
+<br>
+
+- [x] (Commit: `5e834e1`) Implement: Make `menuTitle` optional in `RNIMenuItem`.
+	* Reverted in Commit: `030a716`.
+	* Note: The type property must be required to make `menuTitle` optional.
+
+<br>
+
+- [x] (Commit: `7c3fa85`) Use subtitle for `discoverabilityTitle` on iOS 13 if there's no `discoverabilityTitle`.
+
+- [ ] **Task**: Test all context menu items.
+
+	- Push screen, test items, pop screen, test items, and so on...
+		- Simulator A: iPhone 8 - iOS 15.2
+		- Simulator B: iPhone 8 - iOS 
+		- Device: iPhone XR
+
+	<br>
+
+	- [ ] **Task**: Simulator A - Debug — Test all context menu view example items.
+	- [ ] **Task**: Simulator A - Debug — Test all context menu view test items.
+	- [ ] **Task**: Simulator A - Debug — Test all context button items.
+
+	<br>
+
+	- [ ] **Task**: Simulator A - Release — Test all context menu view example items.
+	- [ ] **Task**: Simulator A - Release — Test all context menu view test items.
+	- [ ] **Task**: Simulator A - Release — Test all context button items.
+
+	<br>
+
+	- [ ] **Task**: Simulator B - Debug — Test all context menu view example items.
+	- [ ] **Task**: Simulator B - Debug — Test all context menu view test items.
+	- [ ] **Task**: Simulator B - Debug — Test all context button items.
+
+	<br>
+
+	- [ ] **Task**: Simulator B - Release — Test all context menu view example items.
+	- [ ] **Task**: Simulator B - Release — Test all context menu view test items.
+	- [ ] **Task**: Simulator B - Release — Test all context button items.
+
+	<br>
+
+	- [ ] **Task**: Device - Debug — Test all context menu view example items.
+	- [ ] **Task**: Device - Debug — Test all context menu view test items.
+	- [ ] **Task**: Device - Debug — Test all context button items.
+
+
+	<br>
+
+	- [ ] **Task**: Device - Release — Test all context menu view example items.
+	- [ ] **Task**: Device - Release — Test all context menu view test items.
+
+	- [ ] **Task**: Device - Release — Test all context button items.
 
 <br>
 
@@ -201,12 +255,12 @@
 		<br>
 
 		- [x] (Commit: `b56d516`) **Implement**: `RNIWrapperView.shouldAutoDetachSubviews`
-
-
-	  - [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
-
-
-	  - [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
+	
+	<br>
+	
+	- [x] (Commit: `b7a2ece`) **Implement**: `detachedViews` lookup table.
+	
+	- [x] (Commit: `2b86b47`) **Implement** `RNIWrapperView.shouldDelayAutoCleanupOnJSUnmount`.
 
 <br>
 
