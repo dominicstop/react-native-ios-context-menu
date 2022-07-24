@@ -170,7 +170,7 @@ extension RNIMenuActionItem {
       attributes: self.synthesizedMenuElementAttributes,
       state     : self.synthesizedMenuElementState,
       
-      handler: { [unowned self] in
+      handler: {
         handler(self.dictionaryFromRawValues, $0)
       }
     );
