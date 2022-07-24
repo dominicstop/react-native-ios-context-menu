@@ -155,11 +155,13 @@ extension RNIMenuItem {
       children: menuItems ?? []
     );
     
+    #if swift(>=5.5)
     if #available(iOS 15.0, *),
        let subtitle = self.menuSubtitle {
       
       menu.subtitle = subtitle;
     };
+    #endif
     
     #if swift(>=5.7)
     if #available(iOS 16.0, *),

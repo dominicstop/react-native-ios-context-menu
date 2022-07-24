@@ -44,6 +44,7 @@ class RNIDeferredMenuElement: RNIMenuElement {
     // make local copy to prevent using `[weak self]`
     let deferredID = self.deferredID;
     
+    #if swift(>=5.5)
     if !self.shouldCache,
        #available(iOS 15.0, *) {
       
@@ -51,6 +52,7 @@ class RNIDeferredMenuElement: RNIMenuElement {
         handler(deferredID, completion);
       };
     };
+    #endif
     
     return UIDeferredMenuElement { completion in
       handler(deferredID, completion);
