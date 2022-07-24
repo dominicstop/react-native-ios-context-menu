@@ -148,50 +148,38 @@
 
 - [x] (Commit: `7c3fa85`) Use subtitle for `discoverabilityTitle` on iOS 13 if there's no `discoverabilityTitle`.
 
-- [ ] **Task**: Test all context menu items.
+- [x] **Task**: Test all context menu items.
 
 	- Push screen, test items, pop screen, test items, and so on...
 		- Simulator A: iPhone 8 - iOS 15.2
-		- Simulator B: iPhone 8 - iOS 
-		- Device: iPhone XR
+		- Simulator B: iPhone 8 - iOS 16.0
+		- Device: iPhone XR - iOS 15.1
 
 	<br>
 
-	- [ ] **Task**: Simulator A - Debug — Test all context menu view example items.
-	- [ ] **Task**: Simulator A - Debug — Test all context menu view test items.
-	- [ ] **Task**: Simulator A - Debug — Test all context button items.
+	- [x] **Task**: Simulator A - Debug — Test all context menu view example items.
+	- [x] **Task**: Simulator A - Debug — Test all context menu view test items.
+	- [x] **Task**: Simulator A - Debug — Test all context button items.
+		* Crash due to Commit: `8562755`. Revert in Commit: `983ec75`.
 
 	<br>
 
-	- [ ] **Task**: Simulator A - Release — Test all context menu view example items.
-	- [ ] **Task**: Simulator A - Release — Test all context menu view test items.
-	- [ ] **Task**: Simulator A - Release — Test all context button items.
+	- [x] **Task**: Simulator A - Release — Test all context menu view example items.
+	- [x] **Task**: Simulator A - Release — Test all context menu view test items.
+	- [x] **Task**: Simulator A - Release — Test all context button items.
 
 	<br>
 
-	- [ ] **Task**: Simulator B - Debug — Test all context menu view example items.
-	- [ ] **Task**: Simulator B - Debug — Test all context menu view test items.
-	- [ ] **Task**: Simulator B - Debug — Test all context button items.
+	- [x] **Task**: Simulator B - Release — Test all context menu view example items.
+	- [x] **Task**: Simulator B - Release — Test all context menu view test items.
+	- [x] **Task**: Simulator B - Release — Test all context button items.
 
 	<br>
 
-	- [ ] **Task**: Simulator B - Release — Test all context menu view example items.
-	- [ ] **Task**: Simulator B - Release — Test all context menu view test items.
-	- [ ] **Task**: Simulator B - Release — Test all context button items.
+	- [x] **Task**: Device - Release — Test all context menu view example items.
+	- [x] **Task**: Device - Release — Test all context menu view test items.
 
-	<br>
-
-	- [ ] **Task**: Device - Debug — Test all context menu view example items.
-	- [ ] **Task**: Device - Debug — Test all context menu view test items.
-	- [ ] **Task**: Device - Debug — Test all context button items.
-
-
-	<br>
-
-	- [ ] **Task**: Device - Release — Test all context menu view example items.
-	- [ ] **Task**: Device - Release — Test all context menu view test items.
-
-	- [ ] **Task**: Device - Release — Test all context button items.
+	- [x] **Task**: Device - Release — Test all context button items.
 
 <br>
 
