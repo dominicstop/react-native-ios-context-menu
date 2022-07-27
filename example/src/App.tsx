@@ -5,8 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { HomeScreen } from './screens/HomeScreen';
+
 import { TestScreen } from './screens/Test01Screen';
 import { Test02Screen } from './screens/Test02Screen';
+import { Test03Screen } from './screens/Test03Screen';
 
 import { SHARED_ENV } from './constants/SharedEnv';
 
@@ -52,6 +54,7 @@ export default function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Test" component={TestScreen} />
           <Stack.Screen name="Test02" component={Test02Screen} />
+          <Stack.Screen name="Test03" component={Test03Screen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
