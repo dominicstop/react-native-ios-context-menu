@@ -12,13 +12,14 @@ import * as Helpers from '../functions/Helpers';
 type EventItem = {
   timestamp: string;
   type: string;
+  index: number;
 };
 
 export function ContextMenuViewTest05(props: ContextMenuExampleProps) {
   const [events, setEvents] = React.useState<Array<EventItem>>([]);
 
   const hasEvents = (events.length > 0);
-  const recentEvents = events.slice(-15);
+  const recentEvents = events.reverse().slice(-15);
 
   const handleEvent = (eventName: string) => {
     const date = new Date();
@@ -31,7 +32,8 @@ export function ContextMenuViewTest05(props: ContextMenuExampleProps) {
     
     setEvents((prevValue) => ([ ...prevValue, {
       timestamp: `${h}:${m}:${s}.${ms}`,
-      type: eventName
+      type: eventName,
+      index: prevValue.length
     }]));
   };
 
@@ -77,6 +79,8 @@ export function ContextMenuViewTest05(props: ContextMenuExampleProps) {
       onMenuDidCancel   ={() => handleEvent('onMenuDidCancel'   )}
       onPressMenuItem   ={() => handleEvent('onPressMenuItem'   )}
       onPressMenuPreview={() => handleEvent('onPressMenuPreview')}
+
+      shouldWaitForMenuToHideBeforeFiringOnPressMenuItem={false}
     >
       <ContextMenuCard
         index={props.index}
@@ -89,14 +93,15 @@ export function ContextMenuViewTest05(props: ContextMenuExampleProps) {
         {hasEvents? (
           <ScrollView 
             contentContainerStyle={styles.eventContainer}
+            nestedScrollEnabled={true}
           >
-            {recentEvents.map((item, index) => (
+            {recentEvents.map((item) => (
               <View 
                 key={`event-${item.timestamp}-${item.type}`}
                 style={styles.eventListItemContainer}
               >
                 <Text style={styles.eventItemIndexText}>
-                  {`${Helpers.pad(events.length - index, 3)}`}
+                  {`${Helpers.pad(item.index, 3)}`}
                 </Text>
                 <Text style={styles.eventItemTimestampText}>
                   {`${item.timestamp}`}
@@ -122,7 +127,7 @@ export function ContextMenuViewTest05(props: ContextMenuExampleProps) {
 const styles = StyleSheet.create({
   eventContainer: {
     marginTop: 15,
-    height: 100,
+    height: 150,
     backgroundColor: 'rgba(255,255,255,0.3)',
     borderRadius: 10,
     paddingHorizontal: 12,
