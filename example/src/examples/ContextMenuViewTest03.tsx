@@ -32,9 +32,9 @@ export function ContextMenuViewTest03(props: ContextMenuExampleProps) {
         break;
 
       case 'key-04':
-        setActionState1((prevValue) => (!prevValue));
-        setActionState2((prevValue) => (!prevValue));
-        setActionState3((prevValue) => (!prevValue));
+        setActionState1(false);
+        setActionState2(false);
+        setActionState3(false);
         break;
     };
   };
