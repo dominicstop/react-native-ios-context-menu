@@ -3623,7 +3623,7 @@ export function ContextMenuButtonExample02(props) {
 
 [🔗 Source Code](example/src/examples/ContextMenuAuxPreviewTest01.tsx)
 
-![Gif](assets/TBA.gif)
+![Gif](assets/test-ContextMenuAuxPreviewTest01.gif)
 
 <br>
 
