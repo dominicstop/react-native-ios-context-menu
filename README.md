@@ -3519,7 +3519,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 01
 
-**Summary**: TBA
+**Summary**: Test for multiple nested/deep submenus.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest01.tsx)
 
@@ -3529,7 +3529,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 02
 
-**Summary**: TBA
+**Summary**: Test for multiple inline menus + nested submenus.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest02.tsx)
 
@@ -3539,7 +3539,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 03
 
-**Summary**: TBA
+**Summary**: Test for toggling the `menuState` on and off.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest03.tsx)
 
@@ -3549,7 +3549,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 04
 
-**Summary**: TBA
+**Summary**: Test for changing the menu icons based on the current `menuState`.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest04.tsx)
 
@@ -3559,7 +3559,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 05
 
-**Summary**: TBA
+**Summary**: Test for logging all the menu-related events.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest05.tsx)
 
@@ -3569,7 +3569,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 06
 
-**Summary**: TBA
+**Summary**: Test for programmatically adding a menu action item.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest06.tsx)
 
@@ -3579,7 +3579,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 07
 
-**Summary**: TBA
+**Summary**: Test for checking the different possible custom menu preview configurations.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest07.tsx)
 
@@ -3589,7 +3589,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 08
 
-**Summary**: TBA
+**Summary**: Test for programmatically dismissing the menu.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest08.tsx)
 
@@ -3599,7 +3599,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 09
 
-**Summary**: TBA
+**Summary**: Generate new 'deferredID' everytime the context menu is shown/hide. This is a test for `cleanupOrphanedDeferredElements`.
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest09.tsx)
 
@@ -3609,7 +3609,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `ContextMenuView` Test 10
 
-**Summary**: TBA
+**Summary**: Test for nested menus, deferred elements, large icons, and small menus,
 
 [🔗 Source Code](example/src/examples/ContextMenuViewTest10.tsx)
 
@@ -3643,7 +3643,7 @@ export function ContextMenuButtonExample02(props) {
 
 [🔗 Source Code](example/src/screens/Test03Screen.tsx)
 
-![Gif](assets/TBA)
+![Gif](assets/screen-Test03Screen.gif)
 
 <br><br>
 
