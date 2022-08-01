@@ -270,7 +270,8 @@ export class ContextMenuView extends
       };
 
     } catch(error){
-      console.error(
+      props.onPressMenuItem?.(event);
+      console.log(
           '_handleOnPressMenuItem - Promise waiting for `onMenuDidHide`'
         + ' has timed out'
       );
