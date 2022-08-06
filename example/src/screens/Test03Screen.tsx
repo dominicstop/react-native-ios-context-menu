@@ -8,7 +8,8 @@ import * as Colors  from '../constants/Colors';
 import * as Helpers from '../functions/Helpers';
 
 
-// Repro for issue #XX
+// Repro for issue:
+// https://github.com/dominicstop/react-native-ios-context-menu/issues/47
 
 const REACTIONS_DICT = {
   like  : "👍",
