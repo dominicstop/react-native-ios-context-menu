@@ -3629,7 +3629,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `Test02Screen` 
 
-**Summary**: TBA
+**Summary**: Repro for [Issue #43](https://github.com/dominicstop/react-native-ios-context-menu/issues/43) 
 
 [🔗 Source Code](example/src/screens/Test02Screen.tsx)
 
@@ -3639,7 +3639,7 @@ export function ContextMenuButtonExample02(props) {
 
 ### `Test03Screen` 
 
-**Summary**: TBA
+**Summary**: Repro for [Issue #47](https://github.com/dominicstop/react-native-ios-context-menu/issues/47)
 
 [🔗 Source Code](example/src/screens/Test03Screen.tsx)
 
