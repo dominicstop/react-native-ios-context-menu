@@ -170,6 +170,13 @@ class RNIContextMenuView: UIView {
     }
   };
   
+  // MARK: - Computed Properties
+  // ---------------------------
+  
+  var isUsingCustomPreview: Bool {
+    self._previewConfig.previewType == .CUSTOM && self.previewWrapper != nil
+  };
+  
   // MARK: - Computed Properties - "Auxiliary Context Menu Preview"-Related
   // ----------------------------------------------------------------------
   
@@ -639,6 +646,11 @@ fileprivate extension RNIContextMenuView {
     let auxConfig = self._auxiliaryPreviewConfig
       ?? RNIContextMenuAuxiliaryPreviewConfig(dictionary: [:]);
     
+    // where should the aux. preview be attached to?
+    let targetView = self.isUsingCustomPreview
+      ? morphingPlatterView
+      : contextMenuContentContainer;
+    
     let auxiliaryViewHeight: CGFloat = {
       // Begin inferring the height of the aux. view...
       
@@ -799,7 +811,7 @@ fileprivate extension RNIContextMenuView {
     previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
     
     /// attach `auxiliaryView` to context menu preview
-    contextMenuContentContainer.addSubview(previewAuxiliaryView);
+    targetView.addSubview(previewAuxiliaryView);
     
     // set layout constraints based on config
     NSLayoutConstraint.activate({
