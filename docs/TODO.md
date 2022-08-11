@@ -77,13 +77,6 @@
 
 ## Uncategorized/WIP
 
-- [ ] **Bug**: Aux. Preview - Layout Jank on Exit Transition
-	* When the exit transition begins, the aux. preview jumps. This is especially noticeable when there's a custom preview.
-	* During the exit transition, the aux. preview jumps to the target view because it's attached to the platter view. The platter view's contents changes from the custom preview, back to the target view.
-	* A possible solution is to just attach the aux. preview directly to the custom preview.
-
-<br>
-
 - [ ] Implement: iOS 16
 
   - [ ] `UIMenuLeaf`
@@ -108,6 +101,15 @@
 ## Completed
 
 ### Version: `next`
+
+<br>
+
+### Version: `1.12.1`
+
+- [x] (Commit: `77d532a`) **Bug**: `ContextMenuView.onPressMenuItem` timeout.
+- [x] (Commit: `c7b24fa`) **Bug**: Aux. Preview - Layout Jank on Exit Transition
+	* When the exit transition begins, the aux. preview jumps. This is especially noticeable when there's a custom preview.
+	* During the exit transition, the aux. preview jumps to the target view because it's attached to the platter view. The platter view's contents changes from the custom preview, back to the target view.
 
 <br>
 
