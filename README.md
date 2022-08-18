@@ -3389,6 +3389,82 @@ export function ContextMenuAuxPreviewExample14(props) {
 
 <br>
 
+
+
+### `ContextMenuView` Auxiliary Preview Example 15
+
+**Summary**: TBA
+
+<br>
+
+| Notes                    |
+| ------------------------ |
+| TBA<br><br>📝 **Note A**: |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuAuxPreviewExample15.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+
+export function ContextMenuAuxPreviewExample15(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      auxiliaryPreviewConfig={{
+        // ...
+        
+        // The space between the aux. preview, and the
+        // menu preview...
+        // 
+        // A negative value means that you want the aux. preview
+        // to appear closer to the menu preview.
+        //
+        // This is particularly useful if the menu preview is
+        // too big, and it causes the menu items to go out of 
+        // bounds...
+        marginPreview: -60,
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={[styles.auxRootContainer, {
+          alignItems: 'center',
+          justifyContent: 'center',
+        }]}>
+          <Text style={styles.textLabel}>
+            Aux. Preview
+          </Text>
+        </View>
+      )}
+      previewConfig={{
+        previewType: 'CUSTOM',
+        previewSize: 'STRETCH',
+      }}
+      renderPreview={() => (
+        <View style={[styles.previewRootContainer, {
+          alignItems: 'center',
+          justifyContent: 'center',
+        }]}>
+          <Text style={styles.textLabel}>
+            Custom Menu Preview
+          </Text>
+        </View>
+      )}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
+```
+
+![ContextMenuAuxPreviewExample15](assets/example-ContextMenuAuxPreviewExample15.jpg)
+
+![placeholder](assets/placeholder.gif)
+
+<br>
+
 ### `ContextMenuButton` Example 01
 
 **Summary**: TBA
