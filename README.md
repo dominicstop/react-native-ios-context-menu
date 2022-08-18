@@ -9,8 +9,8 @@
 
 📝 Check [`TODO.md`](docs/TODO.md) for progress on re-write.
 
-* ❤️ Support the new API's introduced in iOS 15.
-* 🧡 New `SFSymbols` + menu icon config API.
+* ❤️ Support the new API's introduced in iOS 15/16+.
+* 🧡 New `SFSymbols` + menu icon config API (with support for advanced customizations).
 * 💛 Support for use with [Mac Catalyst](https://developer.apple.com/documentation/uikit/uicommand/adding_menus_and_shortcuts_to_the_menu_bar_and_user_interface) (e.g. configuring the mac's menu bar + the iPad's [shortcuts/menu bar](https://twitter.com/stroughtonsmith/status/1440344820577226752?s=20)). 
 * 💚 Typescript re-write (for better autocomplete).
 * 💙 Documentation re-write (so its actually usable + better examples).
@@ -20,7 +20,7 @@
 
 - The documentation is incomplete (some parts/sections are marked as **TBA** i.e. "to be added"). 
 - Some of the links in the documentation are broken (i.e. the URL points to `PLACE_HOLDER_LINK`).
-- For now, please see the [Usage And Examples](#e-usage-and-examples) section for information on how to use this library.
+- For now, please see the [Usage And Examples](#e-usage-and-examples) section, and [Showcase, Tests and Demos](#F-Showcase-Tests-and-Demos) section for information on how to use this library.
 
 <br>
 
