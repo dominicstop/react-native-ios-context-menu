@@ -119,6 +119,7 @@ extension RNIMenuItem {
     );
   };
   
+  #if !targetEnvironment(macCatalyst)
   #if swift(>=5.7)
   @available(iOS 16.0, *)
   var synthesizedPreferredMenuElementSize: UIMenu.ElementSize? {
@@ -127,6 +128,7 @@ extension RNIMenuItem {
     
     return UIMenu.ElementSize(string: menuPreferredElementSize);
   };
+  #endif
   #endif
 };
 
@@ -163,12 +165,14 @@ extension RNIMenuItem {
     };
     #endif
     
+    #if !targetEnvironment(macCatalyst)
     #if swift(>=5.7)
     if #available(iOS 16.0, *),
        let preferredElementSize = self.synthesizedPreferredMenuElementSize {
       
       menu.preferredElementSize = preferredElementSize;
     };
+    #endif
     #endif
     
     return menu;
