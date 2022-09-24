@@ -3,6 +3,7 @@ import type { RNIContextMenuViewProps } from './RNIContextMenuView';
 
 
 export type RNIContextMenuButtonBaseProps = Pick<RNIContextMenuViewProps,
+  | 'internalCleanupMode'
   | 'menuConfig'
   // Lifecycle Events
   | 'onMenuWillShow'

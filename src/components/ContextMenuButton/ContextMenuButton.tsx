@@ -31,12 +31,22 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     };
   };
 
+  componentWillUnmount(): void {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+
+    RNIContextMenuButtonModule.notifyComponentWillUnmount(
+      Helpers.getNativeNodeHandle(this.nativeRef),
+      {}
+    );
+  };
+
   getProps = () => {
     const {
       menuConfig,
       enableContextMenu,
       isMenuPrimaryAction,
       useActionSheetFallback,
+      internalCleanupMode,
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -60,6 +70,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       // B. Pass down props...
       menuConfig,
       isMenuPrimaryAction,
+      internalCleanupMode,
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -203,6 +214,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       menuConfig: props.menuConfig,
       enableContextMenu: props.enableContextMenu,
       isMenuPrimaryAction: props.isMenuPrimaryAction,
+      internalCleanupMode: props.internalCleanupMode,
 
       // event handlers
       onMenuWillShow  : this._handleOnMenuWillShow  ,

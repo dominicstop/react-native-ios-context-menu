@@ -5,6 +5,7 @@ import type { ContextMenuViewProps } from '../ContextMenuView';
 
 
 export type ContextMenuButtonBaseProps = Pick<RNIContextMenuButtonBaseProps,
+  | 'internalCleanupMode'
   | 'enableContextMenu'
   | 'isMenuPrimaryAction'
   | 'menuConfig'

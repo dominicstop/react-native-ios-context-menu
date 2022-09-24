@@ -36,8 +36,16 @@ class RNIContextMenuButton: UIButton {
   // MARK: - Properties - Feature Flags
   // ----------------------------------
   
-  private var shouldEnableAttachToParentVC = true;
-  private var shouldEnableCleanup = true;
+  // MARK: - Properties - Feature Flags
+  // ----------------------------------
+  
+  private var shouldEnableAttachToParentVC: Bool {
+    self.cleanupMode == .viewController
+  };
+  
+  private var shouldEnableCleanup: Bool {
+    self.cleanupMode != .disabled
+  };
   
   // MARK: - RN Exported Event Props
   // -------------------------------
@@ -91,6 +99,30 @@ class RNIContextMenuButton: UIButton {
     didSet {
       guard self.enableContextMenu != oldValue else { return };
       self.isContextMenuInteractionEnabled = self.isMenuPrimaryAction;
+    }
+  };
+  
+  private var _internalCleanupMode: RNICleanupMode = .automatic;
+  @objc var internalCleanupMode: String? {
+    willSet {
+      guard
+        let rawString = newValue,
+        let cleanupMode = RNICleanupMode(rawValue: rawString)
+      else { return };
+      
+      self._internalCleanupMode = cleanupMode;
+    }
+  };
+  
+  // MARK: - Computed Properties
+  // ---------------------------
+  
+  var cleanupMode: RNICleanupMode {
+    get {
+      switch self._internalCleanupMode {
+        case .automatic: return .reactComponentWillUnmount;
+        default: return self._internalCleanupMode;
+      };
     }
   };
   
@@ -278,6 +310,13 @@ extension RNIContextMenuButton {
       self.deferredElementCompletionMap.removeValue(forKey: deferredID);
     };
   };
+  
+  func notifyOnJSComponentWillUnmount(){
+    guard self.cleanupMode == .reactComponentWillUnmount
+    else { return };
+    
+    self.cleanup();
+  };
 };
 
 // MARK: - UIContextMenuInteractionDelegate
@@ -351,9 +390,10 @@ extension RNIContextMenuButton: UIGestureRecognizerDelegate {
 extension RNIContextMenuButton: RNINavigationEventsNotifiable {
   
   func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
-    // trigger cleanup
-    self.cleanup();
-    self.detachFromParentVC();
+    if self.cleanupMode == .viewController {
+      // trigger cleanup
+      self.cleanup();
+    };
   };
 };
 
@@ -371,12 +411,7 @@ extension RNIContextMenuButton: RNICleanable {
     self.didTriggerCleanup = true;
     
     self.contextMenuInteraction?.dismissMenu();
-    
-    // remove this view from registry
-    RNIUtilities.recursivelyRemoveFromViewRegistry(
-      bridge   : self.bridge,
-      reactView: self
-    );
+    self.detachFromParentVC();
     
     #if DEBUG
     NotificationCenter.default.removeObserver(self);
