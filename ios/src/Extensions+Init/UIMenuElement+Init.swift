@@ -15,10 +15,12 @@ extension UIMenuElement.Attributes {
       case "disabled"   : self = .disabled;
       case "destructive": self = .destructive;
       
+      #if !targetEnvironment(macCatalyst)
       #if swift(>=5.7)
       case "keepsMenuPresented":
         guard #available(iOS 16.0, *) else { return nil };
         self = .keepsMenuPresented
+      #endif
       #endif
       
       default: return nil;
