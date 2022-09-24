@@ -102,6 +102,15 @@
 
 ### Version: `next`
 
+
+
+<br>
+
+### Version: `1.12.2`
+
+- [x] (Commit: `19b12d8`) **Implement**: `RNIContextMenuView.cleanupMode`.
+- [x] (Commit: `8be50ac`) **Implement**: `RNIContextMenuButton.cleanupMode`.
+
 <br>
 
 ### Version: `1.12.1`
