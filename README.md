@@ -346,8 +346,9 @@ const styles = StyleSheet.create({
 | 🔤  `isAuxiliaryPreviewEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `false` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
 | 🔤  `auxiliaryPreviewConfig`<br/><br/>⚛️ `MenuAuxiliaryPreviewConfig` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
 | 🔤  `renderAuxillaryPreview`<br/><br/>⚛️ `() => React.ReactElement` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
+| 🔤  `internalCleanupMode`<br/><br/>⚛️ `RNICleanupMode`<br/><br/>✳️ **Default**: `automatic` | Internally, a clean up routine is triggered whenever a component is unmounted.<br><br>However, if the clean up routine is triggered too early, this will lead to the context menu component disappearing (E.g. [issue #34](https://github.com/dominicstop/react-native-ios-context-menu/issues/34)).<br><br>If you are experiencing this issue, you can disable the clean up routine from triggering altogether by setting this prop to `disabled`.<br><br>Additionally, you can also try setting this prop to either to `viewController`, or `reactComponentWillUnmount`.<br/><br/>`viewController` mode will trigger the clean up routine via the `UIViewController.viewWillDisappear` lifecycle method, while `reactComponentWillUnmount` mode on the other hand, will trigger trigger the clean up routine via the `componentWillUnmount` react lifecycle event. |
 
-<br>
+br<br>
 
 ##### `ContextMenuView` Component: Event Props
 
@@ -930,10 +931,11 @@ TBA
 
 TBA
 
-| Type                                                        | Description                                                  |
-| :---------------------------------------------------------- | ------------------------------------------------------------ |
-| 📌 **Declaration**: [`MenuEvents`](src/types/MenuEvents.ts)  | This file contains all the menu-related events and event objects. |
-| 📌 **Declaration**: [`MiscTypes.ts`](src/types/MiscTypes.ts) | This file contains a bunch of types that haven't been categorized yet.<br><br>Contains: `PointPreset`, `Point`, `DynamicColor`, etc. |
+| Type                                                         | Description                                                  |
+| :----------------------------------------------------------- | ------------------------------------------------------------ |
+| 📌 **Declaration**: [`MenuEvents`](src/types/MenuEvents.ts)   | This file contains all the menu-related events and event objects. |
+| 📌 **Declaration**: [`MiscTypes.ts`](src/types/MiscTypes.ts)  | This file contains a bunch of types that haven't been categorized yet.<br><br>Contains: `PointPreset`, `Point`, `DynamicColor`, etc. |
+| 📌 **Declaration**: [`RNICleanupMode.ts`](src/types/RNICleanupMode.ts) | TBA                                                          |
 
 <br>
 
