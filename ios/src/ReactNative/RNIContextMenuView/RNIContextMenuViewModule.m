@@ -23,4 +23,7 @@ RCT_EXTERN_METHOD(provideDeferredElements: (nonnull NSNumber)node
                   resolve: (RCTPromiseResolveBlock *)resolve
                   reject : (RCTPromiseRejectBlock  *)reject);
 
+RCT_EXTERN_METHOD(notifyComponentWillUnmount:(nonnull NSNumber *)node
+                  params:(NSDictionary *)params);
+
 @end

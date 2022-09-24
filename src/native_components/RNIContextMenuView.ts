@@ -4,10 +4,16 @@ import type { MenuConfig } from '../types/MenuConfig';
 import type { MenuPreviewConfig } from '../types/MenuPreviewConfig';
 import type { MenuAuxiliaryPreviewConfig } from '../types/MenuAuxiliaryPreviewConfig';
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent, OnRequestDeferredElementEvent  } from '../types/MenuEvents';
+import type { RNICleanupMode } from 'src/types/RNICleanupMode';
 
 
 // TODO: Add type annotation - Remove `any` type usage
 export type RNIContextMenuViewProps = ViewProps & {
+
+  // Internal
+  // --------
+
+  internalCleanupMode?: RNICleanupMode;
 
   // Value Props
   // -----------

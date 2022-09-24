@@ -56,8 +56,13 @@ class RNIContextMenuView: UIView {
   // MARK: - Properties - Feature Flags
   // ----------------------------------
   
-  private var shouldEnableAttachToParentVC = true;
-  private var shouldEnableCleanup = true;
+  private var shouldEnableAttachToParentVC: Bool {
+    self.cleanupMode == .viewController
+  };
+  
+  private var shouldEnableCleanup: Bool {
+    self.cleanupMode != .disabled
+  };
   
   // MARK: - Properties - "Auxiliary Preview"-Related (Experimental)
   // ---------------------------------------------------------------
@@ -149,6 +154,18 @@ class RNIContextMenuView: UIView {
   
   @objc var isContextMenuEnabled = true;
   
+  private var _internalCleanupMode: RNICleanupMode = .automatic;
+  @objc var internalCleanupMode: String? {
+    willSet {
+      guard
+        let rawString = newValue,
+        let cleanupMode = RNICleanupMode(rawValue: rawString)
+      else { return };
+      
+      self._internalCleanupMode = cleanupMode;
+    }
+  };
+  
   // MARK: - RN Exported Props: "Auxiliary Context Menu Preview"-Related (Experimental)
   // ----------------------------------------------------------------------------------
   
@@ -175,6 +192,15 @@ class RNIContextMenuView: UIView {
   
   var isUsingCustomPreview: Bool {
     self._previewConfig.previewType == .CUSTOM && self.previewWrapper != nil
+  };
+  
+  var cleanupMode: RNICleanupMode {
+    get {
+      switch self._internalCleanupMode {
+        case .automatic: return .reactComponentWillUnmount;
+        default: return self._internalCleanupMode;
+      };
+    }
   };
   
   // MARK: - Computed Properties - "Auxiliary Context Menu Preview"-Related
@@ -411,6 +437,13 @@ extension RNIContextMenuView {
       self.deferredElementCompletionMap.removeValue(forKey: deferredID);
     };
   };
+  
+  func notifyOnJSComponentWillUnmount(){
+    guard self.cleanupMode == .reactComponentWillUnmount
+    else { return };
+    
+    self.cleanup();
+  };
 };
 
 // MARK: - Private Functions
@@ -617,7 +650,7 @@ fileprivate extension RNIContextMenuView {
     };
   };
   
-  func detachFromParentVC(){
+  func detachFromParentVCIfAny(){
     guard !self.didAttachToParentVC,
           let childVC = self.viewController
     else { return };
@@ -1164,7 +1197,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       // i.e. wait for context menu preview to become visible before showing
       // the aux. preview.
       if !shouldUseAlternateWayToShowAuxPreview {
-        
         self.attachContextMenuAuxiliaryPreviewIfAny(animator);
       };
     };
@@ -1304,11 +1336,11 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
 extension RNIContextMenuView: RNINavigationEventsNotifiable {
   
   func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
-    // trigger cleanup
-    self.detachFromParentVC();
-    self.cleanup();
+    if self.cleanupMode == .viewController {
+      // trigger cleanup
+      self.cleanup();
+    };
   };
-
 };
 
 // MARK: - RNICleanable
@@ -1330,15 +1362,11 @@ extension RNIContextMenuView: RNICleanable {
     // remove deferred handlers
     self.deferredElementCompletionMap.removeAll();
     
+    self.detachFromParentVCIfAny();
+    
     // remove preview from registry
     self.previewWrapper?.cleanup();
     self.previewAuxiliaryViewWrapper?.cleanup();
-    
-    // remove this view from registry
-    RNIUtilities.recursivelyRemoveFromViewRegistry(
-      bridge   : self.bridge,
-      reactView: self
-    );
     
     self.previewWrapper = nil;
     self.previewController = nil;

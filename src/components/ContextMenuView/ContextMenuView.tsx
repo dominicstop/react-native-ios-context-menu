@@ -48,6 +48,15 @@ export class ContextMenuView extends
     this.emitter = new TSEventEmitter();
   };
 
+  componentWillUnmount(): void {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+
+    RNIContextMenuViewModule.notifyComponentWillUnmount(
+      Helpers.getNativeNodeHandle(this.nativeRef),
+      {}
+    );
+  };
+
   private getProps = () => {
     const {  
       useActionSheetFallback,
@@ -58,6 +67,8 @@ export class ContextMenuView extends
       shouldWaitForMenuToHideBeforeFiringOnPressMenuItem,
       shouldEnableAggressiveCleanup,
       isAuxiliaryPreviewEnabled,
+      // internal
+      internalCleanupMode,
       // event props
       onMenuWillShow,
       onMenuWillHide,
@@ -101,6 +112,7 @@ export class ContextMenuView extends
       menuConfig,
       previewConfig,
       auxiliaryPreviewConfig,
+      internalCleanupMode,
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -319,6 +331,7 @@ export class ContextMenuView extends
           menuConfig={props.menuConfig}
           previewConfig={props.previewConfig}
           auxiliaryPreviewConfig={props.auxiliaryPreviewConfig}
+          internalCleanupMode={props.internalCleanupMode}
           
           // Events: `onPress`-Related
           onMenuWillShow={this._handleOnMenuWillShow}

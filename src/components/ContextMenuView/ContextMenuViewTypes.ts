@@ -12,7 +12,7 @@ import type { RNIContextMenuViewProps } from '../../native_components/RNIContext
 
 export type RenderItem = () => React.ReactElement;
 
-export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
+export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,  
   | 'menuConfig'
   | 'previewConfig'
   | 'auxiliaryPreviewConfig'
@@ -31,6 +31,8 @@ export type ContextMenuViewBaseProps = Pick<RNIContextMenuViewProps,
   // `OnPress` Events
   | 'onPressMenuItem'
   | 'onPressMenuPreview'
+    // Internal
+  | 'internalCleanupMode'
 > & {
   lazyPreview?: boolean;
   useActionSheetFallback?: boolean;

@@ -83,4 +83,27 @@ internal class RNIContextMenuViewModule: NSObject {
       resolve(nil);
     };
   };
+  
+  @objc func notifyComponentWillUnmount(
+    _ node: NSNumber,
+    params: NSDictionary
+  ){
+    DispatchQueue.main.async {
+      // get `RNIWrapperView` instance that matches node/reactTag
+      guard #available(iOS 13, *),
+            let contextMenuView = self.getContextMenuView(node) else {
+        #if DEBUG
+        print(
+            "LOG - ViewManager, RNIWrapperViewModule: notifyComponentWillUnmount"
+          + " - for node: \(node)"
+          + " - no corresponding view found for node"
+          + " - the view might have already been unmounted..."
+        );
+        #endif
+        return;
+      };
+      
+      contextMenuView.notifyOnJSComponentWillUnmount();
+    };
+  };
 };

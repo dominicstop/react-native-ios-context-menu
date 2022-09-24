@@ -12,6 +12,11 @@ interface RNIContextMenuViewModule {
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ): Promise<void>;
+
+  notifyComponentWillUnmount(
+    node: number,
+    params: {}
+  ): void;
 };
 
 const MODULE_NAME = "RNIContextMenuViewModule";
