@@ -73,13 +73,6 @@ class RNIContextMenuButton: UIButton {
         
         let rootMenuConfig = RNIMenuItem(dictionary: rawMenuConfig)
       else { return };
-      
-      #if DEBUG
-      print("RNIContextMenuButton"
-        + " - menuConfig didSet"
-        + " - RNIMenuItem init"
-      );
-      #endif
      
       // cleanup `deferredElementCompletionMap`
       self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
@@ -321,12 +314,6 @@ extension RNIContextMenuButton {
   // context menu display begins
   override func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
     super.contextMenuInteraction(interaction, willDisplayMenuFor: configuration, animator: animator);
-    
-    #if DEBUG
-    print("RNIContextMenuButton, UIContextMenuInteractionDelegate"
-      + " - contextMenuInteraction: will show"
-    );
-    #endif
 
     self.isContextMenuVisible = true;
     
@@ -339,12 +326,6 @@ extension RNIContextMenuButton {
   // context menu display ends
   override func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
     super.contextMenuInteraction(interaction, willEndFor: configuration, animator: animator);
-    
-    #if DEBUG
-    print("RNIContextMenuButton, UIContextMenuInteractionDelegate"
-      + " - contextMenuInteraction: will hide"
-    );
-    #endif
     
     guard self.isContextMenuVisible else { return };
     

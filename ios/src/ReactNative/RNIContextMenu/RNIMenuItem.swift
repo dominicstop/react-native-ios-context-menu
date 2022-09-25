@@ -79,24 +79,15 @@ class RNIMenuItem: RNIMenuElement {
         guard let dictItem = $0 as? NSDictionary else { return nil };
         
         if let menuItem = RNIMenuItem(dictionary: dictItem) {
-          #if DEBUG
-          print("RNIMenuItem, init - compactMap: Creating RNIMenuItem...");
-          #endif
           return menuItem;
           
         } else if let menuAction = RNIMenuActionItem(dictionary: dictItem) {
-          #if DEBUG
-          print("RNIMenuItem, init - compactMap: Creating RNIMenuActionItem...");
-          #endif
           return menuAction;
           
         } else if let deferredElement = RNIDeferredMenuElement(dictionary: dictItem) {
           return deferredElement;
           
         } else {
-          #if DEBUG
-          print("RNIMenuItem, init - compactMap: nil");
-          #endif
           return nil;
         };
       };

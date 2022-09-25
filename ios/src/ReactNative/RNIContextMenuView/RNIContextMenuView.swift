@@ -116,13 +116,6 @@ class RNIContextMenuView: UIView {
       
       menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
         self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;
-
-      #if DEBUG
-      print("menuConfig didSet"
-        + " - RNIMenuItem init"
-        + " - menuConfig count: \(menuConfigDict.count)"
-      );
-      #endif
       
       self.updateContextMenuIfVisible(with: menuConfig);
       
@@ -457,14 +450,8 @@ fileprivate extension RNIContextMenuView {
   
   /// create `UIMenu` based on `menuConfig` prop
   func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
-    guard  let menuConfig = self._menuConfig else {
-      #if DEBUG
-      print("RNIContextMenuView, createMenu"
-        + " - guard check failed, menuConfig: nil"
-      );
-      #endif
-      return nil;
-    };
+    guard  let menuConfig = self._menuConfig
+    else { return nil };
     
     return menuConfig.createMenu(actionItemHandler: {
       // A. menu item has been pressed...
@@ -554,13 +541,7 @@ fileprivate extension RNIContextMenuView {
           self.isContextMenuVisible,
           let interaction: UIContextMenuInteraction = self.contextMenuInteraction
     else { return };
-      
-      #if DEBUG
-      print("menuConfig didSet"
-        + " - Updating  visible menu"
-      );
-      #endif
-      
+    
     // context menu is open, update the menu items
     interaction.updateVisibleMenu { _ in
       return menuConfig.createMenu(
@@ -1149,12 +1130,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     willDisplayMenuFor configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionAnimating?
   ) {
-      
-    #if DEBUG
-    print("RNIContextMenuView, UIContextMenuInteractionDelegate"
-      + " - contextMenuInteraction: will show"
-    );
-    #endif
     
     self.isContextMenuVisible = true;
     self.onMenuWillShow?([:]);
@@ -1201,12 +1176,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     willEndFor configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionAnimating?
   ) {
-      
-    #if DEBUG
-    print("RNIContextMenuView, UIContextMenuInteractionDelegate"
-      + " - contextMenuInteraction: will hide"
-    );
-    #endif
     
     guard self.isContextMenuVisible else { return };
     
@@ -1243,12 +1212,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionCommitAnimating
   ) {
-      
-    #if DEBUG
-    print("RNIContextMenuView, UIContextMenuInteractionDelegate"
-      + " - contextMenuInteraction: preview tapped"
-    );
-    #endif
     
     // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
     // hide preview auxiliary view

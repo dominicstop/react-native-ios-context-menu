@@ -153,11 +153,7 @@ extension RNIMenuActionItem {
   
   typealias ActionItemHandler = ([String: Any], UIAction) -> Void;
   
-  func createAction(handler: @escaping ActionItemHandler) -> UIAction {
-    #if DEBUG
-    print("RNIMenuActionItem, makeUIAction...");
-    #endif
-    
+  func createAction(handler: @escaping ActionItemHandler) -> UIAction {    
     let action = UIAction(
       title     : self.actionTitle,
       image     : self.icon?.image,
