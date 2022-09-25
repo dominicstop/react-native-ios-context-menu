@@ -19,6 +19,7 @@ extension UIMenu.Options {
   };
 };
 
+#if !targetEnvironment(macCatalyst)
 #if swift(>=5.7)
 @available(iOS 16, *)
 extension UIMenu.ElementSize {
@@ -33,4 +34,4 @@ extension UIMenu.ElementSize {
   };
 };
 #endif
-
+#endif
