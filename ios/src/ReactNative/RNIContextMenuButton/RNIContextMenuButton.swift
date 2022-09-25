@@ -310,13 +310,6 @@ extension RNIContextMenuButton {
       self.deferredElementCompletionMap.removeValue(forKey: deferredID);
     };
   };
-  
-  func notifyOnJSComponentWillUnmount(){
-    guard self.cleanupMode == .reactComponentWillUnmount
-    else { return };
-    
-    self.cleanup();
-  };
 };
 
 // MARK: - UIContextMenuInteractionDelegate
@@ -416,5 +409,19 @@ extension RNIContextMenuButton: RNICleanable {
     #if DEBUG
     NotificationCenter.default.removeObserver(self);
     #endif
+  };
+};
+
+// MARK: - RNIJSComponentWillUnmountNotifiable
+// -------------------------------------------
+
+@available(iOS 14, *)
+extension RNIContextMenuButton: RNIJSComponentWillUnmountNotifiable {
+  
+  func notifyOnJSComponentWillUnmount(){
+    guard self.cleanupMode == .reactComponentWillUnmount
+    else { return };
+    
+    self.cleanup();
   };
 };

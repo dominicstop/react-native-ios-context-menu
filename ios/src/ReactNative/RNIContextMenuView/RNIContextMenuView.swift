@@ -437,13 +437,6 @@ extension RNIContextMenuView {
       self.deferredElementCompletionMap.removeValue(forKey: deferredID);
     };
   };
-  
-  func notifyOnJSComponentWillUnmount(){
-    guard self.cleanupMode == .reactComponentWillUnmount
-    else { return };
-    
-    self.cleanup();
-  };
 };
 
 // MARK: - Private Functions
@@ -1375,5 +1368,19 @@ extension RNIContextMenuView: RNICleanable {
     #if DEBUG
     NotificationCenter.default.removeObserver(self);
     #endif
+  };
+};
+
+// MARK: - RNIJSComponentWillUnmountNotifiable
+// -------------------------------------------
+
+@available(iOS 13, *)
+extension RNIContextMenuView: RNIJSComponentWillUnmountNotifiable {
+  
+  func notifyOnJSComponentWillUnmount(){
+    guard self.cleanupMode == .reactComponentWillUnmount
+    else { return };
+    
+    self.cleanup();
   };
 };
