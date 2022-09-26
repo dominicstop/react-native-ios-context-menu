@@ -13,7 +13,7 @@ internal class RNIImageItem {
   
   static private var imageCache: [String: UIImage] = [:];
   
-  enum ImageType: String {
+  enum RNIImageType: String {
     case IMAGE_ASSET;
     case IMAGE_SYSTEM;
     case IMAGE_REQUIRE;
@@ -25,7 +25,7 @@ internal class RNIImageItem {
   // MARK: - Properties
   // -----------------
   
-  let type: ImageType;
+  let type: RNIImageType;
   
   // MARK: Properties - `imageOptions`-Related
   // -----------------------------------------
@@ -136,7 +136,7 @@ internal class RNIImageItem {
   // MARK: - Init
   // -----------
   
-  init?(type: ImageType, imageValue: Any?, imageOptions: NSDictionary?){
+  init?(type: RNIImageType, imageValue: Any?, imageOptions: NSDictionary?){
     self.type = type;
     self.imageValue = imageValue;
     
@@ -159,7 +159,7 @@ internal class RNIImageItem {
   
   convenience init?(dict: NSDictionary){
     guard let typeString = dict["type"] as? String,
-          let type       = ImageType(rawValue: typeString)
+          let type       = RNIImageType(rawValue: typeString)
     else { return nil };
     
     self.init(
