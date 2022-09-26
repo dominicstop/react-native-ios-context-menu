@@ -13,15 +13,6 @@ internal class RNIImageItem {
   
   static private var imageCache: [String: UIImage] = [:];
   
-  enum RNIImageType: String {
-    case IMAGE_ASSET;
-    case IMAGE_SYSTEM;
-    case IMAGE_REQUIRE;
-    case IMAGE_EMPTY;
-    case IMAGE_RECT;
-    case IMAGE_GRADIENT;
-  };
-  
   // MARK: - Properties
   // -----------------
   
