@@ -23,6 +23,8 @@ internal class RNIImageRemoteURLMaker {
   let url: URL;
   let imageLoadingConfig: RNIImageLoadingConfig;
   
+  var isLoading = false;
+  
   private var cachedImage: UIImage? {
     guard self.imageLoadingConfig.shouldCache ?? false,
           let cachedImage = Self.imageCache[self.urlString]
@@ -81,13 +83,17 @@ internal class RNIImageRemoteURLMaker {
   };
   
   func loadImage(){
-    
-    guard self._image == nil,
+    guard !self.isLoading,
+          self._image == nil,
           let urlRequest = self.synthesizedURLRequest,
           let imageLoader = self.imageLoader
     else { return };
     
-    imageLoader.loadImage(with: urlRequest){ error, image in
+    self.isLoading = true;
+    
+    imageLoader.loadImage(with: urlRequest){ [weak self] error, image in
+      self?.isLoading = false;
+
       guard let image = image else { return };
       
       DispatchQueue.main.async { [weak self] in
