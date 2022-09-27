@@ -28,9 +28,11 @@ internal class RNIImageItem {
   // -----------------------------------
   
   var useImageCache: Bool?;
-  var defaultSize = CGSize(width: 100, height: 100);
+  var defaultSize: CGSize;
   
-  private let imageValue: Any?;
+  let imageValue: Any?;
+  let imageConfig: RNIImageConfig;
+  
   private var imageRequire: UIImage?;
   
   // MARK: Properties - Computed
@@ -42,27 +44,15 @@ internal class RNIImageItem {
   };
   
   var baseImage: UIImage? {
-    switch self.type {
-      case .IMAGE_ASSET:
-        guard let string = self.imageValue as? String,
-              let image  = UIImage(named: string)
-        else { return nil };
+    switch self.imageConfig {
+      case let .IMAGE_ASSET(assetName):
+        return UIImage(named: assetName);
         
-        return image;
-        
-      case .IMAGE_SYSTEM:
-        guard #available(iOS 13.0, *),
-              let dict        = self.imageValue as? NSDictionary,
-              let imageConfig = RNIImageSystemMaker(dict: dict)
-        else { return nil };
-        
+      case let .IMAGE_SYSTEM(imageConfig):
+        guard #available(iOS 13.0, *) else { return nil };
         return imageConfig.image;
         
-      case .IMAGE_REQUIRE:
-        guard let dict = self.imageValue as? NSDictionary,
-              let uri  = dict["uri"] as? String
-        else { return nil };
-        
+      case let .IMAGE_REQUIRE(uri):
         if self.shouldUseImageCache,
            let cachedImage = Self.imageCache[uri] {
           
@@ -72,7 +62,9 @@ internal class RNIImageItem {
         // note: this will block the current thread
         let image = RCTConvert.uiImage(self.imageValue);
         
-        if self.shouldUseImageCache, let image = image {
+        if self.shouldUseImageCache,
+           let image = image {
+          
           Self.imageCache[uri] = image;
         };
         
@@ -81,19 +73,10 @@ internal class RNIImageItem {
       case .IMAGE_EMPTY:
         return UIImage();
         
-      case .IMAGE_RECT:
-        guard let dict        = self.imageValue as? NSDictionary,
-              let imageConfig = RNIImageMaker(dict: dict)
-        else { return nil };
-        
+      case let .IMAGE_RECT(imageConfig):
         return imageConfig.makeImage();
         
-      case .IMAGE_GRADIENT:
-        guard let dict        = self.imageValue as? NSDictionary,
-              var imageConfig = RNIImageGradientMaker(dict: dict)
-        else { return nil };
-        
-        imageConfig.setSizeIfNotSet(self.defaultSize);
+      case let .IMAGE_GRADIENT(imageConfig):
         return imageConfig.makeImage();
     };
   };
@@ -127,9 +110,61 @@ internal class RNIImageItem {
   // MARK: - Init
   // -----------
   
-  init?(type: RNIImageType, imageValue: Any?, imageOptions: NSDictionary?){
+  init?(
+    type: RNIImageType,
+    imageValue: Any?,
+    imageOptions: NSDictionary?,
+    defaultImageSize: CGSize = CGSize(width: 100, height: 100)
+  ){
+    
     self.type = type;
     self.imageValue = imageValue;
+    self.defaultSize = defaultImageSize;
+    
+    guard let imageConfig: RNIImageConfig = {
+      switch type {
+        case .IMAGE_ASSET:
+          guard let string = imageValue as? String
+          else { return nil };
+        
+          return .IMAGE_ASSET(assetName: string);
+          
+        case .IMAGE_SYSTEM:
+          guard #available(iOS 13.0, *),
+                let rawConfig   = imageValue as? NSDictionary,
+                let imageConfig = RNIImageSystemMaker(dict: rawConfig)
+          else { return nil };
+        
+          return .IMAGE_SYSTEM(config: imageConfig);
+          
+        case .IMAGE_REQUIRE:
+          guard let rawConfig = imageValue as? NSDictionary,
+                let uri = rawConfig["uri"] as? String
+          else { return nil };
+        
+          return .IMAGE_REQUIRE(uri: uri)
+        
+        case .IMAGE_EMPTY:
+        return .IMAGE_EMPTY;
+          
+        case .IMAGE_RECT:
+          guard let rawConfig = imageValue as? NSDictionary,
+                let imageConfig = RNIImageMaker(dict: rawConfig)
+          else { return nil };
+        
+          return .IMAGE_RECT(config: imageConfig);
+          
+        case .IMAGE_GRADIENT:
+          guard let rawConfig = imageValue as? NSDictionary,
+                var imageConfig = RNIImageGradientMaker(dict: rawConfig)
+          else { return nil };
+        
+          imageConfig.setSizeIfNotSet(defaultImageSize);
+          return .IMAGE_GRADIENT(config: imageConfig);
+      };
+    }() else { return nil };
+    
+    self.imageConfig = imageConfig;
     
     self.tint = {
       guard let value = imageOptions?["tint"],
