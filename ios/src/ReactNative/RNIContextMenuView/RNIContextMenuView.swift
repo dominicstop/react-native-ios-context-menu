@@ -453,13 +453,13 @@ fileprivate extension RNIContextMenuView {
     guard  let menuConfig = self._menuConfig
     else { return nil };
     
-    return menuConfig.createMenu(actionItemHandler: {
+    return menuConfig.createMenu(actionItemHandler: { [weak self] in
       // A. menu item has been pressed...
-      self.handleOnPressMenuActionItem(dict: $0, action: $1);
+      self?.handleOnPressMenuActionItem(dict: $0, action: $1);
       
-    }, deferredElementHandler: {
+    }, deferredElementHandler: { [weak self] in
       // B. deferred element is requesting for items to load...
-      self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
+      self?.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
     });
   };
   
