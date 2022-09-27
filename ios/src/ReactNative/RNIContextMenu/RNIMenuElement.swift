@@ -18,6 +18,9 @@ class RNIMenuElement  {
     case action, deferred, menu;
   };
   
+  // MARK: - Class Members
+  // ---------------------
+  
   @available(iOS 13.0, *)
   static func recursivelyGetAllElements<T>(
     from menuConfig: RNIMenuItem,
@@ -43,7 +46,13 @@ class RNIMenuElement  {
     return matchingElements;
   };
   
+  // MARK: - Properties
+  // ------------------
+  
   var type: MenuElementType?;
+  
+  // MARK: - Init
+  // ------------
   
   init?(dictionary: NSDictionary){
     self.type = {
@@ -53,6 +62,9 @@ class RNIMenuElement  {
       return MenuElementType(rawValue: string);
     }();
   };
+  
+  // MARK: - Functions
+  // -----------------
   
   @available(iOS 13.0, *)
   func createMenuElement(
@@ -79,11 +91,19 @@ class RNIMenuElement  {
   };
 };
 
-extension RNIMenuElement: Encodable, Hashable {
+// MARK: - Encodable
+// -----------------
+
+extension RNIMenuElement: Encodable {
   static func == (lhs: RNIMenuElement, rhs: RNIMenuElement) -> Bool {
     return ObjectIdentifier(lhs) == ObjectIdentifier(rhs);
   };
-  
+};
+
+// MARK: - Hashable
+// ----------------
+
+extension RNIMenuElement: Hashable {
   public func hash(into hasher: inout Hasher) {
     hasher.combine(ObjectIdentifier(self).hashValue)
   };
