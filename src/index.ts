@@ -11,6 +11,7 @@ export * from './constants/Enums';
 export * from './constants/LibEnv';
 
 export * from './functions/ActionSheetFallback';
+export * from './native_modules/RNIUtilitiesModule';
 
 export * from './types/MenuSharedTypes';
 export * from './types/MenuConfig';
