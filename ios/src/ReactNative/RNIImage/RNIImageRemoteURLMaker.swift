@@ -18,7 +18,17 @@ internal class RNIImageRemoteURLMaker {
   let url: URL;
   let imageLoadingConfig: RNIImageLoadingConfig;
   
-  var image: UIImage?;
+  private var _image: UIImage?;
+  var image: UIImage? {
+    set {
+      self._image = newValue;
+    }
+    get {
+      // trigger image loading
+      self.loadImage();
+      return self._image;
+    }
+  };
   
   /// Reminder: Use weak self to prevent retain cycle + memory leak
   var onImageDidLoadBlock: ((_ sender: RNIImageRemoteURLMaker) -> Void)?;
@@ -50,7 +60,8 @@ internal class RNIImageRemoteURLMaker {
   };
   
   func loadImage(){
-    guard let urlRequest = self.synthesizedURLRequest,
+    guard self._image == nil,
+          let urlRequest = self.synthesizedURLRequest,
           let imageLoader = self.imageLoader
     else { return };
     
@@ -59,7 +70,7 @@ internal class RNIImageRemoteURLMaker {
       
       print("DEBUG - image: \(image.debugDescription)");
       
-      strongSelf.image = image;
+      strongSelf._image = image;
       strongSelf.onImageDidLoadBlock?(strongSelf);
     };
   };
