@@ -15,6 +15,7 @@ enum RNIImageType: String {
   case IMAGE_EMPTY;
   case IMAGE_RECT;
   case IMAGE_GRADIENT;
+  case IMAGE_REMOTE_URL;
 };
 
 enum RNIImageConfig {
@@ -24,4 +25,5 @@ enum RNIImageConfig {
   case IMAGE_EMPTY;
   case IMAGE_RECT(config: RNIImageMaker);
   case IMAGE_GRADIENT(config: RNIImageGradientMaker);
+  case IMAGE_REMOTE_URL(config: RNIImageRemoteURLMaker);
 };

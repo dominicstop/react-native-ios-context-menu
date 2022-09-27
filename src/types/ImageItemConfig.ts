@@ -97,6 +97,10 @@ export type ImageGradientConfig = Partial<Pick<ImageRectConfig,
   type?: 'axial' | 'conic' | 'radial'
 };
 
+export type ImageRemoteUrlConfig = {
+  url: string;
+};
+
 /**
  * A configuration object for images.
  * 
@@ -134,6 +138,10 @@ export type ImageItemConfig = {
   type: 'IMAGE_GRADIENT';
   imageValue: ImageGradientConfig;
   
+} | {
+  type: 'IMAGE_REMOTE_URL';
+  imageValue: ImageRemoteUrlConfig;
+  imageLoadingConfig?: ImageLoadingConfig;
 };
 
 export type ImageItemConfigType = ImageItemConfig['type'];

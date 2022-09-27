@@ -70,6 +70,9 @@ internal class RNIImageItem {
         
       case let .IMAGE_GRADIENT(imageConfig):
         return imageConfig.makeImage();
+        
+      case let .IMAGE_REMOTE_URL(imageConfig):
+        return imageConfig.image;
     };
   };
   
@@ -160,6 +163,16 @@ internal class RNIImageItem {
         
           imageConfig.setSizeIfNotSet(defaultImageSize);
           return .IMAGE_GRADIENT(config: imageConfig);
+          
+        case .IMAGE_REMOTE_URL:
+          guard let rawConfig = imageValue as? NSDictionary,
+                let imageConfig = RNIImageRemoteURLMaker(
+                  dict: rawConfig,
+                  imageLoadingConfig: imageLoadingConfig
+                )
+          else { return nil };
+          
+          return .IMAGE_REMOTE_URL(config: imageConfig);
       };
     }() else { return nil };
     
