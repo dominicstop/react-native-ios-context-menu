@@ -55,7 +55,7 @@ export type ImageSymbolScale =
   | 'large';
 
 /** Maps to `UIImage.SymbolConfiguration` */
-type ImageSystemSymbolConfiguration = {
+export type ImageSystemSymbolConfiguration = {
   pointSize?: number;
   weight?: ImageSymbolWeight;
   scale?: ImageSymbolScale;
