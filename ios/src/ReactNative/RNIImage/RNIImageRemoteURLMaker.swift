@@ -70,8 +70,10 @@ internal class RNIImageRemoteURLMaker {
       
       print("DEBUG - image: \(image.debugDescription)");
       
-      strongSelf._image = image;
-      strongSelf.onImageDidLoadBlock?(strongSelf);
+      DispatchQueue.main.async {
+        strongSelf._image = image;
+        strongSelf.onImageDidLoadBlock?(strongSelf);
+      };
     };
   };
 };
