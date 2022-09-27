@@ -114,6 +114,8 @@ class RNIContextMenuView: UIView {
         return;
       };
       
+      menuConfig.delegate = self;
+      
       menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
         self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;
       
@@ -1345,5 +1347,17 @@ extension RNIContextMenuView: RNIJSComponentWillUnmountNotifiable {
     else { return };
     
     self.cleanup();
+  };
+};
+
+// MARK: - RNIMenuElementEventsNotifiable
+// --------------------------------------
+
+@available(iOS 13, *)
+extension RNIContextMenuView: RNIMenuElementEventsNotifiable {
+  
+  func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
+    guard let menuConfig = self._menuConfig else { return };
+    self.updateContextMenuIfVisible(with: menuConfig);
   };
 };

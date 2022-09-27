@@ -80,6 +80,8 @@ class RNIMenuActionItem: RNIMenuElement {
     
     self.menuState      = dictionary["menuState"     ] as? String;
     self.menuAttributes = dictionary["menuAttributes"] as? [String];
+    
+    self.setup();
   };
 };
 
@@ -178,5 +180,21 @@ extension RNIMenuActionItem {
     #endif
     
     return action;
+  };
+};
+
+// MARK: - Private Functions
+// -------------------------
+
+@available(iOS 13, *)
+extension RNIMenuActionItem {
+  
+  private func setup(){
+    if case let .IMAGE_REMOTE_URL(imageConfig) = self.icon?.imageConfig {
+      imageConfig.onImageDidLoadBlock = { [weak self] _ in
+        guard let strongSelf = self else { return };
+        strongSelf.notifyOnMenuElementUpdateRequest(for: strongSelf);
+      };
+    };
   };
 };

@@ -9,8 +9,6 @@
 import Foundation
 
 
-
-
 class RNIMenuElement  {
   
   // MARK: - Embedded Types
@@ -54,6 +52,7 @@ class RNIMenuElement  {
   var type: MenuElementType?;
   
   weak var parent: RNIMenuElement?;
+  weak var delegate: RNIMenuElementEventsNotifiable?;
   
   // MARK: - Init
   // ------------
@@ -92,5 +91,17 @@ class RNIMenuElement  {
     };
     
     return nil;
+  };
+};
+
+// MARK: - RNIMenuElementEventsNotifiable
+// --------------------------------------
+
+extension RNIMenuElement: RNIMenuElementEventsNotifiable {
+  func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
+    guard let delegate = self.delegate ?? self.parent?.delegate
+    else { return };
+    
+    delegate.notifyOnMenuElementUpdateRequest(for: element);
   };
 };

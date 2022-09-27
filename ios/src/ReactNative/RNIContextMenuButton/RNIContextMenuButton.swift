@@ -64,7 +64,8 @@ class RNIContextMenuButton: UIButton {
 
   // MARK: - RN Exported Props
   // -------------------------
-    
+  
+  private var _menuConfig: RNIMenuItem?;
   @objc var menuConfig: NSDictionary? {
     didSet {
       guard
@@ -73,6 +74,9 @@ class RNIContextMenuButton: UIButton {
         
         let rootMenuConfig = RNIMenuItem(dictionary: rawMenuConfig)
       else { return };
+      
+      self._menuConfig = rootMenuConfig;
+      rootMenuConfig.delegate = self;
      
       // cleanup `deferredElementCompletionMap`
       self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
@@ -404,5 +408,17 @@ extension RNIContextMenuButton: RNIJSComponentWillUnmountNotifiable {
     else { return };
     
     self.cleanup();
+  };
+};
+
+// MARK: - RNIMenuElementEventsNotifiable
+// --------------------------------------
+
+@available(iOS 14, *)
+extension RNIContextMenuButton: RNIMenuElementEventsNotifiable {
+  
+  func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
+    guard let menuConfig = self._menuConfig else { return };
+    self.updateContextMenu(with: menuConfig);
   };
 };

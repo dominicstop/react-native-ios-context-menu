@@ -87,6 +87,8 @@ class RNIMenuItem: RNIMenuElement {
         return menuElement;
       };
     };
+    
+    self.setup();
   };
 };
 
@@ -165,3 +167,18 @@ extension RNIMenuItem {
   };
 };
 
+// MARK: - Private Functions
+// -------------------------
+
+@available(iOS 13, *)
+extension RNIMenuItem {
+  
+  private func setup(){
+    if case let .IMAGE_REMOTE_URL(imageConfig) = self.icon?.imageConfig {
+      imageConfig.onImageDidLoadBlock = { [weak self] _ in
+        guard let strongSelf = self else { return };
+        strongSelf.notifyOnMenuElementUpdateRequest(for: strongSelf);
+      };
+    };
+  };
+};
