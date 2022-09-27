@@ -59,11 +59,14 @@ internal class RNIImageRemoteURLMaker {
     get {
       if let cachedImage = self.cachedImage {
         return cachedImage;
+        
+      } else if let image = self._image {
+        return image;
       };
       
       // trigger image loading so its loaded next time
       self.loadImage();
-      return self._image;
+      return nil;
     }
   };
   
@@ -105,7 +108,6 @@ internal class RNIImageRemoteURLMaker {
   
   func loadImage(){
     guard !self.isLoading,
-          self._image == nil,
           let urlRequest = self.synthesizedURLRequest,
           let imageLoader = self.imageLoader
     else { return };
@@ -119,8 +121,6 @@ internal class RNIImageRemoteURLMaker {
       
       DispatchQueue.main.async { [weak self] in
         guard let strongSelf = self else { return };
-        
-        print("DEBUG - image: \(image.debugDescription)");
         
         strongSelf._image = image;
         strongSelf.onImageDidLoadBlock?(strongSelf);
