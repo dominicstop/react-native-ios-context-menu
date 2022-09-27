@@ -15,6 +15,16 @@ internal struct RNIImageMaker {
   let fillColor   : UIColor;
   let borderRadius: CGFloat;
   
+  init(
+    size: CGSize,
+    fillColor: UIColor,
+    borderRadius: CGFloat
+  ) {
+    self.size = size;
+    self.fillColor = fillColor;
+    self.borderRadius = borderRadius;
+  };
+  
   init?(dict: NSDictionary) {
     guard let width  = dict["width" ] as? CGFloat,
           let height = dict["height"] as? CGFloat
