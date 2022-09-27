@@ -9,6 +9,11 @@ export type ImageResolvedAssetSource = {
   uri: string;
 };
 
+export type ImageLoadingConfig = {
+  shouldCache?: boolean;
+  shouldLazyLoad?: boolean;
+};
+
 export enum ImageTypes {
   IMAGE_ASSET    = 'IMAGE_ASSET'   ,
   IMAGE_SYSTEM   = 'IMAGE_SYSTEM'  ,
@@ -116,6 +121,7 @@ export type ImageItemConfig = {
   /** Object returned by `Image.resolveAssetSource()` */
   imageValue: ImageResolvedAssetSource;
   imageOptions?: UIImageConfig;
+  imageLoadingConfig?: ImageLoadingConfig;
 
 } | {
   type: 'IMAGE_EMPTY';

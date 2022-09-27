@@ -30,17 +30,12 @@ internal class RNIImageItem {
   // MARK: Properties - Misc
   // -----------------------
   
-  var useImageCache: Bool?;
   let imageConfig: RNIImageConfig;
+  var loadedImage: UIImage?;
   
   // MARK: Properties - Computed
   // ---------------------------
-  
-  var shouldUseImageCache: Bool {
-    // use cache if image require if `useImageCache` is not set
-    self.useImageCache ?? (self.type == .IMAGE_REQUIRE)
-  };
-  
+
   var baseImage: UIImage? {
     switch self.imageConfig {
       case let .IMAGE_ASSET(assetName):
@@ -50,19 +45,18 @@ internal class RNIImageItem {
         guard #available(iOS 13.0, *) else { return nil };
         return imageConfig.image;
         
-      case let .IMAGE_REQUIRE(uri):
-        if self.shouldUseImageCache,
+      case let .IMAGE_REQUIRE(uri, loadingConfig):
+        if loadingConfig.shouldCache,
            let cachedImage = Self.imageCache[uri] {
           
           return cachedImage;
         };
         
-        // note: this will block the current thread
-        let image = RCTConvert.uiImage(self.imageValue);
+        guard let image = self.loadedImage ?? RCTConvert.uiImage(self.imageValue)
+        else { return nil };
         
-        if self.shouldUseImageCache,
-           let image = image {
-          
+        if loadingConfig.shouldCache {
+          // cache - globally
           Self.imageCache[uri] = image;
         };
         
@@ -112,6 +106,7 @@ internal class RNIImageItem {
     type: RNIImageType,
     imageValue: Any?,
     imageOptions: NSDictionary?,
+    imageLoadingConfig: NSDictionary? = nil,
     defaultImageSize: CGSize = CGSize(width: 100, height: 100)
   ){
     
@@ -139,8 +134,14 @@ internal class RNIImageItem {
           guard let rawConfig = imageValue as? NSDictionary,
                 let uri = rawConfig["uri"] as? String
           else { return nil };
+          
+          let imageLoadingConfig =
+            RNIImageLoadingConfig(dict: imageLoadingConfig ?? [:]);
         
-          return .IMAGE_REQUIRE(uri: uri)
+          return .IMAGE_REQUIRE(
+            uri: uri,
+            loadingConfig: imageLoadingConfig
+          );
         
         case .IMAGE_EMPTY:
         return .IMAGE_EMPTY;
@@ -179,6 +180,8 @@ internal class RNIImageItem {
       
       return mode;
     }();
+    
+    self.preloadImage();
   };
   
   convenience init?(dict: NSDictionary){
@@ -189,10 +192,21 @@ internal class RNIImageItem {
     self.init(
       type: type,
       imageValue: dict["imageValue"],
-      imageOptions: dict["imageOptions"] as? NSDictionary
+      imageOptions: dict["imageOptions"] as? NSDictionary,
+      imageLoadingConfig: dict["imageLoadingConfig"] as? NSDictionary
     );
   };
   
   // MARK: - Functions
   // -----------------
+  
+  func preloadImage(){
+    switch self.imageConfig {
+      case let .IMAGE_REQUIRE(_, loadingConfig):
+        guard !loadingConfig.shouldLazyLoad else { return };
+        self.loadedImage = RCTConvert.uiImage(self.imageValue);
+        
+      default: return;
+    };
+  };
 };
