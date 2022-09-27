@@ -12,12 +12,6 @@ import UIKit;
 @objc(RNIContextMenuButtonManager)
 class RNIContextMenuButtonManager: RCTViewManager {
   
-  override var bridge: RCTBridge! {
-    willSet {
-      RNIUtilities.sharedBridge = newValue;
-    }
-  };
-  
   override static func requiresMainQueueSetup() -> Bool {
     return true;
   };

@@ -11,11 +11,7 @@ import Foundation
 @objc(RNIContextMenuViewModule)
 internal class RNIContextMenuViewModule: NSObject {
   
-  @objc var bridge: RCTBridge! {
-    willSet {
-      RNIUtilities.sharedBridge = newValue;
-    }
-  };
+  @objc var bridge: RCTBridge!;
   
   @objc static func requiresMainQueueSetup() -> Bool {
     // run init in bg thread

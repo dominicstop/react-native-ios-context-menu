@@ -10,12 +10,6 @@ import Foundation
 @objc(RNIWrapperViewManager)
 internal class RNIWrapperViewManager: RCTViewManager {
   
-  override var bridge: RCTBridge! {
-    willSet {
-      RNIUtilities.sharedBridge = newValue;
-    }
-  };
-  
   override static func requiresMainQueueSetup() -> Bool {
     // run init in bg thread
     return false;
