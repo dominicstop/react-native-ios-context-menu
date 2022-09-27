@@ -34,6 +34,9 @@ export function ContextMenuViewExample26(props: ContextMenuExampleProps) {
             imageLoadingConfig: {
               shouldLazyLoad: true,
             },
+            imageOptions: {
+              cornerRadius: 15,
+            },
           }
         }, {
           actionKey  : 'key-03'   ,
@@ -47,6 +50,11 @@ export function ContextMenuViewExample26(props: ContextMenuExampleProps) {
             imageLoadingConfig: {
               shouldLazyLoad: true,
               shouldCache: true,
+            },
+            imageOptions: {
+              cornerRadius: 30,
+              tint: 'rgba(255,0,0,0.5)',
+              renderingMode: 'alwaysOriginal',
             },
           }
         }],
