@@ -40,6 +40,10 @@ export type UIImageConfig = {
   renderingMode?: ImageRenderingModes;
 };
 
+export type ImageOptions = UIImageConfig & {
+  cornerRadius?: number;
+};
+
 export type ImageSymbolWeight = 
   | 'unspecified'
   | 'ultraLight'
@@ -112,19 +116,19 @@ export type ImageItemConfig = {
   type: 'IMAGE_ASSET';
   /** The corresponding key of asset item in the asset catalog */
   imageValue: string;
-  imageOptions?: UIImageConfig;
+  imageOptions?: ImageOptions;
 
 } | {
   type: 'IMAGE_SYSTEM';
   /** The key/name of the SF Symbols system icon */
   imageValue: ImageSystemConfig;
-  imageOptions?: UIImageConfig;
+  imageOptions?: ImageOptions;
 
 } | {
   type: 'IMAGE_REQUIRE';
   /** Object returned by `Image.resolveAssetSource()` */
   imageValue: ImageResolvedAssetSource;
-  imageOptions?: UIImageConfig;
+  imageOptions?: ImageOptions;
   imageLoadingConfig?: ImageLoadingConfig;
 
 } | {
@@ -137,11 +141,13 @@ export type ImageItemConfig = {
 } | {
   type: 'IMAGE_GRADIENT';
   imageValue: ImageGradientConfig;
+  imageOptions?: ImageOptions;
   
 } | {
   type: 'IMAGE_REMOTE_URL';
   imageValue: ImageRemoteUrlConfig;
   imageLoadingConfig?: ImageLoadingConfig;
+  imageOptions?: ImageOptions;
 };
 
 export type ImageItemConfigType = ImageItemConfig['type'];

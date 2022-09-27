@@ -18,14 +18,9 @@ internal class RNIImageItem {
   
   let type: RNIImageType;
   let imageValue: Any?;
+  let imageOptions: RNIImageOptions;
   
   var defaultSize: CGSize;
-  
-  // MARK: Properties - Config - `imageOptions`-Related
-  // --------------------------------------------------
-
-  let tint: UIColor?;
-  let renderingMode: UIImage.RenderingMode;
   
   // MARK: Properties - Misc
   // -----------------------
@@ -76,18 +71,47 @@ internal class RNIImageItem {
     };
   };
   
-  var image: UIImage? {
-    let image = self.baseImage;
+  var imageWithTint: UIImage? {
+    guard var image = self.baseImage else { return nil };
     
-    if #available(iOS 13.0, *), let tint = self.tint {
-      return image?.withTintColor(tint, renderingMode: self.renderingMode);
-      
-    } else if image?.renderingMode != self.renderingMode {
-      return image?.withRenderingMode(self.renderingMode);
-      
-    } else {
-      return image;
+    if image.renderingMode != self.imageOptions.renderingMode {
+      image = image.withRenderingMode(self.imageOptions.renderingMode)
     };
+    
+    if #available(iOS 13.0, *),
+       let tint = self.imageOptions.tint {
+      
+      image = image.withTintColor(
+        tint,
+        renderingMode: self.imageOptions.renderingMode
+      );
+    };
+    
+    return image;
+  };
+  
+  var imageWithRoundedEdges: UIImage? {
+    guard let image = self.imageWithTint
+    else { return nil };
+    
+    guard let cornerRadius = self.imageOptions.cornerRadius
+    else { return image };
+    
+    return UIGraphicsImageRenderer(size: image.size).image { context in
+      let rect = CGRect(origin: .zero, size: image.size);
+      
+      let clipPath = UIBezierPath(
+        roundedRect : rect,
+        cornerRadius: cornerRadius
+      );
+      
+      clipPath.addClip();
+      image.draw(in: rect);
+    };
+  };
+  
+  var image: UIImage? {
+    self.imageWithRoundedEdges
   };
   
   var dictionary: [String: Any] {
@@ -177,22 +201,7 @@ internal class RNIImageItem {
     }() else { return nil };
     
     self.imageConfig = imageConfig;
-    
-    self.tint = {
-      guard let value = imageOptions?["tint"],
-            let color = UIColor.parseColor(value: value)
-      else { return nil };
-      
-      return color;
-    }();
-    
-    self.renderingMode = {
-      guard let string = imageOptions?["renderingMode"] as? String,
-            let mode   = UIImage.RenderingMode(string: string)
-      else { return .automatic };
-      
-      return mode;
-    }();
+    self.imageOptions = RNIImageOptions(dict: imageOptions ?? [:]);
     
     self.preloadImage();
   };
