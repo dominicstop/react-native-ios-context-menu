@@ -6,17 +6,30 @@
 //
 
 import Foundation
+import UIKit
 
 
 internal class RNIImageRemoteURLMaker {
+  
+  static var imageCache: [String: UIImage] = [:];
   
   lazy var imageLoader: RCTImageLoaderWithAttributionProtocol? = {
     RNIUtilities.sharedBridge?.module(forName: "ImageLoader") as?
       RCTImageLoaderWithAttributionProtocol;
   }();
   
+  let urlString: String;
+  
   let url: URL;
   let imageLoadingConfig: RNIImageLoadingConfig;
+  
+  private var cachedImage: UIImage? {
+    guard self.imageLoadingConfig.shouldCache ?? false,
+          let cachedImage = Self.imageCache[self.urlString]
+    else { return nil };
+    
+    return cachedImage;
+  };
   
   private var _image: UIImage?;
   var image: UIImage? {
@@ -24,7 +37,11 @@ internal class RNIImageRemoteURLMaker {
       self._image = newValue;
     }
     get {
-      // trigger image loading
+      if let cachedImage = self.cachedImage {
+        return cachedImage;
+      };
+      
+      // trigger image loading so its loaded next time
       self.loadImage();
       return self._image;
     }
@@ -46,6 +63,8 @@ internal class RNIImageRemoteURLMaker {
           let url = URL(string: urlString)
     else { return nil };
     
+    self.urlString = urlString;
+    
     self.url = url;
     self.imageLoadingConfig =
       RNIImageLoadingConfig(dict: imageLoadingConfig ?? [:]);
@@ -53,26 +72,35 @@ internal class RNIImageRemoteURLMaker {
     self.onImageDidLoadBlock = onImageDidLoadBlock;
     
     let shouldLazyLoad = self.imageLoadingConfig.shouldLazyLoad ?? false;
+    let hasCachedImage = self.cachedImage != nil;
+    let shouldPreloadImage = !shouldLazyLoad && !hasCachedImage;
     
-    if !shouldLazyLoad {
+    if shouldPreloadImage {
       self.loadImage();
     };
   };
   
   func loadImage(){
+    
     guard self._image == nil,
           let urlRequest = self.synthesizedURLRequest,
           let imageLoader = self.imageLoader
     else { return };
     
-    imageLoader.loadImage(with: urlRequest){ [weak self] error, image in
-      guard let strongSelf = self else { return };
+    imageLoader.loadImage(with: urlRequest){ error, image in
+      guard let image = image else { return };
       
-      print("DEBUG - image: \(image.debugDescription)");
-      
-      DispatchQueue.main.async {
+      DispatchQueue.main.async { [weak self] in
+        guard let strongSelf = self else { return };
+        
+        print("DEBUG - image: \(image.debugDescription)");
+        
         strongSelf._image = image;
         strongSelf.onImageDidLoadBlock?(strongSelf);
+        
+        if strongSelf.imageLoadingConfig.shouldCache ?? false {
+          Self.imageCache[strongSelf.urlString] = image;
+        };
       };
     };
   };
