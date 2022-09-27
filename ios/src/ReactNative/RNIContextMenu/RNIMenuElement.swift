@@ -92,21 +92,3 @@ class RNIMenuElement  {
     return nil;
   };
 };
-
-// MARK: - Encodable
-// -----------------
-
-extension RNIMenuElement: Encodable {
-  static func == (lhs: RNIMenuElement, rhs: RNIMenuElement) -> Bool {
-    return ObjectIdentifier(lhs) == ObjectIdentifier(rhs);
-  };
-};
-
-// MARK: - Hashable
-// ----------------
-
-extension RNIMenuElement: Hashable {
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(ObjectIdentifier(self).hashValue)
-  };
-};
