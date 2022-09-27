@@ -10,6 +10,8 @@ import Foundation;
 
 internal class RNIUtilities {
   
+  static weak var sharedBridge: RCTBridge?;
+  
   static let osVersion = ProcessInfo().operatingSystemVersion;
   
   /// If you remove a "react view" from the view hierarchy (e.g. via
