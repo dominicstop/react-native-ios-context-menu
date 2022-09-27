@@ -46,7 +46,7 @@ internal class RNIImageItem {
         return imageConfig.image;
         
       case let .IMAGE_REQUIRE(uri, loadingConfig):
-        if loadingConfig.shouldCache,
+        if loadingConfig.shouldCache ?? true,
            let cachedImage = Self.imageCache[uri] {
           
           return cachedImage;
@@ -55,7 +55,7 @@ internal class RNIImageItem {
         guard let image = self.loadedImage ?? RCTConvert.uiImage(self.imageValue)
         else { return nil };
         
-        if loadingConfig.shouldCache {
+        if loadingConfig.shouldCache ?? true {
           // cache - globally
           Self.imageCache[uri] = image;
         };
@@ -216,9 +216,11 @@ internal class RNIImageItem {
   func preloadImage(){
     switch self.imageConfig {
       case let .IMAGE_REQUIRE(_, loadingConfig):
-        guard !loadingConfig.shouldLazyLoad else { return };
-        self.loadedImage = RCTConvert.uiImage(self.imageValue);
+        let shouldLazyLoad = loadingConfig.shouldLazyLoad ?? false;
         
+        guard !shouldLazyLoad else { return };
+        self.loadedImage = RCTConvert.uiImage(self.imageValue);
+
       default: return;
     };
   };

@@ -42,7 +42,9 @@ internal class RNIImageRemoteURLMaker {
     
     self.onImageDidLoadBlock = onImageDidLoadBlock;
     
-    if self.imageLoadingConfig.shouldLazyLoad {
+    let shouldLazyLoad = self.imageLoadingConfig.shouldLazyLoad ?? false;
+    
+    if !shouldLazyLoad {
       self.loadImage();
     };
   };

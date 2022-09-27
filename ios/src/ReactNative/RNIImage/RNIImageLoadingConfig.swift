@@ -10,11 +10,11 @@ import Foundation
 
 internal struct RNIImageLoadingConfig {
 
-  let shouldCache: Bool;
-  let shouldLazyLoad: Bool;
+  let shouldCache: Bool?;
+  let shouldLazyLoad: Bool?;
   
   init(dict: NSDictionary) {
-    self.shouldCache = dict["shouldCache"] as? Bool ?? false;
-    self.shouldLazyLoad = dict["shouldLazyLoad"] as? Bool ?? true;
+    self.shouldCache = dict["shouldCache"] as? Bool;
+    self.shouldLazyLoad = dict["shouldLazyLoad"] as? Bool;
   };
 };
