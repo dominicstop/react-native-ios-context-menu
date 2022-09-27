@@ -13,27 +13,25 @@ internal class RNIImageItem {
   
   static private var imageCache: [String: UIImage] = [:];
   
-  // MARK: - Properties
-  // -----------------
+  // MARK: - Properties - Config
+  // ---------------------------
   
   let type: RNIImageType;
+  let imageValue: Any?;
   
-  // MARK: Properties - `imageOptions`-Related
-  // -----------------------------------------
+  var defaultSize: CGSize;
+  
+  // MARK: Properties - Config - `imageOptions`-Related
+  // --------------------------------------------------
 
   let tint: UIColor?;
   let renderingMode: UIImage.RenderingMode;
   
-  // MARK: Properties - Internal/Private
-  // -----------------------------------
+  // MARK: Properties - Misc
+  // -----------------------
   
   var useImageCache: Bool?;
-  var defaultSize: CGSize;
-  
-  let imageValue: Any?;
   let imageConfig: RNIImageConfig;
-  
-  private var imageRequire: UIImage?;
   
   // MARK: Properties - Computed
   // ---------------------------
@@ -194,4 +192,7 @@ internal class RNIImageItem {
       imageOptions: dict["imageOptions"] as? NSDictionary
     );
   };
+  
+  // MARK: - Functions
+  // -----------------
 };
