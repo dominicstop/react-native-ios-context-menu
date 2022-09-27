@@ -73,14 +73,27 @@ internal class RNIImageItem {
   
   var imageWithTint: UIImage? {
     guard var image = self.baseImage else { return nil };
+    guard let tint = self.imageOptions.tint else { return image };
+    
+    let isTintTransparent = tint.rgba.a < 1;
+    
+    if isTintTransparent {
+      let overlay = RNIImageMaker(size: image.size, fillColor: tint, borderRadius: 0);
+      let overlayImage = overlay.makeImage();
+      
+      return UIGraphicsImageRenderer(size: image.size).image { context in
+        let rect = CGRect(origin: .zero, size: image.size);
+
+        image.draw(in: rect);
+        overlayImage.draw(in: rect);
+      };
+    };
     
     if image.renderingMode != self.imageOptions.renderingMode {
       image = image.withRenderingMode(self.imageOptions.renderingMode)
     };
     
-    if #available(iOS 13.0, *),
-       let tint = self.imageOptions.tint {
-      
+    if #available(iOS 13.0, *) {
       image = image.withTintColor(
         tint,
         renderingMode: self.imageOptions.renderingMode
