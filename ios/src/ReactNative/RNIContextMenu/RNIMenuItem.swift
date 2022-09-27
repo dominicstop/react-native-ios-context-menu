@@ -78,18 +78,13 @@ class RNIMenuItem: RNIMenuElement {
       self.menuItems = menuElements.compactMap {
         guard let dictItem = $0 as? NSDictionary else { return nil };
         
-        if let menuItem = RNIMenuItem(dictionary: dictItem) {
-          return menuItem;
-          
-        } else if let menuAction = RNIMenuActionItem(dictionary: dictItem) {
-          return menuAction;
-          
-        } else if let deferredElement = RNIDeferredMenuElement(dictionary: dictItem) {
-          return deferredElement;
-          
-        } else {
-          return nil;
-        };
+        let menuElement: RNIMenuElement? =
+             RNIMenuItem(dictionary: dictItem)
+          ?? RNIMenuActionItem(dictionary: dictItem)
+          ?? RNIDeferredMenuElement(dictionary: dictItem);
+        
+        menuElement?.parent = self;
+        return menuElement;
       };
     };
   };

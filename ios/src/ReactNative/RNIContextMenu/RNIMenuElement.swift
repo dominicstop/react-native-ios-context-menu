@@ -51,6 +51,8 @@ class RNIMenuElement  {
   
   var type: MenuElementType?;
   
+  weak var parent: RNIMenuElement?;
+  
   // MARK: - Init
   // ------------
   
