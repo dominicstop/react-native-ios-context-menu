@@ -18,12 +18,30 @@ internal class RNIImageRemoteURLMaker {
       RCTImageLoaderWithAttributionProtocol;
   }();
   
+  // MARK: - Properties - Serialized
+  // -------------------------------
+  
   let urlString: String;
+  
+  // MARK: - Properties - Derived/Parsed
+  // -----------------------------------
   
   let url: URL;
   let imageLoadingConfig: RNIImageLoadingConfig;
   
+  /// Reminder: Use weak self to prevent retain cycle + memory leak
+  var onImageDidLoadBlock: ((_ sender: RNIImageRemoteURLMaker) -> Void)?;
+  
+  // MARK: - Properties
+  // ------------------
+  
   var isLoading = false;
+  
+  /// loaded image
+  private var _image: UIImage?;
+  
+  // MARK: - Properties - Computed
+  // -----------------------------
   
   private var cachedImage: UIImage? {
     guard self.imageLoadingConfig.shouldCache ?? false,
@@ -33,7 +51,7 @@ internal class RNIImageRemoteURLMaker {
     return cachedImage;
   };
   
-  private var _image: UIImage?;
+  // shdaow variable for `_image`
   var image: UIImage? {
     set {
       self._image = newValue;
@@ -49,12 +67,12 @@ internal class RNIImageRemoteURLMaker {
     }
   };
   
-  /// Reminder: Use weak self to prevent retain cycle + memory leak
-  var onImageDidLoadBlock: ((_ sender: RNIImageRemoteURLMaker) -> Void)?;
-  
   var synthesizedURLRequest: URLRequest? {
     URLRequest(url: self.url);
   };
+  
+  // MARK: - Init
+  // ------------
   
   init?(
     dict: NSDictionary,
@@ -81,6 +99,9 @@ internal class RNIImageRemoteURLMaker {
       self.loadImage();
     };
   };
+  
+  // MARK: Functions
+  // ---------------
   
   func loadImage(){
     guard !self.isLoading,
