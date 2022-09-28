@@ -2775,7 +2775,7 @@ export function ContextMenuViewExample25(props) {
 
 
 
-### `ContextMenuView` Example 25
+### `ContextMenuView` Example 26
 
 **Summary**:  Icon Example — Network/Remote images as icons.
 
@@ -2853,7 +2853,7 @@ export function ContextMenuViewExample26(props) {
 
 
 
-![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExample26.jpg)
 
 ![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
 
