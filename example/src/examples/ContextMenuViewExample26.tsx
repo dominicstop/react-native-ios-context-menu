@@ -15,7 +15,7 @@ export function ContextMenuViewExample26(props: ContextMenuExampleProps) {
         menuItems: [{
           actionKey  : 'key-01'   ,
           actionTitle: 'Action #1',
-          menuSubtitle: 'Use "IMAGE_REMOTE_URL" icon',
+          actionSubtitle: 'Use "IMAGE_REMOTE_URL" icon',
           icon: {
             type: 'IMAGE_REMOTE_URL',
             imageValue: {
@@ -25,7 +25,7 @@ export function ContextMenuViewExample26(props: ContextMenuExampleProps) {
         }, {
           actionKey  : 'key-02'   ,
           actionTitle: 'Action #2',
-          menuSubtitle: '"IMAGE_REMOTE_URL" + shouldLazyLoad',
+          actionSubtitle: '"IMAGE_REMOTE_URL" + shouldLazyLoad',
           icon: {
             type: 'IMAGE_REMOTE_URL',
             imageValue: {
@@ -41,7 +41,7 @@ export function ContextMenuViewExample26(props: ContextMenuExampleProps) {
         }, {
           actionKey  : 'key-03'   ,
           actionTitle: 'Action #3',
-          menuSubtitle: '"IMAGE_REMOTE_URL" + shouldLazyLoad + shouldCache',
+          actionSubtitle: '"IMAGE_REMOTE_URL" + shouldLazyLoad + shouldCache',
           icon: {
             type: 'IMAGE_REMOTE_URL',
             imageValue: {
