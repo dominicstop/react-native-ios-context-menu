@@ -118,6 +118,12 @@ extension RNIMenuActionItem {
       ? self.discoverabilityTitle : nil;
   };
   
+  var fallbackDiscoverabilityTitle: String? {
+    RNIUtilities.osVersion.majorVersion < 15
+      ? self.actionSubtitle
+      : nil
+  };
+  
   /// Creates a dictionary containing all the raw values that was used to create this `RNIMenuActionItem`
   /// instance. The dictionary created will be suitable for sending it back to js/react (e.g. usually through an
   /// event or promise callback).
@@ -161,9 +167,9 @@ extension RNIMenuActionItem {
       image     : self.icon?.image,
       identifier: self.synthesizedIdentifier,
       
-      discoverabilityTitle: self.discoverabilityTitle ?? {
-        RNIUtilities.osVersion.majorVersion < 15 ? self.actionSubtitle : nil
-      }(),
+      discoverabilityTitle:
+           self.discoverabilityTitle
+        ?? self.fallbackDiscoverabilityTitle,
       
       attributes: self.synthesizedMenuElementAttributes,
       state     : self.synthesizedMenuElementState,
@@ -175,7 +181,9 @@ extension RNIMenuActionItem {
     
     #if swift(>=5.5)
     if #available(iOS 15.0, *) {
-      action.subtitle = self.actionSubtitle ?? self.fallbackActionSubtitle;
+      action.subtitle =
+           self.actionSubtitle
+        ?? self.fallbackActionSubtitle;
     };
     #endif
     
