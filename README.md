@@ -773,7 +773,7 @@ The table below defines the possible valid values that can be assigned to the `t
 
 <br>
 
-##### Object Union Type: `MenuAuxiliaryPreviewTransitionConfig
+##### Object Union Type: `MenuAuxiliaryPreviewTransitionConfig`
 
 This type is a union between the `UIViewAnimateConfig` object type, and the `MenuAuxiliaryPreviewBaseTransitionConfig` object type.
 
@@ -819,7 +819,7 @@ This type is an object tagged union type, with the `type` property being the tag
 
 | Name and Type                                                | Description |
 | :----------------------------------------------------------- | ----------- |
-| 🔤  **Required**: `type`<br/><br/>⚛️  `ImageItemConfigType` string union, i.e `'IMAGE_ASSET' ¦ 'IMAGE_SYSTEM' ¦ 'IMAGE_REQUIRE' ¦ 'IMAGE_EMPTY' ¦ 'IMAGE_RECT' ¦ 'IMAGE_GRADIENT' ` | TBA         |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `ImageItemConfigType` string union, i.e. `'IMAGE_ASSET' ¦ 'IMAGE_SYSTEM' ¦ 'IMAGE_REQUIRE'`<br>` ¦ 'IMAGE_EMPTY' ¦ 'IMAGE_RECT' ¦ 'IMAGE_GRADIENT' `<br>`¦ 'IMAGE_REMOTE_URL'` | TBA         |
 
 <br>
 
@@ -829,7 +829,7 @@ This type is an object tagged union type, with the `type` property being the tag
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_ASSET' ` | TBA<br/><br/>📌 Maps to [`UIImage.init(named:)`](https://developer.apple.com/documentation/uikit/uiimage/1624146-init) constructor in the apple docs. |
 | 🔤  **Required**: `imageValue`<br/><br/>⚛️  `string`           | TBA                                                          |
-| 🔤  `imageOptions?`<br/><br/>⚛️  [`UIImageConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `imageOptions?`<br/><br/>⚛️  [`ImageOptions`](PLACE_HOLDER_LINK) | TBA                                                          |
 
 <br>
 
@@ -839,7 +839,8 @@ This type is an object tagged union type, with the `type` property being the tag
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_SYSTEM' ` | TBA<br/><br/>📌 Maps to [`UIImage.init(systemName:withConfiguration:)`](https://developer.apple.com/documentation/uikit/uiimage/3294234-init) constructor in the apple docs. |
 | 🔤  **Required**:  `imageValue`<br/><br/>⚛️  [`ImageSystemConfig`](PLACE_HOLDER_LINK) | TBA<br/><br/>📌 Maps to the `withConfiguration` argument label in the  [`UIImage.init(systemName:withConfiguration:)`](https://developer.apple.com/documentation/uikit/uiimage/3294234-init) constructor in the apple docs. |
-| 🔤  `imageOptions?`<br/><br/>⚛️  [`UIImageConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
+| `imageOptions`<br/><br/>⚛️  [`ImageOptions`](PLACE_HOLDER_LINK) | TBA                                                          |
+| 🔤  `imageLoadingConfig`<br/><br/>⚛️  [`ImageLoadingConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
 
 <br>
 
@@ -866,6 +867,18 @@ This type is an object tagged union type, with the `type` property being the tag
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_GRADIENT' ` | TBA<br/><br/>📝 **Note**: Programmatically creates an image using [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer). |
 | 🔤  `imageValue`<br/><br/>⚛️  [`ImageGradientConfig`](PLACE_HOLDER_LINK) | TBA                                                          |
+| `imageOptions`<br/><br/>⚛️  [`ImageOptions`](PLACE_HOLDER_LINK) | TBA                                                          |
+
+<br>
+
+###### `ImageItemConfig`: `IMAGE_REMOTE_URL`
+
+| Name and Type                                                | Description |
+| :----------------------------------------------------------- | ----------- |
+| 🔤  **Required**: `type`<br/><br/>⚛️  `string` i.e `'IMAGE_REMOTE_URL' ` | TBA         |
+| 🔤  `imageValue`<br/><br/>⚛️  [`ImageRemoteUrlConfig`](PLACE_HOLDER_LINK) | TBA         |
+| 🔤  `imageLoadingConfig`<br/><br/>⚛️  [`ImageLoadingConfig`](PLACE_HOLDER_LINK) | TBA         |
+| `imageOptions`<br/><br/>⚛️  [`ImageOptions`](PLACE_HOLDER_LINK) | TBA         |
 
 <br>
 
@@ -924,6 +937,48 @@ TBA
 | 🔤  `scale?`<br/><br/>⚛️  [`ImageSymbolScale`](PLACE_HOLDER_LINK) | TBA<br/><br/>📌 Maps to [`UIImage.SymbolConfiguration.init(scale:)`](https://developer.apple.com/documentation/uikit/uiimage/symbolconfiguration/3294244-init) constructor in the apple docs. |
 | 🔤  `hierarchicalColor?`<br/><br/>⚛️  `Array<string>`          | TBA<br/><br/>📝 **Note A**: Cannot be used at the same time with `paletteColors`  (it's either one or the other).<br><br>📝 **Note B**: Requires iOS 15+.<br/><br/>📌 Maps to [`UIImage.SymbolConfiguration.init(hierarchicalColor:)`](https://developer.apple.com/documentation/uikit/uiimage/symbolconfiguration/3810053-init) constructor in the apple docs. |
 | 🔤  `paletteColors?`<br/><br/>⚛️  `string`                     | TBA<br/><br/>📝 **Note A**: Cannot be used at the same time with `hierarchicalColor`  (it's either one or the other).<br/><br/>📝 **Note B**: Requires iOS 15+.<br/><br/>📌 Maps to [`UIImage.SymbolConfiguration.init(paletteColors:)`](https://developer.apple.com/documentation/uikit/uiimage/symbolconfiguration/3810054-init) constructor in the apple docs. |
+
+<br>
+
+##### Object Type: `UIImageConfig`
+
+TBA
+
+| Name and Type                                        | Description |
+| :--------------------------------------------------- | ----------- |
+| 🔤  `tint`<br/><br/>⚛️  `string ¦ DynamicColor`        | TBA         |
+| 🔤  `renderingMode`<br/><br/>⚛️  `ImageRenderingModes` | TBA         |
+
+<br>
+
+##### Object Union Type: `ImageOptions`
+
+This type is a unioned with `UIImageConfig` object type, so it inherits its properties.
+
+| Name and Type                          | Description |
+| :------------------------------------- | ----------- |
+| 🔤  `cornerRadius`<br/><br/>⚛️  `number` | TBA         |
+
+<br>
+
+#####  Object Type: `ImageRemoteUrlConfig`
+
+TBA
+
+| Name and Type                               | Description |
+| :------------------------------------------ | ----------- |
+| 🔤 **Required**:  `url`<br/><br/>⚛️  `string` | TBA         |
+
+<br>
+
+#####  Object Type: `ImageLoadingConfig`
+
+TBA
+
+| Name and Type                             | Description |
+| :---------------------------------------- | ----------- |
+| 🔤  `shouldCache`<br/><br/>⚛️  `boolean`    | TBA         |
+| 🔤  `shouldLazyLoad`<br/><br/>⚛️  `boolean` | TBA         |
 
 <br>
 
