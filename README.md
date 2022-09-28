@@ -2767,6 +2767,100 @@ export function ContextMenuViewExample25(props) {
 
 <br>
 
+
+
+
+
+
+
+
+
+### `ContextMenuView` Example 25
+
+**Summary**:  Icon Example — Network/Remote images as icons.
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample26.tsx)
+
+```jsx
+
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample26(props) {
+  return (
+    <ContextMenuView
+      menuConfig={{
+        menuTitle: 'ContextMenuViewExample26',
+        menuItems: [{
+          actionKey  : 'key-01'   ,
+          actionTitle: 'Action #1',
+          menuSubtitle: 'Use "IMAGE_REMOTE_URL" icon',
+          icon: {
+            type: 'IMAGE_REMOTE_URL',
+            imageValue: {
+              url: 'https://picsum.photos/id/1/100'
+            },
+          }
+        }, {
+          actionKey  : 'key-02'   ,
+          actionTitle: 'Action #2',
+          menuSubtitle: '"IMAGE_REMOTE_URL" + shouldLazyLoad',
+          icon: {
+            type: 'IMAGE_REMOTE_URL',
+            imageValue: {
+              url: 'https://picsum.photos/id/2/100'
+            },
+            imageLoadingConfig: {
+              shouldLazyLoad: true,
+            },
+            imageOptions: {
+              cornerRadius: 15,
+            },
+          }
+        }, {
+          actionKey  : 'key-03'   ,
+          actionTitle: 'Action #3',
+          menuSubtitle: '"IMAGE_REMOTE_URL" + shouldLazyLoad + shouldCache',
+          icon: {
+            type: 'IMAGE_REMOTE_URL',
+            imageValue: {
+              url: 'https://picsum.photos/id/2/100'
+            },
+            imageLoadingConfig: {
+              shouldLazyLoad: true,
+              shouldCache: true,
+            },
+            imageOptions: {
+              cornerRadius: 30,
+              tint: 'rgba(255,0,0,0.5)',
+              renderingMode: 'alwaysOriginal',
+            },
+          }
+        }],
+      }}
+    >
+      {/** ... */}
+    </ContextMenuView>
+  );
+};
+```
+
+
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
+
+<br>
+
+
+
 ### `ContextMenuView` Auxiliary Preview - Example 01
 
 **Summary**: TBA
