@@ -58,12 +58,15 @@ internal class RNIImageRemoteURLMaker {
     }
     get {
       if let cachedImage = self.cachedImage {
+        // A - Image was cahced, Use cached image
         return cachedImage;
         
       } else if let image = self._image {
+        // B Image already loaded, use loaded image
         return image;
       };
       
+      // C - Image not loaded yet...
       // trigger image loading so its loaded next time
       self.loadImage();
       return nil;
