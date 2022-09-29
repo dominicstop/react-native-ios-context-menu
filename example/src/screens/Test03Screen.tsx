@@ -526,7 +526,6 @@ const styles = StyleSheet.create({
     paddingBottom: 90,
   },
   messageMenuContainer: {
-    maxWidth: '90%',
     flexDirection: 'row',
     marginBottom: 10,
   },
@@ -534,6 +533,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 10,
+    maxWidth: '90%',
   },
   messageTextLabel: {
   },
