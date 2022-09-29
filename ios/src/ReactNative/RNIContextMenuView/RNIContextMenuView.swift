@@ -197,7 +197,7 @@ class RNIContextMenuView: UIView {
       };
     }
   };
-  
+
   // MARK: - Computed Properties - "Auxiliary Context Menu Preview"-Related
   // ----------------------------------------------------------------------
   
@@ -450,9 +450,8 @@ fileprivate extension RNIContextMenuView {
     }();
   };
   
-  /// create `UIMenu` based on `menuConfig` prop
-  func createMenu(_ suggestedAction: [UIMenuElement]) -> UIMenu? {
-    guard  let menuConfig = self._menuConfig
+  func createMenu(with menuConfig: RNIMenuItem? = nil) -> UIMenu? {
+    guard let menuConfig = menuConfig ?? self._menuConfig
     else { return nil };
     
     return menuConfig.createMenu(actionItemHandler: { [weak self] in
@@ -541,23 +540,14 @@ fileprivate extension RNIContextMenuView {
   func updateContextMenuIfVisible(with menuConfig: RNIMenuItem){
     guard #available(iOS 14.0, *),
           self.isContextMenuVisible,
-          let interaction: UIContextMenuInteraction = self.contextMenuInteraction
+          
+          let interaction = self.contextMenuInteraction,
+          let menu = self.createMenu(with: menuConfig)
     else { return };
     
     // context menu is open, update the menu items
     interaction.updateVisibleMenu { _ in
-      return menuConfig.createMenu(
-        actionItemHandler: {
-          // A. menu item has been pressed...
-          self.handleOnPressMenuActionItem(dict: $0, action: $1);
-          
-        }, deferredElementHandler: {
-          // B. deferred element is requesting for items to load...
-          self.handleOnDeferredElementRequest(
-            deferredID: $0, completion: $1
-          );
-        }
-      );
+      return menu;
     };
   };
   
@@ -1122,7 +1112,9 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     return UIContextMenuConfiguration(
       identifier     : nil,
       previewProvider: self.createMenuPreview,
-      actionProvider : self.createMenu
+      actionProvider : { [unowned self] _ in
+        self.createMenu();
+      }
     );
   };
   
