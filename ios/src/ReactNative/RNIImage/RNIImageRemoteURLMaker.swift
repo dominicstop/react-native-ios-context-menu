@@ -117,7 +117,7 @@ internal class RNIImageRemoteURLMaker {
   // -----------------------------
   
   private var cachedImage: UIImage? {
-    guard self.imageLoadingConfig.shouldCache ?? false,
+    guard self.imageLoadingConfig._shouldCache,
           let cachedImage = Self.imageCache[self.urlString]
     else { return nil };
     
@@ -125,7 +125,7 @@ internal class RNIImageRemoteURLMaker {
   };
   
   var shouldRetry: Bool {
-    let maxRetryAttempts = self.imageLoadingConfig.maxRetryAttempts ?? 3;
+    let maxRetryAttempts = self.imageLoadingConfig._maxRetryAttempts;
     
     // Note: negative max retry attempt means infinite retry
     return maxRetryAttempts < 0
@@ -134,9 +134,9 @@ internal class RNIImageRemoteURLMaker {
   };
   
   // Get image w/o triggering loading logic (i.e. no side effects)
+  // This will also use the fallback image when appropriate
   var _image: UIImage? {
-    let fallbackBehavior =
-      self.imageLoadingConfig.fallbackBehavior ?? .onLoadError;
+    let fallbackBehavior = self.imageLoadingConfig._fallbackBehavior;
     
     switch self.state {
       case .INITIAL: fallthrough;
@@ -175,13 +175,14 @@ internal class RNIImageRemoteURLMaker {
   var image: UIImage? {
     switch self.state {
       case .INITIAL:
-        // image not loaded yet...
-        // trigger image loading so it's loaded the next time
+        // A - image not loaded yet...
+        //     trigger image loading so it's loaded the next time
         self.loadImage();
         return self._image;
         
       case .LOADED_ERROR:
-        // image loading failed - retry loading so it's loaded next time
+        // B - image loading failed...
+        //     retry loading so it's loaded next time
         self.loadImage();
         fallthrough;
         
@@ -328,7 +329,7 @@ internal class RNIImageRemoteURLMaker {
           };
         };
         
-        if strongSelf.imageLoadingConfig.shouldImmediatelyRetryLoading ?? false {
+        if strongSelf.imageLoadingConfig._shouldImmediatelyRetryLoading {
           strongSelf.loadImage();
         };
         
@@ -347,5 +348,30 @@ internal class RNIImageRemoteURLMaker {
         };
       };
     };
+  };
+};
+
+// MARK: - RNIRemoteURLImageLoadingConfig - Defaults
+// -------------------------------------------------
+
+fileprivate extension RNIRemoteURLImageLoadingConfig {
+  var _shouldLazyLoad: Bool {
+    self.shouldLazyLoad ?? false;
+  };
+  
+  var _shouldCache: Bool {
+    self.shouldCache ?? false;
+  };
+  
+  var _maxRetryAttempts: Int {
+    self.maxRetryAttempts ?? 3;
+  };
+  
+  var _shouldImmediatelyRetryLoading: Bool {
+    self.shouldImmediatelyRetryLoading ?? false;
+  };
+  
+  var _fallbackBehavior: FallbackBehavior {
+    self.fallbackBehavior ?? .onLoadError;
   };
 };
