@@ -51,8 +51,6 @@ internal class RNIImageRemoteURLMaker {
   let url: URL;
   let imageLoadingConfig: RNIRemoteURLImageLoadingConfig;
   
-  /// Reminder: Use weak self to prevent retain cycle + memory leak
-  var onImageDidLoadBlock: ImageDidLoadHandler?;
   
   // MARK: - Properties
   // ------------------
@@ -63,8 +61,10 @@ internal class RNIImageRemoteURLMaker {
   }();
   
   var state: State = .INITIAL;
-  
   var loadingAttemptsCount = 0;
+  
+  /// Reminder: Use weak self to prevent retain cycle + memory leak
+  var onImageDidLoadBlock: ImageDidLoadHandler?;
   
   // MARK: - Properties - Computed
   // -----------------------------
