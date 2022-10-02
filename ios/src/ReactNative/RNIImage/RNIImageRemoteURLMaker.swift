@@ -155,6 +155,10 @@ internal class RNIImageRemoteURLMaker {
         strongSelf.state = .LOADED_ERROR(error: error);
         strongSelf.onImageDidLoadBlock?(strongSelf);
         
+        if strongSelf.imageLoadingConfig.shouldImmediatelyRetryLoading ?? false {
+          strongSelf.loadImage();
+        };
+        
       } else if let image = $1 {
         DispatchQueue.main.async { [weak self] in
           guard let strongSelf = self else { return };

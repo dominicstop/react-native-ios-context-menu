@@ -13,10 +13,13 @@ internal struct RNIRemoteURLImageLoadingConfig: RNIImageLoadingConfigurable {
   let shouldLazyLoad: Bool?;
   
   let maxRetryAttempts: Int?;
+  let shouldImmediatelyRetryLoading: Bool?;
   
   init(dict: NSDictionary) {
     self.shouldCache = dict["shouldCache"] as? Bool;
     self.shouldLazyLoad = dict["shouldLazyLoad"] as? Bool;
+    
     self.maxRetryAttempts = dict["maxRetryAttempts"] as? Int;
+    self.shouldImmediatelyRetryLoading = dict["shouldImmediatelyRetryLoading"] as? Bool;
   };
 };
