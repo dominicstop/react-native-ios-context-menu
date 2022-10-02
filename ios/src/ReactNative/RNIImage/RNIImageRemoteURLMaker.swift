@@ -129,17 +129,35 @@ internal class RNIImageRemoteURLMaker {
     
     self.onImageDidLoadBlock = onImageDidLoadBlock;
     
-    let shouldLazyLoad = self.imageLoadingConfig.shouldLazyLoad ?? false;
-    let hasCachedImage = self.cachedImage != nil;
-    let shouldPreloadImage = !shouldLazyLoad && !hasCachedImage;
-    
-    if shouldPreloadImage {
-      self.loadImage();
-    };
+    self.setup();
   };
   
   // MARK: Functions
   // ---------------
+  
+  private func setup(){
+    let cachedImage = self.cachedImage;
+    
+    let shouldLazyLoad = self.imageLoadingConfig.shouldLazyLoad ?? false;
+    let shouldUseCache = self.imageLoadingConfig.shouldCache ?? false;
+    
+    /// Either:
+    /// * A - no cache exists for the provided url string
+    /// * B - image caching has been disabled
+    let hasCachedImage = shouldUseCache && cachedImage != nil;
+    
+    let shouldPreloadImage = !shouldLazyLoad && !hasCachedImage;
+    
+    if shouldPreloadImage {
+      // A - Load image in the bg, so it's potentially ready when the image is
+      //     accessed later...
+      self.loadImage();
+      
+    } else if hasCachedImage {
+      // B - Use the cached image that matched with the provided url
+      self.state = .LOADED(image: cachedImage!);
+    };
+  };
   
   func loadImage(){
     /// still has retry attemps remaining, and not currently loading
