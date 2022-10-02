@@ -30,6 +30,8 @@ internal class RNIImageRemoteURLMaker {
     };
   };
   
+  typealias ImageDidLoadHandler = (_ sender: RNIImageRemoteURLMaker) -> Void;
+  
   // MARK: - Class Members
   // ---------------------
   
@@ -47,7 +49,7 @@ internal class RNIImageRemoteURLMaker {
   let imageLoadingConfig: RNIRemoteURLImageLoadingConfig;
   
   /// Reminder: Use weak self to prevent retain cycle + memory leak
-  var onImageDidLoadBlock: ((_ sender: RNIImageRemoteURLMaker) -> Void)?;
+  var onImageDidLoadBlock: ImageDidLoadHandler?;
   
   // MARK: - Properties
   // ------------------
@@ -110,7 +112,7 @@ internal class RNIImageRemoteURLMaker {
   init?(
     dict: NSDictionary,
     imageLoadingConfig: NSDictionary?,
-    onImageDidLoadBlock: ((_ sender: RNIImageRemoteURLMaker) -> Void)? = nil
+    onImageDidLoadBlock: ImageDidLoadHandler? = nil
   ){
     guard let urlString = dict["url"] as? String,
           let url = URL(string: urlString)
