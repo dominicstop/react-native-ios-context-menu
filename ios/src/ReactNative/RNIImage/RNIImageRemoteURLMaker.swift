@@ -126,7 +126,11 @@ internal class RNIImageRemoteURLMaker {
   
   var shouldRetry: Bool {
     let maxRetryAttempts = self.imageLoadingConfig.maxRetryAttempts ?? 3;
-    return self.loadingAttemptsCount < maxRetryAttempts;
+    
+    // Note: negative max retry attempt means infinite retry
+    return maxRetryAttempts < 0
+      ? true
+      : self.loadingAttemptsCount < maxRetryAttempts;
   };
   
   var shouldUseFallbackImage: Bool {
