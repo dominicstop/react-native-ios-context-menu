@@ -11,12 +11,29 @@ import UIKit
 
 internal class RNIImageRemoteURLMaker {
   
-  static var imageCache: [String: UIImage] = [:];
+  // MARK: - Embedded Types
+  // ----------------------
   
-  lazy var imageLoader: RCTImageLoaderWithAttributionProtocol? = {
-    RNIUtilities.sharedBridge?.module(forName: "ImageLoader") as?
-      RCTImageLoaderWithAttributionProtocol;
-  }();
+  /// Note: Unable to synthesize `Equatable` conformance because of `Error` associated value.
+  enum State {
+    case INITIAL, LOADING;
+    
+    case LOADED_ERROR (error: Error);
+    
+    case LOADED(image: UIImage);
+    
+    var isLoading: Bool {
+      switch self {
+        case .LOADING: return true;
+        default: return false;
+      };
+    };
+  };
+  
+  // MARK: - Class Members
+  // ---------------------
+  
+  static var imageCache: [String: UIImage] = [:];
   
   // MARK: - Properties - Serialized
   // -------------------------------
@@ -35,10 +52,12 @@ internal class RNIImageRemoteURLMaker {
   // MARK: - Properties
   // ------------------
   
-  var isLoading = false;
+  lazy var imageLoader: RCTImageLoaderWithAttributionProtocol? = {
+    RNIUtilities.sharedBridge?.module(forName: "ImageLoader") as?
+      RCTImageLoaderWithAttributionProtocol;
+  }();
   
-  /// loaded image
-  private var _image: UIImage?;
+  var state: State = .INITIAL;
   
   // MARK: - Properties - Computed
   // -----------------------------
@@ -51,26 +70,25 @@ internal class RNIImageRemoteURLMaker {
     return cachedImage;
   };
   
-  // shdaow variable for `_image`
   var image: UIImage? {
-    set {
-      self._image = newValue;
-    }
-    get {
-      if let cachedImage = self.cachedImage {
-        // A - Image was cahced, Use cached image
-        return cachedImage;
+    switch self.state {
+      case .INITIAL:
+        // image not loaded yet...
+        // trigger image loading so its loaded the next time
+        self.loadImage();
+        return nil;
         
-      } else if let image = self._image {
-        // B Image already loaded, use loaded image
+      case .LOADED(image: let image):
         return image;
-      };
-      
-      // C - Image not loaded yet...
-      // trigger image loading so its loaded next time
-      self.loadImage();
-      return nil;
-    }
+        
+      case .LOADED_ERROR:
+        // image loading failed - retry loading so it's loaded next time
+        self.loadImage();
+        return nil;
+        
+      default:
+        return nil;
+    };
   };
   
   var synthesizedURLRequest: URLRequest? {
@@ -110,26 +128,30 @@ internal class RNIImageRemoteURLMaker {
   // ---------------
   
   func loadImage(){
-    guard !self.isLoading,
+    guard !self.state.isLoading,
           let urlRequest = self.synthesizedURLRequest,
           let imageLoader = self.imageLoader
-    else { return };
+    else { return; };
     
-    self.isLoading = true;
+    self.state = .LOADING;
     
-    imageLoader.loadImage(with: urlRequest){ [weak self] error, image in
-      self?.isLoading = false;
-
-      guard let image = image else { return };
+    imageLoader.loadImage(with: urlRequest){ [weak self] in
+      guard let strongSelf = self else { return };
       
-      DispatchQueue.main.async { [weak self] in
-        guard let strongSelf = self else { return };
-        
-        strongSelf._image = image;
+      if let error = $0 {
+        strongSelf.state = .LOADED_ERROR(error: error);
         strongSelf.onImageDidLoadBlock?(strongSelf);
         
-        if strongSelf.imageLoadingConfig.shouldCache ?? false {
-          Self.imageCache[strongSelf.urlString] = image;
+      } else if let image = $1 {
+        DispatchQueue.main.async { [weak self] in
+          guard let strongSelf = self else { return };
+          
+          strongSelf.state = .LOADED(image: image);
+          strongSelf.onImageDidLoadBlock?(strongSelf);
+          
+          if strongSelf.imageLoadingConfig.shouldCache ?? false {
+            Self.imageCache[strongSelf.urlString] = image;
+          };
         };
       };
     };
