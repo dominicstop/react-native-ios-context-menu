@@ -8,7 +8,13 @@
 import Foundation
 
 
-internal struct RNIImageLoadingConfig {
+protocol RNIImageLoadingConfigurable {
+  var shouldCache: Bool? { get };
+  var shouldLazyLoad: Bool? { get };
+};
+
+// TODO: Per file defaults via extension
+internal struct RNIImageLoadingConfig: RNIImageLoadingConfigurable {
 
   let shouldCache: Bool?;
   let shouldLazyLoad: Bool?;
