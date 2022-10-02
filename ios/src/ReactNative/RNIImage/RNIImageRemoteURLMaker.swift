@@ -44,7 +44,7 @@ internal class RNIImageRemoteURLMaker {
   // -----------------------------------
   
   let url: URL;
-  let imageLoadingConfig: RNIImageLoadingConfig;
+  let imageLoadingConfig: RNIRemoteURLImageLoadingConfig;
   
   /// Reminder: Use weak self to prevent retain cycle + memory leak
   var onImageDidLoadBlock: ((_ sender: RNIImageRemoteURLMaker) -> Void)?;
@@ -111,7 +111,7 @@ internal class RNIImageRemoteURLMaker {
     
     self.url = url;
     self.imageLoadingConfig =
-      RNIImageLoadingConfig(dict: imageLoadingConfig ?? [:]);
+      RNIRemoteURLImageLoadingConfig(dict: imageLoadingConfig ?? [:]);
     
     self.onImageDidLoadBlock = onImageDidLoadBlock;
     

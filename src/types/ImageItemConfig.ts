@@ -14,6 +14,9 @@ export type ImageLoadingConfig = {
   shouldLazyLoad?: boolean;
 };
 
+export type ImageRemoteURLLoadingConfig = ImageLoadingConfig & {
+};
+
 export enum ImageTypes {
   IMAGE_ASSET    = 'IMAGE_ASSET'   ,
   IMAGE_SYSTEM   = 'IMAGE_SYSTEM'  ,
@@ -146,7 +149,7 @@ export type ImageItemConfig = {
 } | {
   type: 'IMAGE_REMOTE_URL';
   imageValue: ImageRemoteUrlConfig;
-  imageLoadingConfig?: ImageLoadingConfig;
+  imageLoadingConfig?: ImageRemoteURLLoadingConfig;
   imageOptions?: ImageOptions;
 };
 
