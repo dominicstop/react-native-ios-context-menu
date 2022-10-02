@@ -175,9 +175,12 @@ extension RNIMenuItem {
   
   private func setup(){
     if case let .IMAGE_REMOTE_URL(imageConfig) = self.icon?.imageConfig {
-      imageConfig.onImageDidLoadBlock = { [weak self] _ in
+      imageConfig.onImageDidLoadBlock = { [weak self] isSuccess, _ in
         guard let strongSelf = self else { return };
-        strongSelf.notifyOnMenuElementUpdateRequest(for: strongSelf);
+        
+        if isSuccess {
+          strongSelf.notifyOnMenuElementUpdateRequest(for: strongSelf);
+        };
       };
     };
   };

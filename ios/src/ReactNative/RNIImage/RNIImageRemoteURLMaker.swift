@@ -30,7 +30,10 @@ internal class RNIImageRemoteURLMaker {
     };
   };
   
-  typealias ImageDidLoadHandler = (_ sender: RNIImageRemoteURLMaker) -> Void;
+  typealias ImageDidLoadHandler = (
+    _ isSuccess: Bool,
+    _ sender: RNIImageRemoteURLMaker
+  ) -> Void;
   
   // MARK: - Class Members
   // ---------------------
@@ -155,7 +158,7 @@ internal class RNIImageRemoteURLMaker {
       
       if let error = $0 {
         strongSelf.state = .LOADED_ERROR(error: error);
-        strongSelf.onImageDidLoadBlock?(strongSelf);
+        strongSelf.onImageDidLoadBlock?(false, strongSelf);
         
         if strongSelf.imageLoadingConfig.shouldImmediatelyRetryLoading ?? false {
           strongSelf.loadImage();
@@ -166,7 +169,7 @@ internal class RNIImageRemoteURLMaker {
           guard let strongSelf = self else { return };
           
           strongSelf.state = .LOADED(image: image);
-          strongSelf.onImageDidLoadBlock?(strongSelf);
+          strongSelf.onImageDidLoadBlock?(true, strongSelf);
           
           if strongSelf.imageLoadingConfig.shouldCache ?? false {
             Self.imageCache[strongSelf.urlString] = image;
