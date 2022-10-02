@@ -108,6 +108,7 @@ export type ImageGradientConfig = Partial<Pick<ImageRectConfig,
 
 export type ImageRemoteUrlConfig = {
   url: string;
+  fallbackImage?: ImageItemConfig;
 };
 
 /**
