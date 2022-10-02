@@ -14,9 +14,15 @@ export type ImageLoadingConfig = {
   shouldLazyLoad?: boolean;
 };
 
+export type ImageRemoteURLFallbackBehavior = 
+  | 'afterFinalAttempt'
+  | 'whileNotLoaded'
+  | 'onLoadError';
+
 export type ImageRemoteURLLoadingConfig = ImageLoadingConfig & {
   maxRetryAttempts?: number;
-  shouldImmediatelyRetryLoading?: boolean
+  shouldImmediatelyRetryLoading?: boolean;
+  fallbackBehavior?: ImageRemoteURLFallbackBehavior
 };
 
 export enum ImageTypes {

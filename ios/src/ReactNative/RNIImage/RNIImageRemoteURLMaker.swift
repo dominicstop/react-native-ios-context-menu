@@ -133,30 +133,41 @@ internal class RNIImageRemoteURLMaker {
       : self.loadingAttemptsCount < maxRetryAttempts;
   };
   
-  var shouldUseFallbackImage: Bool {
-    !self.shouldRetry
-  };
-  
   // Get image w/o triggering loading logic (i.e. no side effects)
   var _image: UIImage? {
+    let fallbackBehavior =
+      self.imageLoadingConfig.fallbackBehavior ?? .onLoadError;
+    
     switch self.state {
-      case .LOADED(image: let image):
-        return image;
+      case .INITIAL: fallthrough;
+      case .LOADING:
+        // A - Use fallback image when the remote image hasn't been loaded yet
+        switch fallbackBehavior {
+          case .whileNotLoaded: return self.fallbackImage;
+          default: return nil;
+        };
         
-      case .RETRYING:
-        fallthrough;
-        
+      case .RETRYING: fallthrough;
       case .LOADED_ERROR:
-        fallthrough;
-        // return self.shouldUseFallbackImage
-        //  ? self.fallbackImage
-        //  : nil;
+        // B - Use fallback image when the remote image hasn't been loaded yet
+        //     due to an error
+        switch fallbackBehavior {
+          case .whileNotLoaded: fallthrough;
+          case .onLoadError: return self.fallbackImage;
+          
+          default: return nil;
+        };
         
       case .LOADED_ERROR_FINAL:
-        return self.fallbackImage;
-      
-      default:
-        return nil;
+        // C - Use fallback image when the remote image has failed to load, and
+        //     no more "retry loading" attempts remaining
+        switch fallbackBehavior {
+          case .afterFinalAttempt: return self.fallbackImage;
+          default: return nil;
+        };
+        
+      case .LOADED(image: let image):
+        return image;
     };
   };
   
@@ -167,7 +178,7 @@ internal class RNIImageRemoteURLMaker {
         // image not loaded yet...
         // trigger image loading so it's loaded the next time
         self.loadImage();
-        return nil;
+        return self._image;
         
       case .LOADED_ERROR:
         // image loading failed - retry loading so it's loaded next time
@@ -265,7 +276,6 @@ internal class RNIImageRemoteURLMaker {
     func log(_ string: String = ""){
       print("DEBUG - \(string) - loadingAttemptsCount: \(loadingAttemptsCount) - loadImage - URL: \(self.urlString) - state: \(self.state) - _image: \(self._image)");
     };
-
     
     guard shouldLoad,
           let urlRequest = self.synthesizedURLRequest,
@@ -281,7 +291,9 @@ internal class RNIImageRemoteURLMaker {
     let hasPrevError = prevError != nil;
     
     self.state = hasPrevError
+      // A - Retry loading the remote image
       ? .RETRYING(prevError: prevError!)
+      // B - Loading the remote image for the 1st time
       : .LOADING;
     
     log("2");
@@ -295,7 +307,9 @@ internal class RNIImageRemoteURLMaker {
       
       if let error = $0 {
         strongSelf.state = strongSelf.shouldRetry
+          // A - Error Loading - Try again
           ? .LOADED_ERROR(error: error)
+          // B - Error Loading - Final attempt
           : .LOADED_ERROR_FINAL(error: error);
         
         log("3");
@@ -306,7 +320,8 @@ internal class RNIImageRemoteURLMaker {
           DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return };
             
-            // failed to load image, but is using fallback image
+            // failed to load image, but is using fallback image so notify that
+            // it's using the fallback image as a substitute
             strongSelf.onImageDidLoadBlock?(false, strongSelf);
             
             log("4");
