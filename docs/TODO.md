@@ -70,6 +70,11 @@
 
 - [ ] **Implement**: Provide a default config for `previewConfig` when a `renderPreview` prop is given a value so that there's a default behavior.
 - [ ] Expose `location(in:)`
+- [ ] Implement: Re-write image loading logic for `IMAGE_REQUIRE`.
+	* Move image loading in the background.
+	* Add option for: lazy loading.
+	* Add option for: synchronous loading.
+	* Add option for: image caching.
 
 
 
