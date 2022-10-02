@@ -15,6 +15,7 @@ export type ImageLoadingConfig = {
 };
 
 export type ImageRemoteURLLoadingConfig = ImageLoadingConfig & {
+  maxRetryAttempts?: number;
 };
 
 export enum ImageTypes {

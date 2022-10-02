@@ -59,6 +59,8 @@ internal class RNIImageRemoteURLMaker {
   
   var state: State = .INITIAL;
   
+  var loadingAttemptsCount = 0;
+  
   // MARK: - Properties - Computed
   // -----------------------------
   
@@ -68,6 +70,13 @@ internal class RNIImageRemoteURLMaker {
     else { return nil };
     
     return cachedImage;
+  };
+  
+  var shouldRetry: Bool {
+    guard let maxRetryAttempts = self.imageLoadingConfig.maxRetryAttempts
+    else { return true };
+    
+    return self.loadingAttemptsCount < maxRetryAttempts;
   };
   
   var image: UIImage? {
@@ -128,12 +137,16 @@ internal class RNIImageRemoteURLMaker {
   // ---------------
   
   func loadImage(){
-    guard !self.state.isLoading,
+    /// still has retry attemps remaining, and not currently loading
+    let shouldLoad = self.shouldRetry && !self.state.isLoading;
+    
+    guard shouldLoad,
           let urlRequest = self.synthesizedURLRequest,
           let imageLoader = self.imageLoader
     else { return; };
     
     self.state = .LOADING;
+    self.loadingAttemptsCount += 1;
     
     imageLoader.loadImage(with: urlRequest){ [weak self] in
       guard let strongSelf = self else { return };
