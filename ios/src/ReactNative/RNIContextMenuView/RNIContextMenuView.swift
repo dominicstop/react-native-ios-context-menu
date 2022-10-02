@@ -7,6 +7,8 @@
 
 import UIKit;
 
+//  TODO: Add capability constants
+/// E.g. `supportsUpdatingMenuWhileVisible`, `supportsDeferredElements` etc.
 
 @available(iOS 13, *)
 class RNIContextMenuView: UIView {
