@@ -2853,9 +2853,9 @@ export function ContextMenuViewExample26(props) {
 
 
 
-![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExample26.jpg)
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.jpg)
 
-![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExampleXX.gif)
+![example-ContextMenuViewExampleXX](assets/example-ContextMenuViewExample26.gif)
 
 <br>
 
