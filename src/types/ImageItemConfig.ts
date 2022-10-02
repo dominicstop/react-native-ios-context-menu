@@ -46,7 +46,7 @@ export type UIImageConfig = {
 };
 
 export type ImageOptions = UIImageConfig & {
-  cornerRadius?: number;
+  cornerRadius?: number
 };
 
 export type ImageSymbolWeight = 
