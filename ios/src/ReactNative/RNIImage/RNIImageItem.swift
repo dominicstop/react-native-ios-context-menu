@@ -184,7 +184,7 @@ internal class RNIImageItem {
           );
         
         case .IMAGE_EMPTY:
-        return .IMAGE_EMPTY;
+          return .IMAGE_EMPTY;
           
         case .IMAGE_RECT:
           guard let rawConfig = imageValue as? NSDictionary,
