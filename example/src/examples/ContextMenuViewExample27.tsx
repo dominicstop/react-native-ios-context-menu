@@ -28,10 +28,12 @@ export function ContextMenuViewExample27(props: ContextMenuExampleProps) {
               },
             },
             imageLoadingConfig: {
-              maxRetryAttempts: 20,
-              shouldLazyLoad: true,
+              // will use the fallback image while the remote
+              // image hasn't been loaded yet
               fallbackBehavior: 'whileNotLoaded',
+              shouldLazyLoad: true,
               shouldImmediatelyRetryLoading: true,
+              maxRetryAttempts: 20,
             },
           }, 
         }, {
@@ -50,10 +52,12 @@ export function ContextMenuViewExample27(props: ContextMenuExampleProps) {
               },
             },
             imageLoadingConfig: {
-              maxRetryAttempts: 20,
-              shouldLazyLoad: true,
+              // will use the fallback image when it encounters
+              // an error whe loading the remote image
               fallbackBehavior: 'onLoadError',
+              shouldLazyLoad: true,
               shouldImmediatelyRetryLoading: true,
+              maxRetryAttempts: 20,
             },
           }
         },  {
@@ -72,10 +76,14 @@ export function ContextMenuViewExample27(props: ContextMenuExampleProps) {
               },
             },
             imageLoadingConfig: {
-              maxRetryAttempts: 20,
-              shouldLazyLoad: true,
+              // will use the fallback image when it encounters
+              // an error whe loading the remote image, and the
+              // number of loading attempts exceeds 
+              // `maxRetryAttempts` 
               fallbackBehavior: 'afterFinalAttempt',
+              shouldLazyLoad: true,
               shouldImmediatelyRetryLoading: true,
+              maxRetryAttempts: 20,
             },
           }
         }],
