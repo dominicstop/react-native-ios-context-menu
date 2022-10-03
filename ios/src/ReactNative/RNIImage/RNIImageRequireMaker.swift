@@ -17,7 +17,7 @@ internal class RNIImageRequireMaker {
   let rawConfig: NSDictionary;
   
   lazy var image: UIImage? = {
-    let shouldCache = self.imageLoadingConfig.shouldCache ?? false;
+    let shouldCache = self.imageLoadingConfig._shouldCache;
     
     if shouldCache,
        let cachedImage = Self.imageCache[self.uri] {
@@ -53,10 +53,23 @@ internal class RNIImageRequireMaker {
   };
   
   private func preloadImageIfNeeded(){
-    let shouldLazyLoad = self.imageLoadingConfig.shouldLazyLoad ?? false;
-    guard !shouldLazyLoad else { return };
+    guard !self.imageLoadingConfig._shouldLazyLoad
+    else { return };
     
     // trigger loading of image
     _ = self.image;
+  };
+};
+
+// MARK: - RNIImageLoadingConfig - Defaults
+// ----------------------------------------
+
+fileprivate extension RNIImageLoadingConfig {
+  var _shouldLazyLoad: Bool {
+    self.shouldLazyLoad ?? false;
+  };
+  
+  var _shouldCache: Bool {
+    self.shouldCache ?? false;
   };
 };
