@@ -21,7 +21,7 @@ enum RNIImageType: String {
 enum RNIImageConfig {
   case IMAGE_ASSET(assetName: String);
   case IMAGE_SYSTEM(config: RNIImageSystemMaker);
-  case IMAGE_REQUIRE(uri: String, loadingConfig: RNIImageLoadingConfig);
+  case IMAGE_REQUIRE(config: RNIImageRequireMaker);
   case IMAGE_EMPTY;
   case IMAGE_RECT(config: RNIImageMaker);
   case IMAGE_GRADIENT(config: RNIImageGradientMaker);
