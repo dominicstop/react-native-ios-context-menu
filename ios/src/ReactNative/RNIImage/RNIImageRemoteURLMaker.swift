@@ -274,20 +274,12 @@ internal class RNIImageRemoteURLMaker {
     let shouldLoad =
       self.shouldRetry && !self.state.isFinalState;
     
-    
-    func log(_ string: String = ""){
-      print("DEBUG - \(string) - loadingAttemptsCount: \(loadingAttemptsCount) - loadImage - URL: \(self.urlString) - state: \(self.state) - _image: \(self._image) - shouldRetry: \(self.shouldRetry)");
-    };
-    
     guard shouldLoad,
           let urlRequest = self.synthesizedURLRequest,
           let imageLoader = self.imageLoader
     else {
-      log("guard fail");
       return;
     };
-    
-    log("1");
     
     let prevError = self.state.error;
     let hasPrevError = prevError != nil;
@@ -297,8 +289,6 @@ internal class RNIImageRemoteURLMaker {
       ? .RETRYING(prevError: prevError!)
       // B - Loading the remote image for the 1st time
       : .LOADING;
-    
-    log("2");
     
     self.loadingAttemptsCount += 1;
     let prevImage = self._image;
@@ -315,8 +305,6 @@ internal class RNIImageRemoteURLMaker {
         
         let nextImage = strongSelf._image;
         
-        log("3");
-        
         if !RNIUtilities.compareImages(prevImage, nextImage) {
           DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return };
@@ -324,8 +312,6 @@ internal class RNIImageRemoteURLMaker {
             // failed to load image, but is currently using fallback image, so
             // notify that it's using the fallback image as a substitute
             strongSelf.onImageDidLoadBlock?(false, strongSelf);
-            
-            log("4");
           };
         };
         
@@ -343,8 +329,6 @@ internal class RNIImageRemoteURLMaker {
           if strongSelf.imageLoadingConfig.shouldCache ?? false {
             Self.imageCache[strongSelf.urlString] = image;
           };
-          
-          log("5");
         };
       };
     };
