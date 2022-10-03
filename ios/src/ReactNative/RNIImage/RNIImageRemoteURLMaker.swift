@@ -147,13 +147,13 @@ internal class RNIImageRemoteURLMaker {
           default: return nil;
         };
         
-      case .RETRYING: fallthrough;
+      case .RETRYING    : fallthrough;
       case .LOADED_ERROR:
         // B - Use fallback image when the remote image hasn't been loaded yet
         //     due to an error
         switch fallbackBehavior {
           case .whileNotLoaded: fallthrough;
-          case .onLoadError: return self.fallbackImage;
+          case .onLoadError   : return self.fallbackImage;
           
           default: return nil;
         };
@@ -301,7 +301,6 @@ internal class RNIImageRemoteURLMaker {
     log("2");
     
     self.loadingAttemptsCount += 1;
-    
     let prevImage = self._image;
     
     imageLoader.loadImage(with: urlRequest){ [weak self] in
@@ -322,8 +321,8 @@ internal class RNIImageRemoteURLMaker {
           DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return };
             
-            // failed to load image, but is using fallback image so notify that
-            // it's using the fallback image as a substitute
+            // failed to load image, but is currently using fallback image, so
+            // notify that it's using the fallback image as a substitute
             strongSelf.onImageDidLoadBlock?(false, strongSelf);
             
             log("4");
