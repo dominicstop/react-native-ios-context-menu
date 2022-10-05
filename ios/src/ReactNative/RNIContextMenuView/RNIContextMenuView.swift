@@ -827,16 +827,12 @@ fileprivate extension RNIContextMenuView {
       // set vertical alignment constraint - i.e. either...
       constraints.append(shouldAttachToTop
        // A - pin to top or...
-       ? previewAuxiliaryView.bottomAnchor.constraint(
-           equalTo: morphingPlatterView.topAnchor,
-           constant: -(marginInner - yOffset)
-         )
+       ? previewAuxiliaryView.bottomAnchor
+         .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginInner)
        
        // B - pin to bottom.
-       : previewAuxiliaryView.topAnchor.constraint(
-           equalTo: morphingPlatterView.bottomAnchor,
-           constant: (marginInner + yOffset)
-         )
+       : previewAuxiliaryView.topAnchor
+          .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginInner)
       );
       
       // set horizontal alignment constraints based on config...
@@ -909,15 +905,6 @@ fileprivate extension RNIContextMenuView {
       "previewPosition": morphingPlatterViewPlacement.rawValue,
       "isAuxiliaryPreviewAttachedToTop": shouldAttachToTop,
     ];
- 
-    
-    if yOffset != 0 {
-      var transform = previewAuxiliaryView.transform;
-      
-      transform = transform.translatedBy(x: 0, y: -yOffset)
-      
-      previewAuxiliaryView.transform = transform;
-    };
     
     // closures to set the start/end values for the entrance transition
     let (setTransitionStateStart, setTransitionStateEnd): (() -> (), () -> ()) = {
