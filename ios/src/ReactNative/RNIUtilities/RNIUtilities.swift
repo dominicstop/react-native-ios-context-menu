@@ -128,6 +128,17 @@ internal class RNIUtilities {
     return views;
   };
   
+  static func recursivelyGetAllSuperViews(for view: UIView) -> [UIView] {
+    var views: [UIView] = [];
+    
+    if let parentView = view.superview {
+      views.append(parentView);
+      views += Self.recursivelyGetAllSuperViews(for: parentView);
+    };
+    
+    return views;
+  };
+  
   static func compareImages(_ a: UIImage?, _ b: UIImage?) -> Bool {
     if (a == nil && b == nil){
       // both are nil, equal
