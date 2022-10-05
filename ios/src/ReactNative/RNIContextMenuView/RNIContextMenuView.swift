@@ -1028,7 +1028,19 @@ fileprivate extension RNIContextMenuView {
         
         // offset from anchor
         contextMenuContentContainer.frame =
-          contextMenuContentContainer.frame.offsetBy(dx: 0, dy: yOffset)
+          contextMenuContentContainer.frame.offsetBy(dx: 0, dy: yOffset);
+        
+        if yOffset != 0 {
+          // let superviews =
+          //   RNIUtilities.recursivelyGetAllSuperViews(for: previewAuxiliaryView);
+          
+          // superviews.forEach {
+          //   Self.swizzlePoint(instanceView: $0);
+          // };
+          
+          Self.auxPreview = previewAuxiliaryView;
+          Self.swizzlePoint(instanceView: targetView);
+        };
       
       }, completion: {_ in
         // trigger did show event
@@ -1353,5 +1365,43 @@ extension RNIContextMenuView: RNIMenuElementEventsNotifiable {
   func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
     guard let menuConfig = self._menuConfig else { return };
     self.updateContextMenuIfVisible(with: menuConfig);
+  };
+};
+
+// MARK: - UIView - "Auxiliary Preview"-Related (Experimental)
+// -----------------------------------------------------------
+
+class SwizzledView: UIView {
+  
+};
+
+fileprivate extension UIView {
+  static weak var auxPreview: UIView? = nil;
+  
+  private typealias OriginalImplType = @convention(c) (AnyObject, Selector, CGPoint, UIEvent?) -> Bool;
+ 
+  @objc dynamic func _point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    //let selector = #selector(UIView.point(inside: with:))
+    //let originalImpl = class_getMethodImplementation(UIView.self, selector);
+    //
+    //unsafeBitCast(
+    //  originalImpl,
+    //  to: OriginalImplType.self
+    //)(self, selector, point, event);
+
+    return true;
+  };
+  
+  static func swizzlePoint(instanceView: UIView){
+    let selectorOriginal = #selector(instanceView.point(inside: with:));
+    let selectorSwizzled = #selector(_point(inside: with:));
+    
+    guard let methodOriginal = class_getInstanceMethod(UIView.self, selectorOriginal),
+          let methodSwizzled = class_getInstanceMethod(UIView.self, selectorSwizzled)
+    else { return };
+    
+    method_exchangeImplementations(methodOriginal, methodSwizzled);
+    
+
   };
 };
