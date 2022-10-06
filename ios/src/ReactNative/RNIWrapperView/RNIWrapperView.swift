@@ -22,6 +22,7 @@ internal class RNIWrapperView: UIView {
   var bridge: RCTBridge!;
   
   weak var eventsDelegate: RNIWrapperViewEventsNotifiable?;
+  weak var configurationDelegate: RNIWrapperViewConfiguring?;
   
   /// When `shouldAutoDetachSubviews` is enabled, all the child views that were removed from
   /// its parent  will be stored here.
@@ -169,6 +170,18 @@ internal class RNIWrapperView: UIView {
     super.removeFromSuperview();
     Self.detachedViews.setObject(self, forKey: self.reactTag);
   }
+  
+  override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    if let delegate = self.configurationDelegate,
+       let result = delegate.point(for: self, point: point, with: event) {
+      
+      // A - Use result from delegate
+      return result;
+    };
+    
+    // B - use default impl.
+    return super.point(inside: point, with: event);
+  };
   
   // MARK: - React Lifecycle
   // ----------------------
