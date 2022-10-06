@@ -21,7 +21,7 @@ internal class RNIWrapperView: UIView {
   
   var bridge: RCTBridge!;
   
-  weak var delegate: RNIWrapperViewEventsNotifiable?;
+  weak var eventsDelegate: RNIWrapperViewEventsNotifiable?;
   
   /// When `shouldAutoDetachSubviews` is enabled, all the child views that were removed from
   /// its parent  will be stored here.
@@ -226,7 +226,7 @@ internal class RNIWrapperView: UIView {
   
   /// Called by `RNIWrapperViewModule.notifyComponentWillUnmount`
   func onJSComponentWillUnmount(isManuallyTriggered: Bool){
-    self.delegate?.onJSComponentWillUnmount?(
+    self.eventsDelegate?.onJSComponentWillUnmount?(
       sender: self,
       isManuallyTriggered: isManuallyTriggered
     );
