@@ -1017,12 +1017,6 @@ fileprivate extension RNIContextMenuView {
     // transition - set start/initial values
     setTransitionStateStart();
     
-    let shouldSwizzle = yOffset != 0;
-    if shouldSwizzle {
-      Self.auxPreview = previewAuxiliaryView;
-      Self.swizzlePoint(instanceView: targetView);
-    };
-    
     UIView.animate(
       withDuration: transitionConfigEntrance.duration,
       delay       : transitionConfigEntrance.delay,
@@ -1095,11 +1089,6 @@ fileprivate extension RNIContextMenuView {
       
       // clear value
       self.morphingPlatterViewPlacement = nil;
-      
-      if Self.isSwizzlingApplied {
-        // undo swizzling
-        //Self.swizzlePoint(instanceView: targetView);
-      };
     };
   };
 };
@@ -1364,42 +1353,5 @@ extension RNIContextMenuView: RNIMenuElementEventsNotifiable {
   func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
     guard let menuConfig = self._menuConfig else { return };
     self.updateContextMenuIfVisible(with: menuConfig);
-  };
-};
-
-// MARK: - UIView - "Auxiliary Preview"-Related (Experimental)
-// -----------------------------------------------------------
-
-class SwizzledView: UIView {
-  
-};
-
-fileprivate extension UIView {
-  static weak var auxPreview: UIView? = nil;
-  
-  static var isSwizzlingApplied = false
-  
-  @objc dynamic func _point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-    guard let auxPreview = Self.auxPreview,
-          auxPreview === self
-    else {
-      // call original impl.
-      return self._point(inside: point, with: event);
-    };
-    
-    return true;
-  };
-  
-  static func swizzlePoint(instanceView: UIView){
-    return;
-    let selectorOriginal = #selector(point(inside: with:));
-    let selectorSwizzled = #selector(_point(inside: with:));
-    
-    guard let methodOriginal = class_getInstanceMethod(UIView.self, selectorOriginal),
-          let methodSwizzled = class_getInstanceMethod(UIView.self, selectorSwizzled)
-    else { return };
-    
-    Self.isSwizzlingApplied.toggle();
-    method_exchangeImplementations(methodOriginal, methodSwizzled);
   };
 };
