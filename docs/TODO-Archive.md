@@ -2,6 +2,26 @@
 
 ## Version History
 
+## 
+
+### Version: `1.15.0`
+
+TBA
+
+<br>
+
+### Version: `1.14.0`
+
+TBA
+
+<br>
+
+### Version: `1.13.0`
+
+TBA
+
+<br>
+
 ### Version: `1.12.2`
 
 - [x] (Commit: `19b12d8`) **Implement**: `RNIContextMenuView.cleanupMode`.
