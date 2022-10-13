@@ -1,5 +1,9 @@
 # TODO
 
+See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version history.
+
+<br>
+
 - [ ] **Refactor**: Use structs instead of classes for holding configuration for making the menu items.
 
 - [ ] **Cleanup**: Remove print logs.
