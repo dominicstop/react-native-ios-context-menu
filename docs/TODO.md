@@ -4,16 +4,13 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 <br>
 
-- [ ] **Refactor**: Use structs instead of classes for holding configuration for making the menu items.
-
 - [ ] **Cleanup**: Remove print logs.
 
 <br>
 
 - [ ] **Docs**: Update documentation sections
-
 	* Remove numbered subsections.
-
+	
 	* Move links to files out of the section title.
 	* Temporarily strip out links to section (i.e. replace with `PLACEHOLDER_LINK`).
 	* Add versions table.
@@ -26,7 +23,7 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 <br>
 
-- [ ] Read apple documentation to find any new changes added.
+- [ ] **Task**: Read apple documentation to find any new changes added.
 
 - [ ] **Refactor**: Make classes public and accessible outside the library.
 
@@ -80,18 +77,12 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 	* Add option for: synchronous loading.
 	* Add option for: image caching.
 
-
-
-
-
-## Uncategorized/WIP
+<br>
 
 - [ ] Implement: iOS 16
 
   - [ ] `UIMenuLeaf`
   - [ ] Maybe: `UIEditMenu`
-
-
 
 
 ---
@@ -105,7 +96,13 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ---
 
-<br>
+<br><br>
+
+## WIP
+
+------
+
+<br><br>
 
 ## Completed
 

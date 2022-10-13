@@ -551,9 +551,14 @@ TBA
 			* Completion handlers will be stored in a dictionary. I'm not sure if I can use `NSMapTable`. I can use a plain `NSDictionary` but if I accidentally forget to cleanup (i.e. remove the completion handler from the dict) then that completion handler will be retained, causing a memory leak.
 				* Completion handlers, i.e. closures, are reference types. If I assign it to `NSMapTable` with `valueOptions: .weakMemory`, will it be automatically be released when it's no longer used? Will it be retained while it's in use or will it be released the moment i add it to `NSMapTable` because nothing is using it? Technically, it is in use because it's in `UIDeferredMenuElement` argument (so the ref count  should increase?)
 
+<br>
+
+- [ ] **Refactor**: Use structs instead of classes for holding configuration for making the menu items.
+	* Cannot be completed due to protocol class requirement.
+
 ---
 
-<br>
+<br><br>
 
 ## Completed Archive
 
