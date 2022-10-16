@@ -84,6 +84,24 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
   - [ ] `UIMenuLeaf`
   - [ ] Maybe: `UIEditMenu`
 
+<br>
+
+- [ ] **Refactor**: Fabric re-write
+	- [ ] **Task**: Create a test library — Playground for making a C++ turbo native module.
+		- [x] **Task**: Figure out how to install `react-native-codegen`.
+			* **Note**: For some weird reason, spaces and special characters in the working directory results in the CLI not finding the module location.
+		- [x] **Task**: Figure out how to setup "code gen" in the library package, i.e. `codegenConfig`.
+		- [ ] **Task**: Create a turbo native module function.
+			* Build Error: No member named `RNIosCxxTestSpec` in namespace `facebook::react`
+				* The corresponding module spec in `React-Codegen` was created properly.
+				* Could possibly be a naming issue?
+					* The js module file is named: `NativeIosCxxTest` — it follows the `Native<MODULE_NAME>` naming convention.
+					* The module is named: `IosCxxTest`
+		- [ ] **Task**: Make TNM function iOS-only
+			*  What is the best way to do this? One way is to create a dummy no-op/empty implementation for android.
+				* What happens when there is a mismatch with the TNM declaration between iOS and Android? 
+				* Will the "codegen" CLI care if the "autolinking" configuration is set to only support iOS? In other words, if we set the library to only "autolink" on the iOS platform, will the project importing the library ignore the "codegen" for android side, and not compile it.
+
 
 ---
 
