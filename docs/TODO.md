@@ -90,17 +90,43 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 	- [ ] **Task**: Create a test library — Playground for making a C++ turbo native module.
 		- [x] **Task**: Figure out how to install `react-native-codegen`.
 			* **Note**: For some weird reason, spaces and special characters in the working directory results in the CLI not finding the module location.
+			
 		- [x] **Task**: Figure out how to setup "code gen" in the library package, i.e. `codegenConfig`.
-		- [ ] **Task**: Create a turbo native module function.
-			* Build Error: No member named `RNIosCxxTestSpec` in namespace `facebook::react`
-				* The corresponding module spec in `React-Codegen` was created properly.
-				* Could possibly be a naming issue?
-					* The js module file is named: `NativeIosCxxTest` — it follows the `Native<MODULE_NAME>` naming convention.
-					* The module is named: `IosCxxTest`
+		
+		- [x] **Task**: Create a turbo native module function.
+			
+			* Run the codegen script: `node ./example/node_modules/react-native/scripts/generate-artifacts.js --path ./example --outputPath ./example/ios`
+				* Error: `[Codegen] >>>>> Searching for codegen-enabled libraries in react-native.config.js`
+					* `Cannot find module 'example/react-native.config.js'` — The react-native codegen script cannot locate the `react-native.config.js` file.
+					* The `example/react-native.config.js` file exists. Could this be a bug?
+					* The `example/node_modules/react-native/scripts/generate-artifacts.js` executes  `example/node_modules/react-native/scripts/codegen/generate-artifacts-executor.js`
+					* Line 219: `const rnConfigFilePath = path.join(appRootDir, rnConfigFileName);` — change `path.join` to `path.resolve`, i.e. `const rnConfigFilePath = path.resolve(appRootDir, rnConfigFileName);`.
+					* Script now runs. It now generates a `build/generated/ios` directory containing the dependencies for fabric + turbomodules, as well as c++ artifact generated from our js spec — i.e. `RNIosCxxTestSpec`.
+						* The directory contains a header file: `RNIosCxxTestSpec.h`, and an impl. file: `RNIosCxxTestSpec-generated.mm`.
+			
+			- Build Error: No member named `RNIosCxxTestSpec` in namespace `facebook::react`
+			  * The corresponding module spec in `React-Codegen` was created properly.
+			
+			  * Could possibly be a naming issue?
+			    * The js module file is named: `NativeIosCxxTest` — it follows the `Native<MODULE_NAME>` naming convention.
+			    * The module is named: `IosCxxTest`
+			
+			  * Fixed by importing the codegen module header, e.g.: `#import <RNIosCxxTestSpec/RNIosCxxTestSpec.h>`.
+			
+			  * `RCT_EXPORT_MODULE` —  The `getTurboModule` function expects an instance of `facebook::react::TurboModule`. 
+			
+			  	* In this function, we must return the corresponding `RCTTurboModule` instance generated via codegen based on our JS spec.
+			  	* For this project, it is in `React-Codegen/RNIosCxxTestSpec`.
+			
+			  	
+			
+		- [ ] **Task**: Call swif
+		
 		- [ ] **Task**: Make TNM function iOS-only
-			*  What is the best way to do this? One way is to create a dummy no-op/empty implementation for android.
-				* What happens when there is a mismatch with the TNM declaration between iOS and Android? 
-				* Will the "codegen" CLI care if the "autolinking" configuration is set to only support iOS? In other words, if we set the library to only "autolink" on the iOS platform, will the project importing the library ignore the "codegen" for android side, and not compile it.
+		
+		  *  What is the best way to do this? One way is to create a dummy no-op/empty implementation for android.
+		  	* What happens when there is a mismatch with the TNM declaration between iOS and Android? 
+		  	* Will the "codegen" CLI care if the "autolinking" configuration is set to only support iOS? In other words, if we set the library to only "autolink" on the iOS platform, will the project importing the library ignore the "codegen" for android side, and not compile it.
 
 
 ---
