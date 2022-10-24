@@ -1017,6 +1017,7 @@ fileprivate extension RNIContextMenuView {
     // transition - set start/initial values
     setTransitionStateStart();
     
+    // MARK: Bugfix - Aux-Preview Touch Event on Screen Edge
     let shouldSwizzle = yOffset != 0;
     if shouldSwizzle {
       Self.auxPreview = previewAuxiliaryView;
@@ -1096,9 +1097,11 @@ fileprivate extension RNIContextMenuView {
       // clear value
       self.morphingPlatterViewPlacement = nil;
       
+      // MARK: Bugfix - Aux-Preview Touch Event on Screen Edge
       if Self.isSwizzlingApplied {
         // undo swizzling
         Self.swizzlePoint();
+        Self.auxPreview = nil;
       };
     };
   };
@@ -1370,16 +1373,17 @@ extension RNIContextMenuView: RNIMenuElementEventsNotifiable {
 // MARK: - UIView - "Auxiliary Preview"-Related (Experimental)
 // -----------------------------------------------------------
 
-class SwizzledView: UIView {
-  
-};
-
+// Bugfix: Fix for aux-preview not receiving touch event when appearing
+// on screen edge
 fileprivate extension UIView {
   static weak var auxPreview: UIView? = nil;
   
   static var isSwizzlingApplied = false
   
-  @objc dynamic func _point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+  @objc dynamic func _point(
+    inside point: CGPoint,
+    with event: UIEvent?
+  ) -> Bool {
     guard let auxPreview = Self.auxPreview,
           self.subviews.contains(where: { $0 === auxPreview })
     else {
