@@ -1,8 +1,10 @@
 import { NativeModules } from 'react-native';
+
 import type { MenuElementConfig } from 'src/types/MenuConfig';
+import type { RNIJSComponentWillUnmountNotifiable } from 'src/types/RNIJSComponentWillUnmountNotifiable';
 
 
-interface RNIContextMenuViewModule {
+interface RNIContextMenuViewModule extends RNIJSComponentWillUnmountNotifiable {
   dismissMenu(
     node: number,
   ): Promise<void>;
@@ -12,11 +14,6 @@ interface RNIContextMenuViewModule {
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ): Promise<void>;
-
-  notifyComponentWillUnmount(
-    node: number,
-    params: {}
-  ): void;
 };
 
 const MODULE_NAME = "RNIContextMenuViewModule";
