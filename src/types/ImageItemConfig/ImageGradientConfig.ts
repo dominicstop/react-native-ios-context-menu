@@ -1,4 +1,4 @@
-import type { PointPreset } from "lib/typescript";
+import type { PointPreset } from "../MiscTypes";
 import type { Point } from "../MiscTypes";
 import type { ImageRectConfig } from "./ImageRectConfig";
 
