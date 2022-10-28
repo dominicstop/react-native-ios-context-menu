@@ -35,6 +35,8 @@ RCT_EXPORT_VIEW_PROPERTY(onMenuAuxiliaryPreviewDidShow , RCTBubblingEventBlock);
 // MARK: - Export Props - Values
 // -----------------------------
 
+RCT_EXPORT_VIEW_PROPERTY(internalCleanupMode, NSString);
+
 RCT_EXPORT_VIEW_PROPERTY(menuConfig, NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(previewConfig, NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(auxiliaryPreviewConfig, NSDictionary);
