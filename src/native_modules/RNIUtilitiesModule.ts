@@ -1,4 +1,5 @@
 import { NativeModules } from 'react-native';
+import { IS_PLATFORM_IOS } from '../constants/LibEnv';
 
 
 interface RNIUtilitiesModule {
@@ -10,6 +11,8 @@ const MODULE_NAME = "RNIUtilitiesModule";
 export const RNIUtilitiesModule: RNIUtilitiesModule =
   NativeModules[MODULE_NAME];
 
-// Calling this will initialize `RNIUtilities.sharedBridge`.
-// Note: This module must be imported for this function to be invoked.
-RNIUtilitiesModule.initialize({});
+if(IS_PLATFORM_IOS){
+  // Calling this will initialize `RNIUtilities.sharedBridge`.
+  // Note: This module must be imported for this function to be invoked.
+  RNIUtilitiesModule.initialize({});
+};
