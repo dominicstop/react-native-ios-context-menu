@@ -29,12 +29,48 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
-# Android/IJ
+# Gradle
+#
+/build/
+/packages/react-native-gradle-plugin/build/
+/packages/rn-tester/build
+/packages/rn-tester/android/app/.cxx/
+/packages/rn-tester/android/app/build/
+/packages/rn-tester/android/app/gradle/
+/packages/rn-tester/android/app/gradlew
+/packages/rn-tester/android/app/gradlew.bat
+/ReactAndroid/build/
+/ReactAndroid/.cxx/
+/ReactAndroid/gradle/
+/ReactAndroid/gradlew
+/ReactAndroid/gradlew.bat
+/ReactAndroid/external-artifacts/build/
+/ReactAndroid/external-artifacts/artifacts/
+/ReactAndroid/hermes-engine/build/
+/ReactAndroid/hermes-engine/.cxx/
+/template/android/app/build/
+/template/android/build/
+
+# Android Studio
+#
+.project
+.settings
+.classpath
+
+# Android
 #
 .idea
 .gradle
 local.properties
-android.iml
+*.iml
+/android/*
+!/android/README.md
+
+# Android memory profiler files
+*.hprof
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
 
 # Cocoapods
 #
