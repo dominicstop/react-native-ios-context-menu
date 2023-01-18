@@ -1,6 +1,6 @@
 /** wrapper func for setState that returns a promise */
 // eslint-disable-next-line consistent-this
-export function setStateAsync<T>(
+export function setStateAsync<T extends {}>(
   that: React.Component,
   newState: T | ((prevState: T) => T)
 ){

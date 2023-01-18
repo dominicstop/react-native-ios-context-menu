@@ -3,10 +3,10 @@ import { ActionSheetIOS, ActionSheetIOSOptions, findNodeHandle } from 'react-nat
 
 /** wrapper func for setState that returns a promise */
 // eslint-disable-next-line consistent-this
-export function setStateAsync<T>(
+export function setStateAsync<T extends {} >(
   that: React.Component,
   newState: T | ((prevState: T) => T)
-){
+) {
   return new Promise<void>((resolve) => {
     that.setState(newState, () => {
       resolve();
@@ -15,7 +15,7 @@ export function setStateAsync<T>(
 };
 
 /** wrapper for timeout that returns a promise */
-export function timeout(ms: Number) {
+export function timeout(ms: number) {
   return new Promise<void>(resolve => {
     const timeoutID = setTimeout(() => {
       clearTimeout(timeoutID);
@@ -25,7 +25,7 @@ export function timeout(ms: Number) {
 };
 
 /** Wraps a promise that will reject if not not resolved in <ms> milliseconds */
-export function promiseWithTimeout<T>(ms: Number, promise: Promise<T>){
+export function promiseWithTimeout<T>(ms: number, promise: Promise<T>){
   // Create a promise that rejects in <ms> milliseconds
   const timeoutPromise = new Promise<T>((_, reject) => {
     const timeoutID = setTimeout(() => {
