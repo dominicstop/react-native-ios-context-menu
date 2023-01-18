@@ -12,7 +12,7 @@ export function setStateAsync<T>(
 };
 
 /** wrapper for timeout that returns a promise */
-export function timeout(ms: Number) {
+export function timeout(ms: number) {
   return new Promise<void>(resolve => {
     const timeoutID = setTimeout(() => {
       clearTimeout(timeoutID);
@@ -22,7 +22,7 @@ export function timeout(ms: Number) {
 };
 
 /** Wraps a promise that will reject if not not resolved in <ms> milliseconds */
-export function promiseWithTimeout<T>(ms: Number, promise: Promise<T>){
+export function promiseWithTimeout<T>(ms: number, promise: Promise<T>){
   // Create a promise that rejects in <ms> milliseconds
   const timeoutPromise = new Promise<T>((_, reject) => {
     const timeoutID = setTimeout(() => {
