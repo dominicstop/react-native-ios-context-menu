@@ -185,7 +185,7 @@ PODS:
     - React-cxxreact (= 0.63.5)
     - React-jsi (= 0.63.5)
   - React-jsinspector (0.63.5)
-  - react-native-ios-context-menu (1.15.1):
+  - react-native-ios-context-menu (1.15.2):
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
@@ -368,7 +368,7 @@ SPEC CHECKSUMS:
   React-jsi: 7d908b17758178b076a05a254523f1a4227b53d2
   React-jsiexecutor: e06a32e42affb2bd89e4c8369349b5fcf787710c
   React-jsinspector: fdbc08866b34ae8e1b788ea1cbd9f9d1ca2aa3d6
-  react-native-ios-context-menu: b170594b4448c0cd10c79e13432216bac99de1ac
+  react-native-ios-context-menu: 2963da8fbc71f040ff534eb6133c7f8cc1acdb6f
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-RCTActionSheet: e911b99f0d6fa7711ffc2f62d236b12a32771835
   React-RCTAnimation: ad8b853170a059faf31d6add34f67d22391bbe01
