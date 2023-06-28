@@ -17,7 +17,7 @@ export function timeout(ms: number) {
     const timeoutID = setTimeout(() => {
       clearTimeout(timeoutID);
       resolve();
-    }, ms)
+    }, ms);
   });
 };
 
