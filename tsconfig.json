@@ -5,7 +5,6 @@
       "react-native-ios-context-menu": ["./src/index"]
     },
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "jsx": "react",
     "lib": ["esnext"],
     "module": "esnext",
