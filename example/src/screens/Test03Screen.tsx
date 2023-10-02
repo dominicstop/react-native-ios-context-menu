@@ -153,6 +153,46 @@ const MESSAGES_INITIAL: Message[] = [{
   id: counterID++,
   messageText: "asdgfhjkldsfdjkl too lazy to look it up",
   isSender: true,
+}, {
+  id: counterID++,
+  messageText: "have u watched the barbie trailer??",
+  isSender: false,
+}, {
+  id: counterID++,
+  messageText: "asdgfhjkldsfl yes and i'm so excited like",
+  isSender: true,
+}, {
+  id: counterID++,
+  messageText: "i just know its going to be iconic",
+  isSender: true,
+}, {
+  id: counterID++,
+  messageText: "i have some thoughts about the casting for the ken dolls tho",
+  isSender: true,
+}, {
+  id: counterID++,
+  messageText: "same, but after watching the trailer i was convinced!!",
+  isSender: false,
+}, {
+  id: counterID++,
+  messageText: "pinkpantheress is in the soundtrack!! and it's giving soft bbgirl energy as per usual",
+  isSender: false,
+}, {
+  id: counterID++,
+  messageText: "did u listen to the soundtrack yet??",
+  isSender: false,
+}, {
+  id: counterID++,
+  messageText: "i have and ur i have very unpopular opinion",
+  isSender: false,
+}, {
+  id: counterID++,
+  messageText: "bestie u and ur bad takes adkhakfhdlhfa",
+  isSender: true,
+}, {
+  id: counterID++,
+  messageText: "but ok go on",
+  isSender: true,
 }];
 
 const MENU_ITEM_KEYS = {
