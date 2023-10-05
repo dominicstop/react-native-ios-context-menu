@@ -5,7 +5,7 @@ import { View, Animated, Alert, StyleSheet, Text, FlatList, SafeAreaView, ListRe
 import { ContextMenuView, MenuElementConfig } from 'react-native-ios-context-menu';
 
 import * as Colors  from '../constants/Colors';
-//import * as Helpers from '../functions/Helpers';
+import * as Helpers from '../functions/Helpers';
 
 
 // Repro for issue:
@@ -401,7 +401,7 @@ const MessageBubble = (props: {
                 ]}
                 onPress={async () => {
                   props.onPressReaction(reactionKey);
-                  // await Helpers.timeout((currentReaction == null)? 550 : 200);
+                  await Helpers.timeout((currentReaction == null)? 550 : 200);
                   menuRef.current.dismissMenu();
                 }}
               >
