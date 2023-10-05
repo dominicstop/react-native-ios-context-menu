@@ -6,7 +6,7 @@ import { FlashList, ListRenderItem } from "@shopify/flash-list";
 import { ContextMenuView, MenuElementConfig } from 'react-native-ios-context-menu';
 
 import * as Colors  from '../constants/Colors';
-//import * as Helpers from '../functions/Helpers';
+import * as Helpers from '../functions/Helpers';
 
 
 // Repro for issue w/ FlashList
@@ -210,7 +210,7 @@ const MESSAGES_INITIAL: Message[] = (() => {
     });
   };
 
-  return messages;
+  return messages.reverse();
 })()
 
 const MENU_ITEM_KEYS = {
@@ -402,7 +402,7 @@ const MessageBubble = (props: {
                 ]}
                 onPress={async () => {
                   props.onPressReaction(reactionKey);
-                  // await Helpers.timeout((currentReaction == null)? 550 : 200);
+                  await Helpers.timeout((currentReaction == null)? 550 : 200);
                   menuRef.current.dismissMenu();
                 }}
               >
@@ -515,11 +515,19 @@ export const Test04Screen = () => {
         scrollIndicatorInsets={{
           bottom: 45
         }}
+
+        keyboardDismissMode='interactive'
+        automaticallyAdjustContentInsets={false}
+        contentInsetAdjustmentBehavior='never'
+        inverted={true}
+        estimatedItemSize={85}
+        onEndReachedThreshold={1}
+        //viewabilityConfig={viewabilityConfig} 
       />
       <KeyboardAvoidingView 
         style={styles.bottomBarWrapper}
         behavior={'position'}
-        keyboardVerticalOffset={65}
+        keyboardVerticalOffset={90}
       >
         <View style={styles.bottomBarContainer}>
           <TextInput
@@ -578,12 +586,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 15,
     paddingVertical: 12,
-    
+    // TODO: temp fix, replace with actual safe area bottom height
+    paddingBottom: 30,
   },
   listContentContainer: {
-    paddingTop: 10,
+    paddingBottom: 10,
     paddingHorizontal: 10,
-    paddingBottom: 90,
+    paddingTop: 125,
   },
   messageMenuContainer: {
     flexDirection: 'row',
