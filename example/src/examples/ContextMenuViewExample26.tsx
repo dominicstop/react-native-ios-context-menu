@@ -57,6 +57,27 @@ export function ContextMenuViewExample26(props: ContextMenuExampleProps) {
               renderingMode: 'alwaysOriginal',
             },
           }
+        },  {
+          actionKey  : 'key-04'   ,
+          actionTitle: 'Action #4',
+          actionSubtitle: '"IMAGE_REMOTE_URL" + shouldLazyLoad + shouldCache',
+          icon: {
+            type: 'IMAGE_REMOTE_URL',
+            imageValue: {
+              url: 'https://picsum.photos/x',
+              fallbackImage: {
+                type: 'IMAGE_SYSTEM',
+                imageValue: {
+                  systemName: 'heart'
+                },
+              },
+            },
+            imageLoadingConfig: {
+              shouldLazyLoad: true,
+              fallbackBehavior: 'afterFinalAttempt',
+              shouldImmediatelyRetryLoading: true,
+            },
+          }
         }],
       }}
     >
