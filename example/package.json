@@ -12,6 +12,7 @@
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "@shopify/flash-list": "^1.6.1",
     "react": "16.13.1",
     "react-native": "0.63.5",
     "react-native-safe-area-context": "^3.3.2",
