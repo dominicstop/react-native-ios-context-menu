@@ -5,7 +5,7 @@ import { View, Animated, Alert, StyleSheet, Text, FlatList, SafeAreaView, ListRe
 import { ContextMenuView, MenuElementConfig } from 'react-native-ios-context-menu';
 
 import * as Colors  from '../constants/Colors';
-import * as Helpers from '../functions/Helpers';
+//import * as Helpers from '../functions/Helpers';
 
 
 // Repro for issue:
@@ -32,168 +32,186 @@ type Message = {
 };
 
 let counterID = 0;
-const MESSAGES_INITIAL: Message[] = [{
-  id: counterID++,
-  messageText: 'Hello World',
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: 'Lorum ipsum sit amit dolor aspicing',
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: 'Hello, how are you?',
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: 'lights, camera, action, pose!',
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: 'stan loona, yass kweeeeen',
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: 'its giving... taste??? we love to see it',
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: 'true lmao',
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "i'm also a indie h0e + bedroom pop btch btw",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "asdfghjklfghjkl omg same!!",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "have you listened to emails i can't send tho",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "its giving olivia rodrigo but w/ a midlife crisis and a failing marriage",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "love that for her tho",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "okay but its a bop tho",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "ik her rent was due and the crops were dying, "
-   + "she really gave it her all lmao",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "please 😭",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "asdfghjkskdhaslkfjkl",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "am i wrong tho",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "anyways",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "killer hybs is also pretty good",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "love the intro",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "forever a popstan girlie, but bedroom/indie pop hits differenty",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "how very i'm not like other girls of u",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "but tbh same",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "2016-2017 era was basically niki, rex, mxmtoon, and mitski",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "naurr the fact that they're not considered indie anymore tho",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "well deserve popularity tho ✨",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "sdafdghjksdsajlkjkl true",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "is boy pablo and phum still considered indie?",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "idk they have alot of streams, but did they chart in the top 100?",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "asdgfhjkldsfdjkl too lazy to look it up",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "have u watched the barbie trailer??",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "asdgfhjkldsfl yes and i'm so excited like",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "i just know its going to be iconic",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "i have some thoughts about the casting for the ken dolls tho",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "same, but after watching the trailer i was convinced!!",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "pinkpantheress is in the soundtrack!! and it's giving soft bbgirl energy as per usual",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "did u listen to the soundtrack yet??",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "i have and ur i have very unpopular opinion",
-  isSender: false,
-}, {
-  id: counterID++,
-  messageText: "bestie u and ur bad takes adkhakfhdlhfa",
-  isSender: true,
-}, {
-  id: counterID++,
-  messageText: "but ok go on",
-  isSender: true,
-}];
+const MESSAGES_INITIAL: Message[] = (() => {
+  const messages = [
+    {
+      id: counterID++,
+      messageText: 'Hello World',
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: 'Lorum ipsum sit amit dolor aspicing',
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: 'Hello, how are you?',
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: 'lights, camera, action, pose!',
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: 'stan loona, yass kweeeeen',
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: 'its giving... taste??? we love to see it',
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: 'true lmao',
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "i'm also a indie h0e + bedroom pop btch btw",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "asdfghjklfghjkl omg same!!",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "have you listened to emails i can't send tho",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "its giving olivia rodrigo but w/ a midlife crisis and a failing marriage",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "love that for her tho",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "okay but its a bop tho",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "ik her rent was due and the crops were dying, "
+      + "she really gave it her all lmao",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "please 😭",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "asdfghjkskdhaslkfjkl",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "am i wrong tho",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "anyways",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "killer hybs is also pretty good",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "love the intro",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "forever a popstan girlie, but bedroom/indie pop hits differenty",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "how very i'm not like other girls of u",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "but tbh same",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "2016-2017 era was basically niki, rex, mxmtoon, and mitski",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "naurr the fact that they're not considered indie anymore tho",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "well deserve popularity tho ✨",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "sdafdghjksdsajlkjkl true",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "is boy pablo and phum still considered indie?",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "idk they have alot of streams, but did they chart in the top 100?",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "asdgfhjkldsfdjkl too lazy to look it up",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "have u watched the barbie trailer??",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "asdgfhjkldsfl yes and i'm so excited like",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "i just know its going to be iconic",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "i have some thoughts about the casting for the ken dolls tho",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "same, but after watching the trailer i was convinced!!",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "pinkpantheress is in the soundtrack!! and it's giving soft bbgirl energy as per usual",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "did u listen to the soundtrack yet??",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "i have and ur i have very unpopular opinion",
+      isSender: false,
+    }, {
+      id: counterID++,
+      messageText: "bestie u and ur bad takes adkhakfhdlhfa",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: "but ok go on",
+      isSender: true,
+    }, {
+      id: counterID++,
+      messageText: `item count: ${counterID}`,
+      isSender: counterID % 2 === 0,
+    },
+  ];
+
+  for (let index = 0; index < 100; index++) {
+    messages.push({
+      id: counterID++,
+      messageText: `item count: ${counterID}`,
+      isSender: counterID % 2 === 0,
+    });
+  };
+
+  return messages;
+})();
 
 const MENU_ITEM_KEYS = {
   reply: 'reply',
@@ -347,6 +365,7 @@ const MessageBubble = (props: {
             : Colors.ORANGE[100]
           ),
         }]}
+        lazyPreview={true}
         menuConfig={{
           menuTitle: '',
           menuItems: [
@@ -382,7 +401,7 @@ const MessageBubble = (props: {
                 ]}
                 onPress={async () => {
                   props.onPressReaction(reactionKey);
-                  await Helpers.timeout((currentReaction == null)? 550 : 200);
+                  // await Helpers.timeout((currentReaction == null)? 550 : 200);
                   menuRef.current.dismissMenu();
                 }}
               >
