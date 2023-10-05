@@ -9,6 +9,7 @@ import { HomeScreen } from './screens/HomeScreen';
 import { TestScreen } from './screens/Test01Screen';
 import { Test02Screen } from './screens/Test02Screen';
 import { Test03Screen } from './screens/Test03Screen';
+import { Test04Screen } from './screens/Test04Screen';
 
 import { SHARED_ENV } from './constants/SharedEnv';
 
@@ -55,6 +56,7 @@ export default function App() {
           <Stack.Screen name="Test" component={TestScreen} />
           <Stack.Screen name="Test02" component={Test02Screen} />
           <Stack.Screen name="Test03" component={Test03Screen} />
+          <Stack.Screen name="Test04" component={Test04Screen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
