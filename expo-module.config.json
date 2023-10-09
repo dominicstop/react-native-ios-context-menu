@@ -4,6 +4,7 @@
     "modules": ["ReactNativeIosContextMenuModule"]
   },
   "android": {
-    "modules": ["expo.modules.ioscontextmenu.ReactNativeIosContextMenuModule"]
+    "modules": ["expo.modules.ioscontextmenu.ReactNativeIosContextMenuModule"],
+    "podspecPath": "./ReactNativeIosContextMenu.podspec"
   }
 }
