@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "react-native-ios-context-menu": ["../src/index"],
+      "react-native-ios-context-menu/*": ["../src/*"]
+    }
+  }
+}
