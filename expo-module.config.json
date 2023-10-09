@@ -1,10 +1,10 @@
 {
-  "platforms": ["ios", "android", "web"],
+  "name": "ReactNativeIosContextMenu",
+  "platforms": ["ios"],
   "ios": {
-    "modules": ["ReactNativeIosContextMenuModule"]
-  },
-  "android": {
-    "modules": ["expo.modules.ioscontextmenu.ReactNativeIosContextMenuModule"],
+    "modules": [
+      "ReactNativeIosContextMenuModule"
+    ],
     "podspecPath": "./ReactNativeIosContextMenu.podspec"
   }
 }
