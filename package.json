@@ -37,6 +37,7 @@
   "peerDependencies": {
     "expo": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-ios-utilities": "4.x"
   }
 }
