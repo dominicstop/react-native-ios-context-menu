@@ -7,6 +7,7 @@
 
 import UIKit;
 import ExpoModulesCore
+import ReactNativeIosUtilities
 
 
 public class RNIContextMenuView:
@@ -32,7 +33,7 @@ public class RNIContextMenuView:
   var contextMenuInteraction: UIContextMenuInteraction?;
   
     /// contains the view to show in the preview
-  var previewWrapper: RNIWrapperView?;
+  var previewWrapper: RNIDummyView?;
   var previewController: RNIContextMenuPreviewController?;
   
   weak var viewController: RNINavigationEventsReportingViewController?;
