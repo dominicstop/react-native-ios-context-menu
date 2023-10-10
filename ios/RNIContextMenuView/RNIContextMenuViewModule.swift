@@ -6,66 +6,42 @@
 //
 
 import Foundation
+import ExpoModulesCore
+import ReactNativeIosUtilities
 
-
-@objc(RNIContextMenuViewModule)
-internal class RNIContextMenuViewModule: NSObject {
+public class RNIContextMenuViewModule: Module {
   
-  @objc var bridge: RCTBridge!;
-  
-  @objc static func requiresMainQueueSetup() -> Bool {
-    // run init in bg thread
-    return false;
-  };
-  
-  @available(iOS 13, *)
-  func getContextMenuView(_ node: NSNumber) -> RNIContextMenuView? {
-    return RNIUtilities.getView(
-      forNode: node,
-      type   : RNIContextMenuView.self,
-      bridge : self.bridge
-    );
-  };
-  
-  // MARK: - Module Commands: Navigator
-  // ---------------------------------
-  
-  @objc func dismissMenu(
-    _ node: NSNumber,
-    // promise blocks ------------------------
-    resolve: @escaping RCTPromiseResolveBlock,
-    reject : @escaping RCTPromiseRejectBlock
-  ){
-    DispatchQueue.main.async {
-      // get `RNIContextMenuView` instance that matches node/reactTag
-      guard #available(iOS 13, *),
-            let contextMenuView = self.getContextMenuView(node) else {
-              
-        reject(nil, "Unable to get the corresponding 'RNIContextMenuView' for node: \(node)", nil);
-        return;
-      };
+  public func definition() -> ModuleDefinition {
+    Name("RNIContextMenuView");
+    
+    Function("dismissMenu") { (reactTag: Int) in
+      guard let bridge = RNIHelpers.bridge else { return };
+    
+      let contextMenuView = RNIHelpers.getView(
+        forNode: reactTag as NSNumber,
+        type: RNIContextMenuView.self,
+        bridge: bridge
+      );
       
+      guard let contextMenuView = contextMenuView else { return };
       contextMenuView.dismissMenu();
-      resolve(nil);
     };
-  };
-  
-  @objc func provideDeferredElements(
-    _ node: NSNumber,
-    deferredID: String,
-    menuItems: NSArray,
-    // promise blocks ------------------------
-    resolve: @escaping RCTPromiseResolveBlock,
-    reject : @escaping RCTPromiseRejectBlock
-  ){
-    DispatchQueue.main.async {
-      // get `RNIContextMenuView` instance that matches node/reactTag
-      guard #available(iOS 13, *),
-            let contextMenuView = self.getContextMenuView(node) else {
-              
-        reject(nil, "Unable to get the corresponding 'RNIContextMenuView' for node: \(node)", nil);
-        return;
-      };
+    
+    Function("provideDeferredElements") {
+      (reactTag: Int, args: Dictionary<String, Any>) in
+      
+      guard let bridge = RNIHelpers.bridge,
+            let deferredID = args["deferredID"] as? String,
+            let menuItems = args["menuItems"] as? Array<Any>
+      else { return };
+    
+      let contextMenuView = RNIHelpers.getView(
+        forNode: reactTag as NSNumber,
+        type: RNIContextMenuView.self,
+        bridge: bridge
+      );
+      
+      guard let contextMenuView = contextMenuView else { return };
       
       contextMenuView.provideDeferredElements(
         id: deferredID,
@@ -79,31 +55,27 @@ internal class RNIContextMenuViewModule: NSObject {
           );
         }
       );
-      
-      resolve(nil);
     };
-  };
-  
-  @objc func notifyComponentWillUnmount(
-    _ node: NSNumber,
-    params: NSDictionary
-  ){
-    DispatchQueue.main.async {
-      // get `RNIWrapperView` instance that matches node/reactTag
-      guard #available(iOS 13, *),
-            let contextMenuView = self.getContextMenuView(node) else {
-        #if DEBUG
-        print(
-            "LOG - ViewManager, RNIWrapperViewModule: notifyComponentWillUnmount"
-          + " - for node: \(node)"
-          + " - no corresponding view found for node"
-          + " - the view might have already been unmounted..."
-        );
-        #endif
-        return;
-      };
+    
+    Function("notifyOnComponentWillUnmount") { (reactTag: Int) in
+      guard let bridge = RNIHelpers.bridge else { return };
+    
+      let contextMenuView = RNIHelpers.getView(
+        forNode: reactTag as NSNumber,
+        type: RNIContextMenuView.self,
+        bridge: bridge
+      );
       
+      guard let contextMenuView = contextMenuView else { return };
       contextMenuView.notifyOnJSComponentWillUnmount();
+    };
+
+    View(RNIDummyView.self) {
+      Events("onReactTagDidSet");
+    
+      Prop("shouldCleanupOnComponentWillUnmount") { (view: RNIDummyView, prop: Bool) in
+        view.shouldCleanupOnComponentWillUnmount = prop;
+      };
     };
   };
 };

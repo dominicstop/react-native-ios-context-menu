@@ -9,7 +9,7 @@
 import Foundation
 
 
-class RNIMenuElement  {
+public class RNIMenuElement  {
   
   // MARK: - Embedded Types
   // ----------------------

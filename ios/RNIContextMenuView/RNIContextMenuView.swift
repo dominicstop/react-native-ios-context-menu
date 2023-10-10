@@ -6,12 +6,15 @@
 //
 
 import UIKit;
+import ExpoModulesCore
 
-//  TODO: Add capability constants
-/// E.g. `supportsUpdatingMenuWhileVisible`, `supportsDeferredElements` etc.
 
-@available(iOS 13, *)
-class RNIContextMenuView: UIView {
+public class RNIContextMenuView:
+  ExpoView, RNINavigationEventsNotifiable, RNICleanable,
+  RNIJSComponentWillUnmountNotifiable, RNIMenuElementEventsNotifiable {
+
+  // MARK: - Embedded Types
+  // ----------------------
   
   enum NativeIDKey: String {
     case contextMenuPreview;
@@ -26,11 +29,9 @@ class RNIContextMenuView: UIView {
   // MARK: - Properties
   // ------------------
   
-  weak var bridge: RCTBridge!;
-  
   var contextMenuInteraction: UIContextMenuInteraction?;
   
-  /// contains the view to show in the preview
+    /// contains the view to show in the preview
   var previewWrapper: RNIWrapperView?;
   var previewController: RNIContextMenuPreviewController?;
   
@@ -38,15 +39,28 @@ class RNIContextMenuView: UIView {
       
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
-  
-  // MARK: - Properties - Fags
-  // -------------------------
+    
+  public override var reactTag: NSNumber! {
+    didSet {
+      guard let newValue = self.reactTag,
+            newValue != oldValue
+      else { return };
+      
+      self.onReactTagDidSetEvent.callAsFunction([
+        "reactTag": newValue
+      ]);
+    }
+  };
+    
+  // MARK: - Properties - Flags
+  // --------------------------
   
   /// Keep track on whether or not the context menu is currently visible.
   var isContextMenuVisible = false;
   
-  /// This is set to `true` when the menu is open and an item is pressed, and is immediately set back
-  /// to `false` once the menu close animation finishes.
+  /// This is set to `true` when the menu is open and an item is pressed, and
+  /// is immediately set back to `false` once the menu close animation
+  /// finishes.
   var didPressMenuItem = false;
   
   /// Whether or not `cleanup` method was called
@@ -54,17 +68,6 @@ class RNIContextMenuView: UIView {
   
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
-  
-  // MARK: - Properties - Feature Flags
-  // ----------------------------------
-  
-  private var shouldEnableAttachToParentVC: Bool {
-    self.cleanupMode == .viewController
-  };
-  
-  private var shouldEnableCleanup: Bool {
-    self.cleanupMode != .disabled
-  };
   
   // MARK: - Properties - "Auxiliary Preview"-Related (Experimental)
   // ---------------------------------------------------------------
@@ -78,39 +81,18 @@ class RNIContextMenuView: UIView {
   /// Cached value - in which side of the preview was aux. preview attached to?
   /// Cleared when the aux. preview is hidden.
   private var morphingPlatterViewPlacement: AnchorPosition?;
-  
-  // MARK: - RN Exported Event Props
-  // -------------------------------
-  
-  @objc var onMenuWillShow  : RCTBubblingEventBlock?;
-  @objc var onMenuWillHide  : RCTBubblingEventBlock?;
-  @objc var onMenuWillCancel: RCTBubblingEventBlock?;
-  
-  @objc var onMenuDidShow  : RCTBubblingEventBlock?;
-  @objc var onMenuDidHide  : RCTBubblingEventBlock?;
-  @objc var onMenuDidCancel: RCTBubblingEventBlock?;
-  
-  @objc var onPressMenuItem   : RCTBubblingEventBlock?;
-  @objc var onPressMenuPreview: RCTBubblingEventBlock?;
-  
-  @objc var onMenuWillCreate: RCTBubblingEventBlock?;
-  @objc var onRequestDeferredElement: RCTBubblingEventBlock?;
-  
-  // MARK: - RN Exported Event Props - "Auxiliary Preview"-Related (Experimental)
-  // ----------------------------------------------------------------------------
 
-  @objc var onMenuAuxiliaryPreviewWillShow: RCTBubblingEventBlock?;
-  @objc var onMenuAuxiliaryPreviewDidShow : RCTBubblingEventBlock?;
+  // MARK: Properties - Props
+  // ------------------------
   
-  // MARK: - RN Exported Props
-  // -------------------------
-    
-  private var _menuConfig: RNIMenuItem?;
-  @objc var menuConfig: NSDictionary? {
+  public var shouldCleanupOnComponentWillUnmount = false;
+  
+  var _menuConfig: RNIMenuItem?;
+  public var menuConfig: NSDictionary? {
     didSet {
-      guard
-        let menuConfigDict = self.menuConfig, menuConfigDict.count > 0,
-        let menuConfig     = RNIMenuItem(dictionary: menuConfigDict)
+      guard let menuConfigDict = self.menuConfig,
+            menuConfigDict.count > 0,
+            let menuConfig = RNIMenuItem(dictionary: menuConfigDict)
       else {
         self._menuConfig = nil;
         return;
@@ -131,8 +113,8 @@ class RNIContextMenuView: UIView {
     }
   };
   
-  private var _previewConfig = PreviewConfig();
-  @objc var previewConfig: NSDictionary? {
+  var _previewConfig = PreviewConfig();
+  public var previewConfig: NSDictionary? {
     didSet {
       guard let dictionary = self.previewConfig
       else { return };
@@ -147,29 +129,27 @@ class RNIContextMenuView: UIView {
     }
   };
   
-  @objc var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
+  public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
+  public var isContextMenuEnabled = true;
   
-  @objc var isContextMenuEnabled = true;
-  
-  private var _internalCleanupMode: RNICleanupMode = .automatic;
-  @objc var internalCleanupMode: String? {
+  var _internalCleanupMode: RNICleanupMode = .automatic;
+  public var internalCleanupMode: String? {
     willSet {
-      guard
-        let rawString = newValue,
-        let cleanupMode = RNICleanupMode(rawValue: rawString)
+      guard let rawString = newValue,
+            let cleanupMode = RNICleanupMode(rawValue: rawString)
       else { return };
       
       self._internalCleanupMode = cleanupMode;
     }
   };
   
-  // MARK: - RN Exported Props: "Auxiliary Context Menu Preview"-Related (Experimental)
+  // MARK: Properties - Props - "Auxiliary Context Menu Preview"-Related (Experimental)
   // ----------------------------------------------------------------------------------
+
+  public var isAuxiliaryPreviewEnabled = true;
   
-  @objc var isAuxiliaryPreviewEnabled = true;
-  
-  private var _auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
-  @objc var auxiliaryPreviewConfig: NSDictionary? {
+  var _auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
+  public var auxiliaryPreviewConfig: NSDictionary? {
     didSet {
       guard
         let configDict = self.auxiliaryPreviewConfig,
@@ -184,8 +164,46 @@ class RNIContextMenuView: UIView {
     }
   };
   
+  // MARK: Properties - Props - Events
+  // ---------------------------------
+  
+  public let onReactTagDidSetEvent = EventDispatcher("onReactTagDidSet");
+
+  public let onMenuWillShow   = EventDispatcher("onMenuWillShow");
+  public let onMenuWillHide   = EventDispatcher("onMenuWillHide");
+  public let onMenuWillCancel = EventDispatcher("onMenuWillCancel");
+  
+  public let onMenuDidShow   = EventDispatcher("onMenuDidShow");
+  public let onMenuDidHide   = EventDispatcher("onMenuDidHide");
+  public let onMenuDidCancel = EventDispatcher("onMenuDidCancel");
+  
+  public let onPressMenuItem    = EventDispatcher("onPressMenuItem");
+  public let onPressMenuPreview = EventDispatcher("onPressMenuPreview");
+  
+  public let onMenuWillCreate = EventDispatcher("onMenuWillCreate");
+  
+  public let onRequestDeferredElement =
+    EventDispatcher("onRequestDeferredElement");
+  
+  // MARK: Properties - Props - Events - "Auxiliary Preview"-Related (Experimental)
+  // ------------------------------------------------------------------------------
+
+  public var onMenuAuxiliaryPreviewWillShow =
+    EventDispatcher("onMenuAuxiliaryPreviewWillShow");
+    
+  public var onMenuAuxiliaryPreviewDidShow =
+    EventDispatcher("onMenuAuxiliaryPreviewDidShow");
+  
   // MARK: - Computed Properties
   // ---------------------------
+  
+  private var shouldEnableAttachToParentVC: Bool {
+    self.cleanupMode == .viewController
+  };
+  
+  private var shouldEnableCleanup: Bool {
+    self.cleanupMode != .disabled
+  };
   
   var isUsingCustomPreview: Bool {
     self._previewConfig.previewType == .CUSTOM && self.previewWrapper != nil
@@ -199,68 +217,16 @@ class RNIContextMenuView: UIView {
       };
     }
   };
-
+  
   // MARK: - Computed Properties - "Auxiliary Context Menu Preview"-Related
   // ----------------------------------------------------------------------
   
-  /// Gets the `_UIContextMenuContainerView` that's holding the context menu controls.
-  /// **Note**: This `UIView` instance  only exists whenever there's a context menu interaction.
+  /// Gets the `_UIContextMenuContainerView` that's holding the context menu
+  /// controls.
   ///
-  /// Contains the ff. subviews:
-  /// * `UIVisualEffectView` - BG blur view
-  /// * `UIView` - Holds `_UIMorphingPlatterView`  and `_UIContextMenu`
-  ///
-  /// Debug Description
-  /// ```
-  /// <_UIContextMenuContainerView:
-  ///   frame = (0 0; 375 667); autoresize = W+H;
-  ///   gestureRecognizers = <NSArray>;
-  ///   layer = <CALayer>;
-  /// >
-  /// ```
-  ///
-  /// View Hierarchy (as of iOS `15.2`)
-  /// ```
-  /// <_UIContextMenuContainerView>
-  ///    // Blur background view
-  ///    <UIVisualEffectView>
-  ///      <_UIVisualEffectBackdropView/>
-  ///    </UIVisualEffectView>
-  ///
-  ///    // Contains the context menu preview and list items, as well as
-  ///    // the aux. preview.
-  ///    <UIView>
-  ///      // Contains the context menu preview
-  ///      <_UIMorphingPlatterView>
-  ///        <_UIPlatterSoftShadowView/>
-  ///        <_UIPlatterClippingView/>
-  ///        <_UIPlatterClippingView/>
-  ///      </_UIMorphingPlatterView>
-  ///
-  ///      // Contains the context menu list
-  ///      <_UIContextMenuView>
-  ///        <_UIContextMenuListView>
-  ///          <UIView>
-  ///            <UIView>
-  ///
-  ///              // Blur backdrop for menu items list
-  ///              <UIVisualEffectView>
-  ///                <_UIVisualEffectBackdropView/>
-  ///              </UIVisualEffectView>
-  ///
-  ///             // Contains the menu items
-  ///             <UICollectionView/>
-  ///
-  ///            </UIView>
-  ///          </UIView>
-  ///        </_UIContextMenuListView>
-  ///      </_UIContextMenuView>
-  ///
-  ///      // This is the aux. preview we inserted...
-  ///      <RCTView/>
-  ///    </UIView>
-  /// </_UIContextMenuContainerView>
-  /// ```
+  /// **Note**: This `UIView` instance  only exists whenever there's a context
+  /// menu interaction.
+  /// `
   var contextMenuContainerView: UIView? {
     self.window?.subviews.first {
       ($0.gestureRecognizers?.count ?? 0) > 0
@@ -303,39 +269,28 @@ class RNIContextMenuView: UIView {
     self.previewAuxiliaryViewWrapper?.reactViews.first
   };
   
-  // MARK: - Init
-  // ------------
-  
-  init(bridge: RCTBridge) {
-    super.init(frame: CGRect());
-    
-    self.bridge = bridge;
+  // MARK: Init + Lifecycle
+  // ----------------------
+
+  public required init(appContext: AppContext? = nil) {
+    super.init(appContext: appContext);
     
     // Add context menu interaction...
     self.setupAddContextMenuInteraction();
-    
-    #if DEBUG
-    // `RCTInvalidating` doesn't trigger in view instance, so use observer
-    NotificationCenter.default.addObserver(self,
-      selector: #selector(self.onRCTBridgeWillReloadNotification),
-      name: NSNotification.Name(rawValue: "RCTBridgeWillReloadNotification"),
-      object: nil
-    );
-    #endif
   };
   
-  required init?(coder: NSCoder) {
+  public required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented");
   };
   
   // MARK: - RN Lifecycle
   // --------------------
 
-  override func reactSetFrame(_ frame: CGRect) {
+  public override func reactSetFrame(_ frame: CGRect) {
     super.reactSetFrame(frame);
   };
   
-  override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
+  public override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
     super.insertSubview(subview, at: atIndex);
     
     if let wrapperView = subview as? RNIWrapperView,
@@ -378,7 +333,6 @@ class RNIContextMenuView: UIView {
   // ----------------------
   
   public override func didMoveToWindow() {
-    
     let isMovingToNilWindow = self.window == nil;
     
     // not attached to parent vc yet...
@@ -403,44 +357,9 @@ class RNIContextMenuView: UIView {
       };
     };
   };
-};
-
-// MARK: - View Module Commands
-// ----------------------------
-
-@available(iOS 13, *)
-extension RNIContextMenuView {
-  func dismissMenu(){
-    self.contextMenuInteraction?.dismissMenu();
-  };
   
-  // TODO: Add error throws
-  func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
-    if let completion = self.deferredElementCompletionMap[deferredID] {
-
-      // create + add menu elements
-      completion( menuElements.compactMap { menuElement in
-        menuElement.createMenuElement(
-          actionItemHandler: { [unowned self] in
-            self.handleOnPressMenuActionItem(dict: $0, action: $1);
-            
-          }, deferredElementHandler: { [unowned self] in
-            self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
-          }
-        );
-      });
-      
-      // cleanup
-      self.deferredElementCompletionMap.removeValue(forKey: deferredID);
-    };
-  };
-};
-
-// MARK: - Private Functions
-// -------------------------
-
-@available(iOS 13, *)
-fileprivate extension RNIContextMenuView {
+  // MARK: - Functions
+  // -----------------
   
   /// Add a context menu interaction to view
   func setupAddContextMenuInteraction(){
@@ -521,8 +440,9 @@ fileprivate extension RNIContextMenuView {
       return param;
     }();
     
-    if let targetNode = previewConfig.targetViewNode,
-       let targetView = self.bridge.uiManager.view(forReactTag: targetNode) {
+    if let bridge = self.appContext?.reactBridge,
+       let targetNode = previewConfig.targetViewNode,
+       let targetView = bridge.uiManager.view(forReactTag: targetNode) {
       
       // A - Targeted preview provided....
       return UITargetedPreview(
@@ -558,7 +478,7 @@ fileprivate extension RNIContextMenuView {
     action: UIAction
   ){
     self.didPressMenuItem = true;
-    self.onPressMenuItem?(dict);
+    self.onReactTagDidSetEvent.callAsFunction(dict);
   };
   
   func handleOnDeferredElementRequest(
@@ -569,7 +489,7 @@ fileprivate extension RNIContextMenuView {
     self.deferredElementCompletionMap[deferredID] = completion;
     
     // notify js that a deferred element needs to be loaded
-    self.onRequestDeferredElement?([
+    self.onRequestDeferredElement.callAsFunction([
       "deferredID": deferredID,
     ]);
   };
@@ -1011,7 +931,7 @@ fileprivate extension RNIContextMenuView {
     // --------------------
     
     // trigger will show event
-    self.onMenuAuxiliaryPreviewWillShow?([:]);
+    self.onMenuAuxiliaryPreviewWillShow.callAsFunction([:]);
     self.isAuxPreviewVisible = true;
     
     // transition - set start/initial values
@@ -1039,7 +959,7 @@ fileprivate extension RNIContextMenuView {
       
       }, completion: {_ in
         // trigger did show event
-        self.onMenuAuxiliaryPreviewDidShow?(eventObject);
+        self.onMenuAuxiliaryPreviewDidShow.callAsFunction(eventObject);
       }
     );
   };
@@ -1105,201 +1025,40 @@ fileprivate extension RNIContextMenuView {
       };
     };
   };
-};
-
-// MARK: - UIContextMenuInteractionDelegate
-// ----------------------------------------
-
-@available(iOS 13, *)
-extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   
-  // create context menu
-  func contextMenuInteraction(
-    _ interaction: UIContextMenuInteraction,
-    configurationForMenuAtLocation location: CGPoint
-  ) -> UIContextMenuConfiguration? {
-    
-    guard self.isContextMenuEnabled else { return nil };
-    
-    self.onMenuWillCreate?([:]);
-    
-    // Note: Xcode beta + running on device (iPhone XR + iOS 15.1) causes
-    // crashes when the context menu is being created
-    return UIContextMenuConfiguration(
-      identifier     : nil,
-      previewProvider: self.createMenuPreview,
-      actionProvider : { [unowned self] _ in
-        self.createMenu();
-      }
-    );
+  // MARK: - Functions - View Module Commands
+  // ----------------------------------------
+  
+  func dismissMenu(){
+    self.contextMenuInteraction?.dismissMenu();
   };
   
-  // context menu display begins
-  func contextMenuInteraction(
-    _ interaction: UIContextMenuInteraction,
-    willDisplayMenuFor configuration: UIContextMenuConfiguration,
-    animator: UIContextMenuInteractionAnimating?
-  ) {
-    
-    self.isContextMenuVisible = true;
-    self.onMenuWillShow?([:]);
-    
-    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    let transitionEntranceDelay = self._auxiliaryPreviewConfig?
-      .transitionEntranceDelay ?? .AFTER_PREVIEW;
-    
-    let shouldUseAlternateWayToShowAuxPreview =
-      transitionEntranceDelay != .AFTER_PREVIEW;
-    
-    
-    // A - show context menu auxiliary preview via new way
-    // i.e. immediately show aux. preview but with a slight delay
-    if shouldUseAlternateWayToShowAuxPreview {
+  // TODO: Add error throws
+  func provideDeferredElements(
+    id deferredID: String,
+    menuElements: [RNIMenuElement]
+  ){
+    if let completion = self.deferredElementCompletionMap[deferredID] {
+
+      // create + add menu elements
+      completion( menuElements.compactMap { menuElement in
+        menuElement.createMenuElement(
+          actionItemHandler: { [unowned self] in
+            self.handleOnPressMenuActionItem(dict: $0, action: $1);
+            
+          }, deferredElementHandler: { [unowned self] in
+            self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
+          }
+        );
+      });
       
-      // the animator does not have a `percentComplete` - so this is just a guess
-      // on how long the context menu entrance animation is
-      //
-      // Note: will break if slow animations enabled
-      let delay = transitionEntranceDelay.seconds;
-      
-      DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
-        self?.attachContextMenuAuxiliaryPreviewIfAny(nil);
-      };
-    };
-    
-    animator?.addCompletion { [unowned self] in
-      self.onMenuDidShow?([:]);
-      
-      // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-      // B - show context menu auxiliary preview via old way
-      // i.e. wait for context menu preview to become visible before showing
-      // the aux. preview.
-      if !shouldUseAlternateWayToShowAuxPreview {
-        self.attachContextMenuAuxiliaryPreviewIfAny(animator);
-      };
+      // cleanup
+      self.deferredElementCompletionMap.removeValue(forKey: deferredID);
     };
   };
   
-  // context menu display ends
-  func contextMenuInteraction(
-    _ interaction: UIContextMenuInteraction,
-    willEndFor configuration: UIContextMenuConfiguration,
-    animator: UIContextMenuInteractionAnimating?
-  ) {
-    
-    guard self.isContextMenuVisible else { return };
-    
-    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    // hide preview auxiliary view
-    self.detachContextMenuAuxiliaryPreviewIfAny(animator);
-
-    self.onMenuWillHide?([:]);
-    
-    if !self.didPressMenuItem {
-      // nothing was selected...
-      self.onMenuWillCancel?([:]);
-    };
-    
-    animator?.addCompletion { [unowned self] in
-      self.onMenuDidHide?([:]);
-      
-      if !self.didPressMenuItem {
-        // nothing was selected...
-        self.onMenuDidCancel?([:]);
-      };
-      
-      // reset flag
-      self.didPressMenuItem = false;
-    };
-    
-    // reset flag
-    self.isContextMenuVisible = false;
-  };
-  
-  // context menu preview tapped
-  func contextMenuInteraction(
-    _ interaction: UIContextMenuInteraction,
-    willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
-    animator: UIContextMenuInteractionCommitAnimating
-  ) {
-    
-    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    // hide preview auxiliary view
-    self.detachContextMenuAuxiliaryPreviewIfAny(animator);
-    
-    let preferredCommitStyle = self._previewConfig.preferredCommitStyle;
-    
-    self.isContextMenuVisible = false;
-    animator.preferredCommitStyle = preferredCommitStyle;
-    
-    switch preferredCommitStyle {
-      case .pop:
-        self.onMenuWillHide?([:]);
-        
-        animator.addCompletion { [unowned self] in
-          self.onPressMenuPreview?([:]);
-          self.onMenuDidHide?([:]);
-        };
-      
-      case .dismiss: fallthrough;
-      @unknown default:
-        self.onMenuWillHide?([:]);
-        self.onPressMenuPreview?([:]);
-        
-        animator.addCompletion { [unowned self] in
-          self.onMenuDidHide?([:]);
-        };
-    };
-  };
-
-  #if swift(>=5.7)
-  func contextMenuInteraction(
-      _ interaction: UIContextMenuInteraction,
-      configuration: UIContextMenuConfiguration,
-      highlightPreviewForItemWithIdentifier identifier: NSCopying
-  ) -> UITargetedPreview? {
-    
-    return self.makeTargetedPreview();
-  };
-  #else
-  /// deprecated in iOS 16
-  func contextMenuInteraction(
-    _ : UIContextMenuInteraction,
-    previewForHighlightingMenuWithConfiguration: UIContextMenuConfiguration
-  ) -> UITargetedPreview? {
-  
-    return self.makeTargetedPreview();
-  };
-  #endif
-  
-  
-  #if swift(>=5.7)
-  func contextMenuInteraction(
-      _ interaction: UIContextMenuInteraction,
-      configuration: UIContextMenuConfiguration,
-      dismissalPreviewForItemWithIdentifier identifier: NSCopying
-  ) -> UITargetedPreview? {
-    
-    return self.makeTargetedPreview();
-  };
-  #else
-  /// deprecated in iOS 16
-  func contextMenuInteraction(
-    _ interaction: UIContextMenuInteraction,
-    previewForDismissingMenuWithConfiguration
-    configuration: UIContextMenuConfiguration
-  ) -> UITargetedPreview? {
-    
-    return self.makeTargetedPreview();
-  };
-  #endif
-};
-
-// MARK: - RNINavigationEventsNotifiable
-// ----------------------
-
-@available(iOS 13, *)
-extension RNIContextMenuView: RNINavigationEventsNotifiable {
+  // MARK: - RNINavigationEventsNotifiable
+  // -------------------------------------
   
   func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
     if self.cleanupMode == .viewController {
@@ -1307,13 +1066,9 @@ extension RNIContextMenuView: RNINavigationEventsNotifiable {
       self.cleanup();
     };
   };
-};
-
-// MARK: - RNICleanable
-// --------------------
-
-@available(iOS 13, *)
-extension RNIContextMenuView: RNICleanable {
+  
+  // MARK: - RNICleanable
+  // --------------------
   
   func cleanup(){
     guard self.shouldEnableCleanup,
@@ -1342,13 +1097,9 @@ extension RNIContextMenuView: RNICleanable {
     NotificationCenter.default.removeObserver(self);
     #endif
   };
-};
-
-// MARK: - RNIJSComponentWillUnmountNotifiable
-// -------------------------------------------
-
-@available(iOS 13, *)
-extension RNIContextMenuView: RNIJSComponentWillUnmountNotifiable {
+  
+  // MARK: - RNIJSComponentWillUnmountNotifiable
+  // -------------------------------------------
   
   func notifyOnJSComponentWillUnmount(){
     guard self.cleanupMode == .reactComponentWillUnmount
@@ -1356,13 +1107,9 @@ extension RNIContextMenuView: RNIJSComponentWillUnmountNotifiable {
     
     self.cleanup();
   };
-};
-
-// MARK: - RNIMenuElementEventsNotifiable
-// --------------------------------------
-
-@available(iOS 13, *)
-extension RNIContextMenuView: RNIMenuElementEventsNotifiable {
+  
+  // MARK: - RNIMenuElementEventsNotifiable
+  // --------------------------------------
   
   func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
     guard let menuConfig = self._menuConfig else { return };
