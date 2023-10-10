@@ -443,6 +443,9 @@ PODS:
     - React-jsi (= 0.72.5)
     - React-logger (= 0.72.5)
     - React-perflogger (= 0.72.5)
+  - ReactNativeIosContextMenu (0.1.0):
+    - ExpoModulesCore
+    - ReactNativeIosUtilities
   - ReactNativeIosUtilities (4.0.0-5):
     - ExpoModulesCore
   - SocketRocket (0.6.1)
@@ -496,6 +499,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - ReactNativeIosContextMenu (from `../..`)
   - ReactNativeIosUtilities (from `../node_modules/react-native-ios-utilities`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -597,6 +601,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeIosContextMenu:
+    :path: "../.."
   ReactNativeIosUtilities:
     :path: "../node_modules/react-native-ios-utilities"
   Yoga:
@@ -650,6 +656,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: cc32add98c45c5df18436a6a52a7e1f6edec102c
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
+  ReactNativeIosContextMenu: a8eb9029285d22e5051a30a1ca0b305a0045e81d
   ReactNativeIosUtilities: cb654b77ce8eecf1f413fa9fd529832704d21551
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 86fed2e4d425ee4c6eab3813ba1791101ee153c6
