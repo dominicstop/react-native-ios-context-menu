@@ -7,7 +7,7 @@
 //
 
 import UIKit;
-
+import ReactNativeIosUtilities
 
 @available(iOS 14, *)
 class RNIContextMenuButton: UIButton {
@@ -250,9 +250,12 @@ private extension RNIContextMenuButton {
   func attachToParentVC(){
     guard self.shouldEnableAttachToParentVC,
           !self.didAttachToParentVC,
+          
           // find the nearest parent view controller
-          let parentVC = RNIUtilities
-            .getParent(responder: self, type: UIViewController.self)
+          let parentVC = RNIHelpers.getParent(
+            responder: self,
+            type: UIViewController.self
+          )
     else { return };
     
     self.didAttachToParentVC = true;

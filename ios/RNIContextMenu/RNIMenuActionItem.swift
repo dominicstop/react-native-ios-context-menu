@@ -120,7 +120,7 @@ extension RNIMenuActionItem {
   };
   
   var fallbackDiscoverabilityTitle: String? {
-    RNIUtilities.osVersion.majorVersion < 15
+    RNIHelpers.osVersion.majorVersion < 15
       ? self.actionSubtitle
       : nil
   };

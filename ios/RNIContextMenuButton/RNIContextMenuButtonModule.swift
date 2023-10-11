@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ReactNativeIosUtilities
 
 
 @objc(RNIContextMenuButtonModule)
@@ -20,7 +21,7 @@ internal class RNIContextMenuButtonModule: NSObject {
   
   @available(iOS 14, *)
   func getContextMenuButton(_ node: NSNumber) -> RNIContextMenuButton? {
-    return RNIUtilities.getView(
+    return RNIHelpers.getView(
       forNode: node,
       type   : RNIContextMenuButton.self,
       bridge : self.bridge
