@@ -11,29 +11,29 @@ import ReactNativeIosUtilities;
 
 
 @available(iOS 13.0, *)
-class RNIMenuItem: RNIMenuElement {
+public class RNIMenuItem: RNIMenuElement {
   
   // MARK: - Serialized Properties
   // -----------------------------
   
-  var menuTitle: String;
-  var menuSubtitle: String?;
+  public var menuTitle: String;
+  public var menuSubtitle: String?;
   
-  var menuOptions: [String]?;
-  var menuPreferredElementSize: String?;
+  public var menuOptions: [String]?;
+  public var menuPreferredElementSize: String?;
   
-  var icon: RNIImageItem?;
-  var menuItems: [RNIMenuElement]?;
+  public var icon: RNIImageItem?;
+  public var menuItems: [RNIMenuElement]?;
   
   // MARK: - Properties
   // ------------------
   
-  var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
+  public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   
   // MARK: - Init
   // ------------
 
-  override init?(dictionary: NSDictionary){
+  public override init?(dictionary: NSDictionary){
     guard let menuTitle = dictionary["menuTitle"] as? String
     else { return nil };
     
@@ -100,7 +100,7 @@ class RNIMenuItem: RNIMenuElement {
 extension RNIMenuItem {
   
   /// get `UIMenu.Options` from `menuOptions` strings
-  var synthesizedMenuOptions: UIMenu.Options {
+  public var synthesizedMenuOptions: UIMenu.Options {
     UIMenu.Options(
       self.menuOptions?.compactMap {
         UIMenu.Options(string: $0);
@@ -111,7 +111,7 @@ extension RNIMenuItem {
   #if !targetEnvironment(macCatalyst)
   #if swift(>=5.7)
   @available(iOS 16.0, *)
-  var synthesizedPreferredMenuElementSize: UIMenu.ElementSize? {
+  public var synthesizedPreferredMenuElementSize: UIMenu.ElementSize? {
     guard let menuPreferredElementSize = self.menuPreferredElementSize
     else { return nil };
     
@@ -126,7 +126,7 @@ extension RNIMenuItem {
 
 @available(iOS 13.0, *)
 extension RNIMenuItem {
-  func createMenu(
+  public func createMenu(
     actionItemHandler      actionHandler  : @escaping RNIMenuActionItem.ActionItemHandler,
     deferredElementHandler deferredHandler: @escaping RNIDeferredMenuElement.RequestHandler
   ) -> UIMenu {

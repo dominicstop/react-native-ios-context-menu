@@ -8,6 +8,6 @@
 import Foundation
 
 
-protocol RNIMenuElementEventsNotifiable: AnyObject {
+public protocol RNIMenuElementEventsNotifiable: AnyObject {
   func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement);
 };

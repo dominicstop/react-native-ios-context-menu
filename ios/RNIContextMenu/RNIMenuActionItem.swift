@@ -11,21 +11,21 @@ import ReactNativeIosUtilities;
 
 
 @available(iOS 13, *)
-class RNIMenuActionItem: RNIMenuElement {
+public class RNIMenuActionItem: RNIMenuElement {
   
   // MARK: - Serialized Properties
   // -----------------------------
   
-  var actionKey  : String;
-  var actionTitle: String;
+  public var actionKey: String;
+  public var actionTitle: String;
   
-  var actionSubtitle: String?;
+  public var actionSubtitle: String?;
   
-  var icon: RNIImageItem?;
-  var discoverabilityTitle: String?;
+  public var icon: RNIImageItem?;
+  public var discoverabilityTitle: String?;
   
-  var menuState     : String?;
-  var menuAttributes: [String]?;
+  public var menuState: String?;
+  public var menuAttributes: [String]?;
   
   // MARK: - Properties
   // ------------------
@@ -160,9 +160,9 @@ extension RNIMenuActionItem {
 @available(iOS 13, *)
 extension RNIMenuActionItem {
   
-  typealias ActionItemHandler = ([String: Any], UIAction) -> Void;
+  public typealias ActionItemHandler = ([String: Any], UIAction) -> Void;
   
-  func createAction(handler: @escaping ActionItemHandler) -> UIAction {    
+  public func createAction(handler: @escaping ActionItemHandler) -> UIAction {    
     let action = UIAction(
       title     : self.actionTitle,
       image     : self.icon?.image,

@@ -9,21 +9,21 @@ import Foundation
 import UIKit
 
 
-struct RNIContextMenuAuxiliaryPreviewConfig {
+public struct RNIContextMenuAuxiliaryPreviewConfig {
   
   // MARK: - Nested Types
   // --------------------
   
-  enum AnchorPosition: String {
+  public enum AnchorPosition: String {
     case top, bottom, automatic;
   };
   
-  enum HorizontalAlignment: String {
-    case stretchScreen, stretchPreview, previewLeading,
-         previewTrailing, previewCenter;
+  public enum HorizontalAlignment: String {
+    case stretchScreen, stretchPreview, previewLeading;
+    case previewTrailing, previewCenter;
   };
   
-  enum TransitionType {
+  public enum TransitionType {
     case none, fade;
     
     case slide(slideOffset: CGFloat);
@@ -31,17 +31,17 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
     case zoomAndSlide(slideOffset: CGFloat, zoomOffset: CGFloat);
   };
   
-  struct TransitionConfig {
+  public struct TransitionConfig {
     
-    var transition: TransitionType;
+    public var transition: TransitionType;
     
     // MARK: UIView.Animate Config
     
-    var duration: CGFloat;
-    var delay: CGFloat;
-    var options: UIView.AnimationOptions;
+    public var duration: CGFloat;
+    public var delay: CGFloat;
+    public var options: UIView.AnimationOptions;
     
-    init(dictionary: NSDictionary){
+    public init(dictionary: NSDictionary){
       
       self.transition = {
         guard let string = dictionary["transition"] as? String
@@ -103,7 +103,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
       }();
     };
     
-    init(){
+    public init(){
       self.transition = .fade;
       self.duration = 0.3;
       self.delay = 0;
@@ -111,7 +111,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
     };
   };
   
-  enum TransitionEntranceDelay: Equatable {
+  public enum TransitionEntranceDelay: Equatable {
     case seconds(CGFloat);
     
     case RECOMMENDED;
@@ -126,7 +126,7 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
       };
     };
     
-    var seconds: CGFloat {
+    public var seconds: CGFloat {
       switch self {
         case .seconds(let seconds):
           return seconds;
@@ -140,22 +140,22 @@ struct RNIContextMenuAuxiliaryPreviewConfig {
   // MARK: - Properties
   // ------------------
   
-  var height: CGFloat?;
-  var width: CGFloat?;
+  public var height: CGFloat?;
+  public var width: CGFloat?;
 
-  var anchorPosition: AnchorPosition;
-  var alignmentHorizontal: HorizontalAlignment;
+  public var anchorPosition: AnchorPosition;
+  public var alignmentHorizontal: HorizontalAlignment;
   
-  var marginPreview: CGFloat;
-  var marginAuxiliaryPreview: CGFloat;
+  public var marginPreview: CGFloat;
+  public var marginAuxiliaryPreview: CGFloat;
 
-  var transitionConfigEntrance: TransitionConfig;
-  var transitionEntranceDelay: TransitionEntranceDelay;
+  public var transitionConfigEntrance: TransitionConfig;
+  public var transitionEntranceDelay: TransitionEntranceDelay;
   
   // MARK: - Init
   // ------------
   
-  init(dictionary: NSDictionary){
+  public init(dictionary: NSDictionary){
     self.height = dictionary["height"] as? CGFloat;
     self.width  = dictionary["width" ] as? CGFloat;
     

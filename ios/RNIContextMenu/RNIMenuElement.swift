@@ -14,7 +14,7 @@ public class RNIMenuElement  {
   // MARK: - Embedded Types
   // ----------------------
   
-  enum MenuElementType: String, Encodable {
+  public enum MenuElementType: String, Encodable {
     case action, deferred, menu;
   };
   
@@ -22,10 +22,11 @@ public class RNIMenuElement  {
   // ---------------------
   
   @available(iOS 13.0, *)
-  static func recursivelyGetAllElements<T>(
+  public static func recursivelyGetAllElements<T>(
     from menuConfig: RNIMenuItem,
     ofType type: T.Type
   ) -> [T] {
+  
     guard let menuItems = menuConfig.menuItems
     else { return [] };
     
@@ -35,7 +36,10 @@ public class RNIMenuElement  {
       if let submenu = menuItem as? RNIMenuItem {
         // recursive
         matchingElements.append(
-          contentsOf: Self.recursivelyGetAllElements(from: submenu, ofType: T.self)
+          contentsOf: Self.recursivelyGetAllElements(
+            from: submenu,
+            ofType: T.self
+          )
         );
         
       } else if let element = menuItem as? T {
@@ -49,15 +53,15 @@ public class RNIMenuElement  {
   // MARK: - Properties
   // ------------------
   
-  var type: MenuElementType?;
+  public var type: MenuElementType?;
   
-  weak var parent: RNIMenuElement?;
-  weak var delegate: RNIMenuElementEventsNotifiable?;
+  public weak var parent: RNIMenuElement?;
+  public weak var delegate: RNIMenuElementEventsNotifiable?;
   
   // MARK: - Init
   // ------------
   
-  init?(dictionary: NSDictionary){
+  public init?(dictionary: NSDictionary){
     self.type = {
       guard let string = dictionary["type"] as? String
       else { return nil };
@@ -70,7 +74,7 @@ public class RNIMenuElement  {
   // -----------------
   
   @available(iOS 13.0, *)
-  func createMenuElement(
+  public func createMenuElement(
     actionItemHandler      actionHandler  : @escaping RNIMenuActionItem.ActionItemHandler,
     deferredElementHandler deferredHandler: @escaping RNIDeferredMenuElement.RequestHandler
   ) -> UIMenuElement? {
@@ -98,7 +102,7 @@ public class RNIMenuElement  {
 // --------------------------------------
 
 extension RNIMenuElement: RNIMenuElementEventsNotifiable {
-  func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
+  public func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
     guard let delegate = self.delegate ?? self.parent?.delegate
     else { return };
     

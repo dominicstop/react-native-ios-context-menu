@@ -10,17 +10,17 @@ import Foundation
 
 
 @available(iOS 13.0, *)
-struct PreviewConfig {
+public struct PreviewConfig {
   
   // MARK: - Nested Types
   // --------------------
   
-  enum PreviewType: String {
+  public enum PreviewType: String {
     case DEFAULT;
     case CUSTOM;
   };
 
-  enum PreviewSize: String {
+  public enum PreviewSize: String {
     case INHERIT;
     case STRETCH;
   };
@@ -28,16 +28,16 @@ struct PreviewConfig {
   // MARK: - Properties
   // ------------------
   
-  var previewType: PreviewType = .DEFAULT;
-  var previewSize: PreviewSize = .INHERIT;
+  public var previewType: PreviewType = .DEFAULT;
+  public var previewSize: PreviewSize = .INHERIT;
   
-  var isResizeAnimated = true;
+  public var isResizeAnimated = true;
   
-  var borderRadius   : CGFloat?;
-  var targetViewNode : NSNumber?;
-  var backgroundColor: UIColor = .clear;
+  public var borderRadius   : CGFloat?;
+  public var targetViewNode : NSNumber?;
+  public var backgroundColor: UIColor = .clear;
   
-  var preferredCommitStyle: UIContextMenuInteractionCommitStyle = .dismiss;
+  public var preferredCommitStyle: UIContextMenuInteractionCommitStyle = .dismiss;
 };
 
 // MARK: - Init
@@ -46,7 +46,7 @@ struct PreviewConfig {
 @available(iOS 13.0, *)
 extension PreviewConfig {
   
-  init(dictionary: NSDictionary){
+  public init(dictionary: NSDictionary){
     self.borderRadius   = dictionary["borderRadius"  ] as? CGFloat;
     self.targetViewNode = dictionary["targetViewNode"] as? NSNumber;
     
@@ -79,7 +79,7 @@ extension PreviewConfig {
     };
   };
   
-  init?(dictionary: NSDictionary?){
+  public init?(dictionary: NSDictionary?){
     guard let dictionary = dictionary else { return nil };
     self.init(dictionary: dictionary);
   };

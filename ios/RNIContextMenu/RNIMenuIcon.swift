@@ -9,12 +9,12 @@
 import Foundation
 import ReactNativeIosUtilities
 
-class RNIMenuIcon {
+public class RNIMenuIcon {
   
   // MARK: - Nested Types
   // --------------------
   
-  enum IconType: String, CaseIterable, Encodable {
+  public enum IconType: String, CaseIterable, Encodable {
     case NONE;
     case URL;
     case SYSTEM;
@@ -22,13 +22,12 @@ class RNIMenuIcon {
     case REQUIRE;
   };
   
-  
   /// Convert  legacy `IconConfig` dictionary  to `RNIImageItem`
-  static func convertLegacyIconConfigToImageItemConfig(
+  public static func convertLegacyIconConfigToImageItemConfig(
     dict: NSDictionary
   ) -> RNIImageItem? {
     
-    guard let string   = dict["iconType"] as? String,
+    guard let string = dict["iconType"] as? String,
           let iconType = IconType(rawValue: string)
     else { return nil };
     

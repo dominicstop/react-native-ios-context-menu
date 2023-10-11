@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 
-class RNIDeferredMenuElement: RNIMenuElement {
+public class RNIDeferredMenuElement: RNIMenuElement {
   
   @available(iOS 13.0, *)
-  typealias CompletionHandler = ([UIMenuElement]) -> Void;
+  public typealias CompletionHandler = ([UIMenuElement]) -> Void;
   
   @available(iOS 13.0, *)
-  typealias RequestHandler = (
+  public typealias RequestHandler = (
     _ deferredID: String,
     _ completion: @escaping CompletionHandler
   ) -> Void;
@@ -23,10 +23,10 @@ class RNIDeferredMenuElement: RNIMenuElement {
   // MARK: - Serialized Properties
   // -----------------------------
   
-  var deferredID: String;
-  var shouldCache: Bool;
+  public var deferredID: String;
+  public var shouldCache: Bool;
   
-  override init?(dictionary: NSDictionary){
+  public override init?(dictionary: NSDictionary){
     guard let deferredID = dictionary["deferredID"] as? String
     else { return nil };
     
@@ -40,22 +40,25 @@ class RNIDeferredMenuElement: RNIMenuElement {
   };
   
   @available(iOS 14.0, *)
-  func createDeferredElement(handler: @escaping RequestHandler) -> UIDeferredMenuElement {
+  public func createDeferredElement(
+    handler: @escaping RequestHandler
+  ) -> UIDeferredMenuElement {
+  
     // make local copy to prevent using `[weak self]`
-    let deferredID = self.deferredID;
+    let cachedDeferredID = self.deferredID;
     
     #if swift(>=5.5)
     if !self.shouldCache,
        #available(iOS 15.0, *) {
       
       return UIDeferredMenuElement.uncached { completion in
-        handler(deferredID, completion);
+        handler(cachedDeferredID, completion);
       };
     };
     #endif
     
     return UIDeferredMenuElement { completion in
-      handler(deferredID, completion);
+      handler(cachedDeferredID, completion);
     };
   };
 };
