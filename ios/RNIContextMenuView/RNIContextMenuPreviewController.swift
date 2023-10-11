@@ -7,6 +7,8 @@
 //
 
 import UIKit;
+import ExpoModulesCore
+import ReactNativeIosUtilities
 
 
 @available(iOS 13.0, *)
@@ -14,19 +16,11 @@ class RNIContextMenuPreviewController: UIViewController {
   
   var previewConfig = PreviewConfig();
   
-  weak var previewWrapper: RNIWrapperView?;
-  
-  /// Shorthand to get the "preview view" that we want to display in the context menu preview.
-  ///
-  /// Note: This is the view that we received from JS side via `RNIWrapperView`.
-  /// The wrapper view  is set o "dummy view mode".
-  var reactPreviewView: UIView? {
-    self.previewWrapper?.reactViews.first
-  };
-  
+  weak var menuCustomPreviewView: RNIDetachedView?;
+    
   /// Shorthand for the preview view's size/dimensions.
   var previewSize: CGSize? {
-    self.reactPreviewView?.frame.size;
+    self.menuCustomPreviewView?.frame.size;
   };
   
   override func viewDidLoad() {
@@ -40,7 +34,7 @@ class RNIContextMenuPreviewController: UIViewController {
       return view;
     }();
     
-    if let previewView = self.reactPreviewView {
+    if let previewView = self.menuCustomPreviewView {
       self.view.addSubview(previewView);
     };
   };
@@ -50,9 +44,9 @@ class RNIContextMenuPreviewController: UIViewController {
 
     switch self.previewConfig.previewSize {
       case .STRETCH:
-        guard let previewWrapper = self.previewWrapper else { return };
+        guard let menuCustomPreviewView = self.menuCustomPreviewView else { return };
         
-        previewWrapper.notifyForBoundsChange(size: self.view.bounds.size);
+        menuCustomPreviewView.updateBounds(newSize: self.view.bounds.size);
         self.preferredContentSize = CGSize(width: 0, height: 0);
         
       case .INHERIT:

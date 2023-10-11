@@ -32,11 +32,10 @@ public class RNIContextMenuView:
   
   var contextMenuInteraction: UIContextMenuInteraction?;
   
-    /// contains the view to show in the preview
-  var previewWrapper: RNIDummyView?;
   var previewController: RNIContextMenuPreviewController?;
-  
   weak var viewController: RNINavigationEventsReportingViewController?;
+  
+  var menuCustomPreviewView: RNIDetachedView?;
       
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
@@ -75,9 +74,6 @@ public class RNIContextMenuView:
   
   /// Keep track on whether or not the aux. preview is currently visible.
   var isAuxPreviewVisible = false;
-
-  /// Holds the view to be shown in the auxiliary preview
-  var previewAuxiliaryViewWrapper: RNIWrapperView?;
   
   /// Cached value - in which side of the preview was aux. preview attached to?
   /// Cleared when the aux. preview is hidden.
@@ -207,7 +203,8 @@ public class RNIContextMenuView:
   };
   
   var isUsingCustomPreview: Bool {
-    self._previewConfig.previewType == .CUSTOM && self.previewWrapper != nil
+       self._previewConfig.previewType == .CUSTOM
+    && self.menuCustomPreviewView != nil
   };
   
   var cleanupMode: RNICleanupMode {
@@ -258,16 +255,10 @@ public class RNIContextMenuView:
     };
   };
   
-  var isPreviewAuxiliaryViewAttached: Bool {
-    self.previewAuxiliaryViewWrapper != nil;
-  };
+  var menuAuxiliaryPreviewView: RNIDetachedView?;
   
-  /// Shorthand to get the "preview view" that we want to display in the context menu preview.
-  ///
-  /// Note: This is the view that we received from JS side via `RNIWrapperView`.
-  /// The wrapper view  is configured to use "dummy mode".
-  var previewAuxiliaryView: UIView? {
-    self.previewAuxiliaryViewWrapper?.reactViews.first
+  var isPreviewAuxiliaryViewAttached: Bool {
+    self.menuAuxiliaryPreviewView != nil;
   };
   
   // MARK: Init + Lifecycle
@@ -294,34 +285,31 @@ public class RNIContextMenuView:
   public override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
     super.insertSubview(subview, at: atIndex);
     
-    if let wrapperView = subview as? RNIWrapperView,
-       let nativeID    = subview.nativeID,
-       let nativeIDKey = NativeIDKey(rawValue: nativeID) {
-      
-      wrapperView.isMovingToParent = true;
-      
-      switch nativeIDKey {
+    guard let detachedView = subview as? RNIDetachedView,
+          let nativeID = detachedView.nativeID,
+          let nativeIDKey = NativeIDKey(rawValue: nativeID)
+    else { return };
+    
+    switch nativeIDKey {
         case .contextMenuPreview:
-          // if prev. exist, cleanup first.
-          if self.previewWrapper !== wrapperView {
-            self.previewWrapper?.cleanup();
+          if let oldMenuCustomPreviewView = self.menuCustomPreviewView,
+             oldMenuCustomPreviewView !== detachedView {
+            
+            oldMenuCustomPreviewView.cleanup();
           };
-          
-          self.previewWrapper = wrapperView;
+        
+          self.menuCustomPreviewView = detachedView;
         
         // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
         case .contextMenuAuxiliaryPreview:
           // if prev. exist, cleanup first
-          if self.previewAuxiliaryViewWrapper !== wrapperView {
-            self.previewAuxiliaryViewWrapper?.cleanup();
+          if let oldMenuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView  {
+            oldMenuAuxiliaryPreviewView.cleanup();
           };
           
-          self.previewAuxiliaryViewWrapper = wrapperView;
-      };
-      
-      wrapperView.removeFromSuperview();
-      wrapperView.isMovingToParent = false;
+          self.menuAuxiliaryPreviewView = detachedView;
     };
+    detachedView.detach();
   };
   
   #if DEBUG
@@ -397,7 +385,7 @@ public class RNIContextMenuView:
     
     // vc that holds the view to show in the preview
     let vc = RNIContextMenuPreviewController();
-    vc.previewWrapper = self.previewWrapper;
+    vc.menuCustomPreviewView = self.menuCustomPreviewView;
     vc.previewConfig = previewConfig;
     vc.view.isUserInteractionEnabled = true;
     
@@ -554,9 +542,7 @@ public class RNIContextMenuView:
   ){
 
     guard self.isAuxiliaryPreviewEnabled,
-          let previewAuxiliaryViewWrapper = self.previewAuxiliaryViewWrapper,
-          let previewAuxiliaryView = self.previewAuxiliaryView,
-          
+          let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView,
           let contextMenuContentContainer = self.contextMenuContentContainer,
           let contextMenuContainerView = self.contextMenuContainerView,
           let morphingPlatterView = self.morphingPlatterView
@@ -582,7 +568,7 @@ public class RNIContextMenuView:
       };
       
       // B - Infer aux preview height from view
-      return previewAuxiliaryView.frame.height;
+      return menuAuxiliaryPreviewView.frame.height;
     }();
     
     let auxiliaryViewWidth: CGFloat = {
@@ -599,7 +585,7 @@ public class RNIContextMenuView:
         
         // C - Infer aux config or aux preview width from view...
         default:
-          return auxConfig.width ?? previewAuxiliaryView.frame.width;
+          return auxConfig.width ?? menuAuxiliaryPreviewView.frame.width;
       };
     }();
     
@@ -721,19 +707,18 @@ public class RNIContextMenuView:
     // ----------------
     
     // Bugfix: Stop bubbling touch events from propagating to parent
-    previewAuxiliaryView.addGestureRecognizer(
+    menuAuxiliaryPreviewView.addGestureRecognizer(
       UITapGestureRecognizer(target: nil, action: nil)
     );
     
     /// manually set size of aux. preview
-    previewAuxiliaryViewWrapper
-      .notifyForBoundsChange(size: previewAuxiliaryViewSize);
+    menuAuxiliaryPreviewView.updateBounds(newSize: previewAuxiliaryViewSize);
 
     /// enable auto layout
-    previewAuxiliaryView.translatesAutoresizingMaskIntoConstraints = false;
+    menuAuxiliaryPreviewView.translatesAutoresizingMaskIntoConstraints = false;
     
     /// attach `auxiliaryView` to context menu preview
-    targetView.addSubview(previewAuxiliaryView);
+    targetView.addSubview(menuAuxiliaryPreviewView);
     
     // set layout constraints based on config
     NSLayoutConstraint.activate({
@@ -741,18 +726,18 @@ public class RNIContextMenuView:
       // set initial constraints
       var constraints: Array<NSLayoutConstraint> = [
         // set aux preview height
-        previewAuxiliaryView.heightAnchor
+        menuAuxiliaryPreviewView.heightAnchor
           .constraint(equalToConstant: auxiliaryViewHeight),
       ];
       
       // set vertical alignment constraint - i.e. either...
       constraints.append(shouldAttachToTop
        // A - pin to top or...
-       ? previewAuxiliaryView.bottomAnchor
+       ? menuAuxiliaryPreviewView.bottomAnchor
          .constraint(equalTo: morphingPlatterView.topAnchor, constant: -marginInner)
        
        // B - pin to bottom.
-       : previewAuxiliaryView.topAnchor
+       : menuAuxiliaryPreviewView.topAnchor
           .constraint(equalTo: morphingPlatterView.bottomAnchor, constant: marginInner)
       );
       
@@ -761,46 +746,46 @@ public class RNIContextMenuView:
         switch auxConfig.alignmentHorizontal {
           // A - pin to left
           case .previewLeading: return [
-            previewAuxiliaryView.leadingAnchor
+            menuAuxiliaryPreviewView.leadingAnchor
               .constraint(equalTo: morphingPlatterView.leadingAnchor),
             
-            previewAuxiliaryView.widthAnchor
+            menuAuxiliaryPreviewView.widthAnchor
               .constraint(equalToConstant: auxiliaryViewWidth),
           ];
             
           // B - pin to right
           case .previewTrailing: return [
-            previewAuxiliaryView.rightAnchor.constraint(
+            menuAuxiliaryPreviewView.rightAnchor.constraint(
               equalTo: morphingPlatterView.rightAnchor),
             
-            previewAuxiliaryView.widthAnchor
+            menuAuxiliaryPreviewView.widthAnchor
               .constraint(equalToConstant: auxiliaryViewWidth),
           ];
             
           // C - pin to center
           case .previewCenter: return [
-            previewAuxiliaryView.centerXAnchor
+            menuAuxiliaryPreviewView.centerXAnchor
               .constraint(equalTo: morphingPlatterView.centerXAnchor),
             
-            previewAuxiliaryView.widthAnchor
+            menuAuxiliaryPreviewView.widthAnchor
               .constraint(equalToConstant: auxiliaryViewWidth),
           ];
             
           // D - match preview size
           case .stretchPreview: return [
-            previewAuxiliaryView.leadingAnchor
+            menuAuxiliaryPreviewView.leadingAnchor
               .constraint(equalTo: morphingPlatterView.leadingAnchor),
             
-            previewAuxiliaryView.trailingAnchor
+            menuAuxiliaryPreviewView.trailingAnchor
               .constraint(equalTo: morphingPlatterView.trailingAnchor),
           ];
           
           // E - stretch to edges of screen
           case .stretchScreen: return [
-            previewAuxiliaryView.leadingAnchor
+            menuAuxiliaryPreviewView.leadingAnchor
               .constraint(equalTo: contextMenuContainerView.leadingAnchor),
             
-            previewAuxiliaryView.trailingAnchor
+            menuAuxiliaryPreviewView.trailingAnchor
               .constraint(equalTo: contextMenuContainerView.trailingAnchor),
           ];
         };
@@ -829,7 +814,7 @@ public class RNIContextMenuView:
     
     // closures to set the start/end values for the entrance transition
     let (setTransitionStateStart, setTransitionStateEnd): (() -> (), () -> ()) = {
-      var transform = previewAuxiliaryView.transform;
+      var transform = menuAuxiliaryPreviewView.transform;
       
       let setTransformForTransitionSlideStart = { (yOffset: CGFloat) in
         switch morphingPlatterViewPlacement {
@@ -849,56 +834,56 @@ public class RNIContextMenuView:
       switch auxConfig.transitionConfigEntrance.transition {
         case .fade: return ({
           // A - fade - entrance transition
-          previewAuxiliaryView.alpha = 0;
+          menuAuxiliaryPreviewView.alpha = 0;
         }, {
           // B - fade - exit transition
-          previewAuxiliaryView.alpha = 1;
+          menuAuxiliaryPreviewView.alpha = 1;
         });
           
         case let .slide(slideOffset): return ({
           // A - slide - entrance transition
           // fade - start
-          previewAuxiliaryView.alpha = 0;
+          menuAuxiliaryPreviewView.alpha = 0;
           
           // slide - start
           setTransformForTransitionSlideStart(slideOffset);
           
           // apply transform
-          previewAuxiliaryView.transform = transform;
+          menuAuxiliaryPreviewView.transform = transform;
           
         }, {
           // B - slide - exit transition
           // fade - end
-          previewAuxiliaryView.alpha = 1;
+          menuAuxiliaryPreviewView.alpha = 1;
  
           // slide - end - reset transform
-          previewAuxiliaryView.transform = .identity;
+          menuAuxiliaryPreviewView.transform = .identity;
         });
           
         case let .zoom(zoomOffset): return ({
             // A - zoom - entrance transition
             // fade - start
-            previewAuxiliaryView.alpha = 0;
+            menuAuxiliaryPreviewView.alpha = 0;
             
             // zoom - start
             setTransformForTransitionZoomStart(zoomOffset);
             
             // start - apply transform
-            previewAuxiliaryView.transform = transform;
+            menuAuxiliaryPreviewView.transform = transform;
             
           }, {
             // B - zoom - exit transition
             // fade - end
-            previewAuxiliaryView.alpha = 1;
+            menuAuxiliaryPreviewView.alpha = 1;
             
             // zoom - end - reset transform
-            previewAuxiliaryView.transform = .identity;
+            menuAuxiliaryPreviewView.transform = .identity;
           });
           
         case let .zoomAndSlide(slideOffset, zoomOffset): return ({
           // A - zoomAndSlide - entrance transition
           // fade - start
-          previewAuxiliaryView.alpha = 0;
+          menuAuxiliaryPreviewView.alpha = 0;
         
           // slide - start
           setTransformForTransitionSlideStart(slideOffset);
@@ -907,15 +892,15 @@ public class RNIContextMenuView:
           setTransformForTransitionZoomStart(zoomOffset);
           
           // start - apply transform
-          previewAuxiliaryView.transform = transform;
+          menuAuxiliaryPreviewView.transform = transform;
                     
         }, {
           // B - zoomAndSlide - exit transition
           // fade - end
-          previewAuxiliaryView.alpha = 1;
+          menuAuxiliaryPreviewView.alpha = 1;
           
           // slide/zoom - end - reset transform
-          previewAuxiliaryView.transform = .identity;
+          menuAuxiliaryPreviewView.transform = .identity;
         });
           
         case .none:
@@ -941,7 +926,7 @@ public class RNIContextMenuView:
     // MARK: Bugfix - Aux-Preview Touch Event on Screen Edge
     let shouldSwizzle = yOffset != 0;
     if shouldSwizzle {
-      Self.auxPreview = previewAuxiliaryView;
+      Self.auxPreview = menuAuxiliaryPreviewView;
       Self.swizzlePoint();
     };
     
@@ -974,7 +959,7 @@ public class RNIContextMenuView:
           self.isAuxPreviewVisible,
           
           let animator = animator,
-          let previewAuxiliaryView = self.previewAuxiliaryView
+          let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView
     else { return };
     
     /// Bug:
@@ -989,10 +974,10 @@ public class RNIContextMenuView:
     
     // Add exit transition
     animator.addAnimations { [unowned self] in
-      var transform = previewAuxiliaryView.transform;
+      var transform = menuAuxiliaryPreviewView.transform;
       
       // transition - fade out
-      previewAuxiliaryView.alpha = 0;
+      menuAuxiliaryPreviewView.alpha = 0;
       
       // transition - zoom out
       transform = transform.scaledBy(x: 0.7, y: 0.7);
@@ -1009,11 +994,11 @@ public class RNIContextMenuView:
       };
       
       // transition - apply transform
-      previewAuxiliaryView.transform = transform;
+      menuAuxiliaryPreviewView.transform = transform;
     };
     
     animator.addCompletion { [unowned self] in
-      previewAuxiliaryView.removeFromSuperview();
+      menuAuxiliaryPreviewView.removeFromSuperview();
       
       // clear value
       self.morphingPlatterViewPlacement = nil;
@@ -1087,12 +1072,12 @@ public class RNIContextMenuView:
     self.detachFromParentVCIfAny();
     
     // remove preview from registry
-    self.previewWrapper?.cleanup();
-    self.previewAuxiliaryViewWrapper?.cleanup();
+    self.menuCustomPreviewView?.cleanup();
+    self.menuAuxiliaryPreviewView?.cleanup();
     
-    self.previewWrapper = nil;
+    self.menuCustomPreviewView = nil;
     self.previewController = nil;
-    self.previewAuxiliaryViewWrapper = nil;
+    self.menuAuxiliaryPreviewView = nil;
     
     #if DEBUG
     NotificationCenter.default.removeObserver(self);
