@@ -1059,6 +1059,7 @@ public class RNIContextMenuView:
   // --------------------
   
   func cleanup(){
+  public func cleanup(){
     guard self.shouldEnableCleanup,
           !self.didTriggerCleanup
     else { return };
@@ -1089,7 +1090,7 @@ public class RNIContextMenuView:
   // MARK: - RNIJSComponentWillUnmountNotifiable
   // -------------------------------------------
   
-  func notifyOnJSComponentWillUnmount(){
+  public func notifyOnJSComponentWillUnmount(){
     guard self.cleanupMode == .reactComponentWillUnmount
     else { return };
     
@@ -1099,8 +1100,8 @@ public class RNIContextMenuView:
   // MARK: - RNIMenuElementEventsNotifiable
   // --------------------------------------
   
-  func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
     guard let menuConfig = self._menuConfig else { return };
+  public func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
     self.updateContextMenuIfVisible(with: menuConfig);
   };
 };
