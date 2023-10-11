@@ -39,49 +39,46 @@ public class RNIContextMenuButton:
   // MARK: - Properties - Props
   // --------------------------
   
-  var _menuConfig: RNIMenuItem?;
-  var menuConfig: Dictionary<String, Any>? {
-  didSet {
-    guard
-      let rawMenuConfig = self.menuConfig,
-      rawMenuConfig.count > 0,
+  private(set) public var menuConfig: RNIMenuItem?;
+  public var menuConfigRaw: Dictionary<String, Any>? {
+    willSet {
+      guard let newValue = newValue,
+            newValue.count > 0,
+            
+            let rootMenuConfig = RNIMenuItem(dictionary: newValue)
+      else { return };
       
-      let rootMenuConfig = RNIMenuItem(dictionary: rawMenuConfig)
-    else { return };
-    
-    self._menuConfig = rootMenuConfig;
-    rootMenuConfig.delegate = self;
-    
-    // cleanup `deferredElementCompletionMap`
-    self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
-    
-    self.updateContextMenu(with: rootMenuConfig);
-  }
-};
+      self.menuConfig = rootMenuConfig;
+      rootMenuConfig.delegate = self;
+      
+      // cleanup `deferredElementCompletionMap`
+      self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
+      self.updateContextMenu(with: rootMenuConfig);
+    }
+  };
   
-  var isMenuPrimaryAction: Bool = false {
+  public var isMenuPrimaryAction: Bool = false {
     didSet {
       guard self.isMenuPrimaryAction != oldValue else { return };
       self.showsMenuAsPrimaryAction = self.isMenuPrimaryAction;
     }
   };
   
-  var enableContextMenu: Bool = true {
+  public var enableContextMenu: Bool = true {
     didSet {
       guard self.enableContextMenu != oldValue else { return };
       self.isContextMenuInteractionEnabled = self.isMenuPrimaryAction;
     }
   };
   
-  var _internalCleanupMode: RNICleanupMode = .automatic;
-  var internalCleanupMode: String? {
+  private(set) public var internalCleanupMode: RNICleanupMode = .automatic;
+  public var internalCleanupModeRaw: String? {
     willSet {
-      guard
-        let rawString = newValue,
-        let cleanupMode = RNICleanupMode(rawValue: rawString)
+      guard let newValue = newValue,
+            let cleanupMode = RNICleanupMode(rawValue: newValue)
       else { return };
       
-      self._internalCleanupMode = cleanupMode;
+      self.internalCleanupMode = cleanupMode;
     }
   };
   
@@ -114,9 +111,9 @@ public class RNIContextMenuButton:
   
   var cleanupMode: RNICleanupMode {
     get {
-      switch self._internalCleanupMode {
+      switch self.internalCleanupMode {
         case .automatic: return .reactComponentWillUnmount;
-        default: return self._internalCleanupMode;
+        default: return self.internalCleanupMode;
       };
     }
   };
@@ -307,7 +304,7 @@ public class RNIContextMenuButton:
   // --------------------------------------
   
   public func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
-    guard let menuConfig = self._menuConfig else { return };
+    guard let menuConfig = self.menuConfig else { return };
     self.updateContextMenu(with: menuConfig);
   };
   
