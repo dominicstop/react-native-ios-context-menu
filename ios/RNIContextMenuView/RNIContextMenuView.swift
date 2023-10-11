@@ -84,14 +84,15 @@ public class RNIContextMenuView:
   
   public var shouldCleanupOnComponentWillUnmount = false;
   
-  var _menuConfig: RNIMenuItem?;
-  public var menuConfig: NSDictionary? {
-    didSet {
-      guard let menuConfigDict = self.menuConfig,
-            menuConfigDict.count > 0,
-            let menuConfig = RNIMenuItem(dictionary: menuConfigDict)
+  private(set) public var menuConfig: RNIMenuItem?;
+  public var menuConfigRaw: Dictionary<String, Any>? {
+    willSet {
+      guard let newValue = newValue,
+            newValue.count > 0,
+            
+            let menuConfig = RNIMenuItem(dictionary: newValue)
       else {
-        self._menuConfig = nil;
+        self.menuConfig = nil;
         return;
       };
       
@@ -106,18 +107,17 @@ public class RNIContextMenuView:
       self.cleanupOrphanedDeferredElements(currentMenuConfig: menuConfig);
       
       // update config
-      self._menuConfig = menuConfig;
+      self.menuConfig = menuConfig;
     }
   };
   
-  var _previewConfig = PreviewConfig();
-  public var previewConfig: NSDictionary? {
-    didSet {
-      guard let dictionary = self.previewConfig
-      else { return };
+  private(set) public var previewConfig = PreviewConfig();
+  public var previewConfigRaw: Dictionary<String, Any>? {
+    willSet {
+      guard let newValue = newValue else { return };
       
-      let previewConfig = PreviewConfig(dictionary: dictionary);
-      self._previewConfig = previewConfig;
+      let previewConfig = PreviewConfig(dictionary: newValue);
+      self.previewConfig = previewConfig;
       
       // update the vc's previewConfig
       if let previewController = self.previewController {
@@ -129,14 +129,14 @@ public class RNIContextMenuView:
   public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   public var isContextMenuEnabled = true;
   
-  var _internalCleanupMode: RNICleanupMode = .automatic;
-  public var internalCleanupMode: String? {
+  private(set) public var internalCleanupMode: RNICleanupMode = .automatic;
+  public var internalCleanupModeRaw: String? {
     willSet {
       guard let rawString = newValue,
             let cleanupMode = RNICleanupMode(rawValue: rawString)
       else { return };
       
-      self._internalCleanupMode = cleanupMode;
+      self.internalCleanupMode = cleanupMode;
     }
   };
   
@@ -145,19 +145,18 @@ public class RNIContextMenuView:
 
   public var isAuxiliaryPreviewEnabled = true;
   
-  var _auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
-  public var auxiliaryPreviewConfig: NSDictionary? {
-    didSet {
-      guard
-        let configDict = self.auxiliaryPreviewConfig,
-        configDict.count > 0
+  private(set) public var auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
+  public var auxiliaryPreviewConfigRaw: Dictionary<String, Any>? {
+    willSet {
+      guard let newValue = newValue,
+            newValue.count > 0
       else {
-        self._auxiliaryPreviewConfig = nil;
+        self.auxiliaryPreviewConfig = nil;
         return;
       };
       
-      let config = RNIContextMenuAuxiliaryPreviewConfig(dictionary: configDict);
-      self._auxiliaryPreviewConfig = config;
+      let config = RNIContextMenuAuxiliaryPreviewConfig(dictionary: newValue);
+      self.auxiliaryPreviewConfig = config;
     }
   };
   
@@ -203,15 +202,18 @@ public class RNIContextMenuView:
   };
   
   var isUsingCustomPreview: Bool {
-       self._previewConfig.previewType == .CUSTOM
+       self.previewConfig.previewType == .CUSTOM
     && self.menuCustomPreviewView != nil
   };
   
   var cleanupMode: RNICleanupMode {
     get {
-      switch self._internalCleanupMode {
-        case .automatic: return .reactComponentWillUnmount;
-        default: return self._internalCleanupMode;
+      switch self.internalCleanupMode {
+        case .automatic:
+          return .reactComponentWillUnmount;
+          
+        default:
+          return self.internalCleanupMode;
       };
     }
   };
@@ -361,7 +363,7 @@ public class RNIContextMenuView:
   };
   
   func createMenu(with menuConfig: RNIMenuItem? = nil) -> UIMenu? {
-    guard let menuConfig = menuConfig ?? self._menuConfig
+    guard let menuConfig = menuConfig ?? self.menuConfig
     else { return nil };
     
     return menuConfig.createMenu(actionItemHandler: { [weak self] in
@@ -376,17 +378,15 @@ public class RNIContextMenuView:
   
   /// create custom menu preview based on `previewConfig` and `reactPreviewView`
   func createMenuPreview() -> UIViewController? {
-    // alias to variable
-    let previewConfig = self._previewConfig;
-    
+  
     /// don't make preview if `previewType` is set to default.
-    guard previewConfig.previewType != .DEFAULT
+    guard self.previewConfig.previewType != .DEFAULT
     else { return nil };
     
     // vc that holds the view to show in the preview
     let vc = RNIContextMenuPreviewController();
     vc.menuCustomPreviewView = self.menuCustomPreviewView;
-    vc.previewConfig = previewConfig;
+    vc.previewConfig = self.previewConfig;
     vc.view.isUserInteractionEnabled = true;
     
     self.previewController = vc;
@@ -395,18 +395,16 @@ public class RNIContextMenuView:
   
   /// configure target preview based on `previewConfig`
   func makeTargetedPreview() -> UITargetedPreview {
-    // alias to variable
-    let previewConfig = self._previewConfig;
-    
+  
     // create preview parameters based on `previewConfig`
     let parameters: UIPreviewParameters = {
       let param = UIPreviewParameters();
       
       // set preview bg color
-      param.backgroundColor = previewConfig.backgroundColor;
+      param.backgroundColor = self.previewConfig.backgroundColor;
       
       // set the preview border shape
-      if let borderRadius = previewConfig.borderRadius {
+      if let borderRadius = self.previewConfig.borderRadius {
         let previewShape = UIBezierPath(
           // get width/height from custom preview view
           roundedRect: CGRect(
@@ -430,7 +428,7 @@ public class RNIContextMenuView:
     }();
     
     if let bridge = self.appContext?.reactBridge,
-       let targetNode = previewConfig.targetViewNode,
+       let targetNode = self.previewConfig.targetViewNode,
        let targetView = bridge.uiManager.view(forReactTag: targetNode) {
       
       // A - Targeted preview provided....
@@ -553,7 +551,7 @@ public class RNIContextMenuView:
     // MARK: Prep - Set Constants
     // --------------------------
     
-    let auxConfig = self._auxiliaryPreviewConfig
+    let auxConfig = self.auxiliaryPreviewConfig
       ?? RNIContextMenuAuxiliaryPreviewConfig(dictionary: [:]);
     
     // where should the aux. preview be attached to?
@@ -616,9 +614,7 @@ public class RNIContextMenuView:
     
     /// Based on the current "menu config", does it have menu items?
     let menuConfigHasMenuItems: Bool = {
-      guard let menuItems = self._menuConfig?.menuItems
-      else { return false };
-      
+      guard let menuItems = self.menuConfig?.menuItems else { return false };
       return menuItems.count > 0;
     }();
     
@@ -1058,7 +1054,6 @@ public class RNIContextMenuView:
   // MARK: - RNICleanable
   // --------------------
   
-  func cleanup(){
   public func cleanup(){
     guard self.shouldEnableCleanup,
           !self.didTriggerCleanup
@@ -1100,8 +1095,8 @@ public class RNIContextMenuView:
   // MARK: - RNIMenuElementEventsNotifiable
   // --------------------------------------
   
-    guard let menuConfig = self._menuConfig else { return };
   public func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
+    guard let menuConfig = self.menuConfig else { return };
     self.updateContextMenuIfVisible(with: menuConfig);
   };
 };

@@ -44,7 +44,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     self.onMenuWillShow.callAsFunction([:]);
     
     // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    let transitionEntranceDelay = self._auxiliaryPreviewConfig?
+    let transitionEntranceDelay = self.auxiliaryPreviewConfig?
       .transitionEntranceDelay ?? .AFTER_PREVIEW;
     
     let shouldUseAlternateWayToShowAuxPreview =
@@ -126,7 +126,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     // hide preview auxiliary view
     self.detachContextMenuAuxiliaryPreviewIfAny(animator);
     
-    let preferredCommitStyle = self._previewConfig.preferredCommitStyle;
+    let preferredCommitStyle = self.previewConfig.preferredCommitStyle;
     
     self.isContextMenuVisible = false;
     animator.preferredCommitStyle = preferredCommitStyle;

@@ -72,9 +72,37 @@ public class RNIContextMenuViewModule: Module {
 
     View(RNIContextMenuView.self) {
       Events("onReactTagDidSet");
+      Events("onMenuWillShow");
+      Events("onMenuWillHide");
+      Events("onMenuWillCancel");
+      Events("onMenuDidShow");
+      Events("onMenuDidHide");
+      Events("onMenuDidCancel");
+      Events("onPressMenuItem");
+      Events("onPressMenuPreview");
+      Events("onMenuWillCreate");
+      Events("onRequestDeferredElement");
+      Events("onMenuAuxiliaryPreviewWillShow");
+      Events("onMenuAuxiliaryPreviewDidShow");
     
       Prop("shouldCleanupOnComponentWillUnmount") { (view: RNIContextMenuView, prop: Bool) in
         view.shouldCleanupOnComponentWillUnmount = prop;
+      };
+      
+      Prop("menuConfig") { (view: RNIContextMenuView, prop: Dictionary<String, Any>) in
+        view.menuConfigRaw = prop;
+      };
+      
+      Prop("previewConfig") { (view: RNIContextMenuView, prop: Dictionary<String, Any>) in
+        view.previewConfigRaw = prop;
+      };
+      
+      Prop("shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle") { (view: RNIContextMenuView, prop: Bool) in
+        view.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = prop;
+      };
+      
+      Prop("shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle") { (view: RNIContextMenuView, prop: Bool) in
+        view.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = prop;
       };
     };
   };
