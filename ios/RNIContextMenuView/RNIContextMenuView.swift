@@ -46,7 +46,7 @@ public class RNIContextMenuView:
             newValue != oldValue
       else { return };
       
-      self.onReactTagDidSetEvent.callAsFunction([
+      self.onReactTagDidSet.callAsFunction([
         "reactTag": newValue
       ]);
     }
@@ -163,7 +163,7 @@ public class RNIContextMenuView:
   // MARK: Properties - Props - Events
   // ---------------------------------
   
-  public let onReactTagDidSetEvent = EventDispatcher("onReactTagDidSet");
+  public let onReactTagDidSet = EventDispatcher("onReactTagDidSet");
 
   public let onMenuWillShow   = EventDispatcher("onMenuWillShow");
   public let onMenuWillHide   = EventDispatcher("onMenuWillHide");
@@ -465,7 +465,7 @@ public class RNIContextMenuView:
     action: UIAction
   ){
     self.didPressMenuItem = true;
-    self.onReactTagDidSetEvent.callAsFunction(dict);
+    self.onPressMenuItem.callAsFunction(dict);
   };
   
   func handleOnDeferredElementRequest(
