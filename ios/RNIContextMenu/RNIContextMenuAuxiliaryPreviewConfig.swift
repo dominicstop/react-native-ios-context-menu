@@ -41,7 +41,7 @@ public struct RNIContextMenuAuxiliaryPreviewConfig {
     public var delay: CGFloat;
     public var options: UIView.AnimationOptions;
     
-    public init(dictionary: NSDictionary){
+    public init(dictionary: Dictionary<String, Any>){
       
       self.transition = {
         guard let string = dictionary["transition"] as? String
@@ -155,7 +155,7 @@ public struct RNIContextMenuAuxiliaryPreviewConfig {
   // MARK: - Init
   // ------------
   
-  public init(dictionary: NSDictionary){
+  public init(dictionary: Dictionary<String, Any>){
     self.height = dictionary["height"] as? CGFloat;
     self.width  = dictionary["width" ] as? CGFloat;
     
@@ -182,7 +182,7 @@ public struct RNIContextMenuAuxiliaryPreviewConfig {
       dictionary["marginAuxiliaryPreview"] as? CGFloat ?? 10;
     
     self.transitionConfigEntrance = {
-      guard let dict = dictionary["transitionConfigEntrance"] as? NSDictionary
+      guard let dict = dictionary["transitionConfigEntrance"] as? Dictionary<String, Any>
       else { return TransitionConfig() };
       
       return TransitionConfig(dictionary: dict);

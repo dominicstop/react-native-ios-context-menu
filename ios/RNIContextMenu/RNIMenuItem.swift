@@ -33,7 +33,7 @@ public class RNIMenuItem: RNIMenuElement {
   // MARK: - Init
   // ------------
 
-  public override init?(dictionary: NSDictionary){
+  public override init?(dictionary: Dictionary<String, Any>){
     guard let menuTitle = dictionary["menuTitle"] as? String
     else { return nil };
     
@@ -46,7 +46,7 @@ public class RNIMenuItem: RNIMenuElement {
     self.menuPreferredElementSize = dictionary["menuPreferredElementSize"] as? String;
     
     self.icon = {
-      if let dict = dictionary["icon"] as? NSDictionary {
+      if let dict = dictionary["icon"] as? Dictionary<String, Any> {
         
         /// A. `ImageItemConfig` or legacy `IconConfig`
         return RNIImageItem(dict: dict) ??
@@ -77,7 +77,7 @@ public class RNIMenuItem: RNIMenuElement {
     
     if let menuElements = dictionary["menuItems"] as? NSArray {
       self.menuItems = menuElements.compactMap {
-        guard let dictItem = $0 as? NSDictionary else { return nil };
+        guard let dictItem = $0 as? Dictionary<String, Any> else { return nil };
         
         let menuElement: RNIMenuElement? =
              RNIMenuItem(dictionary: dictItem)

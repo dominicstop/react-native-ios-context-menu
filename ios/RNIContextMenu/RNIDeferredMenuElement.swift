@@ -26,7 +26,7 @@ public class RNIDeferredMenuElement: RNIMenuElement {
   public var deferredID: String;
   public var shouldCache: Bool;
   
-  public override init?(dictionary: NSDictionary){
+  public override init?(dictionary: Dictionary<String, Any>){
     guard let deferredID = dictionary["deferredID"] as? String
     else { return nil };
     

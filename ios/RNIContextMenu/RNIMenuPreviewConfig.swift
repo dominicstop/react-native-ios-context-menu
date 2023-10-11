@@ -46,7 +46,7 @@ public struct PreviewConfig {
 @available(iOS 13.0, *)
 extension PreviewConfig {
   
-  public init(dictionary: NSDictionary){
+  public init(dictionary: Dictionary<String, Any>){
     self.borderRadius   = dictionary["borderRadius"  ] as? CGFloat;
     self.targetViewNode = dictionary["targetViewNode"] as? NSNumber;
     
@@ -79,7 +79,7 @@ extension PreviewConfig {
     };
   };
   
-  public init?(dictionary: NSDictionary?){
+  public init?(dictionary: Dictionary<String, Any>?){
     guard let dictionary = dictionary else { return nil };
     self.init(dictionary: dictionary);
   };

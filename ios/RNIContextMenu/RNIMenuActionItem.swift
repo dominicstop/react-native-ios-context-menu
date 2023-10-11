@@ -35,7 +35,7 @@ public class RNIMenuActionItem: RNIMenuElement {
   // MARK: - Init
   // ------------
 
-  override init?(dictionary: NSDictionary){
+  override init?(dictionary: Dictionary<String, Any>){
     guard let actionKey   = dictionary["actionKey"  ] as? String,
           let actionTitle = dictionary["actionTitle"] as? String
     else { return nil };
@@ -50,7 +50,7 @@ public class RNIMenuActionItem: RNIMenuElement {
     };
     
     self.icon = {
-      if let dict = dictionary["icon"] as? NSDictionary {
+      if let dict = dictionary["icon"] as? Dictionary<String, Any> {
         /// A. `ImageItemConfig` or legacy `IconConfig`
         return RNIImageItem(dict: dict) ??
           RNIMenuIcon.convertLegacyIconConfigToImageItemConfig(dict: dict);

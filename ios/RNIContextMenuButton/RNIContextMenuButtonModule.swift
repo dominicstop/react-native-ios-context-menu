@@ -71,7 +71,7 @@ internal class RNIContextMenuButtonModule: NSObject {
       contextMenuButton.provideDeferredElements(
         id: deferredID,
         menuElements: menuItems.compactMap {
-          guard let dictItem = $0 as? NSDictionary else { return nil };
+          guard let dictItem = $0 as? Dictionary<String, Any> else { return nil };
           
           return (
             RNIMenuItem(dictionary: dictItem) ??

@@ -61,7 +61,7 @@ public class RNIMenuElement  {
   // MARK: - Init
   // ------------
   
-  public init?(dictionary: NSDictionary){
+  public init?(dictionary: Dictionary<String, Any>){
     self.type = {
       guard let string = dictionary["type"] as? String
       else { return nil };

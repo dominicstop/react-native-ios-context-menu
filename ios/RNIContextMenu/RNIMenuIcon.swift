@@ -24,7 +24,7 @@ public class RNIMenuIcon {
   
   /// Convert  legacy `IconConfig` dictionary  to `RNIImageItem`
   public static func convertLegacyIconConfigToImageItemConfig(
-    dict: NSDictionary
+    dict: Dictionary<String, Any>
   ) -> RNIImageItem? {
     
     guard let string = dict["iconType"] as? String,
@@ -71,7 +71,7 @@ public class RNIMenuIcon {
         return RNIImageItem(
           type: .IMAGE_SYSTEM,
           imageValue: imageSystemConfig,
-          imageOptions: imageOptionsConfig as NSDictionary
+          imageOptions: imageOptionsConfig as Dictionary<String, Any>
         );
         
       case .ASSET: return RNIImageItem(
