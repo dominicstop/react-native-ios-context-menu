@@ -7,23 +7,26 @@
 //
 
 import UIKit;
-import ReactNativeIosUtilities
+import ExpoModulesCore;
+import ReactNativeIosUtilities;
 
 @available(iOS 14, *)
-class RNIContextMenuButton: UIButton {
-  
+public class RNIContextMenuButton:
+  UIButton, RNIMenuElementEventsNotifiable, UIGestureRecognizerDelegate,
+  RNINavigationEventsNotifiable, RNICleanable, RNIJSComponentWillUnmountNotifiable {
+
   // MARK: - Properties
   // ------------------
   
   weak var bridge: RCTBridge!;
-  
+
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
-  
+    
   weak var viewController: RNINavigationEventsReportingViewController?;
   
-  // MARK: - Properties - Fags
-  // -------------------------
+  // MARK: - Properties - Flags
+  // --------------------------
   
   var isContextMenuVisible = false;
   var didPressMenuItem = false;
@@ -33,74 +36,45 @@ class RNIContextMenuButton: UIButton {
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
   
-  // MARK: - Properties - Feature Flags
-  // ----------------------------------
+  // MARK: - Properties - Props
+  // --------------------------
   
-  // MARK: - Properties - Feature Flags
-  // ----------------------------------
-  
-  private var shouldEnableAttachToParentVC: Bool {
-    self.cleanupMode == .viewController
-  };
-  
-  private var shouldEnableCleanup: Bool {
-    self.cleanupMode != .disabled
-  };
-  
-  // MARK: - RN Exported Event Props
-  // -------------------------------
-  
-  @objc var onMenuWillShow  : RCTBubblingEventBlock?;
-  @objc var onMenuWillHide  : RCTBubblingEventBlock?;
-  @objc var onMenuWillCancel: RCTBubblingEventBlock?;
-  
-  @objc var onMenuDidShow  : RCTBubblingEventBlock?;
-  @objc var onMenuDidHide  : RCTBubblingEventBlock?;
-  @objc var onMenuDidCancel: RCTBubblingEventBlock?;
-  
-  @objc var onPressMenuItem: RCTBubblingEventBlock?;
-  
-  @objc var onRequestDeferredElement: RCTBubblingEventBlock?;
-
-  // MARK: - RN Exported Props
-  // -------------------------
-  
-  private var _menuConfig: RNIMenuItem?;
-  @objc var menuConfig: NSDictionary? {
-    didSet {
-      guard
-        let rawMenuConfig = self.menuConfig,
-        rawMenuConfig.count > 0,
-        
-        let rootMenuConfig = RNIMenuItem(dictionary: rawMenuConfig)
-      else { return };
+  var _menuConfig: RNIMenuItem?;
+  var menuConfig: Dictionary<String, Any>? {
+  didSet {
+    guard
+      let rawMenuConfig = self.menuConfig,
+      rawMenuConfig.count > 0,
       
-      self._menuConfig = rootMenuConfig;
-      rootMenuConfig.delegate = self;
-     
-      // cleanup `deferredElementCompletionMap`
-      self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
-      
-      self.updateContextMenu(with: rootMenuConfig);
-    }
-  };
+      let rootMenuConfig = RNIMenuItem(dictionary: rawMenuConfig)
+    else { return };
+    
+    self._menuConfig = rootMenuConfig;
+    rootMenuConfig.delegate = self;
+    
+    // cleanup `deferredElementCompletionMap`
+    self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
+    
+    self.updateContextMenu(with: rootMenuConfig);
+  }
+};
   
-  @objc var isMenuPrimaryAction: Bool = false {
+  var isMenuPrimaryAction: Bool = false {
     didSet {
       guard self.isMenuPrimaryAction != oldValue else { return };
       self.showsMenuAsPrimaryAction = self.isMenuPrimaryAction;
     }
   };
   
-  @objc var enableContextMenu: Bool = true {
+  var enableContextMenu: Bool = true {
     didSet {
       guard self.enableContextMenu != oldValue else { return };
       self.isContextMenuInteractionEnabled = self.isMenuPrimaryAction;
     }
   };
   
-  private var _internalCleanupMode: RNICleanupMode = .automatic;
-  @objc var internalCleanupMode: String? {
+  var _internalCleanupMode: RNICleanupMode = .automatic;
+  var internalCleanupMode: String? {
     willSet {
       guard
         let rawString = newValue,
@@ -111,8 +85,32 @@ class RNIContextMenuButton: UIButton {
     }
   };
   
+  // MARK: - Properties - Props - Events
+  // -----------------------------------
+  
+  public var onMenuWillShow   = EventDispatcher("onMenuWillShow");
+  public var onMenuWillHide   = EventDispatcher("onMenuWillHide");
+  public var onMenuWillCancel = EventDispatcher("onMenuWillCancel");
+  
+  public var onMenuDidShow   = EventDispatcher("onMenuDidShow");
+  public var onMenuDidHide   = EventDispatcher("onMenuDidHide");
+  public var onMenuDidCancel = EventDispatcher("onMenuDidCancel");
+  
+  public var onPressMenuItem = EventDispatcher("onPressMenuItem");
+  
+  public var onRequestDeferredElement =
+    EventDispatcher("onRequestDeferredElement");
+    
   // MARK: - Computed Properties
   // ---------------------------
+  
+  private var shouldEnableAttachToParentVC: Bool {
+    self.cleanupMode == .viewController
+  };
+  
+  private var shouldEnableCleanup: Bool {
+    self.cleanupMode != .disabled
+  };
   
   var cleanupMode: RNICleanupMode {
     get {
@@ -123,23 +121,25 @@ class RNIContextMenuButton: UIButton {
     }
   };
   
-  // MARK: - Init
-  // ------------
+  // MARK: Init + Lifecycle
+  // ----------------------
   
-  init(bridge: RCTBridge) {
+  public required init(bridge: RCTBridge) {
     super.init(frame: CGRect());
     self.bridge = bridge;
-    
     self.setupAddContextMenuInteraction();
   };
   
-  required init?(coder: NSCoder) {
+  public required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented");
   };
   
-  override func reactSetFrame(_ frame: CGRect) {
+  public override func reactSetFrame(_ frame: CGRect) {
     super.reactSetFrame(frame);
   };
+  
+  // MARK: - View Lifecycle
+  // ----------------------
   
   public override func didMoveToWindow() {
     if self.window == nil,
@@ -154,13 +154,9 @@ class RNIContextMenuButton: UIButton {
       self.attachToParentVC();
     };
   };
-};
-
-// MARK: - Private Functions
-// -------------------------
-
-@available(iOS 14, *)
-private extension RNIContextMenuButton {
+  
+  // MARK: - Functions
+  // -----------------
   
   /// Add a context menu interaction to button
   func setupAddContextMenuInteraction(){
@@ -209,7 +205,7 @@ private extension RNIContextMenuButton {
     action: UIAction
   ){
     self.didPressMenuItem = true;
-    self.onPressMenuItem?(dict);
+    self.onPressMenuItem.callAsFunction(dict);
   };
   
   func handleOnDeferredElementRequest(
@@ -220,7 +216,7 @@ private extension RNIContextMenuButton {
     self.deferredElementCompletionMap[deferredID] = completion;
     
     // notify js that a deferred element needs to be loaded
-    self.onRequestDeferredElement?([
+    self.onRequestDeferredElement.callAsFunction([
       "deferredID": deferredID,
     ]);
   };
@@ -279,19 +275,15 @@ private extension RNIContextMenuButton {
     childVC.willMove(toParent: nil);
     childVC.removeFromParent();
   };
-};
   
-// MARK: - Functions For Manager
-// -----------------------------
-
-@available(iOS 14, *)
-extension RNIContextMenuButton {
+  // MARK: - Functions - View Module Commands
+  // ----------------------------------------
   
-  @objc func dismissMenu(){
+  public func dismissMenu(){
     self.contextMenuInteraction?.dismissMenu();
   };
   
-  func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
+  public func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
     if let completion = self.deferredElementCompletionMap[deferredID] {
 
       // create + add menu elements
@@ -310,81 +302,39 @@ extension RNIContextMenuButton {
       self.deferredElementCompletionMap.removeValue(forKey: deferredID);
     };
   };
-};
-
-// MARK: - UIContextMenuInteractionDelegate
-// ----------------------------------------
-
-@available(iOS 14, *)
-extension RNIContextMenuButton {
   
-  // context menu display begins
-  override func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-    super.contextMenuInteraction(interaction, willDisplayMenuFor: configuration, animator: animator);
-
-    self.isContextMenuVisible = true;
-    
-    self.onMenuWillShow?([:]);
-    animator?.addCompletion { [unowned self] in
-      self.onMenuDidShow?([:]);
-    };
+  // MARK: - RNIMenuElementEventsNotifiable
+  // --------------------------------------
+  
+  public func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
+    guard let menuConfig = self._menuConfig else { return };
+    self.updateContextMenu(with: menuConfig);
   };
   
-  // context menu display ends
-  override func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-    super.contextMenuInteraction(interaction, willEndFor: configuration, animator: animator);
-    
-    guard self.isContextMenuVisible else { return };
-    
-    self.onMenuWillHide?([:]);
-    if !self.didPressMenuItem {
-      self.onMenuWillCancel?([:]);
-    };
-    
-    animator?.addCompletion { [unowned self] in
-      if !self.didPressMenuItem {
-        self.onMenuDidCancel?([:]);
-      };
-      
-      self.onMenuDidHide?([:]);
-      self.didPressMenuItem = false;
-    };
-    
-    self.isContextMenuVisible = false;
-  };
-};
-
-// MARK: - UIGestureRecognizerDelegate
-// -----------------------------------
-
-@available(iOS 14, *)
-extension RNIContextMenuButton: UIGestureRecognizerDelegate {
-  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+  // MARK: - UIGestureRecognizerDelegate
+  // -----------------------------------
+  
+  public func gestureRecognizer(
+    _ gestureRecognizer: UIGestureRecognizer,
+    shouldReceive touch: UITouch
+  ) -> Bool {
     return true;
   };
-};
-
-// MARK: - RNINavigationEventsNotifiable
-// -------------------------------------
-
-@available(iOS 14, *)
-extension RNIContextMenuButton: RNINavigationEventsNotifiable {
   
-  func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
+  // MARK: - RNINavigationEventsNotifiable
+  // -------------------------------------
+  
+  public func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
     if self.cleanupMode == .viewController {
       // trigger cleanup
       self.cleanup();
     };
   };
-};
-
-// MARK: - RNICleanable
-// --------------------
-
-@available(iOS 14, *)
-extension RNIContextMenuButton: RNICleanable {
   
-  func cleanup(){
+  // MARK: - RNICleanable
+  // --------------------
+  
+  public func cleanup(){
     guard self.shouldEnableCleanup,
           !self.didTriggerCleanup
     else { return };
@@ -398,30 +348,14 @@ extension RNIContextMenuButton: RNICleanable {
     NotificationCenter.default.removeObserver(self);
     #endif
   };
-};
-
-// MARK: - RNIJSComponentWillUnmountNotifiable
-// -------------------------------------------
-
-@available(iOS 14, *)
-extension RNIContextMenuButton: RNIJSComponentWillUnmountNotifiable {
   
-  func notifyOnJSComponentWillUnmount(){
+  // MARK: - RNIJSComponentWillUnmountNotifiable
+  // -------------------------------------------
+  
+  public func notifyOnJSComponentWillUnmount(){
     guard self.cleanupMode == .reactComponentWillUnmount
     else { return };
     
     self.cleanup();
-  };
-};
-
-// MARK: - RNIMenuElementEventsNotifiable
-// --------------------------------------
-
-@available(iOS 14, *)
-extension RNIContextMenuButton: RNIMenuElementEventsNotifiable {
-  
-  func notifyOnMenuElementUpdateRequest(for element: RNIMenuElement) {
-    guard let menuConfig = self._menuConfig else { return };
-    self.updateContextMenu(with: menuConfig);
   };
 };
