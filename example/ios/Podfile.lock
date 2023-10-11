@@ -446,7 +446,7 @@ PODS:
   - ReactNativeIosContextMenu (0.1.0):
     - ExpoModulesCore
     - ReactNativeIosUtilities
-  - ReactNativeIosUtilities (4.0.0-6):
+  - ReactNativeIosUtilities (4.0.0-7):
     - ExpoModulesCore
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
@@ -657,7 +657,7 @@ SPEC CHECKSUMS:
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
   ReactNativeIosContextMenu: a8eb9029285d22e5051a30a1ca0b305a0045e81d
-  ReactNativeIosUtilities: 868a6894d11029d94488977f4f8d3bec8deece6d
+  ReactNativeIosUtilities: 45854ac87d9847ee27f0f74961480c1a1f186fec
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 86fed2e4d425ee4c6eab3813ba1791101ee153c6
 
