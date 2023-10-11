@@ -70,10 +70,10 @@ public class RNIContextMenuViewModule: Module {
       contextMenuView.notifyOnJSComponentWillUnmount();
     };
 
-    View(RNIDummyView.self) {
+    View(RNIContextMenuView.self) {
       Events("onReactTagDidSet");
     
-      Prop("shouldCleanupOnComponentWillUnmount") { (view: RNIDummyView, prop: Bool) in
+      Prop("shouldCleanupOnComponentWillUnmount") { (view: RNIContextMenuView, prop: Bool) in
         view.shouldCleanupOnComponentWillUnmount = prop;
       };
     };
