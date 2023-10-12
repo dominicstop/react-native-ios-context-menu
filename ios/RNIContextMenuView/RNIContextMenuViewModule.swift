@@ -157,24 +157,24 @@ public class RNIContextMenuViewModule: Module {
       Events("onMenuAuxiliaryPreviewWillShow");
       Events("onMenuAuxiliaryPreviewDidShow");
     
-      Prop("shouldCleanupOnComponentWillUnmount") { (view: RNIContextMenuView, prop: Bool) in
-        view.shouldCleanupOnComponentWillUnmount = prop;
+      Prop("shouldCleanupOnComponentWillUnmount") {
+        $0.shouldCleanupOnComponentWillUnmount = $1;
       };
       
-      Prop("menuConfig") { (view: RNIContextMenuView, prop: Dictionary<String, Any>) in
-        view.menuConfigRaw = prop;
+      Prop("menuConfig") {
+        $0.shouldCleanupOnComponentWillUnmount = $1;
       };
       
-      Prop("previewConfig") { (view: RNIContextMenuView, prop: Dictionary<String, Any>) in
-        view.previewConfigRaw = prop;
+      Prop("previewConfig") {
+        $0.previewConfigRaw = $1;
       };
       
-      Prop("shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle") { (view: RNIContextMenuView, prop: Bool) in
-        view.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = prop;
+      Prop("shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle") {
+        $0.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = $1;
       };
       
-      Prop("shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle") { (view: RNIContextMenuView, prop: Bool) in
-        view.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = prop;
+      Prop("shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle") {
+        $0.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = $1;
       };
     };
   };
