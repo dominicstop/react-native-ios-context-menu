@@ -19,9 +19,9 @@ export type RNIContextMenuNativeViewBaseProps = {
   // Value Props
   // -----------
 
-  menuConfig: MenuConfig; 
-  previewConfig: MenuPreviewConfig;
-  auxiliaryPreviewConfig: MenuAuxiliaryPreviewConfig;
+  menuConfig?: MenuConfig; 
+  previewConfig?: MenuPreviewConfig;
+  auxiliaryPreviewConfig?: MenuAuxiliaryPreviewConfig;
 
   /** 
    * On iOS 15+, the `MenuActionConfig.discoverabilityTitle` is no longer 

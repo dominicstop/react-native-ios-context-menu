@@ -6,15 +6,15 @@ import { OnReactTagDidSetEvent } from 'react-native-ios-utilities';
 import { RNIContextMenuViewModule } from './RNIContextMenuViewModule';
 import { RNIContextMenuNativeView } from './RNIContextMenuNativeView';
 
-import type { RNIContextMenuNativeViewProps } from './RNIContextMenuNativeViewTypes';
+import type { RNIContextMenuViewProps } from './RNIContextMenuViewTypes';
 import { MenuElementConfig } from '../../types/MenuConfig';
 
 
-export class RNIContextMenuView extends React.PureComponent<RNIContextMenuNativeViewProps> {
+export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewProps> {
   
   reactTag?: number;
 
-  constructor(props: RNIContextMenuNativeViewProps){
+  constructor(props: RNIContextMenuViewProps){
     super(props);
   };
 
@@ -22,32 +22,35 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuNative
     this.notifyComponentWillUnmount(false);
   };
 
-  notifyComponentWillUnmount = (isManuallyTriggered: boolean = true) => {
+  notifyComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
     const reactTag = this.reactTag;
     if(typeof reactTag !== 'number') return;
 
-    RNIContextMenuViewModule.notifyComponentWillUnmount(
+    await RNIContextMenuViewModule.notifyComponentWillUnmount(
       reactTag, 
       isManuallyTriggered
     );
   };
 
-  dismissMenu = () => {
+  dismissMenu = async () => {
     const reactTag = this.reactTag;
     if(typeof reactTag !== 'number') return;
 
-    RNIContextMenuViewModule.dismissMenu(reactTag);
+    await RNIContextMenuViewModule.dismissMenu(reactTag);
   };
 
-  provideDeferredElements = (
+  provideDeferredElements = async (
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ) => {
     const reactTag = this.reactTag;
     if(typeof reactTag !== 'number') return;
 
-    RNIContextMenuViewModule
-      .provideDeferredElements(reactTag, deferredID, menuItems);
+    await RNIContextMenuViewModule.provideDeferredElements(
+      reactTag, 
+      deferredID, 
+      menuItems
+    );
   };
 
   private _handleOnReactTagDidSet: OnReactTagDidSetEvent = ({nativeEvent}) => {
