@@ -30,14 +30,14 @@
   "homepage": "https://github.com/dominicstop/react-native-ios-context-menu#readme",
   "dependencies": {},
   "devDependencies": {
+    "@dominicstop/ts-event-emitter": "^1.1.0",
     "@types/react": "^18.0.25",
+    "expo": "~49.0.13",
     "expo-module-scripts": "^3.0.11",
     "expo-modules-core": "^1.5.11",
-    "expo": "~49.0.13",
     "react": "18.2.0",
     "react-native": "0.72.5",
     "react-native-ios-utilities": "4.0.0-10"
-
   },
   "peerDependencies": {
     "expo": "*",
