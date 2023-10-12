@@ -1,5 +1,5 @@
 import type { ImageResolvedAssetSource } from "react-native";
-import type { DynamicColor } from './MiscTypes';
+import type { DynamicColor } from 'react-native-ios-utilities';
 
 
 // TODO: Next Major Version - Rename to `MenuIconConfigDeprecated`

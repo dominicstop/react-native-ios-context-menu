@@ -1,5 +1,4 @@
-import type { PointPreset } from "../MiscTypes";
-import type { Point } from "../MiscTypes";
+import type { Point, PointPreset } from "react-native-ios-utilities";
 import type { ImageRectConfig } from "./ImageRectConfig";
 
 

@@ -1,9 +1,5 @@
-import type { ImageOptions } from './ImageOptions';
-import type { ImageLoadingConfig, ImageRemoteUrlConfig, ImageRemoteURLLoadingConfig } from './ImageLoadingConfig';
-import type { ImageSystemConfig } from './ImageSystemConfig';
-import type { ImageResolvedAssetSource } from './ImageMiscTypes';
-import type { ImageRectConfig } from './ImageRectConfig';
-import type { ImageGradientConfig } from './ImageGradientConfig';
+import { ImageOptions, ImageLoadingConfig, ImageRemoteUrlConfig, ImageRemoteURLLoadingConfig, ImageSystemConfig, ImageResolvedAssetSource, ImageRectConfig, ImageGradientConfig } from 'react-native-ios-utilities';
+
 
 /**
  * A configuration object for images.
