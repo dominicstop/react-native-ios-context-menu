@@ -1,10 +1,12 @@
-import { NativeModules } from 'react-native';
+import { requireNativeModule } from 'expo-modules-core';
+import type { NotifyComponentWillUnmount } from 'react-native-ios-utilities';
 
-import type { MenuElementConfig } from 'src/types/MenuConfig';
-import type { RNIJSComponentWillUnmountNotifiable } from 'src/types/RNIJSComponentWillUnmountNotifiable';
+import type { MenuElementConfig } from '../../types/MenuConfig';
 
 
-interface RNIContextMenuViewModule extends RNIJSComponentWillUnmountNotifiable {
+interface RNIContextMenuViewModule  {
+  notifyComponentWillUnmount: NotifyComponentWillUnmount;
+
   dismissMenu(
     node: number,
   ): Promise<void>;
@@ -16,7 +18,8 @@ interface RNIContextMenuViewModule extends RNIJSComponentWillUnmountNotifiable {
   ): Promise<void>;
 };
 
-const MODULE_NAME = "RNIContextMenuViewModule";
+export const RNIContextMenuViewModule: RNIContextMenuViewModule = 
+  requireNativeModule('RNIContextMenuView');
 
-export const RNIContextMenuViewModule: RNIContextMenuViewModule =
-  NativeModules[MODULE_NAME];
+
+  
