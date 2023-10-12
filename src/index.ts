@@ -23,4 +23,3 @@ export * from './types/MenuAuxiliaryPreviewConfig';
 export * from './types/MenuIconConfig';
 export * from './types/MenuEvents';
 export * from './types/MiscTypes';
-export * from './types/RNICleanupMode';
