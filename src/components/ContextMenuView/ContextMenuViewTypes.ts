@@ -4,7 +4,7 @@ import type { TSEventEmitter } from '@dominicstop/ts-event-emitter';
 
 import type { ViewProps } from 'react-native';
 import type { OnMenuDidHideEventObject } from 'src/types/MenuEvents';
-import type { KeyMapType } from 'src/types/UtilityTypes';
+import type { KeyMapType } from 'react-native-ios-utilities';
 import type { DeferredElementProvider } from 'src/types/MenuSharedTypes';
 
 import type { RNIContextMenuViewProps } from '../../native_components/RNIContextMenuView';
