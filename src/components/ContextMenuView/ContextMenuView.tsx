@@ -4,21 +4,18 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { TSEventEmitter } from '@dominicstop/ts-event-emitter';
 
 import { RNIContextMenuView } from '../../native_components/RNIContextMenuView';
-import { RNIWrapperView } from '../../native_components/RNIWrapperView';
-
-import { RNIContextMenuViewModule } from '../../native_modules/RNIContextMenuViewModule';
-
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent, OnRequestDeferredElementEvent } from '../../types/MenuEvents';
-import type { ContextMenuViewProps, ContextMenuViewState, NavigatorViewEventEmitter } from './ContextMenuViewTypes';
+import type { ContextMenuViewProps, ContextMenuViewState, ContextMenuEventEmitter } from './ContextMenuViewTypes';
 
 // @ts-ignore - TODO
 import { ActionSheetFallback } from '../../functions/ActionSheetFallback';
 import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
 
 import * as Helpers from '../../functions/Helpers';
-import type { MenuElementConfig } from 'src/types/MenuConfig';
+import type { MenuElementConfig } from '../../types/MenuConfig';
+import { RNIDetachedView } from 'react-native-ios-utilities';
 
 
 const NATIVE_ID_KEYS = {
@@ -33,9 +30,8 @@ export class ContextMenuView extends
     useActionSheetFallback: !LIB_ENV.isContextMenuViewSupported,
   };
 
-  nativeRef!: React.Component;
-
-  emitter: NavigatorViewEventEmitter;
+  nativeRef!: RNIContextMenuView;
+  emitter: ContextMenuEventEmitter;
 
   constructor(props: ContextMenuViewProps){
     super(props);
@@ -50,11 +46,7 @@ export class ContextMenuView extends
 
   componentWillUnmount(): void {
     if(!LIB_ENV.isContextMenuViewSupported) return;
-
-    RNIContextMenuViewModule.notifyComponentWillUnmount(
-      Helpers.getNativeNodeHandle(this.nativeRef),
-      {}
-    );
+    this.nativeRef.notifyComponentWillUnmount();
   };
 
   private getProps = () => {
@@ -67,8 +59,12 @@ export class ContextMenuView extends
       shouldWaitForMenuToHideBeforeFiringOnPressMenuItem,
       shouldEnableAggressiveCleanup,
       isAuxiliaryPreviewEnabled,
+      isContextMenuEnabled,
+
       // internal
       internalCleanupMode,
+      shouldCleanupOnComponentWillUnmount,
+
       // event props
       onMenuWillShow,
       onMenuWillHide,
@@ -82,8 +78,11 @@ export class ContextMenuView extends
       onPressMenuItem,
       onPressMenuPreview,
       lazyPreview,
+
+      // render props
       renderPreview,
       renderAuxiliaryPreview: renderAuxillaryPreview,
+
       ...viewProps 
     } = this.props;
 
@@ -107,27 +106,43 @@ export class ContextMenuView extends
       isAuxiliaryPreviewEnabled: (
         isAuxiliaryPreviewEnabled ?? false
       ),
+      internalCleanupMode: (
+        internalCleanupMode ?? 'automatic'
+      ),
+      shouldCleanupOnComponentWillUnmount: (
+        shouldCleanupOnComponentWillUnmount ?? false
+      ),
+      isContextMenuEnabled: (
+        isContextMenuEnabled ?? true
+      ),
 
       // B. Pass down props...
       menuConfig,
       previewConfig,
       auxiliaryPreviewConfig,
-      internalCleanupMode,
-      onMenuWillShow,
-      onMenuWillHide,
-      onMenuWillCancel,
-      onMenuDidShow,
-      onMenuDidHide,
-      onMenuDidCancel,
-      onRequestDeferredElement,
-      onMenuAuxiliaryPreviewWillShow,
-      onMenuAuxiliaryPreviewDidShow,
-      onPressMenuItem,
-      onPressMenuPreview,
-      renderPreview,
-      renderAuxillaryPreview,
 
-      // C. Move all the default view-related
+      // C. Pass down, and group event props...
+      eventProps: {
+        onMenuWillShow,
+        onMenuWillHide,
+        onMenuWillCancel,
+        onMenuDidShow,
+        onMenuDidHide,
+        onMenuDidCancel,
+        onRequestDeferredElement,
+        onMenuAuxiliaryPreviewWillShow,
+        onMenuAuxiliaryPreviewDidShow,
+        onPressMenuItem,
+        onPressMenuPreview,
+      },
+
+      // D. Pass down, and group render props
+      renderProps: {
+        renderPreview,
+        renderAuxillaryPreview,
+      },
+
+      // E. Move all the default view-related
       //    props here...
       viewProps
     };
@@ -135,10 +150,7 @@ export class ContextMenuView extends
 
   dismissMenu = async () => {
     if(!LIB_ENV.isContextMenuViewSupported) return;
-
-    await RNIContextMenuViewModule.dismissMenu(
-      Helpers.getNativeNodeHandle(this.nativeRef)
-    );
+    await this.nativeRef.dismissMenu();
   };
 
   provideDeferredElements = async (
@@ -146,10 +158,9 @@ export class ContextMenuView extends
     menuItems: MenuElementConfig[]
   ) => {
     if(!LIB_ENV.isContextMenuViewSupported) return;
-
-    await RNIContextMenuViewModule.provideDeferredElements(
-      Helpers.getNativeNodeHandle(this.nativeRef),
-      deferredID, menuItems
+    await this.nativeRef.provideDeferredElements(
+      deferredID, 
+      menuItems
     );
   };
 
@@ -252,7 +263,8 @@ export class ContextMenuView extends
 
   private _handleOnPressMenuItem: OnPressMenuItemEvent = async (event) => {
     const props = this.getProps();
-  
+    const eventProps = props.eventProps;
+    
     // guard: event is a native event
     if(event.isUsingActionSheetFallback) return;
 
@@ -275,14 +287,14 @@ export class ContextMenuView extends
           });
         }));
 
-        props.onPressMenuItem?.(event);
+        eventProps.onPressMenuItem?.(event);
 
       } else {
-        props.onPressMenuItem?.(event);
+        eventProps.onPressMenuItem?.(event);
       };
 
     } catch(error){
-      props.onPressMenuItem?.(event);
+      eventProps.onPressMenuItem?.(event);
       console.log(
           '_handleOnPressMenuItem - Promise waiting for `onMenuDidHide`'
         + ' has timed out'
@@ -294,7 +306,6 @@ export class ContextMenuView extends
     this.props.onPressMenuPreview?.(event);
     event.stopPropagation();
   };
-
   //#endregion
 
   render(){
@@ -311,12 +322,12 @@ export class ContextMenuView extends
     );
 
     const shouldMountPreview = (
-      (props.renderPreview != null) &&
+      (props.renderProps.renderPreview != null) &&
       (state.mountPreview || !props.lazyPreview)
     );
 
     const shouldMountAuxPreview = (
-      (props.renderAuxillaryPreview != null) && 
+      (props.renderProps.renderAuxillaryPreview != null) && 
       (state.mountPreview || !props.lazyPreview)
     );
 
@@ -325,14 +336,18 @@ export class ContextMenuView extends
         // A - Use Context Menu View
         <RNIContextMenuView
           {...props.viewProps}
+          ref={r => { this.nativeRef = r! }}
           style={[styles.menuView, props.viewProps.style]}
 
-          ref={r => { this.nativeRef = r! }}
           menuConfig={props.menuConfig}
           previewConfig={props.previewConfig}
           auxiliaryPreviewConfig={props.auxiliaryPreviewConfig}
           internalCleanupMode={props.internalCleanupMode}
-          
+          shouldCleanupOnComponentWillUnmount={props.shouldCleanupOnComponentWillUnmount}
+          isContextMenuEnabled={props.isContextMenuEnabled}
+          shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle={props.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle}
+          isAuxiliaryPreviewEnabled={props.isAuxiliaryPreviewEnabled}
+
           // Events: `onPress`-Related
           onMenuWillShow={this._handleOnMenuWillShow}
           onMenuWillHide={this._handleOnMenuWillHide}
@@ -352,30 +367,18 @@ export class ContextMenuView extends
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
           {shouldMountPreview && (
-            <RNIWrapperView 
-              style={styles.previewContainer}
+            <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
-              isDummyView={true}
-              shouldAutoDetachSubviews={true}
-              shouldCreateTouchHandlerForSubviews={true}
-              shouldNotifyComponentWillUnmount={props.shouldEnableAggressiveCleanup}
-              shouldAutoCleanupOnJSUnmount={props.shouldEnableAggressiveCleanup}
             >
-              {props.renderPreview?.()}
-            </RNIWrapperView>
+              {props.renderProps.renderPreview?.()}
+            </RNIDetachedView>
           )}
           {shouldMountAuxPreview && (
-            <RNIWrapperView 
-              style={styles.previewAuxWrapper}
+            <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
-              isDummyView={true}
-              shouldAutoDetachSubviews={true}
-              shouldCreateTouchHandlerForSubviews={true}
-              shouldNotifyComponentWillUnmount={props.shouldEnableAggressiveCleanup}
-              shouldAutoCleanupOnJSUnmount={props.shouldEnableAggressiveCleanup}
             >
-              {props.renderAuxillaryPreview?.()}
-            </RNIWrapperView>
+              {props.renderProps.renderAuxillaryPreview?.()}
+            </RNIDetachedView>
           )}
           {props.viewProps.children}
         </RNIContextMenuView>
