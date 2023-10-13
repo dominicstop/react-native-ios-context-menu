@@ -3,7 +3,8 @@
   "platforms": ["ios"],
   "ios": {
     "modules": [
-      "ReactNativeIosContextMenuModule"
+      "RNIContextMenuViewModule",
+      "RNIContextMenuButtonModule"
     ],
     "podspecPath": "./ReactNativeIosContextMenu.podspec"
   }
