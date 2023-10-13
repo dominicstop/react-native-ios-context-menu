@@ -13,7 +13,6 @@ type InheritedProps = Pick<RNIContextMenuNativeViewBaseProps,
   | 'onMenuDidHide'
   | 'onMenuWillCancel'
   | 'onMenuDidCancel'
-  | 'onMenuWillCreate'
   | 'onRequestDeferredElement'
   | 'onPressMenuItem'
 >;

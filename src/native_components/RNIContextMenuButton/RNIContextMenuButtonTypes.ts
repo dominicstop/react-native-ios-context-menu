@@ -14,7 +14,6 @@ export type RNIContextMenuButtonBaseProps = Pick<RNIContextMenuNativeButtonBaseP
   | 'onMenuDidHide'
   | 'onMenuWillCancel'
   | 'onMenuDidCancel'
-  | 'onMenuWillCreate'
   | 'onRequestDeferredElement'
   | 'onPressMenuItem'
 >;
