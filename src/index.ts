@@ -3,7 +3,7 @@ export * from './components/ContextMenuView';
 export * from './components/ContextMenuButton';
 
 export * from './context/ContextMenuViewContext';
-export * from './context/ContextMenuViewContext';
+export * from './context/ContextMenuButtonContext';
 
 export * from './hooks/useMenuContext';
 export * from './hooks/useMenuButtonContext';
