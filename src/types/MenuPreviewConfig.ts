@@ -1,4 +1,4 @@
-import type { DynamicColor } from "./MiscTypes";
+import type { DynamicColor } from 'react-native-ios-utilities';
 
 export type MenuPreviewType = 'DEFAULT' | 'CUSTOM';
 
