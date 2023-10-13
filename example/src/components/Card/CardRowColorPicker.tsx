@@ -47,7 +47,7 @@ const DEFAULT_COLORS = [
 
 export class CardRowColorPicker extends React.Component<CardRowColorPickerProps, CardRowColorPickerState> {
 
-  constructor(props){
+  constructor(props: CardRowColorPickerProps){
     super(props);
 
     this.state = {

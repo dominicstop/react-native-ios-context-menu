@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, ViewStyle } from 'react-native';
 
-import { useMenuContext } from 'react-native-ios-context-menu';
+import { ContextMenuViewContext, useMenuContext } from 'react-native-ios-context-menu';
 
 import * as Colors from '../constants/Colors';
 
@@ -39,7 +39,7 @@ const defaultColorConfig: ColorConfig = {
 };
 
 export function ContextMenuCard(props: ContextMenuCardProps) {
-  const menuContext = useMenuContext();
+  const menuContext = React.useContext(ContextMenuViewContext)
 
   const colorConfig = props.colorConfig ?? defaultColorConfig;
 

@@ -4,9 +4,9 @@ import { StyleSheet, View, ViewStyle } from 'react-native';
 import * as Colors from '../../constants/Colors';
 
 
-export const CardBody: React.FC<{
+export const CardBody: React.FC<React.PropsWithChildren<{
   style?: ViewStyle;
-}> = (props) => {
+}>> = (props) => {
   return (
     <View style={[styles.cardBodyContainer, props.style]}>
       {props.children}
