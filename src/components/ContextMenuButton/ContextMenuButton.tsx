@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import { RNIContextMenuButton } from '../../native_components/RNIContextMenuButton';
-import { RNIContextMenuButtonModule } from '../../native_modules/RNIContextMenuButtonModule';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnPressMenuItemEvent, OnRequestDeferredElementEvent } from '../../types/MenuEvents';
 import type { ContextMenuButtonProps, ContextMenuButtonState } from './ContextMenuButtonTypes';
@@ -14,14 +13,12 @@ import { ContextMenuView } from '../ContextMenuView';
 import { ContextMenuButtonContext } from '../../context/ContextMenuButtonContext';
 
 import { LIB_ENV, IS_PLATFORM_IOS } from '../../constants/LibEnv';
-import type { MenuElementConfig } from 'src/types/MenuConfig';
-
-import * as Helpers from '../../functions/Helpers';
+import type { MenuElementConfig } from '../../types/MenuConfig';
 
 
 export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProps, ContextMenuButtonState> {
 
-  nativeRef!: React.Component;
+  nativeRef!: RNIContextMenuButton;
 
   constructor(props: ContextMenuButtonProps){
     super(props);
@@ -33,17 +30,68 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 
   componentWillUnmount(): void {
     if(!LIB_ENV.isContextMenuViewSupported) return;
+    this.nativeRef.notifyComponentWillUnmount();
+  };
 
-    RNIContextMenuButtonModule.notifyComponentWillUnmount(
-      Helpers.getNativeNodeHandle(this.nativeRef),
-      {}
-    );
+  private _getProps = () => {
+    const {  
+      useActionSheetFallback,
+      menuConfig,
+      isContextMenuEnabled,
+
+      // internal
+      internalCleanupMode,
+
+      // event props
+      onMenuWillShow,
+      onMenuWillHide,
+      onMenuWillCancel,
+      onMenuDidShow,
+      onMenuDidHide,
+      onMenuDidCancel,
+      onRequestDeferredElement,
+      onPressMenuItem,
+
+      ...viewProps 
+    } = this.props;
+
+    return {
+      // A. Provide default values to props...
+      useActionSheetFallback: (
+        useActionSheetFallback ?? !LIB_ENV.isContextMenuViewSupported
+      ),
+      internalCleanupMode: (
+        internalCleanupMode ?? 'automatic'
+      ),
+      isContextMenuEnabled: (
+        isContextMenuEnabled ?? true
+      ),
+
+      // B. Pass down props...
+      menuConfig,
+
+      // C. Pass down, and group event props...
+      eventProps: {
+        onMenuWillShow,
+        onMenuWillHide,
+        onMenuWillCancel,
+        onMenuDidShow,
+        onMenuDidHide,
+        onMenuDidCancel,
+        onRequestDeferredElement,
+        onPressMenuItem,
+      },
+
+      // D. Move all the default view-related
+      //    props here...
+      viewProps
+    };
   };
 
   getProps = () => {
     const {
       menuConfig,
-      enableContextMenu,
+      isContextMenuEnabled,
       isMenuPrimaryAction,
       useActionSheetFallback,
       internalCleanupMode,
@@ -60,8 +108,8 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 
     return {
       // A. Provide default values to props...
-      enableContextMenu: (
-        enableContextMenu ?? true
+      isContextMenuEnabled: (
+        isContextMenuEnabled ?? true
       ),
       useActionSheetFallback: (
         useActionSheetFallback ?? !LIB_ENV.isContextMenuViewSupported
@@ -87,10 +135,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 
   dismissMenu = async () => {
     if(!LIB_ENV.isContextMenuButtonSupported) return;
-
-    await RNIContextMenuButtonModule.dismissMenu(
-      Helpers.getNativeNodeHandle(this.nativeRef)
-    );
+    this.nativeRef.dismissMenu();
   };
 
   provideDeferredElements = async (
@@ -99,8 +144,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
   ) => {
     if(!LIB_ENV.isContextMenuViewSupported) return;
 
-    await RNIContextMenuButtonModule.provideDeferredElements(
-      Helpers.getNativeNodeHandle(this.nativeRef),
+    this.nativeRef.provideDeferredElements(
       deferredID, menuItems
     );
   };
@@ -212,18 +256,19 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     // TODO: Rename to 'sharedProps'
     const nativeComponentProps = {
       menuConfig: props.menuConfig,
-      enableContextMenu: props.enableContextMenu,
+      isContextMenuEnabled: props.isContextMenuEnabled,
       isMenuPrimaryAction: props.isMenuPrimaryAction,
       internalCleanupMode: props.internalCleanupMode,
 
       // event handlers
-      onMenuWillShow  : this._handleOnMenuWillShow  ,
-      onMenuWillHide  : this._handleOnMenuWillHide  ,
-      onMenuDidShow   : this._handleOnMenuDidShow   ,
-      onMenuDidHide   : this._handleOnMenuDidHide   ,
-      onMenuDidCancel : this._handleOnMenuDidCancel ,
+      onMenuWillShow: this._handleOnMenuWillShow,
+      onMenuWillHide: this._handleOnMenuWillHide,
+      onMenuDidShow: this._handleOnMenuDidShow,
+      onMenuDidHide: this._handleOnMenuDidHide,
+      onMenuDidCancel: this._handleOnMenuDidCancel,
       onMenuWillCancel: this._handleOnMenuWillCancel,
-      onPressMenuItem : this._handleOnPressMenuItem ,
+      onPressMenuItem: this._handleOnPressMenuItem,
+      onRequestDeferredElement: this._handleOnRequestDeferredElement,
     };
     
     const contents = (
@@ -233,9 +278,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
           {...props.viewProps}
           {...nativeComponentProps}
           ref={r => { this.nativeRef = r! }}
-          // override style prop
           style={[styles.menuButton, props.viewProps.style]}
-          onRequestDeferredElement={this._handleOnRequestDeferredElement}
         >
           {props.viewProps.children}
         </RNIContextMenuButton>
