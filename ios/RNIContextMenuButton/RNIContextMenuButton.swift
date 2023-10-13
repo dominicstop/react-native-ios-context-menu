@@ -10,7 +10,7 @@ import UIKit;
 import ExpoModulesCore;
 import ReactNativeIosUtilities;
 
-@available(iOS 14, *)
+
 public class RNIContextMenuButton:
   UIButton, RNIMenuElementEventsNotifiable, UIGestureRecognizerDelegate,
   RNINavigationEventsNotifiable, RNICleanable, RNIJSComponentWillUnmountNotifiable {
@@ -71,14 +71,20 @@ public class RNIContextMenuButton:
   
   public var isMenuPrimaryAction: Bool = false {
     didSet {
-      guard self.isMenuPrimaryAction != oldValue else { return };
+      guard #available(iOS 14.0, *),
+            self.isMenuPrimaryAction != oldValue
+      else { return };
+      
       self.showsMenuAsPrimaryAction = self.isMenuPrimaryAction;
     }
   };
   
   public var isContextMenuEnabled: Bool = true {
     didSet {
-      guard self.isContextMenuEnabled != oldValue else { return };
+      guard #available(iOS 14.0, *),
+            self.isContextMenuEnabled != oldValue
+      else { return };
+      
       self.isContextMenuInteractionEnabled = self.isContextMenuEnabled;
     }
   };
@@ -185,7 +191,8 @@ public class RNIContextMenuButton:
   };
   
   func updateContextMenu(with menuConfig: RNIMenuItem){
-    guard let interaction = self.contextMenuInteraction
+    guard #available(iOS 14.0, *),
+          let interaction = self.contextMenuInteraction
     else { return };
     
     let menu = menuConfig.createMenu(
@@ -291,6 +298,7 @@ public class RNIContextMenuButton:
   // ----------------------------------------
   
   public func dismissMenu(){
+    guard #available(iOS 14.0, *) else { return };
     self.contextMenuInteraction?.dismissMenu();
   };
   
@@ -346,7 +354,8 @@ public class RNIContextMenuButton:
   // --------------------
   
   public func cleanup(){
-    guard self.shouldEnableCleanup,
+    guard #available(iOS 14.0, *),
+          self.shouldEnableCleanup,
           !self.didTriggerCleanup
     else { return };
     

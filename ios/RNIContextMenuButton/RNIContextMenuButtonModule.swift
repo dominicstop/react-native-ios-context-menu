@@ -10,7 +10,6 @@ import ExpoModulesCore
 import ReactNativeIosUtilities
 
 
-@available(iOS 14, *)
 public class RNIContextMenuButtonModule: Module {
   
   public func definition() -> ModuleDefinition {
