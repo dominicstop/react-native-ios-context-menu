@@ -10,10 +10,16 @@
   },
   "dependencies": {
     "@dominicstop/ts-event-emitter": "^1.1.0",
+    "@react-navigation/bottom-tabs": "^6.5.9",
+    "@react-navigation/native": "^6.1.8",
+    "@react-navigation/native-stack": "^6.9.14",
+    "@shopify/flash-list": "^1.6.1",
     "expo": "~49.0.13",
     "react": "18.2.0",
     "react-native": "0.72.5",
-    "react-native-ios-utilities": "4.0.0-13"
+    "react-native-ios-utilities": "4.0.0-13",
+    "react-native-safe-area-context": "^4.7.2",
+    "react-native-screens": "^3.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
