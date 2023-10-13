@@ -76,10 +76,10 @@ public class RNIContextMenuButton:
     }
   };
   
-  public var enableContextMenu: Bool = true {
+  public var isContextMenuEnabled: Bool = true {
     didSet {
-      guard self.enableContextMenu != oldValue else { return };
-      self.isContextMenuInteractionEnabled = self.isMenuPrimaryAction;
+      guard self.isContextMenuEnabled != oldValue else { return };
+      self.isContextMenuInteractionEnabled = self.isContextMenuEnabled;
     }
   };
   

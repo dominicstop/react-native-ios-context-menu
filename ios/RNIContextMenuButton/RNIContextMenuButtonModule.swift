@@ -83,20 +83,20 @@ public class RNIContextMenuButtonModule: Module {
       Events("onPressMenuItem");
       Events("onRequestDeferredElement");
     
-      Prop("menuConfig") { (view: RNIContextMenuButton, prop: Dictionary<String, Any>) in
-        view.menuConfigRaw = prop;
+      Prop("menuConfig") {
+        $0.menuConfigRaw = $1;
       };
       
-      Prop("isMenuPrimaryAction") { (view: RNIContextMenuButton, prop: Bool) in
-        view.isMenuPrimaryAction = prop;
+      Prop("isMenuPrimaryAction") {
+        $0.isMenuPrimaryAction = $1;
       };
       
-      Prop("enableContextMenu") { (view: RNIContextMenuButton, prop: Bool) in
-        view.enableContextMenu = prop;
+      Prop("isContextMenuEnabled") {
+        $0.isContextMenuEnabled = $1;
       };
       
-      Prop("internalCleanupMode") { (view: RNIContextMenuButton, prop: String) in
-        view.internalCleanupModeRaw = prop;
+      Prop("internalCleanupMode") {
+        $0.internalCleanupModeRaw = $1;
       };
     };
   };
