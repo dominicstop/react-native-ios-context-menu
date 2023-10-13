@@ -4,7 +4,7 @@ import type { RNIContextMenuButtonBaseProps } from '../../native_components/RNIC
 import type { ContextMenuViewProps } from '../ContextMenuView';
 
 
-export type ContextMenuButtonBaseProps = Pick<RNIContextMenuButtonBaseProps,
+export type ContextMenuButtonBaseProps = Partial<Pick<RNIContextMenuButtonBaseProps,
   | 'internalCleanupMode'
   | 'isMenuPrimaryAction'
   | 'menuConfig'
@@ -20,7 +20,7 @@ export type ContextMenuButtonBaseProps = Pick<RNIContextMenuButtonBaseProps,
   | 'onPressMenuItem'
 > & Pick<ContextMenuViewProps,
   | 'onRequestDeferredElement'
-> & {
+>> & {
   useActionSheetFallback?: boolean;
 };
 
