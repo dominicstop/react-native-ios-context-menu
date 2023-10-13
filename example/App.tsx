@@ -1,20 +1,68 @@
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
 
-import * as ReactNativeIosContextMenu from 'react-native-ios-context-menu';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { HomeScreen } from './src/screens/HomeScreen';
+
+import { TestScreen } from './src/screens/Test01Screen';
+import { Test02Screen } from './src/screens/Test02Screen';
+import { Test03Screen } from './src/screens/Test03Screen';
+import { Test04Screen } from './src/screens/Test04Screen';
+
+import { SHARED_ENV } from './src/constants/SharedEnv';
+
+
+const shouldEnableTabs = 
+  SHARED_ENV.enableReactNavigation && SHARED_ENV.enableTabNavigation;
+
+
+function Tab1StackScreen() {
+  if(shouldEnableTabs){
+    const Tab1Stack = createNativeStackNavigator();
+
+    return (
+    <Tab1Stack.Navigator initialRouteName="Home">
+      <Tab1Stack.Screen name="Home" component={HomeScreen} />
+      <Tab1Stack.Screen name="Test" component={TestScreen} />
+    </Tab1Stack.Navigator>
+  );
+
+  } else {
+    return null;
+  };
+};
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>{ReactNativeIosContextMenu.hello()}</Text>
-    </View>
-  );
-}
+  if(shouldEnableTabs){
+    const TabNavigator = createBottomTabNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    return(
+      <NavigationContainer>
+        <TabNavigator.Navigator>
+          <TabNavigator.Screen name="Tab1" component={Tab1StackScreen} />
+          <TabNavigator.Screen name="Tab2" component={HomeScreen} />
+        </TabNavigator.Navigator>
+      </NavigationContainer>
+    );
+  } else if(SHARED_ENV.enableReactNavigation){
+    const Stack = createNativeStackNavigator();
+
+    return(
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Test" component={TestScreen} />
+          <Stack.Screen name="Test02" component={Test02Screen} />
+          <Stack.Screen name="Test03" component={Test03Screen} />
+          <Stack.Screen name="Test04" component={Test04Screen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  };
+
+  return (
+    <HomeScreen/>
+  );
+};
