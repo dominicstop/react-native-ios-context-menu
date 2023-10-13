@@ -162,7 +162,7 @@ public class RNIContextMenuViewModule: Module {
       };
       
       Prop("menuConfig") {
-        $0.shouldCleanupOnComponentWillUnmount = $1;
+        $0.menuConfigRaw = $1;
       };
       
       Prop("previewConfig") {
@@ -173,9 +173,18 @@ public class RNIContextMenuViewModule: Module {
         $0.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = $1;
       };
       
-      Prop("shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle") {
-        $0.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = $1;
+      Prop("internalCleanupMode") {
+        $0.internalCleanupModeRaw = $1;
       };
+      
+      Prop("isAuxiliaryPreviewEnabled") {
+        $0.isAuxiliaryPreviewEnabled = $1;
+      };
+      
+      Prop("auxiliaryPreviewConfig") {
+        $0.auxiliaryPreviewConfigRaw = $1;
+      };
+      
     };
   };
 };
