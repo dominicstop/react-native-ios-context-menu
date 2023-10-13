@@ -1,6 +1,4 @@
 
-export * from './ExpoModuleTemplate';
-
 export * from './components/ContextMenuView';
 export * from './components/ContextMenuButton';
 
