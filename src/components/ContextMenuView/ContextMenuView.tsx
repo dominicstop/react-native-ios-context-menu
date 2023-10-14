@@ -104,7 +104,7 @@ export class ContextMenuView extends
         shouldEnableAggressiveCleanup ?? true
       ),
       isAuxiliaryPreviewEnabled: (
-        isAuxiliaryPreviewEnabled ?? false
+        isAuxiliaryPreviewEnabled ?? true
       ),
       internalCleanupMode: (
         internalCleanupMode ?? 'automatic'
