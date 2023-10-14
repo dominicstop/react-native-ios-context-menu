@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-
-import { OnReactTagDidSetEvent } from 'react-native-ios-utilities';
+import { StyleSheet, View } from 'react-native';
 
 import { RNIContextMenuViewModule } from './RNIContextMenuViewModule';
 import { RNIContextMenuNativeView } from './RNIContextMenuNativeView';
@@ -12,7 +10,7 @@ import { MenuElementConfig } from '../../types/MenuConfig';
 
 export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewProps> {
   
-  reactTag?: number;
+  nativeRef?: View;
 
   constructor(props: RNIContextMenuViewProps){
     super(props);
@@ -22,8 +20,17 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     this.notifyComponentWillUnmount(false);
   };
 
+  getNativeRef: () => View | undefined = () => {
+    return this.nativeRef;
+  };
+
+  getNativeReactTag: () => number | undefined = () => {
+    // @ts-ignore
+    return this.nativeRef?.nativeTag;
+  };
+
   notifyComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
-    const reactTag = this.reactTag;
+    const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
     await RNIContextMenuViewModule.notifyComponentWillUnmount(
@@ -33,7 +40,7 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   dismissMenu = async () => {
-    const reactTag = this.reactTag;
+    const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
     await RNIContextMenuViewModule.dismissMenu(reactTag);
@@ -43,7 +50,7 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ) => {
-    const reactTag = this.reactTag;
+    const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
     await RNIContextMenuViewModule.provideDeferredElements(
@@ -53,18 +60,15 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     );
   };
 
-  private _handleOnReactTagDidSet: OnReactTagDidSetEvent = ({nativeEvent}) => {
-    this.reactTag = nativeEvent.reactTag;
-  };
-
   render(){
     return React.createElement(RNIContextMenuNativeView, {
       ...this.props,
+      // @ts-ignore
+      ref: this._handleOnNativeRef,
       style: [
         this.props.style,
         styles.nativeView
       ],
-      onReactTagDidSet: this._handleOnReactTagDidSet,
     });
   };
 };

@@ -1,8 +1,6 @@
 
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-
-import { OnReactTagDidSetEvent } from 'react-native-ios-utilities';
+import { StyleSheet, View } from 'react-native';
 
 import { RNIContextMenuButtonModule } from './RNIContextMenuButtonModule';
 import { RNIContextMenuNativeButton } from './RNIContextMenuNativeButton';
@@ -13,7 +11,7 @@ import { MenuElementConfig } from '../../types/MenuConfig';
 
 export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButtonProps> {
   
-  reactTag?: number;
+  nativeRef?: View;
 
   constructor(props: RNIContextMenuButtonProps){
     super(props);
@@ -23,8 +21,17 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     this.notifyComponentWillUnmount(false);
   };
 
+  getNativeRef: () => View | undefined = () => {
+    return this.nativeRef;
+  };
+
+  getNativeReactTag: () => number | undefined = () => {
+    // @ts-ignore
+    return this.nativeRef?.nativeTag;
+  };
+
   notifyComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
-    const reactTag = this.reactTag;
+    const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
     await RNIContextMenuButtonModule.notifyComponentWillUnmount(
@@ -34,7 +41,7 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
   };
 
   dismissMenu = async () => {
-    const reactTag = this.reactTag;
+    const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
     await RNIContextMenuButtonModule.dismissMenu(reactTag);
@@ -44,7 +51,7 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ) => {
-    const reactTag = this.reactTag;
+    const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
     await RNIContextMenuButtonModule.provideDeferredElements(
@@ -54,10 +61,6 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     );
   };
 
-  private _handleOnReactTagDidSet: OnReactTagDidSetEvent = ({nativeEvent}) => {
-    this.reactTag = nativeEvent.reactTag;
-  };
-
   render(){
     return React.createElement(RNIContextMenuNativeButton, {
       ...this.props,
@@ -65,7 +68,8 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
         this.props.style,
         styles.nativeView
       ],
-      onReactTagDidSet: this._handleOnReactTagDidSet,
+      // @ts-ignore
+      ref: this._handleOnNativeRef,
     });
   };
 };

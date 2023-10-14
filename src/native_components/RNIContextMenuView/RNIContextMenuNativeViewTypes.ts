@@ -1,5 +1,5 @@
 import { ViewProps } from 'react-native';
-import type { OnReactTagDidSetEvent, RNICleanupMode } from 'react-native-ios-utilities';
+import type { RNICleanupMode } from 'react-native-ios-utilities';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent, OnRequestDeferredElementEvent } from '../../types/MenuEvents';
 
@@ -49,8 +49,6 @@ export type RNIContextMenuNativeViewBaseProps = {
 
   // Events - Lifecycle
   // ------------------
-
-  onReactTagDidSet: OnReactTagDidSetEvent;
 
   onMenuWillShow: OnMenuWillShowEvent;
   onMenuDidShow: OnMenuDidShowEvent;
