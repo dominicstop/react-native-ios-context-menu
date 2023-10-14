@@ -8024,10 +8024,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-ios-utilities@4.0.0-15:
-  version "4.0.0-15"
-  resolved "https://registry.yarnpkg.com/react-native-ios-utilities/-/react-native-ios-utilities-4.0.0-15.tgz#525b81f5e3cd0ff2edac9519fcfb6596af83203d"
-  integrity sha512-s+kSS3de3J70FIjcahP8aLabSraZuwvUo7krmXrwHR5WnmTSfq86WVWEPBRwi1qRSFexEH6nhPHt+mCJD0WQ6Q==
+react-native-ios-utilities@^4.0.0-16:
+  version "4.0.0-16"
+  resolved "https://registry.yarnpkg.com/react-native-ios-utilities/-/react-native-ios-utilities-4.0.0-16.tgz#61644b85c1aff3dc465349d2361b541aa2693b7b"
+  integrity sha512-GTVY6UxfdjkGA2sAn1BqqlXmum23h+SKLWDYnFvZSx14A4VE8XWJ3hgSuRPSIYzPmnRib63gJVutAru8HRn/0Q==
 
 react-native@0.72.5:
   version "0.72.5"
