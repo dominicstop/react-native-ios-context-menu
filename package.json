@@ -45,7 +45,8 @@
     "expo-modules-core": "^1.5.11",
     "react": "18.2.0",
     "react-native": "0.72.5",
-    "react-native-ios-utilities": "^4.0.0-17"
+    "react-native-ios-utilities": "^4.0.0-17",
+    "yarn-release": "^1.10.6"
   },
   "peerDependencies": {
     "expo": "*",
