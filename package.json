@@ -12,12 +12,17 @@
     "lint": "expo-module lint",
     "test": "expo-module test",
     "prepare": "expo-module prepare",
-    "prepublishOnly": "npm run expo-module prepublishOnly",
+    "prepublishOnly": "expo-module prepublishOnly",
     "expo-module": "expo-module",
     "open:ios": "open -a \"Xcode\" example/ios",
     "open:android": "open -a \"Android Studio\" example/android",
-    "release": "release-it --only-version",
-    "update-dep-next": "yarn add --dev react-native-ios-utilities@next ; cd example ; yarn add react-native-ios-utilities@next ; cd ios ; pod install ; cd .."
+    "update-dep-next": "yarn add --dev react-native-ios-utilities@next ; cd example ; yarn add react-native-ios-utilities@next ; cd ios ; pod install ; cd ..",
+    "release": "yarn prepare && release --src=build --push",
+    "release:major": "yarn release - --major",
+    "release:minor": "yarn release - --minor",
+    "release:patch": "yarn release - --patch",
+    "release:rc": "yarn release - --type=rc",
+    "release:verify": "yarn release - --type=rc --verbose --test --nopublish --nocleanup"
   },
   "keywords": [
     "react-native",
@@ -32,11 +37,7 @@
   "author": "Dominic Go <dominic@dominicgo.dev> (https://github.com/dominicstop)",
   "license": "MIT",
   "homepage": "https://github.com/dominicstop/react-native-ios-context-menu#readme",
-  "dependencies": {
-    "@react-navigation/bottom-tabs": "^6.5.9",
-    "@react-navigation/native": "^6.1.8",
-    "@react-navigation/native-stack": "^6.9.14"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@dominicstop/ts-event-emitter": "^1.1.0",
     "@types/react": "^18.0.25",
