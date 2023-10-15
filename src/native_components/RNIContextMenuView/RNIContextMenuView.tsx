@@ -17,7 +17,7 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   componentWillUnmount(){
-    this.notifyComponentWillUnmount(false);
+    this.notifyOnComponentWillUnmount(false);
   };
 
   getNativeRef: () => View | undefined = () => {
@@ -29,11 +29,11 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     return this.nativeRef?.nativeTag;
   };
 
-  notifyComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
+  notifyOnComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
-    await RNIContextMenuViewModule.notifyComponentWillUnmount(
+    await RNIContextMenuViewModule.notifyOnComponentWillUnmount(
       reactTag, 
       isManuallyTriggered
     );

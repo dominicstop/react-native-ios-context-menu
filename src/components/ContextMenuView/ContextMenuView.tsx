@@ -46,7 +46,7 @@ export class ContextMenuView extends
 
   componentWillUnmount(): void {
     if(!LIB_ENV.isContextMenuViewSupported) return;
-    this.nativeRef.notifyComponentWillUnmount();
+    this.nativeRef.notifyOnComponentWillUnmount();
   };
 
   private getProps = () => {
