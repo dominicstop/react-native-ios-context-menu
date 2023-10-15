@@ -1,6 +1,6 @@
 {
   "name": "react-native-ios-context-menu",
-  "version": "1.15.3-rc.0",
+  "version": "1.15.3",
   "description": "A react-native component to use context menu's (UIMenu) on iOS 13/14+",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -12,17 +12,12 @@
     "lint": "expo-module lint",
     "test": "expo-module test",
     "prepare": "expo-module prepare",
-    "prepublishOnly": "expo-module prepublishOnly",
+    "prepublishOnly": "npm run expo-module prepublishOnly",
     "expo-module": "expo-module",
     "open:ios": "open -a \"Xcode\" example/ios",
     "open:android": "open -a \"Android Studio\" example/android",
-    "update-dep-next": "yarn add --dev react-native-ios-utilities@next ; cd example ; yarn add react-native-ios-utilities@next ; cd ios ; pod install ; cd ..",
-    "release": "yarn prepare && release --src=build --push",
-    "release:major": "yarn release - --major",
-    "release:minor": "yarn release - --minor",
-    "release:patch": "yarn release - --patch",
-    "release:rc": "yarn release - --type=rc",
-    "release:verify": "yarn release - --type=rc --verbose --test --nopublish --nocleanup"
+    "release": "release-it --only-version",
+    "update-dep-next": "yarn add --dev react-native-ios-utilities@next ; cd example ; yarn add react-native-ios-utilities@next ; cd ios ; pod install ; cd .."
   },
   "keywords": [
     "react-native",
@@ -37,7 +32,11 @@
   "author": "Dominic Go <dominic@dominicgo.dev> (https://github.com/dominicstop)",
   "license": "MIT",
   "homepage": "https://github.com/dominicstop/react-native-ios-context-menu#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.9",
+    "@react-navigation/native": "^6.1.8",
+    "@react-navigation/native-stack": "^6.9.14"
+  },
   "devDependencies": {
     "@dominicstop/ts-event-emitter": "^1.1.0",
     "@types/react": "^18.0.25",
@@ -47,7 +46,7 @@
     "react": "18.2.0",
     "react-native": "0.72.5",
     "react-native-ios-utilities": "^4.0.0-17",
-    "yarn-release": "^1.10.6"
+    "release-it": "^16.2.1"
   },
   "peerDependencies": {
     "expo": "*",
