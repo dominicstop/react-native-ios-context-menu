@@ -448,7 +448,7 @@ PODS:
   - ReactNativeIosContextMenu (0.1.0):
     - ExpoModulesCore
     - ReactNativeIosUtilities
-  - ReactNativeIosUtilities (4.0.0-16):
+  - ReactNativeIosUtilities (4.0.0-17):
     - ExpoModulesCore
   - RNFlashList (1.6.1):
     - React-Core
@@ -674,7 +674,7 @@ SPEC CHECKSUMS:
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
   ReactNativeIosContextMenu: a8eb9029285d22e5051a30a1ca0b305a0045e81d
-  ReactNativeIosUtilities: ccc62356e5d0d53308f81d54d0ae63775ff3364b
+  ReactNativeIosUtilities: f37db3622db55646f65bad84def048967a023102
   RNFlashList: 236646d48f224a034f35baa0242e1b77db063b1e
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
