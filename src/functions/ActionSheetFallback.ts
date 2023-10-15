@@ -1,3 +1,4 @@
+
 import * as Helpers from './Helpers';
 
 import type { MenuActionConfig, MenuConfig, MenuElementConfig } from '../types/MenuConfig';
@@ -220,6 +221,7 @@ export class ActionSheetFallback {
       // @ts-ignore
       const menuItems = ActionSheetFallbackHelpers.filterMenuItems(menuItem?.menuItems ?? []);
       // add menu items to action sheet
+      // @ts-ignore
       actionSheetOptions = menuItems.map(item => (
         // @ts-ignore
         item?.actionTitle ??
@@ -228,6 +230,7 @@ export class ActionSheetFallback {
       ));
 
       // set destructive index and offset by 1 bc of cancel button
+      // @ts-ignore
       destructiveButtonIndex = ActionSheetFallbackHelpers.getdestructiveButtonIndex(menuItems);
       if(destructiveButtonIndex != null) destructiveButtonIndex++;
       
