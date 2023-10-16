@@ -199,7 +199,7 @@ cd ios && pod install
 
 ```sh
 # 1. install library + dependencies
-npm install react-native-ios-utilties@next
+npm install react-native-ios-utilities@next
 npm install react-native-ios-context-menu@next
 
 
