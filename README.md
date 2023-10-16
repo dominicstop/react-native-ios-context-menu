@@ -7,7 +7,7 @@
 
 ## 🚧⚠️ Library + Documentation Re-Write WIP ⚠️🚧
 
-📝 Check [`TODO.md`](docs/TODO.md) for progress on re-write.
+📝 Note: See [Installation - Expo Modules Re-Write](#Installation-Expo-Modules-Re-Write) to try out the new version (and check [`TODO.md`](docs/TODO.md) for progress on re-write).
 
 * ❤️ Support the new API's introduced in iOS 15/16+.
 * 🧡 New `SFSymbols` + menu icon config API (with support for advanced customizations).
@@ -22,9 +22,7 @@
 - Some of the links in the documentation are broken (i.e. the URL points to `PLACE_HOLDER_LINK`).
 - For now, please see the [Usage And Examples](#e-usage-and-examples) section, and [Showcase, Tests and Demos](#F-Showcase-Tests-and-Demos) section for information on how to use this library.
 
-<br>
-
-<br>
+<br><br>
 
 | Notice                                                       |
 | ------------------------------------------------------------ |
@@ -194,6 +192,24 @@ cd ios && pod install
 | :----------------------------------------------------------- |
 | 1️⃣ [Add an empty swift file to your project](#troubleshooting-xcode-build-error-swift) |
 | 2️⃣ [Update the project's "Library Search Paths" build settings](#troubleshooting-xcode-build-error-undefined-symbol) |
+
+<br>
+
+### Installation (Expo Modules Re-Write)
+
+```sh
+# 1. install library + dependencies
+npm install react-native-ios-utilties@next
+npm install react-native-ios-context-menu@next
+
+
+# 2. then run pod install (uses auto-linking)
+cd ios && pod install
+```
+
+<br>
+
+📝 **Note**: This version of the library uses expo-modules (so it's compatible w/ fabric/JSI). Please remember that the re-write is currently in progress, so it might not be ready.
 
 <br>
 
