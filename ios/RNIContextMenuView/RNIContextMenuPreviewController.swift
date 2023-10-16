@@ -47,7 +47,7 @@ class RNIContextMenuPreviewController: UIViewController {
         guard let menuCustomPreviewView = self.menuCustomPreviewView else { return };
         
         menuCustomPreviewView.updateBounds(newSize: self.view.bounds.size);
-        self.preferredContentSize = CGSize(width: 0, height: 0);
+        self.preferredContentSize = .zero;
         
       case .INHERIT:
         guard let previewSize = self.previewSize else { return };
