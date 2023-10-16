@@ -13,15 +13,30 @@ import ReactNativeIosUtilities
 
 @available(iOS 13.0, *)
 class RNIContextMenuPreviewController: UIViewController {
+
+  // MARK: - Properties
+  // ------------------
+
+  public weak var contextMenuView: RNIContextMenuView?;
   
-  var previewConfig = PreviewConfig();
+  // MARK: - Computed Properties
+  // ---------------------------
   
-  weak var menuCustomPreviewView: RNIDetachedView?;
+  var previewConfig: PreviewConfig? {
+    self.contextMenuView?.previewConfig;
+  };
+  
+  weak var menuCustomPreviewView: RNIDetachedView? {
+    self.contextMenuView?.menuCustomPreviewView;
+  };
     
   /// Shorthand for the preview view's size/dimensions.
   var previewSize: CGSize? {
     self.menuCustomPreviewView?.frame.size;
   };
+  
+  // MARK: - Functions - VC Lifecycle
+  // --------------------------------
   
   override func viewDidLoad() {
     super.viewDidLoad();
@@ -41,8 +56,10 @@ class RNIContextMenuPreviewController: UIViewController {
   
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews();
+    
+    guard let previewConfig = self.previewConfig else { return };
 
-    switch self.previewConfig.previewSize {
+    switch previewConfig.previewSize {
       case .STRETCH:
         guard let menuCustomPreviewView = self.menuCustomPreviewView else { return };
         
@@ -52,7 +69,7 @@ class RNIContextMenuPreviewController: UIViewController {
       case .INHERIT:
         guard let previewSize = self.previewSize else { return };
         
-        if self.previewConfig.isResizeAnimated {
+        if previewConfig.isResizeAnimated {
           UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut]) {
             self.preferredContentSize = previewSize;
           };

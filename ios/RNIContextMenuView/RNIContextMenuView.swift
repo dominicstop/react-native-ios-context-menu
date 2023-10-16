@@ -111,7 +111,7 @@ public class RNIContextMenuView:
       
       // update the vc's previewConfig
       if let previewController = self.previewController {
-        previewController.previewConfig = previewConfig;
+        previewController.view.setNeedsLayout();
       };
     }
   };
@@ -367,8 +367,7 @@ public class RNIContextMenuView:
     
     // vc that holds the view to show in the preview
     let vc = RNIContextMenuPreviewController();
-    vc.menuCustomPreviewView = self.menuCustomPreviewView;
-    vc.previewConfig = self.previewConfig;
+    vc.contextMenuView = self;
     vc.view.isUserInteractionEnabled = true;
     
     self.previewController = vc;
