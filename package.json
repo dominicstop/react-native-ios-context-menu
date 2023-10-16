@@ -33,12 +33,9 @@
   "license": "MIT",
   "homepage": "https://github.com/dominicstop/react-native-ios-context-menu#readme",
   "dependencies": {
-    "@react-navigation/bottom-tabs": "^6.5.9",
-    "@react-navigation/native": "^6.1.8",
-    "@react-navigation/native-stack": "^6.9.14"
+    "@dominicstop/ts-event-emitter": "^1.1.0"
   },
   "devDependencies": {
-    "@dominicstop/ts-event-emitter": "^1.1.0",
     "@types/react": "^18.0.25",
     "expo": "~49.0.13",
     "expo-module-scripts": "^3.0.11",
