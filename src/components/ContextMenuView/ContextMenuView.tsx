@@ -416,14 +416,4 @@ const styles = StyleSheet.create({
   menuView: {
     backgroundColor: 'transparent',
   },
-  previewContainer: {
-    position: 'absolute',
-    overflow: 'visible',
-    backgroundColor: 'transparent',
-  },
-  previewAuxWrapper: {
-    position: 'absolute',
-    overflow: 'visible',
-    flex: 0,
-  },
 });
