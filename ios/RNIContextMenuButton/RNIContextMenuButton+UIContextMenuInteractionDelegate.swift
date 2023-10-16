@@ -13,17 +13,11 @@ import ReactNativeIosUtilities;
 extension RNIContextMenuButton {
   
   // context menu display begins
-  public override func contextMenuInteraction(
+  public func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
     willDisplayMenuFor configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionAnimating?
   ) {
-  
-    super.contextMenuInteraction(
-      interaction,
-      willDisplayMenuFor: configuration,
-      animator: animator
-    );
 
     self.isContextMenuVisible = true;
     self.onMenuWillShow.callAsFunction([:]);
@@ -34,17 +28,11 @@ extension RNIContextMenuButton {
   };
   
   // context menu display ends
-  public override func contextMenuInteraction(
+  public func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
     willEndFor configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionAnimating?
   ) {
-  
-    super.contextMenuInteraction(
-      interaction,
-      willEndFor: configuration,
-      animator: animator
-    );
     
     guard self.isContextMenuVisible else { return };
     

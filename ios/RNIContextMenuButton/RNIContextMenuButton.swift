@@ -12,13 +12,13 @@ import ReactNativeIosUtilities;
 
 
 public class RNIContextMenuButton:
-  UIButton, RNIMenuElementEventsNotifiable, UIGestureRecognizerDelegate,
+  ExpoView, RNIMenuElementEventsNotifiable, UIGestureRecognizerDelegate,
   RNINavigationEventsNotifiable, RNICleanable, RNIJSComponentWillUnmountNotifiable {
 
   // MARK: - Properties
   // ------------------
   
-  weak var bridge: RCTBridge!;
+  var button: UIButton!;
 
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
@@ -63,7 +63,7 @@ public class RNIContextMenuButton:
             self.isMenuPrimaryAction != oldValue
       else { return };
       
-      self.showsMenuAsPrimaryAction = self.isMenuPrimaryAction;
+      self.button.showsMenuAsPrimaryAction = self.isMenuPrimaryAction;
     }
   };
   
@@ -73,7 +73,7 @@ public class RNIContextMenuButton:
             self.isContextMenuEnabled != oldValue
       else { return };
       
-      self.isContextMenuInteractionEnabled = self.isContextMenuEnabled;
+      self.button.isContextMenuInteractionEnabled = self.isContextMenuEnabled;
     }
   };
   
@@ -127,15 +127,17 @@ public class RNIContextMenuButton:
   // MARK: Init + Lifecycle
   // ----------------------
   
-  public required init(bridge: RCTBridge) {
-    super.init(frame: CGRect());
-    self.bridge = bridge;
+  public required init(appContext: AppContext? = nil) {
+    super.init(appContext: appContext);
+    
+    self.setupButton();
     self.setupAddContextMenuInteraction();
   };
   
   public required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented");
   };
+  
   
   public override func reactSetFrame(_ frame: CGRect) {
     super.reactSetFrame(frame);
@@ -158,13 +160,45 @@ public class RNIContextMenuButton:
     };
   };
   
+  public override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
+    self.button.insertSubview(subview, at: atIndex);
+  };
+  
+  public override func removeReactSubview(_ subview: UIView!) {
+    guard let subviewToRemove = self.button.viewWithTag(subview.tag) else { return };
+    subviewToRemove.removeFromSuperview();
+  };
+  
   // MARK: - Functions
   // -----------------
   
+  func setupButton(){
+    let button = UIButton();
+    self.button = button;
+    
+    self.addSubview(button);
+    button.translatesAutoresizingMaskIntoConstraints = false;
+    
+    NSLayoutConstraint.activate([
+      button.leadingAnchor.constraint(
+        equalTo: self.leadingAnchor
+      ),
+      button.trailingAnchor.constraint(
+        equalTo: self.trailingAnchor
+      ),
+      button.topAnchor.constraint(
+        equalTo: self.topAnchor
+      ),
+      button.bottomAnchor.constraint(
+        equalTo: self.bottomAnchor
+      ),
+    ]);
+  };
+  
   /// Add a context menu interaction to button
   func setupAddContextMenuInteraction(){
-    self.isEnabled = true;
-    self.isUserInteractionEnabled = true;
+    self.button.isEnabled = true;
+    self.button.isUserInteractionEnabled = true;
     
     let gesture = UIGestureRecognizer();
     gesture.cancelsTouchesInView = true;
@@ -178,7 +212,7 @@ public class RNIContextMenuButton:
   
   func updateContextMenu(with menuConfig: RNIMenuItem){
     guard #available(iOS 14.0, *),
-          let interaction = self.contextMenuInteraction
+          let interaction = self.button.contextMenuInteraction
     else { return };
     
     let menu = menuConfig.createMenu(
@@ -200,7 +234,7 @@ public class RNIContextMenuButton:
       };
       
     } else {
-      self.menu = menu;
+      self.button.menu = menu;
     };
   };
   
@@ -285,7 +319,7 @@ public class RNIContextMenuButton:
   
   public func dismissMenu(){
     guard #available(iOS 14.0, *) else { return };
-    self.contextMenuInteraction?.dismissMenu();
+    self.button.contextMenuInteraction?.dismissMenu();
   };
   
   public func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
@@ -347,7 +381,7 @@ public class RNIContextMenuButton:
     
     self.didTriggerCleanup = true;
     
-    self.contextMenuInteraction?.dismissMenu();
+    self.button.contextMenuInteraction?.dismissMenu();
     self.detachFromParentVC();
     
     #if DEBUG
