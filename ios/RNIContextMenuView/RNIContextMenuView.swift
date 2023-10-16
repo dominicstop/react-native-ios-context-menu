@@ -40,18 +40,6 @@ public class RNIContextMenuView:
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
     
-  public override var reactTag: NSNumber! {
-    didSet {
-      guard let newValue = self.reactTag,
-            newValue != oldValue
-      else { return };
-      
-      self.onReactTagDidSet.callAsFunction([
-        "reactTag": newValue
-      ]);
-    }
-  };
-    
   // MARK: - Properties - Flags
   // --------------------------
   
@@ -163,8 +151,6 @@ public class RNIContextMenuView:
   // MARK: Properties - Props - Events
   // ---------------------------------
   
-  public let onReactTagDidSet = EventDispatcher("onReactTagDidSet");
-
   public let onMenuWillShow   = EventDispatcher("onMenuWillShow");
   public let onMenuWillHide   = EventDispatcher("onMenuWillHide");
   public let onMenuWillCancel = EventDispatcher("onMenuWillCancel");

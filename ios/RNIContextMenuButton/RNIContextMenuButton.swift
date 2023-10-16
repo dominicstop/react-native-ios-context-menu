@@ -25,18 +25,6 @@ public class RNIContextMenuButton:
     
   weak var viewController: RNINavigationEventsReportingViewController?;
   
-  public override var reactTag: NSNumber! {
-    didSet {
-      guard let newValue = self.reactTag,
-            newValue != oldValue
-      else { return };
-      
-      self.onReactTagDidSet.callAsFunction([
-        "reactTag": newValue
-      ]);
-    }
-  };
-  
   // MARK: - Properties - Flags
   // --------------------------
   
@@ -102,9 +90,7 @@ public class RNIContextMenuButton:
   
   // MARK: - Properties - Props - Events
   // -----------------------------------
-  
-  public var onReactTagDidSet = EventDispatcher("onReactTagDidSet");
-  
+
   public var onMenuWillShow   = EventDispatcher("onMenuWillShow");
   public var onMenuWillHide   = EventDispatcher("onMenuWillHide");
   public var onMenuWillCancel = EventDispatcher("onMenuWillCancel");

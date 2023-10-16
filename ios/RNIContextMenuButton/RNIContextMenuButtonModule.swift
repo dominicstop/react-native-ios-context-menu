@@ -72,7 +72,6 @@ public class RNIContextMenuButtonModule: Module {
     };
 
     View(RNIContextMenuButton.self) {
-      Events("onReactTagDidSet");
       Events("onMenuWillShow");
       Events("onMenuWillHide");
       Events("onMenuWillCancel");
