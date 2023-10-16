@@ -30,6 +30,8 @@ public class RNIContextMenuView:
   // MARK: - Properties
   // ------------------
   
+  var detachedViews: [WeakRef<RNIDetachedView>] = [];
+  
   var contextMenuInteraction: UIContextMenuInteraction?;
   
   var previewController: RNIContextMenuPreviewController?;
@@ -280,23 +282,17 @@ public class RNIContextMenuView:
     
     switch nativeIDKey {
         case .contextMenuPreview:
-          if let oldMenuCustomPreviewView = self.menuCustomPreviewView,
-             oldMenuCustomPreviewView !== detachedView {
-            
-            oldMenuCustomPreviewView.cleanup();
-          };
-        
           self.menuCustomPreviewView = detachedView;
         
         // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
         case .contextMenuAuxiliaryPreview:
-          // if prev. exist, cleanup first
-          if let oldMenuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView  {
-            oldMenuAuxiliaryPreviewView.cleanup();
-          };
-          
           self.menuAuxiliaryPreviewView = detachedView;
     };
+    
+    self.detachedViews.append(
+      .init(value: detachedView)
+    );
+    
     detachedView.detach();
   };
   
@@ -1059,9 +1055,14 @@ public class RNIContextMenuView:
     self.menuCustomPreviewView?.cleanup();
     self.menuAuxiliaryPreviewView?.cleanup();
     
+    self.detachedViews.forEach {
+      $0.value?.cleanup();
+    };
+    
     self.menuCustomPreviewView = nil;
     self.previewController = nil;
     self.menuAuxiliaryPreviewView = nil;
+    self.detachedViews = [];
     
     #if DEBUG
     NotificationCenter.default.removeObserver(self);
