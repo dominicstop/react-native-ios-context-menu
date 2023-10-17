@@ -181,14 +181,6 @@ public class RNIContextMenuView:
   // MARK: - Computed Properties
   // ---------------------------
   
-  private var shouldEnableAttachToParentVC: Bool {
-    self.cleanupMode == .viewController
-  };
-  
-  private var shouldEnableCleanup: Bool {
-    self.cleanupMode != .disabled
-  };
-  
   var isUsingCustomPreview: Bool {
        self.previewConfig.previewType == .CUSTOM
     && self.menuCustomPreviewView != nil
@@ -319,7 +311,7 @@ public class RNIContextMenuView:
     let shouldAttachToParentVC =
          !self.didAttachToParentVC
       && !didMoveToNilWindow
-      && self.shouldEnableAttachToParentVC;
+      && self.cleanupMode.shouldAttachToParentVC;
       
     
     /// A. Not attached to a parent VC yet
@@ -332,7 +324,7 @@ public class RNIContextMenuView:
     let shouldTriggerCleanup =
          !self.didAttachToParentVC
       && didMoveToNilWindow
-      && !self.shouldEnableAttachToParentVC;
+      && !self.cleanupMode.shouldAttachToParentVC;
       
       
     if shouldAttachToParentVC {
@@ -477,7 +469,7 @@ public class RNIContextMenuView:
   };
   
   func attachToParentVC(){
-    guard self.shouldEnableAttachToParentVC,
+    guard self.cleanupMode.shouldAttachToParentVC,
           !self.didAttachToParentVC,
           
           // find the nearest parent view controller
@@ -1050,7 +1042,7 @@ public class RNIContextMenuView:
   // --------------------
   
   public func cleanup(){
-    guard self.shouldEnableCleanup,
+    guard self.cleanupMode.shouldEnableCleanup,
           !self.didTriggerCleanup
     else { return };
     
