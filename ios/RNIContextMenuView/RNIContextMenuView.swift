@@ -306,28 +306,42 @@ public class RNIContextMenuView:
   // ----------------------
   
   public override func didMoveToWindow() {
-    let isMovingToNilWindow = self.window == nil;
+    let didMoveToNilWindow = self.window == nil;
     
-    // not attached to parent vc yet...
-    if !self.didAttachToParentVC {
-     
-      if isMovingToNilWindow {
-        // moving to nil window and not attached to parent vc,
-        // possible end of lifecycle for this view...
-        //
-        // trigger manual cleanup
-        self.cleanup();
-        
-      } else {
-        // Moving to a non-nil window and is not attached to a parent yet...
-        //
-        // The VC attached to this view is possibly being attached as a child
-        // view controller to a view controller managed by
-        // `UINavigationController`...
-        //
-        // begin setup - attach this view as child vc
-        self.attachToParentVC();
-      };
+    /// A. Not attached to a parent VC yet
+    /// B. Moving to a non-nil window
+    /// C. attach as "child vc" to "parent vc" enabled
+    ///
+    /// the VC attached to this view is possibly being attached as a child
+    /// view controller to a view controller managed by
+    /// `UINavigationController`...
+    ///
+    let shouldAttachToParentVC =
+         !self.didAttachToParentVC
+      && !didMoveToNilWindow
+      && self.shouldEnableAttachToParentVC;
+      
+    
+    /// A. Not attached to a parent VC yet
+    /// B. Moving to a nil window
+    /// C. Attach as "child vc" to "parent vc" disabled
+    ///
+    /// Moving to nil window and not attached to parent vc, possible end of
+    /// lifecycle for this view...
+    ///
+    let shouldTriggerCleanup =
+         !self.didAttachToParentVC
+      && didMoveToNilWindow
+      && !self.shouldEnableAttachToParentVC;
+      
+      
+    if shouldAttachToParentVC {
+      // begin setup - attach this view as child vc
+      self.attachToParentVC();
+    
+    } else if shouldTriggerCleanup {
+      // trigger manual cleanup
+      self.cleanup();
     };
   };
   
