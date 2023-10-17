@@ -61,6 +61,10 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     );
   };
 
+  private _handleOnNativeRef = (ref: View) => {
+    this.nativeRef = ref;
+  };
+
   render(){
     return React.createElement(RNIContextMenuNativeButton, {
       ...this.props,

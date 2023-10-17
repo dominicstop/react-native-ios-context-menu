@@ -16,59 +16,65 @@ public class RNIContextMenuButtonModule: Module {
     Name("RNIContextMenuButton");
     
     Function("dismissMenu") { (reactTag: Int) in
-      guard let bridge = RNIHelpers.bridge else { return };
+      DispatchQueue.main.async {
+        guard let bridge = RNIHelpers.bridge else { return };
     
-      let contextMenuView = RNIHelpers.getView(
-        forNode: reactTag as NSNumber,
-        type: RNIContextMenuButton.self,
-        bridge: bridge
-      );
-      
-      guard let contextMenuView = contextMenuView else { return };
-      contextMenuView.dismissMenu();
+        let contextMenuView = RNIHelpers.getView(
+          forNode: reactTag as NSNumber,
+          type: RNIContextMenuButton.self,
+          bridge: bridge
+        );
+        
+        guard let contextMenuView = contextMenuView else { return };
+        contextMenuView.dismissMenu();
+      };
     };
     
     Function("provideDeferredElements") {
       (reactTag: Int, args: Dictionary<String, Any>) in
       
-      guard let bridge = RNIHelpers.bridge,
-            let deferredID = args["deferredID"] as? String,
-            let menuItems = args["menuItems"] as? Array<Any>
-      else { return };
-    
-      let contextMenuView = RNIHelpers.getView(
-        forNode: reactTag as NSNumber,
-        type: RNIContextMenuButton.self,
-        bridge: bridge
-      );
+      DispatchQueue.main.async {
+        guard let bridge = RNIHelpers.bridge,
+              let deferredID = args["deferredID"] as? String,
+              let menuItems = args["menuItems"] as? Array<Any>
+        else { return };
       
-      guard let contextMenuView = contextMenuView else { return };
-      
-      contextMenuView.provideDeferredElements(
-        id: deferredID,
-        menuElements: menuItems.compactMap {
-          guard let dictItem = $0 as? Dictionary<String, Any> else { return nil };
-          
-          return (
-            RNIMenuItem(dictionary: dictItem) ??
-            RNIMenuActionItem(dictionary: dictItem) ??
-            RNIDeferredMenuElement(dictionary: dictItem)
-          );
-        }
-      );
+        let contextMenuView = RNIHelpers.getView(
+          forNode: reactTag as NSNumber,
+          type: RNIContextMenuButton.self,
+          bridge: bridge
+        );
+        
+        guard let contextMenuView = contextMenuView else { return };
+        
+        contextMenuView.provideDeferredElements(
+          id: deferredID,
+          menuElements: menuItems.compactMap {
+            guard let dictItem = $0 as? Dictionary<String, Any> else { return nil };
+            
+            return (
+              RNIMenuItem(dictionary: dictItem) ??
+              RNIMenuActionItem(dictionary: dictItem) ??
+              RNIDeferredMenuElement(dictionary: dictItem)
+            );
+          }
+        );
+      };
     };
     
     Function("notifyOnComponentWillUnmount") { (reactTag: Int) in
-      guard let bridge = RNIHelpers.bridge else { return };
+      DispatchQueue.main.async {
+        guard let bridge = RNIHelpers.bridge else { return };
     
-      let contextMenuView = RNIHelpers.getView(
-        forNode: reactTag as NSNumber,
-        type: RNIContextMenuButton.self,
-        bridge: bridge
-      );
-      
-      guard let contextMenuView = contextMenuView else { return };
-      contextMenuView.notifyOnJSComponentWillUnmount();
+        let contextMenuView = RNIHelpers.getView(
+          forNode: reactTag as NSNumber,
+          type: RNIContextMenuButton.self,
+          bridge: bridge
+        );
+        
+        guard let contextMenuView = contextMenuView else { return };
+        contextMenuView.notifyOnJSComponentWillUnmount();
+      };
     };
 
     View(RNIContextMenuButton.self) {
