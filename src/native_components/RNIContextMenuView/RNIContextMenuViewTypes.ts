@@ -4,7 +4,6 @@ import { RNIContextMenuNativeViewBaseProps } from './RNIContextMenuNativeViewTyp
 
 export type RNIContextMenuViewBaseProps = Pick<RNIContextMenuNativeViewBaseProps,
   | 'internalCleanupMode'
-  | 'shouldCleanupOnComponentWillUnmount'
   | 'menuConfig'
   | 'previewConfig'
   | 'auxiliaryPreviewConfig'

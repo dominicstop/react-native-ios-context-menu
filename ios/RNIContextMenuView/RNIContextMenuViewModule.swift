@@ -155,10 +155,6 @@ public class RNIContextMenuViewModule: Module {
       Events("onRequestDeferredElement");
       Events("onMenuAuxiliaryPreviewWillShow");
       Events("onMenuAuxiliaryPreviewDidShow");
-    
-      Prop("shouldCleanupOnComponentWillUnmount") {
-        $0.shouldCleanupOnComponentWillUnmount = $1;
-      };
       
       Prop("menuConfig") {
         $0.menuConfigRaw = $1;

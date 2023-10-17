@@ -63,7 +63,6 @@ export class ContextMenuView extends
 
       // internal
       internalCleanupMode,
-      shouldCleanupOnComponentWillUnmount,
 
       // event props
       onMenuWillShow,
@@ -108,9 +107,6 @@ export class ContextMenuView extends
       ),
       internalCleanupMode: (
         internalCleanupMode ?? 'automatic'
-      ),
-      shouldCleanupOnComponentWillUnmount: (
-        shouldCleanupOnComponentWillUnmount ?? false
       ),
       isContextMenuEnabled: (
         isContextMenuEnabled ?? true
@@ -343,7 +339,6 @@ export class ContextMenuView extends
           previewConfig={props.previewConfig}
           auxiliaryPreviewConfig={props.auxiliaryPreviewConfig}
           internalCleanupMode={props.internalCleanupMode}
-          shouldCleanupOnComponentWillUnmount={props.shouldCleanupOnComponentWillUnmount}
           isContextMenuEnabled={props.isContextMenuEnabled}
           shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle={props.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle}
           isAuxiliaryPreviewEnabled={props.isAuxiliaryPreviewEnabled}

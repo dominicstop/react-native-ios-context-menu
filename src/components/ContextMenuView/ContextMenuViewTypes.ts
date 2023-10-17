@@ -36,7 +36,6 @@ export type ContextMenuViewBaseProps = Partial<Pick<RNIContextMenuViewProps,
   
     // Internal
   | 'internalCleanupMode'
-  | 'shouldCleanupOnComponentWillUnmount'
 >> & {
   lazyPreview?: boolean;
   useActionSheetFallback?: boolean;

@@ -71,9 +71,7 @@ public class RNIContextMenuView:
 
   // MARK: Properties - Props
   // ------------------------
-  
-  public var shouldCleanupOnComponentWillUnmount = false;
-  
+
   private(set) public var menuConfig: RNIMenuItem?;
   public var menuConfigRaw: Dictionary<String, Any>? {
     willSet {

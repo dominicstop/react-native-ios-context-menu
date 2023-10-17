@@ -14,7 +14,6 @@ export type RNIContextMenuNativeViewBaseProps = {
   // --------
 
   internalCleanupMode: RNICleanupMode;
-  shouldCleanupOnComponentWillUnmount: boolean;
 
   // Value Props
   // -----------
