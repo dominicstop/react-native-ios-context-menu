@@ -58,6 +58,8 @@ export class ContextMenuView extends
       shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
       shouldWaitForMenuToHideBeforeFiringOnPressMenuItem,
       shouldEnableAggressiveCleanup,
+      shouldCleanupOnComponentWillUnmountForMenuPreview,
+      shouldCleanupOnComponentWillUnmountForAuxPreview,
       isAuxiliaryPreviewEnabled,
       isContextMenuEnabled,
 
@@ -113,6 +115,8 @@ export class ContextMenuView extends
       ),
 
       // B. Pass down props...
+      shouldCleanupOnComponentWillUnmountForMenuPreview,
+      shouldCleanupOnComponentWillUnmountForAuxPreview,
       menuConfig,
       previewConfig,
       auxiliaryPreviewConfig,
@@ -364,6 +368,9 @@ export class ContextMenuView extends
           {shouldMountPreview && (
             <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
+              shouldCleanupOnComponentWillUnmount={
+                props.shouldCleanupOnComponentWillUnmountForMenuPreview
+              }
             >
               {props.renderProps.renderPreview?.()}
             </RNIDetachedView>
@@ -371,6 +378,9 @@ export class ContextMenuView extends
           {shouldMountAuxPreview && (
             <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
+              shouldCleanupOnComponentWillUnmount={
+                props.shouldCleanupOnComponentWillUnmountForAuxPreview
+              }
             >
               {props.renderProps.renderAuxillaryPreview?.()}
             </RNIDetachedView>
