@@ -112,7 +112,7 @@ public class RNIContextMenuViewModule: Module {
     };
     
     AsyncFunction("notifyOnComponentWillUnmount") {
-      (reactTag: Int, promise: Promise) in
+      (reactTag: Int, isManuallyTriggered: Bool, promise: Promise) in
       
       DispatchQueue.main.async {
         guard let bridge = RNIHelpers.bridge else {
