@@ -13,8 +13,10 @@ interface RNIContextMenuViewModule  {
 
   provideDeferredElements(
     node: number,
-    deferredID: string, 
-    menuItems: MenuElementConfig[]
+    args: {
+      deferredID: string, 
+      menuItems: MenuElementConfig[]
+    }
   ): Promise<void>;
 };
 

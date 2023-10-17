@@ -54,11 +54,10 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
-    await RNIContextMenuButtonModule.provideDeferredElements(
-      reactTag, 
+    await RNIContextMenuButtonModule.provideDeferredElements(reactTag, { 
       deferredID, 
-      menuItems
-    );
+      menuItems 
+    });
   };
 
   private _handleOnNativeRef = (ref: View) => {
