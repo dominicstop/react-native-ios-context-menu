@@ -33,61 +33,6 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     this.nativeRef.notifyOnComponentWillUnmount();
   };
 
-  private _getProps = () => {
-    const {  
-      useActionSheetFallback,
-      menuConfig,
-      isContextMenuEnabled,
-
-      // internal
-      internalCleanupMode,
-
-      // event props
-      onMenuWillShow,
-      onMenuWillHide,
-      onMenuWillCancel,
-      onMenuDidShow,
-      onMenuDidHide,
-      onMenuDidCancel,
-      onRequestDeferredElement,
-      onPressMenuItem,
-
-      ...viewProps 
-    } = this.props;
-
-    return {
-      // A. Provide default values to props...
-      useActionSheetFallback: (
-        useActionSheetFallback ?? !LIB_ENV.isContextMenuViewSupported
-      ),
-      internalCleanupMode: (
-        internalCleanupMode ?? 'automatic'
-      ),
-      isContextMenuEnabled: (
-        isContextMenuEnabled ?? true
-      ),
-
-      // B. Pass down props...
-      menuConfig,
-
-      // C. Pass down, and group event props...
-      eventProps: {
-        onMenuWillShow,
-        onMenuWillHide,
-        onMenuWillCancel,
-        onMenuDidShow,
-        onMenuDidHide,
-        onMenuDidCancel,
-        onRequestDeferredElement,
-        onPressMenuItem,
-      },
-
-      // D. Move all the default view-related
-      //    props here...
-      viewProps
-    };
-  };
-
   getProps = () => {
     const {
       menuConfig,
