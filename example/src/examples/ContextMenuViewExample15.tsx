@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, findNodeHandle, Alert } from 'react-native';
+import { StyleSheet, View, Text, Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
@@ -8,16 +8,7 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
 export function ContextMenuViewExample15(props: ContextMenuExampleProps) {
-  const [targetViewNode, setTargetViewNode] = React.useState(null);
-
-  const viewRef = React.useRef();
-
-  React.useEffect(() => {
-    setTargetViewNode(
-      findNodeHandle(viewRef.current)
-    );
-
-  }, []);
+  const [targetViewNode, setTargetViewNode] = React.useState<number>();
 
   return (
     <ContextMenuView
@@ -50,7 +41,11 @@ export function ContextMenuViewExample15(props: ContextMenuExampleProps) {
       >
         <View
           style={styles.targetContainer}
-          ref={viewRef}
+          // @ts-ignore
+          onLayout={!targetViewNode && (({nativeEvent}) => {
+            // @ts-ignore
+            setTargetViewNode(nativeEvent.target)
+          })}
         >
           <Text style={styles.text}>
             {`Hello! Target Node: ${targetViewNode}`}
