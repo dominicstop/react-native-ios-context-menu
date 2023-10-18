@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
 import { RNIContextMenuButtonModule } from './RNIContextMenuButtonModule';
 import { RNIContextMenuNativeButton } from './RNIContextMenuNativeButton';
@@ -12,6 +12,7 @@ import { MenuElementConfig } from '../../types/MenuConfig';
 export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButtonProps> {
   
   nativeRef?: View;
+  reactTag?: number;
 
   constructor(props: RNIContextMenuButtonProps){
     super(props);
@@ -27,7 +28,7 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
 
   getNativeReactTag: () => number | undefined = () => {
     // @ts-ignore
-    return this.nativeRef?.nativeTag;
+    return this.nativeRef?.nativeTag ?? this.reactTag;
   };
 
   notifyOnComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
@@ -64,9 +65,17 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     this.nativeRef = ref;
   };
 
+  private _handleOnLayout = ({nativeEvent}: LayoutChangeEvent) => {
+    // @ts-ignore
+    this.reactTag = nativeEvent.target;
+  };
+
   render(){
     return React.createElement(RNIContextMenuNativeButton, {
       ...this.props,
+      ...((this.reactTag == null) && {
+        onLayout: this._handleOnLayout,
+      }),
       style: [
         this.props.style,
         styles.nativeView
