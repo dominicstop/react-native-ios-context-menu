@@ -322,24 +322,36 @@ public class RNIContextMenuButton:
     self.button.contextMenuInteraction?.dismissMenu();
   };
   
-  public func provideDeferredElements(id deferredID: String, menuElements: [RNIMenuElement]){
-    if let completion = self.deferredElementCompletionMap[deferredID] {
-
-      // create + add menu elements
-      completion( menuElements.compactMap { menuElement in
-        menuElement.createMenuElement(
-          actionItemHandler: { [unowned self] in
-            self.handleOnPressMenuActionItem(dict: $0, action: $1);
-            
-          }, deferredElementHandler: { [unowned self] in
-            self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
-          }
-        );
-      });
-      
-      // cleanup
-      self.deferredElementCompletionMap.removeValue(forKey: deferredID);
+  public func provideDeferredElements(
+    id deferredID: String,
+    menuElements rawMenuElements: [RNIMenuElement]
+  ) throws {
+  
+    guard let completionHandler = self.deferredElementCompletionMap[deferredID]
+    else {
+      throw RNIContextMenuError(
+        description: "No matching deferred completion handler found for deferredID",
+        extraDebugValues: ["deferredID": deferredID]
+      );
     };
+    
+    // create menu elements
+    let menuElements = rawMenuElements.compactMap { menuElement in
+      menuElement.createMenuElement(
+        actionItemHandler: { [unowned self] in
+          self.handleOnPressMenuActionItem(dict: $0, action: $1);
+          
+        }, deferredElementHandler: { [unowned self] in
+          self.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
+        }
+      );
+    };
+    
+    // add menu elements
+    completionHandler(menuElements);
+  
+    // cleanup
+    self.deferredElementCompletionMap.removeValue(forKey: deferredID);
   };
   
   // MARK: - RNIMenuElementEventsNotifiable

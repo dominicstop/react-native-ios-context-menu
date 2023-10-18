@@ -17,36 +17,19 @@ public class RNIContextMenuButtonModule: Module {
     
     AsyncFunction("dismissMenu") { (reactTag: Int, promise: Promise) in
       DispatchQueue.main.async {
-        guard let bridge = RNIHelpers.bridge else {
-          let error = RNIError(
-            domain: "react-native-ios-context-menu",
-            description: "Could not get bridge instance",
-            extraDebugInfo: "reactTag: \(reactTag)"
+        do {
+          let contextMenuButton = try RNIModuleHelpers.getView(
+            withErrorType: RNIContextMenuError.self,
+            forNode: reactTag,
+            type: RNIContextMenuButton.self
           );
           
-          promise.reject(error);
-          return;
-        };
-      
-        let contextMenuButton = RNIHelpers.getView(
-          forNode: reactTag as NSNumber,
-          type: RNIContextMenuButton.self,
-          bridge: bridge
-        );
+          contextMenuButton.dismissMenu();
+          promise.resolve();
         
-        guard let contextMenuButton = contextMenuButton else {
-          let error = RNIError(
-            domain: "react-native-ios-context-menu",
-            description: "Could not get view instance",
-            extraDebugInfo: "reactTag: \(reactTag)"
-          );
-          
+        } catch let error {
           promise.reject(error);
-          return;
         };
-        
-        contextMenuButton.dismissMenu();
-        promise.resolve();
       };
     };
     
@@ -54,61 +37,43 @@ public class RNIContextMenuButtonModule: Module {
       (reactTag: Int, args: Dictionary<String, Any>, promise: Promise) in
       
       DispatchQueue.main.async {
-        guard let bridge = RNIHelpers.bridge else {
-          let error = RNIError(
-            domain: "react-native-ios-context-menu",
-            description: "Could not get bridge instance",
-            extraDebugInfo: "reactTag: \(reactTag)"
+        do {
+          let contextMenuButton = try RNIModuleHelpers.getView(
+            withErrorType: RNIContextMenuError.self,
+            forNode: reactTag,
+            type: RNIContextMenuButton.self
           );
           
-          promise.reject(error);
-          return;
-        };
-        
-        guard let deferredID = args["deferredID"] as? String,
-              let menuItems = args["menuItems"] as? Array<Any>
-        else {
-          let error = RNIError(
-            domain: "react-native-ios-context-menu",
-            description: "Could not parse arguments",
-            extraDebugInfo: "reactTag: \(reactTag)"
-          );
+          var debugValues: Dictionary<String, Any> = ["reactTag": reactTag];
+          debugValues.merge(args) { (_, new) in new };
           
-          promise.reject(error);
-          return;
-        };
-      
-        let contextMenuButton = RNIHelpers.getView(
-          forNode: reactTag as NSNumber,
-          type: RNIContextMenuButton.self,
-          bridge: bridge
-        );
-        
-        guard let contextMenuButton = contextMenuButton else {
-          let error = RNIError(
-            domain: "react-native-ios-context-menu",
-            description: "Could not get view instance",
-            extraDebugInfo: "reactTag: \(reactTag)"
-          );
-          
-          promise.reject(error);
-          return;
-        };
-        
-        contextMenuButton.provideDeferredElements(
-          id: deferredID,
-          menuElements: menuItems.compactMap {
-            guard let dictItem = $0 as? Dictionary<String, Any> else { return nil };
-            
-            return (
-              RNIMenuItem(dictionary: dictItem) ??
-              RNIMenuActionItem(dictionary: dictItem) ??
-              RNIDeferredMenuElement(dictionary: dictItem)
+          guard let deferredID = args["deferredID"] as? String,
+                let menuItems = args["menuItems"] as? Array<Any>
+          else {
+            throw RNIContextMenuError(
+              errorCode: .unableToParseArguments,
+              extraDebugValues: debugValues
             );
-          }
-        );
+          };
+          
+          try contextMenuButton.provideDeferredElements(
+            id: deferredID,
+            menuElements: menuItems.compactMap {
+              guard let dictItem = $0 as? Dictionary<String, Any> else { return nil };
+              
+              return (
+                RNIMenuItem(dictionary: dictItem) ??
+                RNIMenuActionItem(dictionary: dictItem) ??
+                RNIDeferredMenuElement(dictionary: dictItem)
+              );
+            }
+          );
+          
+          promise.resolve();
         
-        promise.resolve();
+        } catch let error {
+          promise.reject(error);
+        };
       };
     };
     
@@ -116,37 +81,20 @@ public class RNIContextMenuButtonModule: Module {
       (reactTag: Int, isManuallyTriggered: Bool, promise: Promise) in
       
       DispatchQueue.main.async {
-        guard let bridge = RNIHelpers.bridge else {
-          let error = RNIError(
-            domain: "react-native-ios-context-menu",
-            description: "Could not get bridge instance",
-            extraDebugInfo: "reactTag: \(reactTag)"
+        do {
+          let contextMenuButton = try RNIModuleHelpers.getView(
+            withErrorType: RNIContextMenuError.self,
+            forNode: reactTag,
+            type: RNIContextMenuButton.self
           );
           
-          promise.reject(error);
-          return;
-        };
-      
-        let contextMenuButton = RNIHelpers.getView(
-          forNode: reactTag as NSNumber,
-          type: RNIContextMenuButton.self,
-          bridge: bridge
-        );
+          contextMenuButton.notifyOnJSComponentWillUnmount();
+          promise.resolve();
         
-        guard let contextMenuButton = contextMenuButton else {
-          let error = RNIError(
-            domain: "react-native-ios-context-menu",
-            description: "Could not get view instance",
-            extraDebugInfo: "reactTag: \(reactTag)"
-          );
-          
+        } catch let error {
           promise.reject(error);
-          return;
         };
-        
-        contextMenuButton.notifyOnJSComponentWillUnmount();
-        promise.resolve();
-      };
+      }
     };
 
     View(RNIContextMenuButton.self) {

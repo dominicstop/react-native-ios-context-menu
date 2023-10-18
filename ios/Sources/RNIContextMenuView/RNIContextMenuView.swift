@@ -1002,7 +1002,6 @@ public class RNIContextMenuView:
     self.contextMenuInteraction?.dismissMenu();
   };
   
-  // TODO: Add error throws
   func provideDeferredElements(
     id deferredID: String,
     menuElements rawMenuElements: [RNIMenuElement]
@@ -1010,10 +1009,9 @@ public class RNIContextMenuView:
     
     guard let completionHandler = self.deferredElementCompletionMap[deferredID]
     else {
-      throw RNIError(
-        domain: "react-native-ios-context-menu",
+      throw RNIContextMenuError(
         description: "No matching deferred completion handler found for deferredID",
-        extraDebugInfo: "deferredID: \(deferredID)"
+        extraDebugValues: ["deferredID": deferredID]
       );
     };
     
