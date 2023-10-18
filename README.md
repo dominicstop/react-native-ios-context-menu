@@ -1923,6 +1923,21 @@ import { ContextMenuView } from 'react-native-ios-context-menu';
 
 export function ContextMenuViewExample15(props) {
   const [targetViewNode, setTargetViewNode] = React.useState();
+  
+  React.useEffect(() => {
+    // please note that when a view unmounts and remounts (e.g.
+    // when you have a view inside a list comp)., you need to
+    // get the new associated `reactTag` for that view
+    //
+    // otherwise the `reactTag` value you provide to the 
+    // `previewConfig` will be stale...
+    //
+    // this is why we have to set `targetViewNode` back to 
+    // `udefined` when the component unmounts
+    return () => {
+      setTargetViewNode(undefined);
+    }
+  }, []);
 
   return (
     <ContextMenuView
@@ -1942,12 +1957,9 @@ export function ContextMenuViewExample15(props) {
         // alternatively, you can also obtain the `reactTag` of a  
         // a view via: `nativeViewRef?.nativeTag`
         //
-        // please note that when a view unmounts and remounts (e.g.
-        // when you have a view inside a list comp)., you need to
-        // get the new associated `reactTag` for that view
+        // the `reactTag` for a given view is the same across re-renders,
+        // so we only really need to get it once when the view mounts...
         //
-        // otherwise the `reactTag` value you provide to the 
-        // `previewConfig` will be stale...
         onLayout={!targetViewNode && (({nativeEvent}) => {
           setTargetViewNode(nativeEvent.target)
         })}
