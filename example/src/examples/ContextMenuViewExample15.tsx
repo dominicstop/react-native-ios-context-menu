@@ -10,6 +10,12 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 export function ContextMenuViewExample15(props: ContextMenuExampleProps) {
   const [targetViewNode, setTargetViewNode] = React.useState<number>();
 
+  React.useEffect(() => {
+    return () => {
+      setTargetViewNode(undefined);
+    }
+  }, []);
+
   return (
     <ContextMenuView
       style={props.style}
