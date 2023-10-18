@@ -41,8 +41,6 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
 
   dismissMenu = async () => {
     const reactTag = this.getNativeReactTag();
-    console.log("dismissMenu - reactTag:", reactTag);
-    console.log("dismissMenu - this.nativeRef:", this.nativeRef);
     if(typeof reactTag !== 'number') return;
 
     await RNIContextMenuViewModule.dismissMenu(reactTag);
