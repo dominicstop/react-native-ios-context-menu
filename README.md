@@ -5,39 +5,32 @@
 </p>
 <br>
 
-## 🚧⚠️ Library + Documentation Re-Write WIP ⚠️🚧
+## 🚧⚠️ Documentation WIP ⚠️🚧
 
-📝 Note: See [Installation - Expo Modules Re-Write](#Installation-Expo-Modules-Re-Write) to try out the new version (and check [`TODO.md`](docs/TODO.md) for progress on re-write).
-
-* ❤️ Support the new API's introduced in iOS 15/16+.
-* 🧡 New `SFSymbols` + menu icon config API (with support for advanced customizations).
-* 💛 Support for use with [Mac Catalyst](https://developer.apple.com/documentation/uikit/uicommand/adding_menus_and_shortcuts_to_the_menu_bar_and_user_interface) (e.g. configuring the mac's menu bar + the iPad's [shortcuts/menu bar](https://twitter.com/stroughtonsmith/status/1440344820577226752?s=20)). 
-* 💚 Typescript re-write (for better autocomplete).
-* 💙 Documentation re-write (so its actually usable + better examples).
-* 💜 ...and fixing all the bugs + issues so far 😅
-
-<br>
+📝 Note: See [`TODO.md`](docs/TODO.md) for progress.
 
 - The documentation is incomplete (some parts/sections are marked as **TBA** i.e. "to be added"). 
 - Some of the links in the documentation are broken (i.e. the URL points to `PLACE_HOLDER_LINK`).
+- Some of the gifs/images are old, or broken.
 - For now, please see the [Usage And Examples](#e-usage-and-examples) section, and [Showcase, Tests and Demos](#F-Showcase-Tests-and-Demos) section for information on how to use this library.
 
 <br><br>
 
 | Notice                                                       |
 | ------------------------------------------------------------ |
-| 📝 **Note** #1: A future major version of this library will introduce breaking changes to the API (mainly just renaming some of the properties) in order to add new features (and better types). <br><br>However, the next minor version of this library will not introduce any breaking changes but will instead focus on adding typescript annotations and fixing the existing bugs. |
+| 📝 **Note** #1: Staring on version `2.x`, this library now uses `expo-modules`, and contains a peer dependency to `react-native-ios-utilites`. |
 | 📝 **Note** #2: The documentation + examples are currently being rewritten.<br><br>💅 [`README-old.md`](./README-old.md) — The old version of the documentation (archived).<br>💖 [`example/src/examples`](./example/src/examples) — The typescript rewrite of the examples (WIP). |
 
  <br>
 
 ### Versions
 
-| Library Version | Compatibility                 |
-| :-------------- | ----------------------------- |
-| `1.6.2`         | iOS 10 to iOS 15<br>Xcode 12+ |
-| `1.4`           | iOS 10 to iOS 15<br>Xcode 13+ |
-| `1.3` and Below | iOS 10 to 14<br>Xcode 12+     |
+| Library Version | Compatibility                                                |
+| :-------------- | ------------------------------------------------------------ |
+| `2.x`           | Uses `Expo-Modules`<br>Depends on `react-native-ios-utilities@4.x`<br>iOS 13+<br>Xcode 15+ |
+| `1.6.2`         | iOS 10 to iOS 15<br>Xcode 12+                                |
+| `1.4`           | iOS 10 to iOS 15<br>Xcode 13+                                |
+| `1.3` and Below | iOS 10 to 14<br>Xcode 12+                                    |
 
 📝 **Note**: Supports projects targeting iOS 10 but will use the action sheet fallback when running on iOS 12 and older.
 
@@ -163,7 +156,7 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 * Support for creating menu actions and submenus (i.e. nested and in-line menus).
 * Support for customizing the menu icons (i.e. support for SF Symbols, `require(image)`, and `xcasset` icons, icon tint, etc).
 * Extensive support for SF Symbols configuration (e.g. `pointSize`, `weight`, `scale`, `hierarchicalColor`, `paletteColors`).
-* Support for iOS 14 functionality (like the `UIButton` context menu, dynamically updating the menu while its visible, etc).
+* Support for iOS 14 functionality (like the `UIButton` context menu, dynamically updating the menu while it's visible, etc).
 * Support for setting (almost) all of the native [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) and ￼[`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, `discoverabilityTitle`, etc.)
 * Basic `ActionSheetIOS` menu fallback for iOS 12 and below.
 * Support for creating custom context menu previews (with support for dynamic or fixed preview sizes, setting the [`UIPreviewParameters`](https://developer.apple.com/documentation/uikit/uipreviewparameters), specifying a [`UITargetedPreview`](https://developer.apple.com/documentation/uikit/uitargetedpreview), etc).
@@ -175,19 +168,20 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 ## B. Installation
 
 ```sh
-# 1A) install via NPM
+# 1. install library + dependencies
+npm install react-native-ios-utilities
 npm install react-native-ios-context-menu
 
-# 1B) or install via yarn
-yarn add react-native-ios-context-menu
 
-# 2) then run pod install (uses auto-linking)
+# 2. then run pod install (uses auto-linking)
 cd ios && pod install
 ```
 
 <br>
 
-📝 **Note**: You will encounter some build errors since this library is written in swift, so there's some extra step involved to use this library (see table below for reference).
+📝 **Note A**: You might encounter some build errors since this library is written in swift, so there's some extra step involved to use this library (see table below for reference).
+
+<br>📝 **Note B**: If you want to use an older or different version of this library, please refer to [versions section](#versions)'s compatibility table.
 
 | Additional Steps                                             |
 | :----------------------------------------------------------- |
@@ -196,7 +190,7 @@ cd ios && pod install
 
 <br>
 
-### Installation (Expo Modules Re-Write)
+### Installation (Experimental Version)
 
 ```sh
 # 1. install library + dependencies
@@ -210,7 +204,7 @@ cd ios && pod install
 
 <br>
 
-📝 **Note**: This version of the library uses expo-modules (so it's compatible w/ fabric/JSI). Please remember that the re-write is currently in progress, so it might not be ready.
+📝 **Note**: This version of the library uses expo-modules (so it's compatible w/ fabric/JSI). Please remember that this version of the library might not be stable, or even build correctly.
 
 <br>
 
@@ -223,7 +217,7 @@ cd ios && pod install
 
 ### Troubleshooting
 
-If you encounter any errors/bugs while using this library, or want a particular feature implemented, please create an issue! ✨
+If you encounter any errors/bugs while using this library, or want a particular feature implemented, please create an issue! (my inbox is a mess, please feel free to tag me). ✨
 
 <br>
 
@@ -4072,4 +4066,12 @@ export function ContextMenuButtonExample02(props) {
 
 ## H. Licence
 
-MIT
+[MIT](./LICENSE)
+
+<br><br>
+
+## Misc and Contact
+
+* 🐤 **Twitter/X**: `@GoDominic`
+* 💌 **Email**: `dominicgo@dominicgo.dev`
+* 🌐 **Website**: [dominicgo.dev](https://dominicgo.dev)
