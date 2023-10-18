@@ -10,7 +10,7 @@ import ExpoModulesCore
 import ReactNativeIosUtilities
 
 public class RNIContextMenuViewModule: Module {
-  
+
   public func definition() -> ModuleDefinition {
     Name("RNIContextMenuView");
     
@@ -65,7 +65,7 @@ public class RNIContextMenuViewModule: Module {
         };
         
         guard let deferredID = args["deferredID"] as? String,
-              let menuItems = args["menuItems"] as? Array<Any>
+              let menuItemsRaw = args["menuItems"] as? Array<Any>
         else {
           let error = RNIError(
             domain: "react-native-ios-context-menu",
@@ -94,20 +94,28 @@ public class RNIContextMenuViewModule: Module {
           return;
         };
         
-        contextMenuView.provideDeferredElements(
-          id: deferredID,
-          menuElements: menuItems.compactMap {
-            guard let dictItem = $0 as? Dictionary<String, Any> else { return nil };
-            
-            return (
-              RNIMenuItem(dictionary: dictItem) ??
-              RNIMenuActionItem(dictionary: dictItem) ??
-              RNIDeferredMenuElement(dictionary: dictItem)
-            );
-          }
-        );
+        let menuItems: [RNIMenuElement] = menuItemsRaw.compactMap {
+          guard let dictItem = $0 as? Dictionary<String, Any>
+          else { return nil };
+          
+          return (
+            RNIMenuItem(dictionary: dictItem) ??
+            RNIMenuActionItem(dictionary: dictItem) ??
+            RNIDeferredMenuElement(dictionary: dictItem)
+          );
+        };
         
-        promise.resolve();
+        do {
+          try contextMenuView.provideDeferredElements(
+            id: deferredID,
+            menuElements: menuItems
+          );
+          
+          promise.resolve();
+          
+        } catch let error {
+          promise.reject(error);
+        };
       };
     };
     
