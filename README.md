@@ -77,6 +77,7 @@
 | 📌 **[`ContextMenuView` Example 13](#ContextMenuView-Example-13)**<br/>💭 **Summary**: Menu Action — An example showing how to add a subtitle to menu action. |
 | 📌 **[`ContextMenuView` Example 14](#ContextMenuView-Example-14)**<br/>💭 **Summary**: Context Menu Previews — An example that changes the exit transition of the context menu preview when its tapped using the `preferredCommitStyle ` config. |
 | 📌 **[`ContextMenuView` Example 15](#ContextMenuView-Example-15)**<br/>💭 **Summary**: Context Menu Previews — An example showing how to configure a context menu that uses targeted previews. |
+| 📌 **[`ContextMenuView` Example 15-02](#ContextMenuView-Example-15-02)**<br/>💭 **Summary**: Context Menu Previews (Cont). — An example showing how to configure a context menu that uses targeted previews + `WrapperView`. |
 | 📌 **[`ContextMenuView` Example 16](#ContextMenuView-Example-16)**<br/>💭 **Summary**: Icon Example — An example showing a context menu with an action that uses a `'IMAGE_ASSET'` image for its icon. |
 | 📌 **[`ContextMenuView` Example 17](#ContextMenuView-Example-17)**<br/>💭 **Summary**: Icon Example — An example showing a context menu with action items that have different colored icons. |
 | 📌 **[`ContextMenuView` Example 18](#ContextMenuView-Example-18)**<br/>💭 **Summary**: Icon Example — An example showing a context menu with action items that has icons that uses local image assets imported via `require(...)`. |
@@ -1976,6 +1977,55 @@ export function ContextMenuViewExample15(props) {
 ![screenshot](assets/example-ContextMenuViewExample15-old.png)
 
 ![Gif](assets/example-ContextMenuViewExample15.gif)
+
+<br>
+
+### `ContextMenuView` Example 15-02
+
+**Summary**: Context Menu Previews (Cont). — An example showing how to configure a context menu that uses targeted previews + `WrapperView`.
+
+<br>
+
+[🔗 Full Example](example/src/examples/ContextMenuViewExample15_02.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+import { ContextMenuView } from 'react-native-ios-context-menu';
+import { WrapperView } from 'react-native-ios-utilities';
+
+export function ContextMenuViewExample15_02(props) {
+  // save a ref. to the `WrapperView` element containing the preview target you 
+  // want to use for the context menu.
+  //
+  // you can then call `getNativeReactTag` to get the associated `reactTag`
+  // for that view. 
+  const wrapperViewRef = React.useRef();
+
+  return (
+    <ContextMenuView
+      menuConfig={{
+        // ...
+      }}
+      previewConfig={{
+        // get the associated `reactTag` of the view element you want use as the 
+        // preview target
+        targetViewNode: wrapperViewRef.current?.getNativeReactTag(),
+      }}
+    >
+      <WrapperView
+        ref={wrapperViewRef}
+        style={styles.targetContainer}
+      >
+        <Text style={styles.text}>
+          {`Hello inside: WrapperView\nTarget Node: ${wrapperViewRef.current?.getNativeReactTag()}`}
+        </Text>
+      </WrapperView>
+    </ContextMenuView>
+  );
+};
+```
+
+![screenshot](assets/example-ContextMenuViewExample15-02.png)
 
 <br>
 
