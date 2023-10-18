@@ -17,6 +17,7 @@
     "open:ios": "open -a \"Xcode\" example/ios",
     "open:android": "open -a \"Android Studio\" example/android",
     "release": "release-it --only-version --npm.skipChecks --npm.publishArgs=\"--registry=https://registry.npmjs.org\"",
+    "update-dep": "yarn add --dev react-native-ios-utilities ; cd example ; yarn add react-native-ios-utilities ; cd ios ; pod install ; cd ..",
     "update-dep-next": "yarn add --dev react-native-ios-utilities@next ; cd example ; yarn add react-native-ios-utilities@next ; cd ios ; pod install ; cd .."
   },
   "keywords": [
