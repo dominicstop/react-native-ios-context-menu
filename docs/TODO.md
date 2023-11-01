@@ -6,12 +6,14 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
-- [ ] `TODO:2023-11-02-05-21-36` - Implement: Prop - `shouldPreventLongPressGestureFromPropagating`
-  * Related to: `TODO:2023-11-02-03-06-06` - `issue:#73`: Item: 01 - Pressables inside of a context menu firing navigation in a native stack cause a crash.
-
 <br><br>
 
 ## Version: `next`
+
+- [x] `TODO:2023-11-02-05-21-36` - Implement: Prop - `shouldPreventLongPressGestureFromPropagating`
+  * Related to: `TODO:2023-11-02-03-06-06` - `issue:#73`: Item: 01 - Pressables inside of a context menu firing navigation in a native stack cause a crash.
+
+<br><br>
 
 - [x] `TODO:2023-11-02-03-06-06` - `issue:#73`: Item: 01 - Pressables inside of a context menu firing navigation in a native stack cause a crash
   * Possible cause: Issue w/ long press touch propagation - `react-native` (`RCTTouchHandler`) is not aware that the long press is being handled by `UIContextMenuInteraction`/`UIInteraction`.
