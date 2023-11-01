@@ -44,8 +44,31 @@ extension UIView {
     };
   };
   
-  func recursivelyFindParentView<T>(whereType type: T) -> T? {
+  func recursivelyFindParentView<T>(whereType type: T.Type) -> T? {
     let match = self.recursivelyFindParentView(where: {
+      $0 is T;
+    })
+    
+    guard let match = match else { return nil };
+    return match as? T;
+  };
+  
+  func recursivelyFindSubview(where predicate: (UIView) -> Bool) -> UIView? {
+    for subview in self.subviews {
+      if predicate(subview) {
+        return subview;
+      };
+      
+      if let match = subview.recursivelyFindSubview(where: predicate) {
+        return match;
+      };
+    };
+    
+    return nil;
+  };
+  
+  func recursivelyFindSubview<T>(whereType type: T.Type) -> T? {
+    let match = self.recursivelyFindSubview(where: {
       $0 is T;
     })
     
