@@ -17,15 +17,20 @@ import { SHARED_ENV } from './src/constants/SharedEnv';
 const shouldEnableTabs = 
   SHARED_ENV.enableReactNavigation && SHARED_ENV.enableTabNavigation;
 
-
 function Tab1StackScreen() {
   if(shouldEnableTabs){
     const Tab1Stack = createNativeStackNavigator();
 
     return (
     <Tab1Stack.Navigator initialRouteName="Home">
-      <Tab1Stack.Screen name="Home" component={HomeScreen} />
-      <Tab1Stack.Screen name="Test" component={TestScreen} />
+      <Tab1Stack.Screen 
+        name="Home" 
+        component={HomeScreen}
+      />
+      <Tab1Stack.Screen 
+        name="Test" 
+        component={TestScreen}
+      />
     </Tab1Stack.Navigator>
   );
 
@@ -41,8 +46,14 @@ export default function App() {
     return(
       <NavigationContainer>
         <TabNavigator.Navigator>
-          <TabNavigator.Screen name="Tab1" component={Tab1StackScreen} />
-          <TabNavigator.Screen name="Tab2" component={HomeScreen} />
+          <TabNavigator.Screen 
+            name="Tab1" 
+            component={Tab1StackScreen}
+          />
+          <TabNavigator.Screen 
+            name="Tab2" 
+            component={HomeScreen}
+          />
         </TabNavigator.Navigator>
       </NavigationContainer>
     );
@@ -52,11 +63,26 @@ export default function App() {
     return(
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Test" component={TestScreen} />
-          <Stack.Screen name="Test02" component={Test02Screen} />
-          <Stack.Screen name="Test03" component={Test03Screen} />
-          <Stack.Screen name="Test04" component={Test04Screen} />
+          <Stack.Screen 
+            name="Home" 
+            component={HomeScreen}
+          />
+          <Stack.Screen 
+            name="Test" 
+            component={TestScreen}
+          />
+          <Stack.Screen 
+            name="Test02" 
+            component={Test02Screen}
+          />
+          <Stack.Screen 
+            name="Test03" 
+            component={Test03Screen}
+          />
+          <Stack.Screen 
+            name="Test04" 
+            component={Test04Screen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
