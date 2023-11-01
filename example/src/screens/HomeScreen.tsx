@@ -139,7 +139,7 @@ const EXAMPLE_COMPONENTS = (() => {
   ];
 
   if(SHARED_ENV.enableReactNavigation){
-    items.splice(0, 0, ...items);
+    items.splice(0, 0, ...[DebugControls]);
   };
 
   return items;

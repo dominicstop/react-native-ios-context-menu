@@ -10,6 +10,7 @@ import { TestScreen } from './src/screens/Test01Screen';
 import { Test02Screen } from './src/screens/Test02Screen';
 import { Test03Screen } from './src/screens/Test03Screen';
 import { Test04Screen } from './src/screens/Test04Screen';
+import { Test05Screen } from './src/screens/Test05Screen';
 
 import { SHARED_ENV } from './src/constants/SharedEnv';
 
@@ -82,6 +83,10 @@ export default function App() {
           <Stack.Screen 
             name="Test04" 
             component={Test04Screen}
+          />
+          <Stack.Screen 
+            name="Test05" 
+            component={Test05Screen}
           />
         </Stack.Navigator>
       </NavigationContainer>
