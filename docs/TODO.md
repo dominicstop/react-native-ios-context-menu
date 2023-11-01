@@ -11,6 +11,7 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
     * Possible Fix - 01: Patch `react-native` to recognize `UIInteraction` via swizzling - `RCTTouchHandler` only works with `UIGestureRecognizer`
     * Possible Fix - 02: Prevent "long press touch events" from propagating down.
       * Unable to stop touch propagation via adding a long press gesture recognizer.
+      * Unable to stop touch propagation via `UIGestureRecognizerDelegate` + `shouldRecognizeSimultaneouslyWith`.
 
 <br><br>
 
