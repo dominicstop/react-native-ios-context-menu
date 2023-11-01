@@ -42,6 +42,8 @@ public class RNIContextMenuView:
   private var deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
     
+  var longPressGestureRecognizer: UILongPressGestureRecognizer!;
+    
   // MARK: - Properties - Flags
   // --------------------------
   
@@ -125,6 +127,18 @@ public class RNIContextMenuView:
       else { return };
       
       self.internalCleanupMode = cleanupMode;
+    }
+  };
+  
+  public var shouldPreventLongPressGestureFromPropagating = true {
+    willSet {
+      let oldValue = self.shouldPreventLongPressGestureFromPropagating;
+      
+      guard newValue != oldValue,
+            let longPressGestureRecognizer = self.longPressGestureRecognizer
+      else { return };
+      
+      longPressGestureRecognizer.isEnabled = newValue;
     }
   };
   
@@ -354,7 +368,10 @@ public class RNIContextMenuView:
       action: #selector(Self.handleLongPressGesture(_:))
     );
     
-    longPressGestureRecognizer.isEnabled = true;
+    self.longPressGestureRecognizer = longPressGestureRecognizer;
+    longPressGestureRecognizer.isEnabled =
+      self.shouldPreventLongPressGestureFromPropagating;
+    
     self.addGestureRecognizer(longPressGestureRecognizer);
   };
   

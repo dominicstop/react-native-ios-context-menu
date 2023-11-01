@@ -45,6 +45,7 @@ export type RNIContextMenuNativeViewBaseProps = {
 
   isContextMenuEnabled: boolean;
   isAuxiliaryPreviewEnabled: boolean;
+  shouldPreventLongPressGestureFromPropagating: boolean;
 
   // Events - Lifecycle
   // ------------------

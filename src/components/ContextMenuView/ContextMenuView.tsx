@@ -62,6 +62,7 @@ export class ContextMenuView extends
       shouldCleanupOnComponentWillUnmountForAuxPreview,
       isAuxiliaryPreviewEnabled,
       isContextMenuEnabled,
+      shouldPreventLongPressGestureFromPropagating,
 
       // internal
       internalCleanupMode,
@@ -112,6 +113,9 @@ export class ContextMenuView extends
       ),
       isContextMenuEnabled: (
         isContextMenuEnabled ?? true
+      ),
+      shouldPreventLongPressGestureFromPropagating: (
+        shouldPreventLongPressGestureFromPropagating ?? true
       ),
 
       // B. Pass down props...
@@ -346,6 +350,7 @@ export class ContextMenuView extends
           isContextMenuEnabled={props.isContextMenuEnabled}
           shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle={props.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle}
           isAuxiliaryPreviewEnabled={props.isAuxiliaryPreviewEnabled}
+          shouldPreventLongPressGestureFromPropagating={props.shouldPreventLongPressGestureFromPropagating}
 
           // Events: `onPress`-Related
           onMenuWillShow={this._handleOnMenuWillShow}

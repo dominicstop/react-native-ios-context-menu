@@ -19,6 +19,7 @@ export type ContextMenuViewBaseProps = Partial<Pick<RNIContextMenuViewProps,
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'
   | 'isAuxiliaryPreviewEnabled'
+  | 'shouldPreventLongPressGestureFromPropagating'
 
   // Lifecycle Events
   | 'onMenuWillShow'

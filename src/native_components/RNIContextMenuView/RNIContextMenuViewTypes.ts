@@ -10,6 +10,7 @@ export type RNIContextMenuViewBaseProps = Pick<RNIContextMenuNativeViewBaseProps
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'
   | 'isAuxiliaryPreviewEnabled'
+  | 'shouldPreventLongPressGestureFromPropagating'
   | 'onMenuWillShow'
   | 'onMenuDidShow'
   | 'onMenuWillHide'

@@ -133,6 +133,10 @@ public class RNIContextMenuViewModule: Module {
       Prop("auxiliaryPreviewConfig") {
         $0.auxiliaryPreviewConfigRaw = $1;
       };
+      
+      Prop("shouldPreventLongPressGestureFromPropagating") {
+        $0.shouldPreventLongPressGestureFromPropagating = $1;
+      };
     };
   };
 };
