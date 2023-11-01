@@ -97,6 +97,9 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     defer {
       // reset flag
       self.isContextMenuVisible = false;
+      
+      self.isUserInteractionEnabled = true;
+      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
     };
     
     guard self.isContextMenuVisible else { return };

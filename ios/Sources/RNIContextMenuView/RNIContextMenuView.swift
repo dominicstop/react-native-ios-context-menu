@@ -369,6 +369,8 @@ public class RNIContextMenuView:
     );
     
     self.longPressGestureRecognizer = longPressGestureRecognizer;
+    
+    longPressGestureRecognizer.delegate = self;
     longPressGestureRecognizer.isEnabled =
       self.shouldPreventLongPressGestureFromPropagating;
     
