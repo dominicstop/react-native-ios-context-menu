@@ -40,7 +40,12 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     animator: UIContextMenuInteractionAnimating?
   ) {
     
+    guard let animator = animator else { return };
     self.isContextMenuVisible = true;
+    
+    self.isUserInteractionEnabled = false;
+    self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = false;
+    
     self.onMenuWillShow.callAsFunction([:]);
     
     // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
@@ -49,7 +54,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     let shouldUseAlternateWayToShowAuxPreview =
       transitionEntranceDelay != .AFTER_PREVIEW;
-    
     
     // A - show context menu auxiliary preview via new way
     // i.e. immediately show aux. preview but with a slight delay
@@ -66,7 +70,11 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       };
     };
     
-    animator?.addCompletion { [unowned self] in
+    animator.addCompletion { [unowned self] in
+    
+      self.isUserInteractionEnabled = true;
+      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
+      
       self.onMenuDidShow.callAsFunction([:]);
       
       // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
@@ -85,6 +93,11 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     willEndFor configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionAnimating?
   ) {
+    
+    defer {
+      // reset flag
+      self.isContextMenuVisible = false;
+    };
     
     guard self.isContextMenuVisible else { return };
     
@@ -110,9 +123,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       // reset flag
       self.didPressMenuItem = false;
     };
-    
-    // reset flag
-    self.isContextMenuVisible = false;
   };
   
   // context menu preview tapped

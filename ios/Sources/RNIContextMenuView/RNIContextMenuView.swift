@@ -247,8 +247,8 @@ public class RNIContextMenuView:
   public required init(appContext: AppContext? = nil) {
     super.init(appContext: appContext);
     
-    // Add context menu interaction...
     self.setupAddContextMenuInteraction();
+    self.setupAddGestureRecognizers();
   };
   
   public required init?(coder: NSCoder) {
@@ -346,6 +346,16 @@ public class RNIContextMenuView:
       
       return interaction;
     }();
+  };
+  
+  func setupAddGestureRecognizers(){
+    let longPressGestureRecognizer = UILongPressGestureRecognizer(
+      target: self,
+      action: #selector(Self.handleLongPressGesture(_:))
+    );
+    
+    longPressGestureRecognizer.isEnabled = true;
+    self.addGestureRecognizer(longPressGestureRecognizer);
   };
   
   func createMenu(with menuConfig: RNIMenuItem? = nil) -> UIMenu? {
@@ -464,6 +474,10 @@ public class RNIContextMenuView:
     self.onRequestDeferredElement.callAsFunction([
       "deferredID": deferredID,
     ]);
+  };
+  
+  @objc func handleLongPressGesture(_ sender: UILongPressGestureRecognizer){
+    // no-op
   };
   
   func attachToParentVC(){
