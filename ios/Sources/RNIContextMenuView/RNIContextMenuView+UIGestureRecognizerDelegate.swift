@@ -15,7 +15,8 @@ extension RNIContextMenuView: UIGestureRecognizerDelegate {
     shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
   ) -> Bool {
     
-    guard self.shouldPreventLongPressGestureFromPropagating,
+    guard self.isContextMenuVisible,
+          self.shouldPreventLongPressGestureFromPropagating,
           let longPressGestureRecognizer = self.longPressGestureRecognizer,
     
           gestureRecognizer === longPressGestureRecognizer,
