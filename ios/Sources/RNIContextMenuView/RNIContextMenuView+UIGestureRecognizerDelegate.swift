@@ -14,7 +14,8 @@ extension RNIContextMenuView: UIGestureRecognizerDelegate {
     shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
   ) -> Bool {
     
-    guard let longPressGestureRecognizer = self.longPressGestureRecognizer,
+    guard self.shouldPreventLongPressGestureFromPropagating,
+          let longPressGestureRecognizer = self.longPressGestureRecognizer,
     
           gestureRecognizer === longPressGestureRecognizer,
           otherGestureRecognizer !== longPressGestureRecognizer
@@ -22,12 +23,7 @@ extension RNIContextMenuView: UIGestureRecognizerDelegate {
       return true;
     };
     
-    let cancelOtherGesture = {
-      otherGestureRecognizer.isEnabled.toggle();
-      otherGestureRecognizer.isEnabled.toggle();
-    };
-    
-    cancelOtherGesture();
+    otherGestureRecognizer.cancelTouch();
     return false;
   };
 };

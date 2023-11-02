@@ -48,6 +48,10 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     self.onMenuWillShow.callAsFunction([:]);
     
+    if self.shouldPreventLongPressGestureFromPropagating {
+      self.closestParentReactTouchHandler?.cancel();
+    };
+    
     // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
     let transitionEntranceDelay = self.auxiliaryPreviewConfig?
       .transitionEntranceDelay ?? .AFTER_PREVIEW;
