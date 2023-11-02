@@ -20,6 +20,7 @@ extension RNIContextMenuView: UIGestureRecognizerDelegate {
           let longPressGestureRecognizer = self.longPressGestureRecognizer,
     
           gestureRecognizer === longPressGestureRecognizer,
+          otherGestureRecognizer is UILongPressGestureRecognizer,
           otherGestureRecognizer !== longPressGestureRecognizer
     else {
       return true;
