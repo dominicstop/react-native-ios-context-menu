@@ -6,12 +6,13 @@
 //
 
 import ReactNativeIosUtilities
+import DGSwiftUtilities
 
 public typealias RNIContextMenuError =
-  RNIError<RNIUtilitiesErrorMetadata, RNIDefaultErrorCode>;
+  RNIError<RNIUtilitiesErrorMetadata>;
   
-public struct RNIContextMenuErrorMetadata: RNIErrorMetadata {
-  public static var domain = "react-native-ios-context-menu";
+public struct RNIContextMenuErrorMetadata: ErrorMetadata {
+  public static var domain: String? = "react-native-ios-context-menu";
   
   public static var parentType: String?;
 };
