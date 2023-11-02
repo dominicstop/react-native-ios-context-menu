@@ -295,7 +295,7 @@ public class RNIContextMenuView:
     };
     
     self.detachedViews.append(
-      .init(value: detachedView)
+      .init(with: detachedView)
     );
     
     detachedView.detach();
@@ -1101,7 +1101,7 @@ public class RNIContextMenuView:
     self.menuAuxiliaryPreviewView?.cleanup();
     
     self.detachedViews.forEach {
-      $0.value?.cleanup();
+      $0.ref?.cleanup();
     };
     
     self.menuCustomPreviewView = nil;
