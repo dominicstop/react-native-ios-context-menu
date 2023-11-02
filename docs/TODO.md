@@ -6,6 +6,12 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
+- [ ] `TODO:2023-11-03-02-34-19` - `issue#77–02` - Fix: Auxiliary view isn't pressable.
+  * Is the swizzling applied? Yes.
+  * Is the detached view able to receive touch events? 
+
+<br>
+
 - [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
 
 <br><br>
