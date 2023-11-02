@@ -6,6 +6,8 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
+- [ ] `TODO:2023-11-02-10-03-20` - Deps: Move `UIView+Helpers` + `UIGestureRecognizer+Helpers` to `DGSwiftUtilities`, and update dependencies.
+- [ ] `TODO:2023-11-02-10-01-30` - Deps: Move `RCTView` to `react-native-ios-utilities`, and update dependencies.
 - [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
 
 <br><br>
