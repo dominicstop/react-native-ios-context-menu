@@ -9,6 +9,14 @@ import UIKit
 
 // TODO: Move to `DGSwiftUtilities`
 extension UIView {
+
+  var rootViewControllerForCurrentWindow: UIViewController? {
+    self.window?.rootViewController;
+  };
+
+  var rootViewForCurrentWindow: UIView? {
+    self.rootViewControllerForCurrentWindow?.view;
+  };
   
   var recursivelyGetAllSubviews: [UIView] {
     var views: [UIView] = [];
