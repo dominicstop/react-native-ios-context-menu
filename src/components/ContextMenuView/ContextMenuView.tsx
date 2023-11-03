@@ -153,8 +153,11 @@ export class ContextMenuView extends
   };
 
   dismissMenu = async () => {
+    console.log("ContextMenuView - dismissMenu - 1");
     if(!LIB_ENV.isContextMenuViewSupported) return;
+    console.log("ContextMenuView - dismissMenu - 2");
     await this.nativeRef.dismissMenu();
+    console.log("ContextMenuView - dismissMenu - 3");
   };
 
   provideDeferredElements = async (
