@@ -23,7 +23,7 @@ public class RNIContextMenuViewModule: Module {
             type: RNIContextMenuView.self
           );
           
-          contextMenuView.dismissMenu();
+          try contextMenuView.dismissMenu();
           promise.resolve();
         
         } catch let error {

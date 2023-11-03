@@ -1034,8 +1034,15 @@ public class RNIContextMenuView:
   // MARK: - Functions - View Module Commands
   // ----------------------------------------
   
-  func dismissMenu(){
-    self.contextMenuInteraction?.dismissMenu();
+  func dismissMenu() throws {
+    guard let contextMenuInteraction = self.contextMenuInteraction else {
+      throw RNIContextMenuError(
+        errorCode: .unexpectedNilValue,
+        description: "contextMenuInteraction is nil"
+      );
+    };
+    
+    contextMenuInteraction.dismissMenu();
   };
   
   func provideDeferredElements(
