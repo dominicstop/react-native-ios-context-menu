@@ -38,13 +38,13 @@ export function ContextMenuViewTest08(props: ContextMenuExampleProps) {
       onMenuDidShow={() => {
         let internalCounter = 0;
 
-        intervalRef.current = setInterval(() => {
-          if (internalCounter < 3){
-            setCounter(prevValue => (prevValue + 1));
-            internalCounter++;
-
-          } else if(internalCounter === 3) {
-            menuRef.current.dismissMenu();
+        intervalRef.current = setInterval(async () => {
+          setCounter(prevValue => (prevValue + 1));
+          internalCounter++;
+          
+          if(internalCounter === 3) {
+            await menuRef.current?.dismissMenu();
+            clearInterval(intervalRef.current);
           };
         }, 500);
       }}
