@@ -24,7 +24,7 @@ public class RNIContextMenuButtonModule: Module {
             type: RNIContextMenuButton.self
           );
           
-          contextMenuButton.dismissMenu();
+          try contextMenuButton.dismissMenu();
           promise.resolve();
         
         } catch let error {

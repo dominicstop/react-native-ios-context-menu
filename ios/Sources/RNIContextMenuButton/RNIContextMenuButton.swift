@@ -317,9 +317,23 @@ public class RNIContextMenuButton:
   // MARK: - Functions - View Module Commands
   // ----------------------------------------
   
-  public func dismissMenu(){
-    guard #available(iOS 14.0, *) else { return };
-    self.button.contextMenuInteraction?.dismissMenu();
+
+  func dismissMenu() throws {
+    guard #available(iOS 14.0, *) else {
+      throw RNIContextMenuError(
+        errorCode: .guardCheckFailed,
+        description: "Unsupported, requires iOS 14+"
+      );
+    };
+    
+    guard let contextMenuInteraction = self.button.contextMenuInteraction else {
+      throw RNIContextMenuError(
+        errorCode: .unexpectedNilValue,
+        description: "button.contextMenuInteraction is nil"
+      );
+    };
+    
+    contextMenuInteraction.dismissMenu();
   };
   
   public func provideDeferredElements(
