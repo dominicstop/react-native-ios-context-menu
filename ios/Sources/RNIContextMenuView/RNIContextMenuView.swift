@@ -327,17 +327,19 @@ public class RNIContextMenuView:
       && self.cleanupMode.shouldAttachToParentVC;
       
     
-    /// A. Not attached to a parent VC yet
-    /// B. Moving to a nil window
+    /// A. Moving to a nil window
+    /// B. Not attached to a parent VC yet
     /// C. Attach as "child vc" to "parent vc" disabled
+    /// D. Cleanup mode is set to: `didMoveToWindowNil`
     ///
     /// Moving to nil window and not attached to parent vc, possible end of
     /// lifecycle for this view...
     ///
     let shouldTriggerCleanup =
-         !self.didAttachToParentVC
-      && didMoveToNilWindow
-      && !self.cleanupMode.shouldAttachToParentVC;
+          didMoveToNilWindow
+      && !self.didAttachToParentVC
+      && !self.cleanupMode.shouldAttachToParentVC
+      && self.cleanupMode == .didMoveToWindowNil;
       
       
     if shouldAttachToParentVC {
