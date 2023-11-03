@@ -147,16 +147,42 @@ public class RNIContextMenuButton:
   // ----------------------
   
   public override func didMoveToWindow() {
-    if self.window == nil,
-       !self.didAttachToParentVC {
-      
-      // not using UINavigationController... manual cleanup
-      self.cleanup();
-      
-    } else if !self.didAttachToParentVC {
-      
-      // setup - might be using UINavigationController, attach as child vc
+    let didMoveToNilWindow = self.window == nil;
+    
+    /// A. Not attached to a parent VC yet
+    /// B. Moving to a non-nil window
+    /// C. attach as "child vc" to "parent vc" enabled
+    ///
+    /// the VC attached to this view is possibly being attached as a child
+    /// view controller to a view controller managed by
+    /// `UINavigationController`...
+    ///
+    let shouldAttachToParentVC =
+         !self.didAttachToParentVC
+      && !didMoveToNilWindow
+      && self.cleanupMode.shouldAttachToParentVC;
+    
+    /// A. Moving to a nil window
+    /// B. Not attached to a parent VC yet
+    /// C. Attach as "child vc" to "parent vc" disabled
+    /// D. Cleanup mode is set to: `didMoveToWindowNil`
+    ///
+    /// Moving to nil window and not attached to parent vc, possible end of
+    /// lifecycle for this view...
+    ///
+    let shouldTriggerCleanup =
+          didMoveToNilWindow
+      && !self.didAttachToParentVC
+      && !self.cleanupMode.shouldAttachToParentVC
+      && self.cleanupMode == .didMoveToWindowNil;
+  
+    if shouldAttachToParentVC {
+      // begin setup - attach this view as child vc
       self.attachToParentVC();
+    
+    } else if shouldTriggerCleanup {
+      // trigger manual cleanup
+      self.cleanup();
     };
   };
   
