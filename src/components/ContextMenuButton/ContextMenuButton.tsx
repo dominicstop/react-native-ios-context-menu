@@ -82,6 +82,11 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     };
   };
 
+  presentMenu = async () => {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+    await this.nativeRef.presentMenu();
+  };
+
   dismissMenu = async () => {
     if(!LIB_ENV.isContextMenuButtonSupported) return;
     this.nativeRef.dismissMenu();

@@ -15,6 +15,24 @@ public class RNIContextMenuButtonModule: Module {
   public func definition() -> ModuleDefinition {
     Name("RNIContextMenuButton");
     
+    AsyncFunction("presentMenu") { (reactTag: Int, promise: Promise) in
+      DispatchQueue.main.async {
+        do {
+          let contextMenuButton = try RNIModuleHelpers.getView(
+            withErrorType: RNIContextMenuError.self,
+            forNode: reactTag,
+            type: RNIContextMenuButton.self
+          );
+          
+          try contextMenuButton.presentMenu();
+          promise.resolve();
+        
+        } catch let error {
+          promise.reject(error);
+        };
+      };
+    };
+    
     AsyncFunction("dismissMenu") { (reactTag: Int, promise: Promise) in
       DispatchQueue.main.async {
         do {

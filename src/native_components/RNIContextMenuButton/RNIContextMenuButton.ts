@@ -41,6 +41,13 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     );
   };
 
+  presentMenu = async () => {
+    const reactTag = this.getNativeReactTag();
+    if(typeof reactTag !== 'number') return;
+
+    await RNIContextMenuButtonModule.presentMenu(reactTag);
+  };
+
   dismissMenu = async () => {
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;

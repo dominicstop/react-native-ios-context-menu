@@ -7,6 +7,10 @@ import type { MenuElementConfig } from '../../types/MenuConfig';
 interface RNIContextMenuButtonModule  {
   notifyOnComponentWillUnmount: NotifyOnComponentWillUnmount;
 
+  presentMenu(
+    node: number,
+  ): Promise<void>;
+
   dismissMenu(
     node: number,
   ): Promise<void>;

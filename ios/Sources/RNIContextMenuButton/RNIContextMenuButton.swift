@@ -6,9 +6,10 @@
 //  Copyright © 2020 Facebook. All rights reserved.
 //
 
-import UIKit;
-import ExpoModulesCore;
-import ReactNativeIosUtilities;
+import UIKit
+import ExpoModulesCore
+import ReactNativeIosUtilities
+import ContextMenuAuxiliaryPreview
 
 
 public class RNIContextMenuButton:
@@ -343,6 +344,46 @@ public class RNIContextMenuButton:
   // MARK: - Functions - View Module Commands
   // ----------------------------------------
   
+  func presentMenu() throws {
+    guard #available(iOS 14.0, *) else {
+      throw RNIContextMenuError(
+        errorCode: .guardCheckFailed,
+        description: "Unsupported, requires iOS 14+"
+      );
+    };
+    
+    guard self.isContextMenuEnabled else {
+      throw RNIContextMenuError.init(
+        errorCode: .guardCheckFailed,
+        description: "Context menu is disabled"
+      );
+    };
+    
+    guard !self.isContextMenuVisible else {
+      throw RNIContextMenuError.init(
+        errorCode: .guardCheckFailed,
+        description: "Context menu is already visible"
+      );
+    };
+    
+    guard let contextMenuInteraction = self.button.contextMenuInteraction else {
+      throw RNIContextMenuError.init(
+        errorCode: .unexpectedNilValue,
+        description: "contextMenuInteraction is nil"
+      );
+    };
+    
+    guard let contextMenuInteractionWrapper =
+            ContextMenuInteractionWrapper(objectToWrap: contextMenuInteraction)
+    else {
+      throw RNIContextMenuError.init(
+        errorCode: .unexpectedNilValue,
+        description: "Unable to create ContextMenuInteractionWrapper"
+      );
+    };
+    
+    try contextMenuInteractionWrapper.presentMenuAtLocation(point: .zero);
+  };
 
   func dismissMenu() throws {
     guard #available(iOS 14.0, *) else {
