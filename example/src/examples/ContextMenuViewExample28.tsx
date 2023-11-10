@@ -9,7 +9,7 @@ import { CardButton } from '../components/Card/CardButton';
 
 
 export function ContextMenuViewExample28(props: ContextMenuExampleProps) {
-  const menuRef = React.useRef<ContextMenuView>();
+  const menuRef = React.useRef<ContextMenuView>(null);
   
   return (
     <ContextMenuView
