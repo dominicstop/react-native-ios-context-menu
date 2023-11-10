@@ -168,6 +168,11 @@ export class ContextMenuView extends
     );
   };
 
+  presentMenu = async () => {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+    await this.nativeRef.presentMenu();
+  };
+
   //#region - Handlers
   private _handleGetRefToContextMenuView = () => {
     return this;

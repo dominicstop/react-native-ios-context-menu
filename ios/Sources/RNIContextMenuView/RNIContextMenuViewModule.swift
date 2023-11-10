@@ -96,6 +96,25 @@ public class RNIContextMenuViewModule: Module {
       };
     };
     
+    AsyncFunction("presentMenu") { (reactTag: Int, promise: Promise) in
+      
+      DispatchQueue.main.async {
+        do {
+          let contextMenuView = try RNIModuleHelpers.getView(
+            withErrorType: RNIContextMenuError.self,
+            forNode: reactTag,
+            type: RNIContextMenuView.self
+          );
+          
+          try contextMenuView.presentMenu();
+          promise.resolve();
+        
+        } catch let error {
+          promise.reject(error);
+        };
+      };
+    };
+    
     View(RNIContextMenuView.self) {
       Events("onMenuWillShow");
       Events("onMenuWillHide");

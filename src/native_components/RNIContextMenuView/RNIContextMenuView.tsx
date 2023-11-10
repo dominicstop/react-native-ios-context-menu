@@ -40,6 +40,13 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     );
   };
 
+  presentMenu = async () => {
+    const reactTag = this.getNativeReactTag();
+    if(typeof reactTag !== 'number') return;
+
+    await RNIContextMenuViewModule.presentMenu(reactTag);
+  };
+
   dismissMenu = async () => {
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;

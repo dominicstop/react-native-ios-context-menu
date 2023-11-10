@@ -5,11 +5,11 @@
 //  Created by Dominic Go on 7/14/20.
 //
 
-import UIKit;
+import UIKit
 import ExpoModulesCore
 import ReactNativeIosUtilities
 import DGSwiftUtilities
-
+import ContextMenuAuxiliaryPreview
 
 public class RNIContextMenuView:
   ExpoView, RNINavigationEventsNotifiable, RNICleanable,
@@ -1075,6 +1075,40 @@ public class RNIContextMenuView:
   
     // cleanup
     self.deferredElementCompletionMap.removeValue(forKey: deferredID);
+  };
+  
+  func presentMenu() throws {
+    guard self.isContextMenuEnabled else {
+      throw RNIContextMenuError.init(
+        errorCode: .guardCheckFailed,
+        description: "Context menu is disabled"
+      );
+    };
+    
+    guard !self.isContextMenuVisible else {
+      throw RNIContextMenuError.init(
+        errorCode: .guardCheckFailed,
+        description: "Context menu is already visible"
+      );
+    };
+    
+    guard let contextMenuInteraction = self.contextMenuInteraction else {
+      throw RNIContextMenuError.init(
+        errorCode: .unexpectedNilValue,
+        description: "contextMenuInteraction is nil"
+      );
+    };
+    
+    guard let contextMenuInteractionWrapper =
+            ContextMenuInteractionWrapper(objectToWrap: contextMenuInteraction)
+    else {
+      throw RNIContextMenuError.init(
+        errorCode: .unexpectedNilValue,
+        description: "Unable to create ContextMenuInteractionWrapper"
+      );
+    };
+    
+    try contextMenuInteractionWrapper.presentMenuAtLocation(point: .zero);
   };
   
   // MARK: - RNINavigationEventsNotifiable
