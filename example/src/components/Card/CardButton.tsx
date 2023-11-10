@@ -11,15 +11,21 @@ import * as Colors from '../../constants/Colors';
  * │ Subtitle                    │
  * └─────────────────────────────┘
  * ```
- */         
+ */ 
 export function CardButton(props: {
   title: string;
   subtitle: string;
   onPress: (event: GestureResponderEvent) => void;
+  buttonColor?: string;
 }){
+
+  const buttonColor = props.buttonColor ?? Colors.PURPLE.A200;
+
   return(
     <TouchableOpacity 
-      style={styles.cardButtonContainer}
+      style={[styles.cardButtonContainer, {
+        backgroundColor: buttonColor,
+      }]}
       onPress={props.onPress}
     >
       <React.Fragment>
@@ -38,7 +44,6 @@ const styles = StyleSheet.create({
   cardButtonContainer: {
     paddingHorizontal: 12,
     paddingVertical: 8,
-    backgroundColor: Colors.PURPLE.A200,
     borderRadius: 10,
     marginTop: 12,
   },

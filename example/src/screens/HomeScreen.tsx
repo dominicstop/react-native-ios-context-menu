@@ -67,6 +67,7 @@ import { ContextMenuAuxPreviewTest02 } from '../examples/ContextMenuAuxPreviewTe
 import { ContextMenuButtonExample01 } from '../examples/ContextMenuButtonExample01';
 import { ContextMenuButtonExample02 } from '../examples/ContextMenuButtonExample02';
 import { ContextMenuButtonExample03 } from '../examples/ContextMenuButtonExample03';
+import { ContextMenuButtonExample04 } from '../examples/ContextMenuButtonExample04';
 
 import { DebugControls } from '../examples/DebugControls';
 import { SHARED_ENV } from '../constants/SharedEnv';
@@ -138,6 +139,7 @@ const EXAMPLE_COMPONENTS = (() => {
     ContextMenuButtonExample01,
     ContextMenuButtonExample02,
     ContextMenuButtonExample03,
+    ContextMenuButtonExample04,
   ];
 
   if(SHARED_ENV.enableReactNavigation){
