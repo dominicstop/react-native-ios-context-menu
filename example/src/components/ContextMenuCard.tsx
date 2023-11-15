@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, ViewStyle } from 'react-native';
+import {StyleSheet, View, Text, ViewStyle} from 'react-native';
 
-import { useMenuContext } from 'react-native-ios-context-menu';
+import {useMenuContext} from 'react-native-ios-context-menu';
 
 import * as Colors from '../constants/Colors';
 
-
 export type ColorConfig = {
-  headerBGColorActive  : string;
+  headerBGColorActive: string;
   headerBGColorInactive: string;
 
-  bodyBGColorActive  : string;
+  bodyBGColorActive: string;
   bodyBGColorInactive: string;
 
   bodyDescriptionLabelColor: string;
@@ -21,7 +20,7 @@ export type ContextMenuCardProps = {
   title?: string;
   subtitle?: string;
   description?: string[];
-  colorConfig?: ColorConfig,
+  colorConfig?: ColorConfig;
 
   style?: ViewStyle;
   extraContentContainerStyle?: ViewStyle;
@@ -29,11 +28,11 @@ export type ContextMenuCardProps = {
 };
 
 const defaultColorConfig: ColorConfig = {
-  headerBGColorActive  : Colors.PURPLE.A700,
-  headerBGColorInactive: Colors.BLUE  .A700,
+  headerBGColorActive: Colors.PURPLE.A700,
+  headerBGColorInactive: Colors.BLUE.A700,
 
-  bodyBGColorActive  : Colors.PURPLE[100],
-  bodyBGColorInactive: Colors.BLUE  [100],
+  bodyBGColorActive: Colors.PURPLE[100],
+  bodyBGColorInactive: Colors.BLUE[100],
 
   bodyDescriptionLabelColor: Colors.BLUE[1100],
 };
@@ -44,17 +43,15 @@ export function ContextMenuCard(props: ContextMenuCardProps) {
   const colorConfig = props.colorConfig ?? defaultColorConfig;
 
   const titleContainerStyle = {
-    backgroundColor: (menuContext.isMenuVisible
+    backgroundColor: menuContext.isMenuVisible
       ? colorConfig.headerBGColorActive
-      : colorConfig.headerBGColorInactive
-    )
+      : colorConfig.headerBGColorInactive,
   };
 
   const bodyContainerStyle = {
-    backgroundColor: (menuContext.isMenuVisible
+    backgroundColor: menuContext.isMenuVisible
       ? colorConfig.bodyBGColorActive
-      : colorConfig.bodyBGColorInactive
-    )
+      : colorConfig.bodyBGColorInactive,
   };
 
   const bodyDescriptionLabelTextStyle = {
@@ -62,51 +59,48 @@ export function ContextMenuCard(props: ContextMenuCardProps) {
   };
 
   const descriptionMain = props.description?.[0];
-  const descriptionSub  = props.description?.slice(1);
+  const descriptionSub = props.description?.slice(1);
 
   return (
     <View style={[styles.rootContainer, props.style]}>
       <View style={[styles.headerContainer, titleContainerStyle]}>
         <Text style={styles.headerTitleIndexText}>
-            {`${props.index ?? 0}. `}
-          </Text>
+          {`${props.index ?? 0}. `}
+        </Text>
         <View style={styles.headerTitleContainer}>
-          <Text style={styles.headerTitleText}>
-            {props.title ?? 'N/A'}
-          </Text>
+          <Text style={styles.headerTitleText}>{props.title ?? 'N/A'}</Text>
           {props.subtitle && (
-            <Text style={styles.headerSubtitleText}>
-              {props.subtitle}
-            </Text>
+            <Text style={styles.headerSubtitleText}>{props.subtitle}</Text>
           )}
         </View>
       </View>
       <View style={[styles.bodyContainer, bodyContainerStyle]}>
         {descriptionMain && (
           <Text style={styles.bodyDescriptionText}>
-            <Text style={[styles.bodyDescriptionLabelText, bodyDescriptionLabelTextStyle]}>
+            <Text
+              style={[
+                styles.bodyDescriptionLabelText,
+                bodyDescriptionLabelTextStyle,
+              ]}>
               {'Description: '}
             </Text>
             {descriptionMain}
           </Text>
         )}
         {descriptionSub?.map((description, index) => (
-          <Text 
+          <Text
             key={`desc-${index}`}
-            style={[styles.bodyDescriptionText, styles.bodyDescriptionSubText]}
-          >
+            style={[styles.bodyDescriptionText, styles.bodyDescriptionSubText]}>
             {description}
           </Text>
         ))}
-        {(React.Children.count(props.children) > 0) && (
-          <View style={props.extraContentContainerStyle}>
-            {props.children}
-          </View>
+        {React.Children.count(props.children) > 0 && (
+          <View style={props.extraContentContainerStyle}>{props.children}</View>
         )}
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -145,7 +139,7 @@ const styles = StyleSheet.create({
   },
   bodyDescriptionText: {
     fontWeight: '300',
-    color: 'rgba(0,0,0,0.75)'
+    color: 'rgba(0,0,0,0.75)',
   },
   bodyDescriptionLabelText: {
     fontWeight: 'bold',

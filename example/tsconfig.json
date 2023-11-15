@@ -1,17 +1,3 @@
 {
-  "extends": "../tsconfig.json",
-  "include": [
-    "./src",
-    "./index.ts"
-  ],
-  "exclude": [
-    "./node_modules",
-    "../src",
-  ],
-  "compilerOptions": {
-    "strict": false,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "skipLibCheck": true,
-  }
+  "extends": "@tsconfig/react-native/tsconfig.json"
 }
