@@ -139,7 +139,7 @@ public class RNIContextMenuView:
     }
   };
   
-  private(set) public var auxiliaryPreviewConfig: RNIContextMenuAuxiliaryPreviewConfig?;
+  private(set) public var auxiliaryPreviewConfig: AuxiliaryPreviewConfig?;
   public var auxiliaryPreviewConfigRaw: Dictionary<String, Any>? {
     willSet {
       guard let newValue = newValue,
@@ -149,7 +149,11 @@ public class RNIContextMenuView:
         return;
       };
       
-      let config = RNIContextMenuAuxiliaryPreviewConfig(dictionary: newValue);
+      let deprecatedConfig =
+        RNIContextMenuAuxiliaryPreviewConfig(dictionary: newValue);
+        
+      let config = AuxiliaryPreviewConfig(config: deprecatedConfig);
+      self.contextMenuManager?.auxiliaryPreviewConfig = config;
       self.auxiliaryPreviewConfig = config;
     }
   };
@@ -363,19 +367,7 @@ public class RNIContextMenuView:
       contextMenuInteraction: contextMenuInteraction,
       menuTargetView: self.menuPreviewTargetView
     );
-    
-    // TODO: WIP - TEMPORARY
-    contextMenuManager.auxiliaryPreviewConfig = AuxiliaryPreviewConfig(
-      verticalAnchorPosition: .automatic,
-      horizontalAlignment: .targetLeading,
-      preferredWidth: .constant(100),
-      preferredHeight: .constant(100),
-      marginInner: 10,
-      marginOuter: 10,
-      transitionConfigEntrance: .syncedToMenuEntranceTransition(),
-      transitionExitPreset: .fade
-    );
-    
+   
     contextMenuManager.delegate = self;
     self.contextMenuManager = contextMenuManager;
   };
