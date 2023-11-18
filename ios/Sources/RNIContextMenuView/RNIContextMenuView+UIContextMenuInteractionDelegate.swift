@@ -19,8 +19,12 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
   ) -> UIContextMenuConfiguration? {
     
     guard self.isContextMenuEnabled else { return nil };
-    
+  
     self.onMenuWillCreate.callAsFunction([:]);
+    self.contextMenuManager?.notifyOnContextMenuInteraction(
+      interaction,
+      configurationForMenuAtLocation: location
+    );
     
     // Note: Xcode beta + running on device (iPhone XR + iOS 15.1) causes
     // crashes when the context menu is being created
@@ -52,42 +56,17 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       self.closestParentReactTouchHandler?.cancel();
     };
     
-    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    let transitionEntranceDelay = self.auxiliaryPreviewConfig?
-      .transitionEntranceDelay ?? .AFTER_PREVIEW;
-    
-    let shouldUseAlternateWayToShowAuxPreview =
-      transitionEntranceDelay != .AFTER_PREVIEW;
-    
-    // A - show context menu auxiliary preview via new way
-    // i.e. immediately show aux. preview but with a slight delay
-    if shouldUseAlternateWayToShowAuxPreview {
-      
-      // the animator does not have a `percentComplete` - so this is just a guess
-      // on how long the context menu entrance animation is
-      //
-      // Note: will break if slow animations enabled
-      let delay = transitionEntranceDelay.seconds;
-      
-      DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
-        self?.attachContextMenuAuxiliaryPreviewIfAny(nil);
-      };
-    };
+    self.contextMenuManager?.notifyOnContextMenuInteraction(
+      interaction,
+      willDisplayMenuFor: configuration,
+      animator: animator
+    );
     
     animator.addCompletion { [unowned self] in
-    
       self.isUserInteractionEnabled = true;
       self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
       
       self.onMenuDidShow.callAsFunction([:]);
-      
-      // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-      // B - show context menu auxiliary preview via old way
-      // i.e. wait for context menu preview to become visible before showing
-      // the aux. preview.
-      if !shouldUseAlternateWayToShowAuxPreview {
-        self.attachContextMenuAuxiliaryPreviewIfAny(animator);
-      };
     };
   };
   
@@ -108,11 +87,13 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     
     guard self.isContextMenuVisible else { return };
     
-    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    // hide preview auxiliary view
-    self.detachContextMenuAuxiliaryPreviewIfAny(animator);
-
     self.onMenuWillHide.callAsFunction([:]);
+    
+    self.contextMenuManager?.notifyOnContextMenuInteraction(
+      interaction,
+      willEndFor: configuration,
+      animator: animator
+    );
     
     if !self.didPressMenuItem {
       // nothing was selected...
@@ -138,10 +119,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionCommitAnimating
   ) {
-    
-    // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-    // hide preview auxiliary view
-    self.detachContextMenuAuxiliaryPreviewIfAny(animator);
     
     let preferredCommitStyle = self.previewConfig.preferredCommitStyle;
     
@@ -175,7 +152,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       highlightPreviewForItemWithIdentifier identifier: NSCopying
   ) -> UITargetedPreview? {
     
-    return self.makeTargetedPreview();
+    return self.menuTargetedPreview;
   };
   #else
   /// deprecated in iOS 16
@@ -184,7 +161,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     previewForHighlightingMenuWithConfiguration: UIContextMenuConfiguration
   ) -> UITargetedPreview? {
   
-    return self.makeTargetedPreview();
+    return self.menuTargetedPreview;
   };
   #endif
   
@@ -196,7 +173,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
       dismissalPreviewForItemWithIdentifier identifier: NSCopying
   ) -> UITargetedPreview? {
     
-    return self.makeTargetedPreview();
+    return self.menuTargetedPreview;
   };
   #else
   /// deprecated in iOS 16
@@ -206,7 +183,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     configuration: UIContextMenuConfiguration
   ) -> UITargetedPreview? {
     
-    return self.makeTargetedPreview();
+    return self.menuTargetedPreview;
   };
   #endif
 };
