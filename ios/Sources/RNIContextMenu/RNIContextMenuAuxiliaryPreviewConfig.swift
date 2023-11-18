@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 
+// MARK: Deprecated
 public struct RNIContextMenuAuxiliaryPreviewConfig {
   
   // MARK: - Nested Types
