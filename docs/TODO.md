@@ -11,12 +11,6 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 <br>
 
-- [ ] `TODO:2023-11-19-19-48-44` - Fix: Aux. Preview Menu - Entrance Transition Bug - Fix bug where the size of the aux. preview is wrong,
-  * Repro: `ContextMenuAuxPreviewExample01`, `ContextMenuAuxPreviewExample06`, 
-  * Only occurs when no context menu has been shown yet, and the aux. preview has to be resized.
-
-<br>
-
 - [ ] `TODO:2023-11-19-17-44-20` - Fix: Aux. Preview Exit Transition Bug - Fix bug where the aux. preview exit transition sometimes doesn't start.
   * The bug happens in every other time the context menu is shown/hidden.
 
@@ -27,6 +21,12 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 <br><br>
 
 ## Completed
+
+- [x] `TODO:2023-11-19-19-48-44` - Fix: Aux. Preview Menu - Entrance Transition Bug - Fix bug where the size of the aux. preview is wrong,
+  * Repro: `ContextMenuAuxPreviewExample01`, `ContextMenuAuxPreviewExample06`, 
+  * Only occurs when no context menu has been shown yet, and the aux. preview has to be resized.
+
+<br>
 
 - [x] `TODO:2023-11-19-10-20-25` Fix: Aux. Preview Resizing - Resizing for the aux. preview is not working, so horizontal alignment `stretch`, `stretchScreen` is not working, as well as explicitly defining the width + height of the aux. preview via the config.
   * Debugging `ContextMenuAuxPreviewExample01` 
