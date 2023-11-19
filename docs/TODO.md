@@ -6,6 +6,7 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
+- [ ] `TODO:2023-11-19-10-20-25` Fix: Aux. Preview Resizing - Resizing for the aux. preview is not working, so horizontal alignment `stretch`, `stretchScreen` is not working, as well as explicitly defining the width + height of the aux. preview via the config.
 - [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
 
 <br><br>
