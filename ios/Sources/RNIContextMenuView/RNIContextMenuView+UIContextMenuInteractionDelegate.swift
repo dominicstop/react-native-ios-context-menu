@@ -50,11 +50,11 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     self.isUserInteractionEnabled = false;
     self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = false;
     
-    self.onMenuWillShow.callAsFunction([:]);
-    
     if self.shouldPreventLongPressGestureFromPropagating {
       self.closestParentReactTouchHandler?.cancel();
     };
+    
+    self.onMenuWillShow.callAsFunction([:]);
     
     self.contextMenuManager?.notifyOnContextMenuInteraction(
       interaction,
