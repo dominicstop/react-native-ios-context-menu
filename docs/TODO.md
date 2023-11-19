@@ -6,7 +6,13 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
-- [ ] `TODO:2023-11-19-10-20-25` Fix: Aux. Preview Resizing - Resizing for the aux. preview is not working, so horizontal alignment `stretch`, `stretchScreen` is not working, as well as explicitly defining the width + height of the aux. preview via the config.
+- [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
+
+<br><br>
+
+## Completed
+
+- [x] `TODO:2023-11-19-10-20-25` Fix: Aux. Preview Resizing - Resizing for the aux. preview is not working, so horizontal alignment `stretch`, `stretchScreen` is not working, as well as explicitly defining the width + height of the aux. preview via the config.
   * Debugging `ContextMenuAuxPreviewExample01` 
     * Showing aux. preview and inspecting the view hierarchy...
       * `RNIDetachedView.frame` = `0 -59 374 47`
@@ -17,12 +23,6 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
     * Removing all styles to `renderAuxiliaryPreview` does nothing.
 
 <br>
-
-- [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
-
-<br><br>
-
-## Version: `next`
 
 - [x] `TODO:2023-11-03-02-34-19` - `issue#77–02` - Fix: Auxiliary view isn't pressable.
   * Is the swizzling applied? Yes.
