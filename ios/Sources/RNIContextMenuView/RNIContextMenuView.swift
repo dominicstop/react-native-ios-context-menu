@@ -435,6 +435,8 @@ public class RNIContextMenuView:
         menuAuxiliaryPreviewView.bounds.height
       );
     };
+    
+    self.contextMenuManager?.auxiliaryPreviewConfig = self.auxiliaryPreviewConfig;
   };
   
   /// create custom menu preview based on `previewConfig` and `reactPreviewView`
@@ -695,6 +697,13 @@ public class RNIContextMenuView:
   // --------------------------------
   
   public func onRequestMenuAuxiliaryPreview(sender: ContextMenuManager) -> UIView? {
-    self.menuAuxiliaryPreviewView;
+    guard let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView
+    else { return nil };
+  
+    let layoutWrapperView = AutoLayoutWrapperView(frame: .zero);
+    layoutWrapperView.addSubview(menuAuxiliaryPreviewView);
+
+    self.setAuxiliaryPreviewConfigSizeIfNeeded();
+    return layoutWrapperView;
   };
 };

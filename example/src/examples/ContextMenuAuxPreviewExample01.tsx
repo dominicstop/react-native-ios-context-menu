@@ -30,11 +30,12 @@ export function ContextMenuAuxPreviewExample01(props: ContextMenuExampleProps) {
       }}
       renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
-          // by default, the root view you returned will be resized to match
-          // the width of the preview (you can override this behavior via the
-          // `auxiliaryPreviewConfig` prop).
+          // The view you return will be wrapped by another view that will be 
+          // resized to match the width of the preview (you can override this 
+          // behavior via the `auxiliaryPreviewConfig` prop).
           //
           // since this view is going to be resized, let's center the content
+          flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
         }]}>
