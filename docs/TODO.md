@@ -7,6 +7,17 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 ## WIP
 
 - [ ] `TODO:2023-11-19-10-20-25` Fix: Aux. Preview Resizing - Resizing for the aux. preview is not working, so horizontal alignment `stretch`, `stretchScreen` is not working, as well as explicitly defining the width + height of the aux. preview via the config.
+  * Debugging `ContextMenuAuxPreviewExample01` 
+    * Showing aux. preview and inspecting the view hierarchy...
+      * `RNIDetachedView.frame` = `0 -59 374 47`
+      * `RCTView` = `0 0 87 47`
+      * This is the root view returned from `ContextMenuView.renderAuxiliaryPreview`
+    * The size of `renderAuxiliaryPreview` does not match its parent view `RNIDetachedView`.
+    * Adding `flex: 1` to `renderAuxiliaryPreview` does nothing.
+    * Removing all styles to `renderAuxiliaryPreview` does nothing.
+
+<br>
+
 - [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
 
 <br><br>
