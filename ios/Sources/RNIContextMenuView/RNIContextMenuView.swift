@@ -139,13 +139,13 @@ public class RNIContextMenuView:
     }
   };
   
-  private(set) public var auxiliaryPreviewConfig: AuxiliaryPreviewConfig?;
+  private(set) public var auxiliaryPreviewConfig: AuxiliaryPreviewConfig!;
   public var auxiliaryPreviewConfigRaw: Dictionary<String, Any>? {
     willSet {
       guard let newValue = newValue,
             newValue.count > 0
       else {
-        self.auxiliaryPreviewConfig = nil;
+        self.setupInitAuxiliaryPreviewConfigIfNeeded();
         return;
       };
       
@@ -176,7 +176,6 @@ public class RNIContextMenuView:
   
   public let onRequestDeferredElement =
     EventDispatcher("onRequestDeferredElement");
-  
 
   // TODO: WIP - To be implemented
   public var onMenuAuxiliaryPreviewWillShow =
@@ -264,6 +263,7 @@ public class RNIContextMenuView:
   public required init(appContext: AppContext? = nil) {
     super.init(appContext: appContext);
     
+    self.setupInitAuxiliaryPreviewConfigIfNeeded();
     self.setupAddContextMenuInteraction();
     self.setupAddGestureRecognizers();
   };
@@ -357,10 +357,26 @@ public class RNIContextMenuView:
   // MARK: - Functions
   // -----------------
   
+  func setupInitAuxiliaryPreviewConfigIfNeeded(){
+    guard self.isAuxiliaryPreviewEnabled,
+          self.auxiliaryPreviewConfig == nil
+    else { return };
+    
+    self.auxiliaryPreviewConfig = .init(
+      verticalAnchorPosition: .automatic,
+      horizontalAlignment: .stretchTarget,
+      marginInner: 12,
+      marginOuter: 12,
+      transitionConfigEntrance: .syncedToMenuEntranceTransition(),
+      transitionExitPreset: .zoomAndSlide()
+    );
+  };
+  
   /// Add a context menu interaction to view
   func setupAddContextMenuInteraction(){
     let contextMenuInteraction = UIContextMenuInteraction(delegate: self);
     self.addInteraction(contextMenuInteraction);
+    
     self.contextMenuInteraction = contextMenuInteraction;
     
     let contextMenuManager = ContextMenuManager(
@@ -368,7 +384,9 @@ public class RNIContextMenuView:
       menuTargetView: self.menuPreviewTargetView
     );
    
+    contextMenuManager.auxiliaryPreviewConfig = self.auxiliaryPreviewConfig;
     contextMenuManager.delegate = self;
+    
     self.contextMenuManager = contextMenuManager;
   };
   
@@ -399,6 +417,24 @@ public class RNIContextMenuView:
       // B. deferred element is requesting for items to load...
       self?.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
     });
+  };
+  
+  func setAuxiliaryPreviewConfigSizeIfNeeded(){
+    guard let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView,
+          self.auxiliaryPreviewConfig != nil
+    else { return };
+    
+    if self.auxiliaryPreviewConfig!.preferredWidth == nil {
+      self.auxiliaryPreviewConfig!.preferredWidth = .constant(
+        menuAuxiliaryPreviewView.bounds.width
+      );
+    };
+    
+    if self.auxiliaryPreviewConfig!.preferredHeight == nil {
+      self.auxiliaryPreviewConfig!.preferredHeight = .constant(
+        menuAuxiliaryPreviewView.bounds.height
+      );
+    };
   };
   
   /// create custom menu preview based on `previewConfig` and `reactPreviewView`
