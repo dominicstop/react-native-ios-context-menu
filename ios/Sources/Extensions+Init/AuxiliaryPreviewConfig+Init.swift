@@ -104,7 +104,7 @@ extension AuxiliaryPreviewConfig {
           return .afterMenuEntranceTransition(entranceTransitionConfig);
           
         case .RECOMMENDED:
-          entranceTransitionConfig.delay = config.transitionEntranceDelay.seconds;
+          entranceTransitionConfig.delay = 0.325;
           return .customDelay(entranceTransitionConfig);
         
         case let .seconds(seconds):
