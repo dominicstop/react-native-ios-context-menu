@@ -30,7 +30,11 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 <br><br>
 
-## Completed
+## Version: `next`
+
+<br><br>
+
+## Version: `2.2.0`
 
 - [x] `TODO:2023-11-20-18-26-20` - Impl: `ContextMenuView.showAuxiliaryPreviewAsPopover`
 - [x] `TODO:2023-11-19-19-56-16` - Fix: Aux. Preview Menu - Entrance Transition Bug - Entrance transitions that uses "zoom"/scale causes the animation to be stutter.
@@ -59,7 +63,9 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
     * Adding `flex: 1` to `renderAuxiliaryPreview` does nothing.
     * Removing all styles to `renderAuxiliaryPreview` does nothing.
 
-<br>
+<br><br>
+
+## Version: `2.0.5` and Older
 
 - [x] `TODO:2023-11-03-02-34-19` - `issue#77–02` - Fix: Auxiliary view isn't pressable.
   * Is the swizzling applied? Yes.
