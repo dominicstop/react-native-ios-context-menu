@@ -113,9 +113,21 @@ extension AuxiliaryPreviewConfig {
       };
     }();
     
+    let preferredWidth: AuxiliaryPreviewSizeValue? = {
+      guard let width = config.width else { return nil };
+      return .constant(width);
+    }();
+    
+    let preferredHeight: AuxiliaryPreviewSizeValue? = {
+      guard let height = config.height else { return nil };
+      return .constant(height);
+    }();
+    
     self.init(
       verticalAnchorPosition: verticalAnchorPosition,
       horizontalAlignment: horizontalAlignment,
+      preferredWidth: preferredWidth,
+      preferredHeight: preferredHeight,
       marginInner: config.marginPreview,
       marginOuter: config.marginAuxiliaryPreview,
       transitionConfigEntrance: transitionConfigEntrance,
