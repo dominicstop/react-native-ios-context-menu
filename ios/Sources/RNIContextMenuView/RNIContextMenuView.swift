@@ -637,9 +637,13 @@ public class RNIContextMenuView:
       );
     };
     
-    try contextMenuManager.showAuxiliaryPreviewAsPopover(
-      presentingViewController: parentViewController
-    );
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+      self.setAuxiliaryPreviewConfigSizeIfNeeded();
+    
+      try? contextMenuManager.showAuxiliaryPreviewAsPopover(
+        presentingViewController: parentViewController
+      );
+    };
   };
   
   // MARK: - RNINavigationEventsNotifiable

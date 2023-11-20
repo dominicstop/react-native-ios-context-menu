@@ -175,6 +175,11 @@ export class ContextMenuView extends
 
   showAuxiliaryPreviewAsPopover = async () => {
     if(!LIB_ENV.isContextMenuViewSupported) return;
+
+    await Helpers.setStateAsync(this, () => ({
+      mountPreview: true
+    }))
+    
     await this.nativeRef.showAuxiliaryPreviewAsPopover();
   };
 
