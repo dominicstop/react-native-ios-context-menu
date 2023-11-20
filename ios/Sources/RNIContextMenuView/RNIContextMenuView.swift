@@ -619,16 +619,14 @@ public class RNIContextMenuView:
       );
     };
     
-    guard let contextMenuInteractionWrapper =
-            ContextMenuInteractionWrapper(objectToWrap: contextMenuInteraction)
-    else {
+    guard let contextMenuManager = self.contextMenuManager else {
       throw RNIContextMenuError.init(
         errorCode: .unexpectedNilValue,
         description: "Unable to create ContextMenuInteractionWrapper"
       );
     };
     
-    try contextMenuInteractionWrapper.presentMenuAtLocation(point: .zero);
+    try contextMenuManager.presentMenu(atLocation: .zero);
   };
   
   // MARK: - RNINavigationEventsNotifiable
