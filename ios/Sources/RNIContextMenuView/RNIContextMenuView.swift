@@ -367,7 +367,9 @@ public class RNIContextMenuView:
       horizontalAlignment: .stretchTarget,
       marginInner: 12,
       marginOuter: 12,
-      transitionConfigEntrance: .syncedToMenuEntranceTransition(),
+      transitionConfigEntrance: .syncedToMenuEntranceTransition(
+        shouldAnimateSize: true
+      ),
       transitionExitPreset: .zoomAndSlide()
     );
   };
@@ -702,8 +704,7 @@ public class RNIContextMenuView:
   
     let layoutWrapperView = AutoLayoutWrapperView(frame: .zero);
     layoutWrapperView.addSubview(menuAuxiliaryPreviewView);
-
-    self.setAuxiliaryPreviewConfigSizeIfNeeded();
+    
     return layoutWrapperView;
   };
 };

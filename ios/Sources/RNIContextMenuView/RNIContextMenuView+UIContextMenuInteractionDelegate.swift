@@ -44,8 +44,8 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     animator: UIContextMenuInteractionAnimating?
   ) {
     
-    guard let animator = animator else { return };
     self.isContextMenuVisible = true;
+    guard let animator = animator else { return };
     
     self.isUserInteractionEnabled = false;
     self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = false;
@@ -55,6 +55,7 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     };
     
     self.onMenuWillShow.callAsFunction([:]);
+    self.setAuxiliaryPreviewConfigSizeIfNeeded();
     
     self.contextMenuManager?.notifyOnContextMenuInteraction(
       interaction,
