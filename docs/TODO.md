@@ -6,7 +6,6 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
-- [ ] `TODO:2023-11-20-18-26-20` - Impl: `ContextMenuView.showAuxiliaryPreviewAsPopover`
 - [ ] `TODO:2023-11-20-18-29-21` - Impl: Support accepting `AuxiliaryPreviewConfig` via `ContextMenuView.auxiliaryPreviewConfig` prop.
   * Add `deprecated` suffix to old type for the `auxiliaryPreviewConfig` prop. 
 
@@ -33,6 +32,7 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## Completed
 
+- [x] `TODO:2023-11-20-18-26-20` - Impl: `ContextMenuView.showAuxiliaryPreviewAsPopover`
 - [x] `TODO:2023-11-19-19-56-16` - Fix: Aux. Preview Menu - Entrance Transition Bug - Entrance transitions that uses "zoom"/scale causes the animation to be stutter.
   * Repro: `ContextMenuAuxPreviewExample12`, `ContextMenuAuxPreviewExample13`
 
