@@ -114,8 +114,3 @@ buck-out/
 lib/
 
 # Docs-Related
-README-04-Post.md
-README-03-Examples.md
-README-02-Docs.md
-README-01-Pre.md
-make-readme.sh
