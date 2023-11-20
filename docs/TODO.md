@@ -6,6 +6,12 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
+- [ ] `TODO:2023-11-20-18-26-20` - Impl: `ContextMenuView.showAuxiliaryPreviewAsPopover`
+- [ ] `TODO:2023-11-20-18-29-21` - Impl: Support accepting `AuxiliaryPreviewConfig` via `ContextMenuView.auxiliaryPreviewConfig` prop.
+  * Add `deprecated` suffix to old type for the `auxiliaryPreviewConfig` prop. 
+
+<br>
+
 - [ ] `TODO:2023-11-20-16-06-46` - Fix: Aux. Preview Menu - Entrance Transition + Sizingiz - Fix bug where the size of the aux. preview is wrong for a split second during the entrance transition, and will not occur after that. 
   * Repro: `ContextMenuAuxPreviewExample01` - Happens when `ContextMenuAuxPreviewExample01` is the first context menu to be shown.
   * Observation: Happens only once, when no other context menu has been shown yet, e.g. if you show any context menu before `ContextMenuAuxPreviewExample01`, the bug will not occur anymore until the app is restarted.
