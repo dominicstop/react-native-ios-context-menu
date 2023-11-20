@@ -8,7 +8,10 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 - [ ] `TODO:2023-11-20-16-06-46` - Fix: Aux. Preview Menu - Entrance Transition + Sizingiz - Fix bug where the size of the aux. preview is wrong for a split second during the entrance transition, and will not occur after that. 
   * Repro: `ContextMenuAuxPreviewExample01` - Happens when `ContextMenuAuxPreviewExample01` is the first context menu to be shown.
-  * Happens only once, when no other context menu has been shown yet, e.g. if you show any context menu before `ContextMenuAuxPreviewExample01`, the bug will not occur anymore until the app is restarted.
+  * Observation: Happens only once, when no other context menu has been shown yet, e.g. if you show any context menu before `ContextMenuAuxPreviewExample01`, the bug will not occur anymore until the app is restarted.
+  * `2023-11-20-17-28-56` - Might be caused by decoding the strings inside the entrance transition animation block?
+    *  Tried caching all the `HashedStringDecodable` encoded strings (e.g. `ContextMenuInteractionWrapper`, `ContextMenuPlatterTransitionViewWrapper`, `ContextMenuViewWrapper`, `MorphingPlatterViewWrapper`), but the bug still occurs.
+    * Log: `decodedStrings` - `["_presentMenuAtLocation:", "_UIContextMenuPlatterTransitionView", "_UIContextMenuView", "_UIMorphingPlatterView"]`
 
 <br>
 
