@@ -612,21 +612,34 @@ public class RNIContextMenuView:
       );
     };
     
-    guard let contextMenuInteraction = self.contextMenuInteraction else {
-      throw RNIContextMenuError.init(
-        errorCode: .unexpectedNilValue,
-        description: "contextMenuInteraction is nil"
-      );
-    };
-    
     guard let contextMenuManager = self.contextMenuManager else {
       throw RNIContextMenuError.init(
         errorCode: .unexpectedNilValue,
-        description: "Unable to create ContextMenuInteractionWrapper"
+        description: "Unable to get contextMenuManager"
       );
     };
     
     try contextMenuManager.presentMenu(atLocation: .zero);
+  };
+  
+  func showAuxiliaryPreviewAsPopover() throws {
+    guard let contextMenuManager = self.contextMenuManager else {
+      throw RNIContextMenuError.init(
+        errorCode: .unexpectedNilValue,
+        description: "Unable to get contextMenuManager"
+      );
+    };
+    
+    guard let parentViewController = self.parentViewController else {
+      throw RNIContextMenuError.init(
+        errorCode: .unexpectedNilValue,
+        description: "Unable to get parentViewController"
+      );
+    };
+    
+    try contextMenuManager.showAuxiliaryPreviewAsPopover(
+      presentingViewController: parentViewController
+    );
   };
   
   // MARK: - RNINavigationEventsNotifiable

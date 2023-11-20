@@ -15,6 +15,10 @@ interface RNIContextMenuViewModule  {
     node: number,
   ): Promise<void>;
 
+  showAuxiliaryPreviewAsPopover(
+    node: number,
+  ): Promise<void>;
+
   provideDeferredElements(
     node: number,
     args: {

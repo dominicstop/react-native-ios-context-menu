@@ -54,6 +54,13 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     await RNIContextMenuViewModule.dismissMenu(reactTag);
   };
 
+  showAuxiliaryPreviewAsPopover = async () => {
+    const reactTag = this.getNativeReactTag();
+    if(typeof reactTag !== 'number') return;
+
+    await RNIContextMenuViewModule.showAuxiliaryPreviewAsPopover(reactTag);
+  };
+
   provideDeferredElements = async (
     deferredID: string, 
     menuItems: MenuElementConfig[]

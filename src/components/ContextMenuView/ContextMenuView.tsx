@@ -173,6 +173,11 @@ export class ContextMenuView extends
     await this.nativeRef.presentMenu();
   };
 
+  showAuxiliaryPreviewAsPopover = async () => {
+    if(!LIB_ENV.isContextMenuViewSupported) return;
+    await this.nativeRef.showAuxiliaryPreviewAsPopover();
+  };
+
   //#region - Handlers
   private _handleGetRefToContextMenuView = () => {
     return this;

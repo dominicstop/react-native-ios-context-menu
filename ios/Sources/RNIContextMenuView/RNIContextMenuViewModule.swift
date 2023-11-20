@@ -115,6 +115,25 @@ public class RNIContextMenuViewModule: Module {
       };
     };
     
+    AsyncFunction("showAuxiliaryPreviewAsPopover") { (reactTag: Int, promise: Promise) in
+      
+      DispatchQueue.main.async {
+        do {
+          let contextMenuView = try RNIModuleHelpers.getView(
+            withErrorType: RNIContextMenuError.self,
+            forNode: reactTag,
+            type: RNIContextMenuView.self
+          );
+          
+          try contextMenuView.showAuxiliaryPreviewAsPopover();
+          promise.resolve();
+        
+        } catch let error {
+          promise.reject(error);
+        };
+      };
+    };
+    
     View(RNIContextMenuView.self) {
       Events("onMenuWillShow");
       Events("onMenuWillHide");
