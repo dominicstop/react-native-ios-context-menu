@@ -6,6 +6,17 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
+- [ ] `TODO:2023-11-20-16-06-46` - Fix: Aux. Preview Menu - Entrance Transition + Sizingiz - Fix bug where the size of the aux. preview is wrong for a split second during the entrance transition, and will not occur after that. 
+  * Repro: `ContextMenuAuxPreviewExample01` - Happens when `ContextMenuAuxPreviewExample01` is the first context menu to be shown.
+  * Happens only once, when no other context menu has been shown yet, e.g. if you show any context menu before `ContextMenuAuxPreviewExample01`, the bug will not occur anymore until the app is restarted.
+
+<br>
+
+- [ ] `TODO:2023-11-20-16-08-31` - Fix:  Aux. Preview Menu - Exit Transition + Sizing - Fix bug where the after the exit transition of the aux. preview, it's size suddenly becomes wrong, i.e. it turns into a small box.
+  * Repro: `ContextMenuAuxPreviewExample06`
+
+<br>
+
 - [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
 
 <br><br>
