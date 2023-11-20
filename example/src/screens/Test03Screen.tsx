@@ -383,9 +383,9 @@ const MessageBubble = (props: {
           transitionEntranceDelay: 'RECOMMENDED',
           transitionConfigEntrance: {
             transition: 'zoomAndSlide',
-            zoomOffset: 0.1,
+            zoomOffset: 0.9,
             slideOffset: 15,
-            duration: 0.25,
+            duration: 0.3,
             options: ['curveEaseInOut'],
           },
         }}
@@ -400,7 +400,7 @@ const MessageBubble = (props: {
                   styles.auxPreviewReactionEmojiButtonSelected
                 ]}
                 onPress={async () => {
-                  props.onPressReaction(reactionKey);
+                  await props.onPressReaction(reactionKey);
                   await Helpers.timeout((currentReaction == null)? 550 : 200);
                   menuRef.current.dismissMenu();
                 }}
