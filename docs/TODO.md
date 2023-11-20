@@ -6,16 +6,16 @@ See [TODO-Archive](./TODO-Archive.md) for the old completed tasks + version hist
 
 ## WIP
 
-- [ ] `TODO:2023-11-19-19-56-16` - Fix: Aux. Preview Menu - Entrance Transition Bug - Entrance transitions that uses "zoom"/scale causes the animation to be stutter.
-  * Repro: `ContextMenuAuxPreviewExample12`, `ContextMenuAuxPreviewExample13`
-
-<br>
-
 - [ ] `TODO:2023-11-02-08-04-13` - Impl: Auto close context menu when view controller is pushed, popped, or presented.
 
 <br><br>
 
 ## Completed
+
+- [x] `TODO:2023-11-19-19-56-16` - Fix: Aux. Preview Menu - Entrance Transition Bug - Entrance transitions that uses "zoom"/scale causes the animation to be stutter.
+  * Repro: `ContextMenuAuxPreviewExample12`, `ContextMenuAuxPreviewExample13`
+
+<br>
 
 - [x] `TODO:2023-11-19-17-44-20` - Fix: Aux. Preview Exit Transition Bug - Fix bug where the aux. preview exit transition sometimes doesn't start.
   * The bug happens in every other time the context menu is shown/hidden.
