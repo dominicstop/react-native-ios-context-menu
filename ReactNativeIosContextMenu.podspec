@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.dependency 'ReactNativeIosUtilities'
   s.dependency 'DGSwiftUtilities'
 
-  s.dependency 'ContextMenuAuxiliaryPreview', '~> 0'
+  s.dependency 'ContextMenuAuxiliaryPreview', '~> 0.2'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
