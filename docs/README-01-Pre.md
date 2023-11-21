@@ -84,6 +84,7 @@
 | 📌 **[`ContextMenuView` Example 25](#ContextMenuView-Example-25)**<br/>💭 **Summary**: Icon Example — Advanced customization (E.g. `scale`, `weight`, `paletteColors`, `hierarchicalColor`). |
 | 📌 **[`ContextMenuView` Example 26](#ContextMenuView-Example-26)**<br/>💭 **Summary**: Icon Example — Network/Remote images as icons. |
 | 📌 **[`ContextMenuView` Example 27](#ContextMenuView-Example-27)**<br/>💭 **Summary**: Icon Example — Network/Remote images as icons + fallback image. |
+| 📌 **[`ContextMenuView` Example 28](#ContextMenuView-Example-28)**<br/>💭 **Summary**: Programmatically shows the context menu. |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 01](#ContextMenuView-Auxiliary-Preview---Example-01)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 02](#ContextMenuView-Auxiliary-Preview---Example-02)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 03](#ContextMenuView-Auxiliary-Preview---Example-03)**<br/>💭 **Summary**: TBA |
@@ -99,6 +100,7 @@
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 13](#ContextMenuView-Auxiliary-Preview---Example-13)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 14](#ContextMenuView-Auxiliary-Preview---Example-14)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuView` Auxiliary Preview - Example 15](#ContextMenuView-Auxiliary-Preview---Example-15)**<br/>💭 **Summary**: TBA |
+| 📌 **[`ContextMenuView` Auxiliary Preview - Example 16](#ContextMenuView-Auxiliary-Preview---Example-16)**<br/>💭 **Summary**: Programmatically shows the auxiliary preview as a popover (w/o showing the context menu). |
 | 📌 **[`ContextMenuButton` Example 01](#ContextMenuButton-Example-01)**<br/>💭 **Summary**: TBA |
 | 📌 **[`ContextMenuButton` Example 02](#ContextMenuButton-Example-02)**<br/>💭 **Summary**: TBA |
 
