@@ -577,7 +577,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 15,
     paddingVertical: 12,
-    
+    // TODO: temp fix, replace with actual safe area bottom height
+    paddingBottom: 30,
   },
   listContentContainer: {
     paddingTop: 10,
