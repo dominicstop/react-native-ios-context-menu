@@ -259,7 +259,7 @@ If you encounter any errors/bugs while using this library, or want a particular 
 
 When installing this library on Xcode 12+, you'll get the following error in Xcode:
 
-![Xcode linking build error](assets/installation-troubleshooting-00.png)
+![Xcode linking build error](../assets/installation-troubleshooting-00.png)
 
 ```
 Undefined symbol: (extension in UIKit):
@@ -273,7 +273,7 @@ __C.UIAction.init(title: Swift.String, image: __C.UIImage?, identifier: __C.UIAc
 
 To fix this, see screenshot + follow the steps below:
 
-![Xcode - Remove library search paths](assets/installation-troubleshooting-01-A.png)
+![Xcode - Remove library search paths](../assets/installation-troubleshooting-01-A.png)
 
 <br>
 
@@ -292,7 +292,7 @@ To fix this, see screenshot + follow the steps below:
 
 <br>
 
-![Xcode - Remove library search paths](assets/installation-troubleshooting-01-B.png)
+![Xcode - Remove library search paths](../assets/installation-troubleshooting-01-B.png)
 
 <br>
 
