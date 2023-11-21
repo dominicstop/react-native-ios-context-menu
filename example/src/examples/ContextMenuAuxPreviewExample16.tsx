@@ -23,10 +23,6 @@ export function ContextMenuAuxPreviewExample16(props: ContextMenuExampleProps) {
           actionTitle: 'Lorum ipsum',
         }],
       }}
-      // Align the aux. preview to the center of the context
-      // menu preview...
-      //
-      // 📝 Note: By default, this is set to: `stretchPreview`
       auxiliaryPreviewConfig={{
         alignmentHorizontal: 'previewCenter',
         transitionEntranceDelay: 'RECOMMENDED',
@@ -35,9 +31,9 @@ export function ContextMenuAuxPreviewExample16(props: ContextMenuExampleProps) {
       }}
       renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
+          flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
-          flex: 1,
         }]}>
           <Text style={styles.textLabel}>
             Center
@@ -56,7 +52,7 @@ export function ContextMenuAuxPreviewExample16(props: ContextMenuExampleProps) {
         title={'ContextMenuAuxPreviewExample16'}
         subtitle={'EXPERIMENTAL - Aux. Preview'}
         description={[
-          `TBA`
+          `Programmatically show the sux. preview as a popover`
         ]}
       >
         <CardButton

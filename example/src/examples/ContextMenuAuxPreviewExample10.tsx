@@ -32,6 +32,7 @@ export function ContextMenuAuxPreviewExample10(props: ContextMenuExampleProps) {
       }}
       renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
+          flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
         }]}>

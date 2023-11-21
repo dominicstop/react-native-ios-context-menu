@@ -30,6 +30,8 @@ export function ContextMenuAuxPreviewExample07(props: ContextMenuExampleProps) {
       }}
       renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
+          // Parent has been reized to `100x100`,
+          // so fit to the size of the parent view...
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
