@@ -1450,7 +1450,7 @@ export function ContextMenuViewExample21(props) {
 };
 ```
 
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExample21.jpg)
+![example-ContextMenuViewExample21](../assets/example-ContextMenuViewExample21.jpg)
 
 ![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.gif)
 
@@ -1501,7 +1501,7 @@ export function ContextMenuViewExample22(props) {
 };
 ```
 
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExample22.jpg)
+![example-ContextMenuViewExample22](../assets/example-ContextMenuViewExample22.jpg)
 
 ![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.gif)
 
@@ -1585,7 +1585,7 @@ export function ContextMenuViewExample23(props) {
 };
 ```
 
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExample23.jpg)
+![example-ContextMenuViewExample23](../assets/example-ContextMenuViewExample23.jpg)
 
 ![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.gif)
 
@@ -1663,7 +1663,7 @@ export function ContextMenuViewExample24(props) {
 };
 ```
 
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExample24.jpg)
+![example-ContextMenuViewExample24](../assets/example-ContextMenuViewExample24.jpg)
 
 ![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.gif)
 
@@ -1817,7 +1817,7 @@ export function ContextMenuViewExample25(props) {
 
 
 
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExample25.jpg)
+![example-ContextMenuViewExample25](../assets/example-ContextMenuViewExample25.jpg)
 
 ![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.gif)
 
@@ -1899,11 +1899,9 @@ export function ContextMenuViewExample26(props) {
 };
 ```
 
-
-
 ![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.jpg)
 
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExample26.gif)
+![example-ContextMenuViewExample26](../assets/example-ContextMenuViewExample26.gif)
 
 <br>
 
@@ -2013,6 +2011,51 @@ export function ContextMenuViewExample27(props) {
 ```
 
 
+
+![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.gif)
+
+<br>
+
+### `ContextMenuView` Example 28
+
+**Summary**:  Programmatically shows the context menu
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](../example/src/examples/ContextMenuViewExample28.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuViewExample28(props) {
+  const menuRef = React.useRef<ContextMenuView>(null);
+  
+  return (
+    <ContextMenuView
+      ref={menuRef}
+      menuConfig={{ /* ... */ }}
+    >
+      <ContextMenuCard /* ... */>
+        <CardButton
+          title={'Show Context Menu'}
+          subtitle={'Programmatically shows the context menu'}
+          onPress={() => {
+            menuRef.current?.presentMenu();
+          }}
+        />
+      </ContextMenuCard>
+    </ContextMenuView>
+  );
+};
+
+```
 
 ![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.jpg)
 
@@ -2777,6 +2820,66 @@ export function ContextMenuAuxPreviewExample15(props) {
 ![ContextMenuAuxPreviewExample15](../assets/example-ContextMenuAuxPreviewExample15.jpg)
 
 ![placeholder](../assets/placeholder.gif)
+
+<br>
+
+### `ContextMenuView` Auxiliary Preview - Example 16
+
+**Summary**:  Programmatically shows the auxiliary preview as a popover, without showing the context menu.
+
+<br>
+
+| Notes |
+| ----- |
+| TBA   |
+
+<br>
+
+[🔗 Full Example](../example/src/examples/ContextMenuViewExampleXX.tsx)
+
+```jsx
+// 📝 Note: for the sake of brevity, some of the code is omitted...
+export function ContextMenuAuxPreviewExample16(props) {
+  const menuRef = React.useRef<ContextMenuView>(null);
+  
+  return (
+    <ContextMenuView
+      ref={menuRef}
+      menuConfig={/* ... */}
+      auxiliaryPreviewConfig={{
+        alignmentHorizontal: 'previewCenter',
+        transitionEntranceDelay: 'RECOMMENDED',
+        height: 100,
+        width: 150,
+      }}
+      renderAuxiliaryPreview={() => (
+        <View style={[styles.auxRootContainer, {
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }]}>
+          <Text style={styles.textLabel}>
+            Center
+          </Text>
+        </View>
+      )}
+    >
+      <ContextMenuCard /* ... */>
+        <CardButton
+          title={'Show Aux. Preview as Popover'}
+          onPress={() => {
+            menuRef.current?.showAuxiliaryPreviewAsPopover();
+          }}
+        />
+      </ContextMenuCard>
+    </ContextMenuView>
+  );
+};
+```
+
+![example-ContextMenuViewExampleXX](../assets/ContextMenuAuxPreviewExampleXX.jpg)
+
+![example-ContextMenuViewExampleXX](../assets/ContextMenuAuxPreviewExampleXX.gif)
 
 <br>
 
