@@ -448,7 +448,7 @@ PODS:
     - React-jsi (= 0.72.5)
     - React-logger (= 0.72.5)
     - React-perflogger (= 0.72.5)
-  - ReactNativeIosContextMenu (2.1.0):
+  - ReactNativeIosContextMenu (2.2.1):
     - ContextMenuAuxiliaryPreview (~> 0.2)
     - DGSwiftUtilities
     - ExpoModulesCore
@@ -683,7 +683,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: cc32add98c45c5df18436a6a52a7e1f6edec102c
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
-  ReactNativeIosContextMenu: 209a3731a05802dc8037a9faef8eb53941fcb6b8
+  ReactNativeIosContextMenu: 76ef28ecea00c1bc147df72a67e8a2912f62820f
   ReactNativeIosUtilities: 8310324d6b7811c9a97ed150940fedf775794bab
   RNFlashList: 236646d48f224a034f35baa0242e1b77db063b1e
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
