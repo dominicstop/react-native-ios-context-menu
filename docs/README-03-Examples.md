@@ -2057,9 +2057,7 @@ export function ContextMenuViewExample28(props) {
 
 ```
 
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.jpg)
-
-![example-ContextMenuViewExampleXX](../assets/example-ContextMenuViewExampleXX.gif)
+![example-ContextMenuViewExample28](../assets/example-ContextMenuViewExample28.gif)
 
 <br>
 
