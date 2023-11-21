@@ -51,9 +51,11 @@
 
 ##### `ContextMenuView` Component: Properties/Methods
 
-| Prop Name and Type                          | Description                                                  |
-| :------------------------------------------ | :----------------------------------------------------------- |
-| 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
+| Prop Name and Type                                           | Description                                                  |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>`                  | Allows you to  programmatically dismiss the context menu. Only available on iOS 14 and above. |
+| 🔤  `presentMenu`<br/><br/>⚛️ `Promise<Void>`                  | Allows you to  programmatically show the context menu.       |
+| 🔤  `showAuxiliaryPreviewAsPopover`<br/><br/>⚛️ `Promise<Void>` | Allows you to  programmatically show the auxiliary preview as a popover. |
 
 <br>
 
