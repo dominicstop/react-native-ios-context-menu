@@ -15,7 +15,7 @@ import * as Colors from '../../constants/Colors';
 export function CardButton(props: {
   title: string;
   subtitle: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
   buttonColor?: string;
 }){
 

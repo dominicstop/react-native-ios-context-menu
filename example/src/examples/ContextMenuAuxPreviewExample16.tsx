@@ -5,8 +5,11 @@ import { Alert, View, Text, StyleSheet } from 'react-native';
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
 import type { ContextMenuExampleProps } from './SharedExampleTypes';
+
 import { ContextMenuCard } from '../components/ContextMenuCard';
 import { CardButton } from '../components/Card/CardButton';
+
+import * as Helpers from '../functions/Helpers';
 
 
 export function ContextMenuAuxPreviewExample16(props: ContextMenuExampleProps) {
@@ -58,7 +61,8 @@ export function ContextMenuAuxPreviewExample16(props: ContextMenuExampleProps) {
         <CardButton
           title={'Show Aux. Preview as Popover'}
           subtitle={'Programmatically shows the aux. preview'}
-          onPress={() => {
+          onPress={async () => {
+            await Helpers.timeout(100);
             menuRef.current?.showAuxiliaryPreviewAsPopover();
           }}
         />
