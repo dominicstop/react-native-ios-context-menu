@@ -27,7 +27,8 @@
 
 | Library Version | Compatibility                                                |
 | :-------------- | ------------------------------------------------------------ |
-| `2.x`           | Uses `Expo-Modules`<br>Depends on `react-native-ios-utilities@4.x`<br>iOS 13+<br>Xcode 15+ |
+| `2.1`+          | Uses `Expo-Modules`<br/>Depends on `react-native-ios-utilities@4.x`<br/>Depends on `ContextMenuAuxiliaryPreview`<br>iOS 13+<br/>Xcode 15+ |
+| `2.0.x`         | Uses `Expo-Modules`<br>Depends on `react-native-ios-utilities@4.x`<br>iOS 13+<br>Xcode 15+ |
 | `1.6.2`         | iOS 10 to iOS 15<br>Xcode 12+                                |
 | `1.4`           | iOS 10 to iOS 15<br>Xcode 13+                                |
 | `1.3` and Below | iOS 10 to 14<br>Xcode 12+                                    |
@@ -172,7 +173,6 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 npm install react-native-ios-utilities
 npm install react-native-ios-context-menu
 
-
 # 2. then run pod install (uses auto-linking)
 cd ios && pod install
 ```
@@ -204,7 +204,17 @@ cd ios && pod install
 
 <br>
 
-📝 **Note**: This version of the library uses expo-modules (so it's compatible w/ fabric/JSI). Please remember that this version of the library might not be stable, or even build correctly.
+### Updating
+
+This library has cocoapods dependency to [`ContextMenuAuxiliaryPreview`](https://github.com/dominicstop/ContextMenuAuxiliaryPreview), so you need to update it separately.
+
+```sh
+# A. Either update this specific pod...
+pod update ContextMenuAuxiliaryPreview
+
+# B. Or update all the pods
+pod update
+```
 
 <br>
 
@@ -212,6 +222,16 @@ cd ios && pod install
 
 - ✅ You can use this library with [Development Builds](https://docs.expo.dev/development/introduction/). No config plugin is required.
 - ❌ This library can't be used in the "Expo Go" app because it [requires custom native code](https://docs.expo.dev/workflow/customizing/).
+
+<br>
+
+###  Versions and Dependencies
+
+| Library Version | Dependencies + Versions                                      |
+| --------------- | ------------------------------------------------------------ |
+| `2.0.x`         | `react-native-ios-utilities` - `4.x`                         |
+| `2.1.x`         | `react-native-ios-utilities` - `4.x`<br>`ContextMenuAuxiliaryPreview` - `0.1.x` |
+| `2.2.x`         | `react-native-ios-utilities` - `4.x`<br/>`ContextMenuAuxiliaryPreview` - `0.2.x` |
 
 <br>
 
