@@ -5,7 +5,7 @@ import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMe
 
 import type { MenuConfig } from '../../types/MenuConfig';
 import type { MenuPreviewConfig } from '../../types/MenuPreviewConfig';
-import type { MenuAuxiliaryPreviewConfig } from '../../types/MenuAuxiliaryPreviewConfig';
+import type { AuxiliaryPreviewConfigBackwardsCompatible } from '../../types/AuxiliaryPreviewConfigBackwardsCompatible';
 
 
 export type RNIContextMenuNativeViewBaseProps = {
@@ -20,7 +20,7 @@ export type RNIContextMenuNativeViewBaseProps = {
 
   menuConfig?: MenuConfig; 
   previewConfig?: MenuPreviewConfig;
-  auxiliaryPreviewConfig?: MenuAuxiliaryPreviewConfig;
+  auxiliaryPreviewConfig?: AuxiliaryPreviewConfigBackwardsCompatible;
 
   /** 
    * On iOS 15+, the `MenuActionConfig.discoverabilityTitle` is no longer 
