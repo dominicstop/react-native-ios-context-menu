@@ -137,4 +137,69 @@ extension AuxiliaryPreviewConfig {
       )
     );
   };
+  
+  public init?(dict: Dictionary<String, Any>){
+  
+    let verticalAnchorPosition: VerticalAnchorPositionMode? = {
+      guard let string = dict["verticalAnchorPosition"] as? String
+      else { return nil };
+      
+      return VerticalAnchorPositionMode(rawValue: string);
+    }();
+    
+    let horizontalAlignment: HorizontalAlignmentPosition? = {
+      guard let string = dict["horizontalAlignment"] as? String
+      else { return nil };
+      
+      return HorizontalAlignmentPosition(rawValue: string);
+    }();
+  
+    let preferredWidth: AuxiliaryPreviewSizeValue? = {
+      guard let dictRaw = dict["preferredWidth"] as? Dictionary<String, Any>
+      else { return nil };
+      
+      return .init(dict: dictRaw);
+    }();
+    
+    let preferredHeight: AuxiliaryPreviewSizeValue? = {
+      guard let dictRaw = dict["preferredHeight"] as? Dictionary<String, Any>
+      else { return nil };
+      
+      return .init(dict: dictRaw);
+    }();
+  
+    let marginInner = dict["marginInner"] as? CGFloat ?? 0;
+    let marginOuter = dict["marginOuter"] as? CGFloat ?? 0;
+    
+    let transitionConfigEntrance: AuxiliaryPreviewEntranceTransitionConfig? = {
+      guard let dict = dict["transitionConfigEntrance"] as? Dictionary<String, Any>
+      else { return nil };
+      
+      return .init(dict: dict);
+    }();
+    
+    let transitionExitPreset: AuxiliaryPreviewTransitionPreset? = {
+      guard let dict = dict["transitionExitPreset"] as? Dictionary<String, Any>
+      else { return nil };
+      
+      return .init(dict: dict);
+    }();
+    
+    guard let verticalAnchorPosition = verticalAnchorPosition,
+          let horizontalAlignment = horizontalAlignment,
+          let transitionConfigEntrance = transitionConfigEntrance,
+          let transitionExitPreset = transitionExitPreset
+    else { return nil }
+    
+    self.init(
+      verticalAnchorPosition: verticalAnchorPosition,
+      horizontalAlignment: horizontalAlignment,
+      preferredWidth: preferredWidth,
+      preferredHeight: preferredHeight,
+      marginInner: marginInner,
+      marginOuter: marginOuter,
+      transitionConfigEntrance: transitionConfigEntrance,
+      transitionExitPreset: transitionExitPreset
+    );
+  };
 };
