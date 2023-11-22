@@ -22,7 +22,7 @@ class RNIContextMenuPreviewController: UIViewController {
   // MARK: - Computed Properties
   // ---------------------------
   
-  var previewConfig: PreviewConfig? {
+  var previewConfig: RNIMenuPreviewConfig? {
     self.contextMenuView?.previewConfig;
   };
   

@@ -10,7 +10,7 @@ import Foundation
 
 
 @available(iOS 13.0, *)
-public struct PreviewConfig {
+public struct RNIMenuPreviewConfig {
   
   // MARK: - Nested Types
   // --------------------
@@ -44,7 +44,7 @@ public struct PreviewConfig {
 // ------------
 
 @available(iOS 13.0, *)
-extension PreviewConfig {
+extension RNIMenuPreviewConfig {
   
   public init(dictionary: Dictionary<String, Any>){
     self.borderRadius   = dictionary["borderRadius"  ] as? CGFloat;

@@ -91,12 +91,12 @@ public class RNIContextMenuView:
     }
   };
   
-  private(set) public var previewConfig = PreviewConfig();
+  private(set) public var previewConfig = RNIMenuPreviewConfig();
   public var previewConfigRaw: Dictionary<String, Any>? {
     willSet {
       guard let newValue = newValue else { return };
       
-      let previewConfig = PreviewConfig(dictionary: newValue);
+      let previewConfig = RNIMenuPreviewConfig(dictionary: newValue);
       self.previewConfig = previewConfig;
       
       // update the vc's previewConfig
