@@ -7,34 +7,43 @@
 
 import Foundation
 import ContextMenuAuxiliaryPreview
+import DGSwiftUtilities
 
 extension AuxiliaryPreviewTransitionKeyframeConfig {
   
   public init(dict: Dictionary<String, Any>){
-    self.opacity = {
+  
+    let opacity: CGFloat? = {
       guard let value = dict["opacity"] as? NSNumber else { return nil };
       return value.doubleValue;
     }();
     
-    self.transform = {
+    let transform: Transform3D? = {
       guard let transformDict = dict["transform"] as? Dictionary<String, Any>
       else { return nil };
       
       return .init(dict: transformDict);
     }();
     
-    self.auxiliaryPreviewPreferredWidth = {
+    let auxiliaryPreviewPreferredWidth: AuxiliaryPreviewSizeValue? = {
       guard let dict = dict["auxiliaryPreviewPreferredWidth"] as? Dictionary<String, Any>
       else { return nil };
       
       return .init(dict: dict);
     }();
     
-    self.auxiliaryPreviewPreferredHeight = {
+    let auxiliaryPreviewPreferredHeight: AuxiliaryPreviewSizeValue? = {
       guard let dict = dict["auxiliaryPreviewPreferredHeight"] as? Dictionary<String, Any>
       else { return nil };
       
       return .init(dict: dict);
     }();
+    
+    self.init(
+      opacity: opacity,
+      transform: transform,
+      auxiliaryPreviewPreferredWidth: auxiliaryPreviewPreferredWidth,
+      auxiliaryPreviewPreferredHeight: auxiliaryPreviewPreferredHeight
+    );
   };
 };
