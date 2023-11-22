@@ -14,9 +14,10 @@ export * from './constants/LibEnv';
 export * from './functions/ActionSheetFallback';
 
 export * from './types/AuxiliaryPreviewConfig';
+export * from './types/AuxiliaryPreviewConfigDeprecated';
+
 export * from './types/MenuSharedTypes';
 export * from './types/MenuConfig';
 export * from './types/MenuPreviewConfig';
-export * from './types/MenuAuxiliaryPreviewConfig';
 export * from './types/MenuIconConfig';
 export * from './types/MenuEvents';
