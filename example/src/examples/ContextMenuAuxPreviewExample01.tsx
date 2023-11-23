@@ -28,6 +28,20 @@ export function ContextMenuAuxPreviewExample01(props: ContextMenuExampleProps) {
           actionTitle: 'Action #3',
         }],
       }}
+      auxiliaryPreviewConfig={{
+        horizontalAlignment: 'stretchTarget',
+        preferredHeight: {
+          mode: 'constant',
+          value: 100
+        },
+        transitionConfigEntrance: {
+          mode: 'syncedToMenuEntranceTransition',
+          shouldAnimateSize: true,
+        },
+        transitionExitPreset: {
+          mode: 'fade'
+        }
+      }}
       renderAuxiliaryPreview={() => (
         <View style={[styles.auxRootContainer, {
           // The view you return will be wrapped by another view. 
