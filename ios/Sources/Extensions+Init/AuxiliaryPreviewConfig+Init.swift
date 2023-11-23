@@ -144,14 +144,14 @@ extension AuxiliaryPreviewConfig {
       guard let string = dict["verticalAnchorPosition"] as? String
       else { return nil };
       
-      return VerticalAnchorPositionMode(rawValue: string);
+      return .init(rawValue: string);
     }();
     
     let horizontalAlignment: HorizontalAlignmentPosition? = {
       guard let string = dict["horizontalAlignment"] as? String
       else { return nil };
       
-      return HorizontalAlignmentPosition(rawValue: string);
+      return .init(rawValue: string);
     }();
   
     let preferredWidth: AuxiliaryPreviewSizeValue? = {

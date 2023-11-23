@@ -13,7 +13,7 @@ import DGSwiftUtilities
 extension AuxiliaryPreviewTransitionAnimationConfig {
   
   init?(dict: Dictionary<String, Any>){
-    self.delay = {
+    let delay: TimeInterval = {
       guard let value = dict["delay"] as? NSNumber else { return 0 };
       return value.doubleValue;
     }();
@@ -25,9 +25,6 @@ extension AuxiliaryPreviewTransitionAnimationConfig {
       return .init(dict: dict);
     }();
     
-    guard let animatorConfig = animatorConfig else { return nil };
-    self.animatorConfig = animatorConfig;
-    
     let transitionPreset: AuxiliaryPreviewTransitionPreset? = {
       guard let dict = dict["transitionPreset"] as? Dictionary<String, Any>
       else { return nil };
@@ -35,7 +32,14 @@ extension AuxiliaryPreviewTransitionAnimationConfig {
       return .init(dict: dict);
     }();
     
-    guard let transitionPreset = transitionPreset else { return nil };
-    self.transitionPreset = transitionPreset;
+    guard let animatorConfig = animatorConfig,
+          let transitionPreset = transitionPreset
+    else { return nil };
+    
+    self.init(
+      delay: delay,
+      animatorConfig: animatorConfig,
+      transitionPreset: transitionPreset
+    );
   };
 };

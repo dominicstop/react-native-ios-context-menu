@@ -14,7 +14,7 @@ extension UIView.AnimationCurve {
       $0.description == string;
     };
     
-    guard let match = match else { return };
+    guard let match = match else { return nil };
     self = match;
   };
 };
