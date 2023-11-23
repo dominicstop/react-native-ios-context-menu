@@ -169,8 +169,8 @@ extension AuxiliaryPreviewConfig {
       return .init(dict: dictRaw);
     }();
   
-    let marginInner = dict["marginInner"] as? CGFloat ?? 10;
-    let marginOuter = dict["marginOuter"] as? CGFloat ?? 10;
+    let marginInner = dict["marginVerticalInner"] as? CGFloat ?? 10;
+    let marginOuter = dict["marginVerticalOuter"] as? CGFloat ?? 10;
     
     let transitionConfigEntrance: AuxiliaryPreviewEntranceTransitionConfig? = {
       guard let dict = dict["transitionConfigEntrance"] as? Dictionary<String, Any>

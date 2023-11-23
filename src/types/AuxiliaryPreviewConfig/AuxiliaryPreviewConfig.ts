@@ -10,8 +10,8 @@ export type AuxiliaryPreviewConfig = {
   preferredWidth?: AuxiliaryPreviewSizeValue;
   preferredHeight?: AuxiliaryPreviewSizeValue;
 
-  marginInner?: number;
-  marginOuter?: number;
+  marginVerticalInner?: number;
+  marginVerticalOuter?: number;
 
   transitionConfigEntrance: AuxiliaryPreviewEntranceTransitionConfig;
   transitionExitPreset: AuxiliaryPreviewTransitionPreset;
