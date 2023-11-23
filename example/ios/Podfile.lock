@@ -453,7 +453,7 @@ PODS:
     - DGSwiftUtilities
     - ExpoModulesCore
     - ReactNativeIosUtilities
-  - ReactNativeIosUtilities (4.2.1):
+  - ReactNativeIosUtilities (4.2.2):
     - DGSwiftUtilities (~> 0.6)
     - ExpoModulesCore
   - RNFlashList (1.6.1):
@@ -684,7 +684,7 @@ SPEC CHECKSUMS:
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
   ReactNativeIosContextMenu: 5bdf426779e33b80e4a2f7eee0c7e0abf8a5afa2
-  ReactNativeIosUtilities: 3c974a94004bae8d987ab76d9b9174e3615792ce
+  ReactNativeIosUtilities: 0b67162175d8fd40ba8c4fbe8513e33ad24513b6
   RNFlashList: 236646d48f224a034f35baa0242e1b77db063b1e
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
