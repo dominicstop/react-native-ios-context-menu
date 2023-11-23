@@ -5,13 +5,13 @@ import type { AuxiliaryPreviewTransitionPreset } from "./AuxiliaryPreviewTransit
 
 
 export type AuxiliaryPreviewConfig = {
-  verticalAnchorPosition: VerticalAnchorPositionMode;
+  verticalAnchorPosition?: VerticalAnchorPositionMode;
   horizontalAlignment: HorizontalAlignmentPosition;
-  preferredWidth: AuxiliaryPreviewSizeValue;
-  preferredHeight: AuxiliaryPreviewSizeValue;
+  preferredWidth?: AuxiliaryPreviewSizeValue;
+  preferredHeight?: AuxiliaryPreviewSizeValue;
 
-  marginInner: number;
-  marginOuter: number;
+  marginInner?: number;
+  marginOuter?: number;
 
   transitionConfigEntrance: AuxiliaryPreviewEntranceTransitionConfig;
   transitionExitPreset: AuxiliaryPreviewTransitionPreset;

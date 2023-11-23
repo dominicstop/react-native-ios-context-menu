@@ -140,11 +140,12 @@ extension AuxiliaryPreviewConfig {
   
   public init?(dict: Dictionary<String, Any>){
   
-    let verticalAnchorPosition: VerticalAnchorPositionMode? = {
-      guard let string = dict["verticalAnchorPosition"] as? String
-      else { return nil };
+    let verticalAnchorPosition: VerticalAnchorPositionMode = {
+      guard let string = dict["verticalAnchorPosition"] as? String,
+            let value = VerticalAnchorPositionMode(rawValue: string)
+      else { return .automatic };
       
-      return .init(rawValue: string);
+      return value;
     }();
     
     let horizontalAlignment: HorizontalAlignmentPosition? = {
@@ -168,8 +169,8 @@ extension AuxiliaryPreviewConfig {
       return .init(dict: dictRaw);
     }();
   
-    let marginInner = dict["marginInner"] as? CGFloat ?? 0;
-    let marginOuter = dict["marginOuter"] as? CGFloat ?? 0;
+    let marginInner = dict["marginInner"] as? CGFloat ?? 10;
+    let marginOuter = dict["marginOuter"] as? CGFloat ?? 10;
     
     let transitionConfigEntrance: AuxiliaryPreviewEntranceTransitionConfig? = {
       guard let dict = dict["transitionConfigEntrance"] as? Dictionary<String, Any>
@@ -185,8 +186,7 @@ extension AuxiliaryPreviewConfig {
       return .init(dict: dict);
     }();
     
-    guard let verticalAnchorPosition = verticalAnchorPosition,
-          let horizontalAlignment = horizontalAlignment,
+    guard let horizontalAlignment = horizontalAlignment,
           let transitionConfigEntrance = transitionConfigEntrance,
           let transitionExitPreset = transitionExitPreset
     else { return nil }

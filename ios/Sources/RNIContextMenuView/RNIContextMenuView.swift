@@ -149,10 +149,17 @@ public class RNIContextMenuView:
         return;
       };
       
-      let deprecatedConfig =
-        RNIContextMenuAuxiliaryPreviewConfig(dictionary: newValue);
+      let config: AuxiliaryPreviewConfig = {
+        if let newConfig = AuxiliaryPreviewConfig(dict: newValue) {
+          return newConfig;
+        };
         
-      let config = AuxiliaryPreviewConfig(config: deprecatedConfig);
+        let deprecatedConfig =
+          RNIContextMenuAuxiliaryPreviewConfig(dictionary: newValue);
+        
+        return AuxiliaryPreviewConfig(config: deprecatedConfig);
+      }();
+      
       self.contextMenuManager?.auxiliaryPreviewConfig = config;
       self.auxiliaryPreviewConfig = config;
     }
