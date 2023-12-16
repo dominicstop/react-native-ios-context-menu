@@ -9,8 +9,7 @@ import type { RNIContextMenuButtonProps } from './RNIContextMenuButtonTypes';
 import { MenuElementConfig } from '../../types/MenuConfig';
 
 
-export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButtonProps> {
-  
+export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButtonProps> {  
   nativeRef?: View;
   reactTag?: number;
 
@@ -19,19 +18,59 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
   };
 
   componentWillUnmount(){
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     this.notifyOnComponentWillUnmount(false);
   };
 
   getNativeRef: () => View | undefined = () => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     return this.nativeRef;
   };
 
   getNativeReactTag: () => number | undefined = () => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     // @ts-ignore
     return this.nativeRef?.nativeTag ?? this.reactTag;
   };
 
   notifyOnComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -42,6 +81,16 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
   };
 
   presentMenu = async () => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return
+    }
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -49,6 +98,16 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
   };
 
   dismissMenu = async () => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return
+    }
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -59,6 +118,16 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ) => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return
+    }
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -69,15 +138,45 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
   };
 
   private _handleOnNativeRef = (ref: View) => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     this.nativeRef = ref;
   };
 
   private _handleOnLayout = ({nativeEvent}: LayoutChangeEvent) => {
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     // @ts-ignore
     this.reactTag = nativeEvent.target;
   };
 
   render(){
+    if (!RNIContextMenuNativeButton) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuButton is not available on this platform'
+        );
+      }
+
+      return null;
+    }
+
     return React.createElement(RNIContextMenuNativeButton, {
       ...this.props,
       ...((this.reactTag == null) && {

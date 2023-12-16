@@ -18,19 +18,59 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   componentWillUnmount(){
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     this.notifyOnComponentWillUnmount(false);
   };
 
   getNativeRef: () => View | undefined = () => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     return this.nativeRef;
   };
 
   getNativeReactTag: () => number | undefined = () => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     // @ts-ignore
     return this.nativeRef?.nativeTag ?? this.reactTag
   };
 
   notifyOnComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -41,6 +81,17 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   presentMenu = async () => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -48,6 +99,17 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   dismissMenu = async () => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -55,6 +117,17 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   showAuxiliaryPreviewAsPopover = async () => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -65,6 +138,16 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ) => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
 
@@ -75,15 +158,45 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   private _handleOnLayout = ({nativeEvent}: LayoutChangeEvent) => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     // @ts-ignore
     this.reactTag = nativeEvent.target;
   };
 
   private _handleOnNativeRef = (ref: View) => {
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     this.nativeRef = ref;
   };
 
   render(){
+    if (!RNIContextMenuNativeView) {
+      if (__DEV__) {
+        console.warn(
+          'RNIContextMenuView is not available on this platform'
+        );
+      }
+
+      return;
+    }
+
     return React.createElement(RNIContextMenuNativeView, {
       ...this.props,
       ...((this.reactTag == null) && {
