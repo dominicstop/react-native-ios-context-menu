@@ -2,7 +2,7 @@ PODS:
   - boost (1.76.0)
   - ContextMenuAuxiliaryPreview (0.3.1):
     - DGSwiftUtilities (~> 0.6)
-  - DGSwiftUtilities (0.7.1)
+  - DGSwiftUtilities (0.12.6)
   - DoubleConversion (1.1.6)
   - EXApplication (5.3.1):
     - ExpoModulesCore
@@ -448,12 +448,12 @@ PODS:
     - React-jsi (= 0.72.5)
     - React-logger (= 0.72.5)
     - React-perflogger (= 0.72.5)
-  - ReactNativeIosContextMenu (2.3.0):
+  - ReactNativeIosContextMenu (2.3.2):
     - ContextMenuAuxiliaryPreview (~> 0.3)
     - DGSwiftUtilities
     - ExpoModulesCore
     - ReactNativeIosUtilities
-  - ReactNativeIosUtilities (4.2.2):
+  - ReactNativeIosUtilities (4.2.4):
     - DGSwiftUtilities (~> 0.6)
     - ExpoModulesCore
   - RNFlashList (1.6.1):
@@ -635,7 +635,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   ContextMenuAuxiliaryPreview: afc65e70568ed72d98f9e7c96402c28c38e2edea
-  DGSwiftUtilities: 803ba97b8b4b9c7afcb109c08519552a4be0a5da
+  DGSwiftUtilities: 46adca3abbb5b5fc83a785b7d7aeada4a6e38010
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   EXApplication: 042aa2e3f05258a16962ea1a9914bf288db9c9a1
   EXConstants: ce5bbea779da8031ac818c36bea41b10e14d04e1
@@ -683,8 +683,8 @@ SPEC CHECKSUMS:
   React-runtimescheduler: cc32add98c45c5df18436a6a52a7e1f6edec102c
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
-  ReactNativeIosContextMenu: 5b5d390c21779291e2f5492ed412a2d1ccb7c85b
-  ReactNativeIosUtilities: 0b67162175d8fd40ba8c4fbe8513e33ad24513b6
+  ReactNativeIosContextMenu: 73e463367694bc32061d58ba243d9dc6f83e0b53
+  ReactNativeIosUtilities: cd4ef7a53152e563b3e01cbc71acfb4cd7c697a5
   RNFlashList: 236646d48f224a034f35baa0242e1b77db063b1e
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
