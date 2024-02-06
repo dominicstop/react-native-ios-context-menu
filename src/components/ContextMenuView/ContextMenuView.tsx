@@ -344,14 +344,20 @@ export class ContextMenuView extends
       IS_PLATFORM_IOS && props.useActionSheetFallback
     );
 
-    const shouldMountPreview = (
-      (props.renderProps.renderPreview != null) &&
-      (state.mountPreview || !props.lazyPreview)
-    );
+    const shouldMountPreviewContainer = 
+      props.renderProps.renderPreview != null;
 
-    const shouldMountAuxPreview = (
-      (props.renderProps.renderAuxillaryPreview != null) && 
-      (state.mountPreview || !props.lazyPreview)
+    const shouldMountPreviewContent = 
+          state.mountPreview 
+      || !props.lazyPreview;
+
+    const shouldMountAuxPreviewContainer = 
+      props.renderProps.renderAuxillaryPreview != null;
+
+    const shouldMountAuxPreviewContent = 
+         state.mountPreview
+      || !props.lazyPreview;
+
     props.debugShouldEnableLogging && console.log(
       "ContextMenuView.render",
       `\n - nativeRef.reactTag: ${this.nativeRef?.reactTag ?? -1}`,
@@ -369,7 +375,6 @@ export class ContextMenuView extends
           {...props.viewProps}
           ref={r => { this.nativeRef = r! }}
           style={[styles.menuView, props.viewProps.style]}
-
           menuConfig={props.menuConfig}
           previewConfig={props.previewConfig}
           auxiliaryPreviewConfig={props.auxiliaryPreviewConfig}
@@ -398,24 +403,28 @@ export class ContextMenuView extends
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
-          {shouldMountPreview && (
+          {shouldMountPreviewContainer && (
             <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
               shouldCleanupOnComponentWillUnmount={
                 props.shouldCleanupOnComponentWillUnmountForMenuPreview
               }
             >
-              {props.renderProps.renderPreview?.()}
+              {shouldMountPreviewContent && (
+                props.renderProps.renderPreview?.()
+              )}
             </RNIDetachedView>
           )}
-          {shouldMountAuxPreview && (
+          {shouldMountAuxPreviewContainer && (
             <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
               shouldCleanupOnComponentWillUnmount={
                 props.shouldCleanupOnComponentWillUnmountForAuxPreview
               }
             >
-              {props.renderProps.renderAuxillaryPreview?.()}
+              {shouldMountAuxPreviewContent && (
+                props.renderProps.renderAuxillaryPreview?.()
+              )}
             </RNIDetachedView>
           )}
           {props.viewProps.children}
