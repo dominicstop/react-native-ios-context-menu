@@ -80,19 +80,19 @@ public class RNIContextMenuViewModule: Module {
       (reactTag: Int, isManuallyTriggered: Bool, promise: Promise) in
       
       DispatchQueue.main.async {
-        do {
-          let contextMenuView = try RNIModuleHelpers.getView(
-            withErrorType: RNIContextMenuError.self,
-            forNode: reactTag,
-            type: RNIContextMenuView.self
-          );
-          
-          contextMenuView.notifyOnJSComponentWillUnmount();
-          promise.resolve();
+        let contextMenuView = try? RNIModuleHelpers.getView(
+          withErrorType: RNIContextMenuError.self,
+          forNode: reactTag,
+          type: RNIContextMenuView.self
+        );
         
-        } catch let error {
-          promise.reject(error);
+        guard let contextMenuView = contextMenuView else {
+          promise.resolve();
+          return;
         };
+        
+        contextMenuView.notifyOnJSComponentWillUnmount();
+        promise.resolve();
       };
     };
     
