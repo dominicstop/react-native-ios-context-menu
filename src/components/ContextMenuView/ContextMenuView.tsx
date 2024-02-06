@@ -37,7 +37,7 @@ export class ContextMenuView extends
     super(props);
 
     this.state = {
-      menuVisible : false,
+      menuVisible: false,
       mountPreview: false,
     };
 
@@ -119,7 +119,7 @@ export class ContextMenuView extends
         shouldPreventLongPressGestureFromPropagating ?? true
       ),
       debugShouldEnableLogging: (
-        debugShouldEnableLogging ?? true
+        debugShouldEnableLogging ?? LIB_ENV.shouldEnableLogging
       ),
 
       // B. Pass down props...
@@ -226,17 +226,17 @@ export class ContextMenuView extends
     this.props.onMenuWillShow?.(event);
     event.stopPropagation();
 
-    this.setState({menuVisible: true});
+    this.setState({
+      menuVisible: true,
+      mountPreview: true,
+    });
   };
 
   private _handleOnMenuWillHide: OnMenuWillHideEvent = (event) => {
     this.props.onMenuWillHide?.(event);
     event.stopPropagation();
 
-    this.setState({
-      menuVisible : false,
-      mountPreview: false,
-    });
+    this.setState({menuVisible : false});
   };
 
   private _handleOnMenuWillCancel: OnMenuWillCancelEvent = (event) => {
@@ -255,6 +255,8 @@ export class ContextMenuView extends
 
     event.stopPropagation();
     event.persist();
+
+    this.setState({mountPreview : false});
   };
 
   private _handleOnMenuDidCancel: OnMenuDidCancelEvent = (event) => {
@@ -406,9 +408,7 @@ export class ContextMenuView extends
           {shouldMountPreviewContainer && (
             <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
-              shouldCleanupOnComponentWillUnmount={
-                props.shouldCleanupOnComponentWillUnmountForMenuPreview
-              }
+              shouldCleanupOnComponentWillUnmount={false}
             >
               {shouldMountPreviewContent && (
                 props.renderProps.renderPreview?.()
@@ -418,9 +418,7 @@ export class ContextMenuView extends
           {shouldMountAuxPreviewContainer && (
             <RNIDetachedView 
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
-              shouldCleanupOnComponentWillUnmount={
-                props.shouldCleanupOnComponentWillUnmountForAuxPreview
-              }
+              shouldCleanupOnComponentWillUnmount={false}
             >
               {shouldMountAuxPreviewContent && (
                 props.renderProps.renderAuxillaryPreview?.()
