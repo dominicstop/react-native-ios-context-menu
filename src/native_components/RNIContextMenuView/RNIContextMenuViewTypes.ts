@@ -2,7 +2,7 @@ import { ViewProps } from 'react-native';
 import { RNIContextMenuNativeViewBaseProps } from './RNIContextMenuNativeViewTypes';
 
 
-export type RNIContextMenuViewBaseProps = Pick<RNIContextMenuNativeViewBaseProps,
+export type RNIContextMenuViewInheritedProps = Pick<RNIContextMenuNativeViewBaseProps,
   | 'internalCleanupMode'
   | 'menuConfig'
   | 'previewConfig'
@@ -25,5 +25,11 @@ export type RNIContextMenuViewBaseProps = Pick<RNIContextMenuNativeViewBaseProps
   | 'onMenuAuxiliaryPreviewDidShow'
 >;
 
+export type RNIContextMenuViewBaseProps = {
+  debugShouldEnableLogging: boolean;
+};
+
 export type RNIContextMenuViewProps = 
-  RNIContextMenuViewBaseProps & ViewProps;
+    RNIContextMenuViewInheritedProps 
+  & RNIContextMenuViewBaseProps
+  & ViewProps;

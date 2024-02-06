@@ -66,6 +66,7 @@ export class ContextMenuView extends
 
       // internal
       internalCleanupMode,
+      debugShouldEnableLogging,
 
       // event props
       onMenuWillShow,
@@ -116,6 +117,9 @@ export class ContextMenuView extends
       ),
       shouldPreventLongPressGestureFromPropagating: (
         shouldPreventLongPressGestureFromPropagating ?? true
+      ),
+      debugShouldEnableLogging: (
+        debugShouldEnableLogging ?? true
       ),
 
       // B. Pass down props...
@@ -348,6 +352,14 @@ export class ContextMenuView extends
     const shouldMountAuxPreview = (
       (props.renderProps.renderAuxillaryPreview != null) && 
       (state.mountPreview || !props.lazyPreview)
+    props.debugShouldEnableLogging && console.log(
+      "ContextMenuView.render",
+      `\n - nativeRef.reactTag: ${this.nativeRef?.reactTag ?? -1}`,
+      `\n - shouldMountPreviewContainer: ${shouldMountPreviewContainer}`,
+      `\n - shouldMountPreviewContent: ${shouldMountPreviewContent}`,
+      `\n - shouldMountAuxPreviewContainer: ${shouldMountAuxPreviewContainer}`,
+      `\n - shouldMountAuxPreviewContent: ${shouldMountAuxPreviewContent}`,
+      `\n`
     );
 
     const contents = (
@@ -366,6 +378,7 @@ export class ContextMenuView extends
           shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle={props.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle}
           isAuxiliaryPreviewEnabled={props.isAuxiliaryPreviewEnabled}
           shouldPreventLongPressGestureFromPropagating={props.shouldPreventLongPressGestureFromPropagating}
+          debugShouldEnableLogging={props.debugShouldEnableLogging}
 
           // Events: `onPress`-Related
           onMenuWillShow={this._handleOnMenuWillShow}

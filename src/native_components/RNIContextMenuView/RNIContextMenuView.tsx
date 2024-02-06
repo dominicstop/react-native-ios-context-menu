@@ -30,9 +30,18 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
     return this.nativeRef?.nativeTag ?? this.reactTag
   };
 
-  notifyOnComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
+  notifyOnComponentWillUnmount = async (
+    isManuallyTriggered: boolean = true
+  ) => {
+
     const reactTag = this.getNativeReactTag();
     if(typeof reactTag !== 'number') return;
+
+    this.props.debugShouldEnableLogging && console.log(
+      "RNIContextMenuView.notifyOnComponentWillUnmount",
+      `\n - reactTag: ${reactTag}`,
+      "\n"
+    );
 
     await RNIContextMenuViewModule.notifyOnComponentWillUnmount(
       reactTag, 

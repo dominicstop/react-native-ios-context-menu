@@ -4,7 +4,7 @@ import type { ViewProps } from 'react-native';
 import type { TSEventEmitter } from '@dominicstop/ts-event-emitter';
 import type { KeyMapType } from 'react-native-ios-utilities';
 
-import type { RNIContextMenuViewProps } from '../../native_components/RNIContextMenuView';
+import type { RNIContextMenuViewBaseProps, RNIContextMenuViewInheritedProps } from '../../native_components/RNIContextMenuView';
 
 import type { OnMenuDidHideEventObject } from '../../types/MenuEvents';
 import type { DeferredElementProvider } from '../../types/MenuSharedTypes';
@@ -12,7 +12,8 @@ import type { DeferredElementProvider } from '../../types/MenuSharedTypes';
 
 export type RenderItem = () => React.ReactElement;
 
-export type ContextMenuViewBaseProps = Partial<Pick<RNIContextMenuViewProps,  
+export type ContextMenuViewInheritedProps = Partial<Pick<RNIContextMenuViewInheritedProps, 
+  // Value Props
   | 'menuConfig'
   | 'previewConfig'
   | 'auxiliaryPreviewConfig'
@@ -20,6 +21,7 @@ export type ContextMenuViewBaseProps = Partial<Pick<RNIContextMenuViewProps,
   | 'isContextMenuEnabled'
   | 'isAuxiliaryPreviewEnabled'
   | 'shouldPreventLongPressGestureFromPropagating'
+  | 'internalCleanupMode'
 
   // Lifecycle Events
   | 'onMenuWillShow'
@@ -35,9 +37,11 @@ export type ContextMenuViewBaseProps = Partial<Pick<RNIContextMenuViewProps,
   | 'onPressMenuItem'
   | 'onPressMenuPreview'
   
-    // Internal
-  | 'internalCleanupMode'
->> & {
+>> & Partial<Pick<RNIContextMenuViewBaseProps,
+  | 'debugShouldEnableLogging'
+>>;
+
+export type ContextMenuViewBaseProps = {
   lazyPreview?: boolean;
   useActionSheetFallback?: boolean;
   shouldWaitForMenuToHideBeforeFiringOnPressMenuItem?: boolean;
@@ -52,7 +56,9 @@ export type ContextMenuViewBaseProps = Partial<Pick<RNIContextMenuViewProps,
 };
 
 export type ContextMenuViewProps = 
-  ContextMenuViewBaseProps & ViewProps;
+    ContextMenuViewInheritedProps 
+  & ContextMenuViewBaseProps
+  & ViewProps;
 
 export type ContextMenuViewState = {
   menuVisible: boolean;
