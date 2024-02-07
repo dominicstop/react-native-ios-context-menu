@@ -18,7 +18,7 @@ class AutoLayoutWrapperView: UIView {
 
   override func addSubview(_ view: UIView) {
     if let detachedView = view as? RNIDetachedView {
-      detachedView.updateBounds(newSize: self.bounds.size);
+      try? detachedView.updateBounds(newSize: self.bounds.size);
     };
     
     super.addSubview(view);
@@ -37,7 +37,7 @@ class AutoLayoutWrapperView: UIView {
   func updateSizeOfSubviews(newSize: CGSize? = nil){
     self.subviews.forEach {
       guard let detachedView = $0 as? RNIDetachedView else { return };
-      detachedView.updateBounds(newSize: newSize ?? self.bounds.size);
+      try? detachedView.updateBounds(newSize: newSize ?? self.bounds.size);
     };
   };
 };

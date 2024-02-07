@@ -407,6 +407,7 @@ export class ContextMenuView extends
         >
           {shouldMountPreviewContainer && (
             <RNIDetachedView 
+              contentTargetMode={'wrapper'}
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
               shouldCleanupOnComponentWillUnmount={false}
             >
@@ -417,6 +418,7 @@ export class ContextMenuView extends
           )}
           {shouldMountAuxPreviewContainer && (
             <RNIDetachedView 
+              contentTargetMode={'wrapper'}
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
               shouldCleanupOnComponentWillUnmount={false}
             >

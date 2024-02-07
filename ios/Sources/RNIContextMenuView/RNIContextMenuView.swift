@@ -307,7 +307,7 @@ public class RNIContextMenuView:
       .init(with: detachedView)
     );
     
-    detachedView.detach();
+    try? detachedView.detach();
   };
   
   #if DEBUG

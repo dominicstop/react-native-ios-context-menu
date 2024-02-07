@@ -63,7 +63,7 @@ class RNIContextMenuPreviewController: UIViewController {
       case .STRETCH:
         guard let menuCustomPreviewView = self.menuCustomPreviewView else { return };
         
-        menuCustomPreviewView.updateBounds(newSize: self.view.bounds.size);
+        try? menuCustomPreviewView.updateBounds(newSize: self.view.bounds.size);
         self.preferredContentSize = .zero;
         
       case .INHERIT:
