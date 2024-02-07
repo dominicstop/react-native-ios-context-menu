@@ -296,10 +296,12 @@ public class RNIContextMenuView:
     
     switch nativeIDKey {
         case .contextMenuPreview:
+          self.menuCustomPreviewView?.cleanup();
           self.menuCustomPreviewView = detachedView;
         
         // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
         case .contextMenuAuxiliaryPreview:
+          self.menuAuxiliaryPreviewView?.cleanup();
           self.menuAuxiliaryPreviewView = detachedView;
     };
     
