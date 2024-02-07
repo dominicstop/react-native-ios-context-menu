@@ -13,4 +13,5 @@ export const LIB_ENV = {
     IS_PLATFORM_IOS && (IOS_VERSION >= 13)
   ),
   shouldEnableLogging: false,
+  shouldEnableDetachedView: true,
 };

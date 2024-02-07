@@ -346,19 +346,25 @@ export class ContextMenuView extends
       IS_PLATFORM_IOS && props.useActionSheetFallback
     );
 
-    const shouldMountPreviewContainer = 
-      props.renderProps.renderPreview != null;
+    const shouldMountPreviewContainer = (
+         LIB_ENV.shouldEnableDetachedView
+      && props.renderProps.renderPreview != null
+    );
 
-    const shouldMountPreviewContent = 
+    const shouldMountPreviewContent = (
           state.mountPreview 
-      || !props.lazyPreview;
+      || !props.lazyPreview
+    );
 
-    const shouldMountAuxPreviewContainer = 
-      props.renderProps.renderAuxillaryPreview != null;
+    const shouldMountAuxPreviewContainer = (
+         LIB_ENV.shouldEnableDetachedView
+      && props.renderProps.renderAuxillaryPreview != null
+    );
 
-    const shouldMountAuxPreviewContent = 
+    const shouldMountAuxPreviewContent = (
          state.mountPreview
-      || !props.lazyPreview;
+      || !props.lazyPreview
+    );
 
     props.debugShouldEnableLogging && console.log(
       "ContextMenuView.render",
