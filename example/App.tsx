@@ -13,6 +13,7 @@ import { Test04Screen } from './src/screens/Test04Screen';
 import { Test05Screen } from './src/screens/Test05Screen';
 
 import { SHARED_ENV } from './src/constants/SharedEnv';
+import { View } from 'react-native';
 
 
 const shouldEnableTabs = 
@@ -41,6 +42,12 @@ function Tab1StackScreen() {
 };
 
 export default function App() {
+  if(SHARED_ENV.shouldRenderNothing){
+    return (
+      <View/>
+    );
+  };
+  
   if(shouldEnableTabs){
     const TabNavigator = createBottomTabNavigator();
 
