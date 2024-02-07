@@ -279,6 +279,10 @@ public class RNIContextMenuView:
     fatalError("init(coder:) has not been implemented");
   };
   
+  deinit {
+    self.cleanup();
+  };
+  
   // MARK: - RN Lifecycle
   // --------------------
 
@@ -558,6 +562,7 @@ public class RNIContextMenuView:
     
     childVC.willMove(toParent: nil);
     childVC.removeFromParent();
+    childVC.view.removeFromSuperview();
   };
   
   // MARK: - Functions - View Module Commands
@@ -681,11 +686,27 @@ public class RNIContextMenuView:
     // remove deferred handlers
     self.deferredElementCompletionMap.removeAll();
     
-    self.detachFromParentVCIfAny();
+    if let viewController = self.viewController {
+      self.detachFromParentVCIfAny();
+      
+      viewController.view = nil;
+      self.viewController = nil
+    };
     
-    // remove preview from registry
-    self.menuCustomPreviewView?.cleanup();
-    self.menuAuxiliaryPreviewView?.cleanup();
+    if let menuCustomPreviewView = self.menuCustomPreviewView {
+      menuCustomPreviewView.cleanup();
+    };
+    
+    if let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView {
+      menuAuxiliaryPreviewView.cleanup();
+    };
+    
+    if let bridge = self.appContext?.reactBridge {
+      RNIHelpers.recursivelyRemoveFromViewRegistry(
+        forReactView: self,
+        usingReactBridge: bridge
+      );
+    };
     
     self.detachedViews.forEach {
       $0.ref?.cleanup();
