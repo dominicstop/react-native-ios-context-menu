@@ -16,6 +16,9 @@ public let RNICleanableViewRegistryShared = RNICleanableViewRegistry.shared;
 
 public class RNICleanableViewRegistry {
 
+  public static var debugShouldLogCleanup = false;
+  public static var debugShouldLogRegister = false;
+
   public static let shared: RNICleanableViewRegistry = .init();
   
   // MARK: - Properties
@@ -53,9 +56,24 @@ public class RNICleanableViewRegistry {
       );
     };
     
+    #if DEBUG
+    if Self.debugShouldLogRegister {
+      print(
+        "RNICleanableViewRegistry.register",
+        "\n - delegate.viewCleanupKey:", entry.viewCleanupKey,
+        "\n - delegate type:", type(of: entry),
+        "\n - initialViewsToCleanup.count", initialViewsToCleanup.count,
+        "\n - shouldIncludeDelegateInViewsToCleanup", shouldIncludeDelegateInViewsToCleanup,
+        "\n - shouldProceedCleanupWhenDelegateIsNil", shouldProceedCleanupWhenDelegateIsNil,
+        "\n"
+      );
+    };
+    #endif
+    
   
     self.registry[entry.viewCleanupKey] = .init(
       key: entry.viewCleanupKey,
+      delegate: entry,
       viewsToCleanup: initialViewsToCleanup,
       shouldProceedCleanupWhenDelegateIsNil: shouldProceedCleanupWhenDelegateIsNil
     );
@@ -108,6 +126,7 @@ public class RNICleanableViewRegistry {
       
       switch view {
         case let cleanableView as RNICleanableViewDelegate:
+          guard cleanableView !== match.delegate else { fallthrough };
           cleanableViewDelegates.append(cleanableView);
           
         default:
@@ -139,14 +158,33 @@ public class RNICleanableViewRegistry {
     
     cleanableViewItems.forEach {
       #if DEBUG
-      print(
-        "RNICleanableViewRegistry - Failed to cleanup:", $0.key
-      );
+      if Self.debugShouldLogCleanup {
+        print(
+          "RNICleanableViewRegistry - Failed to cleanup",
+          "\n - key:", $0.key,
+          "\n - type:", type(of: $0.delegate),
+          "\n - shouldProceedCleanupWhenDelegateIsNil:", $0.shouldProceedCleanupWhenDelegateIsNil,
+          "\n - viewsToCleanup.count", $0.viewsToCleanup.count,
+          "\n"
+        );
+      };
+      #endif
       
       // re-add failed items
       self.registry[$0.key] = $0;
-      #endif
     };
+    
+    #if DEBUG
+    print(
+      "RNICleanableViewRegistry.notifyCleanup",
+      "\n - forKey:", key,
+      "\n - match.viewsToCleanup.count:", match.viewsToCleanup.count,
+      "\n - match.shouldProceedCleanupWhenDelegateIsNil:", match.shouldProceedCleanupWhenDelegateIsNil,
+      "\n - viewsToCleanup.count:", viewsToCleanup.count,
+      "\n - cleanableViewItems.count:", cleanableViewItems.count,
+      "\n"
+    );
+    #endif
   };
   
   // MARK: - Internal Functions
@@ -190,5 +228,17 @@ public class RNICleanableViewRegistry {
         usingReactBridge: bridge
       );
     };
+    
+    #if DEBUG
+    if Self.debugShouldLogCleanup {
+      let _viewsToCleanupTags = viewsToCleanup.map { $0.reactTag ?? -1 };
+      print(
+        "RNICleanableViewRegistry._cleanup",
+        "\n - viewsToCleanup.count:", _viewsToCleanupTags.count,
+        "\n - viewsToCleanup:", _viewsToCleanupTags,
+        "\n"
+      );
+    };
+    #endif
   };
 };
