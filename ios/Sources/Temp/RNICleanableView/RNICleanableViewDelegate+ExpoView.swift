@@ -12,7 +12,7 @@ import ExpoModulesCore
 
 extension RNICleanableViewDelegate where Self: ExpoView {
   
-  var bridge: RCTBridge? {
+  public var bridge: RCTBridge? {
     self.appContext?.reactBridge;
   };
 };
