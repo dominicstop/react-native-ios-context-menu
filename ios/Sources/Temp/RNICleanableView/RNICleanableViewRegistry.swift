@@ -76,7 +76,7 @@ public class RNICleanableViewRegistry {
   public func notifyCleanup(
     forKey key: Int,
     sender: RNICleanableViewSenderType
-  ){
+  ) throws {
     guard let match = self.getEntry(forKey: key) else { return };
     
     var shouldCleanup = false;
@@ -92,7 +92,10 @@ public class RNICleanableViewRegistry {
     };
     
     guard shouldCleanup else { return };
-    self._cleanup(for: match);
+    try self._cleanup(for: match);
+    
+    match.delegate?.notifyOnViewCleanupCompletion();
+    self.registry.removeValue(forKey: match.key);
   };
   
   // MARK: - Internal Functions
@@ -124,9 +127,11 @@ public class RNICleanableViewRegistry {
     self._bridge = RNIHelpers.bridge;
   };
   
-  func _cleanup(for entry: RNICleanableViewItem){
-    guard let bridge = entry.delegate?.bridge ?? self._bridge
-    else { return };
+  func _cleanup(for entry: RNICleanableViewItem) throws {
+    guard let bridge = entry.delegate?.bridge ?? self._bridge else {
+      // TODO: WIP - Replace
+      throw NSError();
+    };
     
     let viewsToCleanup = entry.viewsToCleanup.compactMap {
       $0.ref;
