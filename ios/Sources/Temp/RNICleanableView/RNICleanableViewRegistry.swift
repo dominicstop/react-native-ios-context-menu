@@ -93,10 +93,60 @@ public class RNICleanableViewRegistry {
     };
     
     guard shouldCleanup else { return };
-    try self._cleanup(for: match);
+    
+    var viewsToCleanup: [UIView] = [];
+    var cleanableViewDelegates: [RNICleanableViewDelegate] = [];
+    
+    for weakView in match.viewsToCleanup {
+      guard let view = weakView.ref else { continue };
+      
+      let isDuplicate = viewsToCleanup.contains {
+        view.tag == $0.tag;
+      };
+      
+      guard !isDuplicate else { continue };
+      
+      switch view {
+        case let cleanableView as RNICleanableViewDelegate:
+          cleanableViewDelegates.append(cleanableView);
+          
+        default:
+          viewsToCleanup.append(view)
+      };
+    };
+    
+    let cleanableViewItems = cleanableViewDelegates.compactMap {
+      self.getEntry(forKey: $0.viewCleanupKey);
+    };
+    
+    try self._cleanup(views: viewsToCleanup);
     
     match.delegate?.notifyOnViewCleanupCompletion();
     self.registry.removeValue(forKey: match.key);
+    
+    var failedToCleanupItems: [RNICleanableViewItem] = [];
+    cleanableViewItems.forEach {
+      do {
+        try self.notifyCleanup(
+          forKey: $0.key,
+          sender: sender
+        );
+        
+      } catch {
+        failedToCleanupItems.append($0);
+      };
+    };
+    
+    cleanableViewItems.forEach {
+      #if DEBUG
+      print(
+        "RNICleanableViewRegistry - Failed to cleanup:", $0.key
+      );
+      
+      // re-add failed items
+      self.registry[$0.key] = $0;
+      #endif
+    };
   };
   
   // MARK: - Internal Functions
@@ -128,14 +178,10 @@ public class RNICleanableViewRegistry {
     self._bridge = RNIHelpers.bridge;
   };
   
-  func _cleanup(for entry: RNICleanableViewItem) throws {
-    guard let bridge = entry.delegate?.bridge ?? self._bridge else {
+  func _cleanup(views viewsToCleanup: [UIView]) throws {
+    guard let bridge = self._bridge else {
       // TODO: WIP - Replace
       throw NSError();
-    };
-    
-    let viewsToCleanup = entry.viewsToCleanup.compactMap {
-      $0.ref;
     };
     
     viewsToCleanup.forEach {
