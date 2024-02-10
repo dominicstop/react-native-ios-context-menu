@@ -309,6 +309,12 @@ public class RNIContextMenuView:
           let nativeIDKey = NativeIDKey(rawValue: nativeID)
     else { return };
     
+    if let cleanableViewItem = self.associatedCleanableViewItem {
+      cleanableViewItem.viewsToCleanup.append(
+        .init(with: detachedView)
+      );
+    };
+    
     switch nativeIDKey {
         case .contextMenuPreview:
           self.menuCustomPreviewView?.cleanup();
