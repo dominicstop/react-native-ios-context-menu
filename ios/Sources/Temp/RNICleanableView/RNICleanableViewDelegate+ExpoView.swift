@@ -9,6 +9,7 @@ import Foundation
 import React
 import ExpoModulesCore
 
+
 extension RNICleanableViewDelegate where Self: ExpoView {
   
   var bridge: RCTBridge? {

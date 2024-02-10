@@ -21,5 +21,4 @@ public protocol RNICleanableViewDelegate: AnyObject {
   
   func notifyOnViewCleanupCompletion();
   
-  
 };
