@@ -142,6 +142,7 @@ public class RNICleanableViewRegistry {
       };
     };
     
+    match.delegate?.notifyOnViewCleanupWillBegin();
     try self._cleanup(views: viewsToCleanup);
     
     match.delegate?.notifyOnViewCleanupCompletion();

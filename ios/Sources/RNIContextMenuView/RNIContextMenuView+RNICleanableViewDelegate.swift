@@ -28,14 +28,9 @@ extension RNIContextMenuView: RNICleanableViewDelegate {
     return true;
   };
   
-  public func notifyOnViewCleanupCompletion() {
-    self._didTriggerCleanup = true;
-    
+  public func notifyOnViewCleanupWillBegin(){
     self.contextMenuInteraction?.dismissMenu();
     self.contextMenuInteraction = nil;
-    
-    // remove deferred handlers
-    self._deferredElementCompletionMap.removeAll();
     
     if let viewController = self.viewController {
       self.detachFromParentVCIfAny();
@@ -43,6 +38,13 @@ extension RNIContextMenuView: RNICleanableViewDelegate {
       viewController.view = nil;
       self.viewController = nil
     };
+  };
+  
+  public func notifyOnViewCleanupCompletion() {
+    self._didTriggerCleanup = true;
+    
+    // remove deferred handlers
+    self._deferredElementCompletionMap.removeAll();
     
     self.menuCustomPreviewView = nil;
     self.previewController = nil;

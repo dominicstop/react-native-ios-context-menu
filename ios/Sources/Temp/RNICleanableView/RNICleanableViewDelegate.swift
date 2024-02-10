@@ -19,6 +19,8 @@ public protocol RNICleanableViewDelegate: AnyObject {
     item: RNICleanableViewItem
   ) -> Bool;
   
-  func notifyOnViewCleanupCompletion();
   
+  func notifyOnViewCleanupWillBegin();
+  
+  func notifyOnViewCleanupCompletion();
 };
