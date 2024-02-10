@@ -43,6 +43,16 @@ public class RNIContextMenuView:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
     
   var longPressGestureRecognizer: UILongPressGestureRecognizer!;
+  
+  override public var reactTag: NSNumber! {
+    didSet {
+      RNICleanableViewRegistryShared.register(
+        forDelegate: self,
+        shouldIncludeDelegateInViewsToCleanup: true,
+        shouldProceedCleanupWhenDelegateIsNil: true
+      );
+    }
+  };
     
   // MARK: - Properties - Flags
   // --------------------------
@@ -274,12 +284,6 @@ public class RNIContextMenuView:
     self.setupInitAuxiliaryPreviewConfigIfNeeded();
     self.setupAddContextMenuInteraction();
     self.setupAddGestureRecognizers();
-    
-    RNICleanableViewRegistryShared.register(
-      forDelegate: self,
-      shouldIncludeDelegateInViewsToCleanup: true,
-      shouldProceedCleanupWhenDelegateIsNil: true
-    );
   };
   
   public required init?(coder: NSCoder) {
@@ -681,52 +685,10 @@ public class RNIContextMenuView:
   // --------------------
   
   public func cleanup(){
-    guard self.cleanupMode.shouldEnableCleanup,
-          !self._didTriggerCleanup
-    else { return };
-    
-    self._didTriggerCleanup = true;
-    
-    self.contextMenuInteraction?.dismissMenu();
-    self.contextMenuInteraction = nil;
-    
-    // remove deferred handlers
-    self._deferredElementCompletionMap.removeAll();
-    
-    if let viewController = self.viewController {
-      self.detachFromParentVCIfAny();
-      
-      viewController.view = nil;
-      self.viewController = nil
-    };
-    
-    if let menuCustomPreviewView = self.menuCustomPreviewView {
-      menuCustomPreviewView.cleanup();
-    };
-    
-    if let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView {
-      menuAuxiliaryPreviewView.cleanup();
-    };
-    
-    if let bridge = self.appContext?.reactBridge {
-      RNIHelpers.recursivelyRemoveFromViewRegistry(
-        forReactView: self,
-        usingReactBridge: bridge
-      );
-    };
-    
-    self.detachedViews.forEach {
-      $0.ref?.cleanup();
-    };
-    
-    self.menuCustomPreviewView = nil;
-    self.previewController = nil;
-    self.menuAuxiliaryPreviewView = nil;
-    self.detachedViews = [];
-    
-    #if DEBUG
-    NotificationCenter.default.removeObserver(self);
-    #endif
+    try? RNICleanableViewRegistryShared.notifyCleanup(
+      forKey: self.viewCleanupKey,
+      sender: .cleanableViewDelegate(self)
+    );
   };
   
   // MARK: - RNIJSComponentWillUnmountNotifiable

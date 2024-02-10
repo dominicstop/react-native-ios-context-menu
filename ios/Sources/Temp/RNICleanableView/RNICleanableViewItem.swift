@@ -18,7 +18,8 @@ public class RNICleanableViewItem {
   public var shouldProceedCleanupWhenDelegateIsNil: Bool;
   
   public init(
-    key: Int, delegate: RNICleanableViewDelegate? = nil,
+    key: Int,
+    delegate: RNICleanableViewDelegate,
     viewsToCleanup: Array<WeakRef<UIView>>,
     shouldProceedCleanupWhenDelegateIsNil: Bool
   ) {
