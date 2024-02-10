@@ -10,7 +10,7 @@ import React
 import DGSwiftUtilities
 
 
-public extension RNICleanableViewDelegate where Self: RCTView {
+public extension RNICleanableViewDelegate {
 
   var associatedCleanableViewItem: RNICleanableViewItem? {
     get {

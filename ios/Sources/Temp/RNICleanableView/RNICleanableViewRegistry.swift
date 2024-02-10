@@ -129,7 +129,7 @@ public class RNICleanableViewRegistry {
       
       guard !isDuplicate else { continue };
       
-      if let cleanableView = view as? RNICleanableViewDelegate & RCTView,
+      if let cleanableView = view as? RNICleanableViewDelegate,
          let cleanableViewItem = cleanableView.associatedCleanableViewItem,
          cleanableView !== match.delegate {
          
