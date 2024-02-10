@@ -113,7 +113,7 @@ public class RNICleanableViewRegistry {
     guard shouldCleanup else { return };
     
     var viewsToCleanup: [UIView] = [];
-    var cleanableViewDelegates: [RNICleanableViewDelegate] = [];
+    var cleanableViewItems: [RNICleanableViewItem] = [];
     
     for weakView in match.viewsToCleanup {
       guard let view = weakView.ref else { continue };
@@ -124,18 +124,22 @@ public class RNICleanableViewRegistry {
       
       guard !isDuplicate else { continue };
       
-      switch view {
-        case let cleanableView as RNICleanableViewDelegate:
-          guard cleanableView !== match.delegate else { fallthrough };
-          cleanableViewDelegates.append(cleanableView);
-          
-        default:
-          viewsToCleanup.append(view)
+      if let cleanableView = view as? RNICleanableViewDelegate & RCTView,
+         let cleanableViewItem = cleanableView.associatedCleanableViewItem,
+         cleanableView !== match.delegate {
+         
+         cleanableViewItems.append(cleanableViewItem);
+      
+      } else if let reactView = view as? RCTView,
+                let reactTag = reactView.reactTag,
+                let entry = self.getEntry(forKey: reactTag.intValue),
+                entry.delegate !== match.delegate  {
+                
+        cleanableViewItems.append(entry);
+      
+      } else {
+        viewsToCleanup.append(view);
       };
-    };
-    
-    let cleanableViewItems = cleanableViewDelegates.compactMap {
-      self.getEntry(forKey: $0.viewCleanupKey);
     };
     
     try self._cleanup(views: viewsToCleanup);
