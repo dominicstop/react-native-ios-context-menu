@@ -8,6 +8,8 @@
 import Foundation
 
 public protocol RNICleanableViewDelegate: AnyObject {
+
+  var viewCleanupKey: Int { get };
   
   func notifyOnViewCleanupRequest(
     sender: RNICleanableViewSenderType,
