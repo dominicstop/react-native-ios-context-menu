@@ -8,7 +8,7 @@
 import UIKit
 import React
 
-public  extension RNICleanableViewDelegate where Self: RCTView {
+public extension RNICleanableViewDelegate where Self: RCTView {
   
   var viewCleanupKey: Int {
     self.reactTag.intValue;

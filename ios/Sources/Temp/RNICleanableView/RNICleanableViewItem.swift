@@ -27,5 +27,5 @@ public class RNICleanableViewItem {
     self.delegate = delegate;
     self.viewsToCleanup = viewsToCleanup;
     self.shouldProceedCleanupWhenDelegateIsNil = shouldProceedCleanupWhenDelegateIsNil;
-  }
+  };
 };
