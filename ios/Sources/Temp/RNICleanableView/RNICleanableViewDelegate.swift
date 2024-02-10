@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import React
 
 public protocol RNICleanableViewDelegate: AnyObject {
 
   var viewCleanupKey: Int { get };
+  
+  var bridge: RCTBridge? { get };
   
   func notifyOnViewCleanupRequest(
     sender: RNICleanableViewSenderType,
@@ -17,4 +20,6 @@ public protocol RNICleanableViewDelegate: AnyObject {
   ) -> Bool;
   
   func notifyOnViewCleanupCompletion();
+  
+  
 };
