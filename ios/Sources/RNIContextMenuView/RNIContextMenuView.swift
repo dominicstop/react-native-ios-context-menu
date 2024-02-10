@@ -11,6 +11,7 @@ import ReactNativeIosUtilities
 import DGSwiftUtilities
 import ContextMenuAuxiliaryPreview
 
+
 public class RNIContextMenuView:
   ExpoView, RNINavigationEventsNotifiable, RNICleanable,
   RNIJSComponentWillUnmountNotifiable, RNIMenuElementEventsNotifiable,
@@ -38,7 +39,7 @@ public class RNIContextMenuView:
   var previewController: RNIContextMenuPreviewController?;
   weak var viewController: RNINavigationEventsReportingViewController?;
   
-  private var deferredElementCompletionMap:
+  var _deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
     
   var longPressGestureRecognizer: UILongPressGestureRecognizer!;
@@ -56,7 +57,7 @@ public class RNIContextMenuView:
   var didPressMenuItem = false;
   
   /// Whether or not `cleanup` method was called
-  private var didTriggerCleanup = false;
+  var _didTriggerCleanup = false;
   
   /// Whether or not the current view was successfully added as child VC
   private var didAttachToParentVC = false;
@@ -273,6 +274,12 @@ public class RNIContextMenuView:
     self.setupInitAuxiliaryPreviewConfigIfNeeded();
     self.setupAddContextMenuInteraction();
     self.setupAddGestureRecognizers();
+    
+    RNICleanableViewRegistryShared.register(
+      forDelegate: self,
+      shouldIncludeDelegateInViewsToCleanup: true,
+      shouldProceedCleanupWhenDelegateIsNil: true
+    );
   };
   
   public required init?(coder: NSCoder) {
@@ -497,7 +504,7 @@ public class RNIContextMenuView:
     completion: @escaping RNIDeferredMenuElement.CompletionHandler
   ){
     // register completion handler
-    self.deferredElementCompletionMap[deferredID] = completion;
+    self._deferredElementCompletionMap[deferredID] = completion;
     
     // notify js that a deferred element needs to be loaded
     self.onRequestDeferredElement.callAsFunction([
@@ -534,7 +541,7 @@ public class RNIContextMenuView:
   };
   
   func cleanupOrphanedDeferredElements(currentMenuConfig: RNIMenuItem) {
-    guard self.deferredElementCompletionMap.count > 0
+    guard self._deferredElementCompletionMap.count > 0
     else { return };
     
     let currentDeferredElements = RNIMenuElement.recursivelyGetAllElements(
@@ -543,7 +550,7 @@ public class RNIContextMenuView:
     );
       
     // get the deferred elements that are not in the new config
-    let orphanedKeys = self.deferredElementCompletionMap.keys.filter { deferredID in
+    let orphanedKeys = self._deferredElementCompletionMap.keys.filter { deferredID in
       !currentDeferredElements.contains {
         $0.deferredID == deferredID
       };
@@ -551,7 +558,7 @@ public class RNIContextMenuView:
     
     // cleanup
     orphanedKeys.forEach {
-      self.deferredElementCompletionMap.removeValue(forKey: $0);
+      self._deferredElementCompletionMap.removeValue(forKey: $0);
     };
   };
   
@@ -584,7 +591,7 @@ public class RNIContextMenuView:
     menuElements rawMenuElements: [RNIMenuElement]
   ) throws {
     
-    guard let completionHandler = self.deferredElementCompletionMap[deferredID]
+    guard let completionHandler = self._deferredElementCompletionMap[deferredID]
     else {
       throw RNIContextMenuError(
         description: "No matching deferred completion handler found for deferredID",
@@ -608,7 +615,7 @@ public class RNIContextMenuView:
     completionHandler(menuElements);
   
     // cleanup
-    self.deferredElementCompletionMap.removeValue(forKey: deferredID);
+    self._deferredElementCompletionMap.removeValue(forKey: deferredID);
   };
   
   func presentMenu() throws {
@@ -675,16 +682,16 @@ public class RNIContextMenuView:
   
   public func cleanup(){
     guard self.cleanupMode.shouldEnableCleanup,
-          !self.didTriggerCleanup
+          !self._didTriggerCleanup
     else { return };
     
-    self.didTriggerCleanup = true;
+    self._didTriggerCleanup = true;
     
     self.contextMenuInteraction?.dismissMenu();
     self.contextMenuInteraction = nil;
     
     // remove deferred handlers
-    self.deferredElementCompletionMap.removeAll();
+    self._deferredElementCompletionMap.removeAll();
     
     if let viewController = self.viewController {
       self.detachFromParentVCIfAny();
