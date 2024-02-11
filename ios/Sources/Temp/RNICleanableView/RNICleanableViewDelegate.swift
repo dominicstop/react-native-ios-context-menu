@@ -14,11 +14,12 @@ public protocol RNICleanableViewDelegate: AnyObject {
   
   var bridge: RCTBridge? { get };
   
+  var viewCleanupMode: RNIViewCleanupMode { get }
+  
   func notifyOnViewCleanupRequest(
     sender: RNICleanableViewSenderType,
     item: RNICleanableViewItem
   ) -> Bool;
-  
   
   func notifyOnViewCleanupWillBegin();
   

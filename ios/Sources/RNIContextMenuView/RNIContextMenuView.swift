@@ -120,17 +120,24 @@ public class RNIContextMenuView:
   public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   public var isContextMenuEnabled = true;
   
-  private(set) public var internalViewCleanupMode: RNIViewCleanupMode = .default;
+  private(set) public var viewCleanupMode: RNIViewCleanupMode = .default;
   public var internalViewCleanupModeRaw: Dictionary<String, Any>? {
     willSet {
-      guard let newValue = newValue,
-            let viewCleanupMode = try? RNIViewCleanupMode(fromDict: newValue)
-      else {
-        self.internalViewCleanupMode = .default;
-        return;
-      };
+      let nextValue: RNIViewCleanupMode = {
+        guard let newValue = newValue,
+              let viewCleanupMode = try? RNIViewCleanupMode(fromDict: newValue)
+        else {
+          return .default;
+        };
+        
+        return viewCleanupMode;
+      }();
       
-      self.internalViewCleanupMode = viewCleanupMode;
+      self.viewCleanupMode = nextValue;
+      
+      if let cleanableViewItem = self.associatedCleanableViewItem {
+        cleanableViewItem.viewCleanupMode = nextValue;
+      };
     }
   };
   
@@ -334,7 +341,7 @@ public class RNIContextMenuView:
   // ----------------------
   
   public override func didMoveToWindow() {
-    let shouldAttachToParentVC = self.internalViewCleanupMode.shouldAttachToParentController(
+    let shouldAttachToParentVC = self.viewCleanupMode.shouldAttachToParentController(
       forView: self,
       associatedViewController: self.viewController,
       currentWindow: self.window
@@ -346,7 +353,7 @@ public class RNIContextMenuView:
     
     } else {
       // trigger manual cleanup
-      try? self.internalViewCleanupMode.triggerCleanupIfNeededForDidMoveToWindow(
+      try? self.viewCleanupMode.triggerCleanupIfNeededForDidMoveToWindow(
         forView: self,
         associatedViewController: self.viewController,
         currentWindow: self.window
@@ -662,7 +669,7 @@ public class RNIContextMenuView:
   // -------------------------------------
   
   public func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
-    try? self.internalViewCleanupMode
+    try? self.viewCleanupMode
       .triggerCleanupIfNeededForViewControllerDidPopEvent(for: self);
   };
   
@@ -670,7 +677,7 @@ public class RNIContextMenuView:
   // -------------------------------------------
   
   public func notifyOnJSComponentWillUnmount(){
-    try? self.internalViewCleanupMode
+    try? self.viewCleanupMode
       .triggerCleanupIfNeededForReactComponentWillUnmountNotification(for: self);
   };
   

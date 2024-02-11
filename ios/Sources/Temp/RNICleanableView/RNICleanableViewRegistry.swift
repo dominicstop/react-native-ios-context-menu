@@ -205,6 +205,7 @@ public class RNICleanableViewRegistry {
         "\n - match.viewsToCleanup.count:", match.viewsToCleanup.count,
         "\n - match.shouldProceedCleanupWhenDelegateIsNil:", match.shouldProceedCleanupWhenDelegateIsNil,
         "\n - match.delegate.className:", _className,
+        "\n - match.viewCleanupMode.caseString:", match.viewCleanupMode.caseString,
         "\n - match.viewCleanupMode.triggers:", _triggers,
         "\n - viewsToCleanup.count:", viewsToCleanup.count,
         "\n - cleanableViewItems.count:", cleanableViewItems.count,
