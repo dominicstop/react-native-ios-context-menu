@@ -8,7 +8,6 @@
 import Foundation
 
 
-
 public extension RNIViewCleanupMode {
   
   func shouldAttachToParentController(
@@ -16,8 +15,8 @@ public extension RNIViewCleanupMode {
     associatedViewController viewController: UIViewController?,
     currentWindow window: UIWindow?
   ) -> Bool {
-  
-    guard case let .enabled(triggers) = self else { return false };
+    
+    let triggers = self.triggers;
     
     let didMoveToNilWindow = window == nil;
     let isViewAttachedToViewController = viewController?.view === view;
@@ -33,11 +32,30 @@ public extension RNIViewCleanupMode {
     /// view controller to a view controller managed by
     /// `UINavigationController`...
     ///
-    return (
+    let shouldAttachToParentController =
          !isViewControllerAttachedToParent
       && !didMoveToNilWindow
-      && triggers.contains(.viewControllerLifecycle)
-    );
+      && triggers.contains(.viewControllerLifecycle);
+      
+    #if DEBUG
+    if Self.debugShouldLog {
+      let _triggers = triggers.map { $0.rawValue };
+      print(
+        "RNIViewCleanupMode.shouldAttachToParentController",
+        "\n - self.caseString:", self.caseString,
+        "\n - self.triggers:", _triggers,
+        "\n - view.className:", view?.className ?? "N/A",
+        "\n - viewController.className:", viewController?.className ?? "N/A",
+        "\n - didMoveToNilWindow:", didMoveToNilWindow,
+        "\n - isViewAttachedToViewController:", isViewAttachedToViewController,
+        "\n - isViewControllerAttachedToParent:", isViewControllerAttachedToParent,
+        "\n - shouldAttachToParentController: \(shouldAttachToParentController)",
+        "\n"
+      );
+    };
+    #endif
+    
+    return shouldAttachToParentController;
   };
   
   func shouldTriggerCleanupForDidMoveToWindow(
@@ -46,7 +64,8 @@ public extension RNIViewCleanupMode {
     currentWindow window: UIWindow?
   ) -> Bool {
   
-    guard case let .enabled(triggers) = self else { return false };
+    let triggers = self.triggers;
+    
     let hasWindow = window != nil;
     let hasSuperview = view?.superview != nil;
     
@@ -65,10 +84,29 @@ public extension RNIViewCleanupMode {
     /// Moving to nil window and not attached to parent vc, possible end of
     /// lifecycle for this view...
     ///
-    return (
+    let shouldTriggerCleanup =
          !isViewActive
       && !shouldAttachToParentController
-      && triggers.contains(.didMoveToNilWindow)
-    );
+      && triggers.contains(.didMoveToNilWindow);
+      
+    
+    #if DEBUG
+    if Self.debugShouldLog {
+      let _triggers = triggers.map { $0.rawValue };
+      print(
+        "RNIViewCleanupMode.shouldTriggerCleanupForDidMoveToWindow",
+        "\n - self.caseString:", self.caseString,
+        "\n - self.triggers:", _triggers,
+        "\n - view.className:", view?.className ?? "N/A",
+        "\n - viewController.className:", viewController?.className ?? "N/A",
+        "\n - isViewActive:", isViewActive,
+        "\n - shouldAttachToParentController:", shouldAttachToParentController,
+        "\n - shouldTriggerCleanup:", shouldTriggerCleanup,
+        "\n"
+      );
+    };
+    #endif
+    
+    return shouldTriggerCleanup;
   };
 };

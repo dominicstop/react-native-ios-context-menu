@@ -9,6 +9,9 @@ import Foundation
 import DGSwiftUtilities
 
 public enum RNIViewCleanupMode: EnumCaseStringRepresentable {
+  
+  public static var debugShouldLog = false;
+  
   // MARK: - Static Alias
   // --------------------
 
