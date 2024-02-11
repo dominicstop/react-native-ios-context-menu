@@ -74,7 +74,8 @@ public class RNICleanableViewRegistry {
       key: entry.viewCleanupKey,
       delegate: entry,
       viewsToCleanup: initialViewsToCleanup,
-      shouldProceedCleanupWhenDelegateIsNil: shouldProceedCleanupWhenDelegateIsNil
+      shouldProceedCleanupWhenDelegateIsNil: shouldProceedCleanupWhenDelegateIsNil,
+      viewCleanupMode: entry.viewCleanupMode
     );
   };
   
@@ -194,12 +195,17 @@ public class RNICleanableViewRegistry {
     
     #if DEBUG
     if Self.debugShouldLogCleanup {
+      let _className = (match.delegate as? NSObject)?.className ?? "N/A";
+      let _triggers = match.viewCleanupMode.triggers.map { $0.rawValue; };
+      
       print(
         "RNICleanableViewRegistry.notifyCleanup",
         "\n - forKey:", key,
         "\n - cleanupTrigger:", cleanupTrigger?.rawValue ?? "N/A",
         "\n - match.viewsToCleanup.count:", match.viewsToCleanup.count,
         "\n - match.shouldProceedCleanupWhenDelegateIsNil:", match.shouldProceedCleanupWhenDelegateIsNil,
+        "\n - match.delegate.className:", _className,
+        "\n - match.viewCleanupMode.triggers:", _triggers,
         "\n - viewsToCleanup.count:", viewsToCleanup.count,
         "\n - cleanableViewItems.count:", cleanableViewItems.count,
         "\n"

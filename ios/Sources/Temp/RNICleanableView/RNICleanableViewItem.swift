@@ -16,17 +16,20 @@ public class RNICleanableViewItem {
   public var viewsToCleanup: Array<WeakRef<UIView>>;
   
   public var shouldProceedCleanupWhenDelegateIsNil: Bool;
+  public var viewCleanupMode: RNIViewCleanupMode = .default;
   
   public init(
     key: Int,
     delegate: RNICleanableViewDelegate,
     viewsToCleanup: Array<WeakRef<UIView>>,
-    shouldProceedCleanupWhenDelegateIsNil: Bool
+    shouldProceedCleanupWhenDelegateIsNil: Bool,
+    viewCleanupMode: RNIViewCleanupMode
   ) {
   
     self.key = key;
     self.delegate = delegate;
     self.viewsToCleanup = viewsToCleanup;
     self.shouldProceedCleanupWhenDelegateIsNil = shouldProceedCleanupWhenDelegateIsNil;
+    self.viewCleanupMode = viewCleanupMode;
   };
 };
