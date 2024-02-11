@@ -94,7 +94,8 @@ public class RNICleanableViewRegistry {
   public func notifyCleanup(
     forKey key: Int,
     sender: RNICleanableViewSenderType,
-    shouldForceCleanup: Bool
+    shouldForceCleanup: Bool,
+    cleanupTrigger: RNIViewCleanupTrigger?
   ) throws {
     guard let match = self.getEntry(forKey: key) else { return };
     
@@ -158,7 +159,8 @@ public class RNICleanableViewRegistry {
         try self.notifyCleanup(
           forKey: $0.key,
           sender: sender,
-          shouldForceCleanup: shouldForceCleanup
+          shouldForceCleanup: shouldForceCleanup,
+          cleanupTrigger: cleanupTrigger
         );
         
       } catch {
@@ -195,6 +197,7 @@ public class RNICleanableViewRegistry {
       print(
         "RNICleanableViewRegistry.notifyCleanup",
         "\n - forKey:", key,
+        "\n - cleanupTrigger:", cleanupTrigger?.rawValue ?? "N/A",
         "\n - match.viewsToCleanup.count:", match.viewsToCleanup.count,
         "\n - match.shouldProceedCleanupWhenDelegateIsNil:", match.shouldProceedCleanupWhenDelegateIsNil,
         "\n - viewsToCleanup.count:", viewsToCleanup.count,

@@ -56,7 +56,8 @@ public extension RNICleanableViewDelegate {
       try? RNICleanableViewRegistryShared.notifyCleanup(
         forKey: $0.key,
         sender: .cleanableViewDelegate(self),
-        shouldForceCleanup: true
+        shouldForceCleanup: true,
+        cleanupTrigger: nil
       );
     };
     

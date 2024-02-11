@@ -653,7 +653,8 @@ public class RNIContextMenuView:
     try? RNICleanableViewRegistryShared.notifyCleanup(
       forKey: self.viewCleanupKey,
       sender: .cleanableViewDelegate(self),
-      shouldForceCleanup: false
+      shouldForceCleanup: true,
+      cleanupTrigger: nil
     );
   };
   

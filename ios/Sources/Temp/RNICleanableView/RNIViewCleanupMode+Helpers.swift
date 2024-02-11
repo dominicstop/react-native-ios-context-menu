@@ -134,7 +134,8 @@ public extension RNIViewCleanupMode {
     try RNICleanableViewRegistryShared.notifyCleanup(
       forKey: view.viewCleanupKey,
       sender: .cleanableViewDelegate(view),
-      shouldForceCleanup: shouldForceCleanup
+      shouldForceCleanup: shouldForceCleanup,
+      cleanupTrigger: .didMoveToNilWindow
     );
   };
   
@@ -147,7 +148,8 @@ public extension RNIViewCleanupMode {
     try RNICleanableViewRegistryShared.notifyCleanup(
       forKey: delegate.viewCleanupKey,
       sender: .cleanableViewDelegate(delegate),
-      shouldForceCleanup: shouldForceCleanup
+      shouldForceCleanup: shouldForceCleanup,
+      cleanupTrigger: .viewControllerLifecycle
     );
   };
   
@@ -160,7 +162,8 @@ public extension RNIViewCleanupMode {
     try RNICleanableViewRegistryShared.notifyCleanup(
       forKey: delegate.viewCleanupKey,
       sender: .cleanableViewDelegate(delegate),
-      shouldForceCleanup: shouldForceCleanup
+      shouldForceCleanup: shouldForceCleanup,
+      cleanupTrigger: .reactComponentWillUnmount
     );
   };
 };
