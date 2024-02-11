@@ -13,7 +13,7 @@ export type RNIContextMenuNativeViewBaseProps = {
   // Internal
   // --------
 
-  internalCleanupMode: RNICleanupMode;
+  internalViewCleanupMode: RNICleanupMode;
 
   // Value Props
   // -----------

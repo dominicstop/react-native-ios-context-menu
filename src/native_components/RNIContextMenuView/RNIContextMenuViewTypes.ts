@@ -3,7 +3,7 @@ import { RNIContextMenuNativeViewBaseProps } from './RNIContextMenuNativeViewTyp
 
 
 export type RNIContextMenuViewInheritedProps = Pick<RNIContextMenuNativeViewBaseProps,
-  | 'internalCleanupMode'
+  | 'internalViewCleanupMode'
   | 'menuConfig'
   | 'previewConfig'
   | 'auxiliaryPreviewConfig'

@@ -21,7 +21,7 @@ export type ContextMenuViewInheritedProps = Partial<Pick<RNIContextMenuViewInher
   | 'isContextMenuEnabled'
   | 'isAuxiliaryPreviewEnabled'
   | 'shouldPreventLongPressGestureFromPropagating'
-  | 'internalCleanupMode'
+  | 'internalViewCleanupMode'
 
   // Lifecycle Events
   | 'onMenuWillShow'
