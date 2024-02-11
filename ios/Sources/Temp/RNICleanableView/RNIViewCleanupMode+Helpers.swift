@@ -11,7 +11,7 @@ import Foundation
 public extension RNIViewCleanupMode {
   
   func shouldAttachToParentController(
-    forView view: UIView?,
+    forView view: UIView,
     associatedViewController viewController: UIViewController?,
     currentWindow window: UIWindow?
   ) -> Bool {
@@ -44,7 +44,7 @@ public extension RNIViewCleanupMode {
         "RNIViewCleanupMode.shouldAttachToParentController",
         "\n - self.caseString:", self.caseString,
         "\n - self.triggers:", _triggers,
-        "\n - view.className:", view?.className ?? "N/A",
+        "\n - view.className:", view.className,
         "\n - viewController.className:", viewController?.className ?? "N/A",
         "\n - didMoveToNilWindow:", didMoveToNilWindow,
         "\n - isViewAttachedToViewController:", isViewAttachedToViewController,
@@ -59,7 +59,7 @@ public extension RNIViewCleanupMode {
   };
   
   func shouldTriggerCleanupForDidMoveToWindow(
-    forView view: UIView?,
+    forView view: UIView,
     associatedViewController viewController: UIViewController?,
     currentWindow window: UIWindow?
   ) -> Bool {
@@ -67,7 +67,7 @@ public extension RNIViewCleanupMode {
     let triggers = self.triggers;
     
     let hasWindow = window != nil;
-    let hasSuperview = view?.superview != nil;
+    let hasSuperview = view.superview != nil;
     
     let isViewActive = hasWindow && hasSuperview;
 
@@ -97,7 +97,7 @@ public extension RNIViewCleanupMode {
         "RNIViewCleanupMode.shouldTriggerCleanupForDidMoveToWindow",
         "\n - self.caseString:", self.caseString,
         "\n - self.triggers:", _triggers,
-        "\n - view.className:", view?.className ?? "N/A",
+        "\n - view.className:", view.className,
         "\n - viewController.className:", viewController?.className ?? "N/A",
         "\n - isViewActive:", isViewActive,
         "\n - shouldAttachToParentController:", shouldAttachToParentController,
@@ -108,5 +108,53 @@ public extension RNIViewCleanupMode {
     #endif
     
     return shouldTriggerCleanup;
+  };
+  
+  func triggerCleanupIfNeededForDidMoveToWindow(
+    forView view: UIView & RNICleanableViewDelegate,
+    associatedViewController viewController: UIViewController?,
+    currentWindow window: UIWindow?,
+    shouldForceCleanup: Bool = false
+  ) throws {
+    
+    let shouldTriggerCleanup = self.shouldTriggerCleanupForDidMoveToWindow(
+      forView: view,
+      associatedViewController: viewController,
+      currentWindow: window
+    );
+    
+    guard shouldTriggerCleanup else { return };
+    
+    try RNICleanableViewRegistryShared.notifyCleanup(
+      forKey: view.viewCleanupKey,
+      sender: .cleanableViewDelegate(view),
+      shouldForceCleanup: shouldForceCleanup
+    );
+  };
+  
+  func triggerCleanupIfNeededForViewControllerDidPopEvent(
+    for delegate: RNICleanableViewDelegate,
+    shouldForceCleanup: Bool = false
+  ) throws {
+    guard self.triggers.contains(.viewControllerLifecycle) else { return };
+    
+    try RNICleanableViewRegistryShared.notifyCleanup(
+      forKey: delegate.viewCleanupKey,
+      sender: .cleanableViewDelegate(delegate),
+      shouldForceCleanup: shouldForceCleanup
+    );
+  };
+  
+  func triggerCleanupIfNeededForReactComponentWillUnmountNotification(
+    for delegate: RNICleanableViewDelegate,
+    shouldForceCleanup: Bool = false
+  ) throws {
+    guard self.triggers.contains(.reactComponentWillUnmount) else { return };
+    
+    try RNICleanableViewRegistryShared.notifyCleanup(
+      forKey: delegate.viewCleanupKey,
+      sender: .cleanableViewDelegate(delegate),
+      shouldForceCleanup: shouldForceCleanup
+    );
   };
 };
