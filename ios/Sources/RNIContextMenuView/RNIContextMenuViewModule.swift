@@ -160,8 +160,8 @@ public class RNIContextMenuViewModule: Module {
         $0.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = $1;
       };
       
-      Prop("internalCleanupMode") {
-        $0.internalCleanupModeRaw = $1;
+      Prop("internalViewCleanupMode") {
+        $0.internalViewCleanupModeRaw = $1;
       };
       
       Prop("isAuxiliaryPreviewEnabled") {

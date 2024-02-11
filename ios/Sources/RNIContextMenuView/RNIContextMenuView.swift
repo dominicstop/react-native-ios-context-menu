@@ -120,14 +120,17 @@ public class RNIContextMenuView:
   public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   public var isContextMenuEnabled = true;
   
-  private(set) public var internalCleanupMode: RNICleanupMode = .automatic;
-  public var internalCleanupModeRaw: String? {
+  private(set) public var internalViewCleanupMode: RNIViewCleanupMode = .default;
+  public var internalViewCleanupModeRaw: Dictionary<String, Any>? {
     willSet {
-      guard let rawString = newValue,
-            let cleanupMode = RNICleanupMode(rawValue: rawString)
-      else { return };
+      guard let newValue = newValue,
+            let viewCleanupMode = try? RNIViewCleanupMode(fromDict: newValue)
+      else {
+        self.internalViewCleanupMode = .default;
+        return;
+      };
       
-      self.internalCleanupMode = cleanupMode;
+      self.internalViewCleanupMode = viewCleanupMode;
     }
   };
   
@@ -262,18 +265,6 @@ public class RNIContextMenuView:
        self.previewConfig.previewType == .CUSTOM
     && self.menuCustomPreviewView != nil
   };
-  
-  var cleanupMode: RNICleanupMode {
-    get {
-      switch self.internalCleanupMode {
-        case .automatic:
-          return .reactComponentWillUnmount;
-          
-        default:
-          return self.internalCleanupMode;
-      };
-    }
-  };
 
   // MARK: Init + Lifecycle
   // ----------------------
@@ -343,44 +334,23 @@ public class RNIContextMenuView:
   // ----------------------
   
   public override func didMoveToWindow() {
-    let didMoveToNilWindow = self.window == nil;
-    
-    /// A. Not attached to a parent VC yet
-    /// B. Moving to a non-nil window
-    /// C. attach as "child vc" to "parent vc" enabled
-    ///
-    /// the VC attached to this view is possibly being attached as a child
-    /// view controller to a view controller managed by
-    /// `UINavigationController`...
-    ///
-    let shouldAttachToParentVC =
-         !self.didAttachToParentVC
-      && !didMoveToNilWindow
-      && self.cleanupMode.shouldAttachToParentVC;
-      
-    
-    /// A. Moving to a nil window
-    /// B. Not attached to a parent VC yet
-    /// C. Attach as "child vc" to "parent vc" disabled
-    /// D. Cleanup mode is set to: `didMoveToWindowNil`
-    ///
-    /// Moving to nil window and not attached to parent vc, possible end of
-    /// lifecycle for this view...
-    ///
-    let shouldTriggerCleanup =
-          didMoveToNilWindow
-      && !self.didAttachToParentVC
-      && !self.cleanupMode.shouldAttachToParentVC
-      && self.cleanupMode == .didMoveToWindowNil;
-      
+    let shouldAttachToParentVC = self.internalViewCleanupMode.shouldAttachToParentController(
+      forView: self,
+      associatedViewController: self.viewController,
+      currentWindow: self.window
+    );
       
     if shouldAttachToParentVC {
       // begin setup - attach this view as child vc
       self.attachToParentVC();
     
-    } else if shouldTriggerCleanup {
+    } else {
       // trigger manual cleanup
-      self.cleanup();
+      try? self.internalViewCleanupMode.triggerCleanupIfNeededForDidMoveToWindow(
+        forView: self,
+        associatedViewController: self.viewController,
+        currentWindow: self.window
+      );
     };
   };
   
@@ -527,16 +497,15 @@ public class RNIContextMenuView:
   };
   
   func attachToParentVC(){
-    guard self.cleanupMode.shouldAttachToParentVC,
-          !self.didAttachToParentVC,
-          
-          // find the nearest parent view controller
-          let parentVC = RNIHelpers.getParent(
-            responder: self,
-            type: UIViewController.self
-          )
-    else { return };
+    guard !self.didAttachToParentVC else { return };
+        
+    // find the nearest parent view controller
+    let parentVC = RNIHelpers.getParent(
+      responder: self,
+      type: UIViewController.self
+    );
     
+    guard let parentVC = parentVC else { return };
     self.didAttachToParentVC = true;
     
     let childVC = RNINavigationEventsReportingViewController();
@@ -677,16 +646,6 @@ public class RNIContextMenuView:
     };
   };
   
-  // MARK: - RNINavigationEventsNotifiable
-  // -------------------------------------
-  
-  public func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
-    if self.cleanupMode == .viewController {
-      // trigger cleanup
-      self.cleanup();
-    };
-  };
-  
   // MARK: - RNICleanable
   // --------------------
   
@@ -698,14 +657,20 @@ public class RNIContextMenuView:
     );
   };
   
+  // MARK: - RNINavigationEventsNotifiable
+  // -------------------------------------
+  
+  public func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
+    try? self.internalViewCleanupMode
+      .triggerCleanupIfNeededForViewControllerDidPopEvent(for: self);
+  };
+  
   // MARK: - RNIJSComponentWillUnmountNotifiable
   // -------------------------------------------
   
   public func notifyOnJSComponentWillUnmount(){
-    guard self.cleanupMode == .reactComponentWillUnmount
-    else { return };
-    
-    self.cleanup();
+    try? self.internalViewCleanupMode
+      .triggerCleanupIfNeededForReactComponentWillUnmountNotification(for: self);
   };
   
   // MARK: - RNIMenuElementEventsNotifiable

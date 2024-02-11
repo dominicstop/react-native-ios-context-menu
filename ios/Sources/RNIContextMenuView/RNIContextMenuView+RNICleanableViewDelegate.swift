@@ -21,7 +21,7 @@ extension RNIContextMenuView: RNICleanableViewDelegate {
     guard isViewInactive else { return false };
     
     let shouldTriggerCleanup =
-         self.cleanupMode.shouldEnableCleanup
+         !self.internalViewCleanupMode.isDisabled
       && !self._didTriggerCleanup;
     
     guard shouldTriggerCleanup else { return false };
