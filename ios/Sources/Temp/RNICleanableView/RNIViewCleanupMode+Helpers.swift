@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import React
 
 public extension RNIViewCleanupMode {
   
@@ -40,11 +40,14 @@ public extension RNIViewCleanupMode {
     #if DEBUG
     if Self.debugShouldLog {
       let _triggers = triggers.map { $0.rawValue };
+      let _viewReactTag = (view as? RCTView)?.reactTag?.intValue ?? -1;
+      
       print(
         "RNIViewCleanupMode.shouldAttachToParentController",
         "\n - self.caseString:", self.caseString,
         "\n - self.triggers:", _triggers,
         "\n - view.className:", view.className,
+        "\n - view.reactTag:", _viewReactTag,
         "\n - viewController.className:", viewController?.className ?? "N/A",
         "\n - didMoveToNilWindow:", didMoveToNilWindow,
         "\n - isViewAttachedToViewController:", isViewAttachedToViewController,
@@ -93,11 +96,14 @@ public extension RNIViewCleanupMode {
     #if DEBUG
     if Self.debugShouldLog {
       let _triggers = triggers.map { $0.rawValue };
+      let _viewReactTag = (view as? RCTView)?.reactTag?.intValue ?? -1;
+      
       print(
         "RNIViewCleanupMode.shouldTriggerCleanupForDidMoveToWindow",
         "\n - self.caseString:", self.caseString,
         "\n - self.triggers:", _triggers,
         "\n - view.className:", view.className,
+        "\n - view.reactTag:", _viewReactTag,
         "\n - viewController.className:", viewController?.className ?? "N/A",
         "\n - isViewActive:", isViewActive,
         "\n - shouldAttachToParentController:", shouldAttachToParentController,

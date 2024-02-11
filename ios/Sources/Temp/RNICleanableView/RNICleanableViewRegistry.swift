@@ -70,7 +70,6 @@ public class RNICleanableViewRegistry {
     };
     #endif
     
-  
     self.registry[entry.viewCleanupKey] = .init(
       key: entry.viewCleanupKey,
       delegate: entry,
@@ -170,10 +169,16 @@ public class RNICleanableViewRegistry {
     cleanableViewItems.forEach {
       #if DEBUG
       if Self.debugShouldLogCleanup {
+        let _className = ($0.delegate as? NSObject)?.className ?? "N/A";
+        let _viewReactTag = ($0.delegate as? RCTView)?.reactTag?.intValue ?? -1;
+        
         print(
-          "RNICleanableViewRegistry - Failed to cleanup",
+          "RNICleanableViewRegistry.notifyCleanup",
+          "\n - Failed to cleanup items...",
           "\n - key:", $0.key,
-          "\n - type:", type(of: $0.delegate),
+          "\n - delegate, type:", type(of: $0.delegate),
+          "\n - delegate, className:", _className,
+          "\n - delegate, reactTag:", _viewReactTag,
           "\n - shouldProceedCleanupWhenDelegateIsNil:", $0.shouldProceedCleanupWhenDelegateIsNil,
           "\n - viewsToCleanup.count", $0.viewsToCleanup.count,
           "\n"
@@ -186,15 +191,17 @@ public class RNICleanableViewRegistry {
     };
     
     #if DEBUG
-    print(
-      "RNICleanableViewRegistry.notifyCleanup",
-      "\n - forKey:", key,
-      "\n - match.viewsToCleanup.count:", match.viewsToCleanup.count,
-      "\n - match.shouldProceedCleanupWhenDelegateIsNil:", match.shouldProceedCleanupWhenDelegateIsNil,
-      "\n - viewsToCleanup.count:", viewsToCleanup.count,
-      "\n - cleanableViewItems.count:", cleanableViewItems.count,
-      "\n"
-    );
+    if Self.debugShouldLogCleanup {
+      print(
+        "RNICleanableViewRegistry.notifyCleanup",
+        "\n - forKey:", key,
+        "\n - match.viewsToCleanup.count:", match.viewsToCleanup.count,
+        "\n - match.shouldProceedCleanupWhenDelegateIsNil:", match.shouldProceedCleanupWhenDelegateIsNil,
+        "\n - viewsToCleanup.count:", viewsToCleanup.count,
+        "\n - cleanableViewItems.count:", cleanableViewItems.count,
+        "\n"
+      );
+    };
     #endif
   };
   
@@ -242,13 +249,21 @@ public class RNICleanableViewRegistry {
     
     #if DEBUG
     if Self.debugShouldLogCleanup {
-      let _viewsToCleanupTags = viewsToCleanup.map { $0.reactTag ?? -1 };
       print(
         "RNICleanableViewRegistry._cleanup",
-        "\n - viewsToCleanup.count:", _viewsToCleanupTags.count,
-        "\n - viewsToCleanup:", _viewsToCleanupTags,
+        "\n - viewsToCleanup.count:", viewsToCleanup.count,
         "\n"
       );
+      
+      viewsToCleanup.enumerated().forEach {
+        print(
+          "RNICleanableViewRegistry._cleanup",
+          "\n - item: \($0.offset) of \(viewsToCleanup.count - 1)",
+          "\n - reactTag:", $0.element.reactTag?.intValue ?? -1,
+          "\n - className:", $0.element.className,
+          "\n"
+        );
+      };
     };
     #endif
   };
