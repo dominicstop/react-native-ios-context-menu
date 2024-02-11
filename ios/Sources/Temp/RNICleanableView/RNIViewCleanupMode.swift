@@ -29,6 +29,16 @@ public enum RNIViewCleanupMode: EnumCaseStringRepresentable {
   // MARK: - Computed Properties
   // ---------------------------
   
+  var isDisabled: Bool {
+    switch self {
+      case .disabled:
+        return true;
+        
+      default:
+        return false;
+    };
+  };
+  
   public var triggers: [RNIViewCleanupTrigger] {
     switch self {
       case let .enabled(triggers):
