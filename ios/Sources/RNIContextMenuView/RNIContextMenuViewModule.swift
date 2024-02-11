@@ -80,19 +80,27 @@ public class RNIContextMenuViewModule: Module {
       (reactTag: Int, isManuallyTriggered: Bool, promise: Promise) in
       
       DispatchQueue.main.async {
-        let contextMenuView = try? RNIModuleHelpers.getView(
-          withErrorType: RNIContextMenuError.self,
-          forNode: reactTag,
-          type: RNIContextMenuView.self
-        );
-        
-        guard let contextMenuView = contextMenuView else {
+        defer {
           promise.resolve();
-          return;
         };
         
-        contextMenuView.notifyOnJSComponentWillUnmount();
-        promise.resolve();
+        let entry = RNICleanableViewRegistryShared.getEntry(forKey: reactTag);
+        guard let entry = entry else { return };
+        
+        let shouldTriggerCleanup =
+          entry.viewCleanupMode.triggers.contains(.reactComponentWillUnmount);
+          
+        guard shouldTriggerCleanup else { return };
+        
+        try? RNICleanableViewRegistryShared.notifyCleanup(
+          forKey: reactTag,
+          sender: .reactModule(
+            reactTag: reactTag,
+            commandArguments: [:]
+          ),
+          shouldForceCleanup: false,
+          cleanupTrigger: .reactComponentWillUnmount
+        );
       };
     };
     

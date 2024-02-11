@@ -14,8 +14,7 @@ import ContextMenuAuxiliaryPreview
 
 public class RNIContextMenuView:
   ExpoView, RNINavigationEventsNotifiable, RNICleanable,
-  RNIJSComponentWillUnmountNotifiable, RNIMenuElementEventsNotifiable,
-  ContextMenuManagerDelegate {
+  RNIMenuElementEventsNotifiable, ContextMenuManagerDelegate {
 
   // MARK: - Embedded Types
   // ----------------------
@@ -671,14 +670,6 @@ public class RNIContextMenuView:
   public func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
     try? self.viewCleanupMode
       .triggerCleanupIfNeededForViewControllerDidPopEvent(for: self);
-  };
-  
-  // MARK: - RNIJSComponentWillUnmountNotifiable
-  // -------------------------------------------
-  
-  public func notifyOnJSComponentWillUnmount(){
-    try? self.viewCleanupMode
-      .triggerCleanupIfNeededForReactComponentWillUnmountNotification(for: self);
   };
   
   // MARK: - RNIMenuElementEventsNotifiable
