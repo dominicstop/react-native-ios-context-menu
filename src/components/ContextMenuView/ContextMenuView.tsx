@@ -65,7 +65,7 @@ export class ContextMenuView extends
       shouldPreventLongPressGestureFromPropagating,
 
       // internal
-      internalCleanupMode,
+      internalViewCleanupMode,
       debugShouldEnableLogging,
 
       // event props
@@ -109,8 +109,8 @@ export class ContextMenuView extends
       isAuxiliaryPreviewEnabled: (
         isAuxiliaryPreviewEnabled ?? true
       ),
-      internalCleanupMode: (
-        internalCleanupMode ?? 'automatic'
+      internalViewCleanupMode: (
+        internalViewCleanupMode ?? { mode: 'default' }
       ),
       isContextMenuEnabled: (
         isContextMenuEnabled ?? true
@@ -386,7 +386,7 @@ export class ContextMenuView extends
           menuConfig={props.menuConfig}
           previewConfig={props.previewConfig}
           auxiliaryPreviewConfig={props.auxiliaryPreviewConfig}
-          internalCleanupMode={props.internalCleanupMode}
+          internalViewCleanupMode={props.internalViewCleanupMode}
           isContextMenuEnabled={props.isContextMenuEnabled}
           shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle={props.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle}
           isAuxiliaryPreviewEnabled={props.isAuxiliaryPreviewEnabled}
