@@ -99,22 +99,29 @@ public class RNIContextMenuButtonModule: Module {
       (reactTag: Int, isManuallyTriggered: Bool, promise: Promise) in
       
       DispatchQueue.main.async {
-        do {
-          let contextMenuButton = try RNIModuleHelpers.getView(
-            withErrorType: RNIContextMenuError.self,
-            forNode: reactTag,
-            type: RNIContextMenuButton.self
-          );
-          
-          contextMenuButton.notifyOnJSComponentWillUnmount();
+        defer {
           promise.resolve();
-        
-        } catch let error {
-          promise.reject(error);
         };
-      }
+        
+        let entry = RNICleanableViewRegistryShared.getEntry(forKey: reactTag);
+        guard let entry = entry else { return };
+        
+        let shouldTriggerCleanup =
+          entry.viewCleanupMode.triggers.contains(.reactComponentWillUnmount);
+          
+        guard shouldTriggerCleanup else { return };
+        
+        try? RNICleanableViewRegistryShared.notifyCleanup(
+          forKey: reactTag,
+          sender: .reactModule(
+            reactTag: reactTag,
+            commandArguments: [:]
+          ),
+          shouldForceCleanup: false,
+          cleanupTrigger: .reactComponentWillUnmount
+        );
+      };
     };
-
     View(RNIContextMenuButton.self) {
       Events("onMenuWillShow");
       Events("onMenuWillHide");
@@ -137,8 +144,8 @@ public class RNIContextMenuButtonModule: Module {
         $0.isContextMenuEnabled = $1;
       };
       
-      Prop("internalCleanupMode") {
-        $0.internalCleanupModeRaw = $1;
+      Prop("internalViewCleanupMode") {
+        $0.internalViewCleanupModeRaw = $1;
       };
     };
   };

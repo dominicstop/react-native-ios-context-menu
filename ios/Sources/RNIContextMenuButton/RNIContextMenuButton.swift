@@ -14,14 +14,14 @@ import ContextMenuAuxiliaryPreview
 
 public class RNIContextMenuButton:
   ExpoView, RNIMenuElementEventsNotifiable, UIGestureRecognizerDelegate,
-  RNINavigationEventsNotifiable, RNICleanable, RNIJSComponentWillUnmountNotifiable {
+  RNINavigationEventsNotifiable, RNICleanable {
 
   // MARK: - Properties
   // ------------------
   
   var button: UIButton!;
 
-  private var deferredElementCompletionMap:
+  var _deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
     
   weak var viewController: RNINavigationEventsReportingViewController?;
@@ -32,10 +32,10 @@ public class RNIContextMenuButton:
   var isContextMenuVisible = false;
   var didPressMenuItem = false;
   
-  private var didTriggerCleanup = false;
+  var _didTriggerCleanup = false;
   
   /// Whether or not the current view was successfully added as child VC
-  private var didAttachToParentVC = false;
+  var _didAttachToParentVC = false;
   
   // MARK: - Properties - Props
   // --------------------------
@@ -52,7 +52,7 @@ public class RNIContextMenuButton:
       self.menuConfig = rootMenuConfig;
       rootMenuConfig.delegate = self;
       
-      // cleanup `deferredElementCompletionMap`
+      // cleanup `_deferredElementCompletionMap`
       self.cleanupOrphanedDeferredElements(currentMenuConfig: rootMenuConfig);
       self.updateContextMenu(with: rootMenuConfig);
     }
@@ -78,14 +78,24 @@ public class RNIContextMenuButton:
     }
   };
   
-  private(set) public var internalCleanupMode: RNICleanupMode = .automatic;
-  public var internalCleanupModeRaw: String? {
+  private(set) public var viewCleanupMode: RNIViewCleanupMode = .default;
+  public var internalViewCleanupModeRaw: Dictionary<String, Any>? {
     willSet {
-      guard let newValue = newValue,
-            let cleanupMode = RNICleanupMode(rawValue: newValue)
-      else { return };
+      let nextValue: RNIViewCleanupMode = {
+        guard let newValue = newValue,
+              let viewCleanupMode = try? RNIViewCleanupMode(fromDict: newValue)
+        else {
+          return .default;
+        };
+        
+        return viewCleanupMode;
+      }();
       
-      self.internalCleanupMode = cleanupMode;
+      self.viewCleanupMode = nextValue;
+      
+      if let cleanableViewItem = self.associatedCleanableViewItem {
+        cleanableViewItem.viewCleanupMode = nextValue;
+      };
     }
   };
   
@@ -105,26 +115,6 @@ public class RNIContextMenuButton:
   public var onRequestDeferredElement =
     EventDispatcher("onRequestDeferredElement");
     
-  // MARK: - Computed Properties
-  // ---------------------------
-  
-  private var shouldEnableAttachToParentVC: Bool {
-    self.cleanupMode == .viewController
-  };
-  
-  private var shouldEnableCleanup: Bool {
-    self.cleanupMode != .disabled
-  };
-  
-  var cleanupMode: RNICleanupMode {
-    get {
-      switch self.internalCleanupMode {
-        case .automatic: return .reactComponentWillUnmount;
-        default: return self.internalCleanupMode;
-      };
-    }
-  };
-  
   // MARK: Init + Lifecycle
   // ----------------------
   
@@ -139,51 +129,38 @@ public class RNIContextMenuButton:
     fatalError("init(coder:) has not been implemented");
   };
   
-  
   public override func reactSetFrame(_ frame: CGRect) {
     super.reactSetFrame(frame);
+  };
+  
+  deinit {
+    try? self.viewCleanupMode.triggerCleanupIfNeededForDeinit(
+      for: self,
+      shouldForceCleanup: true
+    );
   };
   
   // MARK: - View Lifecycle
   // ----------------------
   
   public override func didMoveToWindow() {
-    let didMoveToNilWindow = self.window == nil;
-    
-    /// A. Not attached to a parent VC yet
-    /// B. Moving to a non-nil window
-    /// C. attach as "child vc" to "parent vc" enabled
-    ///
-    /// the VC attached to this view is possibly being attached as a child
-    /// view controller to a view controller managed by
-    /// `UINavigationController`...
-    ///
-    let shouldAttachToParentVC =
-         !self.didAttachToParentVC
-      && !didMoveToNilWindow
-      && self.cleanupMode.shouldAttachToParentVC;
-    
-    /// A. Moving to a nil window
-    /// B. Not attached to a parent VC yet
-    /// C. Attach as "child vc" to "parent vc" disabled
-    /// D. Cleanup mode is set to: `didMoveToWindowNil`
-    ///
-    /// Moving to nil window and not attached to parent vc, possible end of
-    /// lifecycle for this view...
-    ///
-    let shouldTriggerCleanup =
-          didMoveToNilWindow
-      && !self.didAttachToParentVC
-      && !self.cleanupMode.shouldAttachToParentVC
-      && self.cleanupMode == .didMoveToWindowNil;
-  
+    let shouldAttachToParentVC = self.viewCleanupMode.shouldAttachToParentController(
+      forView: self,
+      associatedViewController: self.viewController,
+      currentWindow: self.window
+    );
+      
     if shouldAttachToParentVC {
       // begin setup - attach this view as child vc
       self.attachToParentVC();
     
-    } else if shouldTriggerCleanup {
+    } else {
       // trigger manual cleanup
-      self.cleanup();
+      try? self.viewCleanupMode.triggerCleanupIfNeededForDidMoveToWindow(
+        forView: self,
+        associatedViewController: self.viewController,
+        currentWindow: self.window
+      );
     };
   };
   
@@ -278,7 +255,7 @@ public class RNIContextMenuButton:
     completion: @escaping RNIDeferredMenuElement.CompletionHandler
   ){
     // register completion handler
-    self.deferredElementCompletionMap[deferredID] = completion;
+    self._deferredElementCompletionMap[deferredID] = completion;
     
     // notify js that a deferred element needs to be loaded
     self.onRequestDeferredElement.callAsFunction([
@@ -287,7 +264,7 @@ public class RNIContextMenuButton:
   };
   
   func cleanupOrphanedDeferredElements(currentMenuConfig: RNIMenuItem) {
-    guard self.deferredElementCompletionMap.count > 0
+    guard self._deferredElementCompletionMap.count > 0
     else { return };
     
     let currentDeferredElements = RNIMenuElement.recursivelyGetAllElements(
@@ -296,7 +273,7 @@ public class RNIContextMenuButton:
     );
       
     // get the deferred elements that are not in the new config
-    let orphanedKeys = self.deferredElementCompletionMap.keys.filter { deferredID in
+    let orphanedKeys = self._deferredElementCompletionMap.keys.filter { deferredID in
       !currentDeferredElements.contains {
         $0.deferredID == deferredID
       };
@@ -304,22 +281,21 @@ public class RNIContextMenuButton:
     
     // cleanup
     orphanedKeys.forEach {
-      self.deferredElementCompletionMap.removeValue(forKey: $0);
+      self._deferredElementCompletionMap.removeValue(forKey: $0);
     };
   };
   
   func attachToParentVC(){
-    guard self.shouldEnableAttachToParentVC,
-          !self.didAttachToParentVC,
-          
-          // find the nearest parent view controller
-          let parentVC = RNIHelpers.getParent(
-            responder: self,
-            type: UIViewController.self
-          )
-    else { return };
+    guard !self._didAttachToParentVC else { return };
+        
+    // find the nearest parent view controller
+    let parentVC = RNIHelpers.getParent(
+      responder: self,
+      type: UIViewController.self
+    );
     
-    self.didAttachToParentVC = true;
+    guard let parentVC = parentVC else { return };
+    self._didAttachToParentVC = true;
     
     let childVC = RNINavigationEventsReportingViewController();
     childVC.view = self;
@@ -332,13 +308,14 @@ public class RNIContextMenuButton:
     childVC.didMove(toParent: parentVC);
   };
   
-  func detachFromParentVC(){
-    guard !self.didAttachToParentVC,
+  func detachFromParentVCIfAny(){
+    guard !self._didAttachToParentVC,
           let childVC = self.viewController
     else { return };
     
     childVC.willMove(toParent: nil);
     childVC.removeFromParent();
+    childVC.view.removeFromSuperview();
   };
   
   // MARK: - Functions - View Module Commands
@@ -408,7 +385,7 @@ public class RNIContextMenuButton:
     menuElements rawMenuElements: [RNIMenuElement]
   ) throws {
   
-    guard let completionHandler = self.deferredElementCompletionMap[deferredID]
+    guard let completionHandler = self._deferredElementCompletionMap[deferredID]
     else {
       throw RNIContextMenuError(
         description: "No matching deferred completion handler found for deferredID",
@@ -432,7 +409,7 @@ public class RNIContextMenuButton:
     completionHandler(menuElements);
   
     // cleanup
-    self.deferredElementCompletionMap.removeValue(forKey: deferredID);
+    self._deferredElementCompletionMap.removeValue(forKey: deferredID);
   };
   
   // MARK: - RNIMenuElementEventsNotifiable
@@ -456,39 +433,22 @@ public class RNIContextMenuButton:
   // MARK: - RNINavigationEventsNotifiable
   // -------------------------------------
   
-  public func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
-    if self.cleanupMode == .viewController {
-      // trigger cleanup
-      self.cleanup();
-    };
+  public func notifyViewControllerDidPop(
+    sender: RNINavigationEventsReportingViewController
+  ) {
+    try? self.viewCleanupMode
+      .triggerCleanupIfNeededForViewControllerDidPopEvent(for: self);
   };
   
   // MARK: - RNICleanable
   // --------------------
   
   public func cleanup(){
-    guard #available(iOS 14.0, *),
-          self.shouldEnableCleanup,
-          !self.didTriggerCleanup
-    else { return };
-    
-    self.didTriggerCleanup = true;
-    
-    self.button.contextMenuInteraction?.dismissMenu();
-    self.detachFromParentVC();
-    
-    #if DEBUG
-    NotificationCenter.default.removeObserver(self);
-    #endif
-  };
-  
-  // MARK: - RNIJSComponentWillUnmountNotifiable
-  // -------------------------------------------
-  
-  public func notifyOnJSComponentWillUnmount(){
-    guard self.cleanupMode == .reactComponentWillUnmount
-    else { return };
-    
-    self.cleanup();
+    try? RNICleanableViewRegistryShared.notifyCleanup(
+      forKey: self.viewCleanupKey,
+      sender: .cleanableViewDelegate(self),
+      shouldForceCleanup: true,
+      cleanupTrigger: nil
+    );
   };
 };
