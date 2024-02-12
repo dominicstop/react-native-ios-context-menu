@@ -670,7 +670,9 @@ public class RNIContextMenuView:
   // MARK: - RNINavigationEventsNotifiable
   // -------------------------------------
   
-  public func notifyViewControllerDidPop(sender: RNINavigationEventsReportingViewController) {
+  public func notifyViewControllerDidPop(
+    sender: RNINavigationEventsReportingViewController
+  ) {
     try? self.viewCleanupMode
       .triggerCleanupIfNeededForViewControllerDidPopEvent(for: self);
   };
