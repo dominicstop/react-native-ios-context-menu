@@ -6,7 +6,7 @@ import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMe
 import type { MenuConfig } from '../../types/MenuConfig';
 import type { MenuPreviewConfig } from '../../types/MenuPreviewConfig';
 import type { AuxiliaryPreviewConfigBackwardsCompatible } from '../../types/AuxiliaryPreviewConfigBackwardsCompatible';
-import { RNIViewCleanupMode } from '../../temp/RNIViewCleanupMode';
+import type { RNIViewCleanupMode } from '../../temp/RNIViewCleanupMode';
 
 
 export type RNIContextMenuNativeViewBaseProps = {

@@ -39,7 +39,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       isContextMenuEnabled,
       isMenuPrimaryAction,
       useActionSheetFallback,
-      internalCleanupMode,
+      internalViewCleanupMode,
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -59,8 +59,8 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       useActionSheetFallback: (
         useActionSheetFallback ?? !LIB_ENV.isContextMenuViewSupported
       ),
-      internalCleanupMode: (
-        internalCleanupMode ?? 'automatic'
+      internalViewCleanupMode: (
+        internalViewCleanupMode ?? { mode: 'default' }
       ),
       isMenuPrimaryAction: (
         isMenuPrimaryAction ?? true
@@ -212,7 +212,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
       menuConfig: props.menuConfig,
       isContextMenuEnabled: props.isContextMenuEnabled,
       isMenuPrimaryAction: props.isMenuPrimaryAction,
-      internalCleanupMode: props.internalCleanupMode,
+      internalViewCleanupMode: props.internalViewCleanupMode,
 
       // event handlers
       onMenuWillShow: this._handleOnMenuWillShow,

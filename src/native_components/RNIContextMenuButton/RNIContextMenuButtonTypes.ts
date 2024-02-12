@@ -6,7 +6,7 @@ import type { RNIContextMenuNativeButtonBaseProps  } from "./RNIContextMenuNativ
 export type RNIContextMenuButtonBaseProps = Pick<RNIContextMenuNativeButtonBaseProps,
   | 'menuConfig'
   | 'isContextMenuEnabled'
-  | 'internalCleanupMode'
+  | 'internalViewCleanupMode'
   | 'isMenuPrimaryAction'
   | 'onMenuWillShow'
   | 'onMenuDidShow'

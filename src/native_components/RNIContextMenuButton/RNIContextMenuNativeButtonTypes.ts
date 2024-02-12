@@ -5,7 +5,7 @@ import type { RNIContextMenuNativeViewBaseProps } from "../RNIContextMenuView/RN
 type InheritedProps = Pick<RNIContextMenuNativeViewBaseProps,
   | 'menuConfig'
   | 'isContextMenuEnabled'
-  | 'internalCleanupMode'
+  | 'internalViewCleanupMode'
   | 'onMenuWillShow'
   | 'onMenuDidShow'
   | 'onMenuWillHide'
