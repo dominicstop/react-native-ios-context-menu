@@ -1,12 +1,11 @@
 import { ViewProps } from 'react-native';
-import type { RNICleanupMode } from 'react-native-ios-utilities';
+import type { RNIViewCleanupMode } from 'react-native-ios-utilities';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent, OnRequestDeferredElementEvent } from '../../types/MenuEvents';
 
 import type { MenuConfig } from '../../types/MenuConfig';
 import type { MenuPreviewConfig } from '../../types/MenuPreviewConfig';
 import type { AuxiliaryPreviewConfigBackwardsCompatible } from '../../types/AuxiliaryPreviewConfigBackwardsCompatible';
-import type { RNIViewCleanupMode } from '../../temp/RNIViewCleanupMode';
 
 
 export type RNIContextMenuNativeViewBaseProps = {
