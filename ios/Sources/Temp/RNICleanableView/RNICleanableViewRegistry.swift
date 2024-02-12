@@ -169,7 +169,7 @@ public class RNICleanableViewRegistry {
       };
     };
     
-    cleanableViewItems.forEach {
+    failedToCleanupItems.forEach {
       #if DEBUG
       if Self.debugShouldLogCleanup {
         let _className = ($0.delegate as? NSObject)?.className ?? "N/A";
