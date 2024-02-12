@@ -166,4 +166,18 @@ public extension RNIViewCleanupMode {
       cleanupTrigger: .reactComponentWillUnmount
     );
   };
+  
+  func triggerCleanupIfNeededForDeinit(
+    for delegate: RNICleanableViewDelegate,
+    shouldForceCleanup: Bool = false
+  ) throws {
+    guard self.triggers.contains(.instanceDeinit) else { return };
+    
+    try RNICleanableViewRegistryShared.notifyCleanup(
+      forKey: delegate.viewCleanupKey,
+      sender: .cleanableViewDelegate(delegate),
+      shouldForceCleanup: shouldForceCleanup,
+      cleanupTrigger: .instanceDeinit
+    );
+  };
 };

@@ -288,7 +288,10 @@ public class RNIContextMenuView:
   };
   
   deinit {
-    self.cleanup();
+    try? self.viewCleanupMode.triggerCleanupIfNeededForDeinit(
+      for: self,
+      shouldForceCleanup: true
+    );
   };
   
   // MARK: - RN Lifecycle
@@ -301,16 +304,16 @@ public class RNIContextMenuView:
   public override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
     super.insertSubview(subview, at: atIndex);
     
+    if let cleanableViewItem = self.associatedCleanableViewItem {
+      cleanableViewItem.viewsToCleanup.append(
+        .init(with: subview)
+      );
+    };
+    
     guard let detachedView = subview as? RNIDetachedView,
           let nativeID = detachedView.nativeID,
           let nativeIDKey = NativeIDKey(rawValue: nativeID)
     else { return };
-    
-    if let cleanableViewItem = self.associatedCleanableViewItem {
-      cleanableViewItem.viewsToCleanup.append(
-        .init(with: detachedView)
-      );
-    };
     
     switch nativeIDKey {
         case .contextMenuPreview:
