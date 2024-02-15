@@ -46,6 +46,7 @@ export function MessageBubble(props: Props){
           styles.contextMenuStyle,
           contextMenuStyle,
         ]}
+        shouldPreventLongPressGestureFromPropagating={true}
         menuConfig={{
           menuTitle: '',
           menuItems: [{

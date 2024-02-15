@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, ViewStyle, View, Text } from 'react-native';
+import { StyleSheet, ViewStyle, View, Text, Pressable } from 'react-native';
 
 import Animated from 'react-native-reanimated';
 import { useSharedValue, withSpring, useAnimatedStyle } from 'react-native-reanimated';
@@ -27,16 +27,17 @@ export function MessageBubbleAuxPreview(props: Props){
 
   return (
     <View style={styles.rootContainer}>
-      <Animated.Text
-        style={animatedStyles}
+      <Pressable
         onPress={() => {
           const scaleValue = shouldScale ? 0.75 : 1;
           setShouldScale(prevValue => !prevValue);
           scale.value = withSpring(scaleValue);
         }}
       >
-        {'Hello World, Lorum ipsum sit amit dolor'}
-      </Animated.Text>
+        <Animated.Text style={animatedStyles}>
+          {'Hello World, Lorum ipsum sit amit dolor'}
+        </Animated.Text>
+      </Pressable>
     </View>
   );
 };

@@ -1,10 +1,26 @@
 import * as React from 'react';
-import { StyleSheet, Text, ScrollView } from 'react-native';
+import { StyleSheet, Text, ScrollView, Pressable, Alert } from 'react-native';
 
 import { MessageBubble } from './MessageBubble';
 
 import { ContextMenuCard } from '../../components/ContextMenuCard';
 import { CardButton } from '../../components/Card/CardButton';
+
+function MessageContent(props: {
+  message: string;
+}){
+  return (
+    <Pressable
+      onPress={() => {
+        Alert.alert("Pressable.onPress");
+      }}
+    >
+      <Text style={styles.messageText}>
+        {props.message}
+      </Text>
+    </Pressable>
+  );
+};
 
 export const Test07Screen = () => {
   const [
@@ -33,19 +49,15 @@ export const Test07Screen = () => {
       </ContextMenuCard>
       {shouldMountMessageBubbles && (
         <React.Fragment>
-          <MessageBubble
-            isMe={false}
-          >
-            <Text style={styles.messageText}>
-              {'Hello World'}
-            </Text>
+          <MessageBubble isMe={false}>
+            <MessageContent
+              message={'Hello World #1'}
+            />
           </MessageBubble>
-          <MessageBubble
-            isMe={true}
-          >
-            <Text style={styles.messageText}>
-              {'Hello World'}
-            </Text>
+          <MessageBubble isMe={true}>
+            <MessageContent
+              message={'Hello World #2'}
+            />
           </MessageBubble>
         </React.Fragment>
       )}
