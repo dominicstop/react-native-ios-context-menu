@@ -7,6 +7,7 @@ import { MessageBubbleAuxPreview } from './MessageBubbleAuxPreview';
 import Animated from 'react-native-reanimated';
 import { FadeIn, FadeOut } from 'react-native-reanimated';
 
+
 type BaseProps = {
   isMe: boolean;
   style?: ViewStyle;
@@ -16,28 +17,34 @@ type Props =
   BaseProps & React.PropsWithChildren 
 
 export function MessageBubble(props: Props){
-
   const rootContainerStyle: ViewStyle = {
-    backgroundColor: (props.isMe
-      ? 'rgb(255,227,227)'
-      : 'rgb(227,230,255)'
-    ),
     alignSelf: (props.isMe
       ? 'flex-start'
       : 'flex-end'
     ),
   };
 
+  const contextMenuStyle: ViewStyle = {
+    backgroundColor: (props.isMe
+      ? 'rgb(255,227,227)'
+      : 'rgb(227,230,255)'
+    ),
+  };
+
   return (
     <Animated.View 
+      style={[
+        styles.rootContainer,
+        rootContainerStyle,
+        props.style
+      ]}
       entering={FadeIn} 
       exiting={FadeOut}
     >
       <ContextMenuView 
         style={[
-          styles.rootContainer,
-          rootContainerStyle,
-          props.style
+          styles.contextMenuStyle,
+          contextMenuStyle,
         ]}
         menuConfig={{
           menuTitle: '',
@@ -94,6 +101,8 @@ export function MessageBubble(props: Props){
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 0,
+  },
+  contextMenuStyle: {
     borderRadius: 10,
     overflow: 'hidden',
     paddingHorizontal: 10,
