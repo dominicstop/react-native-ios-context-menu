@@ -4,7 +4,7 @@ PODS:
     - DGSwiftUtilities (~> 0.11)
   - ContextMenuAuxiliaryPreview (0.4.0):
     - DGSwiftUtilities (~> 0.13)
-  - DGSwiftUtilities (0.13.0)
+  - DGSwiftUtilities (0.16.0)
   - DoubleConversion (1.1.6)
   - EXApplication (5.3.1):
     - ExpoModulesCore
@@ -450,17 +450,49 @@ PODS:
     - React-jsi (= 0.72.5)
     - React-logger (= 0.72.5)
     - React-perflogger (= 0.72.5)
-  - ReactNativeIosContextMenu (2.4.1):
+  - ReactNativeIosContextMenu (2.4.2):
     - ContextMenuAuxiliaryPreview (~> 0.3)
     - DGSwiftUtilities
     - ExpoModulesCore
     - ReactNativeIosUtilities
-  - ReactNativeIosUtilities (4.3.0):
+  - ReactNativeIosUtilities (4.3.2):
     - ComputableLayout (~> 0.7)
     - DGSwiftUtilities (~> 0.12)
     - ExpoModulesCore
   - RNFlashList (1.6.1):
     - React-Core
+  - RNGestureHandler (2.15.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
+  - RNReanimated (3.3.0):
+    - DoubleConversion
+    - FBLazyVector
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTAppDelegate
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNScreens (3.25.0):
     - React-Core
     - React-RCTImage
@@ -519,6 +551,8 @@ DEPENDENCIES:
   - ReactNativeIosContextMenu (from `../..`)
   - ReactNativeIosUtilities (from `../node_modules/react-native-ios-utilities`)
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -631,6 +665,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-ios-utilities"
   RNFlashList:
     :path: "../node_modules/@shopify/flash-list"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -640,7 +678,7 @@ SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   ComputableLayout: c50faffac4ed9f8f05b0ce5e6f3a60df1f6042c8
   ContextMenuAuxiliaryPreview: 484e47f66bcb9ffe485b5e7e34cc968ff3218a9f
-  DGSwiftUtilities: f33e14c36a0e3fb2805d760c8ce4c2baba95d747
+  DGSwiftUtilities: 9c7751dfc0533acc226ad7e8f0c0f7d77f9b1f24
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   EXApplication: 042aa2e3f05258a16962ea1a9914bf288db9c9a1
   EXConstants: ce5bbea779da8031ac818c36bea41b10e14d04e1
@@ -688,9 +726,11 @@ SPEC CHECKSUMS:
   React-runtimescheduler: cc32add98c45c5df18436a6a52a7e1f6edec102c
   React-utils: 7a9918a1ffdd39aba67835d42386f592ea3f8e76
   ReactCommon: 91ece8350ebb3dd2be9cef662abd78b6948233c0
-  ReactNativeIosContextMenu: fab2959e6cfae5a9af227072ba0544f658c6892d
-  ReactNativeIosUtilities: ad0bcb8526a3df32ca82930a119eda4916b31a55
+  ReactNativeIosContextMenu: 37025437c0fc17809d8c4beddef599a4fa6c7b6f
+  ReactNativeIosUtilities: 89ba6339063669b7006a5b98adc0681bbc198ef3
   RNFlashList: 236646d48f224a034f35baa0242e1b77db063b1e
+  RNGestureHandler: 7909c50383a18f0cb10ce1db7262b9a6da504c03
+  RNReanimated: 9f7068e43b9358a46a688d94a5a3adb258139457
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 86fed2e4d425ee4c6eab3813ba1791101ee153c6
