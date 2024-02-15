@@ -700,14 +700,7 @@ public class RNIContextMenuView:
     if let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView {
       menuAuxiliaryPreviewView.cleanup();
     };
-    
-    if let bridge = self.appContext?.reactBridge {
-      RNIHelpers.recursivelyRemoveFromViewRegistry(
-        forReactView: self,
-        usingReactBridge: bridge
-      );
-    };
-    
+
     self.detachedViews.forEach {
       $0.ref?.cleanup();
     };
