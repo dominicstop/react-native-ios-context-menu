@@ -21,3 +21,7 @@ export * from './types/MenuConfig';
 export * from './types/MenuPreviewConfig';
 export * from './types/MenuIconConfig';
 export * from './types/MenuEvents';
+
+// re-export image-config related types from 
+// `react-native-ios-utilities` for convenience...
+export { ImageGradientConfig, ImageItemConfig, ImageLoadingConfig, ImageOptions, ImageRectConfig, ImageSystemConfig } from 'react-native-ios-utilities';
