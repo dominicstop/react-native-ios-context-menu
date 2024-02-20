@@ -5,6 +5,7 @@ PODS:
   - ContextMenuAuxiliaryPreview (0.4.0):
     - DGSwiftUtilities (~> 0.13)
   - DGSwiftUtilities (0.16.0)
+  - DGSwiftUtilities (0.16.0)
   - DoubleConversion (1.1.6)
   - EXApplication (5.3.1):
     - ExpoModulesCore
@@ -461,6 +462,38 @@ PODS:
     - ExpoModulesCore
   - RNFlashList (1.6.1):
     - React-Core
+  - RNGestureHandler (2.15.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
+  - RNReanimated (3.3.0):
+    - DoubleConversion
+    - FBLazyVector
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTAppDelegate
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNScreens (3.25.0):
     - React-Core
     - React-RCTImage
@@ -519,6 +552,8 @@ DEPENDENCIES:
   - ReactNativeIosContextMenu (from `../..`)
   - ReactNativeIosUtilities (from `../node_modules/react-native-ios-utilities`)
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -631,6 +666,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-ios-utilities"
   RNFlashList:
     :path: "../node_modules/@shopify/flash-list"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -691,6 +730,8 @@ SPEC CHECKSUMS:
   ReactNativeIosContextMenu: 1f3b5ee5b9bb8e585f22c58085246535d21aca42
   ReactNativeIosUtilities: 57a484a4f4bf2515b43bd68cb760aefe65384a73
   RNFlashList: 236646d48f224a034f35baa0242e1b77db063b1e
+  RNGestureHandler: 7909c50383a18f0cb10ce1db7262b9a6da504c03
+  RNReanimated: 9f7068e43b9358a46a688d94a5a3adb258139457
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 86fed2e4d425ee4c6eab3813ba1791101ee153c6

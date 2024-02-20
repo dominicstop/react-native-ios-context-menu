@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import type { ImageItemConfig } from 'react-native-ios-utilities';
 import { ContextMenuView, MenuActionConfig, MenuConfig, MenuElementConfig } from 'react-native-ios-context-menu';
 
 import type { ContextMenuExampleProps } from './SharedExampleTypes';
@@ -7,7 +8,6 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 
 import * as Helpers from '../functions/Helpers';
 import * as Colors  from '../constants/Colors';
-import type { ImageItemConfig } from 'src/types/ImageItemConfig';
 
 
 type MenuConfigKeys = 

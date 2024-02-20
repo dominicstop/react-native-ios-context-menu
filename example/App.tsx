@@ -12,6 +12,8 @@ import { Test03Screen } from './src/screens/Test03Screen';
 import { Test04Screen } from './src/screens/Test04Screen';
 import { Test05Screen } from './src/screens/Test05Screen';
 import { Test06Screen } from './src/screens/Test06Screen';
+import { Test07Screen } from './src/screens/Test07Screen';
+
 
 import { SHARED_ENV } from './src/constants/SharedEnv';
 import { View } from 'react-native';
@@ -99,6 +101,10 @@ export default function App() {
           <Stack.Screen 
             name="Test06" 
             component={Test06Screen}
+          />
+          <Stack.Screen
+            name="Test07"
+            component={Test07Screen}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -1,5 +1,6 @@
-import type { ImageItemConfig } from "./ImageItemConfig";
+import type { ImageItemConfig } from "react-native-ios-utilities";
 import type { IconConfig } from "./MenuIconConfig";
+
 
 /** Maps to `UIMenu.Options` */
 // TODO: Next Major Version - Once `Enums.ts` is removed, rename back to `MenuOptions` 
