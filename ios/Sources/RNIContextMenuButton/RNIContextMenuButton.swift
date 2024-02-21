@@ -444,8 +444,10 @@ public class RNIContextMenuButton:
   // --------------------
   
   public func cleanup(){
+    guard let viewCleanupKey = self.viewCleanupKey else { return };
+    
     try? RNICleanableViewRegistryShared.notifyCleanup(
-      forKey: self.viewCleanupKey,
+      forKey: viewCleanupKey,
       sender: .cleanableViewDelegate(self),
       shouldForceCleanup: true,
       cleanupTrigger: nil

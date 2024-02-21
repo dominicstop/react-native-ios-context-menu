@@ -45,7 +45,7 @@ public class RNIContextMenuView:
   
   override public var reactTag: NSNumber! {
     didSet {
-      RNICleanableViewRegistryShared.register(
+      try? RNICleanableViewRegistryShared.register(
         forDelegate: self,
         shouldIncludeDelegateInViewsToCleanup: true,
         shouldProceedCleanupWhenDelegateIsNil: true
@@ -659,8 +659,10 @@ public class RNIContextMenuView:
   // --------------------
   
   public func cleanup(){
+    guard let viewCleanupKey = self.viewCleanupKey else { return };
+    
     try? RNICleanableViewRegistryShared.notifyCleanup(
-      forKey: self.viewCleanupKey,
+      forKey: viewCleanupKey,
       sender: .cleanableViewDelegate(self),
       shouldForceCleanup: true,
       cleanupTrigger: nil
