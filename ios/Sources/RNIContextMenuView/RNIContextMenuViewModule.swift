@@ -75,35 +75,7 @@ public class RNIContextMenuViewModule: Module {
         };
       };
     };
-    
-    AsyncFunction("notifyOnComponentWillUnmount") {
-      (reactTag: Int, isManuallyTriggered: Bool, promise: Promise) in
-      
-      DispatchQueue.main.async {
-        defer {
-          promise.resolve();
-        };
-        
-        let entry = RNICleanableViewRegistryShared.getEntry(forKey: reactTag);
-        guard let entry = entry else { return };
-        
-        let shouldTriggerCleanup =
-          entry.viewCleanupMode.triggers.contains(.reactComponentWillUnmount);
-          
-        guard shouldTriggerCleanup else { return };
-        
-        try? RNICleanableViewRegistryShared.notifyCleanup(
-          forKey: reactTag,
-          sender: .reactModule(
-            reactTag: reactTag,
-            commandArguments: [:]
-          ),
-          shouldForceCleanup: false,
-          cleanupTrigger: .reactComponentWillUnmount
-        );
-      };
-    };
-    
+
     AsyncFunction("presentMenu") { (reactTag: Int, promise: Promise) in
       
       DispatchQueue.main.async {

@@ -44,11 +44,6 @@ export class ContextMenuView extends
     this.emitter = new TSEventEmitter();
   };
 
-  componentWillUnmount(): void {
-    if(!LIB_ENV.isContextMenuViewSupported) return;
-    this.nativeRef.notifyOnComponentWillUnmount();
-  };
-
   private getProps = () => {
     const {  
       useActionSheetFallback,
@@ -415,7 +410,7 @@ export class ContextMenuView extends
             <RNIDetachedView 
               contentTargetMode={'wrapper'}
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
-              shouldCleanupOnComponentWillUnmount={false}
+              shouldCleanupOnComponentWillUnmount={true}
             >
               {shouldMountPreviewContent && (
                 props.renderProps.renderPreview?.()
@@ -426,7 +421,7 @@ export class ContextMenuView extends
             <RNIDetachedView 
               contentTargetMode={'wrapper'}
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
-              shouldCleanupOnComponentWillUnmount={false}
+              shouldCleanupOnComponentWillUnmount={true}
             >
               {shouldMountAuxPreviewContent && (
                 props.renderProps.renderAuxillaryPreview?.()

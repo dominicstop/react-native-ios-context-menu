@@ -6,6 +6,7 @@ import { RNIContextMenuNativeView } from './RNIContextMenuNativeView';
 
 import type { RNIContextMenuViewProps } from './RNIContextMenuViewTypes';
 import { MenuElementConfig } from '../../types/MenuConfig';
+import { RNIUtilitiesModule } from 'react-native-ios-utilities';
 
 
 export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewProps> {
@@ -18,7 +19,15 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   };
 
   componentWillUnmount(){
-    this.notifyOnComponentWillUnmount(false);
+    const reactTag = this.getNativeReactTag();
+    if(typeof reactTag !== 'number') return;
+
+    RNIUtilitiesModule.notifyOnComponentWillUnmount(
+      reactTag, {
+        shouldForceCleanup: true,
+        shouldIgnoreCleanupTriggers: false,
+      }
+    );
   };
 
   getNativeRef: () => View | undefined = () => {
@@ -28,25 +37,6 @@ export class RNIContextMenuView extends React.PureComponent<RNIContextMenuViewPr
   getNativeReactTag: () => number | undefined = () => {
     // @ts-ignore
     return this.nativeRef?.nativeTag ?? this.reactTag
-  };
-
-  notifyOnComponentWillUnmount = async (
-    isManuallyTriggered: boolean = true
-  ) => {
-
-    const reactTag = this.getNativeReactTag();
-    if(typeof reactTag !== 'number') return;
-
-    this.props.debugShouldEnableLogging && console.log(
-      "RNIContextMenuView.notifyOnComponentWillUnmount",
-      `\n - reactTag: ${reactTag}`,
-      "\n"
-    );
-
-    await RNIContextMenuViewModule.notifyOnComponentWillUnmount(
-      reactTag, 
-      isManuallyTriggered
-    );
   };
 
   presentMenu = async () => {
