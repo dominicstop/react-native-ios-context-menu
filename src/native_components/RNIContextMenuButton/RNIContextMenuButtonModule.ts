@@ -1,12 +1,8 @@
 import { requireNativeModule } from 'expo-modules-core';
-import type { NotifyOnComponentWillUnmount } from 'react-native-ios-utilities';
-
 import type { MenuElementConfig } from '../../types/MenuConfig';
 
 
 interface RNIContextMenuButtonModule  {
-  notifyOnComponentWillUnmount: NotifyOnComponentWillUnmount;
-
   presentMenu(
     node: number,
   ): Promise<void>;

@@ -28,11 +28,6 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     };
   };
 
-  componentWillUnmount(): void {
-    if(!LIB_ENV.isContextMenuViewSupported) return;
-    this.nativeRef.notifyOnComponentWillUnmount();
-  };
-
   getProps = () => {
     const {
       menuConfig,

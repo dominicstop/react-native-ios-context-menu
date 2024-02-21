@@ -2,6 +2,8 @@
 import * as React from 'react';
 import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
+import { RNIUtilitiesModule } from 'react-native-ios-utilities';
+
 import { RNIContextMenuButtonModule } from './RNIContextMenuButtonModule';
 import { RNIContextMenuNativeButton } from './RNIContextMenuNativeButton';
 
@@ -19,7 +21,15 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
   };
 
   componentWillUnmount(){
-    this.notifyOnComponentWillUnmount(false);
+    const reactTag = this.getNativeReactTag();
+    if(typeof reactTag !== 'number') return;
+
+    RNIUtilitiesModule.notifyOnComponentWillUnmount(
+      reactTag, {
+        shouldForceCleanup: true,
+        shouldIgnoreCleanupTriggers: false,
+      }
+    );
   };
 
   getNativeRef: () => View | undefined = () => {
@@ -29,16 +39,6 @@ export class RNIContextMenuButton extends React.PureComponent<RNIContextMenuButt
   getNativeReactTag: () => number | undefined = () => {
     // @ts-ignore
     return this.nativeRef?.nativeTag ?? this.reactTag;
-  };
-
-  notifyOnComponentWillUnmount = async (isManuallyTriggered: boolean = true) => {
-    const reactTag = this.getNativeReactTag();
-    if(typeof reactTag !== 'number') return;
-
-    await RNIContextMenuButtonModule.notifyOnComponentWillUnmount(
-      reactTag, 
-      isManuallyTriggered
-    );
   };
 
   presentMenu = async () => {
