@@ -17,6 +17,7 @@ import { Test07Screen } from './src/screens/Test07Screen';
 
 import { SHARED_ENV } from './src/constants/SharedEnv';
 import { View } from 'react-native';
+import { setSharedEnvForRNICleanableViewRegistry, setSharedEnvForRNIUtilitiesModule } from 'react-native-ios-utilities';
 
 
 const shouldEnableTabs = 
@@ -115,3 +116,15 @@ export default function App() {
     <HomeScreen/>
   );
 };
+
+setSharedEnvForRNIUtilitiesModule({
+  debugShouldLogViewRegistryEntryRemoval: true,
+  overrideEnableLogStackTrace: true,
+  overrideShouldLogFileMetadata: true,
+  overrideShouldLogFilePath: true
+});
+
+setSharedEnvForRNICleanableViewRegistry({
+  debugShouldLogCleanup: true,
+  debugShouldLogRegister: true,
+});
