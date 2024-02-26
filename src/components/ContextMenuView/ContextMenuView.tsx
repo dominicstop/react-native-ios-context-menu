@@ -105,7 +105,9 @@ export class ContextMenuView extends
         isAuxiliaryPreviewEnabled ?? true
       ),
       internalViewCleanupMode: (
-        internalViewCleanupMode ?? { mode: 'default' }
+        internalViewCleanupMode ?? { 
+          mode: 'default',
+        }
       ),
       isContextMenuEnabled: (
         isContextMenuEnabled ?? true
@@ -410,6 +412,10 @@ export class ContextMenuView extends
             <RNIDetachedView 
               contentTargetMode={'wrapper'}
               nativeID={NATIVE_ID_KEYS.contextMenuPreview}
+              internalViewCleanupMode={{
+                mode: 'enabled',
+                triggers: ['reactComponentWillUnmount'],
+              }}
               shouldCleanupOnComponentWillUnmount={true}
             >
               {shouldMountPreviewContent && (
@@ -422,6 +428,10 @@ export class ContextMenuView extends
               contentTargetMode={'wrapper'}
               nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
               shouldCleanupOnComponentWillUnmount={true}
+              internalViewCleanupMode={{
+                mode: 'enabled',
+                triggers: ['reactComponentWillUnmount'],
+              }}
             >
               {shouldMountAuxPreviewContent && (
                 props.renderProps.renderAuxillaryPreview?.()
