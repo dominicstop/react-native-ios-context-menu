@@ -26,6 +26,16 @@ public class RNIContextMenuButton:
     
   weak var viewController: RNINavigationEventsReportingViewController?;
   
+  override public var reactTag: NSNumber! {
+    didSet {
+      try? RNICleanableViewRegistryShared.register(
+        forDelegate: self,
+        shouldIncludeDelegateInViewsToCleanup: true,
+        shouldProceedCleanupWhenDelegateIsNil: true
+      );
+    }
+  };
+  
   // MARK: - Properties - Flags
   // --------------------------
   
