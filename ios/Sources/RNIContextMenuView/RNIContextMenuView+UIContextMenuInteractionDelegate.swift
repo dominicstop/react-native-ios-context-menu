@@ -47,11 +47,16 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     self.isContextMenuVisible = true;
     guard let animator = animator else { return };
     
-    self.isUserInteractionEnabled = false;
-    self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = false;
-    
     if self.shouldPreventLongPressGestureFromPropagating {
+      self.isUserInteractionEnabled = false;
+      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = false;
+      
       self.closestParentReactTouchHandler?.cancel();
+      
+      DispatchQueue.main.async {
+        self.isUserInteractionEnabled = true;
+        self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
+      };
     };
     
     self.onMenuWillShow.callAsFunction([:]);
@@ -64,9 +69,6 @@ extension RNIContextMenuView: UIContextMenuInteractionDelegate {
     );
     
     animator.addCompletion { [unowned self] in
-      self.isUserInteractionEnabled = true;
-      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
-      
       self.onMenuDidShow.callAsFunction([:]);
     };
   };
