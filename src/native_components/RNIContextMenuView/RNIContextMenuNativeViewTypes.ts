@@ -1,5 +1,5 @@
 import { ViewProps } from 'react-native';
-import type { RNIViewCleanupMode } from 'react-native-ios-utilities';
+import type { RNIViewCleanupMode, RNIViewCleanupModeProp } from 'react-native-ios-utilities';
 
 import type { OnMenuWillShowEvent, OnMenuWillHideEvent, OnMenuDidShowEvent, OnMenuDidHideEvent, OnMenuWillCancelEvent, OnMenuDidCancelEvent, OnMenuWillCreateEvent, OnPressMenuItemEvent, OnPressMenuPreviewEvent, OnMenuAuxiliaryPreviewWillShowEvent, OnMenuAuxiliaryPreviewDidShowEvent, OnRequestDeferredElementEvent } from '../../types/MenuEvents';
 
@@ -9,11 +9,6 @@ import type { AuxiliaryPreviewConfigBackwardsCompatible } from '../../types/Auxi
 
 
 export type RNIContextMenuNativeViewBaseProps = {
-
-  // Internal
-  // --------
-
-  internalViewCleanupMode: RNIViewCleanupMode;
 
   // Value Props
   // -----------
@@ -70,4 +65,6 @@ export type RNIContextMenuNativeViewBaseProps = {
 };
 
 export type RNIContextMenuNativeViewProps = 
-  RNIContextMenuNativeViewBaseProps & ViewProps;
+  & RNIViewCleanupModeProp
+  & RNIContextMenuNativeViewBaseProps 
+  & ViewProps;

@@ -1,8 +1,8 @@
 import type { ViewProps } from 'react-native';
-import type { RNIContextMenuNativeViewBaseProps } from "../RNIContextMenuView/RNIContextMenuNativeViewTypes";
+import type { RNIContextMenuNativeViewProps } from "../RNIContextMenuView/RNIContextMenuNativeViewTypes";
 
 
-type InheritedProps = Pick<RNIContextMenuNativeViewBaseProps,
+type InheritedProps = Pick<RNIContextMenuNativeViewProps,
   | 'menuConfig'
   | 'isContextMenuEnabled'
   | 'internalViewCleanupMode'
