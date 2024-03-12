@@ -2,11 +2,13 @@
 import * as React from 'react';
 import { View, Animated, Alert, StyleSheet, Text, FlatList, SafeAreaView, ListRenderItem, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 
-import { ContextMenuView, MenuElementConfig } from 'react-native-ios-context-menu';
+import { AuxiliaryPreviewConfig, ContextMenuView, MenuElementConfig } from 'react-native-ios-context-menu';
 
 import * as Colors  from '../constants/Colors';
 import * as Helpers from '../functions/Helpers';
+import { AuxiliaryPreviewConfigBackwardsCompatible } from 'react-native-ios-context-menu/types/AuxiliaryPreviewConfigBackwardsCompatible';
 
+const SHOULD_USE_NEW_CONFIG = true;
 
 // Repro for issue:
 // https://github.com/dominicstop/react-native-ios-context-menu/issues/47
@@ -347,6 +349,34 @@ const MessageBubble = (props: {
     </Animated.View>
   );
 
+  const AuxPreviewConfig: AuxiliaryPreviewConfigBackwardsCompatible = (SHOULD_USE_NEW_CONFIG ? {
+    verticalAnchorPosition: 'automatic',
+    horizontalAlignment: (props.message.isSender 
+      ? 'targetTrailing'
+      : 'targetLeading' 
+    ),
+    transitionConfigEntrance: {
+      mode: 'syncedToMenuEntranceTransition',
+      shouldAnimateSize: true,
+    },
+    transitionExitPreset: {
+      mode: 'zoomAndSlide',
+    },
+  } : {
+    alignmentHorizontal: (props.message.isSender 
+      ? 'previewTrailing'
+      : 'previewLeading' 
+    ),
+    transitionEntranceDelay: 'RECOMMENDED',
+    transitionConfigEntrance: {
+      transition: 'zoomAndSlide',
+      zoomOffset: 0.9,
+      slideOffset: 15,
+      duration: 0.3,
+      options: ['curveEaseInOut'],
+    },
+  });
+
   return (
     <Animated.View style={[styles.messageMenuContainer, {
       marginTop: animatedMessageContainerMarginTop,
@@ -375,20 +405,7 @@ const MessageBubble = (props: {
             MENU_CONFIGS.delete,
           ],
         }}
-        auxiliaryPreviewConfig={{
-          alignmentHorizontal: (props.message.isSender 
-            ? 'previewTrailing'
-            : 'previewLeading' 
-          ),
-          transitionEntranceDelay: 'RECOMMENDED',
-          transitionConfigEntrance: {
-            transition: 'zoomAndSlide',
-            zoomOffset: 0.9,
-            slideOffset: 15,
-            duration: 0.3,
-            options: ['curveEaseInOut'],
-          },
-        }}
+        auxiliaryPreviewConfig={AuxPreviewConfig}
         renderAuxiliaryPreview={() => (
           <View style={styles.auxRootContainer}>
             {REACTIONS_KEYS.map((reactionKey, index) => (
