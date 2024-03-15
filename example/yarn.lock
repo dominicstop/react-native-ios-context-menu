@@ -5476,10 +5476,10 @@ react-native-gesture-handler@^2.15.0:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
-react-native-ios-utilities@^4.4.0-6:
-  version "4.4.0-6"
-  resolved "https://registry.yarnpkg.com/react-native-ios-utilities/-/react-native-ios-utilities-4.4.0-6.tgz#04db5618d980f601ba5ec6ea56a9fbac5b945cd9"
-  integrity sha512-Cv0mNW+5HdWa5VwK8MJm+C3s+gNbTe7RuDL/jLA9Ei9+7tgmjH6DzL0zECRHXhQQ/MJ5rcWq4BRawDb5LVov2w==
+react-native-ios-utilities@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-ios-utilities/-/react-native-ios-utilities-4.4.2.tgz#7f274d091ad2bfa26c58c1da0f4936e12a3e243b"
+  integrity sha512-AzZyTIRkP537Sj64qjYyW1doZioTBUN4tIqmNtl1NOgXm9hyBzhn6GvqYwgADVt9ScS/8OOfL0GScCsojkguUg==
 
 react-native-reanimated@~3.3.0:
   version "3.3.0"

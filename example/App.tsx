@@ -119,7 +119,7 @@ export default function App() {
 
 setSharedEnvForRNIUtilitiesModule({
   debugShouldLogViewRegistryEntryRemoval: true,
-  overrideEnableLogStackTrace: true,
+  overrideEnableLogStackTrace: false,
   overrideShouldLogFileMetadata: true,
   overrideShouldLogFilePath: true
 });
