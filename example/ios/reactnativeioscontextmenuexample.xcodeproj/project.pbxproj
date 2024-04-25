@@ -11,10 +11,10 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		82E62E4EDBE04311A83F0454 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ABB73A5262446B90967715 /* noop-file.swift */; };
 		96905EF65AED1B983A6B3ABC /* libPods-reactnativeioscontextmenuexample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-reactnativeioscontextmenuexample.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		D07687CE560640DB8DE85E2A /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8761EB6EF42A1A1CD15DA /* noop-file.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,10 +27,10 @@
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-reactnativeioscontextmenuexample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactnativeioscontextmenuexample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-reactnativeioscontextmenuexample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeioscontextmenuexample.debug.xcconfig"; path = "Target Support Files/Pods-reactnativeioscontextmenuexample/Pods-reactnativeioscontextmenuexample.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-reactnativeioscontextmenuexample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeioscontextmenuexample.release.xcconfig"; path = "Target Support Files/Pods-reactnativeioscontextmenuexample/Pods-reactnativeioscontextmenuexample.release.xcconfig"; sourceTree = "<group>"; };
-		98E43A5750F54BA888F8321A /* reactnativeioscontextmenuexample-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "reactnativeioscontextmenuexample-Bridging-Header.h"; path = "reactnativeioscontextmenuexample/reactnativeioscontextmenuexample-Bridging-Header.h"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = reactnativeioscontextmenuexample/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B7ABB73A5262446B90967715 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "reactnativeioscontextmenuexample/noop-file.swift"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		C28F3AB5CF754B4DADC43D46 /* reactnativeioscontextmenuexample-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "reactnativeioscontextmenuexample-Bridging-Header.h"; path = "reactnativeioscontextmenuexample/reactnativeioscontextmenuexample-Bridging-Header.h"; sourceTree = "<group>"; };
+		D4A8761EB6EF42A1A1CD15DA /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "reactnativeioscontextmenuexample/noop-file.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-reactnativeioscontextmenuexample/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,8 +57,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				B7ABB73A5262446B90967715 /* noop-file.swift */,
-				98E43A5750F54BA888F8321A /* reactnativeioscontextmenuexample-Bridging-Header.h */,
+				D4A8761EB6EF42A1A1CD15DA /* noop-file.swift */,
+				C28F3AB5CF754B4DADC43D46 /* reactnativeioscontextmenuexample-Bridging-Header.h */,
 			);
 			name = reactnativeioscontextmenuexample;
 			sourceTree = "<group>";
@@ -145,13 +145,13 @@
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
-				23B75B0AB5F5B8A83C5B8D5C /* [Expo] Configure project */,
+				15391B7A895D84C613F162D9 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				D1D0442F6F0C5F85D5E09A41 /* [CP] Embed Pods Frameworks */,
+				BE4FDCD40E525C3CDD5CA40B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,7 +243,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		23B75B0AB5F5B8A83C5B8D5C /* [Expo] Configure project */ = {
+		15391B7A895D84C613F162D9 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -282,7 +282,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-reactnativeioscontextmenuexample/Pods-reactnativeioscontextmenuexample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1D0442F6F0C5F85D5E09A41 /* [CP] Embed Pods Frameworks */ = {
+		BE4FDCD40E525C3CDD5CA40B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -329,7 +329,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				82E62E4EDBE04311A83F0454 /* noop-file.swift in Sources */,
+				D07687CE560640DB8DE85E2A /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +457,6 @@
 					"-Wl",
 					"-ld_classic",
 					" ",
-					"-Wl -ld_classic ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
@@ -520,7 +519,6 @@
 					"-Wl",
 					"-ld_classic",
 					" ",
-					"-Wl -ld_classic ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
