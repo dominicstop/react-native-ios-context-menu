@@ -46,6 +46,13 @@ function Tab1StackScreen() {
 };
 
 export default function App() {
+  React.useEffect(() => {
+    const nativeFabricUIManager = global?.nativeFabricUIManager;
+    const isUsingNewArch = nativeFabricUIManager != null;
+
+    console.log(`isUsingNewArch: ${isUsingNewArch}`);
+  }, []);
+
   if(SHARED_ENV.shouldRenderNothing){
     return (
       <View/>
