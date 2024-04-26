@@ -418,6 +418,24 @@ public class RNIContextMenuView:
       );
     };
     #endif
+    
+    print(
+      "RNIContextMenuView._tempBeginDebugging",
+      "\n - next - 1:", self.next?.className ?? "N/A",
+      "\n - next - 2:", self.next?.next?.className ?? "N/A",
+      "\n - next - 3:", self.next?.next?.next?.className ?? "N/A",
+      "\n - next - 4:", self.next?.next?.next?.next?.className ?? "N/A",
+      "\n"
+    );
+    
+    let allParentResponders = self.recursivelyGetAllParentResponders;
+    allParentResponders.enumerated().forEach {
+      print(
+        "allParentResponders.forEach - \($0.offset) of \(allParentResponders.count - 1)",
+        "\n - className:", $0.element.className,
+        "\n"
+      );
+    };
   };
   
   func setupInitAuxiliaryPreviewConfigIfNeeded(){
