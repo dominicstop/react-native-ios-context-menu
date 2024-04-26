@@ -432,10 +432,18 @@ public class RNIContextMenuView:
     
     let allParentResponders = self.recursivelyGetAllParentResponders;
     allParentResponders.enumerated().forEach {
+
+      var pointerToInstance: UnsafePointer<UIResponder>?;
+      withUnsafePointer(to: $0.element) {
+        pointerToInstance = $0;
+      };
+      
       print(
         "allParentResponders.forEach - \($0.offset) of \(allParentResponders.count - 1)",
         "\n - className:", $0.element.className,
-        "\n - raw pointer:", Unmanaged.passUnretained($0.element).toOpaque(),
+        "\n - recursive subview count:", ($0.element as? UIView)?.recursivelyGetAllSubviews.count ?? -1,
+        "\n - raw memory address:", Unmanaged.passUnretained($0.element).toOpaque(),
+        "\n - raw pointer:", pointerToInstance!,
         "\n"
       );
     };
