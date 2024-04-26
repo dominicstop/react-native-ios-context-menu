@@ -419,6 +419,7 @@ public class RNIContextMenuView:
     };
     #endif
     
+    #if FALSE
     print(
       "RNIContextMenuView._tempBeginDebugging",
       "\n - next - 1:", self.next?.className ?? "N/A",
@@ -427,12 +428,14 @@ public class RNIContextMenuView:
       "\n - next - 4:", self.next?.next?.next?.next?.className ?? "N/A",
       "\n"
     );
+    #endif
     
     let allParentResponders = self.recursivelyGetAllParentResponders;
     allParentResponders.enumerated().forEach {
       print(
         "allParentResponders.forEach - \($0.offset) of \(allParentResponders.count - 1)",
         "\n - className:", $0.element.className,
+        "\n - raw pointer:", Unmanaged.passUnretained($0.element).toOpaque(),
         "\n"
       );
     };
