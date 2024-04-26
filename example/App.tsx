@@ -132,7 +132,7 @@ setSharedEnvForRNIUtilitiesModule({
 });
 
 setSharedEnvForRNICleanableViewRegistry({
-  debugShouldLogCleanup: true,
-  debugShouldLogRegister: true,
+  debugShouldLogCleanup: false,
+  debugShouldLogRegister: false,
   shouldGloballyDisableCleanup: false
 });
