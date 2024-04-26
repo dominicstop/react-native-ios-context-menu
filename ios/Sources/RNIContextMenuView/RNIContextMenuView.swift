@@ -333,6 +333,11 @@ public class RNIContextMenuView:
     try? detachedView.detach();
   };
   
+  public override func didMoveToSuperview() {
+    guard self.superview != nil else { return };
+    self._tempBeginDebugging();
+  };
+  
   #if DEBUG
   @objc func onRCTBridgeWillReloadNotification(_ notification: Notification){
     self.cleanup();
@@ -365,6 +370,55 @@ public class RNIContextMenuView:
   
   // MARK: - Functions
   // -----------------
+  
+  func _tempBeginDebugging(){
+    #if FALSE
+    let siblingViews = self.superview?.subviews ?? [];
+    
+    print(
+      "RNIContextMenuView.didMoveToSuperview",
+      "\n - recursivelyGetAllSuperviews.count:", self.recursivelyGetAllSuperviews.count,
+      "\n - siblingViews.count:", siblingViews.count,
+      "\n - self.window:", self.window?.debugDescription ?? "N/A",
+      "\n - self.frame:", self.frame,
+      "\n - self.bounds:", self.bounds,
+      "\n"
+    );
+    
+    let parentViewGestureRecognizers = self.superview?.recursivelyGetAllGestureRecognizers ?? [];
+    parentViewGestureRecognizers.enumerated().forEach {
+      print(
+        "parentViewGestureRecognizers.forEach - \($0.offset) of \(parentViewGestureRecognizers.count - 1)",
+        "\n - className:", $0.element.className,
+        "\n - name:", $0.element.name ?? "N/A",
+        "\n - associated view - className:", $0.element.view?.className ?? "N/A",
+        "\n - associated view - desc:", $0.element.view?.debugDescription ?? "N/A",
+        "\n - debugDescription:", $0.element.debugDescription,
+        "\n"
+      );
+    };
+    
+    siblingViews.enumerated().forEach {
+      print(
+        "siblingViews.forEach - \($0.offset) of \(siblingViews.count - 1)",
+        "\n - className:", $0.element.className,
+        "\n - subviews.count:", $0.element.subviews.count,
+        "\n - recursivelyGetAllGestureRecognizers.count:", $0.element.recursivelyGetAllGestureRecognizers.count,
+        "\n"
+      );
+    };
+    
+    self.recursivelyGetAllSuperviews.enumerated().forEach {
+      print(
+        "\($0.offset) - recursivelyGetAllSuperviews",
+        "\n - className:", $0.element.className,
+        "\n - gestureRecognizers.count:", $0.element.gestureRecognizers?.count ?? -1,
+        "\n - recursivelyGetAllGestureRecognizers.count:", $0.element.recursivelyGetAllGestureRecognizers.count,
+        "\n"
+      );
+    };
+    #endif
+  };
   
   func setupInitAuxiliaryPreviewConfigIfNeeded(){
     guard self.isAuxiliaryPreviewEnabled,
