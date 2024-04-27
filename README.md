@@ -5,9 +5,9 @@
 </p>
 <br>
 
-## 🚧⚠️ Documentation WIP ⚠️🚧
+## 🚧⚠️ Re-Write WIP 🚧⚠️
 
-📝 Note: See [`TODO.md`](docs/TODO.md) for progress.
+This library is being re-written to support the new architecture. Please see this is [issue](https://github.com/dominicstop/react-native-ios-context-menu/issues/100#issuecomment-2077986438) for progress 😔
 
 - The documentation is incomplete (some parts/sections are marked as **TBA** i.e. "to be added"). 
 - Some of the links in the documentation are broken (i.e. the URL points to `PLACE_HOLDER_LINK`).
