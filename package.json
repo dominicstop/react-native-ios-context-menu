@@ -1,7 +1,7 @@
 {
   "name": "react-native-ios-context-menu",
-  "version": "0.1.0",
-  "description": "TBA",
+  "version": "2.5.1",
+  "description": "A react-native component to use context menu's (UIMenu) on iOS 13/14+",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -68,17 +68,15 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "react-native-ios-context-menu",
+    "ReactNativeIosContextMenu"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dominicstop/react-native-ios-context-menu.git"
-  },
-  "author": "Dominic Go <dominic@dominicgo.dev> (https://github.com/dominicstop)",
-  "license": "MIT",
+  "repository": "https://github.com/dominicstop/react-native-ios-context-menu",
   "bugs": {
     "url": "https://github.com/dominicstop/react-native-ios-context-menu/issues"
   },
+  "author": "Dominic Go <dominic@dominicgo.dev> (https://github.com/dominicstop)",
+  "license": "MIT",
   "homepage": "https://github.com/dominicstop/react-native-ios-context-menu#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
