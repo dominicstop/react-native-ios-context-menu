@@ -5,13 +5,12 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-
       <PreActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Invoke Codegen"
-               scriptText = "cd &quot;$WORKSPACE_PATH/../../../&quot; &amp;&amp; npx bob build --target codegen&#10;">
+               scriptText = "&#10;">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
