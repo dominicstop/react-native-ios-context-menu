@@ -57,10 +57,9 @@ Pod::Spec.new do |s|
     'OTHER_SWIFT_FLAGS' => "$(inherited) #{fabric_enabled ? fabric_compiler_flags : ''}"
   }
   user_header_search_paths = [
-    '"${PODS_CONFIGURATION_BUILD_DIR}/react-native-ios-utilities/Swift Compatibility Header"',
     '"${PODS_CONFIGURATION_BUILD_DIR}/react-native-ios-utilities/**"',
+    '"${PODS_CONFIGURATION_BUILD_DIR}/react-native-ios-utilities/Swift Compatibility Header"',
     '"${PODS_CONFIGURATION_BUILD_DIR}/react-native-ios-context-menu/Swift Compatibility Header"',
-
     
     #'"$(PODS_ROOT)/Headers/Private/react-native-ios-utilities"',
     #'"$(PODS_ROOT)/Headers/Public/react-native-ios-utilities"',
@@ -69,6 +68,7 @@ Pod::Spec.new do |s|
     '"$(PODS_CONFIGURATION_BUILD_DIR)/React-bridging/react_bridging.framework/Headers"',
     '"$(PODS_ROOT)/Headers/Private/Yoga"',
   ]
+  
   if fabric_enabled && ENV['USE_FRAMEWORKS']
     user_header_search_paths << "\"$(PODS_ROOT)/DoubleConversion\""
     user_header_search_paths << "\"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers\""

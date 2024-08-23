@@ -1,9 +1,9 @@
 #import "IosContextMenuView.h"
 
-#import <react/renderer/components/RNIosContextMenuViewSpec/ComponentDescriptors.h>
-#import <react/renderer/components/RNIosContextMenuViewSpec/EventEmitters.h>
-#import <react/renderer/components/RNIosContextMenuViewSpec/Props.h>
-#import <react/renderer/components/RNIosContextMenuViewSpec/RCTComponentViewHelpers.h>
+#import <react/renderer/components/RNIContextMenuViewSpec/ComponentDescriptors.h>
+#import <react/renderer/components/RNIContextMenuViewSpec/EventEmitters.h>
+#import <react/renderer/components/RNIContextMenuViewSpec/Props.h>
+#import <react/renderer/components/RNIContextMenuViewSpec/RCTComponentViewHelpers.h>
 
 #import "RCTFabricComponentsPlugins.h"
 
