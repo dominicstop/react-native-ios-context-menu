@@ -8629,6 +8629,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.75.2
     react-native-builder-bob: ^0.30.0
+    react-native-ios-utilities: next
   languageName: unknown
   linkType: soft
 
@@ -8642,6 +8643,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.75.2
     react-native-builder-bob: ^0.30.0
+    react-native-ios-utilities: next
     release-it: ^15.0.0
     turbo: ^1.10.7
     typescript: ^5.2.2
@@ -8650,6 +8652,16 @@ __metadata:
     react-native: "*"
   languageName: unknown
   linkType: soft
+
+"react-native-ios-utilities@npm:next":
+  version: 5.0.0-15
+  resolution: "react-native-ios-utilities@npm:5.0.0-15"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 7e1ce1e6c4d17c72b6f6fe5006aa78a83b1605897859c3134e62fa40a34b74c4206df54b0d2d6654863bf0bb6846396c9ef3ca187ed14ddcceca2e20ae934e3a
+  languageName: node
+  linkType: hard
 
 "react-native@npm:0.75.2":
   version: 0.75.2
