@@ -42,6 +42,7 @@ export type RNIContextMenuViewInheritedProps =
 
 export type RNIContextMenuViewBaseProps = {
   // TBA
+  debugShouldEnableLogging?: boolean;
 };
 
 export type RNIContextMenuViewProps = PropsWithChildren<
