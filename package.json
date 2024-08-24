@@ -110,7 +110,7 @@
   "packageManager": "yarn@3.6.1",
   "release-it": {
     "git": {
-      "commitMessage": "chore: release ${version}",
+      "commitMessage": "⚙️ Chore: release ${version}",
       "tagName": "v${version}"
     },
     "npm": {
