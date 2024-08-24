@@ -3,7 +3,7 @@ import type { BubblingEventHandler } from 'react-native/Libraries/Types/CodegenT
 import type { HostComponent, ViewProps } from 'react-native';
 
 // stubs
-interface NativeProps extends ViewProps {
+export interface NativeProps extends ViewProps {
   onDidSetViewID: BubblingEventHandler<{}>;
 };
 

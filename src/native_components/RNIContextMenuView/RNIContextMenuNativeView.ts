@@ -1,12 +1,18 @@
 import type { HostComponent, ViewProps } from 'react-native';
+import type { SharedViewEvents, RemapObject } from 'react-native-ios-utilities';
 
-import { default as RNIContextMenuViewNativeComponent } from './RNIContextMenuViewNativeComponent';
-import type { SharedViewEvents } from 'react-native-ios-utilities';
+import { 
+  default as RNIContextMenuViewNativeComponent,
+  type NativeProps as RNIContextMenuViewNativeComponentProps
+} from './RNIContextMenuViewNativeComponent';
 
 
-export type RNIContextMenuNativeViewBaseProps = {
+type RNIContextMenuViewNativeComponentBaseProps = 
+  Omit<RNIContextMenuViewNativeComponentProps, keyof (ViewProps & SharedViewEvents)>
+
+export type RNIContextMenuNativeViewBaseProps = RemapObject<RNIContextMenuViewNativeComponentBaseProps, {
   // TBA
-};
+}>;
 
 export type RNIContextMenuNativeViewProps = 
     SharedViewEvents
