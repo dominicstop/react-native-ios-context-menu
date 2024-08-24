@@ -1,10 +1,11 @@
 import React from 'react';
 
-import type { ContextMenuButton } from '../components/ContextMenuButton';
+// import type { ContextMenuButton } from '../components/ContextMenuButton';
 
 export type ContextMenuButtonContextProps = {
   isMenuVisible: boolean;
-  getRefToContextMenuButton: () => ContextMenuButton;
+  // TODO: WIP - to be re-impl.
+  // getRefToContextMenuButton: () => ContextMenuButton;
 };
 
 export const ContextMenuButtonContext = 

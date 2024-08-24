@@ -1,5 +1,5 @@
-import { Transform3D } from "react-native-ios-utilities";
-import { AuxiliaryPreviewSizeValue } from "./AuxiliaryPreviewSizeValue";
+import type { Transform3D } from "react-native-ios-utilities";
+import type { AuxiliaryPreviewSizeValue } from "./AuxiliaryPreviewSizeValue";
 
 export type AuxiliaryPreviewTransitionKeyframeConfig = {
   opacity?: number;
