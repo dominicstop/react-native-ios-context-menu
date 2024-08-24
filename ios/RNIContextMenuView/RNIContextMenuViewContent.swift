@@ -252,7 +252,24 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
     resolve resolveBlock: (NSDictionary) -> Void,
     reject rejectBlock: (String) -> Void
   ) {
-    // no-op
+    
+    switch commandName {
+      case "presentMenu":
+        break;
+        
+      case "dismissMenu":
+        break;
+        
+      case "showAuxiliaryPreviewAsPopover":
+        break;
+        
+      case "provideDeferredElements":
+        break;
+        
+      default:
+        rejectBlock("No matching command for commandName");
+        return;
+    };
   };
   
   // MARK: - Fabric Only
