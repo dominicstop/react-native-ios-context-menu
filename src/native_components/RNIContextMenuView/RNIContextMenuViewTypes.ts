@@ -14,13 +14,31 @@ export type RNIContextMenuViewInheritedOptionalProps = Partial<Pick<RNIContextMe
   | 'onDidSetViewID'
 >>;
 
-// export type RNIContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenuNativeViewProps,
-//   | 'blurConfig'
-// >>;
+export type RNIContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenuNativeViewProps,
+  | 'menuConfig'
+  | 'previewConfig'
+  | 'auxiliaryPreviewConfig'
+  | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
+  | 'isContextMenuEnabled'
+  | 'isAuxiliaryPreviewEnabled'
+  | 'shouldPreventLongPressGestureFromPropagating'
+  | 'onMenuWillCreate'
+  | 'onMenuWillShow'
+  | 'onMenuDidShow'
+  | 'onMenuWillHide'
+  | 'onMenuDidHide'
+  | 'onMenuWillCancel'
+  | 'onMenuDidCancel'
+  | 'onRequestDeferredElement'
+  | 'onPressMenuItem'
+  | 'onPressMenuPreview'
+  | 'onMenuAuxiliaryPreviewWillShow'
+  | 'onMenuAuxiliaryPreviewDidShow'
+>>;
 
 export type RNIContextMenuViewInheritedProps =
-  RNIContextMenuViewInheritedOptionalProps
-//  & RNIContextMenuViewInheritedRequiredProps;
+    RNIContextMenuViewInheritedOptionalProps
+  & RNIContextMenuViewInheritedRequiredProps;
 
 export type RNIContextMenuViewBaseProps = {
   // TBA
