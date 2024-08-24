@@ -475,6 +475,7 @@
 				DEVELOPMENT_TEAM = ZC7A6XV8GR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = IosContextMenuExample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "RNIContextMenu Example";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,8 +488,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dominicgo.RNIContextMenu;
 				PRODUCT_NAME = IosContextMenuExample;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -502,6 +506,7 @@
 				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = ZC7A6XV8GR;
 				INFOPLIST_FILE = IosContextMenuExample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "RNIContextMenu Example";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -514,7 +519,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.dominicgo.RNIContextMenu;
 				PRODUCT_NAME = IosContextMenuExample;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
