@@ -98,7 +98,8 @@
     "typescript": "^5.2.2"
   },
   "resolutions": {
-    "@types/react": "^18.2.44"
+    "@types/react": "^18.2.44",
+    "react-native-builder-bob@^0.30.0": "patch:react-native-builder-bob@npm%3A0.30.0#./.yarn/patches/react-native-builder-bob-npm-0.30.0-c300db1e73.patch"
   },
   "peerDependencies": {
     "react": "*",
@@ -119,8 +120,7 @@
     "github": {
       "release": true
     },
-    "plugins": {
-    }
+    "plugins": {}
   },
   "eslintConfig": {
     "root": true,
