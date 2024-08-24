@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import ReactNativeIosUtilities
+import react_native_ios_utilities
+
 
 public class RNIMenuIcon {
   

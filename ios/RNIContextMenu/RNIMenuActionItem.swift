@@ -7,7 +7,7 @@
 //
 
 import UIKit;
-import ReactNativeIosUtilities;
+import react_native_ios_utilities
 
 
 @available(iOS 13, *)
@@ -120,9 +120,11 @@ extension RNIMenuActionItem {
   };
   
   var fallbackDiscoverabilityTitle: String? {
-    RNIHelpers.osVersion.majorVersion < 15
+    let majorOSVersion = ProcessInfo().operatingSystemVersion.majorVersion;
+    
+    return majorOSVersion < 15
       ? self.actionSubtitle
-      : nil
+      : nil;
   };
   
   /// Creates a dictionary containing all the raw values that was used to create this `RNIMenuActionItem`

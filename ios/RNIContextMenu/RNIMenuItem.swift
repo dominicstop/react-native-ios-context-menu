@@ -7,7 +7,7 @@
 //
 
 import UIKit;
-import ReactNativeIosUtilities;
+import react_native_ios_utilities
 
 
 @available(iOS 13.0, *)

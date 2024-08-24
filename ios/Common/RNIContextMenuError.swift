@@ -5,7 +5,7 @@
 //  Created by Dominic Go on 10/18/23.
 //
 
-import ReactNativeIosUtilities
+import react_native_ios_utilities
 import DGSwiftUtilities
 
 public typealias RNIContextMenuError =
