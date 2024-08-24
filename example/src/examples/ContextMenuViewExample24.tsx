@@ -1,14 +1,13 @@
 import * as React from 'react';
 
-import { ContextMenuView, OnPressMenuItemEvent } from 'react-native-ios-context-menu';
+import { Colors } from 'react-native-ios-utilities';
+import { ContextMenuView, type OnPressMenuItemEvent } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
-import * as Colors from '../constants/Colors';
 
-
-export function ContextMenuViewExample24(props: ContextMenuExampleProps) {
+export function ContextMenuViewExample24(props: ExampleItemProps) {
   const [actionState1, setActionState1] = React.useState(false);
   const [actionState2, setActionState2] = React.useState(false);
   const [actionState3, setActionState3] = React.useState(false);

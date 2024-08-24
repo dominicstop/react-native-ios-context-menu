@@ -3,14 +3,14 @@ import { Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
+export function ContextMenuViewExample10(props: ExampleItemProps) {
   // `timer` will increment every second... 
   const [timer, setTimer] = React.useState(0);
-  const increment = React.useRef(null);
+  const increment = React.useRef<NodeJS.Timeout | null>(null);
 
   const handleStart = () => {
     increment.current = setInterval(() => {
@@ -19,7 +19,7 @@ export function ContextMenuViewExample10(props: ContextMenuExampleProps) {
   };
 
   const handleReset = () => {
-    clearInterval(increment.current);
+    clearInterval(increment.current!);
     setTimer(0);
   };
 

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
+import { Helpers } from 'react-native-ios-utilities';
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
-
-import * as Helpers from '../functions/Helpers';
 
 
 type EventItem = {
@@ -15,7 +14,7 @@ type EventItem = {
   index: number;
 };
 
-export function ContextMenuViewTest05(props: ContextMenuExampleProps) {
+export function ContextMenuViewTest05(props: ExampleItemProps) {
   const [events, setEvents] = React.useState<Array<EventItem>>([]);
 
   const hasEvents = (events.length > 0);

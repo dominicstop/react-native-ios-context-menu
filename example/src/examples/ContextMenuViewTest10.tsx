@@ -1,13 +1,10 @@
-import * as React from 'react';
+// import * as React from 'react';
 
-import type { ImageItemConfig } from 'react-native-ios-utilities';
-import { ContextMenuView, MenuActionConfig, MenuConfig, MenuElementConfig } from 'react-native-ios-context-menu';
+import { type ImageItemConfig, Helpers, Colors } from 'react-native-ios-utilities';
+import { ContextMenuView, type MenuActionConfig, type MenuConfig, type MenuElementConfig } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
-
-import * as Helpers from '../functions/Helpers';
-import * as Colors  from '../constants/Colors';
 
 
 type MenuConfigKeys = 
@@ -248,7 +245,7 @@ const MENU_CONFIGS: Record<MenuConfigKeys, MenuElementConfig> = {
 };
 
 
-export function ContextMenuViewTest10(props: ContextMenuExampleProps) {
+export function ContextMenuViewTest10(props: ExampleItemProps) {
 
   return (
     <ContextMenuView

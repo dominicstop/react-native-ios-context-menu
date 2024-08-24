@@ -3,11 +3,11 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewTest08(props: ContextMenuExampleProps) {
+export function ContextMenuViewTest08(props: ExampleItemProps) {
   const [counter, setCounter] = React.useState(0);
 
   const menuRef = React.useRef<ContextMenuView>();

@@ -1,15 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 
-import * as React from 'react';
+// import * as React from 'react';
 import { View, Text, Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewExample11(props: ContextMenuExampleProps) {
+export function ContextMenuViewExample11(props: ExampleItemProps) {
   return (
     <ContextMenuView
       style={props.style}

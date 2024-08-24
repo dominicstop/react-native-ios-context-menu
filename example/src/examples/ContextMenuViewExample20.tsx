@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { Alert } from 'react-native';
 
+import { Helpers } from 'react-native-ios-utilities';
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
-import * as Helpers from '../functions/Helpers';
 
-
-export function ContextMenuViewExample20(props: ContextMenuExampleProps) {
+export function ContextMenuViewExample20(props: ExampleItemProps) {
   const [extraMenuItems, setExtraMenuItems] = React.useState([]);
 
   const [isLoading, setIsLoading] = React.useState(true);

@@ -1,12 +1,12 @@
-import * as React from 'react';
+// import * as React from 'react';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewTest02(props: ContextMenuExampleProps) {
+export function ContextMenuViewTest02(props: ExampleItemProps) {
   return (
     <ContextMenuView
       style={props.style}
