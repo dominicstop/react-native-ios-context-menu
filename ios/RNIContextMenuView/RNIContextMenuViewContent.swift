@@ -45,7 +45,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   // -------------------------
   
   public static var propKeyPathMap: Dictionary<String, PartialKeyPath<RNIContextMenuViewContent>> = [
-    "menuConfig": \.menuConfig,
+    "menuConfig": \.menuConfigProp,
     "previewConfig": \.previewConfigProp,
     "shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle": \.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
     "isContextMenuEnabled": \.isContextMenuEnabled,
