@@ -1,3 +1,4 @@
+import { ContextMenuViewExample01 } from "../examples/ContextMenuViewExample01";
 import type { ExampleItemProps } from "../examples/SharedExampleTypes";
 import type { RouteEntry } from "./RouteItems";
 
@@ -32,12 +33,17 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
   
   const screenItems: Array<ExampleItemRoute> = [
     {
-      ...ROUTE_MAP.contextMenuTest01,
       type: 'screen',
+      ...ROUTE_MAP.contextMenuTest01,
     }
   ];
 
-  const cardItems: Array<ExampleItemCard> = []; 
+  const cardItems: Array<ExampleItemCard> = [
+    {
+      type: 'card',
+      component: ContextMenuViewExample01,
+    },
+  ]; 
 
   // if (SHARED_ENV.enableReactNavigation) {
   //   items.splice(0, 0, ...[DebugControls]);
