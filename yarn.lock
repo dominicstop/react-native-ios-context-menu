@@ -1611,6 +1611,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dominicstop/ts-event-emitter@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@dominicstop/ts-event-emitter@npm:1.1.0"
+  checksum: fcecf835de9049f58faf013d0a5b940b8b4b1c6c9293d98ab18c90fa800ca55407fcaf7d4cc148fbdc361aba5d4af64ae0fde813f8958c0903df3aa2b09e4325
+  languageName: node
+  linkType: hard
+
 "@eslint-community/eslint-utils@npm:^4.2.0":
   version: 4.4.0
   resolution: "@eslint-community/eslint-utils@npm:4.4.0"
@@ -8798,6 +8805,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-native-ios-context-menu@workspace:."
   dependencies:
+    "@dominicstop/ts-event-emitter": ^1.1.0
     "@react-native/eslint-config": ^0.73.1
     "@types/react": ^18.2.44
     eslint: ^8.51.0
