@@ -1,5 +1,5 @@
 //
-//  RNIContextMenuViewDelegate.swift
+//  RNIContextMenuViewContent.swift
 //  react-native-ios-context-menu
 //
 //  Created by Dominic Go on 8/24/24.
@@ -10,9 +10,9 @@ import react_native_ios_utilities
 import DGSwiftUtilities
 
 @objc(RNIContextMenuViewDelegate)
-public final class RNIContextMenuViewDelegate: UIView, RNIContentView {
+public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
-  public static var propKeyPathMap: Dictionary<String, PartialKeyPath<RNIContextMenuViewDelegate>> {
+  public static var propKeyPathMap: Dictionary<String, PartialKeyPath<RNIContextMenuViewContent>> {
     // TBA
     return [:]
   };
@@ -74,9 +74,9 @@ public final class RNIContextMenuViewDelegate: UIView, RNIContentView {
 // MARK: - RNIContextMenuViewDelegate+RNIContentViewDelegate
 // --------------------------------------------------
 
-extension RNIContextMenuViewDelegate: RNIContentViewDelegate {
+extension RNIContextMenuViewContent: RNIContentViewDelegate {
 
-  public typealias KeyPathRoot = RNIContextMenuViewDelegate;
+  public typealias KeyPathRoot = RNIContextMenuViewContent;
 
   // MARK: Paper + Fabric
   // --------------------
