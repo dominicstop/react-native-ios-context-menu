@@ -26,7 +26,18 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
   public enum Events: String, CaseIterable {
     case onDidSetViewID;
-  }
+    
+    case onMenuWillShow;
+    case onMenuWillHide;
+    case onMenuWillCancel;
+    case onMenuDidShow;
+    case onMenuDidHide;
+    case onMenuDidCancel;
+    case onPressMenuItem;
+    case onPressMenuPreview;
+    case onMenuWillCreate;
+    case onRequestDeferredElement;
+  };
   
   // MARK: Properties
   // ----------------
