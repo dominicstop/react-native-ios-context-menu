@@ -103,7 +103,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   private(set) public var menuConfig: RNIMenuItem?;
   @objc public var menuConfigProp: NSDictionary? {
     willSet {
-      guard let newValue = newValue,
+      guard let newValue = newValue as? Dictionary<String, Any>,
             newValue.count > 0,
             
             let menuConfig = RNIMenuItem(dictionary: newValue)
