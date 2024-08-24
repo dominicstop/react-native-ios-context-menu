@@ -29,8 +29,14 @@ RCT_EXPORT_MODULE(RNIContextMenuView)
 }
 #endif
 
-// RNI_EXPORT_VIEW_PROPERTY(blurConfig, NSDictionary);
-// RNI_EXPORT_VIEW_PROPERTY(animationConfig, NSDictionary);
+RNI_EXPORT_VIEW_PROPERTY(menuConfig, NSDictionary)
+RNI_EXPORT_VIEW_PROPERTY(previewConfig, NSDictionary)
+RNI_EXPORT_VIEW_PROPERTY(auxiliaryPreviewConfig, NSDictionary)
+
+RNI_EXPORT_VIEW_PROPERTY(shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle, BOOL)
+RNI_EXPORT_VIEW_PROPERTY(isContextMenuEnabled, BOOL)
+RNI_EXPORT_VIEW_PROPERTY(shouldPreventLongPressGestureFromPropagating, BOOL)
+RNI_EXPORT_VIEW_PROPERTY(isAuxiliaryPreviewEnabled, BOOL)
 
 @end
 

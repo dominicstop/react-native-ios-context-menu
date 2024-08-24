@@ -6,16 +6,23 @@
 //
 
 import UIKit
-import react_native_ios_utilities
 import DGSwiftUtilities
+import ContextMenuAuxiliaryPreview
+import react_native_ios_utilities
+
 
 @objc(RNIContextMenuViewDelegate)
 public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
-  public static var propKeyPathMap: Dictionary<String, PartialKeyPath<RNIContextMenuViewContent>> {
-    // TBA
-    return [:]
-  };
+  public static var propKeyPathMap: Dictionary<String, PartialKeyPath<RNIContextMenuViewContent>> = [
+    "menuConfig": \.menuConfig,
+    "previewConfig": \.previewConfigProp,
+    "shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle": \.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
+    "isContextMenuEnabled": \.isContextMenuEnabled,
+    "shouldPreventLongPressGestureFromPropagating": \.shouldPreventLongPressGestureFromPropagating,
+    "isAuxiliaryPreviewEnabled": \.isAuxiliaryPreviewEnabled,
+    "auxiliaryPreviewConfig": \.auxiliaryPreviewConfigProp,
+  ];
   
   public enum Events: String, CaseIterable {
     case onDidSetViewID;
@@ -35,6 +42,105 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   // ------------------------
   
   public var reactProps: NSDictionary = [:];
+  
+  private(set) public var menuConfig: RNIMenuItem?;
+  @objc public var menuConfigProp: Dictionary<String, Any>? {
+    willSet {
+      guard let newValue = newValue,
+            newValue.count > 0,
+            
+            let menuConfig = RNIMenuItem(dictionary: newValue)
+      else {
+        self.menuConfig = nil;
+        return;
+      };
+      
+      // TODO: Impl
+      // menuConfig.delegate = self;
+      
+      menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
+        self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;
+      
+      // TODO: Impl
+      // self.updateContextMenuIfVisible(with: menuConfig);
+      
+      // cleanup `deferredElementCompletionMap`
+      // TODO: Impl
+      // self.cleanupOrphanedDeferredElements(currentMenuConfig: menuConfig);
+      
+      // update config
+      self.menuConfig = menuConfig;
+    }
+  };
+  
+  private(set) public var previewConfig = RNIMenuPreviewConfig();
+  @objc public var previewConfigProp: Dictionary<String, Any>? {
+    willSet {
+      guard let newValue = newValue else { return };
+      
+      let previewConfig = RNIMenuPreviewConfig(dictionary: newValue);
+      self.previewConfig = previewConfig;
+      
+      // TODO: Impl
+      // update the vc's previewConfig
+      // if let previewController = self.previewController {
+      //   previewController.view.setNeedsLayout();
+      // };
+    }
+  };
+  
+  @objc public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
+  
+  @objc public var isContextMenuEnabled = true;
+  
+  // TODO: Rename to: shouldCancelReactTouchesWhenContextMenuIsShown
+  @objc public var shouldPreventLongPressGestureFromPropagating = true {
+    willSet {
+      let oldValue = self.shouldPreventLongPressGestureFromPropagating;
+      
+      // TODO: Impl
+      // guard newValue != oldValue,
+      //       let longPressGestureRecognizer = self.longPressGestureRecognizer
+      // else { return };
+      //
+      // longPressGestureRecognizer.isEnabled = newValue;
+    }
+  };
+
+  @objc public var isAuxiliaryPreviewEnabled = true {
+    willSet {
+      // TODO: Impl
+      // self.contextMenuManager?.isAuxiliaryPreviewEnabled = newValue;
+    }
+  };
+  
+  private(set) public var auxiliaryPreviewConfig: AuxiliaryPreviewConfig!;
+  @objc public var auxiliaryPreviewConfigProp: Dictionary<String, Any>? {
+    willSet {
+      guard let newValue = newValue,
+            newValue.count > 0
+      else {
+        // TODO: Impl
+        // self.setupInitAuxiliaryPreviewConfigIfNeeded();
+        return;
+      };
+      
+      let config: AuxiliaryPreviewConfig = {
+        if let newConfig = AuxiliaryPreviewConfig(dict: newValue) {
+          return newConfig;
+        };
+        
+        let deprecatedConfig =
+          RNIContextMenuAuxiliaryPreviewConfig(dictionary: newValue);
+        
+        return AuxiliaryPreviewConfig(config: deprecatedConfig);
+      }();
+      
+      // TODO: Impl
+      // self.contextMenuManager?.auxiliaryPreviewConfig = config;
+      self.auxiliaryPreviewConfig = config;
+    }
+  };
 
   // MARK: Init
   // ----------
