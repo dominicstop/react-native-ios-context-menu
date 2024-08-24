@@ -1,5 +1,5 @@
 import type { NativeSyntheticEvent } from 'react-native';
-import type { MenuActionConfig } from '../types/MenuConfig';
+import type { MenuActionConfig } from './MenuConfig';
 
 // Event Object Types
 // ------------------
