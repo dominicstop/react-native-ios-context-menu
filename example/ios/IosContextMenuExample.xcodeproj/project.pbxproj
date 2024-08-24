@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-IosContextMenuExample-IosContextMenuExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-IosContextMenuExample-IosContextMenuExampleTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8825B7BD2C7A841000B15156 /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8825B7BC2C7A841000B15156 /* ci_post_clone.sh */; };
 		C010A3D3914ECBA2116E8DC3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D670F80A6AC11F53E5DBF6D2 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		5B7EB9410499542E8C5724F5 /* Pods-IosContextMenuExample-IosContextMenuExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosContextMenuExample-IosContextMenuExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-IosContextMenuExample-IosContextMenuExampleTests/Pods-IosContextMenuExample-IosContextMenuExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-IosContextMenuExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IosContextMenuExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = IosContextMenuExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8825B7BC2C7A841000B15156 /* ci_post_clone.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-IosContextMenuExample-IosContextMenuExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosContextMenuExample-IosContextMenuExampleTests.release.xcconfig"; path = "Target Support Files/Pods-IosContextMenuExample-IosContextMenuExampleTests/Pods-IosContextMenuExample-IosContextMenuExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		D670F80A6AC11F53E5DBF6D2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = IosContextMenuExample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -121,6 +123,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8825B7BB2C7A841000B15156 /* ci_scripts */,
 				13B07FAE1A68108700A75B9A /* IosContextMenuExample */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* IosContextMenuExampleTests */,
@@ -140,6 +143,14 @@
 				00E356EE1AD99517003FC87E /* IosContextMenuExampleTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8825B7BB2C7A841000B15156 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				8825B7BC2C7A841000B15156 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -248,6 +259,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				8825B7BD2C7A841000B15156 /* ci_post_clone.sh in Resources */,
 				C010A3D3914ECBA2116E8DC3 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
