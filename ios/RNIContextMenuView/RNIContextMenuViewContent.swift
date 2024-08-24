@@ -290,7 +290,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   // MARK: Functions - Setup
   // -----------------------
  
-  func _setup(){
+  func _setupIfNeeded(){
     guard !self._didSetup else { return };
     self._didSetup = true;
     
@@ -638,7 +638,7 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
   };
   
   public func notifyDidSetProps(sender: RNIContentViewParentDelegate) {
-    self._setup();
+    self._setupIfNeeded();
   };
   
   public func notifyOnUpdateLayoutMetrics(
