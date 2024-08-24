@@ -1,4 +1,4 @@
-import { AuxiliaryPreviewTransitionKeyframeConfig } from "./AuxiliaryPreviewTransitionKeyframeConfig";
+import type { AuxiliaryPreviewTransitionKeyframeConfig } from "./AuxiliaryPreviewTransitionKeyframeConfig";
 
 
 export type AuxiliaryPreviewTransitionPreset = {
