@@ -3,7 +3,6 @@
 //  IosContextMenuExample
 //
 //  Created by Dominic Go on 10/23/20.
-//  Copyright © 2020 Facebook. All rights reserved.
 //
 
 import Foundation
