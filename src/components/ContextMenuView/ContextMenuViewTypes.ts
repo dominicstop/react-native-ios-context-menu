@@ -13,19 +13,14 @@ import type { DeferredElementProvider } from '../../types/SharedMenuTypes';
 export type RenderItem = () => React.ReactElement;
 
 export type ContextMenuViewInheritedOptionalProps = Partial<Pick<RNIContextMenuViewProps,
-  | 'onDidSetViewID'
-  | 'debugShouldEnableLogging'
->>;
-
-export type ContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenuViewProps,
-    // Value Props
-  | 'menuConfig'
+  // Value Props
   | 'previewConfig'
   | 'auxiliaryPreviewConfig'
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'
   | 'isAuxiliaryPreviewEnabled'
   | 'shouldPreventLongPressGestureFromPropagating'
+  | 'debugShouldEnableLogging'
 
   // Lifecycle Events
   | 'onMenuWillShow'
@@ -40,6 +35,11 @@ export type ContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenu
   // `OnPress` Events
   | 'onPressMenuItem'
   | 'onPressMenuPreview'
+>>;
+
+export type ContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenuViewProps,
+  // Value Props
+  | 'menuConfig'
 >>;
 
 export type ContextMenuViewInheritedProps =

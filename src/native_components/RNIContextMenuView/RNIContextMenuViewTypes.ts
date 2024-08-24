@@ -20,29 +20,37 @@ export type RNIContextMenuViewRef = {
 };
 
 export type RNIContextMenuViewInheritedOptionalProps = Partial<Pick<RNIContextMenuNativeViewProps,
+  // Value Props
+  | 'menuConfig'
+  | 'previewConfig'
+  | 'auxiliaryPreviewConfig'
+  
+  // Lifecycle Events
   | 'onDidSetViewID'
 >>;
 
 export type RNIContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenuNativeViewProps,
-  | 'menuConfig'
-  | 'previewConfig'
-  | 'auxiliaryPreviewConfig'
+  // Value Props
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'
   | 'isAuxiliaryPreviewEnabled'
   | 'shouldPreventLongPressGestureFromPropagating'
-  | 'onMenuWillCreate'
+
+  // Lifecycle Events
   | 'onMenuWillShow'
-  | 'onMenuDidShow'
   | 'onMenuWillHide'
-  | 'onMenuDidHide'
   | 'onMenuWillCancel'
+  | 'onMenuDidShow'
+  | 'onMenuDidHide'
   | 'onMenuDidCancel'
-  | 'onRequestDeferredElement'
-  | 'onPressMenuItem'
-  | 'onPressMenuPreview'
   | 'onMenuAuxiliaryPreviewWillShow'
   | 'onMenuAuxiliaryPreviewDidShow'
+  | 'onMenuWillCreate'
+  | 'onRequestDeferredElement'
+
+  // `OnPress` Events
+  | 'onPressMenuItem'
+  | 'onPressMenuPreview'
 >>;
 
 export type RNIContextMenuViewInheritedProps =
