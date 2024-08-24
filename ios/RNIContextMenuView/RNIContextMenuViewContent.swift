@@ -11,7 +11,7 @@ import ContextMenuAuxiliaryPreview
 import react_native_ios_utilities
 
 
-@objc(RNIContextMenuViewDelegate)
+@objc(RNIContextMenuViewContent)
 public final class RNIContextMenuViewContent: UIView, RNIContentView {
 
   // MARK: - Embedded Types

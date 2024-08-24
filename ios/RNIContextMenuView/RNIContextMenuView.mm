@@ -70,7 +70,7 @@ using namespace facebook::react;
 
 + (Class)viewDelegateClass
 {
-  return [RNIContextMenuViewDelegate class];
+  return [RNIContextMenuViewContent class];
 }
 
 // MARK: - Fabric
