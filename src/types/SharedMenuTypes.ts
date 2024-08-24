@@ -1,4 +1,4 @@
-import type { MenuElementConfig } from '../types/MenuConfig';
+import type { MenuElementConfig } from './MenuConfig';
 
 
 export type DeferredElementProvider = ( 
