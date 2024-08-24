@@ -609,7 +609,7 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
   // --------------------
   
   public func notifyOnInit(sender: RNIContentViewParentDelegate) {
-    self._setup();
+    // no-op
   };
     
   public func notifyOnMountChildComponentView(
@@ -638,7 +638,7 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
   };
   
   public func notifyDidSetProps(sender: RNIContentViewParentDelegate) {
-    // no-op
+    self._setup();
   };
   
   public func notifyOnUpdateLayoutMetrics(
