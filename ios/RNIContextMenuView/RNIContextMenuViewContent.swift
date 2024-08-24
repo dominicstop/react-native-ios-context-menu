@@ -36,7 +36,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     case onMenuWillCreate;
     case onRequestDeferredElement;
     
-    // TODO: WIP - To be re-impl.
+    // TODO: WIP - To be impl.
     case onMenuAuxiliaryPreviewWillShow;
     case onMenuAuxiliaryPreviewDidShow;
   };
@@ -112,18 +112,15 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
         return;
       };
       
-      // TODO: WIP - To be re-impl.
-      // menuConfig.delegate = self;
+      menuConfig.delegate = self;
       
       menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
         self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;
       
-      // TODO: WIP - To be re-impl.
-      // self.updateContextMenuIfVisible(with: menuConfig);
+      self.updateContextMenuIfVisible(with: menuConfig);
       
       // cleanup `deferredElementCompletionMap`
-      // TODO: WIP - To be re-impl.
-      // self.cleanupOrphanedDeferredElements(currentMenuConfig: menuConfig);
+      self.cleanupOrphanedDeferredElements(currentMenuConfig: menuConfig);
       
       // update config
       self.menuConfig = menuConfig;
@@ -138,11 +135,10 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
       let previewConfig = RNIMenuPreviewConfig(dictionary: newValue);
       self.previewConfig = previewConfig;
       
-      // TODO: WIP - To be re-impl.
       // update the vc's previewConfig
-      // if let previewController = self.previewController {
-      //   previewController.view.setNeedsLayout();
-      // };
+      if let previewController = self.previewController {
+        previewController.view.setNeedsLayout();
+      };
     }
   };
   
@@ -155,19 +151,17 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     willSet {
       let oldValue = self.shouldPreventLongPressGestureFromPropagating;
       
-      // TODO: WIP - To be re-impl.
-      // guard newValue != oldValue,
-      //       let longPressGestureRecognizer = self.longPressGestureRecognizer
-      // else { return };
-      //
-      // longPressGestureRecognizer.isEnabled = newValue;
+      guard newValue != oldValue,
+            let longPressGestureRecognizer = self.longPressGestureRecognizer
+      else { return };
+      
+      longPressGestureRecognizer.isEnabled = newValue;
     }
   };
 
   @objc public var isAuxiliaryPreviewEnabled = true {
     willSet {
-      // TODO: WIP - To be re-impl.
-      // self.contextMenuManager?.isAuxiliaryPreviewEnabled = newValue;
+      self.contextMenuManager?.isAuxiliaryPreviewEnabled = newValue;
     }
   };
   
@@ -177,8 +171,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
       guard let newValue = newValue,
             newValue.count > 0
       else {
-        // TODO: WIP - To be re-impl.
-        // self.setupInitAuxiliaryPreviewConfigIfNeeded();
+        self.setupInitAuxiliaryPreviewConfigIfNeeded();
         return;
       };
       
@@ -193,8 +186,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
         return AuxiliaryPreviewConfig(config: deprecatedConfig);
       }();
       
-      // TODO: WIP - To be re-impl.
-      // self.contextMenuManager?.auxiliaryPreviewConfig = config;
+      self.contextMenuManager?.auxiliaryPreviewConfig = config;
       self.auxiliaryPreviewConfig = config;
     }
   };
@@ -257,11 +249,9 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     );
   };
   
-  // TODO: WIP - To be re-impl.
   var isUsingCustomPreview: Bool {
        self.previewConfig.previewType == .CUSTOM
-    && false
-    // && self.menuCustomPreviewView != nil
+    && self.menuCustomPreviewView != nil
   };
 
   // MARK: Init
