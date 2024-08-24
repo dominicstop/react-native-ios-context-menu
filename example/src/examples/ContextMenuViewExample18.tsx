@@ -1,9 +1,9 @@
-import * as React from 'react';
+// import * as React from 'react';
 import { Image, Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 // Generate a `ImageResolvedAssetSource` object based on the
@@ -21,7 +21,7 @@ const iconC = Image.resolveAssetSource(
   require('../assets/emoji-sparkling-heart.png')
 );
 
-export function ContextMenuViewExample18(props: ContextMenuExampleProps) {
+export function ContextMenuViewExample18(props: ExampleItemProps) {
   return (
     <ContextMenuView
       style={props.style}

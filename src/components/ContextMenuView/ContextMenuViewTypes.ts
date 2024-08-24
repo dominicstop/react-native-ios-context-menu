@@ -14,6 +14,7 @@ export type RenderItem = () => React.ReactElement;
 
 export type ContextMenuViewInheritedOptionalProps = Partial<Pick<RNIContextMenuViewProps,
   // Value Props
+  | 'menuConfig'
   | 'previewConfig'
   | 'auxiliaryPreviewConfig'
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
@@ -37,14 +38,12 @@ export type ContextMenuViewInheritedOptionalProps = Partial<Pick<RNIContextMenuV
   | 'onPressMenuPreview'
 >>;
 
-export type ContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenuViewProps,
-  // Value Props
-  | 'menuConfig'
->>;
+// export type ContextMenuViewInheritedRequiredProps = Required<Pick<RNIContextMenuViewProps,
+// >>;
 
 export type ContextMenuViewInheritedProps =
     ContextMenuViewInheritedOptionalProps
-  & ContextMenuViewInheritedRequiredProps;
+// & ContextMenuViewInheritedRequiredProps;
 
 export type ContextMenuViewBaseProps = {
   lazyPreview?: boolean;

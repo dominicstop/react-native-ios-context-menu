@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { ContextMenuView, OnPressMenuItemEvent } from 'react-native-ios-context-menu';
+import { ContextMenuView, type OnPressMenuItemEvent } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 import { Alert } from 'react-native';
 
 
-export function ContextMenuViewTest06(props: ContextMenuExampleProps) {
+export function ContextMenuViewTest06(props: ExampleItemProps) {
   const [itemCount, setItemCount] = React.useState(0);
 
   const hasItems = (itemCount > 0);

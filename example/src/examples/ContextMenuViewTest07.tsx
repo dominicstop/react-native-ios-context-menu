@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, Switch, findNodeHandle } from 'react-native';
 
-import { ContextMenuView, MenuPreviewConfig } from 'react-native-ios-context-menu';
+import { ContextMenuView, type MenuPreviewConfig } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewTest07(props: ContextMenuExampleProps) {
+export function ContextMenuViewTest07(props: ExampleItemProps) {
   const [counter, setCounter] = React.useState(0);
   const [targetViewNode, setTargetViewNode] = React.useState(null);
 
@@ -23,7 +23,7 @@ export function ContextMenuViewTest07(props: ContextMenuExampleProps) {
   React.useEffect(() => {
     return () => {
       if(!intervalRef.current) return;
-      clearInterval(intervalRef.current);
+      clearInterval(intervalRef.current!);
     };
   }, []);
 

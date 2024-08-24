@@ -1,4 +1,4 @@
-// import * as React from 'react';
+//import * as React from 'react';
 import { Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';

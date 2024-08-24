@@ -2,13 +2,13 @@ import * as React from 'react';
 import { StyleSheet, Text, Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
-import { WrapperView } from 'react-native-ios-utilities';
+// import { WrapperView } from 'react-native-ios-utilities';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuViewExample15_02(props: ContextMenuExampleProps) {
+export function ContextMenuViewExample15_02(props: ExampleItemProps) {
   const wrapperViewRef = React.useRef<WrapperView>();
 
   return (
