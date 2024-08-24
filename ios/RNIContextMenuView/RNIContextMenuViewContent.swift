@@ -265,8 +265,8 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     fatalError("init(coder:) has not been implemented");
   }
   
-  // MARK: Functions
-  // ---------------
+  // MARK: View Lifecycle
+  // --------------------
   
   public override func didMoveToWindow() {
     guard self.window != nil,
@@ -283,14 +283,18 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
       "\n - reactProps:", self.reactProps.description,
       "\n"
     );
-    
-    self._setupContent();
-    return;
   };
   
-  func _setupContent(){
+  // MARK: Functions - Setup
+  // -----------------------
+ 
+  func _setup(){
     guard !self._didSetup else { return };
     self._didSetup = true;
+    
+    self.setupInitAuxiliaryPreviewConfigIfNeeded();
+    self.setupAddContextMenuInteraction();
+    self.setupAddGestureRecognizers();
   };
   
   func setupInitAuxiliaryPreviewConfigIfNeeded(){
@@ -342,6 +346,9 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     
     self.addGestureRecognizer(longPressGestureRecognizer);
   };
+  
+  // MARK: Functions
+  // ---------------
   
   func createMenu(with menuConfig: RNIMenuItem? = nil) -> UIMenu? {
     guard let menuConfig = menuConfig ?? self.menuConfig
@@ -600,12 +607,7 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
   // --------------------
   
   public func notifyOnInit(sender: RNIContentViewParentDelegate) {
-    print(
-      "RNIContextMenuViewDelegate.notifyOnInit",
-      "\n - reactProps:", self.reactProps.description,
-      "\n"
-    );
-    return;
+    self._setup();
   };
     
   public func notifyOnMountChildComponentView(
@@ -631,8 +633,7 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
     #if !RCT_NEW_ARCH_ENABLED
     superBlock();
     #endif
-    
-  }
+  };
   
   public func notifyDidSetProps(sender: RNIContentViewParentDelegate) {
     // no-op
