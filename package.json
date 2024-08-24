@@ -62,7 +62,8 @@
     "update-dep": "yarn add react-native-ios-utilities --dev ; cd example ; yarn add react-native-ios-utilities ; cd ..",
     "update-dep:next": "yarn add react-native-ios-utilities@next --dev ; cd example ; yarn add react-native-ios-utilities@next ; cd ..",
     "update-dep:pods": "cd example/ios ; pod install --repo-update ; pod update DGSwiftUtilities ContextMenuAuxiliaryPreview ; cd ../.. ; yarn run build:update-version",
-    "initialize": "yarn install ; cd example ; yarn install ; cd .. ; yarn run pod-install",
+    "initialize": "yarn initialize:js ; yarn run pod-install",
+    "initialize:js": "yarn install ; cd example ; yarn install ; cd ..",
     "initialize:reset": "yarn run nuke:all && yarn run initialize"
   },
   "keywords": [
