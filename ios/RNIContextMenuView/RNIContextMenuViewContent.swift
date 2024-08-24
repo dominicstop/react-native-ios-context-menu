@@ -101,7 +101,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   public var reactProps: NSDictionary = [:];
   
   private(set) public var menuConfig: RNIMenuItem?;
-  @objc public var menuConfigProp: Dictionary<String, Any>? {
+  @objc public var menuConfigProp: NSDictionary? {
     willSet {
       guard let newValue = newValue,
             newValue.count > 0,
@@ -128,9 +128,11 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   };
   
   private(set) public var previewConfig = RNIMenuPreviewConfig();
-  @objc public var previewConfigProp: Dictionary<String, Any>? {
+  @objc public var previewConfigProp: NSDictionary? {
     willSet {
-      guard let newValue = newValue else { return };
+      guard let newValue = newValue as? Dictionary<String, Any> else {
+        return;
+      };
       
       let previewConfig = RNIMenuPreviewConfig(dictionary: newValue);
       self.previewConfig = previewConfig;
@@ -144,7 +146,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
   @objc public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   
-  @objc public var isContextMenuEnabled = true;
+  public var isContextMenuEnabled = true;
   
   // TODO: Rename to: shouldCancelReactTouchesWhenContextMenuIsShown
   @objc public var shouldPreventLongPressGestureFromPropagating = true {
@@ -166,9 +168,9 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   };
   
   private(set) public var auxiliaryPreviewConfig: AuxiliaryPreviewConfig!;
-  @objc public var auxiliaryPreviewConfigProp: Dictionary<String, Any>? {
+  @objc public var auxiliaryPreviewConfigProp: NSDictionary? {
     willSet {
-      guard let newValue = newValue,
+      guard let newValue = newValue as? Dictionary<String, Any>,
             newValue.count > 0
       else {
         self.setupInitAuxiliaryPreviewConfigIfNeeded();
