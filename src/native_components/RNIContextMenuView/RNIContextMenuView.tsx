@@ -1,12 +1,14 @@
 import * as React from 'react';
 
-import { type StateViewID, type StateReactTag, Helpers } from "react-native-ios-utilities";
+import { type StateViewID, type StateReactTag } from "react-native-ios-utilities";
 import { RNIContextMenuNativeView } from './RNIContextMenuNativeView';
 
 import type { 
   RNIContextMenuViewProps, 
   RNIContextMenuViewRef, 
 } from './RNIContextMenuViewTypes';
+
+import * as Helpers from '../../functions/Helpers';
 
 
 export const RNIContextMenuView = React.forwardRef<
@@ -38,7 +40,7 @@ export const RNIContextMenuView = React.forwardRef<
       if(viewID == null) return;
       const module = Helpers.getRNIUtilitiesModule();
 
-      module.viewCommandRequest(
+      await module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'dismissMenu',
         /* commandArgs: */ {}
@@ -48,7 +50,7 @@ export const RNIContextMenuView = React.forwardRef<
       if(viewID == null) return;
       const module = Helpers.getRNIUtilitiesModule();
 
-      module.viewCommandRequest(
+      await module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'showAuxiliaryPreviewAsPopover',
         /* commandArgs: */ {}
@@ -63,7 +65,7 @@ export const RNIContextMenuView = React.forwardRef<
         menuItems,
       };
 
-      module.viewCommandRequest(
+      await module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'provideDeferredElements',
         /* commandArgs: */ commandArgs

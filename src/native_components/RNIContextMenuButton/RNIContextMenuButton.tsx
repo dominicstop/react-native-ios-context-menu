@@ -1,7 +1,10 @@
 import * as React from 'react';
 
-import { type StateViewID, type StateReactTag, Helpers } from "react-native-ios-utilities";
+import { type StateViewID, type StateReactTag } from "react-native-ios-utilities";
 import { RNIContextMenuButtonNativeView } from './RNIContextMenuButtonNativeView';
+
+import * as Helpers from '../../functions/Helpers';
+
 
 import type { 
   RNIContextMenuButtonProps, 
@@ -28,7 +31,7 @@ export const RNIContextMenuButton = React.forwardRef<
       if(viewID == null) return;
       const module = Helpers.getRNIUtilitiesModule();
 
-      module.viewCommandRequest(
+      await module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'presentMenu',
         /* commandArgs: */ {}
@@ -38,7 +41,7 @@ export const RNIContextMenuButton = React.forwardRef<
       if(viewID == null) return;
       const module = Helpers.getRNIUtilitiesModule();
 
-      module.viewCommandRequest(
+      await module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'dismissMenu',
         /* commandArgs: */ {}
@@ -53,7 +56,7 @@ export const RNIContextMenuButton = React.forwardRef<
         menuItems,
       };
 
-      module.viewCommandRequest(
+      await module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'provideDeferredElements',
         /* commandArgs: */ commandArgs
