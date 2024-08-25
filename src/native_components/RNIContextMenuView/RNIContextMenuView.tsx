@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { type StateViewID, type StateReactTag, RNIUtilitiesModule } from "react-native-ios-utilities";
+import { type StateViewID, type StateReactTag, Helpers } from "react-native-ios-utilities";
 import { RNIContextMenuNativeView } from './RNIContextMenuNativeView';
 
 import type { 
@@ -26,8 +26,9 @@ export const RNIContextMenuView = React.forwardRef<
     },
     presentMenu: async () => {
       if(viewID == null) return;
+      const module = Helpers.getRNIUtilitiesModule();
 
-      RNIUtilitiesModule.viewCommandRequest(
+      await module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'presentMenu',
         /* commandArgs: */ {}
@@ -35,8 +36,9 @@ export const RNIContextMenuView = React.forwardRef<
     },
     dismissMenu: async () => {
       if(viewID == null) return;
+      const module = Helpers.getRNIUtilitiesModule();
 
-      RNIUtilitiesModule.viewCommandRequest(
+      module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'dismissMenu',
         /* commandArgs: */ {}
@@ -44,8 +46,9 @@ export const RNIContextMenuView = React.forwardRef<
     },
     showAuxiliaryPreviewAsPopover: async () => {
       if(viewID == null) return;
+      const module = Helpers.getRNIUtilitiesModule();
 
-      RNIUtilitiesModule.viewCommandRequest(
+      module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'showAuxiliaryPreviewAsPopover',
         /* commandArgs: */ {}
@@ -53,13 +56,14 @@ export const RNIContextMenuView = React.forwardRef<
     },
     provideDeferredElements: async (deferredID, menuItems) => {
       if(viewID == null) return;
+      const module = Helpers.getRNIUtilitiesModule();
 
       const commandArgs = {
         deferredID,
         menuItems,
       };
 
-      RNIUtilitiesModule.viewCommandRequest(
+      module.viewCommandRequest(
         /* viewID     : */ viewID,
         /* commandName: */ 'provideDeferredElements',
         /* commandArgs: */ commandArgs
