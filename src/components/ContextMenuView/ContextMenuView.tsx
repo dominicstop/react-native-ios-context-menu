@@ -139,12 +139,12 @@ export class ContextMenuView extends
     };
   };
 
-  dismissMenu = async () => {
+  public dismissMenu = async () => {
     if(!LIB_ENV.isContextMenuViewSupported) return;
     await this.nativeRef.dismissMenu();
   };
 
-  provideDeferredElements = async (
+  public provideDeferredElements = async (
     deferredID: string, 
     menuItems: MenuElementConfig[]
   ) => {
@@ -155,12 +155,12 @@ export class ContextMenuView extends
     );
   };
 
-  presentMenu = async () => {
+  public presentMenu = async () => {
     if(!LIB_ENV.isContextMenuViewSupported) return;
     await this.nativeRef.presentMenu();
   };
 
-  showAuxiliaryPreviewAsPopover = async () => {
+  public showAuxiliaryPreviewAsPopover = async () => {
     if(!LIB_ENV.isContextMenuViewSupported) return;
 
     await Helpers.setStateAsync(this, () => ({
@@ -170,7 +170,6 @@ export class ContextMenuView extends
     await this.nativeRef.showAuxiliaryPreviewAsPopover();
   };
 
-  //#region - Handlers
   private _handleGetRefToContextMenuView = () => {
     return this;
   };
@@ -289,7 +288,6 @@ export class ContextMenuView extends
     this.props.onPressMenuPreview?.(event);
     event.stopPropagation();
   };
-  //#endregion
 
   render(){
     const props = this.getProps();
