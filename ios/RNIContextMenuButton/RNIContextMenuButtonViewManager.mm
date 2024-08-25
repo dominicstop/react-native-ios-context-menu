@@ -30,13 +30,8 @@ RCT_EXPORT_MODULE(RNIContextMenuButton)
 #endif
 
 RNI_EXPORT_VIEW_PROPERTY(menuConfig, NSDictionary)
-RNI_EXPORT_VIEW_PROPERTY(previewConfig, NSDictionary)
-RNI_EXPORT_VIEW_PROPERTY(auxiliaryPreviewConfig, NSDictionary)
-
-RNI_EXPORT_VIEW_PROPERTY(shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle, BOOL)
 RNI_EXPORT_VIEW_PROPERTY(isContextMenuEnabled, BOOL)
-RNI_EXPORT_VIEW_PROPERTY(shouldPreventLongPressGestureFromPropagating, BOOL)
-RNI_EXPORT_VIEW_PROPERTY(isAuxiliaryPreviewEnabled, BOOL)
+RNI_EXPORT_VIEW_PROPERTY(isMenuPrimaryAction, BOOL)
 
 RNI_EXPORT_VIEW_EVENT(onDidSetViewID, RCTBubblingEventBlock)
 RNI_EXPORT_VIEW_EVENT(onMenuWillShow, RCTBubblingEventBlock)
@@ -46,8 +41,6 @@ RNI_EXPORT_VIEW_EVENT(onMenuDidShow, RCTBubblingEventBlock)
 RNI_EXPORT_VIEW_EVENT(onMenuDidHide, RCTBubblingEventBlock)
 RNI_EXPORT_VIEW_EVENT(onMenuDidCancel, RCTBubblingEventBlock)
 RNI_EXPORT_VIEW_EVENT(onPressMenuItem, RCTBubblingEventBlock)
-RNI_EXPORT_VIEW_EVENT(onPressMenuPreview, RCTBubblingEventBlock)
-RNI_EXPORT_VIEW_EVENT(onMenuWillCreate, RCTBubblingEventBlock)
 RNI_EXPORT_VIEW_EVENT(onRequestDeferredElement, RCTBubblingEventBlock)
 
 @end

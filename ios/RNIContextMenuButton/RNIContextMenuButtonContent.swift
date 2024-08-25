@@ -17,11 +17,6 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
   // MARK: - Embedded Types
   // ----------------------
   
-  enum NativeIDKey: String {
-    case contextMenuPreview;
-    case contextMenuAuxiliaryPreview;
-  };
-  
   public enum Events: String, CaseIterable {
     case onDidSetViewID;
     
@@ -32,13 +27,7 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     case onMenuDidHide;
     case onMenuDidCancel;
     case onPressMenuItem;
-    case onPressMenuPreview;
-    case onMenuWillCreate;
     case onRequestDeferredElement;
-    
-    // TODO: WIP - To be impl.
-    case onMenuAuxiliaryPreviewWillShow;
-    case onMenuAuxiliaryPreviewDidShow;
   };
   
   // MARK: - Static Properties
@@ -46,11 +35,8 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
   
   public static var propKeyPathMap: Dictionary<String, PartialKeyPath<RNIContextMenuButtonContent>> = [
     "menuConfig": \.menuConfigProp,
-    "shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle": \.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle,
     "isContextMenuEnabled": \.isContextMenuEnabled,
-    "shouldPreventLongPressGestureFromPropagating": \.shouldPreventLongPressGestureFromPropagating,
-    "isAuxiliaryPreviewEnabled": \.isAuxiliaryPreviewEnabled,
-    "auxiliaryPreviewConfig": \.auxiliaryPreviewConfigProp,
+    "isMenuPrimaryAction": \.isMenuPrimaryAction,
   ];
   
   // MARK: Properties
@@ -63,13 +49,6 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     
   weak var navEventsVC: RNINavigationEventsReportingViewController?;
   var longPressGestureRecognizer: UILongPressGestureRecognizer!;
-  
-  // TODO: WIP - To be re-impl.
-  var detachedViews: [WeakRef</* RNIDetachedView? */ UIView>] = [];
-  var menuAuxiliaryPreviewView: /* RNIDetachedView? */ UIView?;
-  var menuCustomPreviewView: /* RNIDetachedView? */ UIView?;
-  
-  var previewController: RNIContextMenuPreviewController?;
     
   // MARK: Public Properties
   // ----------------------
@@ -112,10 +91,6 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
       };
       
       menuConfig.delegate = self;
-      
-      menuConfig.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle =
-        self.shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle;
-      
       self.updateContextMenuIfVisible(with: menuConfig);
       
       // cleanup `deferredElementCompletionMap`
@@ -126,71 +101,10 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     }
   };
   
-  @objc public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
+  @objc public var isContextMenuEnabled = true;
   
-  public var isContextMenuEnabled = true;
+  @objc public var isMenuPrimaryAction = false;
   
-  // TODO: Rename to: shouldCancelReactTouchesWhenContextMenuIsShown
-  @objc public var shouldPreventLongPressGestureFromPropagating = true {
-    willSet {
-      let oldValue = self.shouldPreventLongPressGestureFromPropagating;
-      
-      guard newValue != oldValue,
-            let longPressGestureRecognizer = self.longPressGestureRecognizer
-      else { return };
-      
-      longPressGestureRecognizer.isEnabled = newValue;
-    }
-  };
-
-  @objc public var isAuxiliaryPreviewEnabled = true {
-    willSet {
-      self.contextMenuManager?.isAuxiliaryPreviewEnabled = newValue;
-    }
-  };
-  
-  private(set) public var auxiliaryPreviewConfig: AuxiliaryPreviewConfig!;
-  @objc public var auxiliaryPreviewConfigProp: NSDictionary? {
-    willSet {
-      guard let newValue = newValue as? Dictionary<String, Any>,
-            newValue.count > 0
-      else {
-        self.setupInitAuxiliaryPreviewConfigIfNeeded();
-        return;
-      };
-      
-      let config: AuxiliaryPreviewConfig = {
-        if let newConfig = AuxiliaryPreviewConfig(dict: newValue) {
-          return newConfig;
-        };
-        
-        let deprecatedConfig =
-          RNIContextMenuAuxiliaryPreviewConfig(dictionary: newValue);
-        
-        return AuxiliaryPreviewConfig(config: deprecatedConfig);
-      }();
-      
-      self.contextMenuManager?.auxiliaryPreviewConfig = config;
-      self.auxiliaryPreviewConfig = config;
-    }
-  };
-  
-  // MARK: - Computed Properties
-  // ---------------------------
-  
-  /// Get a ref. to the view specified in `PreviewConfig.targetViewNode`
-  var customMenuPreviewTargetView: UIView? {
-    // TODO: WIP - To be re-impl.
-    // guard let bridge = self.reactGetPaperBridge(),
-    //       let targetNode = self.previewConfig.targetViewNode,
-    //       let targetView = bridge.uiManager.view(forReactTag: targetNode)
-    // else { return nil }
-    //
-    // return targetView;
-    
-    return nil;
-  };
-
   // MARK: Init
   // ----------
   
@@ -229,26 +143,7 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     guard !self._didSetup else { return };
     self._didSetup = true;
     
-    self.setupInitAuxiliaryPreviewConfigIfNeeded();
     self.setupAddContextMenuInteraction();
-    self.setupAddGestureRecognizers();
-  };
-  
-  func setupInitAuxiliaryPreviewConfigIfNeeded(){
-    guard self.isAuxiliaryPreviewEnabled,
-          self.auxiliaryPreviewConfig == nil
-    else { return };
-    
-    self.auxiliaryPreviewConfig = .init(
-      verticalAnchorPosition: .automatic,
-      horizontalAlignment: .stretchTarget,
-      marginInner: 12,
-      marginOuter: 12,
-      transitionConfigEntrance: .syncedToMenuEntranceTransition(
-        shouldAnimateSize: true
-      ),
-      transitionExitPreset: .zoomAndSlide()
-    );
   };
   
   /// Add a context menu interaction to view
@@ -262,26 +157,8 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
       contextMenuInteraction: contextMenuInteraction,
       menuTargetView: nil
     );
-   
-    contextMenuManager.auxiliaryPreviewConfig = self.auxiliaryPreviewConfig;
-    contextMenuManager.delegate = self;
     
     self.contextMenuManager = contextMenuManager;
-  };
-  
-  func setupAddGestureRecognizers(){
-    let longPressGestureRecognizer = UILongPressGestureRecognizer(
-      target: self,
-      action: #selector(Self.handleLongPressGesture(_:))
-    );
-    
-    self.longPressGestureRecognizer = longPressGestureRecognizer;
-    
-    longPressGestureRecognizer.delegate = self;
-    longPressGestureRecognizer.isEnabled =
-      self.shouldPreventLongPressGestureFromPropagating;
-    
-    self.addGestureRecognizer(longPressGestureRecognizer);
   };
   
   // MARK: Functions
@@ -299,26 +176,6 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
       // B. deferred element is requesting for items to load...
       self?.handleOnDeferredElementRequest(deferredID: $0, completion: $1);
     });
-  };
-  
-  func setAuxiliaryPreviewConfigSizeIfNeeded(){
-    guard let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView,
-          self.auxiliaryPreviewConfig != nil
-    else { return };
-    
-    if self.auxiliaryPreviewConfig!.preferredWidth == nil {
-      self.auxiliaryPreviewConfig!.preferredWidth = .constant(
-        menuAuxiliaryPreviewView.bounds.width
-      );
-    };
-    
-    if self.auxiliaryPreviewConfig!.preferredHeight == nil {
-      self.auxiliaryPreviewConfig!.preferredHeight = .constant(
-        menuAuxiliaryPreviewView.bounds.height
-      );
-    };
-    
-    self.contextMenuManager?.auxiliaryPreviewConfig = self.auxiliaryPreviewConfig;
   };
   
   func updateContextMenuIfVisible(with menuConfig: RNIMenuItem){
@@ -491,30 +348,6 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     
     try contextMenuManager.presentMenu(atLocation: .zero);
   };
-  
-  func showAuxiliaryPreviewAsPopover() throws {
-    guard let contextMenuManager = self.contextMenuManager else {
-      throw RNIContextMenuError.init(
-        errorCode: .unexpectedNilValue,
-        description: "Unable to get contextMenuManager"
-      );
-    };
-    
-    guard let parentViewController = self.parentViewController else {
-      throw RNIContextMenuError.init(
-        errorCode: .unexpectedNilValue,
-        description: "Unable to get parentViewController"
-      );
-    };
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-      self.setAuxiliaryPreviewConfigSizeIfNeeded();
-    
-      try? contextMenuManager.showAuxiliaryPreviewAsPopover(
-        presentingViewController: parentViewController
-      );
-    };
-  };
 };
 
 // MARK: - RNIContextMenuButtonDelegate+RNIContentViewDelegate
@@ -594,9 +427,6 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
           
         case "dismissMenu":
           try self.dismissMenu();
-          
-        case "showAuxiliaryPreviewAsPopover":
-          try self.showAuxiliaryPreviewAsPopover();
           
         case "provideDeferredElements":
           let id: String =
@@ -691,24 +521,6 @@ extension RNIContextMenuButtonContent: RNIMenuElementEventsNotifiable {
   };
 };
 
-// MARK: - ContextMenuManagerDelegate
-// ----------------------------------
-
-extension RNIContextMenuButtonContent: ContextMenuManagerDelegate {
- 
-  public func onRequestMenuAuxiliaryPreview(sender: ContextMenuManager) -> UIView? {
-    guard let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView
-    else { return nil };
-    
-    // TODO: WIP - To be re-impl.
-    // let layoutWrapperView = AutoLayoutWrapperView(frame: .zero);
-    let layoutWrapperView = UIView(frame: .zero);
-    layoutWrapperView.addSubview(menuAuxiliaryPreviewView);
-    
-    return layoutWrapperView;
-  };
-};
-
 // MARK: - RNINavigationEventsNotifiable
 // -------------------------------------
 
@@ -722,100 +534,3 @@ extension RNIContextMenuButtonContent: RNINavigationEventsNotifiable {
     //  .triggerCleanupIfNeededForViewControllerDidPopEvent(for: self);
   };
 };
-
-// MARK: - Temp
-// ------------
-
-//
-//public class RNIContextMenuButton:
-//
-//  // MARK: - Properties
-//  // ------------------
-//
-//  override public var reactTag: NSNumber! {
-//    didSet {
-//      try? RNICleanableViewRegistryShared.register(
-//        forDelegate: self,
-//        shouldIncludeDelegateInViewsToCleanup: true,
-//        shouldProceedCleanupWhenDelegateIsNil: true
-//      );
-//    }
-//  };
-//
-//  // MARK: Init + Lifecycle
-//  // ----------------------
-//
-//  public required init(appContext: AppContext? = nil) {
-//    super.init(appContext: appContext);
-//    
-//    self.setupInitAuxiliaryPreviewConfigIfNeeded();
-//    self.setupAddContextMenuInteraction();
-//    self.setupAddGestureRecognizers();
-//  };
-//  
-//  public required init?(coder: NSCoder) {
-//    fatalError("init(coder:) has not been implemented");
-//  };
-//  
-//  deinit {
-//    try? self.viewCleanupMode.triggerCleanupIfNeededForDeinit(
-//      for: self,
-//      shouldForceCleanup: true
-//    );
-//  };
-//  
-//  // MARK: - RN Lifecycle
-//  // --------------------
-//
-//  
-//  public override func insertReactSubview(_ subview: UIView!, at atIndex: Int) {
-//    super.insertSubview(subview, at: atIndex);
-//    
-//    if let cleanableViewItem = self.associatedCleanableViewItem {
-//      cleanableViewItem.viewsToCleanup.append(
-//        .init(with: subview)
-//      );
-//    };
-//    
-//    guard let detachedView = subview as? RNIDetachedView,
-//          let nativeID = detachedView.nativeID,
-//          let nativeIDKey = NativeIDKey(rawValue: nativeID)
-//    else { return };
-//    
-//    switch nativeIDKey {
-//        case .contextMenuPreview:
-//          self.menuCustomPreviewView?.cleanup();
-//          self.menuCustomPreviewView = detachedView;
-//        
-//        // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
-//        case .contextMenuAuxiliaryPreview:
-//          self.menuAuxiliaryPreviewView?.cleanup();
-//          self.menuAuxiliaryPreviewView = detachedView;
-//    };
-//    
-//    self.detachedViews.append(
-//      .init(with: detachedView)
-//    );
-//    
-//    try? detachedView.detach();
-//  };
-//  
-//  public override func didMoveToSuperview() {
-//    guard self.superview != nil else { return };
-//    self._tempBeginDebugging();
-//  };
-//  
-//  #if DEBUG
-//  @objc func onRCTBridgeWillReloadNotification(_ notification: Notification){
-//    self.cleanup();
-//  };
-//  #endif
-//  
-//  // MARK: - View Lifecycle
-//  // ----------------------
-//  
-//  public override func didMoveToWindow() {
-//    
-//  };
-//};
-//

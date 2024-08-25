@@ -20,11 +20,6 @@ extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
   ) -> UIContextMenuConfiguration? {
     
     guard self.isContextMenuEnabled else { return nil };
-    
-    self.dispatchEvent(
-      for: .onMenuWillCreate,
-      withPayload: [:]
-    );
   
     self.contextMenuManager?.notifyOnContextMenuInteraction(
       interaction,
@@ -51,28 +46,12 @@ extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
     
     self.isContextMenuVisible = true;
     guard let animator = animator else { return };
-    
-    if self.shouldPreventLongPressGestureFromPropagating,
-       let parentReactView = self.parentReactView as? RCTView
-    {
-      self.isUserInteractionEnabled = false;
-      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = false;
-      
-      parentReactView.closestParentReactTouchHandler?.cancel();
-      
-      DispatchQueue.main.async {
-        self.isUserInteractionEnabled = true;
-        self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
-      };
-    };
-    
+        
     self.dispatchEvent(
       for: .onMenuWillShow,
       withPayload: [:]
     );
-    
-    self.setAuxiliaryPreviewConfigSizeIfNeeded();
-    
+
     self.contextMenuManager?.notifyOnContextMenuInteraction(
       interaction,
       willDisplayMenuFor: configuration,
@@ -97,9 +76,7 @@ extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
     defer {
       // reset flag
       self.isContextMenuVisible = false;
-      
       self.isUserInteractionEnabled = true;
-      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
     };
     
     guard self.isContextMenuVisible else { return };
