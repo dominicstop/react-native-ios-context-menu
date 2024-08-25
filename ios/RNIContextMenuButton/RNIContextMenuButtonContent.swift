@@ -447,9 +447,11 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
       switch commandName {
         case "presentMenu":
           try self.presentMenu();
+          resolveBlock([:]);
           
         case "dismissMenu":
           try self.dismissMenu();
+          resolveBlock([:]);
           
         case "provideDeferredElements":
           let id: String =
@@ -470,6 +472,8 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
             id: id,
             menuElements: menuElements
           );
+          
+          resolveBlock([:]);
           
         default:
           throw RNIContextMenuError(

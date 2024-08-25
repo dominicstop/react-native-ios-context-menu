@@ -674,12 +674,15 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
       switch commandName {
         case "presentMenu":
           try self.presentMenu();
+          resolveBlock([:]);
           
         case "dismissMenu":
           try self.dismissMenu();
+          resolveBlock([:]);
           
         case "showAuxiliaryPreviewAsPopover":
           try self.showAuxiliaryPreviewAsPopover();
+          resolveBlock([:]);
           
         case "provideDeferredElements":
           let id: String =
@@ -700,6 +703,8 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
             id: id,
             menuElements: menuElements
           );
+          
+          resolveBlock([:]);
           
         default:
           throw RNIContextMenuError(
