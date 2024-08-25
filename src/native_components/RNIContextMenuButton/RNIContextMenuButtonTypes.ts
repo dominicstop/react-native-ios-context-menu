@@ -21,19 +21,15 @@ export type RNIContextMenuButtonRef = {
 export type RNIContextMenuButtonInheritedOptionalProps = Partial<Pick<RNIContextMenuButtonNativeViewProps,
   // Value Props
   | 'menuConfig'
-  | 'previewConfig'
-  | 'auxiliaryPreviewConfig'
-  
+
   // Lifecycle Events
   | 'onDidSetViewID'
 >>;
 
 export type RNIContextMenuButtonInheritedRequiredProps = Required<Pick<RNIContextMenuButtonNativeViewProps,
   // Value Props
-  | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'
-  | 'isAuxiliaryPreviewEnabled'
-  | 'shouldPreventLongPressGestureFromPropagating'
+  | 'isMenuPrimaryAction'
 
   // Lifecycle Events
   | 'onMenuWillShow'
@@ -42,14 +38,10 @@ export type RNIContextMenuButtonInheritedRequiredProps = Required<Pick<RNIContex
   | 'onMenuDidShow'
   | 'onMenuDidHide'
   | 'onMenuDidCancel'
-  | 'onMenuAuxiliaryPreviewWillShow'
-  | 'onMenuAuxiliaryPreviewDidShow'
-  | 'onMenuWillCreate'
   | 'onRequestDeferredElement'
 
   // `OnPress` Events
   | 'onPressMenuItem'
-  | 'onPressMenuPreview'
 >>;
 
 export type RNIContextMenuButtonInheritedProps =
@@ -58,7 +50,6 @@ export type RNIContextMenuButtonInheritedProps =
 
 export type RNIContextMenuButtonBaseProps = {
   // TBA
-  debugShouldEnableLogging?: boolean;
 };
 
 export type RNIContextMenuButtonProps = PropsWithChildren<

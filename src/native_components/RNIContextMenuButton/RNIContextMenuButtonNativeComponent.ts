@@ -4,15 +4,14 @@ import type { HostComponent, ViewProps } from 'react-native';
 
 // stubs
 export interface NativeProps extends ViewProps {
+  isMenuPrimaryAction: boolean;
+
+  // shared props
   onDidSetViewID: BubblingEventHandler<{}>;
 
-  menuConfig?: string; 
-  previewConfig?: string;
-  auxiliaryPreviewConfig?: string;
-  shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle: string;
-  isContextMenuEnabled: string;
-  isAuxiliaryPreviewEnabled: string;
-  shouldPreventLongPressGestureFromPropagating: string;
+  // inherited props
+  menuConfig: string;
+  isContextMenuEnabled: boolean;
 
   onMenuWillShow: BubblingEventHandler<{}>;
   onMenuDidShow: BubblingEventHandler<{}>;
@@ -20,12 +19,9 @@ export interface NativeProps extends ViewProps {
   onMenuDidHide: BubblingEventHandler<{}>;
   onMenuWillCancel: BubblingEventHandler<{}>;
   onMenuDidCancel: BubblingEventHandler<{}>;
-  onMenuWillCreate: BubblingEventHandler<{}>;
   onRequestDeferredElement: BubblingEventHandler<{}>;
   onPressMenuItem: BubblingEventHandler<{}>;
-  onPressMenuPreview: BubblingEventHandler<{}>;
-  onMenuAuxiliaryPreviewWillShow: BubblingEventHandler<{}>;
-  onMenuAuxiliaryPreviewDidShow: BubblingEventHandler<{}>;
+
 };
 
 // stubs
