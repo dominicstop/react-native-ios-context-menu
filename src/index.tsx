@@ -5,7 +5,7 @@ export * from './native_components/IosContextMenuViewNativeComponent';
 export * from './native_components/RNIContextMenuView';
 
 export * from './components/ContextMenuView';
-// export * from './components/ContextMenuButton';
+export * from './components/ContextMenuButton';
 
 export * from './context/ContextMenuViewContext';
 export * from './context/ContextMenuButtonContext';

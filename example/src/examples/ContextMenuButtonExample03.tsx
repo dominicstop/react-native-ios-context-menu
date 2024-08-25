@@ -1,17 +1,16 @@
 import * as React from 'react';
 
+import { Helpers } from 'react-native-ios-utilities';
 import { ContextMenuButton } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 
 import { ContextMenuButtonCard } from '../components/ContextMenuButtonCard';
 import { ContextMenuCardButton } from '../components/ContextMenuCardButton';
 
-import * as Helpers from '../functions/Helpers';
 
-
-export function ContextMenuButtonExample03(props: ContextMenuExampleProps) {
-  const menuRef = React.useRef<ContextMenuButton>();
+export function ContextMenuButtonExample03(props: ExampleItemProps) {
+  const menuRef = React.useRef<ContextMenuButton | null>(null);
 
   return (
     <ContextMenuButtonCard
@@ -68,7 +67,7 @@ export function ContextMenuButtonExample03(props: ContextMenuExampleProps) {
         }}
         onMenuDidShow={async () => {
           await Helpers.timeout(7000);
-          menuRef.current.dismissMenu();
+          menuRef.current!.dismissMenu();
         }}
       >
         <ContextMenuCardButton

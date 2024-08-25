@@ -1,15 +1,15 @@
-import * as React from 'react';
+// import * as React from 'react';
 import { Alert } from 'react-native';
 
 import { ContextMenuButton } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 
 import { ContextMenuButtonCard } from '../components/ContextMenuButtonCard';
 import { ContextMenuCardButton } from '../components/ContextMenuCardButton';
 
 
-export function ContextMenuButtonExample01(props: ContextMenuExampleProps) {
+export function ContextMenuButtonExample01(props: ExampleItemProps) {
   return (
     <ContextMenuButtonCard
       style={props.style}

@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { Alert } from 'react-native';
 
+import { Colors, CardButton } from 'react-native-ios-utilities';
 import { ContextMenuButton } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
-
-import * as Colors from '../constants/Colors';
+import type { ExampleItemProps } from './SharedExampleTypes';
 
 import { ContextMenuButtonCard } from '../components/ContextMenuButtonCard';
 import { ContextMenuCardButton } from '../components/ContextMenuCardButton';
-import { CardButton } from '../components/Card';
 
 
-export function ContextMenuButtonExample04(props: ContextMenuExampleProps) {
-  const menuRef = React.useRef<ContextMenuButton>(null);
+export function ContextMenuButtonExample04(props: ExampleItemProps) {
+  const menuRef = React.useRef<ContextMenuButton | null>(null);
 
   return (
     <ContextMenuButtonCard
