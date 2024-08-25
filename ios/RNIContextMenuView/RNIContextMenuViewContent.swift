@@ -657,22 +657,61 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
     reject rejectBlock: (String) -> Void
   ) {
     
-    switch commandName {
-      case "presentMenu":
-        break;
-        
-      case "dismissMenu":
-        break;
-        
-      case "showAuxiliaryPreviewAsPopover":
-        break;
-        
-      case "provideDeferredElements":
-        break;
-        
-      default:
-        rejectBlock("No matching command for commandName");
-        return;
+    do {
+      guard let commandArguments = commandArguments as? Dictionary<String, Any> else {
+        throw RNIContextMenuError(
+            errorCode: .invalidValue,
+            description: "Unable to parse commandArguments",
+            extraDebugValues: [
+              "commandName": commandName,
+              "commandArguments": commandArguments,
+            ]
+          );
+      };
+      
+      switch commandName {
+        case "presentMenu":
+          try self.presentMenu();
+          
+        case "dismissMenu":
+          try self.dismissMenu();
+          
+        case "showAuxiliaryPreviewAsPopover":
+          try self.showAuxiliaryPreviewAsPopover();
+          
+        case "provideDeferredElements":
+          let id: String =
+            try commandArguments.getValueFromDictionary(forKey: "id");
+            
+          let menuElementsRaw: [Any] =
+            try commandArguments.getValueFromDictionary(forKey: "menuElements");
+            
+          let menuElements: [RNIMenuElement] = menuElementsRaw.compactMap {
+            guard let dict = $0 as? Dictionary<String, Any> else {
+              return nil;
+            };
+            
+            return .init(dictionary: dict);
+          };
+          
+          try self.provideDeferredElements(
+            id: id,
+            menuElements: menuElements
+          );
+          
+        default:
+          throw RNIContextMenuError(
+            errorCode: .invalidValue,
+            description: "No matching command for commandName",
+            extraDebugValues: [
+              "commandName": commandName,
+              "commandArguments": commandArguments,
+            ]
+          );
+      };
+    
+    } catch {
+      rejectBlock(error.localizedDescription);
     };
   };
   
