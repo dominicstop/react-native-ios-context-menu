@@ -2062,6 +2062,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pkgr/core@npm:^0.1.0":
+  version: 0.1.1
+  resolution: "@pkgr/core@npm:0.1.1"
+  checksum: 6f25fd2e3008f259c77207ac9915b02f1628420403b2630c92a07ff963129238c9262afc9e84344c7a23b5cc1f3965e2cd17e3798219f5fd78a63d144d3cceba
+  languageName: node
+  linkType: hard
+
 "@pnpm/config.env-replace@npm:^1.1.0":
   version: 1.1.0
   resolution: "@pnpm/config.env-replace@npm:1.1.0"
@@ -4712,6 +4719,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-config-prettier@npm:^9.0.0":
+  version: 9.1.0
+  resolution: "eslint-config-prettier@npm:9.1.0"
+  peerDependencies:
+    eslint: ">=7.0.0"
+  bin:
+    eslint-config-prettier: bin/cli.js
+  checksum: 9229b768c879f500ee54ca05925f31b0c0bafff3d9f5521f98ff05127356de78c81deb9365c86a5ec4efa990cb72b74df8612ae15965b14136044c73e1f6a907
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-eslint-comments@npm:^3.2.0":
   version: 3.2.0
   resolution: "eslint-plugin-eslint-comments@npm:3.2.0"
@@ -4766,6 +4784,26 @@ __metadata:
     eslint-config-prettier:
       optional: true
   checksum: b9e839d2334ad8ec7a5589c5cb0f219bded260839a857d7a486997f9870e95106aa59b8756ff3f37202085ebab658de382b0267cae44c3a7f0eb0bcc03a4f6d6
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-prettier@npm:^5.0.1":
+  version: 5.2.1
+  resolution: "eslint-plugin-prettier@npm:5.2.1"
+  dependencies:
+    prettier-linter-helpers: ^1.0.0
+    synckit: ^0.9.1
+  peerDependencies:
+    "@types/eslint": ">=8.0.0"
+    eslint: ">=8.0.0"
+    eslint-config-prettier: "*"
+    prettier: ">=3.0.0"
+  peerDependenciesMeta:
+    "@types/eslint":
+      optional: true
+    eslint-config-prettier:
+      optional: true
+  checksum: 812f4d1596dcd3a55963212dfbd818a4b38f880741aac75f6869aa740dc5d934060674d3b85d10ff9fec424defa61967dbdef26b8a893a92c9b51880264ed0d9
   languageName: node
   linkType: hard
 
@@ -8804,7 +8842,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.75.2
     react-native-builder-bob: ^0.30.0
-    react-native-ios-utilities: 5.0.0-16
+    react-native-ios-utilities: 5.0.0-17
     react-native-safe-area-context: ^4.10.9
     react-native-screens: ^3.34.0
   languageName: unknown
@@ -8818,11 +8856,13 @@ __metadata:
     "@react-native/eslint-config": ^0.73.1
     "@types/react": ^18.2.44
     eslint: ^8.51.0
+    eslint-config-prettier: ^9.0.0
+    eslint-plugin-prettier: ^5.0.1
     prettier: ^3.3.3
     react: 18.3.1
     react-native: 0.75.2
     react-native-builder-bob: ^0.30.0
-    react-native-ios-utilities: 5.0.0-16
+    react-native-ios-utilities: 5.0.0-17
     release-it: ^15.0.0
     turbo: ^1.10.7
     typescript: ^5.2.2
@@ -8832,13 +8872,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-native-ios-utilities@npm:5.0.0-16":
-  version: 5.0.0-16
-  resolution: "react-native-ios-utilities@npm:5.0.0-16"
+"react-native-ios-utilities@npm:5.0.0-17":
+  version: 5.0.0-17
+  resolution: "react-native-ios-utilities@npm:5.0.0-17"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: c2d297f5d4313cced8389c130d8b4e1fd0b6123a1b9ba2e22d9b6ab9809ffbdd2eda2cd0f05500ebd03b14d303e37dc1bbdc60cb00d72e41a692a0a49c25908d
+  checksum: 07dd0eca1707143556be50f59311c70e3dff89030e0c425107a26d76192470616fc2134d8fa53c6d713743da11d943daedc35d35542efa05b2df92684ec0556f
   languageName: node
   linkType: hard
 
@@ -9997,6 +10037,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"synckit@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "synckit@npm:0.9.1"
+  dependencies:
+    "@pkgr/core": ^0.1.0
+    tslib: ^2.6.2
+  checksum: 4042941a4d939675f1d7b01124b8405b6ac616f3e3f396d00e46c67f38d0d5b7f9a1de05bc7ceea4ce80d967b450cfa2460e5f6aca81f7cea8f1a28be9392985
+  languageName: node
+  linkType: hard
+
 "tar@npm:^6.1.11, tar@npm:^6.2.1":
   version: 6.2.1
   resolution: "tar@npm:6.2.1"
@@ -10129,6 +10179,13 @@ __metadata:
   version: 2.6.3
   resolution: "tslib@npm:2.6.3"
   checksum: 74fce0e100f1ebd95b8995fbbd0e6c91bdd8f4c35c00d4da62e285a3363aaa534de40a80db30ecfd388ed7c313c42d930ee0eaf108e8114214b180eec3dbe6f5
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.6.2":
+  version: 2.7.0
+  resolution: "tslib@npm:2.7.0"
+  checksum: 1606d5c89f88d466889def78653f3aab0f88692e80bb2066d090ca6112ae250ec1cfa9dbfaab0d17b60da15a4186e8ec4d893801c67896b277c17374e36e1d28
   languageName: node
   linkType: hard
 
