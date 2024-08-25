@@ -280,6 +280,13 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
   // ----------------------------------------
   
   public func dismissMenu() throws {
+    guard #available(iOS 14.0, *) else {
+      throw RNIContextMenuError(
+        errorCode: .guardCheckFailed,
+        description: "Unsupported, requires iOS 14+"
+      );
+    };
+    
     guard let contextMenuInteraction = self.contextMenuInteraction else {
       throw RNIContextMenuError.init(
         errorCode: .unexpectedNilValue,
