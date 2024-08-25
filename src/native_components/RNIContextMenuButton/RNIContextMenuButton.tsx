@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { type StateViewID, type StateReactTag, RNIUtilitiesModule } from "react-native-ios-utilities";
-import { RNIContextMenuNativeView } from './RNIContextMenuButtonNativeView';
+import { RNIContextMenuButtonNativeView } from './RNIContextMenuButtonNativeView';
 
 import type { 
   RNIContextMenuButtonProps, 
@@ -59,7 +59,7 @@ export const RNIContextMenuButton = React.forwardRef<
   }));
 
   return (
-    <RNIContextMenuNativeView
+    <RNIContextMenuButtonNativeView
       {...props}
       onDidSetViewID={(event) => {
         setViewID(event.nativeEvent.viewID);
@@ -68,6 +68,6 @@ export const RNIContextMenuButton = React.forwardRef<
       }}
     >
       {props.children}
-    </RNIContextMenuNativeView>
+    </RNIContextMenuButtonNativeView>
   );
 });

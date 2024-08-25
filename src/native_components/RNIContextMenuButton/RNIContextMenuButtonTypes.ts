@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from "react";
 import type { ViewProps } from "react-native";
 
-import type { RNIContextMenuNativeViewProps } from "./RNIContextMenuButtonNativeView";
 import type { StateReactTag, StateViewID } from "react-native-ios-utilities";
+import type { RNIContextMenuButtonNativeViewProps } from "./RNIContextMenuButtonNativeView";
 
 import type { MenuElementConfig } from "../../types/MenuConfig";
 
@@ -18,7 +18,7 @@ export type RNIContextMenuButtonRef = {
   ) => Promise<void>;
 };
 
-export type RNIContextMenuButtonInheritedOptionalProps = Partial<Pick<RNIContextMenuNativeViewProps,
+export type RNIContextMenuButtonInheritedOptionalProps = Partial<Pick<RNIContextMenuButtonNativeViewProps,
   // Value Props
   | 'menuConfig'
   | 'previewConfig'
@@ -28,7 +28,7 @@ export type RNIContextMenuButtonInheritedOptionalProps = Partial<Pick<RNIContext
   | 'onDidSetViewID'
 >>;
 
-export type RNIContextMenuButtonInheritedRequiredProps = Required<Pick<RNIContextMenuNativeViewProps,
+export type RNIContextMenuButtonInheritedRequiredProps = Required<Pick<RNIContextMenuButtonNativeViewProps,
   // Value Props
   | 'shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle'
   | 'isContextMenuEnabled'

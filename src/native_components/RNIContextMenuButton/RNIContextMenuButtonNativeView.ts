@@ -71,10 +71,10 @@ export type RNIContextMenuNativeViewBaseProps = RemapObject<RNIContextMenuButton
   onMenuAuxiliaryPreviewDidShow: OnMenuAuxiliaryPreviewDidShowEvent;
 }>;
 
-export type RNIContextMenuNativeViewProps = 
+export type RNIContextMenuButtonNativeViewProps = 
     SharedViewEvents
   & ViewProps
   & RNIContextMenuNativeViewBaseProps;
 
-export const RNIContextMenuNativeView = 
-  RNIContextMenuButtonNativeComponent as unknown as HostComponent<RNIContextMenuNativeViewProps>;
+export const RNIContextMenuButtonNativeView = 
+  RNIContextMenuButtonNativeComponent as unknown as HostComponent<RNIContextMenuButtonNativeViewProps>;
