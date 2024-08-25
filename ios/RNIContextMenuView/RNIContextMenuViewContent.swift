@@ -146,7 +146,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
   @objc public var shouldUseDiscoverabilityTitleAsFallbackValueForSubtitle = true;
   
-  public var isContextMenuEnabled = true;
+  @objc public var isContextMenuEnabled = true;
   
   // TODO: Rename to: shouldCancelReactTouchesWhenContextMenuIsShown
   @objc public var shouldPreventLongPressGestureFromPropagating = true {
