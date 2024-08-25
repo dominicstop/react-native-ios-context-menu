@@ -21,6 +21,10 @@ brew install node
 echo "Install: yarn"
 brew install yarn
 
+echo "Remove lockfiles"
+echo "Working DIR:" ; pwd ; ls
+rm -rfv ./yarn.lock ./example/yarn.lock
+
 # Install dependencies for library
 echo "Install library dependencies"
 echo "Working DIR:" ; pwd
