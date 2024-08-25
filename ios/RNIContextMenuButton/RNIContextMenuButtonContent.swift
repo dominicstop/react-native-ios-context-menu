@@ -408,6 +408,8 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
     #if !RCT_NEW_ARCH_ENABLED
     superBlock();
     #endif
+    
+    childComponentView.removeFromSuperview();
   };
   
   public func notifyDidSetProps(sender: RNIContentViewParentDelegate) {
