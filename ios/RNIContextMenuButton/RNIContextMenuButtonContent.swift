@@ -121,13 +121,13 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
   // MARK: Init
   // ----------
   
-  public override init(frame: CGRect) {
-    super.init(frame: frame);
+  public static func instanceMaker(
+    sender: RNIContentViewParentDelegate,
+    frame: CGRect
+  ) -> RNIContextMenuButtonContent {
+    
+    return .init();
   };
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented");
-  }
   
   // MARK: View Lifecycle
   // --------------------
