@@ -12,7 +12,7 @@ import react_native_ios_utilities
 
 
 @objc(RNIContextMenuButtonContent)
-public final class RNIContextMenuButtonContent: UIView, RNIContentView {
+public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
 
   // MARK: - Embedded Types
   // ----------------------
@@ -51,10 +51,7 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
   var longPressGestureRecognizer: UILongPressGestureRecognizer!;
     
   // MARK: Public Properties
-  // ----------------------
-  
-  public var contextMenuManager: ContextMenuManager?;
-  public var contextMenuInteraction: UIContextMenuInteraction?;
+  // -----------------------
   
    /// Keep track on whether or not the context menu is currently visible.
   internal(set) public var isContextMenuVisible = false;
@@ -101,9 +98,25 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     }
   };
   
-  @objc public var isContextMenuEnabled = true;
+  @objc public var isContextMenuEnabled = true {
+    didSet {
+      guard #available(iOS 14.0, *),
+            self.isContextMenuEnabled != oldValue
+      else { return };
+      
+      self.isContextMenuInteractionEnabled = self.isContextMenuEnabled;
+    }
+  };
   
-  @objc public var isMenuPrimaryAction = false;
+  @objc public var isMenuPrimaryAction = false {
+    didSet {
+      guard #available(iOS 14.0, *),
+            self.isMenuPrimaryAction != oldValue
+      else { return };
+      
+      self.showsMenuAsPrimaryAction = self.isMenuPrimaryAction;
+    }
+  };
   
   // MARK: Init
   // ----------
@@ -143,24 +156,9 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     guard !self._didSetup else { return };
     self._didSetup = true;
     
-    self.setupAddContextMenuInteraction();
+    self.isEnabled = true;
   };
-  
-  /// Add a context menu interaction to view
-  func setupAddContextMenuInteraction(){
-    let contextMenuInteraction = UIContextMenuInteraction(delegate: self);
-    self.addInteraction(contextMenuInteraction);
     
-    self.contextMenuInteraction = contextMenuInteraction;
-    
-    let contextMenuManager = ContextMenuManager(
-      contextMenuInteraction: contextMenuInteraction,
-      menuTargetView: nil
-    );
-    
-    self.contextMenuManager = contextMenuManager;
-  };
-  
   // MARK: Functions
   // ---------------
   
@@ -281,9 +279,9 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
   // MARK: - Functions - View Module Commands
   // ----------------------------------------
   
-  func dismissMenu() throws {
+  public func dismissMenu() throws {
     guard let contextMenuInteraction = self.contextMenuInteraction else {
-      throw RNIContextMenuError(
+      throw RNIContextMenuError.init(
         errorCode: .unexpectedNilValue,
         description: "contextMenuInteraction is nil"
       );
@@ -292,7 +290,7 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
     contextMenuInteraction.dismissMenu();
   };
   
-  func provideDeferredElements(
+  public func provideDeferredElements(
     id deferredID: String,
     menuElements rawMenuElements: [RNIMenuElement]
   ) throws {
@@ -325,6 +323,13 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
   };
   
   func presentMenu() throws {
+    guard #available(iOS 14.0, *) else {
+      throw RNIContextMenuError(
+        errorCode: .guardCheckFailed,
+        description: "Unsupported, requires iOS 14+"
+      );
+    };
+    
     guard self.isContextMenuEnabled else {
       throw RNIContextMenuError.init(
         errorCode: .guardCheckFailed,
@@ -339,14 +344,23 @@ public final class RNIContextMenuButtonContent: UIView, RNIContentView {
       );
     };
     
-    guard let contextMenuManager = self.contextMenuManager else {
+    guard let contextMenuInteraction = self.contextMenuInteraction else {
       throw RNIContextMenuError.init(
         errorCode: .unexpectedNilValue,
-        description: "Unable to get contextMenuManager"
+        description: "contextMenuInteraction is nil"
       );
     };
     
-    try contextMenuManager.presentMenu(atLocation: .zero);
+    guard let contextMenuInteractionWrapper =
+            ContextMenuInteractionWrapper(objectToWrap: contextMenuInteraction)
+    else {
+      throw RNIContextMenuError.init(
+        errorCode: .unexpectedNilValue,
+        description: "Unable to create ContextMenuInteractionWrapper"
+      );
+    };
+    
+    try contextMenuInteractionWrapper.presentMenuAtLocation(point: .zero);
   };
 };
 

@@ -11,21 +11,16 @@ import react_native_ios_utilities
 
 
 @available(iOS 13, *)
-extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
+extension RNIContextMenuButtonContent {
   
   // create context menu
-  public func contextMenuInteraction(
+  public override func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
     configurationForMenuAtLocation location: CGPoint
   ) -> UIContextMenuConfiguration? {
     
     guard self.isContextMenuEnabled else { return nil };
-  
-    self.contextMenuManager?.notifyOnContextMenuInteraction(
-      interaction,
-      configurationForMenuAtLocation: location
-    );
-    
+
     // Note: Xcode beta + running on device (iPhone XR + iOS 15.1) causes
     // crashes when the context menu is being created
     return UIContextMenuConfiguration(
@@ -38,7 +33,7 @@ extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
   };
   
   // context menu display begins
-  public func contextMenuInteraction(
+  public override func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
     willDisplayMenuFor configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionAnimating?
@@ -51,12 +46,6 @@ extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
       for: .onMenuWillShow,
       withPayload: [:]
     );
-
-    self.contextMenuManager?.notifyOnContextMenuInteraction(
-      interaction,
-      willDisplayMenuFor: configuration,
-      animator: animator
-    );
     
     animator.addCompletion { [unowned self] in
       self.dispatchEvent(
@@ -67,7 +56,7 @@ extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
   };
   
   // context menu display ends
-  public func contextMenuInteraction(
+  public override func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
     willEndFor configuration: UIContextMenuConfiguration,
     animator: UIContextMenuInteractionAnimating?
@@ -85,13 +74,7 @@ extension RNIContextMenuButtonContent: UIContextMenuInteractionDelegate {
       for: .onMenuWillHide,
       withPayload: [:]
     );
-    
-    self.contextMenuManager?.notifyOnContextMenuInteraction(
-      interaction,
-      willEndFor: configuration,
-      animator: animator
-    );
-    
+
     if !self.didPressMenuItem {
       // nothing was selected...
       self.dispatchEvent(
