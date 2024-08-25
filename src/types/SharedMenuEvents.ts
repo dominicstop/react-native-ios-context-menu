@@ -32,13 +32,7 @@ export type OnRequestDeferredElementObject = NativeSyntheticEvent<{
   deferredID: string;
 }>;
 
-export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig> & {
-  isUsingActionSheetFallback?: false;
-  
-} | {
-  isUsingActionSheetFallback: true;
-  nativeEvent: MenuActionConfig;
-};
+export type OnPressMenuItemEventObject = NativeSyntheticEvent<MenuActionConfig>;
 
 export type OnPressMenuPreviewEventObject = NativeSyntheticEvent<{
 }>;

@@ -132,9 +132,6 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 
   private _handleOnPressMenuItem: OnPressMenuItemEvent = (event) => {
     this.props.onPressMenuItem?.(event);
-
-    // guard: event is a native event
-    if(event.isUsingActionSheetFallback) return;
     event.stopPropagation();
   };
 

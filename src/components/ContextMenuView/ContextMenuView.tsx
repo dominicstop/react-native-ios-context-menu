@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { TSEventEmitter } from '@dominicstop/ts-event-emitter';
-import { Helpers } from 'react-native-ios-utilities';
 
 import { RNIContextMenuView, type RNIContextMenuViewRef } from '../../native_components/RNIContextMenuView';
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
@@ -12,6 +11,7 @@ import type { ContextMenuViewProps, ContextMenuViewState, ContextMenuEventEmitte
 import type { MenuElementConfig } from '../../types/MenuConfig';
 
 import { LIB_ENV } from '../../constants/LibEnv';
+import * as Helpers from '../../functions/Helpers';
 
 
 // const NATIVE_ID_KEYS = {
@@ -246,12 +246,10 @@ export class ContextMenuView extends
   private _handleOnPressMenuItem: OnPressMenuItemEvent = async (event) => {
     const props = this.getProps();
     const eventProps = props.eventProps;
-    
-    // guard: event is a native event
-    if(event.isUsingActionSheetFallback) return;
 
     event.stopPropagation();
     event.persist();
+
 
     const isKeepsMenuPresentedEnabled = 
       event.nativeEvent.menuAttributes?.includes('keepsMenuPresented');
@@ -259,7 +257,7 @@ export class ContextMenuView extends
     const shouldWaitForMenuToHide =
       !isKeepsMenuPresentedEnabled &&
       props.shouldWaitForMenuToHideBeforeFiringOnPressMenuItem;
-
+    
     try {
       if(shouldWaitForMenuToHide){
         // wait for `onMenuDidHide`
