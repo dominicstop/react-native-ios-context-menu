@@ -106,22 +106,16 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
   };
   
   @objc public var isContextMenuEnabled = true {
-    didSet {
-      guard #available(iOS 14.0, *),
-            self.isContextMenuEnabled != oldValue
-      else { return };
-      
-      self.isContextMenuInteractionEnabled = self.isContextMenuEnabled;
+    willSet {
+      guard #available(iOS 14.0, *) else { return };
+      self.isContextMenuInteractionEnabled = newValue;
     }
   };
   
   @objc public var isMenuPrimaryAction = false {
-    didSet {
-      guard #available(iOS 14.0, *),
-            self.isMenuPrimaryAction != oldValue
-      else { return };
-      
-      self.showsMenuAsPrimaryAction = self.isMenuPrimaryAction;
+    willSet {
+      guard #available(iOS 14.0, *) else { return };
+      self.showsMenuAsPrimaryAction = newValue;
     }
   };
   
