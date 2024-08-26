@@ -95,6 +95,13 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
       
       // update config
       self.menuConfig = menuConfig;
+      
+      guard #available(iOS 14.0, *) else {
+        return;
+      };
+      
+      let menu = self.createMenu(with: menuConfig);
+      self.menu = menu;
     }
   };
   

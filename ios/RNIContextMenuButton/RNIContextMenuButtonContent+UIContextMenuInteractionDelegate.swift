@@ -13,25 +13,6 @@ import react_native_ios_utilities
 @available(iOS 13, *)
 extension RNIContextMenuButtonContent {
   
-  // create context menu
-  public override func contextMenuInteraction(
-    _ interaction: UIContextMenuInteraction,
-    configurationForMenuAtLocation location: CGPoint
-  ) -> UIContextMenuConfiguration? {
-    
-    guard self.isContextMenuEnabled else { return nil };
-
-    // Note: Xcode beta + running on device (iPhone XR + iOS 15.1) causes
-    // crashes when the context menu is being created
-    return UIContextMenuConfiguration(
-      identifier     : nil,
-      previewProvider: nil,
-      actionProvider : { [unowned self] _ in
-        self.createMenu();
-      }
-    );
-  };
-  
   // context menu display begins
   public override func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction,
