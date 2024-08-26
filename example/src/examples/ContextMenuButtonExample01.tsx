@@ -35,6 +35,7 @@ export function ContextMenuButtonExample01(props: ExampleItemProps) {
             actionTitle: 'Action #3',
           }],
         }}
+        isMenuPrimaryAction={false}
         onPressMenuItem={({nativeEvent}) => {
           Alert.alert(
             'onPressMenuItem Event',
