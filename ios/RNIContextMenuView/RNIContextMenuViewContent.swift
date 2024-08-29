@@ -229,7 +229,11 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
   /// Get a ref. to the view specified in `PreviewConfig.targetViewNode`
   var customMenuPreviewTargetView: UIView? {
-    self.previewConfig.viewIdentifier?.getAssociatedView();
+    guard let viewIdentifier = self.previewConfig.viewIdentifier else {
+      return nil;
+    };
+    
+    return viewIdentifier.getAssociatedView();
   };
   
   var menuPreviewTargetView: UIView {
@@ -237,7 +241,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   };
   
   var menuTargetedPreview: UITargetedPreview {
-    return .init(
+    .init(
       view: self.menuPreviewTargetView,
       parameters: self.menuPreviewParameters
     );
@@ -317,7 +321,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     
     let contextMenuManager = ContextMenuManager(
       contextMenuInteraction: contextMenuInteraction,
-      menuTargetView: self.menuPreviewTargetView
+      menuTargetView: self
     );
    
     contextMenuManager.auxiliaryPreviewConfig = self.auxiliaryPreviewConfig;
