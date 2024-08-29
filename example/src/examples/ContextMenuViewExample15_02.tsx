@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import { StyleSheet, Text, Alert } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
-import { WrapperView, type WrapperViewRef } from 'react-native-ios-utilities';
+import { WrapperView, type StateViewID } from 'react-native-ios-utilities';
 
 import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
 export function ContextMenuViewExample15_02(props: ExampleItemProps) {
-  const wrapperViewRef = React.useRef<WrapperViewRef | undefined>();
+  const [viewID, setViewID] = React.useState<StateViewID>();
 
   return (
     <ContextMenuView
@@ -25,7 +25,7 @@ export function ContextMenuViewExample15_02(props: ExampleItemProps) {
         // get the associated id of the view element you want use as the 
         // preview target
         viewIdentifier: {
-          viewID: wrapperViewRef.current?.getViewID()!,
+          viewID: viewID!,
         },
       }}
       onPressMenuItem={({nativeEvent}) => {
@@ -44,14 +44,14 @@ export function ContextMenuViewExample15_02(props: ExampleItemProps) {
         ]}
       >
         <WrapperView
-          // @ts-ignore
-          ref={wrapperViewRef}
+          style={styles.targetContainer}
+          onDidSetViewID={({nativeEvent}) => {
+            setViewID(nativeEvent.viewID);
+          }}
         >
-          <View style={styles.targetContainer}>
-            <Text style={styles.text}>
-              {`Hello inside: WrapperView\nView ID: ${wrapperViewRef.current?.getViewID()}`}
-            </Text>
-          </View>
+          <Text style={styles.text}>
+            {`Hello inside: WrapperView\nView ID: ${viewID}`}
+          </Text>
         </WrapperView>
       </ContextMenuCard>
     </ContextMenuView>
