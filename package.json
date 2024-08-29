@@ -55,7 +55,7 @@
     "run:debug": "cd example && npx react-native run-ios --configuration Debug",
     "build-and-run": "yarn run build && yarn run run:debug && yarn run run:release",
     "pod-install": "cd example/ios && bundle install ; RCT_NEW_ARCH_ENABLED=1 bundle exec pod install ; rm -rfv ./.xcode.env.local ; cd ../.. ; yarn run build:update-version",
-    "pod-install:old": "cd example/ios && pod install ; cd ../.. ; yarn run build:update-version",
+    "pod-install:old": "cd example/ios && RCT_NEW_ARCH_ENABLED=0 pod install ; rm -rfv ./.xcode.env.local ; cd ../.. ; yarn run build:update-version",
     "nuke:node-modules": "rm -rfv ./yarn.lock ./node_modules ; cd example ; rm -rfv ./node_modules ; cd ../..",
     "nuke:example-pods": "cd example/ios ; pod cache clean --all ; rm -rfv ./Pods ./build ./Podfile.lock ; cd ../..",
     "nuke:all": "yarn run nuke:node-modules ; yarn run nuke:example-pods",
