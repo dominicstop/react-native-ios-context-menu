@@ -1,4 +1,4 @@
-import type { DynamicColor } from 'react-native-ios-utilities';
+import type { DynamicColor, NativeViewIdentifier } from 'react-native-ios-utilities';
 
 export type MenuPreviewType = 'DEFAULT' | 'CUSTOM';
 
@@ -14,5 +14,10 @@ export type MenuPreviewConfig = {
   borderRadius?: number;
   backgroundColor?: DynamicColor | string;
   preferredCommitStyle?: ContextMenuInteractionCommitStyle;
+} & ({
+  // deprecated
   targetViewNode?: number;
-};
+} | {
+  viewIdentifier?: NativeViewIdentifier;
+});
+

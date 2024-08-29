@@ -134,8 +134,8 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
         return;
       };
       
-      let previewConfig = RNIMenuPreviewConfig(dictionary: newValue);
-      self.previewConfig = previewConfig;
+      let previewConfig = try? RNIMenuPreviewConfig(fromDict: newValue);
+      self.previewConfig = previewConfig ?? .init();
       
       // update the vc's previewConfig
       if let previewController = self.previewController {
@@ -229,13 +229,14 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
   /// Get a ref. to the view specified in `PreviewConfig.targetViewNode`
   var customMenuPreviewTargetView: UIView? {
-    // TODO: WIP - To be re-impl.
-    // guard let bridge = self.reactGetPaperBridge(),
-    //       let targetNode = self.previewConfig.targetViewNode,
-    //       let targetView = bridge.uiManager.view(forReactTag: targetNode)
-    // else { return nil }
-    //
-    // return targetView;
+    return self.previewConfig.viewIdentifier?.getAssociatedView();
+    
+     guard let bridge = self.reactGetPaperBridge(),
+           let targetNode = .targetViewNode,
+           let targetView = bridge.uiManager.view(forReactTag: targetNode)
+     else { return nil }
+    
+     return targetView;
     
     return nil;
   };
