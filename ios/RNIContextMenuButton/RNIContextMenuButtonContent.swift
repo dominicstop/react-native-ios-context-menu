@@ -122,32 +122,12 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
   // MARK: Init
   // ----------
   
-  public static func instanceMaker(
+  public static func createInstance(
     sender: RNIContentViewParentDelegate,
     frame: CGRect
   ) -> RNIContextMenuButtonContent {
     
     return .init();
-  };
-  
-  // MARK: View Lifecycle
-  // --------------------
-  
-  public override func didMoveToWindow() {
-    guard self.window != nil,
-          let parentReactView = self.parentReactView
-    else { return };
-    
-    // if shouldAttachToParentVC {
-    //   // begin setup - attach this view as child vc
-    //   self.attachToParentVC();
-    // };
-    
-    print(
-      "RNIContextMenuButtonDelegate.didMoveToWindow",
-      "\n - reactProps:", self.reactProps.description,
-      "\n"
-    );
   };
   
   // MARK: Functions - Setup
