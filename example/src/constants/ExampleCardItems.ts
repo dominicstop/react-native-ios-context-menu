@@ -145,10 +145,10 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
       type: 'card',
       component: ContextMenuViewExample15,
     },
-    // {
-    //   type: 'card',
-    //   component: ContextMenuViewExample15_02,
-    // },
+    {
+      type: 'card',
+      component: ContextMenuViewExample15_02,
+    },
     {
       type: 'card',
       component: ContextMenuViewExample16,
