@@ -16,12 +16,12 @@ public struct RNIMenuPreviewConfig {
   // MARK: - Nested Types
   // --------------------
   
-  public enum PreviewType: String {
+  public enum PreviewType: String, InitializableFromString {
     case DEFAULT;
     case CUSTOM;
   };
 
-  public enum PreviewSize: String {
+  public enum PreviewSize: String, InitializableFromString {
     case INHERIT;
     case STRETCH;
   };
@@ -76,31 +76,40 @@ extension RNIMenuPreviewConfig: InitializableFromDictionary {
       return try? .init(fromDict: viewIdentifierRaw);
     }();
     
-    if let string = dict["previewType"] as? String,
-       let previewType = PreviewType(rawValue: string)
-    {
+    if let previewType = try? dict.getValueFromDictionary(
+      forKey: "previewType",
+      type: PreviewType.self
+    ) {
       self.previewType = previewType;
     };
     
-    if let string = dict["previewSize"] as? String,
-       let previewSize = try? PreviewSize(fromString: string)
-    {
+    if let previewSize = try? dict.getValueFromDictionary(
+      forKey: "previewSize",
+      type: PreviewSize.self
+    ) {
       self.previewSize = previewSize;
     };
     
-    if let isResizeAnimated = dict["isResizeAnimated"] as? Bool {
+    if let isResizeAnimated = try? dict.getValueFromDictionary(
+      forKey: "isResizeAnimated",
+      type: Bool.self
+    ) {
       self.isResizeAnimated = isResizeAnimated;
     };
     
-    if let string  = dict["backgroundColor"] as? String,
-       let bgColor = UIColor(cssColor: string) {
-      
+    if let colorString = try? dict.getValueFromDictionary(
+         forKey: "backgroundColor",
+         type: String.self
+       ),
+       let bgColor = UIColor(cssColor: colorString)
+    {
       self.backgroundColor = bgColor;
     };
     
-    if let string = dict["preferredCommitStyle"] as? String,
-       let preferredCommitStyle = UIContextMenuInteractionCommitStyle(fromString: string) {
-      
+    if let preferredCommitStyle = try? dict.getValueFromDictionary(
+      forKey: "preferredCommitStyle",
+      type: UIContextMenuInteractionCommitStyle.self
+    ) {
       self.preferredCommitStyle = preferredCommitStyle;
     };
   };

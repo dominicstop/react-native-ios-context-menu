@@ -229,16 +229,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
   /// Get a ref. to the view specified in `PreviewConfig.targetViewNode`
   var customMenuPreviewTargetView: UIView? {
-    return self.previewConfig.viewIdentifier?.getAssociatedView();
-    
-     guard let bridge = self.reactGetPaperBridge(),
-           let targetNode = .targetViewNode,
-           let targetView = bridge.uiManager.view(forReactTag: targetNode)
-     else { return nil }
-    
-     return targetView;
-    
-    return nil;
+    self.previewConfig.viewIdentifier?.getAssociatedView();
   };
   
   var menuPreviewTargetView: UIView {
