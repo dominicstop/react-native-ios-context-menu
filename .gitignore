@@ -28,11 +28,20 @@ DerivedData
 ios/.xcode.env.local
 project.xcworkspace
 
+# Android/IJ
+#
+.classpath
+.project
+.settings
+android.iml
+
 # Android/IntelliJ - General
 .idea
 .cxx/
 *.keystore
 !debug.keystore
+android/app/libs
+android/keystores/debug.keystore
 
 # Android - Built application files
 *.apk
@@ -114,3 +123,32 @@ buck-out/
 lib/
 
 # Docs-Related
+
+# Xcode
+#
+
+# Ruby
+example/vendor/
+
+# node.js
+#
+yarn-debug.log
+
+# BUCK
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Turborepo
+.turbo/
+
+# React Native Codegen
+ios/generated
+android/generated
+
+example/ios/.xcode.env.local
