@@ -4,7 +4,7 @@ PODS:
     - DGSwiftUtilities (~> 0.11)
   - ContextMenuAuxiliaryPreview (0.4.0):
     - DGSwiftUtilities (~> 0.13)
-  - DGSwiftUtilities (0.28.0)
+  - DGSwiftUtilities (0.29.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.75.2)
   - fmt (9.1.0)
@@ -1242,7 +1242,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-ios-context-menu (3.0.0-3):
+  - react-native-ios-context-menu (3.0.0-4):
     - ContextMenuAuxiliaryPreview (~> 0.3)
     - DGSwiftUtilities
     - DoubleConversion
@@ -1267,9 +1267,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-ios-utilities (5.0.0-25):
+  - react-native-ios-utilities (5.0.0-26):
     - ComputableLayout (~> 0.7)
-    - DGSwiftUtilities (~> 0.28)
+    - DGSwiftUtilities (~> 0.29)
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1881,7 +1881,7 @@ SPEC CHECKSUMS:
   boost: 4cb898d0bf20404aab1850c656dcea009429d6c1
   ComputableLayout: c50faffac4ed9f8f05b0ce5e6f3a60df1f6042c8
   ContextMenuAuxiliaryPreview: 484e47f66bcb9ffe485b5e7e34cc968ff3218a9f
-  DGSwiftUtilities: 1f2722e8b2442dc11c17b66818f62b93780e95fd
+  DGSwiftUtilities: 626565e1ee90ddacebd8520ea1ce730110ad13e4
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBLazyVector: 38bb611218305c3bc61803e287b8a81c6f63b619
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
@@ -1916,8 +1916,8 @@ SPEC CHECKSUMS:
   React-logger: 8db32983d75dc2ad54f278f344ccb9b256e694fc
   React-Mapbuffer: 1c08607305558666fd16678b85ef135e455d5c96
   React-microtasksnativemodule: f13f03163b6a5ec66665dfe80a0df4468bb766a6
-  react-native-ios-context-menu: 4109380c3aba444b97f4cecb98c416dac5adbade
-  react-native-ios-utilities: 7b62a7e1a03a7628445d03538b3c46b3e359a165
+  react-native-ios-context-menu: e0a7ff949ffd5ad542e071dc641d06cccbc57339
+  react-native-ios-utilities: b5c5e28706f70fd95ae998b277a7439596b8627d
   react-native-safe-area-context: 38fdd9b3c5561de7cabae64bd0cd2ce05d2768a1
   React-nativeconfig: 57781b79e11d5af7573e6f77cbf1143b71802a6d
   React-NativeModulesApple: 7ff2e2cfb2e5fa5bdedcecf28ce37e696c6ef1e1
