@@ -18,8 +18,8 @@
 
 | Notice                                                       |
 | ------------------------------------------------------------ |
-| 📝 **Note** #1: Staring on version `2.x`, this library now uses `expo-modules`, and contains a peer dependency to `react-native-ios-utilites`. |
-| 📝 **Note** #2: The documentation + examples are currently being rewritten.<br><br>💅 [`README-old-v1.md`](./README-old-v1.md) — The old version of the documentation (archived).<br>💖 [`example/src/examples`](./example/src/examples) — The typescript rewrite of the examples (WIP). |
+| 📝 **Note** #1: Version `3.x` is a rewrite of this library to support both fabric (the new architecture), and  offer backwards compatibility to paper (the old architecture).<br><br> The support for both paper and fabric is possible via a peer dependency to [`react-native-ios-utilites@v5`](https://github.com/dominicstop/react-native-ios-utilities). |
+| 📝 **Note** #2: The documentation + examples are currently being rewritten.<br><br>❤️ [`README-old-v1.md`](./README-old-v1.md) — Documentation for `v1.x`<br>🧡 [`README-old-v2.md`](./README-old-v2.md) — Documentation for `v2.x`<br>💛 [`example/src/examples`](./example/src/examples) — The typescript rewrite of the examples (WIP). |
 
  <br>
 
@@ -27,7 +27,8 @@
 
 | Library Version | Compatibility                                                |
 | :-------------- | ------------------------------------------------------------ |
-| `2.1`+          | Uses `Expo-Modules`<br/>Depends on `react-native-ios-utilities@4.x`<br/>Depends on `ContextMenuAuxiliaryPreview`<br>iOS 13+<br/>Xcode 15+ |
+| `3.x`+          | Depends on `react-native-ios-utilities@5.x`<br/>iOS 13+<br/>Xcode 15+` |
+| `2.1`           | Uses `Expo-Modules`<br/>Depends on `react-native-ios-utilities@4.x`<br/>Depends on `ContextMenuAuxiliaryPreview`<br>iOS 13+<br/>Xcode 15+ |
 | `2.0.x`         | Uses `Expo-Modules`<br>Depends on `react-native-ios-utilities@4.x`<br>iOS 13+<br>Xcode 15+ |
 | `1.6.2`         | iOS 10 to iOS 15<br>Xcode 12+                                |
 | `1.4`           | iOS 10 to iOS 15<br>Xcode 13+                                |
@@ -106,6 +107,18 @@
 
 <br><br>
 
+### Acknowledgements
+
+The initial fabric rewrite (i.e. version `5.x`) was made possible through a generous `$3,250` sponsorship by [natew](https://github.com/natew) + [tamagui](https://github.com/tamagui/tamagui) over the course of ≈ 3.5 months (from: `05/27/24` to `09/24`) 🐦✨
+
+<br>
+
+Very special thanks to: [junzhengca](https://github.com/junzhengca), [brentvatne](https://github.com/brentvatne), and [expo](https://github.com/expo) for sponsoring my work 🥺
+
+<br><br>
+
+<br><br>
+
 ## A. Introduction
 
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
@@ -172,8 +185,8 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 
 ```sh
 # 1. install library + dependencies
-npm install react-native-ios-utilities
-npm install react-native-ios-context-menu
+npm install react-native-ios-utilities@next
+npm install react-native-ios-context-menu@next
 
 # 2. then run pod install (uses auto-linking)
 cd ios && pod install
@@ -208,11 +221,12 @@ cd ios && pod install
 
 ### Updating
 
-This library has cocoapods dependency to [`ContextMenuAuxiliaryPreview`](https://github.com/dominicstop/ContextMenuAuxiliaryPreview), so you need to update it separately.
+This library has cocoapods dependency to [`ContextMenuAuxiliaryPreview`](https://github.com/dominicstop/ContextMenuAuxiliaryPreview) and [`DGSwiftUtilities`](https://github.com/dominicstop/DGSwiftUtilities), so you may need to update them separately (as needed).
 
 ```sh
 # A. Either update this specific pod...
-pod update ContextMenuAuxiliaryPreview
+pod update ContextMenuAuxiliaryPreview DGSwiftUtilities
+pod install --repo-update
 
 # B. Or update all the pods
 pod update
