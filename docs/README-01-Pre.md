@@ -1,9 +1,8 @@
 # react-native-ios-context-menu
 
-<p>
-  <img src="https://github.com/dominicstop/react-native-ios-context-menu/workflows/Build%20Example/badge.svg" />
-</p>
-<br>
+A small component for using context menu's on iOS.
+
+<br><br>
 
 ## 🚧⚠️ Documentation WIP ⚠️🚧
 
@@ -115,8 +114,6 @@ Very special thanks to: [junzhengca](https://github.com/junzhengca), [brentvatne
 
 <br><br>
 
-<br><br>
-
 ## A. Introduction
 
 A react native component to use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) on iOS 13 and later.
@@ -157,7 +154,7 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 `ContextMenuView` `ActionSheetIOS` fallback for simple example 1 to 9
 ![Action Sheet Fallback for Simple Example 1 to 9 Gifs](../assets/montage-ContextMenuView-ActionSheetFallback-Example-old-1-to-9.gif)
 
-`ContextMenuView` `ActionSheetIOS` fallback for context menu view test 1 to 6
+`ContextMenuView` `ActionSheetIOS` fallback for context menu view test 1 to 6 (removed in `v3.x`+).
 ![Action Sheet Fallback for Context Menu View Test 1 to 6 Gifs](../assets/montage-ContextMenuView-ActionSheetFallback-Test-old-1-to-6.gif)
 
 `ContextMenuButton` examples, **Left**: [Example 1](#ContextMenuButton-Example-01), and **Right**: [Example 2](#ContextMenuButton-Example-02)
@@ -172,7 +169,7 @@ A react native component to use [`UIMenu`](https://developer.apple.com/documenta
 * Extensive support for SF Symbols configuration (e.g. `pointSize`, `weight`, `scale`, `hierarchicalColor`, `paletteColors`).
 * Support for iOS 14 functionality (like the `UIButton` context menu, dynamically updating the menu while it's visible, etc).
 * Support for setting (almost) all of the native [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) and ￼[`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) properties (e.g. `UIMenuElementState`,  `MenuElementAtrributes`, `discoverabilityTitle`, etc.)
-* Basic `ActionSheetIOS` menu fallback for iOS 12 and below.
+* Basic `ActionSheetIOS` menu fallback for iOS 12 and below (removed in `v3.x`+).
 * Support for creating custom context menu previews (with support for dynamic or fixed preview sizes, setting the [`UIPreviewParameters`](https://developer.apple.com/documentation/uikit/uipreviewparameters), specifying a [`UITargetedPreview`](https://developer.apple.com/documentation/uikit/uitargetedpreview), etc).
 * Support for custom auxiliary previews (experimental).
 * Support for deferred context menu items.

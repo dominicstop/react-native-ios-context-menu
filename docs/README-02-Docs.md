@@ -19,15 +19,10 @@
 | 🔤  `shouldWaitForMenuToHide`<br/>`BeforeFiringOnPressMenuItem`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | If set to `true` (which it is by default), the `onPressMenuItem` event will be triggered after the context menu has been hidden (i.e. after `onMenuDidHide` event is triggered).<br><br>Set this to `false` if you want `onPressMenuItem` to trigger as soon as an item has been pressed in the context menu.<br><br>📝 **Note**: Layout updates while the context menu is transitioning from it's open to hidden state might cause layout flickering (e.g. [Issue #43](https://github.com/dominicstop/react-native-ios-context-menu/issues/43)). |
 | 🔤  `isContextMenuEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Enables or disables the context menu. Useful if you want to temporarily disable the context menu. |
 | 🔤  `lazyPreview`<br/><br/>⚛️ `boolean`<br><br>✳️ **Default**: `true` | If set to `true` (which it is by default), the custom context menu preview (i.e. the component returned from the `ContextMenuView.renderPreview` prop) and the  auxiliary preview (i.e. the component returned from the `ContextMenuView.renderAuxillaryPreview` prop) are only mounted/rendered when the context menu is visible.<br><br>Set this to `false` if you want the preview content to be always mounted. |
-| 🔤  `shouldEnable`<br>`AggressiveCleanup`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Deprecated. This prop no longer does anything (see `shouldCleanupOnComponentWillUnmount`<br>`ForMenuPreview`, and `shouldCleanup`<br/>`OnComponentWillUnmountForAuxPreview`<br/>). |
-| 🔤  `useActionSheetFallback`<br><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `true` | Context menus are only supported on iOS 13+ (i.e context menus are not supported on iOS 12, and below).<br><br>On iOS 12 and below, a long press on a `ContextMenuView` will show a [`ActionSheetIOS`](https://reactnative.dev/docs/actionsheetios#docsNav) menu based on the current `menuConfig` prop.<br><br> If you want to disable this behavior, set this  prop to false.<br><br>📝 **Note**: Default value is `false` on iOS 13+, and `true` on iOS 12 and below. |
 | 🔤  `renderPreview`<br/><br/>⚛️ [`() => React.ReactElement`](PLACE_HOLDER_LINK) | This prop is a "render" prop, i.e it accepts a function that returns a react component.<br><br>The returned component will displayed in the context menu preview. |
 | 🔤  `isAuxiliaryPreviewEnabled`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `false` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
 | 🔤  `auxiliaryPreviewConfig`<br/><br/>⚛️ `MenuAuxiliaryPreviewConfig` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
 | 🔤  `renderAuxillaryPreview`<br/><br/>⚛️ `() => React.ReactElement` | ⚠️ **Experimental**: Please see [Auxiliary Preview](#contextmenuview-component-experimental---auxiliary-preview) section.<br/><br/>TBA |
-| 🔤  `internalCleanupMode`<br/><br/>⚛️ `RNICleanupMode`<br/><br/>✳️ **Default**: `automatic` | Internally, a clean up routine is triggered whenever a component is unmounted.<br><br>However, if the clean up routine is triggered too early, this will lead to the context menu component disappearing (E.g. [issue #34](https://github.com/dominicstop/react-native-ios-context-menu/issues/34)).<br><br>If you are experiencing this issue, you can disable the clean up routine from triggering altogether by setting this prop to `disabled`.<br><br>Additionally, you can also try setting this prop to either to `viewController`, `didMoveToWindowNil`, or `reactComponentWillUnmount`.<br/><br/>`viewController` mode will trigger the clean up routine via the `UIViewController.viewWillDisappear` lifecycle method, and `didMoveToWindowNil` will trigger the cleanup routine during the `UIView.didMoveToWindow` lifecycle method, while the `reactComponentWillUnmount` mode on the other hand, will trigger the clean up routine via the `componentWillUnmount` react lifecycle event. |
-| 🔤  `shouldCleanupOnComponent`<br>`WillUnmountForMenuPreview`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `false` | If set to `true`, the custom preview is immediately freed from memory once the context menu is closed.<br/><br/>📝 **Note**: For the immediately cleanup to take effect, the  `lazyPreview` prop also needs to be enabled. |
-| 🔤  `shouldCleanupOnComponent`<br/>`WillUnmountForAuxPreview`<br/><br/>⚛️ `boolean`<br/><br/>✳️ **Default**: `false` | If set to `true`, the aux. preview is immediately freed from memory once the context menu is closed.<br/><br/>📝 **Note**: For the immediately cleanup to take effect, the  `lazyPreview` prop also needs to be enabled. |
 
 <br><br>
 
@@ -75,7 +70,7 @@ For basic usage, please see [Example 1](#contextmenubutton-example-01) section.
 
 * The only difference between them is that the `ContextMenuButton` component does not have a preview, and it can be immediately shown when its tapped instead of having to do a long press. See [Example 2](#422-contextmenubutton-simple-example-2) for more details.<br>
 
-* Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`, and on iOS 12 and below, it will use the `ActionSheetFallback` module to present a `ActionSheetIOS` menu.<br>
+* Note that `ContextMenuButton` is only available on iOS 14 and above. On iOS 13, it will use a `ContextMenuButton`,<br>
 
 * If you want to add additional touch events, you can wrap this component inside a button component (e.g. `TouchableOpacity`). <br>
 	* When wrapping this component inside a button, please make sure to set the `useActionSheetFallback` prop to `false`.
@@ -115,27 +110,6 @@ For basic usage, please see [Example 1](#contextmenubutton-example-01) section.
 | Prop Name and Type                          | Description                                   |
 | :------------------------------------------ | :-------------------------------------------- |
 | 🔤  `dismissMenu`<br/><br/>⚛️ `Promise<Void>` | Same as `ContextMenuView.dismissMenu` method. |
-
-<br>
-
-#### `ActionSheetFallback` Module
-
-A module to show a `ActionSheetIOS` menu based on a `MenuConfig` object. 
-
-This module attempts to approximate `UIMenu` behavior using `ActionSheetIOS`, so it's very limited (i.e. it does not support menu/action icons, etc.), but it does support things like submenu's, destructive actions/menu's, inline submenu's, and hidden actions.
-
-<br>
-
-* Import the module like this: `import { ActionSheetFallback } from "react-native-ios-context-menu";`<br><br>
-
-* To present a ￼￼`ActionSheetIOS` menu, call `const selectedAction = await ActionSheetFallback.show(menuConfig)`
-
-<br>
-
-
-| Function                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 🔤 `show` <br/><br/>⚛️ `(menuConfig: MenuConfig):`<br/>`Promise<MenuAction ¦ null>` | This function accepts a `MenuConfig` object and returns the selected `MenuAction` object or null if cancelled. |
 
 <br>
 
