@@ -17,7 +17,7 @@ A small component for using context menu's on iOS.
 
 | Notice                                                       |
 | ------------------------------------------------------------ |
-| 📝 **Note** #1: Version `3.x` is a rewrite of this library to support both fabric (the new architecture), and  offer backwards compatibility to paper (the old architecture).<br><br> The support for both paper and fabric is possible via a peer dependency to [`react-native-ios-utilites@v5`](https://github.com/dominicstop/react-native-ios-utilities). |
+| 📝 **Note** #1: Version `3.x` is a rewrite of this library to support both fabric (the new architecture), and  offer backwards compatibility to paper (the old architecture).<br><br> Support for the new architecture (fabric), and backwards compatibility for the old architecture (paper) is handled via a peer via a peer dependency to [`react-native-ios-utilites@v5`](https://github.com/dominicstop/react-native-ios-utilities). |
 | 📝 **Note** #2: The documentation + examples are currently being rewritten.<br><br>❤️ [`README-old-v1.md`](./README-old-v1.md) — Documentation for `v1.x`<br>🧡 [`README-old-v2.md`](./README-old-v2.md) — Documentation for `v2.x`<br>💛 [`example/src/examples`](./example/src/examples) — The typescript rewrite of the examples (WIP). |
 
  <br>
@@ -26,7 +26,7 @@ A small component for using context menu's on iOS.
 
 | Library Version | Compatibility                                                |
 | :-------------- | ------------------------------------------------------------ |
-| `3.x`+          | Depends on `react-native-ios-utilities@5.x`<br/>iOS 13+<br/>Xcode 15+` |
+| `3.x`+          | Depends on `react-native-ios-utilities@5.x`<br/>Depends on `ContextMenuAuxiliaryPreview`<br/>iOS 13+<br/>Xcode 15+ |
 | `2.1`           | Uses `Expo-Modules`<br/>Depends on `react-native-ios-utilities@4.x`<br/>Depends on `ContextMenuAuxiliaryPreview`<br>iOS 13+<br/>Xcode 15+ |
 | `2.0.x`         | Uses `Expo-Modules`<br>Depends on `react-native-ios-utilities@4.x`<br>iOS 13+<br>Xcode 15+ |
 | `1.6.2`         | iOS 10 to iOS 15<br>Xcode 12+                                |
