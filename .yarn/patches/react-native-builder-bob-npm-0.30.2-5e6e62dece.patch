@@ -1,0 +1,16 @@
+diff --git a/lib/utils/patchCodegen.js b/lib/utils/patchCodegen.js
+index 611e072d90e5fa676bf937a94b4d9a4207af102b..4427e5e7b22c5b51dffcdd33c77299541ec583a3 100644
+--- a/lib/utils/patchCodegen.js
++++ b/lib/utils/patchCodegen.js
+@@ -20,7 +20,10 @@ const CODEGEN_DOCS = 'https://github.com/reactwg/react-native-new-architecture/b
+ async function patchCodegen(projectPath,
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
+ packageJson, report) {
+-  let codegenAndroidPath = packageJson.codegenConfig.outputDir.android;
++  let codegenAndroidPath = packageJson.codegenConfig.outputDir?.android;
++  if(codegenAndroidPath == null){
++    return;
++  };
+   if (!codegenAndroidPath) {
+     throw new Error(`Your package.json doesn't contain codegenConfig.outputDir.android. Please see ${CODEGEN_DOCS}`);
+   }
