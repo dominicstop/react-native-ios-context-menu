@@ -1,5 +1,5 @@
 import type { HostComponent, ViewProps } from 'react-native';
-import type { SharedViewEvents, RemapObject } from 'react-native-ios-utilities';
+import type { SharedViewEvents, RemapObject, NativeComponentBaseProps } from 'react-native-ios-utilities';
 
 import { 
   default as RNIContextMenuViewNativeComponent,
@@ -11,18 +11,17 @@ import type { MenuConfig } from '../../types/MenuConfig';
 import type { MenuPreviewConfig } from '../../types/MenuPreviewConfig';
 import type { AuxiliaryPreviewConfigBackwardsCompatible } from '../../types/AuxiliaryPreviewConfigBackwardsCompatible';
 
-
 type RNIContextMenuViewNativeComponentBaseProps = 
-  Omit<RNIContextMenuViewNativeComponentProps, keyof (ViewProps & SharedViewEvents)>
+  NativeComponentBaseProps<RNIContextMenuViewNativeComponentProps>;
 
 export type RNIContextMenuNativeViewBaseProps = RemapObject<RNIContextMenuViewNativeComponentBaseProps, {
   
   // Value Props
   // -----------
 
-  menuConfig?: MenuConfig; 
-  previewConfig?: MenuPreviewConfig;
-  auxiliaryPreviewConfig?: AuxiliaryPreviewConfigBackwardsCompatible;
+  menuConfig: MenuConfig; 
+  previewConfig: MenuPreviewConfig;
+  auxiliaryPreviewConfig: AuxiliaryPreviewConfigBackwardsCompatible;
 
   /** 
    * On iOS 15+, the `MenuActionConfig.discoverabilityTitle` is no longer 

@@ -1,5 +1,5 @@
 import type { HostComponent, ViewProps } from 'react-native';
-import type { SharedViewEvents, RemapObject } from 'react-native-ios-utilities';
+import type { SharedViewEvents, RemapObject, NativeComponentBaseProps } from 'react-native-ios-utilities';
 
 import { 
   default as RNIContextMenuButtonNativeComponent,
@@ -8,6 +8,9 @@ import {
 
 import type { RNIContextMenuNativeViewBaseProps } from '../RNIContextMenuView/RNIContextMenuNativeView';
 
+
+type RNIContextMenuButtonNativeComponentBaseProps = 
+  NativeComponentBaseProps<RNIContextMenuButtonNativeComponentProps>;
 
 export type RNIContextMenuNativeViewInheritedProps = Pick<RNIContextMenuNativeViewBaseProps,
   | 'menuConfig'
@@ -22,14 +25,11 @@ export type RNIContextMenuNativeViewInheritedProps = Pick<RNIContextMenuNativeVi
   | 'onPressMenuItem'
 >;
 
-type RNIContextMenuButtonNativeComponentBaseProps = Omit<
-  RNIContextMenuButtonNativeComponentProps, 
-  keyof (ViewProps & SharedViewEvents & RNIContextMenuNativeViewInheritedProps)
->;
-
-export type RNIContextMenuButtonNativeViewBaseProps = RemapObject<RNIContextMenuButtonNativeComponentBaseProps, {
+export type RNIContextMenuButtonNativeViewBaseProps = RemapObject<RNIContextMenuButtonNativeComponentBaseProps, ({
   isMenuPrimaryAction: boolean;
-}>;
+} & Required<
+  RNIContextMenuNativeViewInheritedProps>
+)>;
 
 export type RNIContextMenuButtonNativeViewProps = 
     SharedViewEvents
@@ -39,3 +39,5 @@ export type RNIContextMenuButtonNativeViewProps =
 
 export const RNIContextMenuButtonNativeView = 
   RNIContextMenuButtonNativeComponent as unknown as HostComponent<RNIContextMenuButtonNativeViewProps>;
+
+

@@ -4,24 +4,23 @@ import type { HostComponent, ViewProps } from 'react-native';
 
 // stubs
 export interface NativeProps extends ViewProps {
-  isMenuPrimaryAction: boolean;
+  isMenuPrimaryAction?: boolean;
 
   // shared props
-  onDidSetViewID: BubblingEventHandler<{}>;
+  onDidSetViewID?: BubblingEventHandler<{}>;
 
   // inherited props
-  menuConfig: string;
-  isContextMenuEnabled: boolean;
+  menuConfig?: string;
+  isContextMenuEnabled?: boolean;
 
-  onMenuWillShow: BubblingEventHandler<{}>;
-  onMenuDidShow: BubblingEventHandler<{}>;
-  onMenuWillHide: BubblingEventHandler<{}>;
-  onMenuDidHide: BubblingEventHandler<{}>;
-  onMenuWillCancel: BubblingEventHandler<{}>;
-  onMenuDidCancel: BubblingEventHandler<{}>;
-  onRequestDeferredElement: BubblingEventHandler<{}>;
-  onPressMenuItem: BubblingEventHandler<{}>;
-
+  onMenuWillShow?: BubblingEventHandler<{}>;
+  onMenuDidShow?: BubblingEventHandler<{}>;
+  onMenuWillHide?: BubblingEventHandler<{}>;
+  onMenuDidHide?: BubblingEventHandler<{}>;
+  onMenuWillCancel?: BubblingEventHandler<{}>;
+  onMenuDidCancel?: BubblingEventHandler<{}>;
+  onRequestDeferredElement?: BubblingEventHandler<{}>;
+  onPressMenuItem?: BubblingEventHandler<{}>;
 };
 
 // stubs
