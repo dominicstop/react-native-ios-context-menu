@@ -12,14 +12,17 @@
 #include "RNIBaseViewComponentDescriptor.h"
 
 #include "react-native-ios-utilities/RNIBaseViewState.h"
+
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
 
 
 namespace facebook::react {
 
-class RNIContextMenuButtonComponentDescriptor final
-  : public RNIBaseViewComponentDescriptor<RNIContextMenuButtonShadowNode> {
-  
+class RNIContextMenuButtonComponentDescriptor final : public RNIBaseViewComponentDescriptor<
+  RNIContextMenuButtonShadowNode,
+  RNIContextMenuButtonComponentName
+> {
+
 public:
   using RNIBaseViewComponentDescriptor::RNIBaseViewComponentDescriptor;
 };

@@ -23,11 +23,8 @@ namespace facebook::react {
 
 JSI_EXPORT extern const char RNIContextMenuButtonComponentName[] = "RNIContextMenuButton";
 
-class JSI_EXPORT RNIContextMenuButtonShadowNode final : public RNIBaseViewShadowNode<
-  RNIContextMenuButtonComponentName,
-  RNIBaseViewProps,
-  RNIBaseViewEventEmitter
-> {
+class JSI_EXPORT RNIContextMenuButtonShadowNode final :
+  public RNIBaseViewShadowNode<RNIContextMenuButtonComponentName> {
 
 public:
   using RNIBaseViewShadowNode::RNIBaseViewShadowNode;
