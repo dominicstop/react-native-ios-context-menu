@@ -8792,7 +8792,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-builder-bob@npm:^0.30.0":
+"react-native-builder-bob@npm:0.30.2":
   version: 0.30.2
   resolution: "react-native-builder-bob@npm:0.30.2"
   dependencies:
@@ -8821,6 +8821,38 @@ __metadata:
   bin:
     bob: bin/bob
   checksum: 880ba5c9cf45f20dc5d7423a82b6963bb61d3fa41096b1d7ac2c7a141dfaedd5386ae6d29f80861922911220b8d0d689c831e01d9c8aca06afbb53933fa0f8b5
+  languageName: node
+  linkType: hard
+
+"react-native-builder-bob@patch:react-native-builder-bob@npm%3A0.30.2#./.yarn/patches/react-native-builder-bob-npm-0.30.2-5e6e62dece.patch::locator=react-native-ios-context-menu%40workspace%3A.":
+  version: 0.30.2
+  resolution: "react-native-builder-bob@patch:react-native-builder-bob@npm%3A0.30.2#./.yarn/patches/react-native-builder-bob-npm-0.30.2-5e6e62dece.patch::version=0.30.2&hash=fa3108&locator=react-native-ios-context-menu%40workspace%3A."
+  dependencies:
+    "@babel/core": ^7.25.2
+    "@babel/plugin-transform-strict-mode": ^7.24.7
+    "@babel/preset-env": ^7.25.2
+    "@babel/preset-flow": ^7.24.7
+    "@babel/preset-react": ^7.24.7
+    "@babel/preset-typescript": ^7.24.7
+    babel-plugin-module-resolver: ^5.0.2
+    browserslist: ^4.20.4
+    cosmiconfig: ^9.0.0
+    cross-spawn: ^7.0.3
+    dedent: ^0.7.0
+    del: ^6.1.1
+    escape-string-regexp: ^4.0.0
+    fs-extra: ^10.1.0
+    glob: ^8.0.3
+    is-git-dirty: ^2.0.1
+    json5: ^2.2.1
+    kleur: ^4.1.4
+    metro-config: ^0.80.9
+    prompts: ^2.4.2
+    which: ^2.0.2
+    yargs: ^17.5.1
+  bin:
+    bob: bin/bob
+  checksum: bec788888e90f0f5e65a7e0d76887f373f08c223789ea7ffecb50f175c811b2fca49390a48ac89aba50a20d688a5b46e4cbad59337bade43f433a8debd76eebb
   languageName: node
   linkType: hard
 
