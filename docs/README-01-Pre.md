@@ -19,7 +19,7 @@
 | Notice                                                       |
 | ------------------------------------------------------------ |
 | 📝 **Note** #1: Staring on version `2.x`, this library now uses `expo-modules`, and contains a peer dependency to `react-native-ios-utilites`. |
-| 📝 **Note** #2: The documentation + examples are currently being rewritten.<br><br>💅 [`README-old.md`](./README-old.md) — The old version of the documentation (archived).<br>💖 [`example/src/examples`](./example/src/examples) — The typescript rewrite of the examples (WIP). |
+| 📝 **Note** #2: The documentation + examples are currently being rewritten.<br><br>💅 [`README-old-v1.md`](./README-old-v1.md) — The old version of the documentation (archived).<br>💖 [`example/src/examples`](./example/src/examples) — The typescript rewrite of the examples (WIP). |
 
  <br>
 

@@ -486,7 +486,7 @@ export type MenuAuxiliaryPreviewTransitionConfig =
 
 ##### Object Type: `IconConfig`
 
-This has been deprecated and will be removed in a future version. Use [`ImageItemConfig`](PLACE_HOLDER_LINK) instead. For documentation regarding `IconConfig`, please see the documentation in the [old README](./README-old.md).
+This has been deprecated and will be removed in a future version. Use [`ImageItemConfig`](PLACE_HOLDER_LINK) instead. For documentation regarding `IconConfig`, please see the documentation in the [old README](./README-old-v1.md).
 
 <br>
 
