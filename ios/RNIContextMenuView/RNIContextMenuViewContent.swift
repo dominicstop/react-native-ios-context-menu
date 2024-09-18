@@ -263,26 +263,6 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     fatalError("init(coder:) has not been implemented");
   }
   
-  // MARK: View Lifecycle
-  // --------------------
-  
-  public override func didMoveToWindow() {
-    guard self.window != nil,
-          let parentReactView = self.parentReactView
-    else { return };
-    
-    // if shouldAttachToParentVC {
-    //   // begin setup - attach this view as child vc
-    //   self.attachToParentVC();
-    // };
-    
-    print(
-      "RNIContextMenuViewDelegate.didMoveToWindow",
-      "\n - reactProps:", self.reactProps.description,
-      "\n"
-    );
-  };
-  
   // MARK: Functions - Setup
   // -----------------------
  
@@ -717,44 +697,11 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
   // -------------------
 
   #if RCT_NEW_ARCH_ENABLED
-  public func notifyOnUpdateProps(
-    sender: RNIContentViewParentDelegate,
-    oldProps: NSDictionary,
-    newProps: NSDictionary
-  ) {
-    // no-op
-  };
-  
-  public func notifyOnUpdateState(
-    sender: RNIContentViewParentDelegate,
-    oldState: NSDictionary?,
-    newState: NSDictionary
-  ) {
-    // no-op
-  };
-  
-  public func notifyOnFinalizeUpdates(
-    sender: RNIContentViewParentDelegate,
-    updateMaskRaw: Int,
-    updateMask: RNIComponentViewUpdateMask
-  ) {
-    // no-op
-  };
-  
-  public func notifyOnPrepareForReuse(sender: RNIContentViewParentDelegate) {
-    self._didSetup = false;
-  };
-  
   public func shouldRecycleContentDelegate(
     sender: RNIContentViewParentDelegate
   ) -> Bool {
     return false;
   };
-  #else
-  
-  // MARK: - Paper Only
-  // ------------------
-  
   #endif
 };
 
