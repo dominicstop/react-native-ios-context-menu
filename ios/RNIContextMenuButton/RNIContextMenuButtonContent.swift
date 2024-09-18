@@ -371,12 +371,7 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
     childComponentView: UIView,
     index: NSInteger,
     superBlock: () -> Void
-  ) {
-    #if !RCT_NEW_ARCH_ENABLED
-    superBlock();
-    #endif
-    
-    // Note: Window might not be available yet
+  ) {    
     self.addSubview(childComponentView);
   };
   
