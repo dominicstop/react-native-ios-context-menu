@@ -1242,7 +1242,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-ios-context-menu (3.0.0-5):
+  - react-native-ios-context-menu (3.0.0-6):
     - ContextMenuAuxiliaryPreview (~> 0.3)
     - DGSwiftUtilities
     - DoubleConversion
@@ -1267,7 +1267,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-ios-utilities (5.0.0-26):
+  - react-native-ios-utilities (5.0.0-27):
     - ComputableLayout (~> 0.7)
     - DGSwiftUtilities (~> 0.29)
     - DoubleConversion
@@ -1916,8 +1916,8 @@ SPEC CHECKSUMS:
   React-logger: 8db32983d75dc2ad54f278f344ccb9b256e694fc
   React-Mapbuffer: 1c08607305558666fd16678b85ef135e455d5c96
   React-microtasksnativemodule: f13f03163b6a5ec66665dfe80a0df4468bb766a6
-  react-native-ios-context-menu: a8858496fccd319f05d640c0e330d2a59a26ca80
-  react-native-ios-utilities: b5c5e28706f70fd95ae998b277a7439596b8627d
+  react-native-ios-context-menu: f124cdd5fa71b122fad46b0fc98b18fa2c16f94a
+  react-native-ios-utilities: 6a50a9fc4264151b18dd9d01dec7148785f84871
   react-native-safe-area-context: f1fda705dfe14355f41933debb5932887e234cc5
   React-nativeconfig: 57781b79e11d5af7573e6f77cbf1143b71802a6d
   React-NativeModulesApple: 7ff2e2cfb2e5fa5bdedcecf28ce37e696c6ef1e1
