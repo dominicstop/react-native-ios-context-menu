@@ -3,17 +3,12 @@
   "version": "3.0.0-6",
   "description": "A react-native component to use context menu's (UIMenu) on iOS 13/14+",
   "source": "./src/index.tsx",
-  "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
   "exports": {
     ".": {
       "import": {
         "types": "./lib/typescript/module/src/index.d.ts",
         "default": "./lib/module/index.js"
-      },
-      "require": {
-        "types": "./lib/typescript/commonjs/src/index.d.ts",
-        "default": "./lib/commonjs/index.js"
       }
     }
   },
@@ -153,12 +148,6 @@
     "output": "lib",
     "targets": [
       "codegen",
-      [
-        "commonjs",
-        {
-          "esm": true
-        }
-      ],
       [
         "module",
         {
