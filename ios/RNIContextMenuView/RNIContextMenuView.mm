@@ -46,7 +46,7 @@ using namespace facebook::react;
 @interface RNIContextMenuView () <
   RNIContentViewParentDelegate,
 #ifdef RCT_NEW_ARCH_ENABLED
-  RCTIosContextMenuViewViewProtocol
+  RCTRNIContextMenuViewViewProtocol
 #else
   RCTInvalidating
 #endif
