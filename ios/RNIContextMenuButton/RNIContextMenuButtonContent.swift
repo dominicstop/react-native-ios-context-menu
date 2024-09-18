@@ -371,7 +371,7 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
     childComponentView: UIView,
     index: NSInteger,
     superBlock: () -> Void
-  ) {    
+  ) {
     self.addSubview(childComponentView);
   };
   
@@ -391,15 +391,7 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
   public func notifyDidSetProps(sender: RNIContentViewParentDelegate) {
     self._setupIfNeeded();
   };
-  
-  public func notifyOnUpdateLayoutMetrics(
-    sender: RNIContentViewParentDelegate,
-    oldLayoutMetrics: RNILayoutMetrics,
-    newLayoutMetrics: RNILayoutMetrics
-  ) {
-    // no-op
-  };
-  
+
   public func notifyOnViewCommandRequest(
     sender: RNIContentViewParentDelegate,
     forCommandName commandName: String,
@@ -471,44 +463,11 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
   // -------------------
 
   #if RCT_NEW_ARCH_ENABLED
-  public func notifyOnUpdateProps(
-    sender: RNIContentViewParentDelegate,
-    oldProps: NSDictionary,
-    newProps: NSDictionary
-  ) {
-    // no-op
-  };
-  
-  public func notifyOnUpdateState(
-    sender: RNIContentViewParentDelegate,
-    oldState: NSDictionary?,
-    newState: NSDictionary
-  ) {
-    // no-op
-  };
-  
-  public func notifyOnFinalizeUpdates(
-    sender: RNIContentViewParentDelegate,
-    updateMaskRaw: Int,
-    updateMask: RNIComponentViewUpdateMask
-  ) {
-    // no-op
-  };
-  
-  public func notifyOnPrepareForReuse(sender: RNIContentViewParentDelegate) {
-    self._didSetup = false;
-  };
-  
   public func shouldRecycleContentDelegate(
     sender: RNIContentViewParentDelegate
   ) -> Bool {
     return false;
   };
-  #else
-  
-  // MARK: - Paper Only
-  // ------------------
-  
   #endif
 };
 
