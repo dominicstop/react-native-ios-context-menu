@@ -26,7 +26,7 @@ A small component for using context menu's on iOS.
 
 | Library Version | Compatibility                                                |
 | :-------------- | ------------------------------------------------------------ |
-| `3.x`+          | Depends on `react-native-ios-utilities@5.x`<br/>iOS 13+<br/>Xcode 15+` |
+| `3.x`+          | Depends on `react-native-ios-utilities@5.x`<br/>Depends on `ContextMenuAuxiliaryPreview`<br/>iOS 13+<br/>Xcode 15+ |
 | `2.1`           | Uses `Expo-Modules`<br/>Depends on `react-native-ios-utilities@4.x`<br/>Depends on `ContextMenuAuxiliaryPreview`<br>iOS 13+<br/>Xcode 15+ |
 | `2.0.x`         | Uses `Expo-Modules`<br>Depends on `react-native-ios-utilities@4.x`<br>iOS 13+<br>Xcode 15+ |
 | `1.6.2`         | iOS 10 to iOS 15<br>Xcode 12+                                |
@@ -110,7 +110,7 @@ The initial fabric rewrite (i.e. version `5.x`) was made possible through a gene
 
 <br>
 
-Very special thanks to: [junzhengca](https://github.com/junzhengca), [brentvatne](https://github.com/brentvatne), and [expo](https://github.com/expo) for sponsoring my work 🥺
+very special thanks to: [junzhengca](https://github.com/junzhengca), [brentvatne](https://github.com/brentvatne), and [expo](https://github.com/expo) for sponsoring my work 🥺 (if you have the extra means to do so, please considering sponsoring [here](https://github.com/sponsors/dominicstop))
 
 <br><br>
 

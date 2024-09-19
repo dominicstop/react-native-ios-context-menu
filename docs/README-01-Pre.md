@@ -110,7 +110,7 @@ The initial fabric rewrite (i.e. version `5.x`) was made possible through a gene
 
 <br>
 
-Very special thanks to: [junzhengca](https://github.com/junzhengca), [brentvatne](https://github.com/brentvatne), and [expo](https://github.com/expo) for sponsoring my work 🥺
+very special thanks to: [junzhengca](https://github.com/junzhengca), [brentvatne](https://github.com/brentvatne), and [expo](https://github.com/expo) for sponsoring my work 🥺 (if you have the extra means to do so, please considering sponsoring [here](https://github.com/sponsors/dominicstop))
 
 <br><br>
 
