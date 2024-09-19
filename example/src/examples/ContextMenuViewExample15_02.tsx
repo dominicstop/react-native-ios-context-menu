@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, Text, Alert } from 'react-native';
 
-import { ContextMenuView } from 'react-native-ios-context-menu';
-import { WrapperView, type StateViewID } from 'react-native-ios-utilities';
+import { ContextMenuView, WrapperView } from 'react-native-ios-context-menu';
+import type { StateViewID } from 'react-native-ios-utilities';
 
 import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
