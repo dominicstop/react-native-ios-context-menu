@@ -13,15 +13,17 @@ export * from './hooks/useMenuButtonContext';
 export * from './constants/Enums';
 export * from './constants/LibEnv';
 
-export * from './types/AuxiliaryPreviewConfig';
-export * from './types/AuxiliaryPreviewConfigDeprecated';
+export type * from './types/AuxiliaryPreviewConfig';
+export type * from './types/AuxiliaryPreviewConfigDeprecated';
 
-export * from './types/SharedMenuEvents';
-export * from './types/SharedMenuTypes';
-export * from './types/MenuConfig';
-export * from './types/MenuPreviewConfig';
-export * from './types/MenuIconConfig';
+export type * from './types/SharedMenuEvents';
+export type * from './types/SharedMenuTypes';
+export type * from './types/MenuConfig';
+export type * from './types/MenuPreviewConfig';
+export type * from './types/MenuIconConfig';
 
 // re-export image-config related types from 
 // `react-native-ios-utilities` for convenience...
+//
 export type { ImageGradientConfig, ImageItemConfig, ImageLoadingConfig, ImageOptions, ImageRectConfig, ImageSystemConfig } from 'react-native-ios-utilities';
+export { RNIWrapperView as WrapperView } from 'react-native-ios-utilities'
