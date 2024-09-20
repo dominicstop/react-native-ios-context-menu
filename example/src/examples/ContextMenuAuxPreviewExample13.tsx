@@ -4,11 +4,11 @@ import { Alert, View, Text, StyleSheet } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 
-export function ContextMenuAuxPreviewExample13(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample13(props: ExampleItemProps) {
   return (
     <ContextMenuView
       style={props.style}

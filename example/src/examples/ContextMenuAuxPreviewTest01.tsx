@@ -2,13 +2,11 @@
 import * as React from 'react';
 import { Alert, View, Text, StyleSheet, findNodeHandle, TouchableOpacity, Animated } from 'react-native';
 
+import { Helpers, Colors } from 'react-native-ios-utilities';
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
-
-import * as COLORS  from '../constants/Colors';
-import * as Helpers from '../functions/Helpers';
 
 
 const MENU_ITEM_DICT = {
@@ -33,7 +31,7 @@ const REACTIONS_KEYS =
   Object.keys(REACTIONS_DICT) as ReactionKeys[];
   
 
-export function ContextMenuAuxPreviewTest01(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewTest01(props: ExampleItemProps) {
   const [targetViewNode, setTargetViewNode] = React.useState(null);
 
   const [currentReaction, setCurrentReaction] = React.useState<ReactionKeys>(null);
@@ -259,7 +257,7 @@ const styles = StyleSheet.create({
   auxPreviewreactionEmojiButton: {
   },
   auxPreviewReactionEmojiButtonSelected: {
-    backgroundColor: COLORS.BLUE[100],
+    backgroundColor: Colors.BLUE[100],
     borderRadius: 7,
   },
   auxPreviewLabelReactionEmoji: {
@@ -278,11 +276,11 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: COLORS.PURPLE[100],
+    backgroundColor: Colors.PURPLE[100],
     borderRadius: 45/2,
   },
   avatarText: {
-    color: COLORS.PURPLE[900],
+    color: Colors.PURPLE[900],
     fontWeight: '500',
   },
 });

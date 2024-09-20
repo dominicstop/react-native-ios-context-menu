@@ -2,17 +2,14 @@
 import * as React from 'react';
 import { Alert, View, Text, StyleSheet } from 'react-native';
 
+import { Helpers, CardButton } from 'react-native-ios-utilities';
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
-
 import { ContextMenuCard } from '../components/ContextMenuCard';
-import { CardButton } from '../components/Card/CardButton';
-
-import * as Helpers from '../functions/Helpers';
+import type { ExampleItemProps } from './SharedExampleTypes';
 
 
-export function ContextMenuAuxPreviewExample16(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample16(props: ExampleItemProps) {
   const menuRef = React.useRef<ContextMenuView>(null);
   
   return (

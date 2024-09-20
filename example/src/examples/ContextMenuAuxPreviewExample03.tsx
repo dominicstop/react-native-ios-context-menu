@@ -4,13 +4,13 @@ import { Alert, View, Text, StyleSheet } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
-import * as COLORS from '../constants/Colors';
+import { Colors } from 'react-native-ios-utilities';
 
 
-export function ContextMenuAuxPreviewExample03(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample03(props: ExampleItemProps) {
   return (
     <ContextMenuView
       style={props.style}
@@ -27,7 +27,7 @@ export function ContextMenuAuxPreviewExample03(props: ContextMenuExampleProps) {
               weight: 'bold',
             },
             imageOptions: {
-              tint: COLORS.BLUE.A700,
+              tint: Colors.BLUE.A700,
               renderingMode: 'alwaysOriginal',
             },
           },
@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
   textLabel: {
     fontSize: 18,
     fontWeight: '600',
-    color: COLORS.BLUE.A700,
+    color: Colors.BLUE.A700,
   },
 });

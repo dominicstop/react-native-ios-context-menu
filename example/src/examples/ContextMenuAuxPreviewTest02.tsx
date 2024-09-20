@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { ContextMenuView, MenuAuxiliaryPreviewHorizontalAlignment } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
 const ALIGNMENT_MODES: MenuAuxiliaryPreviewHorizontalAlignment[] = [
@@ -16,7 +16,7 @@ const ALIGNMENT_MODES: MenuAuxiliaryPreviewHorizontalAlignment[] = [
 ];
 
 
-export function ContextMenuAuxPreviewTest02(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewTest02(props: ExampleItemProps) {
   const [modeIndex, setModeIndex] = React.useState(0);
 
   let currentMode = ALIGNMENT_MODES[modeIndex % ALIGNMENT_MODES.length];

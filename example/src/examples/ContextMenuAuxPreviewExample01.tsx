@@ -2,15 +2,14 @@
 import * as React from 'react';
 import { Alert, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
+import { Colors } from 'react-native-ios-utilities';
 import { ContextMenuView } from 'react-native-ios-context-menu';
 
-import type { ContextMenuExampleProps } from './SharedExampleTypes';
+import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
 
-import * as COLORS from '../constants/Colors';
 
-
-export function ContextMenuAuxPreviewExample01(props: ContextMenuExampleProps) {
+export function ContextMenuAuxPreviewExample01(props: ExampleItemProps) {
   return (
     <ContextMenuView
       style={props.style}
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonContainer: {
-    backgroundColor: COLORS.PURPLE.A700,
+    backgroundColor: Colors.PURPLE.A700,
     paddingHorizontal: 10,
     paddingVertical: 5,
     maxWidth: 200,
