@@ -15,6 +15,7 @@ export * from './constants/LibEnv';
 
 export type * from './types/AuxiliaryPreviewConfig';
 export type * from './types/AuxiliaryPreviewConfigDeprecated';
+export type * from './types/AuxiliaryPreviewConfigBackwardsCompatible';
 
 export type * from './types/SharedMenuEvents';
 export type * from './types/SharedMenuTypes';
