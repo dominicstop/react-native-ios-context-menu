@@ -39,6 +39,26 @@ import { ContextMenuViewTest08 } from "../examples/ContextMenuViewTest08";
 import { ContextMenuViewTest09 } from "../examples/ContextMenuViewTest09";
 import { ContextMenuViewTest10 } from "../examples/ContextMenuViewTest10";
 
+import { ContextMenuAuxPreviewExample01} from "../examples/ContextMenuAuxPreviewExample01";
+import { ContextMenuAuxPreviewExample02} from "../examples/ContextMenuAuxPreviewExample02";
+import { ContextMenuAuxPreviewExample03} from "../examples/ContextMenuAuxPreviewExample03";
+import { ContextMenuAuxPreviewExample04} from "../examples/ContextMenuAuxPreviewExample04";
+import { ContextMenuAuxPreviewExample05} from "../examples/ContextMenuAuxPreviewExample05";
+import { ContextMenuAuxPreviewExample06} from "../examples/ContextMenuAuxPreviewExample06";
+import { ContextMenuAuxPreviewExample07} from "../examples/ContextMenuAuxPreviewExample07";
+import { ContextMenuAuxPreviewExample08} from "../examples/ContextMenuAuxPreviewExample08";
+import { ContextMenuAuxPreviewExample09} from "../examples/ContextMenuAuxPreviewExample09";
+import { ContextMenuAuxPreviewExample10} from "../examples/ContextMenuAuxPreviewExample10";
+import { ContextMenuAuxPreviewExample11} from "../examples/ContextMenuAuxPreviewExample11";
+import { ContextMenuAuxPreviewExample12} from "../examples/ContextMenuAuxPreviewExample12";
+import { ContextMenuAuxPreviewExample13} from "../examples/ContextMenuAuxPreviewExample13";
+import { ContextMenuAuxPreviewExample14} from "../examples/ContextMenuAuxPreviewExample14";
+import { ContextMenuAuxPreviewExample15} from "../examples/ContextMenuAuxPreviewExample15";
+import { ContextMenuAuxPreviewExample16} from "../examples/ContextMenuAuxPreviewExample16";
+
+import { ContextMenuAuxPreviewTest01 } from "../examples/ContextMenuAuxPreviewTest01";
+import { ContextMenuAuxPreviewTest02 } from "../examples/ContextMenuAuxPreviewTest02";
+
 import { ContextMenuButtonExample01 } from "../examples/ContextMenuButtonExample01";
 import { ContextMenuButtonExample02 } from "../examples/ContextMenuButtonExample02";
 import { ContextMenuButtonExample03 } from "../examples/ContextMenuButtonExample03";
@@ -202,6 +222,72 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
       component: ContextMenuViewExample28,
     },
 
+    // context menu aux. preview examples
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample01,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample02,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample03,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample04,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample05,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample06,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample07,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample08,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample09,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample10,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample11,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample12,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample13,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample14,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample15,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewExample16,
+    },
+
     // `ContextMenuView` Test
     {
       type: 'card',
@@ -242,6 +328,16 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
     {
       type: 'card',
       component: ContextMenuViewTest10,
+    },
+
+    // ContextMenu Aux. Preview tests
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewTest01,
+    },
+    {
+      type: 'card',
+      component: ContextMenuAuxPreviewTest02,
     },
 
     // `ContextMenuButton` examples
