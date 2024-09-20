@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, ViewStyle, View, Text } from 'react-native';
+import { StyleSheet, type ViewStyle, View, Text } from 'react-native';
 
 
 type BaseProps = {

@@ -1,12 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import { View, Animated, Alert, StyleSheet, Text, FlatList, SafeAreaView, ListRenderItem, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Animated, Alert, StyleSheet, Text, FlatList, SafeAreaView, type ListRenderItem, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 
-import { AuxiliaryPreviewConfig, ContextMenuView, MenuElementConfig } from 'react-native-ios-context-menu';
+import { Colors, Helpers } from 'react-native-ios-utilities';
+import { type AuxiliaryPreviewConfig, ContextMenuView, type MenuElementConfig, type AuxiliaryPreviewConfigBackwardsCompatible } from 'react-native-ios-context-menu';
 
-import * as Colors  from '../constants/Colors';
-import * as Helpers from '../functions/Helpers';
-import { AuxiliaryPreviewConfigBackwardsCompatible } from 'react-native-ios-context-menu/types/AuxiliaryPreviewConfigBackwardsCompatible';
 
 const SHOULD_USE_NEW_CONFIG = true;
 
@@ -285,7 +283,7 @@ const MessageBubble = (props: {
   
   const hasReaction = (currentReaction != null);
 
-  const menuRef = React.useRef<ContextMenuView>();
+  const menuRef = React.useRef<ContextMenuView | undefined>();
 
   const animatedReactionOpacity = 
     React.useRef(new Animated.Value(0)).current;

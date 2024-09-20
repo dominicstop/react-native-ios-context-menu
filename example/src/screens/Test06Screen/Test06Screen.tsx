@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, Pressable, ScrollView } from 'react-native';
+import { StyleSheet, Text, ScrollView } from 'react-native';
 
 import { MessageBubble } from './MessageBubble';
 

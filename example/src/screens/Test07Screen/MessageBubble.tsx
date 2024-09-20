@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, type ViewStyle } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 import { MessageBubbleAuxPreview } from './MessageBubbleAuxPreview';

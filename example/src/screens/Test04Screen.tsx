@@ -1,12 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 import { View, Animated, Alert, StyleSheet, Text, SafeAreaView, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
-import { FlashList, ListRenderItem } from "@shopify/flash-list";
+import { FlashList, type ListRenderItem } from "@shopify/flash-list";
 
-import { ContextMenuView, MenuElementConfig } from 'react-native-ios-context-menu';
-
-import * as Colors  from '../constants/Colors';
-import * as Helpers from '../functions/Helpers';
+import { Colors, Helpers } from 'react-native-ios-utilities';
+import { ContextMenuView, type MenuElementConfig } from 'react-native-ios-context-menu';
 
 
 // Repro for issue w/ FlashList

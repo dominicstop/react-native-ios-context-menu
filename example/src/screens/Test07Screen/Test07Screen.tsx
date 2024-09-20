@@ -2,9 +2,10 @@ import * as React from 'react';
 import { StyleSheet, Text, ScrollView, Pressable, Alert } from 'react-native';
 
 import { MessageBubble } from './MessageBubble';
+import { CardButton } from 'react-native-ios-utilities';
 
 import { ContextMenuCard } from '../../components/ContextMenuCard';
-import { CardButton } from '../../components/Card/CardButton';
+
 
 function MessageContent(props: {
   message: string;

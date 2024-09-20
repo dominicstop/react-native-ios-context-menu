@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, Pressable, ScrollView } from 'react-native';
+import { StyleSheet, Text, Pressable, ScrollView } from 'react-native';
 
 import { ContextMenuView } from 'react-native-ios-context-menu';
 import { SHARED_ENV } from '../constants/SharedEnv';

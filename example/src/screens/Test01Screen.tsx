@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SHARED_ENV } from '../constants/SharedEnv';
 
 
-export const TestScreen = (props) => {
+export const Test01Screen = (props) => {
   return (
     <View style={styles.rootContainer}>
       <TouchableOpacity
