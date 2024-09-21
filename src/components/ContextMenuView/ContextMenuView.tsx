@@ -372,13 +372,23 @@ export class ContextMenuView extends
                   <RNIDetachedViewContent
                     nativeID={NATIVE_ID_KEYS.contextMenuPreview}
                   >
-                    {shouldMountAuxPreviewContent && 
+                    {shouldMountPreviewContent && 
                       props.renderProps.renderPreview?.()
                     }
                   </RNIDetachedViewContent>
                 )}
               </React.Fragment>
-              
+              <React.Fragment>
+                {isUsingAuxillaryPreview && (
+                  <RNIDetachedViewContent
+                    nativeID={NATIVE_ID_KEYS.contextMenuAuxiliaryPreview}
+                  >
+                    {shouldMountAuxPreviewContent && 
+                      props.renderProps.renderAuxillaryPreview?.()
+                    }
+                  </RNIDetachedViewContent>
+                )}
+              </React.Fragment>
             </RNIDetachedView>
           )}
           {props.viewProps.children}
