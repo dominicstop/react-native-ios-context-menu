@@ -1,5 +1,4 @@
-import * as React from "react";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -13,18 +12,6 @@ import { ROUTE_KEYS } from "./constants/RouteKeys";
 
 const shouldEnableTabs =
   SHARED_ENV.enableReactNavigation && SHARED_ENV.enableTabNavigation;
-
-function NavigationBarBanner(){
-  return (
-    <Image
-      source={(SHARED_ENV.shouldSetAppBackground
-        ? require("./assets/tamagui-banner-rainbow-logo-white.png")
-        : require("./assets/tamagui-banner-rainbow-logo-black.png")
-      )}
-      style={styles.navigationBarBannerImage}
-    />
-  );
-};
 
 function Tab1StackScreen() {
   if (shouldEnableTabs) {
@@ -82,7 +69,6 @@ export default function App() {
               component={item.component}
               options={{
                 ...(item.routeKey === 'home' && {
-                  headerTitle: NavigationBarBanner,
                   headerTitleAlign: "center",
                 }),
               }}
