@@ -27,4 +27,8 @@ export type * from './types/MenuIconConfig';
 // `react-native-ios-utilities` for convenience...
 //
 export type { ImageGradientConfig, ImageItemConfig, ImageLoadingConfig, ImageOptions, ImageRectConfig, ImageSystemConfig } from 'react-native-ios-utilities';
-export { RNIWrapperView as WrapperView } from 'react-native-ios-utilities'
+export { 
+  RNIWrapperView as WrapperView,
+  type RNIWrapperViewRef as WrapperViewRef,
+  type RNIWrapperViewProps as WrapperViewProps
+} from 'react-native-ios-utilities'
