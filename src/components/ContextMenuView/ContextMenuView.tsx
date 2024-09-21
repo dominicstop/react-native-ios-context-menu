@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { TSEventEmitter } from '@dominicstop/ts-event-emitter';
-import { RNIDetachedView, RNIWrapperView, RNIDetachedViewContent } from 'react-native-ios-utilities';
+import { RNIDetachedView, RNIDetachedViewContent } from 'react-native-ios-utilities';
 
 import { RNIContextMenuView, type RNIContextMenuViewRef } from '../../native_components/RNIContextMenuView';
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';

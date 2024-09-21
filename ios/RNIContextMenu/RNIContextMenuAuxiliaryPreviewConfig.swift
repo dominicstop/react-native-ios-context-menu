@@ -20,8 +20,8 @@ public struct RNIContextMenuAuxiliaryPreviewConfig {
   };
   
   public enum HorizontalAlignment: String {
-    case stretchScreen, stretchPreview, previewLeading;
-    case previewTrailing, previewCenter;
+    case stretchScreen, stretchPreview;
+    case previewLeading, previewTrailing, previewCenter;
   };
   
   public enum TransitionType {
