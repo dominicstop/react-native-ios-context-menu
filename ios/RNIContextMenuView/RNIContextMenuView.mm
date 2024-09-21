@@ -58,13 +58,6 @@ using namespace facebook::react;
 @implementation RNIContextMenuView {
 }
 
-// MARK: - Init
-// ------------
-
-- (void)initCommon {
-  [super initCommon];
-}
-
 // MARK: - RNIBaseView
 // -------------------
 
@@ -73,8 +66,8 @@ using namespace facebook::react;
   return [RNIContextMenuViewContent class];
 }
 
-// MARK: - Fabric
-// --------------
+// MARK: - Fabric-Only
+// -------------------
 
 #if RCT_NEW_ARCH_ENABLED
 + (ComponentDescriptorProvider)componentDescriptorProvider
