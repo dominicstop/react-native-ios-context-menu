@@ -1,3 +1,5 @@
+import { AppMetadataCard } from "../components/AppMetadataCard";
+
 import { ContextMenuViewExample01 } from "../examples/ContextMenuViewExample01";
 import { ContextMenuViewExample02 } from "../examples/ContextMenuViewExample02";
 import { ContextMenuViewExample03 } from "../examples/ContextMenuViewExample03";
@@ -363,5 +365,12 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
   //   items.splice(0, 0, ...[DebugControls]);
   // }
 
-  return [...screenItems, ...cardItems];
+  return [
+    {
+      type: 'card',
+      component: AppMetadataCard,
+    },
+    ...screenItems, 
+    ...cardItems
+  ];
 })();
