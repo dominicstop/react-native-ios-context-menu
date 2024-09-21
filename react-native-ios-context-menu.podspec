@@ -102,7 +102,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'react-native-ios-utilities'
   s.dependency 'DGSwiftUtilities'
-  s.dependency 'ContextMenuAuxiliaryPreview', '~> 0.3'
+  s.dependency 'ContextMenuAuxiliaryPreview', '~> 0.5'
 
   if fabric_enabled
     compiler_flags << ' ' << fabric_compiler_flags
