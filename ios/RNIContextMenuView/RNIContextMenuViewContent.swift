@@ -283,7 +283,9 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   func setupInitAuxiliaryPreviewConfigIfNeeded(){
     guard self.isAuxiliaryPreviewEnabled,
           self.auxiliaryPreviewConfig == nil
-    else { return };
+    else {
+      return;
+    };
     
     self.auxiliaryPreviewConfig = .init(
       verticalAnchorPosition: .automatic,
@@ -402,7 +404,6 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
         
         default:
           break;
-      
       };
     };
   };
@@ -800,16 +801,18 @@ extension RNIContextMenuViewContent: RNIMenuElementEventsNotifiable {
 
 extension RNIContextMenuViewContent: ContextMenuManagerDelegate {
  
-  public func onRequestMenuAuxiliaryPreview(sender: ContextMenuManager) -> UIView? {
-    guard let menuAuxiliaryPreviewParent = self.menuAuxiliaryPreviewParent
-    else { return nil };
+  public func onRequestMenuAuxiliaryPreview(
+    sender: ContextMenuManager
+  ) -> UIView? {
     
-    // TODO: WIP - To be re-impl.
-    // let layoutWrapperView = AutoLayoutWrapperView(frame: .zero);
-    let layoutWrapperView = UIView(frame: .zero);
-    layoutWrapperView.addSubview(menuAuxiliaryPreviewParent);
+    guard let menuAuxiliaryPreviewParent = self.menuAuxiliaryPreviewParent else {
+      return nil;
+    };
     
-    return layoutWrapperView;
+    let auxPreviewController = RNIBaseViewController();
+    auxPreviewController.rootReactView = menuAuxiliaryPreviewParent;
+    
+    return auxPreviewController.view;
   };
 };
 

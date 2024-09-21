@@ -25,7 +25,8 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
       for: .onMenuWillCreate,
       withPayload: [:]
     );
-  
+    
+    self.setDetachedViewsIfNeeded();
     self.contextMenuManager?.notifyOnContextMenuInteraction(
       interaction,
       configurationForMenuAtLocation: location
