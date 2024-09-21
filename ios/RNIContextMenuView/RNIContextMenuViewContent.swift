@@ -18,6 +18,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   // ----------------------
   
   enum NativeIDKey: String {
+    case detachedView;
     case contextMenuPreview;
     case contextMenuAuxiliaryPreview;
   };
@@ -65,10 +66,14 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   weak var navEventsVC: RNINavigationEventsReportingViewController?;
   var longPressGestureRecognizer: UILongPressGestureRecognizer!;
   
-  // TODO: WIP - To be re-impl.
-  var detachedViews: [WeakRef</* RNIDetachedView? */ UIView>] = [];
-  var menuAuxiliaryPreviewView: /* RNIDetachedView? */ UIView?;
-  var menuCustomPreviewView: /* RNIDetachedView? */ UIView?;
+  public var detachedViewParent: RNIContentViewParentDelegate?;
+  public var detachedViewContent: RNIDetachedViewContent?;
+  
+  public var menuCustomPreviewParent: RNIContentViewParentDelegate?;
+  public var menuCustomPreviewContent: RNIWrapperViewContent?;
+  
+  public var menuAuxiliaryPreviewParent: RNIContentViewParentDelegate?;
+  public var menuAuxiliaryPreviewContent: RNIWrapperViewContent?;
   
   var previewController: RNIContextMenuPreviewController?;
     
@@ -249,7 +254,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
   
   var isUsingCustomPreview: Bool {
        self.previewConfig.previewType == .CUSTOM
-    && self.menuCustomPreviewView != nil
+    && self.menuCustomPreviewContent != nil
   };
 
   // MARK: Init
@@ -342,40 +347,84 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     });
   };
   
+  /// create custom menu preview based on `previewConfig` and `reactPreviewView`
+  func createMenuPreview() -> UIViewController? {
+  
+    /// don't make preview if `previewType` is set to default.
+    guard self.previewConfig.previewType != .DEFAULT else {
+      return nil;
+    };
+    
+    self.setDetachedViewsIfNeeded();
+    
+    // vc that holds the view to show in the preview
+    let previewController = RNIContextMenuPreviewController();
+    previewController.setup(with: self);
+    previewController.view.isUserInteractionEnabled = true;
+    
+    self.previewController = previewController;
+    return previewController;
+  };
+  
+  func setDetachedViewsIfNeeded(){
+    guard let detachedViewContent = self.detachedViewContent else {
+      return;
+    };
+    
+    let shouldGetDetachedViews =
+         self.menuCustomPreviewParent == nil
+      || self.menuCustomPreviewContent == nil
+      || self.menuAuxiliaryPreviewParent == nil
+      || self.menuAuxiliaryPreviewContent == nil;
+      
+    guard shouldGetDetachedViews else {
+      return;
+    };
+    
+    try? detachedViewContent.detachSubviews();
+
+    detachedViewContent.detachedViews.forEach {
+      guard let nativeID = $0.reactNativeID,
+            let nativeIDKey = NativeIDKey(rawValue: nativeID),
+            let contentDelegate = $0.contentDelegate as? RNIWrapperViewContent
+      else {
+        return;
+      };
+      
+      switch (nativeIDKey) {
+        case .contextMenuPreview:
+          self.menuCustomPreviewParent = $0;
+          self.menuCustomPreviewContent = contentDelegate;
+          
+        case .contextMenuAuxiliaryPreview:
+          self.menuAuxiliaryPreviewParent = $0;
+          self.menuAuxiliaryPreviewContent = contentDelegate;
+        
+        default:
+          break;
+      
+      };
+    };
+  };
+  
   func setAuxiliaryPreviewConfigSizeIfNeeded(){
-    guard let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView,
+    guard let menuAuxiliaryPreviewParent = self.menuAuxiliaryPreviewParent,
           self.auxiliaryPreviewConfig != nil
     else { return };
     
     if self.auxiliaryPreviewConfig!.preferredWidth == nil {
       self.auxiliaryPreviewConfig!.preferredWidth = .constant(
-        menuAuxiliaryPreviewView.bounds.width
+        menuAuxiliaryPreviewParent.bounds.width
       );
     };
     
     if self.auxiliaryPreviewConfig!.preferredHeight == nil {
       self.auxiliaryPreviewConfig!.preferredHeight = .constant(
-        menuAuxiliaryPreviewView.bounds.height
+        menuAuxiliaryPreviewParent.bounds.height
       );
     };
     
     self.contextMenuManager?.auxiliaryPreviewConfig = self.auxiliaryPreviewConfig;
-  };
-  
-  /// create custom menu preview based on `previewConfig` and `reactPreviewView`
-  func createMenuPreview() -> UIViewController? {
-  
-    /// don't make preview if `previewType` is set to default.
-    guard self.previewConfig.previewType != .DEFAULT
-    else { return nil };
-    
-    // vc that holds the view to show in the preview
-    let vc = RNIContextMenuPreviewController();
-    vc.contextMenuView = self;
-    vc.view.isUserInteractionEnabled = true;
-    
-    self.previewController = vc;
-    return vc;
   };
   
   func updateContextMenuIfVisible(with menuConfig: RNIMenuItem){
@@ -594,7 +643,36 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
     index: NSInteger,
     superBlock: () -> Void
   ) {
-    self.addSubview(childComponentView);
+    
+    var shouldAddAsSubview = true;
+    
+    defer {
+      if shouldAddAsSubview {
+        self.addSubview(childComponentView);
+      };
+    };
+    
+    guard let customNativeView = childComponentView as? RNIContentViewParentDelegate,
+          let nativeID = childComponentView.reactNativeID,
+          let nativeIDKey = NativeIDKey(rawValue: nativeID)
+    else {
+      return;
+    };
+    
+    switch (customNativeView.contentDelegate, nativeIDKey) {
+      case (
+        let detachedViewContent as RNIDetachedViewContent,
+        .detachedView
+      ):
+        self.detachedViewParent = customNativeView;
+        self.detachedViewContent = detachedViewContent;
+        
+        self.setDetachedViewsIfNeeded();
+        shouldAddAsSubview = false;
+        
+      default:
+        break;
+    };
   };
   
   public func notifyOnUnmountChildComponentView(
@@ -723,13 +801,13 @@ extension RNIContextMenuViewContent: RNIMenuElementEventsNotifiable {
 extension RNIContextMenuViewContent: ContextMenuManagerDelegate {
  
   public func onRequestMenuAuxiliaryPreview(sender: ContextMenuManager) -> UIView? {
-    guard let menuAuxiliaryPreviewView = self.menuAuxiliaryPreviewView
+    guard let menuAuxiliaryPreviewParent = self.menuAuxiliaryPreviewParent
     else { return nil };
     
     // TODO: WIP - To be re-impl.
     // let layoutWrapperView = AutoLayoutWrapperView(frame: .zero);
     let layoutWrapperView = UIView(frame: .zero);
-    layoutWrapperView.addSubview(menuAuxiliaryPreviewView);
+    layoutWrapperView.addSubview(menuAuxiliaryPreviewParent);
     
     return layoutWrapperView;
   };
@@ -810,13 +888,13 @@ extension RNIContextMenuViewContent: RNINavigationEventsNotifiable {
 //    
 //    switch nativeIDKey {
 //        case .contextMenuPreview:
-//          self.menuCustomPreviewView?.cleanup();
-//          self.menuCustomPreviewView = detachedView;
+//          self.menuCustomPreviewContent?.cleanup();
+//          self.menuCustomPreviewContent = detachedView;
 //        
 //        // MARK: Experimental - "Auxiliary Context Menu Preview"-Related
 //        case .contextMenuAuxiliaryPreview:
-//          self.menuAuxiliaryPreviewView?.cleanup();
-//          self.menuAuxiliaryPreviewView = detachedView;
+//          self.menuAuxiliaryPreviewParent?.cleanup();
+//          self.menuAuxiliaryPreviewParent = detachedView;
 //    };
 //    
 //    self.detachedViews.append(

@@ -56,13 +56,13 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
        let parentReactView = self.parentReactView as? RCTView
     {
       self.isUserInteractionEnabled = false;
-      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = false;
+      self.menuAuxiliaryPreviewParent?.isUserInteractionEnabled = false;
       
       parentReactView.closestParentReactTouchHandler?.cancel();
       
       DispatchQueue.main.async {
         self.isUserInteractionEnabled = true;
-        self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
+        self.menuAuxiliaryPreviewParent?.isUserInteractionEnabled = true;
       };
     };
     
@@ -99,7 +99,7 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
       self.isContextMenuVisible = false;
       
       self.isUserInteractionEnabled = true;
-      self.menuAuxiliaryPreviewView?.isUserInteractionEnabled = true;
+      self.menuAuxiliaryPreviewParent?.isUserInteractionEnabled = true;
     };
     
     guard self.isContextMenuVisible else { return };
@@ -196,9 +196,9 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
 
   #if swift(>=5.7)
   public func contextMenuInteraction(
-      _ interaction: UIContextMenuInteraction,
-      configuration: UIContextMenuConfiguration,
-      highlightPreviewForItemWithIdentifier identifier: NSCopying
+    _ interaction: UIContextMenuInteraction,
+    configuration: UIContextMenuConfiguration,
+    highlightPreviewForItemWithIdentifier identifier: NSCopying
   ) -> UITargetedPreview? {
     
     return self.menuTargetedPreview;

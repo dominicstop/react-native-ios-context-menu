@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { TSEventEmitter } from '@dominicstop/ts-event-emitter';
+import { RNIDetachedView, RNIWrapperView, RNIDetachedViewContent } from 'react-native-ios-utilities';
 
 import { RNIContextMenuView, type RNIContextMenuViewRef } from '../../native_components/RNIContextMenuView';
 import { ContextMenuViewContext } from '../../context/ContextMenuViewContext';
@@ -14,10 +15,11 @@ import { LIB_ENV } from '../../constants/LibEnv';
 import * as Helpers from '../../functions/Helpers';
 
 
-// const NATIVE_ID_KEYS = {
-//  contextMenuPreview: 'contextMenuPreview',
-//  contextMenuAuxiliaryPreview: 'contextMenuAuxiliaryPreview',
-// };
+export const NATIVE_ID_KEYS = {
+  detachedView: 'detachedView',
+  contextMenuPreview: 'contextMenuPreview',
+  contextMenuAuxiliaryPreview: 'contextMenuAuxiliaryPreview',
+};
 
 export class ContextMenuView extends 
   React.PureComponent<ContextMenuViewProps, ContextMenuViewState> {
@@ -313,7 +315,7 @@ export class ContextMenuView extends
       || !props.lazyPreview
     );
 
-    props.debugShouldEnableLogging && console.log(
+    (props.debugShouldEnableLogging || false) && console.log(
       "ContextMenuView.render",
       `\n - shouldMountPreviewContainer: ${shouldMountPreviewContainer}`,
       `\n - shouldMountPreviewContent: ${shouldMountPreviewContent}`,
@@ -358,9 +360,18 @@ export class ContextMenuView extends
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
+          <RNIDetachedView 
+            nativeID={NATIVE_ID_KEYS.detachedView}
+            shouldImmediatelyDetach={true}
+          >
+            <RNIDetachedViewContent
+              nativeID={NATIVE_ID_KEYS.contextMenuPreview}
+            >
+              {props.renderProps.renderPreview?.()}
+            </RNIDetachedViewContent>
+          </RNIDetachedView>
           {props.viewProps.children}
         </RNIContextMenuView>
-
       ):(
         // B - Use Regular View
         <View {...props.viewProps}>
