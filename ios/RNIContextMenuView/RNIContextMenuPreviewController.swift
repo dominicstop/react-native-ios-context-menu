@@ -59,29 +59,20 @@ public class RNIContextMenuPreviewController: UIViewController {
     menuCustomPreviewParent.translatesAutoresizingMaskIntoConstraints = false;
     
     NSLayoutConstraint.activate([
-      menuCustomPreviewParent.leadingAnchor.constraint(
-        equalTo: self.view.leadingAnchor
+      menuCustomPreviewParent.centerXAnchor.constraint(
+        equalTo: self.view.centerXAnchor
       ),
-      menuCustomPreviewParent.trailingAnchor.constraint(
-        equalTo: self.view.trailingAnchor
-      ),
-      menuCustomPreviewParent.topAnchor.constraint(
-        equalTo: self.view.topAnchor
-      ),
-      menuCustomPreviewParent.bottomAnchor.constraint(
-        equalTo: self.view.bottomAnchor
+      menuCustomPreviewParent.centerYAnchor.constraint(
+        equalTo: self.view.centerYAnchor
       ),
     ]);
+    
+    self.updateReactViewSizeIfNeeded();
   };
   
   public override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews();
-    
-    if let previewConfig = self.previewConfig,
-       previewConfig.previewSize == .STRETCH
-    {
-      self.updateReactViewSize();
-    };
+    self.updateReactViewSizeIfNeeded();
   };
   
   // MARK: - Methods
@@ -103,8 +94,18 @@ public class RNIContextMenuPreviewController: UIViewController {
     
     self._didSetup = true;
     
-    if contextMenuContent.previewConfig.previewSize == .INHERIT {
-      menuCustomPreviewParent.reactViewLifecycleDelegates.add(self);
+    switch contextMenuContent.previewConfig.previewSize {
+      case .INHERIT:
+        menuCustomPreviewParent.reactViewLifecycleDelegates.add(self);
+        guard let menuCustomPreviewSize = self.menuCustomPreviewSize else {
+          return;
+        };
+        
+        self.preferredContentSize = menuCustomPreviewSize;
+      
+      case .STRETCH:
+        self.preferredContentSize = .zero;
+        break;
     };
   };
   
@@ -138,13 +139,15 @@ public class RNIContextMenuPreviewController: UIViewController {
     };
   };
   
-  public func updateReactViewSize(){
-    guard let menuCustomPreviewParent = self.menuCustomPreviewParent else {
+  public func updateReactViewSizeIfNeeded(){
+    guard let menuCustomPreviewParent = self.menuCustomPreviewParent,
+          let previewConfig = self.previewConfig,
+          previewConfig.previewSize == .STRETCH
+    else {
       return;
     };
     
     menuCustomPreviewParent.setSize(self.view.bounds.size);
-    self.preferredContentSize = .zero;
   };
 };
 
