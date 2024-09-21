@@ -29,7 +29,8 @@ export function ContextMenuViewExample28(props: ExampleItemProps) {
         subtitle={'TBA'}
 
         description={[
-          `TBA`
+          `Example for programmatically showing the context menu`,
+          `(Note: uses private api, only use when necessary)`
         ]}
       >
         <CardButton
