@@ -295,32 +295,34 @@ export class ContextMenuView extends
 
     const shouldUseContextMenuView = LIB_ENV.isContextMenuViewSupported;
 
-    const shouldMountPreviewContainer = (
-         LIB_ENV.shouldEnableDetachedView
-      && props.renderProps.renderPreview != null
-    );
+    const isUsingCustomPreview =
+      props.renderProps.renderPreview != null;
 
     const shouldMountPreviewContent = (
           state.mountPreview 
       || !props.lazyPreview
     );
 
-    const shouldMountAuxPreviewContainer = (
-         LIB_ENV.shouldEnableDetachedView
-      && props.renderProps.renderAuxillaryPreview != null
-    );
+    const isUsingAuxillaryPreview = 
+      props.renderProps.renderAuxillaryPreview != null;
 
     const shouldMountAuxPreviewContent = (
          state.mountPreview
       || !props.lazyPreview
     );
 
-    (props.debugShouldEnableLogging || false) && console.log(
+    const shouldMountDetachedView = (
+         isUsingCustomPreview
+      || isUsingAuxillaryPreview
+    );
+
+    props.debugShouldEnableLogging && console.log(
       "ContextMenuView.render",
-      `\n - shouldMountPreviewContainer: ${shouldMountPreviewContainer}`,
+      `\n - isUsingCustomPreview: ${isUsingCustomPreview}`,
       `\n - shouldMountPreviewContent: ${shouldMountPreviewContent}`,
-      `\n - shouldMountAuxPreviewContainer: ${shouldMountAuxPreviewContainer}`,
+      `\n - isUsingAuxillaryPreview: ${isUsingAuxillaryPreview}`,
       `\n - shouldMountAuxPreviewContent: ${shouldMountAuxPreviewContent}`,
+      `\n - shouldMountDetachedView: ${shouldMountDetachedView}`,
       `\n`
     );
 
@@ -360,16 +362,25 @@ export class ContextMenuView extends
           onPressMenuItem={this._handleOnPressMenuItem}
           onPressMenuPreview={this._handleOnPressMenuPreview}
         >
-          <RNIDetachedView 
-            nativeID={NATIVE_ID_KEYS.detachedView}
-            shouldImmediatelyDetach={true}
-          >
-            <RNIDetachedViewContent
-              nativeID={NATIVE_ID_KEYS.contextMenuPreview}
+          {shouldMountDetachedView && (
+            <RNIDetachedView 
+              nativeID={NATIVE_ID_KEYS.detachedView}
+              shouldImmediatelyDetach={true}
             >
-              {props.renderProps.renderPreview?.()}
-            </RNIDetachedViewContent>
-          </RNIDetachedView>
+              <React.Fragment>
+                {isUsingCustomPreview && (
+                  <RNIDetachedViewContent
+                    nativeID={NATIVE_ID_KEYS.contextMenuPreview}
+                  >
+                    {shouldMountAuxPreviewContent && 
+                      props.renderProps.renderPreview?.()
+                    }
+                  </RNIDetachedViewContent>
+                )}
+              </React.Fragment>
+              
+            </RNIDetachedView>
+          )}
           {props.viewProps.children}
         </RNIContextMenuView>
       ):(
