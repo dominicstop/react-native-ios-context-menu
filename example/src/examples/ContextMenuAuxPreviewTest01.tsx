@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Alert, View, Text, StyleSheet, findNodeHandle, TouchableOpacity, Animated } from 'react-native';
 
 import { Helpers, Colors } from 'react-native-ios-utilities';
-import { ContextMenuView } from 'react-native-ios-context-menu';
+import { ContextMenuView, WrapperView, type WrapperViewRef } from 'react-native-ios-context-menu';
 
 import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
@@ -39,14 +39,8 @@ export function ContextMenuAuxPreviewTest01(props: ExampleItemProps) {
 
   const hasReaction = (currentVisibleReaction != null)
 
-  const viewRef = React.useRef();
+  const viewRef = React.useRef<WrapperViewRef | undefined>();
   const menuRef = React.useRef<ContextMenuView>();
-
-  React.useEffect(() => {
-    setTargetViewNode(
-      findNodeHandle(viewRef.current)
-    );
-  }, []);
 
   const onPressReaction = React.useCallback((reactionKey: ReactionKeys) => {
     setCurrentReaction(prev => 
@@ -129,7 +123,9 @@ export function ContextMenuAuxPreviewTest01(props: ExampleItemProps) {
         }],
       }}
       previewConfig={{
-        targetViewNode: targetViewNode,
+        viewIdentifier: {
+          viewID: viewRef.current?.getViewID()!,
+        },
       }}
       auxiliaryPreviewConfig={{
         alignmentHorizontal: 'previewLeading',
@@ -207,14 +203,14 @@ export function ContextMenuAuxPreviewTest01(props: ExampleItemProps) {
               {'Bb'}
             </Text>
           </View>
-          <View
+          <WrapperView
             style={styles.messageContainer}
-            ref={viewRef}
+            ref={r => viewRef.current = r}
           >
             <Text style={styles.messageText}>
               {"ghorl the tea is piping hawt\nmy wig is in orbittttt"}
             </Text>
-          </View>
+          </WrapperView>
           {hasReaction && (
             <Animated.View style={[styles.messageReactionContainer, {
               opacity: fadeAnimation,
