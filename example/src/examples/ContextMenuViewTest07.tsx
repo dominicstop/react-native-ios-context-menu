@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Switch, findNodeHandle } from 'react-native';
+import { StyleSheet, View, Text, Switch } from 'react-native';
 
-import { ContextMenuView, type MenuPreviewConfig } from 'react-native-ios-context-menu';
+import { ContextMenuView, WrapperView, type MenuPreviewConfig } from 'react-native-ios-context-menu';
 
 import type { ExampleItemProps } from './SharedExampleTypes';
 import { ContextMenuCard } from '../components/ContextMenuCard';
@@ -9,13 +9,13 @@ import { ContextMenuCard } from '../components/ContextMenuCard';
 
 export function ContextMenuViewTest07(props: ExampleItemProps) {
   const [counter, setCounter] = React.useState(0);
-  const [targetViewNode, setTargetViewNode] = React.useState(null);
+  const [targetViewID, setTargetViewID] = React.useState(null);
 
   const [isResizeAnimated, setIsResizeAnimated] = React.useState(false);
   const [togglePreviewType, setTogglePreviewType] = React.useState(false);
   const [togglePreviewSize, setTogglePreviewSize] = React.useState(false);
   const [toggleBgTransparent, setToggleBgTransparent] = React.useState(false);
-  const [toggleTargetViewNode, setToggleTargetViewNode] = React.useState(false);
+  const [toggleTargetViewID, setToggleTargetViewID] = React.useState(false);
   const [togglePreferredCommitStyle, setTogglePreferredCommitStyle] = React.useState(false);
 
   const intervalRef = React.useRef<NodeJS.Timer | undefined>();
@@ -41,8 +41,10 @@ export function ContextMenuViewTest07(props: ExampleItemProps) {
       (toggleBgTransparent ? 'white' :  'rgba(255,255,255,0.5)'),
 
     isResizeAnimated,
-    ...(toggleTargetViewNode && { 
-      targetViewNode 
+    ...(toggleTargetViewID && { 
+      viewIdentifier: {
+          viewID: targetViewID!,
+        },
     }),
   };
 
@@ -116,19 +118,17 @@ export function ContextMenuViewTest07(props: ExampleItemProps) {
           `Test for the different possible custom menu preview config`
         ]}
       >
-        {toggleTargetViewNode && (
-          <View
+        {toggleTargetViewID && (
+          <WrapperView
             style={styles.targetViewContainer}
-            ref={ref => {
-              setTargetViewNode(
-                findNodeHandle(ref)
-              );
+            onDidSetViewID={({nativeEvent}) => {
+              setTargetViewID(nativeEvent.viewID);
             }}
           >
             <Text style={styles.targetViewText}>
               {'Target View'}
             </Text>
-          </View>
+          </WrapperView>
         )}
         <View style={styles.rowContainer}>
           <View style={styles.textRowContainer}>
@@ -228,19 +228,19 @@ export function ContextMenuViewTest07(props: ExampleItemProps) {
         <View style={styles.rowContainer}>
           <View style={styles.textRowContainer}>
             <Text style={styles.textRowTitle}>
-              {'targetViewNode'}
+              {'targetViewID'}
             </Text>
             <Text style={styles.textRowSubtitle}>
               <Text style={styles.textRowSubtitleLabel}>
                 {'Value: '}
               </Text>
-              {previewConfig.targetViewNode}
+              {previewConfig.viewIdentifier?.viewID}
             </Text>
           </View>
           <Switch
-            value={toggleTargetViewNode}
+            value={toggleTargetViewID}
             onValueChange={(flag) => {
-              setToggleTargetViewNode(flag);
+              setToggleTargetViewID(flag);
             }}
           />
         </View>
