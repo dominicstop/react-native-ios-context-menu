@@ -391,7 +391,9 @@ export class ContextMenuView extends
               </React.Fragment>
             </RNIDetachedView>
           )}
-          {props.viewProps.children}
+          <View>
+            {props.viewProps.children}
+          </View>
         </RNIContextMenuView>
       ):(
         // B - Use Regular View

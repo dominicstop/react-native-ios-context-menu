@@ -7,6 +7,7 @@ import { type AuxiliaryPreviewConfig, ContextMenuView, type MenuElementConfig, t
 
 
 const SHOULD_USE_NEW_CONFIG = true;
+const MESSAGE_BUBBLE_BORDER_RADIUS = 10;
 
 // Repro for issue:
 // https://github.com/dominicstop/react-native-ios-context-menu/issues/47
@@ -283,7 +284,7 @@ const MessageBubble = (props: {
   
   const hasReaction = (currentReaction != null);
 
-  const menuRef = React.useRef<ContextMenuView | undefined>();
+  const menuRef = React.useRef<ContextMenuView | null>();
 
   const animatedReactionOpacity = 
     React.useRef(new Animated.Value(0)).current;
@@ -315,7 +316,6 @@ const MessageBubble = (props: {
   };
 
   const startCollapse = () => {
-
     return Promise.all([
       new Promise(resolve => {
         Animated.timing(animatedMessageContainerMarginTop, {
@@ -347,7 +347,7 @@ const MessageBubble = (props: {
     </Animated.View>
   );
 
-  const AuxPreviewConfig: AuxiliaryPreviewConfigBackwardsCompatible = (SHOULD_USE_NEW_CONFIG ? {
+  const auxPreviewConfig: AuxiliaryPreviewConfigBackwardsCompatible = (SHOULD_USE_NEW_CONFIG ? {
     verticalAnchorPosition: 'automatic',
     horizontalAlignment: (props.message.isSender 
       ? 'targetTrailing'
@@ -386,13 +386,10 @@ const MessageBubble = (props: {
     }]}>
       {(hasReaction && props.message.isSender) && reactionIndicator}
       <ContextMenuView
-        ref={menuRef}
-        style={[styles.messageBubbleContainer, {
-          backgroundColor: (props.message.isSender 
-            ? Colors.PURPLE[100] 
-            : Colors.ORANGE[100]
-          ),
-        }]}
+        ref={ref => menuRef.current = ref}
+        style={[
+          styles.messageBubbleContainer
+        ]}
         lazyPreview={true}
         menuConfig={{
           menuTitle: '',
@@ -403,7 +400,10 @@ const MessageBubble = (props: {
             MENU_CONFIGS.delete,
           ],
         }}
-        auxiliaryPreviewConfig={AuxPreviewConfig}
+        previewConfig={{
+          borderRadius: MESSAGE_BUBBLE_BORDER_RADIUS,
+        }}
+        auxiliaryPreviewConfig={auxPreviewConfig}
         renderAuxiliaryPreview={() => (
           <View style={styles.auxRootContainer}>
             {REACTIONS_KEYS.map((reactionKey, index) => (
@@ -467,9 +467,19 @@ const MessageBubble = (props: {
           (currentReaction != null) && await startFadeIn();
         }}
       >
-        <Text style={styles.messageTextLabel}>
-          {props.message.messageText}
-        </Text>
+        <View style={[
+          styles.messageBubbleContent,
+          {
+            backgroundColor: (props.message.isSender 
+              ? Colors.PURPLE[100] 
+              : Colors.ORANGE[100]
+            ),
+          }
+        ]}>
+          <Text style={styles.messageTextLabel}>
+            {props.message.messageText}
+          </Text>
+        </View>
       </ContextMenuView>
       {(hasReaction && !props.message.isSender) && reactionIndicator}
     </Animated.View>
@@ -605,10 +615,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   messageBubbleContainer: {
+    maxWidth: '90%',
+  },
+  messageBubbleContent: {
+    flex: 1,
     paddingHorizontal: 12,
     paddingVertical: 8,
-    borderRadius: 10,
-    maxWidth: '90%',
+    borderRadius: MESSAGE_BUBBLE_BORDER_RADIUS,
   },
   messageTextLabel: {
   },

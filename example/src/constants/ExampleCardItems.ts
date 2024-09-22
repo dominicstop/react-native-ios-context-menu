@@ -98,7 +98,7 @@ export type ExampleListItem = {
 
 export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
   
-  const screenItems: Array<ExampleItemRoute> = [
+  const screenItemsPre: Array<ExampleItemRoute> = [
     {
       type: 'screen',
       ...ROUTE_MAP.contextMenuTest01,
@@ -361,6 +361,36 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
     },
   ]; 
 
+  const screenItemsPost: Array<ExampleItemRoute> = [
+    {
+      type: 'screen',
+      ...ROUTE_MAP.test01Screen,
+    },
+    {
+      type: 'screen',
+      ...ROUTE_MAP.test02Screen,
+    },{
+      type: 'screen',
+      ...ROUTE_MAP.test03Screen,
+    },
+    {
+      type: 'screen',
+      ...ROUTE_MAP.test04Screen,
+    },
+    {
+      type: 'screen',
+      ...ROUTE_MAP.test05Screen,
+    },
+    {
+      type: 'screen',
+      ...ROUTE_MAP.test06Screen,
+    },
+    {
+      type: 'screen',
+      ...ROUTE_MAP.test07Screen,
+    },
+  ];
+
   // if (SHARED_ENV.enableReactNavigation) {
   //   items.splice(0, 0, ...[DebugControls]);
   // }
@@ -370,7 +400,8 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
       type: 'card',
       component: AppMetadataCard,
     },
-    ...screenItems, 
-    ...cardItems
+    ...screenItemsPre, 
+    ...cardItems,
+    ...screenItemsPost,
   ];
 })();
