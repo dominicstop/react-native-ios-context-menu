@@ -2,6 +2,8 @@
 
 A small component for using context menu's on iOS.
 
+![context-menu-example-demo](./assets/context-menu-example-demo.gif)
+
 <br><br>
 
 ## 🚧⚠️ Documentation WIP ⚠️🚧
