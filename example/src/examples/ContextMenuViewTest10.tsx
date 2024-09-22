@@ -268,68 +268,62 @@ export function ContextMenuViewTest10(props: ExampleItemProps) {
           // 01
           case 'def-01':
             await Helpers.timeout(500);
-            provider([{
-              // 01-01 - Inline Submenu
-              type: 'menu',
-              menuTitle: '',
-              menuOptions: ['displayInline'],
-              menuItems: [{
-                //01-01-01
-                ...MENU_CONFIGS.actionFavorite
-              }, {
-                //01-01-02
-                type: 'deferred',
-                deferredID: 'def-01-01-02'
-              }, {
-                //01-01-03
-                ...MENU_CONFIGS.actionShare
-              }],
-            }, {
-              // 01-02 - Nested Submenu
-              type: 'menu',
-              menuTitle: 'Move to...',
-              menuItems: [{
-                // 01-02-01 - In-line Submenu
+            provider([
+              {
+                // 01-01 - Inline Submenu
                 type: 'menu',
-                menuTitle: '',
+                menuTitle: 'hello',
                 menuOptions: ['displayInline'],
-                menuItems: [{
-                  // 01-02-01-01
-                  type: 'deferred',
-                  deferredID: '01-02-01-01'
-                }, {
-                  // 01-02-01-02
-                  type: 'deferred',
-                  deferredID: '01-02-01-02'
-                }, {
-                  // 01-02-01-03
-                  type: 'deferred',
-                  deferredID: '01-02-01-03'
-                }],
-              }, {
-                // 01-02-02 - Nested Submenu
+                menuItems: [],
+              },
+              {
+                // 01-02 - Nested Submenu
                 type: 'menu',
-                menuTitle: 'Even More Options...',
+                menuTitle: 'Move to...',
                 menuItems: [{
-                  ...MENU_CONFIGS.menuInLineSmallRow1,
+                  // 01-02-01 - In-line Submenu
+                  type: 'menu',
+                  menuTitle: '',
+                  menuOptions: ['displayInline'],
+                  menuItems: [{
+                    // 01-02-01-01
+                    type: 'deferred',
+                    deferredID: '01-02-01-01'
+                  }, {
+                    // 01-02-01-02
+                    type: 'deferred',
+                    deferredID: '01-02-01-02'
+                  }, {
+                    // 01-02-01-03
+                    type: 'deferred',
+                    deferredID: '01-02-01-03'
+                  }],
                 }, {
-                  ...MENU_CONFIGS.menuInLineSmallRow2,
-                }, {
-                  ...MENU_CONFIGS.menuInLineSmallRow3,
-                }, {
-                  ...MENU_CONFIGS.menuInLineSmallRow4,
-                }, {
-                  ...MENU_CONFIGS.menuInLineSmallRow5,
-                }, {
-                  ...MENU_CONFIGS.menuInLineSmallRow6,
-                }, {
-                  ...MENU_CONFIGS.menuInLineSmallRow7,
-                }],
-              }]
-            }, {
-              // 01-03 - in-line submenu
-              ...MENU_CONFIGS.menuCutCopyPaste
-            }]);
+                  // 01-02-02 - Nested Submenu
+                  type: 'menu',
+                  menuTitle: 'Even More Options...',
+                  menuItems: [{
+                    ...MENU_CONFIGS.menuInLineSmallRow1,
+                  }, {
+                    ...MENU_CONFIGS.menuInLineSmallRow2,
+                  }, {
+                    ...MENU_CONFIGS.menuInLineSmallRow3,
+                  }, {
+                    ...MENU_CONFIGS.menuInLineSmallRow4,
+                  }, {
+                    ...MENU_CONFIGS.menuInLineSmallRow5,
+                  }, {
+                    ...MENU_CONFIGS.menuInLineSmallRow6,
+                  }, {
+                    ...MENU_CONFIGS.menuInLineSmallRow7,
+                  }],
+                }]
+              },
+              {
+                // 01-03 - in-line submenu
+                ...MENU_CONFIGS.menuCutCopyPaste
+              }
+            ]);
             break;
             
           case 'def-01-01-02':
