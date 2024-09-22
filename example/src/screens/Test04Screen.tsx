@@ -560,6 +560,7 @@ export const Test04Screen = () => {
 const styles = StyleSheet.create({
   rootContainer: { 
     flex: 1,
+    backgroundColor: 'white',
   },
   list: {
     flex: 1,

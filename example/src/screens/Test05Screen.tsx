@@ -90,6 +90,7 @@ export const Test05Screen = () => {
 const styles = StyleSheet.create({
   rootContainer: { 
     flex: 1,
+    backgroundColor: 'white',
   },
   rootContainerContent: {
     alignItems: 'flex-end',

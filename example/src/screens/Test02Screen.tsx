@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingHorizontal: 15,
     paddingVertical: 10,
-    paddingBottom: 20
+    paddingBottom: 20,
+    backgroundColor: 'white',
   },
   messageContainer: {
   },
