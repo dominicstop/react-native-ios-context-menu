@@ -735,22 +735,27 @@ extension RNIContextMenuViewContent: RNIContentViewDelegate {
           resolveBlock([:]);
           
         case "provideDeferredElements":
-          let id: String =
-            try commandArguments.getValueFromDictionary(forKey: "id");
+          let deferredID: String =
+            try commandArguments.getValueFromDictionary(forKey: "deferredID");
             
           let menuElementsRaw: [Any] =
-            try commandArguments.getValueFromDictionary(forKey: "menuElements");
+            try commandArguments.getValueFromDictionary(forKey: "menuItems");
             
           let menuElements: [RNIMenuElement] = menuElementsRaw.compactMap {
             guard let dict = $0 as? Dictionary<String, Any> else {
               return nil;
             };
             
-            return .init(dictionary: dict);
+            return (
+                 RNIMenuItem(dictionary: dict)
+              ?? RNIMenuActionItem(dictionary: dict)
+              ?? RNIDeferredMenuElement(dictionary: dict)
+              ?? RNIMenuElement(dictionary: dict)
+            );
           };
           
           try self.provideDeferredElements(
-            id: id,
+            id: deferredID,
             menuElements: menuElements
           );
           
