@@ -79,16 +79,6 @@ Class<RCTComponentViewProtocol> RNIContextMenuViewCls(void)
 {
   return RNIContextMenuView.class;
 }
-#else
-
-// MARK: - Paper
-// -------------
-
-- (void)invalidate
-{
-  // to be impl.
-}
-
 #endif
 @end
 
