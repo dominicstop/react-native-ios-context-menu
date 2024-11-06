@@ -23,8 +23,7 @@
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
-    "!**/.*",
-    "ReactNativeIosUtilities.podspec"
+    "!**/.*"
   ],
   "scripts": {
     "example": "yarn workspace react-native-ios-context-menu-example",
