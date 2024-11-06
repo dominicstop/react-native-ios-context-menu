@@ -1,6 +1,6 @@
 {
   "name": "react-native-ios-context-menu",
-  "version": "3.0.0-9",
+  "version": "3.0.0-8",
   "description": "A react-native component to use context menu's (UIMenu) on iOS 13/14+",
   "source": "./src/index.tsx",
   "module": "./lib/module/index.js",
@@ -118,7 +118,8 @@
     "react-native-ios-utilities": "5.0.x"
   },
   "workspaces": [
-    "example"
+    "example",
+    "example-expo"
   ],
   "packageManager": "yarn@3.6.1",
   "release-it": {
