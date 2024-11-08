@@ -975,7 +975,7 @@ PODS:
   - React-Mapbuffer (0.74.5):
     - glog
     - React-debug
-  - react-native-ios-context-menu (3.0.0-8):
+  - react-native-ios-context-menu (3.0.0-10):
     - ContextMenuAuxiliaryPreview (~> 0.5)
     - DGSwiftUtilities
     - DoubleConversion
@@ -1622,7 +1622,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 3b6060bbf5317663667e1dd93560c7943ab86ccc
   React-logger: 257858bd55f3a4e1bc0cf07ddc8fb9faba6f8c7c
   React-Mapbuffer: 6c1cacdbf40b531f549eba249e531a7d0bfd8e7f
-  react-native-ios-context-menu: 3aad1cca7b13f8969d3270fc165d76d73706aeab
+  react-native-ios-context-menu: 2e65c6c15042874a8f54c12198fe085156eba80f
   react-native-ios-utilities: 9cc251b565579940b71c1f4850b2689a63d16a74
   react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
   React-nativeconfig: ba9a2e54e2f0882cf7882698825052793ed4c851
