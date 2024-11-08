@@ -52,7 +52,7 @@
     "expo": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-ios-utilities": "4.4.x"
+    "react-native-ios-utilities": ">= 4.4.x <=4.5.x"
   },
   "release-it": {
     "git": {
