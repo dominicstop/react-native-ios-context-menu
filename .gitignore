@@ -152,3 +152,4 @@ ios/generated
 android/generated
 
 example/ios/.xcode.env.local
+example-expo/
