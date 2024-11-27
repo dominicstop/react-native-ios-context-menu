@@ -23,7 +23,8 @@
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
-    "!**/.*"
+    "!**/.*",
+    "jestSetup.js"
   ],
   "scripts": {
     "example": "yarn workspace react-native-ios-context-menu-example",
