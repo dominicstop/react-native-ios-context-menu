@@ -11581,7 +11581,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.75.2
     react-native-builder-bob: ^0.30.0
-    react-native-ios-utilities: ">=5.0.0-46"
+    react-native-ios-utilities: ">=5.0.0-47"
     release-it: ^15.0.0
     turbo: ^1.10.7
     typescript: ^5.2.2
@@ -11602,13 +11602,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-ios-utilities@npm:>=5.0.0-46":
-  version: 5.0.0-46
-  resolution: "react-native-ios-utilities@npm:5.0.0-46"
+"react-native-ios-utilities@npm:>=5.0.0-47":
+  version: 5.0.0-47
+  resolution: "react-native-ios-utilities@npm:5.0.0-47"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: b86e355945bf3fbe54a3f8e0f5430f680baf2c8c274512432b75fd703beecf24974a24729899c0458760677baaf52e86888572c3c00fea13545aa393f72371ec
+  checksum: f3eed798177ecb6b434bf1d4afebbf02acc2f0cc0aa046c01c0f5d5c63eb5b320b3a67127b737766fb9ebc6b64ad46a652b7f5d45be8f37b4962673dd3506a94
   languageName: node
   linkType: hard
 
