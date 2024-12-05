@@ -39,6 +39,7 @@ Pod::Spec.new do |s|
     '"${PODS_ROOT}/Headers/Public/React-hermes"',
     '"${PODS_ROOT}/Headers/Public/hermes-engine"',
     '"${PODS_ROOT}/Headers/Private/React-Core"',
+    '"${PODS_CONFIGURATION_BUILD_DIR}/React-rendererconsistency/React_rendererconsistency.framework/Headers"',
     #'"${PODS_CONFIGURATION_BUILD_DIR}/react-native-ios-utilities/Swift Compatibility Header"',
     #'"${PODS_CONFIGURATION_BUILD_DIR}/react-native-ios-context-menu/Swift Compatibility Header"',
     #'"${PODS_ROOT}/Headers/Public/react-native-ios-utilities"',
