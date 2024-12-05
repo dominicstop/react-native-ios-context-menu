@@ -25,7 +25,7 @@ RCT_EXPORT_MODULE(RNIContextMenuButton)
 #ifndef RCT_NEW_ARCH_ENABLED
 - (UIView *)view
 {
-  return [[RNIContextMenuButton new] initWithBridge:self.bridge];
+  return [[RNIContextMenuButton alloc] initWithBridge:self.bridge];
 }
 #endif
 
