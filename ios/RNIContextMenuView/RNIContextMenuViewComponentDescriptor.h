@@ -11,8 +11,8 @@
 #include "RNIContextMenuViewShadowNode.h"
 #include "RNIBaseViewComponentDescriptor.h"
 
-#include "react-native-ios-utilities/RNIBaseViewComponentDescriptor.h"
-#include "react-native-ios-utilities/RNIBaseViewState.h"
+#include <react-native-ios-utilities/RNIBaseViewComponentDescriptor.h>
+#include <react-native-ios-utilities/RNIBaseViewState.h>
 
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
 
