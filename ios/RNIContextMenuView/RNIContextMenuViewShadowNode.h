@@ -8,9 +8,9 @@
 #if __cplusplus
 #pragma once
 
-#include <react-native-ios-utilities/RNIBaseViewShadowNode.h>
-#include <react-native-ios-utilities/RNIBaseViewProps.h>
-#include <react-native-ios-utilities/RNIBaseViewEventEmitter.h>
+#include "RNIBaseViewShadowNode.h"
+#include "RNIBaseViewProps.h"
+#include "RNIBaseViewEventEmitter.h"
 
 #include <react/renderer/components/RNIContextMenuViewSpec/EventEmitters.h>
 #include <react/renderer/components/RNIContextMenuViewSpec/Props.h>
