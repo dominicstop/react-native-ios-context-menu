@@ -75,17 +75,38 @@ jobs:
       - name: Build JS
         run: yarn run bob build
 
-      - name: 1/2 - Run `pod-install` (fabric, static library)
+      - name: 1/4 - Run `pod-install` (fabric, static library)
         run: yarn pod-install:new-static
 
-      - name: 1/2 - Build example (fabric, static library)
+      - name: 1/4 - Build example (fabric, static library)
         run: yarn run build:ios
 
       - name: Clear/reset example pods
         run: yarn run nuke:example-pods
 
-      - name: 2/2 - Run `pod-install` (paper, static library)
+      - name: 2/4 - Run `pod-install` (paper, static library)
         run: yarn pod-install:old-static
 
-      - name: 2/2 - Build example (paper, static library)
+      - name: 2/4 - Build example (paper, static library)
         run: yarn run build:ios
+
+      - name: Clear/reset example pods
+        run: yarn run nuke:example-pods
+
+      - name: 3/4 - Run `pod-install` (fabric, dynamic library)
+        run: yarn pod-install:new-dynamic
+
+      - name: 3/4 - Build example (fabric, dynamic library)
+        run: yarn run build:ios
+
+      - name: Clear/reset example pods
+        run: yarn run nuke:example-pods
+
+      - name: 4/4 - Run `pod-install` (paper, dynamic library)
+        run: yarn pod-install:old-dynamic
+
+      - name: 4/4 - Build example (paper, dynamic library)
+        run: yarn run build:ios
+
+      - name: Clear/reset example pods
+        run: yarn run nuke:example-pods
