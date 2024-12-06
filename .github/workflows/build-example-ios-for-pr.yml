@@ -17,14 +17,25 @@ jobs:
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
 
+      - name: Checkout repo from main branch
+        uses: actions/checkout@v4
+
       - name: Get branch of PR
-        uses: xt0rted/pull-request-comment-branch@v1
+        uses: xt0rted/pull-request-comment-branch@v3
         id: comment-branch
 
-      - name: Checkout PR branch ${{ steps.comment-branch.outputs.head_ref }}
+      - name: Debug
+        run: |
+          echo "base_ref: ${{steps.comment-branch.outputs.base_ref}}"
+          echo "base_sha: ${{steps.comment-branch.outputs.base_sha}}"
+          echo "head_ref: ${{steps.comment-branch.outputs.head_ref}}"
+          echo "head_sha: ${{steps.comment-branch.outputs.head_sha}}"
+          echo "event.number: ${{github.event.number}}"
+
+      - name: Checkout PR branch - ${{ steps.comment-branch.outputs.head_ref }}
         uses: actions/checkout@v3
         with:
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          ref: ${{ steps.comment-branch.outputs.head_sha }}
 
       - name: Add workflow link as comment on PR
         uses: actions/github-script@v6
@@ -33,7 +44,7 @@ jobs:
           script: |
             const name = '${{ github.workflow	}}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
-            const body = `Run GH Workflow: ${name}`;
+            const body = `Run GH Workflow: ${name}\n${url}`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -49,9 +60,6 @@ jobs:
 
       - name: Check Xcode version
         run: /usr/bin/xcodebuild -version
-        
-      - name: Checkout repo from main branch
-        uses: actions/checkout@v4
 
       - name: Install Apple certificate and provisioning profile
         env:
@@ -130,3 +138,21 @@ jobs:
       - name: 4/4 - Build example (paper, dynamic frameworks)
         run: yarn run build:ios
 
+      # Builds completed...  
+
+      - name: Add workflow result as comment on PR
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const name = '${{ github.workflow	}}';
+            const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+            const success = '${{ job.status }}' === 'success';
+            const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n${url}`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
