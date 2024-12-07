@@ -7,18 +7,18 @@
 
 #import "RNIContextMenuView.h"
 
-#import "Swift.h"
+#import "react-native-ios-context-menu/Swift.h"
 
-#import "RNIBaseView.h"
-#import "RNIContentViewParentDelegate.h"
-#import "UIApplication+RNIHelpers.h"
-#import "RNIObjcUtils.h"
+#import <react-native-ios-utilities/RNIBaseView.h>
+#import <react-native-ios-utilities/RNIContentViewParentDelegate.h>
+#import <react-native-ios-utilities/UIApplication+RNIHelpers.h>
+#import <react-native-ios-utilities/RNIObjcUtils.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #include "RNIContextMenuViewComponentDescriptor.h"
 
-#include "RNIBaseViewState.h"
-#include "RNIBaseViewProps.h"
+#include <react-native-ios-utilities/RNIBaseViewState.h>
+#include <react-native-ios-utilities/RNIBaseViewProps.h>
 
 #import <React/RCTConversions.h>
 #import <React/RCTFabricComponentsPlugins.h>

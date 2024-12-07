@@ -5,7 +5,7 @@
 //  Created by Dominic Go on 8/24/24.
 //
 
-#import "RNIBaseView.h"
+#import <react-native-ios-utilities/RNIBaseView.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/RCTViewComponentView.h>

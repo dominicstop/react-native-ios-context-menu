@@ -8,7 +8,7 @@
 #import "RNIContextMenuButton.h"
 #import <objc/runtime.h>
 
-#import "RNIBaseViewUtils.h"
+#import <react-native-ios-utilities/RNIBaseViewUtils.h>
 
 #import "RCTBridge.h"
 #import <React/RCTViewManager.h>
