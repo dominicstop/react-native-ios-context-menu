@@ -67,7 +67,8 @@
     "update-dep:pods": "cd example/ios ; pod install --repo-update ; pod update DGSwiftUtilities ContextMenuAuxiliaryPreview ; cd ../.. ; yarn run build:update-version",
     "initialize": "yarn run initialize:js ; yarn run pod-install",
     "initialize:js": "yarn install ; cd example ; yarn install ; cd ..",
-    "initialize:reset": "npm run nuke:all ; yarn ; npm run initialize"
+    "initialize:reset": "npm run nuke:all ; yarn ; npm run initialize",
+    "test-build:all": "sh ./scripts/test-builds.sh"
   },
   "keywords": [
     "react-native",
