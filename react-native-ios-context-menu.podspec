@@ -16,6 +16,13 @@ fabric_compiler_flags = '-DRN_FABRIC_ENABLED -DRCT_NEW_ARCH_ENABLED'
 folly_version = '2022.05.16.00'
 folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DFOLLY_CFG_NO_COROUTINES=1 -Wno-comma -Wno-shorten-64-to-32'
 
+linkage = ENV['USE_FRAMEWORKS']
+
+puts "react-native-ios-context-menu"
+puts " - reactNativeTargetVersion: #{reactNativeVersion}"
+puts " - fabric_enabled: #{fabric_enabled}"
+puts " - linkage: #{linkage}"
+
 Pod::Spec.new do |s|
   s.name           = "react-native-ios-context-menu"
   s.version        = package["version"]
@@ -126,6 +133,8 @@ Pod::Spec.new do |s|
     exclude_files.append('ios/Fabric/')
     exclude_files.append('common/cpp/fabric/')
   end
+
+  s.public_header_files = 'ios/**/*.h'
 
   s.exclude_files = exclude_files
   s.compiler_flags = compiler_flags
