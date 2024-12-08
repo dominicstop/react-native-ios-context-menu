@@ -11,7 +11,7 @@
 #import "react_native_ios_context_menu/Swift.h"
 
 #import <react_native_ios_utilities/RNIBaseView.h>
-#import <react_native_ios_utilities//RNIContentViewParentDelegate.h>
+#import <react_native_ios_utilities/RNIContentViewParentDelegate.h>
 #import <react_native_ios_utilities/UIApplication+RNIHelpers.h>
 #import <react_native_ios_utilities/RNIObjcUtils.h>
 
