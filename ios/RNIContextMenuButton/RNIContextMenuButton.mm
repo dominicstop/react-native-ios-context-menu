@@ -8,11 +8,17 @@
 #import "RNIContextMenuButton.h"
 #import "../Swift.h"
 
+#if __has_include(<react_native_ios_utilities/RNIBaseView.h>)
 #import <react_native_ios_utilities/RNIBaseView.h>
 #import <react_native_ios_utilities/RNIContentViewParentDelegate.h>
 #import <react_native_ios_utilities/UIApplication+RNIHelpers.h>
 #import <react_native_ios_utilities/RNIObjcUtils.h>
-
+#else
+#import <react-native-ios-utilities/RNIBaseView.h>
+#import <react-native-ios-utilities/RNIContentViewParentDelegate.h>
+#import <react-native-ios-utilities/UIApplication+RNIHelpers.h>
+#import <react-native-ios-utilities/RNIObjcUtils.h>
+#endif
 
 #if RCT_NEW_ARCH_ENABLED
 #include "RNIContextMenuButtonComponentDescriptor.h"
