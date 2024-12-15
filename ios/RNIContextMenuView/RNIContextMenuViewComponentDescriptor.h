@@ -29,7 +29,7 @@ class RNIContextMenuViewComponentDescriptor final : public RNIBaseViewComponentD
   RNIContextMenuViewShadowNode,
   RNIContextMenuViewComponentName
 > {
-  
+
 public:
   using RNIBaseViewComponentDescriptor::RNIBaseViewComponentDescriptor;
 };

@@ -8,15 +8,11 @@
 #if __cplusplus
 #pragma once
 
-#if __has_include(<react_native_ios_utilities/RNIBaseViewShadowNode.h>)
-#include <react_native_ios_utilities/RNIBaseViewShadowNode.h>
-#include <react_native_ios_utilities/RNIBaseViewProps.h>
-#include <react_native_ios_utilities/RNIBaseViewEventEmitter.h>
-#else
-#include <react-native-ios-utilities/RNIBaseViewShadowNode.h>
-#include <react-native-ios-utilities/RNIBaseViewProps.h>
-#include <react-native-ios-utilities/RNIBaseViewEventEmitter.h>
-#endif
+#include "../RNIHeaderUtils.h"
+
+#import RNI_INCLUDE_HEADER(RNIBaseViewShadowNode.h)
+#import RNI_INCLUDE_HEADER(RNIBaseViewProps.h)
+#import RNI_INCLUDE_HEADER(RNIBaseViewEventEmitter.h)
 
 #include <react/renderer/components/RNIContextMenuViewSpec/EventEmitters.h>
 #include <react/renderer/components/RNIContextMenuViewSpec/Props.h>
@@ -34,7 +30,7 @@ class JSI_EXPORT RNIContextMenuViewShadowNode final :
 
 public:
   using RNIBaseViewShadowNode::RNIBaseViewShadowNode;
-  
+
   static RNIBaseViewState initialStateData(
       const Props::Shared&r          , // props
       const ShadowNodeFamily::Shared&, // family

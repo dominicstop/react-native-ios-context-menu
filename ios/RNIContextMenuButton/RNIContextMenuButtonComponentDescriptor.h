@@ -10,12 +10,9 @@
 
 #include "RNIContextMenuButtonShadowNode.h"
 #include "RNIBaseViewComponentDescriptor.h"
+#include "../RNIHeaderUtils.h"
 
-#if __has_include(<react_native_ios_utilities/RNIBaseViewState.h>)
-#include <react_native_ios_utilities/RNIBaseViewState.h>
-#else
-#include <react-native-ios-utilities/RNIBaseViewState.h>
-#endif
+#import RNI_INCLUDE_HEADER(RNIBaseViewState.h)
 
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
 
