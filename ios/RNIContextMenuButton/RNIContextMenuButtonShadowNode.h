@@ -8,9 +8,15 @@
 #if __cplusplus
 #pragma once
 
+#if __has_include(<react_native_ios_utilities/RNIBaseViewShadowNode.h>)
 #include <react_native_ios_utilities/RNIBaseViewShadowNode.h>
 #include <react_native_ios_utilities/RNIBaseViewProps.h>
 #include <react_native_ios_utilities/RNIBaseViewEventEmitter.h>
+#else
+#include <react-native-ios-utilities/RNIBaseViewShadowNode.h>
+#include <react-native-ios-utilities/RNIBaseViewProps.h>
+#include <react-native-ios-utilities/RNIBaseViewEventEmitter.h>
+#endif
 
 #include <react/renderer/components/RNIContextMenuViewSpec/EventEmitters.h>
 #include <react/renderer/components/RNIContextMenuViewSpec/Props.h>
