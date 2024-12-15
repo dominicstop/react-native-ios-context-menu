@@ -23,8 +23,13 @@
 #if RCT_NEW_ARCH_ENABLED
 #include "RNIContextMenuButtonComponentDescriptor.h"
 
+#if __has_include(<react_native_ios_utilities/RNIBaseViewState.h>)
 #include <react_native_ios_utilities/RNIBaseViewState.h>
 #include <react_native_ios_utilities/RNIBaseViewProps.h>
+#else
+#include <react-native-ios-utilities/RNIBaseViewState.h>
+#include <react-native-ios-utilities/RNIBaseViewProps.h>
+#endif
 
 #import <React/RCTConversions.h>
 #import <React/RCTFabricComponentsPlugins.h>
