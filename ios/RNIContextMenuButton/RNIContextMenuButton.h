@@ -5,7 +5,7 @@
 //  Created by Dominic Go on 8/24/24.
 //
 
-#import "../RNIHeaderUtils.h"
+#import "RNIHeaderUtils.h"
 
 #import RNI_INCLUDE_HEADER(RNIBaseView.h)
 
