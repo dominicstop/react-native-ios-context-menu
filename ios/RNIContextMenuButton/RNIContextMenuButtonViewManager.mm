@@ -10,7 +10,7 @@
 
 #import "RNIContextMenuHeaderUtils.h"
 
-#import RNI_INCLUDE_HEADER(RNIBaseViewUtils.h)
+#import RNI_UTILITIES_HEADER(RNIBaseViewUtils.h)
 
 #import "RCTBridge.h"
 #import <React/RCTViewManager.h>

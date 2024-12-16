@@ -7,7 +7,7 @@
 
 #import "RNIContextMenuHeaderUtils.h"
 
-#import RNI_INCLUDE_HEADER(RNIBaseView.h)
+#import RNI_UTILITIES_HEADER(RNIBaseView.h)
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/RCTViewComponentView.h>

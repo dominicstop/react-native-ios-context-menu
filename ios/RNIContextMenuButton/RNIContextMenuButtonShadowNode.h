@@ -10,9 +10,9 @@
 
 #include "RNIContextMenuHeaderUtils.h"
 
-#import RNI_INCLUDE_HEADER(RNIBaseViewShadowNode.h)
-#import RNI_INCLUDE_HEADER(RNIBaseViewProps.h)
-#import RNI_INCLUDE_HEADER(RNIBaseViewEventEmitter.h)
+#import RNI_UTILITIES_HEADER(RNIBaseViewShadowNode.h)
+#import RNI_UTILITIES_HEADER(RNIBaseViewProps.h)
+#import RNI_UTILITIES_HEADER(RNIBaseViewEventEmitter.h)
 
 #include <react/renderer/components/RNIContextMenuViewSpec/EventEmitters.h>
 #include <react/renderer/components/RNIContextMenuViewSpec/Props.h>

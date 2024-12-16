@@ -10,14 +10,14 @@
 
 #import "../Swift.h"
 
-#import RNI_INCLUDE_HEADER(RNIContentViewParentDelegate.h)
-#import RNI_INCLUDE_HEADER(UIApplication+RNIHelpers.h)
-#import RNI_INCLUDE_HEADER(RNIObjcUtils.h)
+#import RNI_UTILITIES_HEADER(RNIContentViewParentDelegate.h)
+#import RNI_UTILITIES_HEADER(UIApplication+RNIHelpers.h)
+#import RNI_UTILITIES_HEADER(RNIObjcUtils.h)
 
 #if RCT_NEW_ARCH_ENABLED
 #include "RNIContextMenuButtonComponentDescriptor.h"
-#import RNI_INCLUDE_HEADER(RNIBaseViewState.h)
-#import RNI_INCLUDE_HEADER(RNIBaseViewProps.h)
+#import RNI_UTILITIES_HEADER(RNIBaseViewState.h)
+#import RNI_UTILITIES_HEADER(RNIBaseViewProps.h)
 
 #import <React/RCTConversions.h>
 #import <React/RCTFabricComponentsPlugins.h>

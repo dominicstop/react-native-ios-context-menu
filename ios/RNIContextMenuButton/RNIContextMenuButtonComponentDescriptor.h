@@ -12,7 +12,7 @@
 #include "RNIBaseViewComponentDescriptor.h"
 #include "RNIContextMenuHeaderUtils.h"
 
-#import RNI_INCLUDE_HEADER(RNIBaseViewState.h)
+#import RNI_UTILITIES_HEADER(RNIBaseViewState.h)
 
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
 
