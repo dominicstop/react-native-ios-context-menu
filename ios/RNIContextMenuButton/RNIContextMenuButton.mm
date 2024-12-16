@@ -6,8 +6,9 @@
 //
 
 #import "RNIContextMenuButton.h"
+#import "RNIHeaderUtils.h"
+
 #import "../Swift.h"
-#import "../RNIHeaderUtils.h"
 
 #import RNI_INCLUDE_HEADER(RNIContentViewParentDelegate.h)
 #import RNI_INCLUDE_HEADER(UIApplication+RNIHelpers.h)

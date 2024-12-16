@@ -10,7 +10,7 @@
 
 #include "RNIContextMenuButtonShadowNode.h"
 #include "RNIBaseViewComponentDescriptor.h"
-#include "../RNIHeaderUtils.h"
+#include "RNIHeaderUtils.h"
 
 #import RNI_INCLUDE_HEADER(RNIBaseViewState.h)
 
