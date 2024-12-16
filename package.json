@@ -42,7 +42,8 @@
     "reopen:ios": "yarn run close:ios ; yarn run open:ios",
     "build": "yarn run build:js ; yarn run build:ios",
     "build:js": "yarn run lint ; yarn run lint:circular-dep ; yarn run typescript ; yarn run bob build",
-    "build:ios": "cd ./example/ios ; BUILD_INFO=$(xcodebuild -project ./*.xcodeproj -showBuildSettings -list -json | tr -d ' ' | tr -d '\n') ; SCHEME_NAME=$(node -pe 'JSON.parse(process.argv[1]).project.schemes[0]' $BUILD_INFO) ; xcodebuild -workspace *.xcworkspace -scheme $SCHEME_NAME -destination 'generic/platform=iOS' clean build",
+    "build:ios": "sh ./scripts/build-ios.sh",
+    "build:ios-release": "sh ./scripts/build-ios.sh Release",
     "build:update-version": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | sed 's/-.*//') ; cd example/ios ; agvtool new-marketing-version $PACKAGE_VERSION ; xcrun agvtool next-version -all ; cd ../..",
     "build:ios-info": "cd ./example/ios ; xcodebuild -project ./*.xcodeproj -showBuildSettings -list ; xcodebuild -project ./*.xcodeproj -showBuildSettings",
     "run:release": "cd example && npx react-native run-ios --configuration Release",
@@ -71,7 +72,7 @@
     "initialize:js": "yarn install ; cd example ; yarn install ; cd ..",
     "initialize:reset": "npm run nuke:all ; yarn ; npm run initialize",
     "test-build:all": "sh ./scripts/test-builds.sh",
-    "test-build:all-quick": "sh ./scripts/test-builds-quick.sh"
+    "test-build:all-quick": "sh ./scripts/test-builds.sh quick"
   },
   "keywords": [
     "react-native",
