@@ -6,7 +6,7 @@
 //
 
 #import "RNIContextMenuButton.h"
-#import "RNIHeaderUtils.h"
+#import "RNIContextMenuHeaderUtils.h"
 
 #import "../Swift.h"
 

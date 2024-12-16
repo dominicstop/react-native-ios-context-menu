@@ -8,7 +8,7 @@
 #import "RNIContextMenuButton.h"
 #import <objc/runtime.h>
 
-#import "RNIHeaderUtils.h"
+#import "RNIContextMenuHeaderUtils.h"
 
 #import RNI_INCLUDE_HEADER(RNIBaseViewUtils.h)
 

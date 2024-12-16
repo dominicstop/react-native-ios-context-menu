@@ -8,7 +8,7 @@
 #import "RNIContextMenuView.h"
 #import "../Swift.h"
 
-#import "RNIHeaderUtils.h"
+#import "RNIContextMenuHeaderUtils.h"
 
 #import RNI_INCLUDE_HEADER(RNIBaseView.h)
 #import RNI_INCLUDE_HEADER(RNIContentViewParentDelegate.h)
