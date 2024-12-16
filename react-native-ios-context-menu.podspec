@@ -134,9 +134,12 @@ Pod::Spec.new do |s|
     exclude_files.append('common/cpp/fabric/')
   end
 
-  s.public_header_files = 'ios/**/*.h'
-
   s.exclude_files = exclude_files
   s.compiler_flags = compiler_flags
-  s.private_header_files = ['ios/**/*+Private.h', 'ios/**/Swift.h', 'ios/**/RNIHeaderUtils.h']
+
+  s.private_header_files = [
+    'ios/**/*+Private.h', 
+    'ios/**/Swift.h', 
+    'ios/Private/**/*.h'
+  ]
 end
