@@ -80,3 +80,4 @@ lib/
 # React Native Codegen
 ios/generated
 android/generated
+expo-env.d.ts
