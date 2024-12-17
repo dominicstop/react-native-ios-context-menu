@@ -2,6 +2,7 @@
   "expo": {
     "name": "RNIContextMenuExample",
     "slug": "RNIContextMenuExample",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "newArchEnabled": true
   }
 }
