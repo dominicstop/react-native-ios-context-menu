@@ -6,10 +6,17 @@ A small component for using context menu's on iOS.
 
 <br><br>
 
-## 🚧⚠️ Documentation WIP ⚠️🚧
+## 🚧⚠️ Notices ⚠️🚧
 
-📝 Note: See [`TODO.md`](docs/TODO.md) for progress.
+📝 **Version `2.x` Notice**: Hello, please note that versions `2.x` and below of this library are no longer supported; please do not submit an issue if the version you are using is below `3.x`. 
+* If you really need a fix for the particular issue/bug, please create a repro and add a test case in the [examples](example/src/examples) directory via a pull request in the main branch; i will investigate the bug, and backport the fix from `3.x` to `2.x` if the changes are relatively simple.
+* I apologize but i do not have the resources to maintain multiple versions of this library; all issues must be reproducible from `3.x` first before i can backport the changes to an older version of this library.
+* Please understand that a PR for the repro is crucial; i cannot work on the fix if i don't have a repro to start on; words describing the issue is not enough due to the language barrier. Once you've created a test case, please tag me on the PR so i get notified.
+* **Summary**: I will fix the bugs you encounter, however i cannot work on fixing them until a repro/test case is created in the examples directory. Thank you for understanding.
 
+<br>
+
+📝 **Documentation Notice**: See [`TODO.md`](docs/TODO.md) for progress.
 - The documentation is incomplete (some parts/sections are marked as **TBA** i.e. "to be added"). 
 - Some of the links in the documentation are broken (i.e. the URL points to `PLACE_HOLDER_LINK`).
 - Some of the gifs/images are old, or broken.
@@ -25,6 +32,8 @@ A small component for using context menu's on iOS.
  <br>
 
 ### Versions
+
+<br>
 
 | Library Version | Compatibility                                                |
 | :-------------- | ------------------------------------------------------------ |
@@ -203,20 +212,6 @@ cd ios && pod install
 | :----------------------------------------------------------- |
 | 1️⃣ [Add an empty swift file to your project](#troubleshooting-xcode-build-error-swift) |
 | 2️⃣ [Update the project's "Library Search Paths" build settings](#troubleshooting-xcode-build-error-undefined-symbol) |
-
-<br>
-
-### Installation (Experimental Version)
-
-```sh
-# 1. install library + dependencies
-npm install react-native-ios-utilities@next
-npm install react-native-ios-context-menu@next
-
-
-# 2. then run pod install (uses auto-linking)
-cd ios && pod install
-```
 
 <br>
 
