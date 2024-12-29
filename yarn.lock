@@ -11154,7 +11154,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.75.2
     react-native-builder-bob: ^0.30.0
-    react-native-ios-utilities: ">=5.0.0-52 || >=5.0.0"
+    react-native-ios-utilities: ">=5.0.0-56 || >=5.0.0"
     release-it: ^15.0.0
     turbo: ^1.10.7
     typescript: ^5.2.2
@@ -11165,13 +11165,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-native-ios-utilities@npm:5.0.0-53, react-native-ios-utilities@npm:>=5.0.0-51 || >=5.0.0, react-native-ios-utilities@npm:>=5.0.0-52 || >=5.0.0":
+"react-native-ios-utilities@npm:5.0.0-53, react-native-ios-utilities@npm:>=5.0.0-51 || >=5.0.0":
   version: 5.0.0-53
   resolution: "react-native-ios-utilities@npm:5.0.0-53"
   peerDependencies:
     react: "*"
     react-native: "*"
   checksum: 2a2cefeacbb39a8ad87103a6d53ec8be925b29e6a04fb326f04e68291e4d6d3b37978f8415c2ecced9c0b80282c381fdb709ddc7d33ac36de0b6855d7e182e80
+  languageName: node
+  linkType: hard
+
+"react-native-ios-utilities@npm:>=5.0.0-56 || >=5.0.0":
+  version: 5.0.0-56
+  resolution: "react-native-ios-utilities@npm:5.0.0-56"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: b8c3e9c852c81b756fa08be832a1c824611387aea1d3a29688769a86ddd6aadcf1d0f4a25a6e0e5ffbfd0428f92a5260f761e391f120b76c0ecac3d7ce90d760
   languageName: node
   linkType: hard
 
