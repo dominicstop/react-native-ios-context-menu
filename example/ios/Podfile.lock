@@ -4,7 +4,7 @@ PODS:
     - DGSwiftUtilities (~> 0.11)
   - ContextMenuAuxiliaryPreview (0.5.2):
     - DGSwiftUtilities (~> 0.29)
-  - DGSwiftUtilities (0.43.0)
+  - DGSwiftUtilities (0.46.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.75.2)
   - fmt (9.1.0)
@@ -1267,9 +1267,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-ios-utilities (5.0.0-53):
+  - react-native-ios-utilities (5.0.0-57):
     - ComputableLayout (~> 0.7)
-    - DGSwiftUtilities (~> 0.34)
+    - DGSwiftUtilities (~> 0.46)
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1995,7 +1995,7 @@ SPEC CHECKSUMS:
   boost: 4cb898d0bf20404aab1850c656dcea009429d6c1
   ComputableLayout: c50faffac4ed9f8f05b0ce5e6f3a60df1f6042c8
   ContextMenuAuxiliaryPreview: 20be0be795b783b68f8792732eed4bed9f202c1c
-  DGSwiftUtilities: 49539fcb5c39940a826d3b77f08e12fdad5fa19b
+  DGSwiftUtilities: aadcd58de09bbf45988be833f85260d8c94ba54d
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBLazyVector: 38bb611218305c3bc61803e287b8a81c6f63b619
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
@@ -2031,7 +2031,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: db173bede5ac5cb1c82d4a6a8597477ba87c5648
   React-microtasksnativemodule: a5cd87542a308060e645d337b036733c327dc01b
   react-native-ios-context-menu: fe1245a21d23df98e9856cc4453688c3f221d42b
-  react-native-ios-utilities: ab9399aa6a9df01acfa9173a90c25c0299a9677b
+  react-native-ios-utilities: 8eb1dfd6a9eeea23ffa75d9f6e35462f84ca82e7
   react-native-safe-area-context: d71edcee579673b370c053804f34c40c1f250976
   React-nativeconfig: 5fc2b05a590eb704128f5a4fc8ea6fa7b847e6e8
   React-NativeModulesApple: 88313414ddffd1758f76042733e8f0297acfd502
