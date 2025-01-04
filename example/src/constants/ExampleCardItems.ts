@@ -389,6 +389,10 @@ export const EXAMPLE_ITEMS: Array<ExampleItem> = (() => {
       type: 'screen',
       ...ROUTE_MAP.test07Screen,
     },
+    {
+      type: 'screen',
+      ...ROUTE_MAP.test08Screen,
+    },
   ];
 
   // if (SHARED_ENV.enableReactNavigation) {

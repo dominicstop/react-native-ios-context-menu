@@ -9,6 +9,7 @@ export const ROUTE_KEYS = {
   test05Screen: 'test05Screen',
   test06Screen: 'test06Screen',
   test07Screen: 'test07Screen',
+  test08Screen: 'test08Screen',
 };
 
 export type RouteKey = keyof (typeof ROUTE_KEYS);

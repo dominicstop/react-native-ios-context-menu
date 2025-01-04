@@ -8,6 +8,7 @@ import { Test04Screen } from "../screens/Test04Screen";
 import { Test05Screen } from "../screens/Test05Screen";
 import { Test06Screen } from "../screens/Test06Screen";
 import { Test07Screen } from "../screens/Test07Screen";
+import { Test08Screen } from "../screens/Test08Screen";
 
 import type { RouteKey } from "./RouteKeys";
 
@@ -49,6 +50,10 @@ export const ROUTE_ITEMS: Array<RouteEntry> = [
   {
     routeKey: 'test07Screen',
     component: Test07Screen,
+  },
+  {
+    routeKey: 'test08Screen',
+    component: Test08Screen,
   },
   {
     routeKey: 'contextMenuTest01',
