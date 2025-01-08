@@ -396,8 +396,8 @@ extension RNIContextMenuButtonContent: RNIContentViewDelegate {
     sender: RNIContentViewParentDelegate,
     forCommandName commandName: String,
     withCommandArguments commandArguments: NSDictionary,
-    resolve resolveBlock: (NSDictionary) -> Void,
-    reject rejectBlock: (String) -> Void
+    resolve resolveBlock: @escaping RNIContentView.PromiseCompletionBlock,
+    reject rejectBlock: @escaping RNIContentView.PromiseRejectionBlock
   ) {
     
     do {
