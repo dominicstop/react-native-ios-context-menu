@@ -8,15 +8,15 @@ A small component for using context menu's on iOS.
 
 ## 🚧⚠️ Notices ⚠️🚧
 
-📝 **Version `2.x` Notice**: Hello, please note that versions `2.x` and below of this library are no longer supported; please do not submit an issue if the version you are using is below `3.x`. 
-* If you really need a fix for the particular issue/bug, please create a repro and add a test case in the [examples](example/src/examples) directory via a pull request in the main branch; i will investigate the bug, and backport the fix from `3.x` to `2.x` if the changes are relatively simple.
-* I apologize but i do not have the resources to maintain multiple versions of this library; all issues must be reproducible from `3.x` first before i can backport the changes to an older version of this library.
-* Please understand that a PR for the repro is crucial; i cannot work on the fix if i don't have a repro to start on; words describing the issue is not enough due to the language barrier. Once you've created a test case, please tag me on the PR so i get notified.
-* **Summary**: I will fix the bugs you encounter, however i cannot work on fixing them until a repro/test case is created in the examples directory. Thank you for understanding.
+📝 **Hiatus Notice**: Unfortunately, i'm no longer doing OSS for the time being, so this library is in maintenance mode (if you're interested in sponsoring my work or picking up the project, please don't hesitate to [contact me](#misc-and-contact)).
 
 <br>
 
-📝 **Documentation Notice**: See [`TODO.md`](docs/TODO.md) for progress.
+📝 **Regarding Version `2.x`**: Hello, please note that versions `2.x` and below of this library are no longer supported; please do not submit an issue if the version you are using is below `3.x`. 
+
+<br>
+
+📝 **Regarding Documentation**: See [`TODO.md`](docs/TODO.md) for progress.
 - The documentation is incomplete (some parts/sections are marked as **TBA** i.e. "to be added"). 
 - Some of the links in the documentation are broken (i.e. the URL points to `PLACE_HOLDER_LINK`).
 - Some of the gifs/images are old, or broken.
@@ -7318,6 +7318,8 @@ export function ContextMenuButtonExample02(props) {
 
 ## Misc and Contact
 
-* 🐤 **Twitter/X**: `@GoDominic`
-* 💌 **Email**: `dominicgo@dominicgo.dev`
+* 🐤 **Twitter/X**: [`@GoDominic`](https://x.com/GoDominic)
+* 🦋 **Bluesky**: [`@godominic.bsky.social`](https://bsky.app/profile/godominic.bsky.social)
+* 💌 **Email**: <a href="mailto:dominicgo@dominicgo.dev?">`dominicgo@dominicgo.dev`</a>
 * 🌐 **Website**: [dominicgo.dev](https://dominicgo.dev)
+

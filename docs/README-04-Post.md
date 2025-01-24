@@ -142,6 +142,8 @@
 
 ## Misc and Contact
 
-* 🐤 **Twitter/X**: `@GoDominic`
-* 💌 **Email**: `dominicgo@dominicgo.dev`
+* 🐤 **Twitter/X**: [`@GoDominic`](https://x.com/GoDominic)
+* 🦋 **Bluesky**: [`@godominic.bsky.social`](https://bsky.app/profile/godominic.bsky.social)
+* 💌 **Email**: <a href="mailto:dominicgo@dominicgo.dev?">`dominicgo@dominicgo.dev`</a>
 * 🌐 **Website**: [dominicgo.dev](https://dominicgo.dev)
+
