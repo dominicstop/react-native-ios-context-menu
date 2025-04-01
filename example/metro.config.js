@@ -1,9 +1,63 @@
-const path = require('path');
-const { getDefaultConfig } = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const { getConfig } = require('react-native-builder-bob/metro-config');
+
+const path = require('path');
+const escape = require('escape-string-regexp');
+const exclusionList = require('metro-config/src/defaults/exclusionList');
+
 const pkg = require('../package.json');
 
+
 const root = path.resolve(__dirname, '..');
+const modules = Object.keys({ ...pkg.peerDependencies });
+
+/**
+ * Metro configuration
+ * https://facebook.github.io/metro/docs/configuration
+ *
+ * @type {import('@react-native/metro-config').MetroConfig}
+ */
+const config = {
+  watchFolders: [root],
+
+  // We need to make sure that only one version is loaded for peerDependencies
+  // So we block them at the root, and alias them to the versions in example's node_modules
+  resolver: {
+    blacklistRE: exclusionList(
+      modules.map(
+        (m) =>
+          new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)
+      )
+    ),
+
+    extraNodeModules: (() => {
+     const extraNodeModules = modules.reduce((acc, name) => {
+        acc[name] = path.join(__dirname, 'node_modules', name);
+        return acc;
+      }, {});
+
+      return {
+        ...extraNodeModules,
+        'react-dom': require.resolve('react-native'),
+      };
+    })(),
+  },
+
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
+  },
+};
+
+const defaultConfig = getConfig(getDefaultConfig(__dirname), {
+  root,
+  pkg,
+  project: __dirname,
+});
 
 /**
  * Metro configuration
@@ -11,8 +65,4 @@ const root = path.resolve(__dirname, '..');
  *
  * @type {import('metro-config').MetroConfig}
  */
-module.exports = getConfig(getDefaultConfig(__dirname), {
-  root,
-  pkg,
-  project: __dirname,
-});
+module.exports = mergeConfig(defaultConfig, config);
