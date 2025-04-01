@@ -13300,7 +13300,7 @@ __metadata:
     react-native: 0.77.1
     react-native-builder-bob: ^0.37.0
     react-native-codegen: ^0.70.7
-    react-native-ios-utilities: ">=5.1.0"
+    react-native-ios-utilities: ">=5.1.4"
     react-native-safe-area-context: ^5.3.0
     react-native-screens: ^4.9.2
     react-test-renderer: 18.3.1
@@ -13337,7 +13337,7 @@ __metadata:
     react: 19.0.0
     react-native: 0.78.0
     react-native-builder-bob: ^0.20.0
-    react-native-ios-utilities: ^5.1.3
+    react-native-ios-utilities: ^5.1.4
     release-it: ^16.2.1
     turbo: ^1.10.7
     typescript: ^5.2.2
@@ -13358,13 +13358,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-ios-utilities@npm:>=5.1.0, react-native-ios-utilities@npm:^5.1.3":
-  version: 5.1.3
-  resolution: "react-native-ios-utilities@npm:5.1.3"
+"react-native-ios-utilities@npm:>=5.1.4, react-native-ios-utilities@npm:^5.1.4":
+  version: 5.1.4
+  resolution: "react-native-ios-utilities@npm:5.1.4"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: d2de576b6776539f4c4e60ea90df9eff8abafb8f887d72a6aa8480fdcdab3c70c850e48e5b2a1213e4111a81c27c1bf6d198e9adbe0c337d3b9be31dc856072b
+  checksum: d3c67184bbbd0ac102fd3f073c083c9e235ee77dfead986cb7009892ade19c75f9a4eb6b9316034a6fd60ab2d93d04cbf5e779d692d55426084729183ab530ea
   languageName: node
   linkType: hard
 

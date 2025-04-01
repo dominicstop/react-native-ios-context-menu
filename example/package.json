@@ -38,7 +38,7 @@
     "jest": "^29.6.3",
     "prettier": "2.8.8",
     "react-native-builder-bob": "^0.37.0",
-    "react-native-ios-utilities": ">=5.1.0",
+    "react-native-ios-utilities": ">=5.1.4",
     "react-test-renderer": "18.3.1",
     "typescript": "5.0.4"
   },
