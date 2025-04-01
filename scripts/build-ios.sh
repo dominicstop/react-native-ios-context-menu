@@ -1,25 +1,27 @@
+
 #!/bin/bash
 
-BUILD_CONFIG="${1:-DEBUG}"
+# NOTE:
+# assumes the script is run on repo root
 
-cd ./example/ios
+SCRIPT_BASE_URL="https://raw.githubusercontent.com/dominicstop/react-native-ios-utilities/refs/heads/master/scripts"
 
-BUILD_INFO=$(
-  xcodebuild \
-    -project ./*.xcodeproj \
-    -showBuildSettings -list -json | tr -d ' ' | tr -d '\n'
-)
+# E.g. delete-version.sh
+SCRIPT_NAME=$(basename "$0")
 
-SCHEME_NAME=$(
-  node -pe 'JSON.parse(process.argv[1]).project.schemes[0]' $BUILD_INFO
-) 
-echo "Starting build..."
-echo "Configuration: $BUILD_CONFIG"
-echo "Scheme: $SCHEME_NAME"
+SCRIPT_URL="${SCRIPT_BASE_URL}/${SCRIPT_NAME}"
+TEMP_SCRIPT_NAME="temp-$SCRIPT_NAME"
+TEMP_SCRIPT_PATH="/tmp/$TEMP_SCRIPT_NAME"
 
-xcodebuild \
-  -workspace *.xcworkspace \
-  -configuration Release \
-  -scheme $SCHEME_NAME \
-  -destination 'generic/platform=iOS' \
-  clean build
+echo "Script Repo URL: $SCRIPT_BASE_URL"
+echo "SCRIPT_URL: $SCRIPT_URL"
+echo "Script: $SCRIPT_NAME"
+
+echo "Fetching script..."
+curl -s $SCRIPT_URL -o $TEMP_SCRIPT_PATH
+chmod +x $TEMP_SCRIPT_PATH
+
+echo "Executing script: $TEMP_SCRIPT_PATH"
+$TEMP_SCRIPT_PATH $1; 
+
+rm -f $TEMP_SCRIPT_PATH
