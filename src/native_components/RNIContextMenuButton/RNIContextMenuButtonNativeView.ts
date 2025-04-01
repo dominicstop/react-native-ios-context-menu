@@ -25,11 +25,14 @@ export type RNIContextMenuNativeViewInheritedProps = Pick<RNIContextMenuNativeVi
   | 'onPressMenuItem'
 >;
 
-export type RNIContextMenuButtonNativeViewBaseProps = RemapObject<RNIContextMenuButtonNativeComponentBaseProps, ({
-  isMenuPrimaryAction: boolean;
-} & Required<
-  RNIContextMenuNativeViewInheritedProps>
-)>;
+export type RNIContextMenuButtonNativeViewBaseProps = RemapObject<
+  RNIContextMenuButtonNativeComponentBaseProps, 
+  (
+    Required<RNIContextMenuNativeViewInheritedProps> & {
+      isMenuPrimaryAction: boolean;
+    }
+  )
+>;
 
 export type RNIContextMenuButtonNativeViewProps = 
     SharedViewEvents
