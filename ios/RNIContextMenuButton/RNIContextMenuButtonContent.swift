@@ -138,6 +138,7 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
     self._didSetup = true;
     
     self.isEnabled = true;
+    self.isAccessibilityElement = false;
   };
     
   // MARK: Functions
