@@ -180,7 +180,13 @@
   "codegenConfig": {
     "name": "RNIContextMenuViewSpec",
     "type": "all",
-    "jsSrcsDir": "src"
+    "jsSrcsDir": "src",
+    "ios": {
+      "componentProvider": {
+        "RNIContextMenuView": "RNIContextMenuView",
+        "RNIContextMenuButton": "RNIContextMenuButton"
+      }
+    }
   },
   "create-react-native-library": {
     "type": "view-new",
