@@ -20,7 +20,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
           scope: '@octocat'
-      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn install --immutable
       - run: yarn npm publish --tag test-ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
