@@ -23,5 +23,4 @@ jobs:
       - run: yarn install --immutable
       - run: yarn npm publish --access public --tag test-ci
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          YARN_NPM_CONFIG_PROVENANCE: true
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
