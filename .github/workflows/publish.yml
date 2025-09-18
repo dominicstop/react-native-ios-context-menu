@@ -21,6 +21,6 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@octocat'
       - run: yarn install --immutable
-      - run: yarn npm publish --tag test-ci
+      - run: npm publish --provenance --access public --dist-tag test-ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
