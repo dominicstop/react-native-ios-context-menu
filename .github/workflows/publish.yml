@@ -4,6 +4,11 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      dist-tag:
+        description: "npm dist-tag to publish under"
+        required: false
+        default: "latest"
 
 jobs:
   build:
@@ -19,7 +24,7 @@ jobs:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --immutable
-      - run: yarn npm publish --access public --tag test-ci
+      - run: yarn npm publish --access public --tag ${{ github.event.inputs.dist-tag || 'latest' }}
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
