@@ -201,7 +201,7 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
     configuration: UIContextMenuConfiguration,
     highlightPreviewForItemWithIdentifier identifier: NSCopying
   ) -> UITargetedPreview? {
-    
+    guard self.menuPreviewTargetView.window != nil else { return nil };
     return self.menuTargetedPreview;
   };
   #else
@@ -210,19 +210,19 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
     _ : UIContextMenuInteraction,
     previewForHighlightingMenuWithConfiguration: UIContextMenuConfiguration
   ) -> UITargetedPreview? {
-  
+    guard self.menuPreviewTargetView.window != nil else { return nil };
     return self.menuTargetedPreview;
   };
   #endif
-  
-  
+
+
   #if swift(>=5.7)
   public func contextMenuInteraction(
       _ interaction: UIContextMenuInteraction,
       configuration: UIContextMenuConfiguration,
       dismissalPreviewForItemWithIdentifier identifier: NSCopying
   ) -> UITargetedPreview? {
-    
+    guard self.menuPreviewTargetView.window != nil else { return nil };
     return self.menuTargetedPreview;
   };
   #else
@@ -232,7 +232,7 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
     previewForDismissingMenuWithConfiguration
     configuration: UIContextMenuConfiguration
   ) -> UITargetedPreview? {
-    
+    guard self.menuPreviewTargetView.window != nil else { return nil };
     return self.menuTargetedPreview;
   };
   #endif
