@@ -52,15 +52,22 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
     
     self.isContextMenuVisible = true;
     guard let animator = animator else { return };
-    
+
     if self.shouldPreventLongPressGestureFromPropagating,
        let parentReactView = self.parentReactView as? RCTView
     {
       self.isUserInteractionEnabled = false;
       self.menuAuxiliaryPreviewParent?.isUserInteractionEnabled = false;
-      
-      parentReactView.closestParentReactTouchHandler?.cancel();
-      
+
+      // Cancel any in-flight gesture and disable the touch handler for
+      // the entire lifetime of the context menu. This prevents the
+      // dismiss tap from leaking through to views behind the menu.
+      // The touch handler is re-enabled in `willEndFor`'s animator
+      // completion, after the dismiss animation finishes.
+      let touchHandler = parentReactView.closestParentReactTouchHandler;
+      touchHandler?.cancel();
+      touchHandler?.isEnabled = false;
+
       DispatchQueue.main.async {
         self.isUserInteractionEnabled = true;
         self.menuAuxiliaryPreviewParent?.isUserInteractionEnabled = true;
@@ -98,24 +105,24 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
     defer {
       // reset flag
       self.isContextMenuVisible = false;
-      
+
       self.isUserInteractionEnabled = true;
       self.menuAuxiliaryPreviewParent?.isUserInteractionEnabled = true;
     };
-    
+
     guard self.isContextMenuVisible else { return };
-    
+
     self.dispatchEvent(
       for: .onMenuWillHide,
       withPayload: [:]
     );
-    
+
     self.contextMenuManager?.notifyOnContextMenuInteraction(
       interaction,
       willEndFor: configuration,
       animator: animator
     );
-    
+
     if !self.didPressMenuItem {
       // nothing was selected...
       self.dispatchEvent(
@@ -123,13 +130,22 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
         withPayload: [:]
       );
     };
-    
+
     animator?.addCompletion { [unowned self] in
+      // Re-enable the React touch handler that was disabled in
+      // `willDisplayMenuFor`. This must happen after the dismiss
+      // animation finishes so the dismiss tap cannot leak through.
+      if self.shouldPreventLongPressGestureFromPropagating,
+         let parentReactView = self.parentReactView as? RCTView
+      {
+        parentReactView.closestParentReactTouchHandler?.isEnabled = true;
+      };
+
       self.dispatchEvent(
         for: .onMenuDidHide,
         withPayload: [:]
       );
-      
+
       if !self.didPressMenuItem {
         // nothing was selected...
         self.dispatchEvent(
@@ -137,7 +153,7 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
           withPayload: [:]
         );
       };
-      
+
       // reset flag
       self.didPressMenuItem = false;
     };
@@ -151,9 +167,17 @@ extension RNIContextMenuViewContent: UIContextMenuInteractionDelegate {
   ) {
     
     let preferredCommitStyle = self.previewConfig.preferredCommitStyle;
-    
+
     self.isContextMenuVisible = false;
     animator.preferredCommitStyle = preferredCommitStyle;
+
+    // Re-enable the React touch handler that was disabled in
+    // `willDisplayMenuFor`
+    if self.shouldPreventLongPressGestureFromPropagating,
+       let parentReactView = self.parentReactView as? RCTView
+    {
+      parentReactView.closestParentReactTouchHandler?.isEnabled = true;
+    };
     
     switch preferredCommitStyle {
       case .pop:
