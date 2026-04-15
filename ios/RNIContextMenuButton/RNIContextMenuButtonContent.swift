@@ -43,12 +43,16 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
   // ----------------
   
   var _didSetup = false;
-  
+
   var _deferredElementCompletionMap:
     [String: RNIDeferredMenuElement.CompletionHandler] = [:];
-    
+
   weak var navEventsVC: RNINavigationEventsReportingViewController?;
   var longPressGestureRecognizer: UILongPressGestureRecognizer!;
+
+  /// Reference to the React touch handler that was disabled while the
+  /// context menu is visible, so it can be re-enabled on dismiss.
+  weak var _disabledTouchHandler: UIGestureRecognizer?;
     
   // MARK: Public Properties
   // -----------------------
