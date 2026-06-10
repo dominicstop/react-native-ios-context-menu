@@ -124,4 +124,77 @@ extension RNIContextMenuButtonContent {
       self.didPressMenuItem = false;
     };
   };
+
+  // context menu highlight preview - controls the shape of the
+  // open/close transition (e.g. preserves rounded corners during the morph).
+  //
+  // NOTE: never call super in these overrides - UIButton declares them
+  // (which is what makes `override` compile), but does not implement them,
+  // so calling super crashes with an unrecognized selector. Returning nil
+  // tells UIKit to create the default targeted preview instead.
+  #if swift(>=5.7)
+  @available(iOS 16.0, *)
+  public override func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    configuration: UIContextMenuConfiguration,
+    highlightPreviewForItemWithIdentifier identifier: NSCopying
+  ) -> UITargetedPreview? {
+
+    guard self.previewConfig.borderRadius != nil,
+          self.window != nil
+    else { return nil };
+
+    return self.menuTargetedPreview;
+  };
+  #else
+  /// deprecated in iOS 16
+  public override func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration
+  ) -> UITargetedPreview? {
+
+    guard self.previewConfig.borderRadius != nil,
+          self.window != nil
+    else { return nil };
+
+    return self.menuTargetedPreview;
+  };
+  #endif
+
+  // NOTE: unlike the highlight method (where nil means "use the default
+  // preview"), returning nil here makes the menu fade out in place instead
+  // of morphing back into the button. Always return a preview targeting
+  // the button, unless it left the window.
+  #if swift(>=5.7)
+  @available(iOS 16.0, *)
+  public override func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    configuration: UIContextMenuConfiguration,
+    dismissalPreviewForItemWithIdentifier identifier: NSCopying
+  ) -> UITargetedPreview? {
+
+    guard self.window != nil else { return nil };
+
+    guard self.previewConfig.borderRadius != nil else {
+      return .init(view: self);
+    };
+
+    return self.menuTargetedPreview;
+  };
+  #else
+  /// deprecated in iOS 16
+  public override func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    previewForDismissingMenuWithConfiguration configuration: UIContextMenuConfiguration
+  ) -> UITargetedPreview? {
+
+    guard self.window != nil else { return nil };
+
+    guard self.previewConfig.borderRadius != nil else {
+      return .init(view: self);
+    };
+
+    return self.menuTargetedPreview;
+  };
+  #endif
 };

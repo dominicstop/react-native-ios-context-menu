@@ -14,6 +14,7 @@ type RNIContextMenuButtonNativeComponentBaseProps =
 
 export type RNIContextMenuNativeViewInheritedProps = Pick<RNIContextMenuNativeViewBaseProps,
   | 'menuConfig'
+  | 'previewConfig'
   | 'isContextMenuEnabled'
   | 'onMenuWillShow'
   | 'onMenuDidShow'

@@ -11,6 +11,7 @@ export interface NativeProps extends ViewProps {
 
   // inherited props
   menuConfig?: string;
+  previewConfig?: string;
   isContextMenuEnabled?: boolean;
 
   onMenuWillShow?: BubblingEventHandler<{}>;

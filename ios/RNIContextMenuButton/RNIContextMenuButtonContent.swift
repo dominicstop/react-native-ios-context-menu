@@ -35,6 +35,7 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
   
   public static var propKeyPathMap: Dictionary<String, PartialKeyPath<RNIContextMenuButtonContent>> = [
     "menuConfig": \.menuConfigProp,
+    "previewConfig": \.previewConfigProp,
     "isContextMenuEnabled": \.isContextMenuEnabled,
     "isMenuPrimaryAction": \.isMenuPrimaryAction,
   ];
@@ -109,6 +110,19 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
     }
   };
   
+  private(set) public var previewConfig = RNIMenuPreviewConfig();
+  @objc public var previewConfigProp: NSDictionary? {
+    willSet {
+      guard let newValue = newValue as? Dictionary<String, Any> else {
+        return;
+      };
+
+      let previewConfig = try? RNIMenuPreviewConfig(fromDict: newValue);
+      self.previewConfig = previewConfig ?? .init();
+      self.applyPreviewBorderRadiusToLayerIfNeeded();
+    }
+  };
+
   @objc public var isContextMenuEnabled = true {
     willSet {
       guard #available(iOS 14.0, *) else { return };
@@ -123,6 +137,69 @@ public final class RNIContextMenuButtonContent: UIButton, RNIContentView {
     }
   };
   
+  // MARK: - Computed Properties
+  // ---------------------------
+
+  /// create `UIPreviewParameters` based on `previewConfig`
+  var menuPreviewParameters: UIPreviewParameters {
+    let param = UIPreviewParameters();
+
+    // set preview bg color
+    param.backgroundColor = self.previewConfig.backgroundColor;
+
+    // set the preview border shape
+    if let borderRadius = self.previewConfig.borderRadius {
+      // clamp so oversized radii (e.g. 9999 for "fully rounded") produce
+      // a valid capsule/circle path instead of a malformed bezier path
+      let borderRadiusClamped = min(
+        borderRadius,
+        min(self.bounds.width, self.bounds.height) / 2
+      );
+
+      let previewShape = UIBezierPath(
+        roundedRect: self.bounds,
+        cornerRadius: borderRadiusClamped
+      );
+
+      // set preview border shape
+      param.visiblePath = previewShape;
+
+      // set preview border shadow
+      if #available(iOS 14, *){
+        param.shadowPath = previewShape;
+      };
+    };
+
+    return param;
+  };
+
+  var menuTargetedPreview: UITargetedPreview {
+    .init(
+      view: self,
+      parameters: self.menuPreviewParameters
+    );
+  };
+
+  /// Keep the button's own layer shape in sync with the preview shape -
+  /// the first frame of the context menu transition is derived from the
+  /// layer's corner radius, before `UIPreviewParameters.visiblePath`
+  /// takes over. Without this the first frame flashes as a rounded rect.
+  func applyPreviewBorderRadiusToLayerIfNeeded(){
+    guard let borderRadius = self.previewConfig.borderRadius else { return };
+
+    let borderRadiusClamped = min(
+      borderRadius,
+      min(self.bounds.width, self.bounds.height) / 2
+    );
+
+    self.layer.cornerRadius = borderRadiusClamped;
+  };
+
+  public override func layoutSubviews() {
+    super.layoutSubviews();
+    self.applyPreviewBorderRadiusToLayerIfNeeded();
+  };
+
   // MARK: Init
   // ----------
   

@@ -6,6 +6,7 @@ import type { ContextMenuViewProps } from '../ContextMenuView';
 export type ContextMenuButtonInheritedProps = Partial<Pick<RNIContextMenuButtonProps,
   | 'isMenuPrimaryAction'
   | 'menuConfig'
+  | 'previewConfig'
   | 'isContextMenuEnabled'
 
   // Lifecycle Events

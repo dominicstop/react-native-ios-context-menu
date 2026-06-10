@@ -21,6 +21,7 @@ export type RNIContextMenuButtonRef = {
 export type RNIContextMenuButtonInheritedOptionalProps = Partial<Pick<RNIContextMenuButtonNativeViewProps,
   // Value Props
   | 'menuConfig'
+  | 'previewConfig'
 
   // Lifecycle Events
   | 'onDidSetViewID'

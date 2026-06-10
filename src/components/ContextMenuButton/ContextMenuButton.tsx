@@ -30,6 +30,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
   private getProps = () => {
     const {
       menuConfig,
+      previewConfig,
       isContextMenuEnabled,
       isMenuPrimaryAction,
       onMenuWillShow,
@@ -54,6 +55,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
 
       // B. Pass down props...
       menuConfig,
+      previewConfig,
       onMenuWillShow,
       onMenuWillHide,
       onMenuWillCancel,
@@ -158,6 +160,7 @@ export class ContextMenuButton extends React.PureComponent<ContextMenuButtonProp
     // TODO: Rename to 'sharedProps'
     const nativeComponentProps = {
       menuConfig: props.menuConfig,
+      previewConfig: props.previewConfig,
       isContextMenuEnabled: props.isContextMenuEnabled,
       isMenuPrimaryAction: props.isMenuPrimaryAction,
 

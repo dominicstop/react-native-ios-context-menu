@@ -210,6 +210,13 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
     
     // set the preview border shape
     if let borderRadius = self.previewConfig.borderRadius {
+      // clamp so oversized radii (e.g. 9999 for "fully rounded") produce
+      // a valid capsule/circle path instead of a degenerate (empty) path
+      let borderRadiusClamped = min(
+        borderRadius,
+        min(self.frame.width, self.frame.height) / 2
+      );
+
       let previewShape = UIBezierPath(
         // get width/height from custom preview view
         roundedRect: CGRect(
@@ -217,7 +224,7 @@ public final class RNIContextMenuViewContent: UIView, RNIContentView {
           size  : self.frame.size
         ),
         // set the preview corner radius
-        cornerRadius: borderRadius
+        cornerRadius: borderRadiusClamped
       );
       
       // set preview border shape
