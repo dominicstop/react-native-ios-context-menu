@@ -12,7 +12,7 @@
 
 #import RNI_UTILITIES_HEADER(RNIBaseViewUtils.h)
 
-#import "RCTBridge.h"
+#import <React/RCTBridge.h>
 #import <React/RCTViewManager.h>
 #import <React/RCTUIManager.h>
 
